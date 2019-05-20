@@ -119,3 +119,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/java,windows,eclipse
+Servers/footBall-config/web.xml
+Servers/footBall-config/tomcat-users.xml
+Servers/footBall-config/server.xml
+Servers/footBall-config/context.xml
+Servers/footBall-config/catalina.properties
+Servers/footBall-config/catalina.policy
