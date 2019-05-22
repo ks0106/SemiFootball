@@ -9,36 +9,39 @@
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
 </head>
+<script>
+	$(document).ready(function(){
+		$('.area').css("width","100%").css("height","200px");
+		$('.area').css("box-sizing","border-box").css("float","left");
+		$('.area').css("position","absolute");
+		$('.menu_bar').css("width","100%").css("height","80px");
+		$('.menu_bar').css("background-color","black").css("opacity","0.5");
+		$('.menu_bar').css("margin-top","70px");
+		$('.nav-item').css("color","white");
+		$('.nav-item').css("display","inline-block");
+		$('.nav-item').css("margin-right","50px");
+		$('.nav-item').css("line-height","40px");
+		$('.nav-item a').css("font-size","24px").css("text-decoration","none").css("color","white");
+		if($(window).width() < 1750){
+			$('.nav-item').css("display","none");
+		}else{
+			$('.nav-item').css("display","inline-block");			
+		}
+	});
+	$(window).resize(function(){
+		if($(window).width() < 1750){
+			$('.nav-item').css("display","none");
+		}else{
+			$('.nav-item').css("display","inline-block");						
+		}
+	}).resize();
+</script>
+
 <style>
 	body{
 		margin:0;
 		padding:0;
 		position:relative;
-	}
-	.area{
-		width:100%;
-		height:200px;
-		position:absolute;
-		box-sizing:border-box;
-		float:left;
-	}
-	.menu_bar{
-		width:100%;
-		height:80px;
-		margin-top:70px;
-		background-color:black;
-		opacity:0.5;
-	}
-	.nav-item{
-		color:white;
-		display: inline-block;
-		margin-right:50px;
-		line-height:40px;
-	}
-	.nav-item a{
-		font-size:24px;
-		text-decoration: none;
-		color:white;
 	}
 	.menu_bar:hover{
 		animation-name:menubar;
@@ -67,11 +70,9 @@
  			<li class="nav-item"><a href="#">갤러리</a></li>
  			<li class="nav-item"><a href="#">고객센터</a></li>
  			<li class="nav-item"><a href="#">회사소개</a></li>
- 			<li class="nav-item" style="display:none;">관리자메뉴</li>
+ 			<li class="nav-item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
-		<nav>
-			
-		</nav>
+
 	</div>
 </header>
 </html>
