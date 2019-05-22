@@ -13,10 +13,14 @@
 	body{
 		margin:0;
 		padding:0;
+		position: relative;
 	}
 	.area{
 		width:100%;
 		height:200px;
+		position:absolute;
+		box-sizing: border-box;
+		float: left;
 	}
 	.menu_bar{
 		width:100%;
@@ -24,7 +28,6 @@
 		margin-top:70px;
 		background-color:black;
 		opacity: 0.5;
-		position:relative;
 	}
 	#header_logo{
 		top:0px;
@@ -39,9 +42,9 @@
 </style>
 <header class="area">
 <!-- 헤더 작성 -->
-	<img src="img/header_logo.png" width="180" height="180" id="header_logo">
+  	<img src="img/header_logo.png" width="180" height="180" id="header_logo">
 	<div class="menu_bar">
-		<img src="img/header_logo2.png" width="80px" id="header_logo2">
+ 		<img src="img/header_logo2.png" width="80px" id="header_logo2">
 		<nav>
 		</nav>
 	</div>
