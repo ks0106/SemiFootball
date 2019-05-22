@@ -7,14 +7,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	#mv{
+		 position: fixed; right: 0; bottom: 0;
+        min-width: 100%; min-height: 100%;
+        width: auto; height: auto; z-index: -100;
+        background: url(polina.jpg) no-repeat;
+        background-size: cover;
+	}	
+	
+</style>
 </head>
 <body>
 <!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!-- section 안에 index 페이지 작성 -->
-	
-			<video id="video01" class="pblock" autoplay="" playsinline="" muted="" loop="" title="" style="width:auto;height:auto;"> 
-				<source src="https://hmfutsalpark.com/data/main.mp4" type="video/mp4"> 
-			</video>
+	<div id="mv">
+		<video id="video01" class="pblock" autoplay playsinline muted loop="" title=""> 
+			<source src="https://hmfutsalpark.com/data/main.mp4" type="video/mp4"> 
+		</video>
+	</div>
 </body>
 </html>
