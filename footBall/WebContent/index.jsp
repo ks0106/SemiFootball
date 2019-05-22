@@ -13,6 +13,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!-- section 안에 index 페이지 작성 -->
 	<section>
+	인덱스
 	</section>
 </body>
 </html>
