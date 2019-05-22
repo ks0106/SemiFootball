@@ -10,6 +10,10 @@
 	crossorigin="anonymous"></script>
 </head>
 <style>
+	body{
+		margin:0;
+		padding:0;
+	}
 	.area{
 		width:100%;
 		height:200px;
@@ -26,12 +30,18 @@
 		top:0px;
 		left:50px;
 		position:absolute;
+		z-index:100;
+	}
+	#header_logo2{
+		left:50px;
+		position:absolute;
 	}
 </style>
 <header class="area">
 <!-- 헤더 작성 -->
-	<img src="/img/header_logo.png" width="200" height="200" id="header_logo">
+	<img src="img/header_logo.png" width="180" height="180" id="header_logo">
 	<div class="menu_bar">
+		<img src="img/header_logo2.png" width="80px" id="header_logo2">
 		<nav>
 		</nav>
 	</div>
