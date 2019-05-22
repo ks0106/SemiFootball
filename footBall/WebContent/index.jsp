@@ -1,19 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    <!-- JSTL ªÁøÎ¿ª ¿ß«— import -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <!-- JSTL ÏÇ¨Ïö©ÏùÑ ÏúÑÌïú import -->
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<!-- «Ï¥ı ∫“∑Øø¿±‚ -->
+<!-- Ìó§Îçî Î∂àÎü¨Ïò§Í∏∞ -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<!-- section æ»ø° index ∆‰¿Ã¡ˆ ¿€º∫ -->
-	<section>
-	¿Œµ¶Ω∫
-	</section>
+<!-- section ÏïàÏóê index ÌéòÏù¥ÏßÄ ÏûëÏÑ± -->
+	
+			<video id="video01" class="pblock" autoplay="" playsinline="" muted="" loop="" title="" style="width:auto;height:auto;"> 
+				<source src="https://hmfutsalpark.com/data/main.mp4" type="video/mp4"> 
+			</video>
 </body>
 </html>
