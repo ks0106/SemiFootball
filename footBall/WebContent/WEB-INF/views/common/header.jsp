@@ -56,9 +56,9 @@
 </style>
 <header class="area">
 <!-- 헤더 작성 -->
-   	<a href="/footBall"><img src="img/header_logo.png" width="180" height="180" id="header_logo" style="top:0px;left:50px;position:absolute;z-index:100;"></a>
+   	<a href="/"><img src="/img/header_logo.png" width="180" height="180" id="header_logo" style="top:0px;left:50px;position:absolute;z-index:100;"></a>
 	<div class="menu_bar">
- 		<a href="/footBall"><img src="img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
+ 		<a href="/"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
  		<ul id="menu" style="position:absolute;left:300px;list-style-type:none;padding:0;">
  			<li class="nav-item"><a href="#">지점</a></li>
  			<li class="nav-item"><a href="#">대관</a></li>
