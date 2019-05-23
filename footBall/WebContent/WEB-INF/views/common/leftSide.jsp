@@ -90,13 +90,13 @@
 		</div>
 		<div class="leftside_menu">
 			<ul style="list-style-type:none;padding:0;">
-				<li class="menu_item"><a href="#">지점</a></li>
-				<li class="menu_item"><a href="#">대관</a></li>
-				<li class="menu_item"><a href="#">매치/클럽</a></li>
-				<li class="menu_item"><a href="#">대회</a></li>
-				<li class="menu_item"><a href="#">갤러리</a></li>
-				<li class="menu_item"><a href="#">고객센터</a></li>
-				<li class="menu_item"><a href="#">회사소개</a></li>
+				<li class="menu_item"><a href="/branch">지점</a></li>
+				<li class="menu_item"><a href="/reservation">대관</a></li>
+				<li class="menu_item"><a href="/matching">매치/클럽</a></li>
+				<li class="menu_item"><a href="/league">대회</a></li>
+				<li class="menu_item"><a href="/gallery">갤러리</a></li>
+				<li class="menu_item"><a href="/notice">고객센터</a></li>
+				<li class="menu_item"><a href="/company">회사소개</a></li>
 			</ul>
 		</div>
 		<div class="leftside_bar"></div>
