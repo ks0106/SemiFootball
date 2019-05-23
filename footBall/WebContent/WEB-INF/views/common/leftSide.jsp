@@ -77,22 +77,6 @@
 		font-size:50px;
 		font-weight:bold;
 	}
-	@keyframes prev{
-		from{
-			margin-left:500px;
-		}
-		to{
-			margin-left:0px;
-		}
-	}
-	@keyframes next{
-		from{
-			margin-left:500px;
-		}
-		to{
-			margin-left:0px;
-		}
-	}
 </style>
 <script>
 	$(document).ready(function(){
@@ -108,7 +92,11 @@
 				$('.leftside_area').animate({
 					left:"0px"},500);						
 			}
-		});		
+		});
+		//페이지 로드 시 창 사이즈에 따른 사이드바 상태 변경
+		if($(window).height() < 940){
+			
+		}
 	});
 </script>
 <!-- 사이드바 작성 -->
