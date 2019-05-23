@@ -31,7 +31,7 @@
 </head>
 <body>
 <!-- 헤더 불러오기 -->
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/leftSide.jsp"/>
 <!-- section 안에 index 페이지 작성 -->
 <!--영상배경  -->
 	<div id="mv">
