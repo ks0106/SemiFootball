@@ -11,23 +11,31 @@
 </head>
 <script>
 	$(document).ready(function(){
+		//헤더 영역 사이즈
 		$('.area').css("width","100%").css("height","200px");
+		//헤더 영역 위치
 		$('.area').css("box-sizing","border-box").css("float","left");
 		$('.area').css("position","absolute");
+		//메뉴바 사이즈
 		$('.menu_bar').css("width","100%").css("height","80px");
+		//메뉴바 컬러 및 투명도
 		$('.menu_bar').css("background-color","black").css("opacity","0.5");
+		//메뉴바 위치
 		$('.menu_bar').css("margin-top","70px");
+		//메뉴 li 설정
 		$('.nav-item').css("color","white");
 		$('.nav-item').css("display","inline-block");
 		$('.nav-item').css("margin-right","50px");
 		$('.nav-item').css("line-height","40px");
 		$('.nav-item a').css("font-size","24px").css("text-decoration","none").css("color","white");
+		//페이지 로드 시 창 사이즈에 따른 메뉴바 상태 변경
 		if($(window).width() < 1750){
 			$('.nav-item').css("display","none");
 		}else{
 			$('.nav-item').css("display","inline-block");			
 		}
 	});
+	//창크기 조절 시 창 사이즈에 따른 메뉴바 상태 변경
 	$(window).resize(function(){
 		if($(window).width() < 1750){
 			$('.nav-item').css("display","none");
@@ -72,7 +80,7 @@
  			<li class="nav-item"><a href="#">회사소개</a></li>
  			<li class="nav-item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
-
+		
 	</div>
 </header>
 </html>
