@@ -45,6 +45,7 @@
 		left:30%;
 	}
 	.leftside_bar{
+		position:absolute;
 		width:500px;
 		height:100%;
 		background-color:black;
@@ -55,6 +56,7 @@
 		vertical-align: middle;
 	}
 	.bar_button{
+		margin-left:500px;
 		display:table;
 		width:30px;
 		height:150px;
@@ -63,6 +65,7 @@
 		border-top-right-radius:10px;
 		border-bottom-right-radius:10px;
 		box-sizing: border-box;
+		cursor: pointer;
 	}
 	.prev_next{
 		display:table-cell;
@@ -74,7 +77,40 @@
 		font-size:50px;
 		font-weight:bold;
 	}
+	@keyframes prev{
+		from{
+			margin-left:500px;
+		}
+		to{
+			margin-left:0px;
+		}
+	}
+	@keyframes next{
+		from{
+			margin-left:500px;
+		}
+		to{
+			margin-left:0px;
+		}
+	}
 </style>
+<script>
+	$(document).ready(function(){
+		$('.bar_button').click(function(){
+			if($(this).attr('id') == 'prev'){
+				$(this).css("display","none");
+				$('#next').css("display","table");
+				$('.leftside_area').animate({
+					left:"-500px"},500);
+			}else{
+				$(this).css("display","none");
+				$('#prev').css("display","table");			
+				$('.leftside_area').animate({
+					left:"0px"},500);						
+			}
+		});		
+	});
+</script>
 <!-- 사이드바 작성 -->
 <body>
 	<div class="leftside_area">
@@ -103,10 +139,10 @@
 <!-- 사이드바 접기/펼치기 작성 -->
 		<div class="bar_button_area">
 			<div class="bar_button" id="prev">
-				<a class="prev_next"><img src="/img/prev_white.png" width="50px" ></a>
+				<span class="prev_next"><img src="/img/prev_white.png" width="50px" ></span>
 			</div>
 			<div class="bar_button" id="next" style="display:none;">
-				<a class="prev_next"><img src="/img/next_white.png" width="50px"></a>
+				<span class="prev_next"><img src="/img/next_white.png" width="50px"></span>
 			</div>
 		</div>
 	</div>
