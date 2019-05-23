@@ -71,13 +71,13 @@
 	<div class="menu_bar">
  		<a href="/"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
  		<ul id="menu" style="position:absolute;left:300px;list-style-type:none;padding:0;">
- 			<li class="nav-item"><a href="#">지점</a></li>
- 			<li class="nav-item"><a href="#">대관</a></li>
- 			<li class="nav-item"><a href="#">매치/용병</a></li>
- 			<li class="nav-item"><a href="#">대회</a></li>
- 			<li class="nav-item"><a href="#">갤러리</a></li>
- 			<li class="nav-item"><a href="#">고객센터</a></li>
- 			<li class="nav-item"><a href="#">회사소개</a></li>
+ 			<li class="nav-item"><a href="/branch">지점</a></li>
+ 			<li class="nav-item"><a href="/reservation">대관</a></li>
+ 			<li class="nav-item"><a href="/matching">매치/용병</a></li>
+ 			<li class="nav-item"><a href="/league">대회</a></li>
+ 			<li class="nav-item"><a href="/gallery">갤러리</a></li>
+ 			<li class="nav-item"><a href="/notice">고객센터</a></li>
+ 			<li class="nav-item"><a href="/company">회사소개</a></li>
  			<li class="nav-item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
 		
