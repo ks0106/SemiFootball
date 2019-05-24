@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import notice.model.service.NoticeService;
+import notice.model.vo.NoticePageData;
+
 /**
  * Servlet implementation class NoticeServlet
  */
@@ -28,6 +31,15 @@ public class NoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		int reqPage;
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		NoticePageData pd = new NoticeService().NoticeList(reqPage);
+		request.setAttribute("pd", pd);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/notice.jsp");
 		rd.forward(request, response);
 	}

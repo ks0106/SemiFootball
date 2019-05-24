@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ page import="notice.model.vo.NoticeVo" %>
+    <%@ page import="java.util.ArrayList" %>
+    <%@ page import="notice.model.vo.NoticePageData" %>
+    <%
+    	NoticePageData pd = (NoticePageData)request.getAttribute("pd");
+    	ArrayList<NoticeVo> list = pd.getList();
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -92,12 +99,13 @@
                		<tr>
                			<th>번호</th><th>제목</th><th>작성자</th><th>등록일</th>
                		</tr>
-               		<c:forEach items="#" var="#">
+               		<% for(NoticeVo nv : list) {%>
                		<tr>
-               			<th>번호</th><th>제목</th><th>작성자</th><th>등록일</th>
+               			<td><%=nv.getSeqnoticeno() %></td><td><%=nv.getNoticetitle() %></td><td><%=nv.getNoticewriter() %></td><td><%=nv.getNoticedate() %></td>
                		</tr>
-               		</c:forEach>
+               		<%} %>
                </table>
+               <div id="pageNavi"><%=pd.getPageNavi() %></div>
                </center>
                </div>
                <div id="T-con02" class="tab-con">
