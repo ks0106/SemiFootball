@@ -1,7 +1,6 @@
 package gallery.controllor;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import gallery.model.service.GalleryService;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
- * Servlet implementation class GalleryServlet
+ * Servlet implementation class InsertGalleryServlet
  */
-@WebServlet(name = "Gallery", urlPatterns = { "/gallery" })
-public class GalleryServlet extends HttpServlet {
+@WebServlet(name = "InsertGallery", urlPatterns = { "/insertGallery" })
+public class InsertGalleryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GalleryServlet() {
+    public InsertGalleryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +33,19 @@ public class GalleryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int totalCount = 0;
-		try {
-			totalCount = new GalleryService().photoTotalCount();
-		} catch (SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
-			request.setAttribute("msg", "SQL구문 오류");
-			rd.forward(request, response);
+		request.setCharacterEncoding("UTF-8");
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			request.setAttribute("msg", "작성오류[enctype]");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			return;
+		}else {
+			String root = getServletContext().getRealPath("/");
+			String saveDirectory = root+"upload/photo";
+			int maxSize = 10*1024*1024;
+			MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+			
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/gallery/gallery.jsp");
-		request.setAttribute("totalCount", totalCount);
-		rd.forward(request, response);
 	}
 
 	/**
