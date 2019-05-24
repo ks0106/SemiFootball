@@ -95,7 +95,7 @@
 			}
 		});
 		//페이지 로드 시 창 사이즈에 따른 사이드바 상태 변경
-		if($(window).height() < 940){
+		if($(window).height() < 900){
 			$('sidebar').css("display","none");
 			$('header').css("display","block").css("position","absolute");
 		}else{
@@ -105,7 +105,7 @@
 	});
 	//창크기 조절 시 창 사이즈에 따른 사이드바 상태 변경
 	$(window).resize(function(){
-		if($(window).height() < 940){
+		if($(window).height() < 900){
 			$('sidebar').css("display","none");
 			$('header').css("display","block").css("position","absolute");
 		}else{
