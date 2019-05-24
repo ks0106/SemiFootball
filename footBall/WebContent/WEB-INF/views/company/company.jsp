@@ -33,7 +33,6 @@
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	
 		<!--헤더 밑 영상  -->
 	<div id="continer">
 	<div id="mv">
