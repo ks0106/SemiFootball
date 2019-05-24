@@ -121,7 +121,7 @@
    	<a href="/" id="header_logo"><img src="/img/header_logo.png" width="180" height="180" id="header_logo" style="top:0px;left:50px;position:absolute;z-index:100;"></a>
 	<div class="menu_bar">
  		<a href="/" id="header_logo2"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
- 		<div class="toggle_bar" style="width:50px;height:100%;float:right;margin-right:50px;margin-top:5px;cursor:pointer;">
+ 		<div class="toggle_bar" style="width:70px;height:65px;float:right;margin-right:50px;margin-top:5px;cursor:pointer;display:none;">
  			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
  			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
  			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
@@ -136,7 +136,7 @@
  			<li class="nav-item"><a href="/company">회사소개</a></li>
  			<li class="nav-item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
- 		<div id="menu_login" style="float:right;margin-right:50px;width:100px;height:90%;margin-top:5px;">
+ 		<div id="menu_login" style="float:right;margin-right:100px;width:100px;height:90%;margin-top:5px;">
 			<div style="margin-left:16px;"><a href="/login"><img src="/img/login_icon_100px_white.png" width="50" height="50"></a></div>
  			<div><a href="/login" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 		</div>
