@@ -221,7 +221,6 @@
  			<li class="nav-item"><a href="/company">회사소개</a></li>
  			<li class="nav-item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
-		
 	</div>
 </header>
 </html>
