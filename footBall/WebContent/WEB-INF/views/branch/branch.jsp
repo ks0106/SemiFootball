@@ -6,34 +6,34 @@
 <!-- 동영상CSS  -->
 <link rel='stylesheet' href="css/common/pageCss.css">
 	<style>
-		img {
-			margin: 10px;
-			border-radius: 5px;
-		}
 		.mainImg {
-			border-radius: 10px;
+			 border-radius: 10px;
 			 width: 100%;
 			 height: 320px;
+			 margin-top:10px;
+			 margin-left:10px;
 			 margin-bottom:1px;
 			 float: left;
 		}
 		.subImg {
+			border-radius: 5px;
 			width: 100px;
 			height: 60px;
 			margin-top: 5px;
 			margin-left: 10px;
 			float: left;
 			cursor: pointer;
-		}
-		.content img {
 			opacity: 1;
 			-webkit-transition: .3s ease-in-out;
 			transition: .3s ease-in-out;
 		}
-		.content img:hover {
+		.subImg:hover {
 			opacity: .5;
 		}
-		
+		.icon {
+			width:40%;
+			height:40%;
+		}
 		.content-container {
 			position: absolute;
 			top: 485px;
@@ -49,9 +49,14 @@
 			height: 40%;
 			background-color: orange;
 		}
-		.content {
+		.content-left {
 			float: left;
-			width: 50%;
+			width: 40%;
+			height: 100%;
+		}
+		.content-right {
+			float: left;
+			width: 60%;
 			height: 100%;
 		}
 	</style>
@@ -74,14 +79,24 @@
 	</div>
 	<div class="content-container">
 		<div class="content-wrapper">
-			<div class="content">
+			<div class="content-left">
 				<img class="mainImg" src="" alt="mainIng"><br>
 				<img class="subImg" src="img/branch_test.jpg" alt="subImg">
 				<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
 				<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
 			</div>
-			<div class="content">
-				<span>testSpan</span>
+			<div class="content-right">
+				<table border="1px" style="display: table; margin-top:10px; margin-left: auto; margin-right: auto;">
+					<tr>
+						<td colspan="2">${b.branchName }</td>
+					</tr>
+					<tr>
+						<td><img class="icon" src="img/branch_pinIcon.png"></td><td>${b.brnachAddr }</td>
+					</tr>
+					<tr>
+						<td><img class="icon" src="img/branch_phoneIcon.png"></td><td>${b.branchPhone } / ${b.branchTel }</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<div class="content-wrapper">

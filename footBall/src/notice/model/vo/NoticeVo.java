@@ -3,33 +3,35 @@ package notice.model.vo;
 import java.sql.Date;
 
 public class NoticeVo {
-	private int seq_notice_no;
+	private int seqnoticeno;
 	private String noticetitle;
 	private String noticewriter;
 	private Date noticedate;
 	private String noticecontent;
 	private String filename;
 	private String filepath;
+	private int rnum;
 	public NoticeVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public NoticeVo(int seq_notice_no, String noticetitle, String noticewriter, Date noticedate, String noticecontent,
-			String filename, String filepath) {
+	public NoticeVo(int seqnoticeno, String noticetitle, String noticewriter, Date noticedate, String noticecontent,
+			String filename, String filepath, int rnum) {
 		super();
-		this.seq_notice_no = seq_notice_no;
+		this.seqnoticeno = seqnoticeno;
 		this.noticetitle = noticetitle;
 		this.noticewriter = noticewriter;
 		this.noticedate = noticedate;
 		this.noticecontent = noticecontent;
 		this.filename = filename;
 		this.filepath = filepath;
+		this.rnum = rnum;
 	}
-	public int getSeq_notice_no() {
-		return seq_notice_no;
+	public int getSeqnoticeno() {
+		return seqnoticeno;
 	}
-	public void setSeq_notice_no(int seq_notice_no) {
-		this.seq_notice_no = seq_notice_no;
+	public void setSeqnoticeno(int seqnoticeno) {
+		this.seqnoticeno = seqnoticeno;
 	}
 	public String getNoticetitle() {
 		return noticetitle;
@@ -67,4 +69,11 @@ public class NoticeVo {
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
 	}
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+
 }

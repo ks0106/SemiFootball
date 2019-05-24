@@ -1,27 +1,23 @@
-package notice.controllor;
+package gallery.controllor;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
-
 /**
- * Servlet implementation class NoticeSelectServlet
+ * Servlet implementation class GalleryWriteFrmServlet
  */
-@WebServlet(name = "NoticeSelect", urlPatterns = { "/noticeSelect" })
-public class NoticeSelectServlet extends HttpServlet {
+@WebServlet(name = "GalleryWriteFrm", urlPatterns = { "/galleryWriteFrm" })
+public class GalleryWriteFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeSelectServlet() {
+    public GalleryWriteFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,17 +26,7 @@ public class NoticeSelectServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		int reqPage;
-		try {
-			reqPage = Integer.parseInt(request.getParameter("reqPage"));
-		}catch(NumberFormatException e) {
-			reqPage = 1;
-		}
-		NoticePageData pd = new NoticeService().NoticeSelect(reqPage);
-		request.setAttribute("pd", pd);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/notice.jsp");
-		rd.forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/gallery/galleryWriteFrm.jsp").forward(request, response);
 	}
 
 	/**
