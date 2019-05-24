@@ -85,7 +85,9 @@
  			<li class="nav-item"><a href="/company">회사소개</a></li>
  			<li class="nav-item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
-		
+ 		<div style="float:right;margin-right:50px;width:100px;height:90%;margin-top:5px;">
+			<div style="margin-left:16px;"><a href="/login"><img src="/img/login_icon_100px_white.png" width="50" height="50"></a></div>
+ 			<div><a href="/login" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+		</div>
 	</div>
 </header>
-</html>
