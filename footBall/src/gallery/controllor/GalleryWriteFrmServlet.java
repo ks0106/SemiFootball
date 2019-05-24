@@ -1,28 +1,23 @@
 package gallery.controllor;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import gallery.model.service.GalleryService;
-
 /**
- * Servlet implementation class GalleryServlet
+ * Servlet implementation class GalleryWriteFrmServlet
  */
-@WebServlet(name = "Gallery", urlPatterns = { "/gallery" })
-public class GalleryServlet extends HttpServlet {
+@WebServlet(name = "GalleryWriteFrm", urlPatterns = { "/galleryWriteFrm" })
+public class GalleryWriteFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GalleryServlet() {
+    public GalleryWriteFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +26,7 @@ public class GalleryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int totalCount = 0;
-		try {
-			totalCount = new GalleryService().photoTotalCount();
-		} catch (SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
-			request.setAttribute("msg", "SQL구문 오류");
-			rd.forward(request, response);
-		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/gallery/gallery.jsp");
-		request.setAttribute("totalCount", totalCount);
-		rd.forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/gallery/galleryWriteFrm.jsp").forward(request, response);
 	}
 
 	/**

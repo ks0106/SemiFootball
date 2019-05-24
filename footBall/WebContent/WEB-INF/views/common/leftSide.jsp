@@ -152,7 +152,10 @@
 </sidebar>
 <!-- 여기서부터 메인인덱스 헤더(높이가 일정 크기 이하일 때 사이드 -> 헤더로 전환) -->
 <script>
+	var oldSize;
+	var newSize;
 	$(document).ready(function(){
+		oldSize = $(window).width();
 		//헤더 영역 사이즈
 		$('.area').css("width","100%").css("height","200px");
 		//헤더 영역 위치
@@ -163,31 +166,58 @@
 		//메뉴바 컬러 및 투명도
 		$('.menu_bar').css("background-color","black").css("opacity","0.5");
 		//메뉴바 위치
-		$('.menu_bar').css("margin-top","0");
-		//메뉴 li 설정
-		$('.nav-item').css("color","white");
-		$('.nav-item').css("display","inline-block");
-		$('.nav-item').css("margin-right","50px");
-		$('.nav-item').css("line-height","40px");
-		$('.nav-item a').css("font-size","24px").css("text-decoration","none").css("color","white");
+		$('.menu_bar').css("margin-top","0px");
 		//페이지 로드 시 창 사이즈에 따른 메뉴바 상태 변경
-		if($(window).width() < 1750){
-			$('.nav-item').css("display","none");
-		}else{
-			$('.nav-item').css("display","inline-block");			
+		if(oldSize < 1750){
+			$('#menu').css("display","none");
+			$('#menu_login').css("display","none");
+			$('.toggle_bar').css("display","block");
 		}
 	});
 	//창크기 조절 시 창 사이즈에 따른 메뉴바 상태 변경
 	$(window).resize(function(){
-		if($(window).width() < 1750){
-			$('.nav-item').css("display","none");
+		newSize = $(window).width();
+		if(oldSize < 1750){
+			if(newSize < 1750){
+				$('#menu').css("display","none");
+				$('#menu_login').css("display","none");
+				$('.toggle_bar').css("display","block");
+				oldSize = $(window).width();
+			}else{
+				$('#menu').css("display","block");
+				$('#menu_login').css("display","block");
+				$('.toggle_bar').css("display","none");
+				oldSize = $(window).width();
+			}			
 		}else{
-			$('.nav-item').css("display","inline-block");						
+			if(newSize < 1750){
+				$('#menu').css("display","none");
+				$('#menu_login').css("display","none");
+				$('.toggle_bar').css("display","block");
+				oldSize = $(window).width();
+			}else{
+				$('#menu').css("display","block");
+				$('#menu_login').css("display","block");
+				$('.toggle_bar').css("display","none");
+				oldSize = $(window).width();
+			}						
 		}
 	}).resize();
 </script>
 
 <style>
+/* 메뉴 li설정 (script 사용 시 로딩하는 동안 li기본형 뜨는 문제 때문에 css로 직접 줌) */
+	.nav-item{
+		color:white;
+		display:inline-block;
+		margin-right:50px;
+		line-height:40px;
+	}
+	.nav-item a{
+		font-size: 24px;
+		text-decoration: none;
+		color:white;
+	}
 	body{
 		margin:0;
 		padding:0;
@@ -210,7 +240,12 @@
 <header class="area">
 <!-- 헤더 작성 -->
 	<div class="menu_bar">
- 		<a href="/"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
+ 		<a href="/" id="header_logo2"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
+ 		<div class="toggle_bar" style="width:50px;height:100%;float:right;margin-right:50px;margin-top:5px;cursor:pointer;">
+ 			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
+ 			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
+ 			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
+ 		</div> 		
  		<ul id="menu" style="position:absolute;left:300px;list-style-type:none;padding:0;">
  			<li class="nav-item"><a href="/branch">지점</a></li>
  			<li class="nav-item"><a href="/reservation">대관</a></li>
@@ -221,6 +256,10 @@
  			<li class="nav-item"><a href="/company">회사소개</a></li>
  			<li class="nav-item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
+ 		<div id="menu_login" style="float:right;margin-right:50px;width:100px;height:90%;margin-top:5px;">
+			<div style="margin-left:16px;"><a href="/login"><img src="/img/login_icon_100px_white.png" width="50" height="50"></a></div>
+ 			<div><a href="/login" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+		</div>
 	</div>
 </header>
 </html>
