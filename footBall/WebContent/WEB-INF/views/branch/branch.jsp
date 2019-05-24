@@ -6,6 +6,21 @@
 <!-- 동영상CSS  -->
 <link rel='stylesheet' href="css/common/pageCss.css">
 	<style>
+		img {
+			margin: 10px;
+			border-radius: 5px;
+		}
+		.mainImg {
+			 width: 100%;
+			 height: 70%;
+			 float: left;
+		}
+		.subImg {
+			width: 100px;
+			height: 70px;
+			margin-left: 10px;
+			float: left;
+		}
 		.content-container {
 			position: absolute;
 			top: 485px;
@@ -17,10 +32,14 @@
 			position: relative;
 			display: inline-block;
 			margin-top: 50px;
-			margin-bottom: 50px;
 			width: 70%;
 			height: 40%;
 			background-color: orange;
+		}
+		.content {
+			float: left;
+			width: 50%;
+			height: 100%;
 		}
 	</style>
 <head>
@@ -42,7 +61,15 @@
 	</div>
 	<div class="content-container">
 		<div class="content-wrapper">
-			부천점
+			<div class="content">
+				<img class="mainImg" src="" alt="mainIng"><br>
+				<img class="subImg" src="img/branch_test.jpg" alt="subImg">
+				<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
+				<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
+			</div>
+			<div class="content">
+				<span>testSpan</span>
+			</div>
 		</div>
 		<div class="content-wrapper">
 			안양점
@@ -51,5 +78,14 @@
 			안산점
 		</div>
 	</div>
+	<script>
+		$(function(){
+			$mainImgSrc = $('.subImg').eq(0).attr('src');
+			$('.mainImg').attr('src',$mainImgSrc);
+			$('.subImg').click(function(){
+				$('.mainImg').attr('src',$(this).attr('src'));
+			});
+		});
+	</script>
 </body>
 </html>
