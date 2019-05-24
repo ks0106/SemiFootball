@@ -82,12 +82,23 @@
 	</div>
 		<div class="tab-container">
             <ul class="tab-list">
-               <li class="selected list-li"><a href="#T-con01" class="munebar">F&Q</a></li>
-               <li class="list-li"><a href="#T-con02" class="munebar">공지사항</a></li>
+               <li class="selected list-li"><a href="#T-con01" class="munebar">공지사항</a></li>
+               <li class="list-li"><a href="#T-con02" class="munebar">FAQ</a></li>
             </ul>
             <div class="tab-content-wrapper">
                <div id="T-con01" class="tab-con">
-               ddddd
+               <center> <h1><u>공지사항</u></h1>
+              <table border="1">
+               		<tr>
+               			<th>번호</th><th>제목</th><th>작성자</th><th>등록일</th>
+               		</tr>
+               		<c:forEach items="#" var="#">
+               		<tr>
+               			<th>번호</th><th>제목</th><th>작성자</th><th>등록일</th>
+               		</tr>
+               		</c:forEach>
+               </table>
+               </center>
                </div>
                <div id="T-con02" class="tab-con">
                ffff
