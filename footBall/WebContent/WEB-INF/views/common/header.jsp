@@ -21,12 +21,6 @@
 		$('.menu_bar').css("background-color","black").css("opacity","0.5");
 		//메뉴바 위치
 		$('.menu_bar').css("margin-top","70px");
-		//메뉴 li 설정
-		$('.nav-item').css("color","white");
-		$('.nav-item').css("display","inline-block");
-		$('.nav-item').css("margin-right","50px");
-		$('.nav-item').css("line-height","40px");
-		$('.nav-item a').css("font-size","24px").css("text-decoration","none").css("color","white");
 		//페이지 로드 시 창 사이즈에 따른 메뉴바 상태 변경
 		if($(window).width() < 1750){
 			$('.nav-item').css("display","none");
@@ -45,6 +39,18 @@
 </script>
 
 <style>
+/* 메뉴 li설정 (script 사용 시 로딩하는 동안 li기본형 뜨는 문제 때문에 css로 직접 줌) */
+	.nav-item{
+		color:white;
+		display:inline-block;
+		margin-right:50px;
+		line-height:40px;
+	}
+	.nav-item a{
+		font-size: 24px;
+		text-decoration: none;
+		color:white;
+	}
 	body{
 		margin:0;
 		padding:0;
