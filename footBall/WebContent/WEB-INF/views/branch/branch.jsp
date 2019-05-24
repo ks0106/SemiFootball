@@ -11,16 +11,29 @@
 			border-radius: 5px;
 		}
 		.mainImg {
+			border-radius: 10px;
 			 width: 100%;
-			 height: 70%;
+			 height: 320px;
+			 margin-bottom:1px;
 			 float: left;
 		}
 		.subImg {
 			width: 100px;
-			height: 70px;
+			height: 60px;
+			margin-top: 5px;
 			margin-left: 10px;
 			float: left;
+			cursor: pointer;
 		}
+		.content img {
+			opacity: 1;
+			-webkit-transition: .3s ease-in-out;
+			transition: .3s ease-in-out;
+		}
+		.content img:hover {
+			opacity: .5;
+		}
+		
 		.content-container {
 			position: absolute;
 			top: 485px;
