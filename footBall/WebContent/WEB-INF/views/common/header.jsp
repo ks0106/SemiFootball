@@ -30,42 +30,34 @@
 			$('#header_logo').css("display","none");
 			$('#menu_login').css("display","none");
 			$('.toggle_bar').css("display","block");
+			$('.area').animate({
+				top:"-70px"},500);
 		}
 	});
 	//창크기 조절 시 창 사이즈에 따른 메뉴바 상태 변경
 	$(window).resize(function(){
-		newSize = $(window).width();
-		if(oldSize < 1750){
-			if(newSize < 1750){
-				$('#menu').css("display","none");
-				$('#menu_login').css("display","none");
-				$('#header_logo').animate({
-					opacity:"0"},100);
-				$('#header_logo').animate({
-					left:"-50px"},100);
-				$('.toggle_bar').css("display","block");
-				oldSize = $(window).width();
-			}else{
-				$('#menu').css("display","block");
-				$('#menu_login').css("display","block");
-				$('#header_logo').css("display","block");
-				$('#header_logo').animate({
-					opacity:"1"},100);
-				$('#header_logo').animate({
-					left:"0px"},100);
-				$('.area').animate({
+		newSize = $(window).width();							/* newSize(새 창 크기)에 현재 창 크기 저장 */
+		if(oldSize < 1750){										
+			if(newSize < 1750){									/* 예전 창크기가 1750보다 작을 때 새 창크기도 1750보다 작으면 */
+				$('#menu').css("display","none");				/* 메뉴 사라짐 */
+				$('#menu_login').css("display","none");			/* 로그인 버튼 사라짐 */
+				$('#header_logo').css("display","none");		/* 파란 헤더 로고 사라짐 */
+				$('.toggle_bar').css("display","block");		/* 메뉴와 로그인을 담은 토글바 나타남 */
+				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
+			}else{												/* 예전 창크기가 1750보다 작을 때 새 창크기가 1750보다 크면 */
+				$('#menu').css("display","block");				/* 메뉴 나타남 */
+				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
+				$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
+				$('.area').animate({							/* 헤더 원위치 */
 					top:"0px"},500);
-				$('.toggle_bar').css("display","none");
-				oldSize = $(window).width();
+				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
+				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
 			}			
 		}else{
 			if(newSize < 1750){
 				$('#menu').css("display","none");
 				$('#menu_login').css("display","none");
-				$('#header_logo').animate({
-					opacity:"0"},100);
-				$('#header_logo').animate({
-					left:"-50px"},100);
+				$('#header_logo').css("display","none");
 				$('.area').animate({
 					top:"-70px"},500);
 				$('.toggle_bar').css("display","block");
@@ -73,10 +65,6 @@
 			}else{
 				$('#menu_login').css("display","block");
 				$('#header_logo').css("display","block");
-				$('#header_logo').animate({
-					opacity:"1"},100);
-				$('#header_logo').animate({
-					left:"0px"},100);
 				$('.toggle_bar').css("display","none");
 				oldSize = $(window).width();
 			}						
@@ -101,6 +89,7 @@
 		margin:0;
 		padding:0;
 		position:relative;
+		overflow-x: hidden; 		/* 좌우 스크롤 제거 Css구문 */
 	}
 	.menu_bar:hover{
 		animation-name:menubar;
