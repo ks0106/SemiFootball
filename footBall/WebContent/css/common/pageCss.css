@@ -11,7 +11,7 @@
 	/* 페이지 타이틀  */
 	#title{
 		position:absolute;
-		z-index: 100;
+		z-index: 1;
 		font-size: 70px;
 		font-weight:900;
 		color: white;
@@ -21,6 +21,5 @@
 	.page_area{
 		position:absolute;
 		width:100%;
-		z-index: 100;
 		top: 485px;		
 	}
