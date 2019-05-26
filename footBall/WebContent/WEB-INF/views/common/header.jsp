@@ -135,4 +135,8 @@
  			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 		</div>
 	</div>
+	<nav class="right_area">
+	
+		<div style="width:400px;height:100vh;background-color:black;opacity:0.9;float:right;display:none;"></div>
+	</nav>
 </header>
