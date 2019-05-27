@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<license version="1.1">
+	<product>
+		<name>nexacro&#32;platform</name>
+		<version>17</version>
+		<function>Runtime,WebBrowser</function>
+	</product>
+	<customer>
+		<name>교육용_라이선스</name>
+		<coreCount>1</coreCount>
+		<ipAddress>0.0.0.0</ipAddress>
+		<targetPlatform>Windows,WindowsRT</targetPlatform>
+	</customer>
+	<date>
+		<activation>2019-01-15</activation>
+		<term unit="month">24</term>
+	</date>
+	<key>FAVVYPFMENC4KFNDH6TNKX7V955ZSMRBA</key>
+</license>

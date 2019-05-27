@@ -1,11 +1,15 @@
 package member.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
@@ -32,7 +36,27 @@ public class LoginServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		
-		//int result = new MemberService().insert(id,pwd);
+		try {
+			Member m = new MemberService().login(id,pwd);
+			if(m!=null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("member", m);
+				request.setAttribute("msg", "로그인 성공");
+				request.setAttribute("loc", "/");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				rd.forward(request, response);
+			}else {
+				request.setAttribute("msg", "로그인 실패");
+				request.setAttribute("loc", "/views/login/login.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				rd.forward(request, response);
+			}
+			
+		} catch (SQLException e) {
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/errorPage500.jsp");
+			request.setAttribute("msg", "SQL문 에러");
+			rd.forward(request, response);
+		}
 	}
 
 	/**

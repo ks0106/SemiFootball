@@ -8,5 +8,6 @@
 </head>
 <body>
 <!-- 에러페이지 view 구문 작성 -->
+<h1>${msg }</h1>
 </body>
 </html>

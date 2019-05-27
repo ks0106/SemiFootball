@@ -33,8 +33,8 @@
 <body>
 	<div style="width:100%;height:1500px;" id="maindiv">
         <div id="div">
-            <img src="/img/header_logo.png">
-            <form action="login" method="post">
+            <img src="/img/header_logo.png" style="margin-bottom: 50px;">
+            <form action="/login" method="post">
             <input type="text" name="id" placeholder="이메일" class="loginInput"><br><br>
             <input type="password" name="pwd" placeholder="비밀번호" class="loginInput"><br><br>
             <input type="submit" value="로그인" class="loginInput">
@@ -46,7 +46,8 @@
             <a href="#">아이디 찾기</a>
             <a href="#">비밀번호 찾기</a>
             <a href="/views/member1/insert.jsp">회원가입</a>
-            <br>
+            <br><br>
+            <h1>간편로그인</h1>
             <a id="kakao-login-btn"></a>
 			<a href="http://developers.kakao.com/logout"></a>
         </div>
