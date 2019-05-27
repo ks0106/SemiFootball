@@ -1,6 +1,7 @@
 package branch.controllor;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -31,7 +32,16 @@ public class BranchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Branch> list = new BranchService().callList();
+		try {
+			ArrayList<Branch> list = new BranchService().callList();
+			if(list != null) {
+				request.setAttribute("list", list);
+			}
+			request.getRequestDispatcher("/WEB-INF/views/branch/branch.jsp").forward(request, response);
+		} catch (SQLException e) {
+			request.getRequestDispatcher("/views/common/eqlErrorPage.jsp").forward(request, response);
+			e.printStackTrace();
+		}
 	}
 
 	/**
