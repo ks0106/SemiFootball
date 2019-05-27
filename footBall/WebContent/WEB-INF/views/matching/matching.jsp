@@ -4,36 +4,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <!-- 동영상CSS  -->
 <style>
-	
-	#video01{
-		position:absolute;
-		top:50%;
-		left:50%; 
-		min-width: 100%; 
-		min-height: 100%; 
-		transform:translateX(-50%) translateY(-55%);
-		z-index:-1;
-	}
-	/* 페이지 타이틀  */
-	#title{
-		position:absolute;
-		z-index: 100;
-		font-size: 70px;
-		font-weight:900;
-		color: white;
-		left: 10%;
-		top: 400px;
-	}
 	/* 페이지 메뉴바 css  */
 	.tab-container{
 	  margin:0 auto;
       position:absolute;
       text-align:center;
-      top:485px;
       left:10%;
       width:80%;
       height:80px;
@@ -147,69 +127,70 @@
 			매치/용병
 		</div>
 	</div>
-	<!-- 매치페이지 메뉴네비  -->
-	<div class="tab-container">
-            <ul class="tab-list">
-               <li class="selected list-li"><a href="#T-con01" class="munebar">매칭신청</a></li>
-               <li class="list-li"><a href="#T-con02" class="munebar">용병모집</a></li>
-               <li class="list-li"><a href="#T-con03" class="munebar">용병지원</a></li>
-            </ul>
-            <!-- 탭컨텐츠 랩퍼-->
-            <div class="tab-content-wrapper">
-            <!-- 탭컨텐츠1 -->
-               <div id="T-con01" class="tab-con">
-               		<div class="tab-content" >
-            <!-- 탭컨텐츠 제목 -->
-               			<br><br><br>
-						<p class="content-header">매칭신청</p>
-						<div class="underline"></div>
-						<!-- 글쓰기 버튼 -->
-						<div class="btn-wrapper" style="margin: 0 auto; margin-top:30px;margin-bottom:30px; text-align: right;width: 100%;">
-							<button type="button" onclick="matching()" style="border:none;background-color:#2c3c57;width: 150px;height: 50px;color:white;  ">
-							
-							<p style="color:white;height:80%;">매칭신청</p> 
-							
-							</button>
-						</div>
-						<!-- 매치 게시판 출력 테이블 -->
-							<div id="table-wraper">
-							
-								<table id="matchlist-table" style="width: 100%;">
-									<tr>
-										<th class="td">매치형태</th>
-										<th class="td">지점구분</th>
-										<th class="td" colspan="2">배치일자</th>
-										<th class="td">신청가능팀</th>
-										<th class="td">작성자</th>
-										<th class="td">작성일자</th>
-										<th class="td">신청</th>
-									</tr>
-									<!-- 게시판 리스트 출력 포문 -->
-									<c:forEach items="${mpd.list }" var="m">
-										<tr class="table-tr" onclick="contentView(${m.seqMatchNo})" >
-											<td>${m.matchType } </td>
-											<td>${m.matchBName }</td>
-											<td colspan="2">${m.matchDate }</td>
-											<td>${m.teamCount }</td>
-											<td>${m.matchWriter }</td>
-											<td>${m.matchEnrollDate }</td>
-											<td>${m.able }</td>
-										</tr>
-									</c:forEach> 
-								</table>
+	<section class="page_area">
+		<!-- 매치페이지 메뉴네비  -->
+		<div class="tab-container">
+	            <ul class="tab-list">
+	               <li class="selected list-li"><a href="#T-con01" class="munebar">매칭신청</a></li>
+	               <li class="list-li"><a href="#T-con02" class="munebar">용병모집</a></li>
+	               <li class="list-li"><a href="#T-con03" class="munebar">용병지원</a></li>
+	            </ul>
+	            <!-- 탭컨텐츠 랩퍼-->
+	            <div class="tab-content-wrapper">
+	            <!-- 탭컨텐츠1 -->
+	               <div id="T-con01" class="tab-con">
+	               		<div class="tab-content" >
+	            <!-- 탭컨텐츠 제목 -->
+	               			<br><br><br>
+							<p class="content-header">매칭신청</p>
+							<div class="underline"></div>
+							<!-- 글쓰기 버튼 -->
+							<div class="btn-wrapper" style="margin: 0 auto; margin-top:30px;margin-bottom:30px; text-align: right;width: 100%;">
+								<button type="button" onclick="matching()" style="border:none;background-color:#2c3c57;width: 150px;height: 50px;color:white;  ">
+								
+								<p style="color:white;height:80%;">매칭신청</p> 
+								
+								</button>
 							</div>
-						<div id="pageNavi" style="width:80%; margin:0 auto;">${mpd.pageNavi }</div>
-               		</div>
-               </div>
-               <div id="T-con02" class="tab-con">
-               	2
-               </div>
-               <div id="T-con03" class="tab-con">
-               3
-               </div>
-            </div>
-         </div>
-
+							<!-- 매치 게시판 출력 테이블 -->
+								<div id="table-wraper">
+								
+									<table id="matchlist-table" style="width: 100%;">
+										<tr>
+											<th class="td">매치형태</th>
+											<th class="td">지점구분</th>
+											<th class="td" colspan="2">배치일자</th>
+											<th class="td">신청가능팀</th>
+											<th class="td">작성자</th>
+											<th class="td">작성일자</th>
+											<th class="td">신청</th>
+										</tr>
+										<!-- 게시판 리스트 출력 포문 -->
+										<c:forEach items="${mpd.list }" var="m">
+											<tr class="table-tr" onclick="contentView(${m.seqMatchNo})" >
+												<td>${m.matchType } </td>
+												<td>${m.matchBName }</td>
+												<td colspan="2">${m.matchDate }</td>
+												<td>${m.teamCount }</td>
+												<td>${m.matchWriter }</td>
+												<td>${m.matchEnrollDate }</td>
+												<td>${m.able }</td>
+											</tr>
+										</c:forEach> 
+									</table>
+								</div>
+							<div id="pageNavi" style="width:80%; margin:0 auto;">${mpd.pageNavi }</div>
+	               		</div>
+	               </div>
+	               <div id="T-con02" class="tab-con">
+	               	2
+	               </div>
+	               <div id="T-con03" class="tab-con">
+	               3
+	               </div>
+	            </div>
+	         </div>
+		</section>
 
    <script >
      $(".tab-container").each(function  () {
