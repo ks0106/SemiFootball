@@ -79,33 +79,29 @@
 	</div>
 	<section class="page_area">
 		<div class="content-container">
-			<div class="content-wrapper">
-				<div class="content-left">
-					<img class="mainImg" src="" alt="mainIng"><br>
-					<img class="subImg" src="img/branch_test.jpg" alt="subImg">
-					<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
-					<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
+			<c:forEach items="${list}" var="b">
+				<div class="content-wrapper">
+					<div class="content-left">
+						<img class="mainImg" src="" alt="mainIng"><br>
+						<img class="subImg" src="img/branch_test.jpg" alt="subImg">
+						<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
+						<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
+					</div>
+					<div class="content-right">
+						<table border="1px" style="display: table; margin-top:10px; margin-left: auto; margin-right: auto;">
+							<tr>
+								<td colspan="2">${b.branchName }</td>
+							</tr>
+							<tr>
+								<td><img class="icon" src="img/branch_pinIcon.png"></td><td>${b.brnachAddr }</td>
+							</tr>
+							<tr>
+								<td><img class="icon" src="img/branch_phoneIcon.png"></td><td>${b.branchPhone } / ${b.branchTel }</td>
+							</tr>
+						</table>
+					</div>
 				</div>
-				<div class="content-right">
-					<table border="1px" style="display: table; margin-top:10px; margin-left: auto; margin-right: auto;">
-						<tr>
-							<td colspan="2">${b.branchName }</td>
-						</tr>
-						<tr>
-							<td><img class="icon" src="img/branch_pinIcon.png"></td><td>${b.brnachAddr }</td>
-						</tr>
-						<tr>
-							<td><img class="icon" src="img/branch_phoneIcon.png"></td><td>${b.branchPhone } / ${b.branchTel }</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div class="content-wrapper">
-				안양점
-			</div>
-			<div class="content-wrapper">
-				안산점
-			</div>
+			</c:forEach>
 		</div>
 	</section>
 	<script>
