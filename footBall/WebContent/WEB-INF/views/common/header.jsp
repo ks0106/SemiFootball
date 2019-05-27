@@ -13,6 +13,8 @@
 	var newSize;
 	$(document).ready(function(){
 		oldSize = $(window).width();
+		//토글 사이드바 숨김
+		$('.right_area').css("display","none");
 		//헤더 영역 사이즈
 		$('.area').css("width","100%").css("height","100vh");
 		//헤더 영역 위치
@@ -45,6 +47,7 @@
 				$('.toggle_bar').css("display","block");		/* 메뉴와 로그인을 담은 토글바 나타남 */
 				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
 			}else{												/* 예전 창크기가 1750보다 작을 때 새 창크기가 1750보다 크면 */
+				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
 				$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
@@ -63,6 +66,7 @@
 				$('.toggle_bar').css("display","block");
 				oldSize = $(window).width();
 			}else{
+				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu_login').css("display","block");
 				$('#header_logo').css("display","block");
 				$('.toggle_bar').css("display","none");
@@ -105,10 +109,27 @@
 			opacity:0.9;
 		}
 	}
+	.right_menu_item a{
+		font-size: 30px;
+		text-decoration: none;
+		color:white;
+	}
 </style>
 <script>
 	/* 토글바 클릭 이벤트 */
-	
+	$(document).ready(function(){
+		$('.toggle_bar').click(function(){
+			if($('.right_area').css("display") == "none"){
+				$('.right_area').css("display","block");				
+				$('.right_area').animate({
+					top:"-500px"},500);
+			}else{				
+				$('.right_area').css("display","none");
+				$('.right_area').animate({
+					top:"-500px"},500);
+			}
+		});
+	});
 </script>
 <header class="area">
 <!-- 헤더 작성 -->
@@ -135,8 +156,24 @@
  			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 		</div>
 	</div>
+<!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
 	<nav class="right_area">
-	
-		<div style="width:400px;height:100vh;background-color:black;opacity:0.9;float:right;display:none;"></div>
+		<div style="width:350px;height:100vh;background-color:black;opacity:0.9;float:right;">
+			<div style="background-color: red;">
+				<a href="#" style="text-decoration:none;color:white;font-size:20px;">Member Login</a>
+				<img src="/img/login_icon_100px_white.png" width="30px">
+			</div>
+			<hr style="width:80%;height:3px;border:0;margin:0 auto;padding:0;background-color:white;">
+			<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
+				<li class="right_menu_item"><a href="#">지점</a></li>
+				<li class="right_menu_item"><a href="#">대관</a></li>
+				<li class="right_menu_item"><a href="#">매치/용병</a></li>
+				<li class="right_menu_item"><a href="#">대회</a></li>
+				<li class="right_menu_item"><a href="#">갤러리</a></li>
+				<li class="right_menu_item"><a href="#">고객센터</a></li>
+				<li class="right_menu_item"><a href="#">회사소개</a></li>
+				<li class="right_menu_item"><a href="#">관리페이지</a></li>
+			</ul>
+		</div>
 	</nav>
 </header>
