@@ -42,7 +42,7 @@
 	</div>
 	<!-- 내용 -->
 	<section class="page_area">
-		<div style="text-align:center; width:80%;margin:0 auto; height: 700px;">
+		<div class="table-wrapper" style="text-align:center; width:80%;margin:0 auto; height: 700px;">
 			<form action="/insertGallery" method="post" enctype="multipart/form-data" style="height: 100%;">
 				<table id="galleryWriterTbl" style ="text-align: center; width: 100%; height: 100%; border: 1px solid black">
 					<tr >
@@ -51,8 +51,8 @@
 					<tr >
 						<th >작성자</th>
 						<td>
-							${sessionScope.member.memberEmail } ㅎㅇ
-							<input type="text" name="photoWriter">
+							${sessionScope.member.memberEmail }
+							<input type="text" name="photoWriter" value="${sessionScope.member.memberEmail }">
 						</td>
 					</tr>
 					<tr >

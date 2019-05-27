@@ -9,6 +9,7 @@
 <!-- 동영상CSS  -->
 <link rel="stylesheet" href="/css/common/pageCss.css">
 
+
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -27,14 +28,13 @@
 	</div>
 	<!-- 내용 -->
 	<section class="page_area">
-		<div style="width:80%; margin:0 auto; text-align:center">
+		<div class="photo-container" style="width:80%; margin:0 auto; text-align:center">
 			<div id="photo-wrapper" style = "padding:100px"></div>
 			<div id="photo-btn-container">
 				<button currentCount="0" totalCount="${totalCount }" value="" id="more-btn" >더보기</button>
-				<c:if test="${not empty sessionScope.member}">
-					
+				<c:if test="${sessionScope.member.id eq 'admin'}">
+					<button id="write-btn">글쓰기</button>
 				</c:if>
-				<button id="write-btn">글쓰기</button>
 			</div>
 		</div>
 	</section>
@@ -60,21 +60,21 @@
 				success : function(data){ // 포토 객체를 5개 받아옴 (리스트 형태)
 					var html = "";
 					for(var i in data){
-						var g = data[i]; //포토 객체를 g에 저장
+						var p = data[i]; //포토 객체를 g에 저장
 						html += "<div style = 'width: 800px; margin:0 auto;'>";
-						html += "<img src='/upload/photo/"+g.filename+"' width: '100%'>";
-						html += "<p class='caption'>"+g.photoContent+"</p></div>";
+						html += "<img src='/upload/photo/"+p.filename+"' width: '100%'>";
+						html += "<p class='caption'>"+p.photoContent+"</p></div>";
 					}
 					// 사진 출력
 					$("#photo-wrapper").append(html);
-					//value, currentCount 세팅
+					//value, currentCount 값 세팅
 					$("#more-btn").val(Number(start)+5);
-					$("#more-btn").attr("currentCount", Number($("#more-btn").attr("currentCount"))+data.length); // 현재값을 가져와서 넘어온 데이터의 길이를 더함
+					$("#more-btn").attr("currentCount",Number($("#more-btn").attr("currentCount"))+data.length); //현재값을 가져와서 넘어온 데이터의 길이를 더함
 					// totalCount와 currentCount값을 비교 마지막에 더보기 버튼 비활성화를 위함.
-					var totalCount = $("more-btn").attr("totalCount");
-					var crrentCount = $("#more-btn").attr("currentCount");
+					var totalCount = $('#more-btn').attr("totalCount");
+					var currentCount = $('#more-btn').attr("currentCount");
 					if(totalCount == currentCount){
-						$("#more-btn").attr("idsabled", true);
+						$("#more-btn").attr("disabled", true);
 						$("#more-btn").css("cursor", "not-allowed"); //마우스가 버튼에 올려왔을때 마우스 포인터 모양을 바꿈
 					}
 				},
