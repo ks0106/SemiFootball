@@ -24,6 +24,7 @@ public class NoticeDao {
 			e.printStackTrace();
 		}
 	}
+	//전체리스트보기
 	public ArrayList<NoticeVo> NoticeList(Connection conn, int start,int end){
 		PreparedStatement pstmt = null;
 		ArrayList<NoticeVo> list = null;
@@ -74,5 +75,36 @@ public class NoticeDao {
 			JDBCTemplate.close(stmt);
 		}
 		return result;
+	}
+	
+	//하나의 게시물 보기
+	public NoticeVo ListOne(Connection conn, int seqNoticeNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String quert = prop.getProperty("ListOne");
+		NoticeVo nv = null;
+		try {
+			pstmt = conn.prepareStatement(quert);
+			pstmt.setInt(1, seqNoticeNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				nv = new NoticeVo();
+				nv.setSeqnoticeno(rset.getInt("seq_notice_no"));
+				nv.setNoticetitle(rset.getString("notice_title"));
+				nv.setNoticewriter(rset.getString("notice_writer"));
+				nv.setNoticehit(rset.getInt("notice_hit"));
+				nv.setNoticecontent(rset.getString("notice_content"));
+				nv.setNoticedate(rset.getDate("notice_date"));
+				nv.setFilename(rset.getString("filename"));
+				nv.setFilepath(rset.getString("filepath"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return nv;
 	}
 }

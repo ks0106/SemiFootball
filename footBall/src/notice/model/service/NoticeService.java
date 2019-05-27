@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import notice.model.dao.NoticeDao;
 import notice.model.vo.NoticePageData;
+import notice.model.vo.NoticeViewData;
 import notice.model.vo.NoticeVo;
 
 public class NoticeService {
+	//페이징처리 전체리스트
 	public NoticePageData NoticeList(int reqPage) {
 		Connection conn = JDBCTemplate.getConnection();
 		int numPerPage = 5;
@@ -38,5 +40,14 @@ public class NoticeService {
 		NoticePageData pd = new NoticePageData(list,pageNavi);
 		JDBCTemplate.close(conn);
 		return pd;
+	}
+	
+	//하나의 게시물 보기
+	public NoticeViewData ListOne(int seqNoticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		NoticeVo nv = new NoticeDao().ListOne(conn, seqNoticeNo);
+		NoticeViewData nvd = new NoticeViewData(nv);
+		JDBCTemplate.close(conn);
+		return nvd;
 	}
 }

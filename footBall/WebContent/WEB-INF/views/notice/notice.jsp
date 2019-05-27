@@ -95,13 +95,21 @@
             <div class="tab-content-wrapper">
                <div id="T-con01" class="tab-con">
                <center> <h1><u>공지사항</u></h1>
+               <a href="#">글쓰기</a>
+               <br><br>
               <table border="1">
                		<tr>
                			<th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th>
                		</tr>
                		<% for(NoticeVo nv : list) {%>
                		<tr>
-               			<td><%=nv.getSeqnoticeno() %></td><td><a href=""><%=nv.getNoticetitle() %></a></td><td><%=nv.getNoticewriter() %></td><td><%=nv.getNoticedate() %></td><td><%=nv.getNoticehit() %></td>
+               			<td><%=nv.getSeqnoticeno() %></td>
+               			<td>
+               			<a href="/noticeView?seqNoticeNo=<%=nv.getSeqnoticeno() %>"><%=nv.getNoticetitle() %></a>
+               			</td>
+               			<td><%=nv.getNoticewriter() %></td>
+               			<td><%=nv.getNoticedate() %></td>
+               			<td><%=nv.getNoticehit() %></td>
                		</tr>
                		<%} %>
                </table>
