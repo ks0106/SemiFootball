@@ -53,17 +53,17 @@
 		function fn_more(start){
 			var param = {start:start};
 			$.ajax({
-				url : "/photoMore",
+				url : "/gallerymore",
 				data : param,
 				type : "post",
 				dataType : "json",
 				success : function(data){ // 포토 객체를 5개 받아옴 (리스트 형태)
 					var html = "";
 					for(var i in data){
-						var p = data[i]; //포토 객체를 p에 저장
+						var g = data[i]; //포토 객체를 g에 저장
 						html += "<div style = 'width: 800px; margin:0 auto;'>";
-						html += "<img src='/upload/photo/"+p.filename+"' width: '100%'>";
-						html += "<p class='caption'>"+p.photoContent+"</p></div>";
+						html += "<img src='/upload/photo/"+g.filename+"' width: '100%'>";
+						html += "<p class='caption'>"+g.photoContent+"</p></div>";
 					}
 					// 사진 출력
 					$("#photo-wrapper").append(html);

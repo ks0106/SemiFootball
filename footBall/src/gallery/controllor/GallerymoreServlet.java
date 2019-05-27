@@ -2,6 +2,7 @@ package gallery.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import gallery.model.service.GalleryService;
+import gallery.model.vo.Gallery;
 
 /**
- * Servlet implementation class GalleryServlet
+ * Servlet implementation class GallerymoreServlet
  */
-@WebServlet(name = "Gallery", urlPatterns = { "/gallery" })
-public class GalleryServlet extends HttpServlet {
+@WebServlet(name = "Gallerymore", urlPatterns = { "/gallerymore" })
+public class GallerymoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GalleryServlet() {
+    public GallerymoreServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +35,18 @@ public class GalleryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int totalCount = 0;
+		int start = Integer.parseInt(request.getParameter("start"));
+		ArrayList<Gallery> list = null;
 		try {
-			totalCount = new GalleryService().photoTotalCount();
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/gallery/gallery.jsp");
-			request.setAttribute("totalCount", totalCount);
-			rd.forward(request, response);
+			list = new GalleryService().morePhoto(start);
+			response.setContentType("application/json; charset=utf-8");
+			new Gson().toJson(list, response.getWriter());
 		} catch (SQLException e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			request.setAttribute("msg", "SQL구문 오류");
 			rd.forward(request, response);
 		}
+		
 	}
 
 	/**
