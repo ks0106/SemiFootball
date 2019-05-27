@@ -131,7 +131,7 @@
 			<ul style="list-style-type:none;padding:0;">
 				<li class="menu_item"><a href="/branch">지점</a></li>
 				<li class="menu_item"><a href="/reservation">대관</a></li>
-				<li class="menu_item"><a href="/matching">매치/클럽</a></li>
+				<li class="menu_item"><a href="/matching">매치/용병</a></li>
 				<li class="menu_item"><a href="/league">대회</a></li>
 				<li class="menu_item"><a href="/gallery">갤러리</a></li>
 				<li class="menu_item"><a href="/notice">고객센터</a></li>
@@ -207,13 +207,13 @@
 
 <style>
 /* 메뉴 li설정 (script 사용 시 로딩하는 동안 li기본형 뜨는 문제 때문에 css로 직접 줌) */
-	.nav-item{
+	.header_item{
 		color:white;
 		display:inline-block;
 		margin-right:50px;
 		line-height:40px;
 	}
-	.nav-item a{
+	.header_item a{
 		font-size: 24px;
 		text-decoration: none;
 		color:white;
@@ -247,14 +247,14 @@
  			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
  		</div> 		
  		<ul id="menu" style="position:absolute;left:300px;list-style-type:none;padding:0;">
- 			<li class="nav-item"><a href="/branch">지점</a></li>
- 			<li class="nav-item"><a href="/reservation">대관</a></li>
- 			<li class="nav-item"><a href="/matching">매치/용병</a></li>
- 			<li class="nav-item"><a href="/league">대회</a></li>
- 			<li class="nav-item"><a href="/gallery">갤러리</a></li>
- 			<li class="nav-item"><a href="/notice">고객센터</a></li>
- 			<li class="nav-item"><a href="/company">회사소개</a></li>
- 			<li class="nav-item"><a href="#" style="display:none;">관리자메뉴</a></li>
+ 			<li class="header_item"><a href="/branch">지점</a></li>
+ 			<li class="header_item"><a href="/reservation">대관</a></li>
+ 			<li class="header_item"><a href="/matching">매치/용병</a></li>
+ 			<li class="header_item"><a href="/league">대회</a></li>
+ 			<li class="header_item"><a href="/gallery">갤러리</a></li>
+ 			<li class="header_item"><a href="/notice">고객센터</a></li>
+ 			<li class="header_item"><a href="/company">회사소개</a></li>
+ 			<li class="header_item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
  		<div id="menu_login" style="float:right;margin-right:50px;width:100px;height:90%;margin-top:5px;">
 			<div style="margin-left:16px;"><a href="/login"><img src="/img/login_icon_100px_white.png" width="50" height="50"></a></div>

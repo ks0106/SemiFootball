@@ -28,7 +28,7 @@
 	</div>
 	<section class="page_area">
 	<!-- 내용 작성 -->
-		<hr style="border:3px solid darkblue;margin:0 auto;margin-bottom:30px;padding:0;">
+		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 		<div style="height:300px;width:20%;float:left;">
 			<div style="width:80%;height:100%;margin:0 auto;box-sizing: border-box;">
 				<div style="width:100%;height:50px;">

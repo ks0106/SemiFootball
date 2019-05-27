@@ -8,6 +8,7 @@ public class NoticeVo {
 	private String noticewriter;
 	private Date noticedate;
 	private String noticecontent;
+	private int noticehit;
 	private String filename;
 	private String filepath;
 	private int rnum;
@@ -16,13 +17,14 @@ public class NoticeVo {
 		// TODO Auto-generated constructor stub
 	}
 	public NoticeVo(int seqnoticeno, String noticetitle, String noticewriter, Date noticedate, String noticecontent,
-			String filename, String filepath, int rnum) {
+			int noticehit, String filename, String filepath, int rnum) {
 		super();
 		this.seqnoticeno = seqnoticeno;
 		this.noticetitle = noticetitle;
 		this.noticewriter = noticewriter;
 		this.noticedate = noticedate;
 		this.noticecontent = noticecontent;
+		this.noticehit = noticehit;
 		this.filename = filename;
 		this.filepath = filepath;
 		this.rnum = rnum;
@@ -57,6 +59,12 @@ public class NoticeVo {
 	public void setNoticecontent(String noticecontent) {
 		this.noticecontent = noticecontent;
 	}
+	public int getNoticehit() {
+		return noticehit;
+	}
+	public void setNoticehit(int noticehit) {
+		this.noticehit = noticehit;
+	}
 	public String getFilename() {
 		return filename;
 	}
@@ -75,5 +83,5 @@ public class NoticeVo {
 	public void setRnum(int rnum) {
 		this.rnum = rnum;
 	}
-
+	
 }
