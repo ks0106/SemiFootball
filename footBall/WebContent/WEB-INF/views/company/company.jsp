@@ -16,26 +16,40 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<!--헤더 밑 영상  -->
 	<div id="continer">
-	<div id="mv">
-		<video id="video01" class="pblock" autoplay playsinline muted loop title> 
-			<source src="/img/page3.mp4" type="video/mp4"> 
-		</video>
-	</div>
-	<!--영상 위 페이지 타이틀 -->
+		<div id="mv">
+			<video id="video01" class="pblock" autoplay playsinline muted loop title> 
+				<source src="/img/page3.mp4" type="video/mp4"> 
+			</video>
+		</div>
+		<!--영상 위 페이지 타이틀 -->
 		<div id="title">
 			회사소개
 		</div>
 	</div>
 	<section class="page_area">
 	<!-- 내용 작성 -->
-		<hr style="border:3px solid darkblue;margin:0 auto;margin-bottom:30px;padding:0;">
-		<div style="height:300px;width:20%;background-color:skyblue;float:left;">
+		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
+		<div style="height:300px;width:20%;float:left;">
 			<div style="width:80%;height:100%;margin:0 auto;box-sizing: border-box;">
-				<div style="width:100%;height:50px;border:1px solid darkblue;"></div>
+				<div style="width:100%;height:50px;">
+				</div>
+				<hr style="width:100%;height:1px;background-color:darkblue;padding:0;margin:0;border:0;">
+				<div style="width:100%;height:50px;">
+				</div>
+				<hr style="width:100%;height:1px;background-color:darkblue;padding:0;margin:0;border:0;">
+				<div style="width:100%;height:50px;">
+				</div>
+				<hr style="width:100%;height:1px;background-color:darkblue;padding:0;margin:0;border:0;">
+				<div style="width:100%;height:50px;">
+				</div>
+				<hr style="width:100%;height:1px;background-color:darkblue;padding:0;margin:0;border:0;">
+				<div style="width:100%;height:50px;">
+				</div>
+				<hr style="width:100%;height:1px;background-color:darkblue;padding:0;margin:0;border:0;">
 			</div>
 		</div>
-		<div style="height:800px;width:80%;background-color:gold;float:left;text-align:center;">
-			<div style="width:80%;height:500px;background-color: pink;margin:0 auto;"></div>
+		<div style="height:800px;width:60%;background-color:gold;float:left;text-align:center;">
+			<div style="width:90%;height:500px;background-color: pink;margin:0 auto;"></div>
 		</div>
 	
 	
