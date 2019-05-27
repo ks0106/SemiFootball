@@ -98,7 +98,7 @@
 		});
 		//페이지 로드 시 창 사이즈에 따른 사이드바 상태 변경
 		oldHeight = $(window).height();
-		if(oldHeight < 980){
+		if(oldHeight < 850){
 			$('sidebar').css("display","none");
 			$('header').css("display","block").css("position","absolute");
 			$('.area2').css("display","none");
@@ -115,8 +115,8 @@
 	//창크기 조절 시 창 사이즈에 따른 사이드바 상태 변경
 	$(window).resize(function(){
 		newHeight = $(window).height();
-		if(oldHeight < 980){
-			if(newHeight >= 980){
+		if(oldHeight < 850){
+			if(newHeight >= 850){
 				$('sidebar').css("display","block");
 				$('header').css("display","none");
 				$('.area2').css("display","block");
@@ -124,8 +124,8 @@
 					top:"0px"},200);
 				oldHeight = $(window).height();
 			}
-		}else if(oldHeight >= 980){
-			if(newHeight < 980){
+		}else if(oldHeight >= 850){
+			if(newHeight < 850){
 				$('sidebar').css("display","none");
 				$('header').css("display","block").css("position","absolute");
 				$('.area2').css("display","none");

@@ -36,38 +36,6 @@
 	text-align: center;
 }
 
-.tab-list {
-	margin: 0; padding0;
-	height: 100%;
-	list-style-type: none;
-	border-bottom: 1px solid black;
-	padding-left: 0;
-}
-
-.list-li {
-	height: 100%;
-	width: 50%;
-	float: left;
-	text-align: center;
-	line-height: 100px;
-	font-size: 40px;
-	font-weight: bold;
-	border-right: 1px solid black;
-	box-sizing: border-box;
-}
-
-.navi_match_li:last-child {
-	border-right: none;
-}
-
-.munebar {
-	text-decoration: none;
-	color: black;
-}
-
-.selected {
-	background-color: lightgray;
-}
 </style>
 </head>
 <body>
@@ -76,13 +44,14 @@
 	<!--헤더 밑 영상  -->
 	<div id="continer">
 		<div id="mv">
-			<video id="video01" class="pblock" autoplay playsinline muted loop
-				title> <source src="/img/page3.mp4" type="video/mp4"></video>
+			<video id="video01" class="pblock" autoplay playsinline muted loop title> 
+				<source src="/img/page3.mp4" type="video/mp4"></video>
 		</div>
 		<!--영상 위 페이지 타이틀 -->
 		<div id="title">고객센터</div>
 	</div>
 	<section>
+	<!-- 글보기 -->
 	<div class="tab-container">
 		<center><h1>
 			<u>공지사항</u>

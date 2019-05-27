@@ -107,4 +107,25 @@ public class NoticeDao {
 		}
 		return nv;
 	}
+	
+	//게시물 등록하기
+	public int NoticeInsert(Connection conn, NoticeVo nv) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("noticeinsert");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, nv.getNoticetitle());
+			pstmt.setString(2, nv.getNoticewriter());
+			pstmt.setString(3, nv.getFilename());
+			pstmt.setString(4, nv.getFilepath());
+			pstmt.setString(5, nv.getNoticecontent());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 }
