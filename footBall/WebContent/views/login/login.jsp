@@ -14,9 +14,13 @@
             width: 80%;
         }
         #div{
-            position: absolute;
-            top: 200px;
-            left: 40%;
+            /*position: absolute;
+            top: 100px;
+            left: 600px;*/
+            padding-top : 100px;
+            max-width:305px;
+            margin:0 auto;
+            text-align:center;
         }
         .loginInput{
             
@@ -31,7 +35,7 @@
     </style>
 </head>
 <body>
-	<div style="width:100%;height:1500px;" id="maindiv">
+	<div style="height:900px;" id="maindiv">
         <div id="div">
             <img src="/img/header_logo.png" style="margin-bottom: 50px;">
             <form action="/login" method="post">
@@ -45,7 +49,7 @@
             <br>
             <a href="#">아이디 찾기</a>
             <a href="#">비밀번호 찾기</a>
-            <a href="/views/member1/insert.jsp">회원가입</a>
+            <a href="/views/login/insert.jsp">회원가입</a>
             <br><br>
             <h1>간편로그인</h1>
             <a id="kakao-login-btn"></a>
