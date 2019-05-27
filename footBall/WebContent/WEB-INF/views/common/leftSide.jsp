@@ -205,19 +205,15 @@
 		}
 		//메뉴바 마우스 올렸을 때 opacity값 변경
 		$('.menu_bar').mouseenter(function(){
-			if($('.menu_bar').css("opacity") == "0.5"){
-				$('.menu_bar').animate({
-					opacity:"0.9"
-				},200);
-			}
+			$('.menu_bar').animate({
+				opacity:"0.9"
+			},200);
 		});
 		$('.menu_bar').mouseleave(function(){
-			if($('.menu_bar').css("opacity") == "0.9"){
-				if($('.right_area').css("display") == "none"){
-					$('.menu_bar').animate({
-						opacity:"0.5"
-					},200);
-				}
+			if($('.right_area').css("display") == "none"){
+				$('.menu_bar').animate({
+					opacity:"0.5"
+				},200);
 			}
 		});
 	});
