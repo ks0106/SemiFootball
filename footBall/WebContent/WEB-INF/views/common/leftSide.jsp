@@ -131,7 +131,7 @@
 			<ul style="list-style-type:none;padding:0;">
 				<li class="menu_item"><a href="/branch">지점</a></li>
 				<li class="menu_item"><a href="/reservation">대관</a></li>
-				<li class="menu_item"><a href="/matching">매치/클럽</a></li>
+				<li class="menu_item"><a href="/matching">매치/용병</a></li>
 				<li class="menu_item"><a href="/league">대회</a></li>
 				<li class="menu_item"><a href="/gallery">갤러리</a></li>
 				<li class="menu_item"><a href="/notice">고객센터</a></li>

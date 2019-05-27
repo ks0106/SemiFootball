@@ -77,7 +77,7 @@
    }
 	.tab-content{
 		margin: 0 auto;
-		width: 80%;
+		width: 100%;
 		text-align: center;
 	}
 	.content-header{
@@ -96,6 +96,7 @@
 	#matchlist-table{
 		border-top:2px solid #2c3c57;
 		border-bottom:2px solid #2c3c57;
+		border-collapse: collapse;
 		
 	}
 	#table-wraper{
@@ -114,6 +115,19 @@
 		font-size: 18px;
 		font-weight: 700;
 		line-height: 21px;
+	}
+	.table-tr td{
+		padding: 16px;
+		border-bottom: 1px solid #d5d8dd;
+		height: 21px;
+		font-size: 18px;
+		line-height: 21px;
+	}
+	.table-tr{
+		cursor: pointer;
+	}
+	.table-tr:hover {
+		background-color: #F2F2F2;
 	}
 </style>
 </head>
@@ -157,17 +171,34 @@
 							
 							</button>
 						</div>
+						<!-- 매치 게시판 출력 테이블 -->
 							<div id="table-wraper">
 							
 								<table id="matchlist-table" style="width: 100%;">
 									<tr>
-										<th class="td">매치형태</th><th class="td">지점구분</th><th class="td" colspan="2">배치일자</th><th class="td">신청가능팀</th><th class="td">작성자</th><th class="td">작성일자</th><th class="td">신청</th>
+										<th class="td">매치형태</th>
+										<th class="td">지점구분</th>
+										<th class="td" colspan="2">배치일자</th>
+										<th class="td">신청가능팀</th>
+										<th class="td">작성자</th>
+										<th class="td">작성일자</th>
+										<th class="td">신청</th>
 									</tr>
-								<%-- 	<c:forEach items="${list }" var="m">
-										
-									</c:forEach> --%>
+									<!-- 게시판 리스트 출력 포문 -->
+									<c:forEach items="${mpd.list }" var="m">
+										<tr class="table-tr" onclick="contentView(${m.seqMatchNo})" >
+											<td>${m.matchType } </td>
+											<td>${m.matchBName }</td>
+											<td colspan="2">${m.matchDate }</td>
+											<td>${m.teamCount }</td>
+											<td>${m.matchWriter }</td>
+											<td>${m.matchEnrollDate }</td>
+											<td>${m.able }</td>
+										</tr>
+									</c:forEach> 
 								</table>
 							</div>
+						<div id="pageNavi" style="width:80%; margin:0 auto;">${mpd.pageNavi }</div>
                		</div>
                </div>
                <div id="T-con02" class="tab-con">
@@ -178,30 +209,6 @@
                </div>
             </div>
          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
    <script >
@@ -228,6 +235,7 @@
             return false;
          });
       });
+     
    </script>
 </body>
 </html>
