@@ -8,7 +8,7 @@
 	<style>
 		.mainImg {
 			 border-radius: 10px;
-			 width: 100%;
+			 width: 500px;
 			 height: 320px;
 			 margin-top:10px;
 			 margin-left:10px;
@@ -31,11 +31,12 @@
 			opacity: .5;
 		}
 		.icon {
-			width:40%;
-			height:40%;
+			width:30px;
+			height:30px;
 		}
 		.font-td {
 			font-size: 30px;
+			text-align: left;
 		}
 		.content-container {
 			position: absolute;
@@ -47,9 +48,8 @@
 			position: relative;
 			display: inline-block;
 			margin-top: 50px;
-			width: 70%;
+			width: 100%;
 			height: 40%;
-			background-color: orange;
 		}
 		.content-left {
 			float: left;
