@@ -36,7 +36,6 @@ public class EncodeFilter implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		request.setCharacterEncoding("utf-8");
-		System.out.println("EncodeFilter : 인코딩 완료");
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}

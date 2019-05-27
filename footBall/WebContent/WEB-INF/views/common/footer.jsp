@@ -13,6 +13,5 @@
 		<img src="/img/footer_logo.png" style="opacity:0.2;">
 	</div>
 	<div>
-		
 	</div>
 </footer>
