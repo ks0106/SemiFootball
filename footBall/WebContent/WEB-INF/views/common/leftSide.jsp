@@ -304,18 +304,9 @@
 		padding:0;
 		position:relative;
 	}
-	.menu_bar:hover{
-		animation-name:menubar;
-		animation-duration:0.5s;
-		animation-fill-mode:forwards;
-	}
-	@keyframes menubar{
-		from{
-			opacity:0.5;
-		}
-		to{
-			opacity:0.9;
-		}
+	.right_menu_item{
+		width:100%;
+		height:50px;
 	}
 	.right_menu_item a{
 		font-size: 30px;
@@ -374,10 +365,10 @@
 	</div>
 <!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
 	<nav class="right_area">
-		<div style="width:350px;height:100vh;background-color:black;opacity:0.9;float:right;">
-			<div style="background-color:red;width:100%;">
-				<a href="#" style="text-decoration:none;color:white;font-size:20px;">Member Login</a>
-				<img src="/img/login_icon_100px_white.png" width="50px">
+		<div style="width:350px;height:100vh;background-color:black;opacity:0.9;position:absolute;right:0;">
+			<div style="width:210px;margin:0 auto;margin-top:10px;margin-bottom:10px;">
+				<a href="#" style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
+				<img src="/img/login_icon_100px_white.png" width="35px">
 			</div>
 			<hr style="width:80%;height:3px;border:0;margin:0 auto;padding:0;background-color:white;">
 			<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
