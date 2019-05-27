@@ -87,6 +87,8 @@
 			고객센터
 		</div>
 	</div>
+	
+	<!-- 전체 리스트 조회 -->
 		<div class="tab-container">
             <ul class="tab-list">
                <li class="selected list-li"><a href="#T-con01" class="munebar">공지사항</a></li>
@@ -95,7 +97,7 @@
             <div class="tab-content-wrapper">
                <div id="T-con01" class="tab-con">
                <center> <h1><u>공지사항</u></h1>
-               <a href="#">글쓰기</a>
+               <a href="/noticeWriter">글쓰기</a>
                <br><br>
               <table border="1">
                		<tr>
@@ -113,6 +115,7 @@
                		</tr>
                		<%} %>
                </table>
+               <!-- 페이징 -->
                <div id="pageNavi">${pd.pageNavi }</div>
                </center>
                </div>

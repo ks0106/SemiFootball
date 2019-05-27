@@ -50,4 +50,17 @@ public class NoticeService {
 		JDBCTemplate.close(conn);
 		return nvd;
 	}
+	
+	//공지사항 작성
+	public int NoticeInsert(NoticeVo nv) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new NoticeDao().NoticeInsert(conn, nv);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }
