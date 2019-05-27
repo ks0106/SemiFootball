@@ -48,7 +48,7 @@
 		.content-wrapper {
 			position: relative;
 			display: inline-block;
-			margin-top: 50px;
+			margin-top:25px;
 			width: 100%;
 			height: 40%;
 		}
@@ -115,6 +115,7 @@
 	</section>
 	<script>
 		$(function(){
+			$('.content-wrapper:odd div').css('background-color','#ececec');
 			$mainImgSrc = $('.subImg').eq(0).attr('src');
 			$('.mainImg').attr('src',$mainImgSrc);
 			$('.subImg').click(function(){
