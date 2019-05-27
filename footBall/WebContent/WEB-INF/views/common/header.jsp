@@ -12,7 +12,6 @@
 	var oldSize;
 	var newSize;
 	$(document).ready(function(){
-		oldSize = $(window).width();
 		//토글 사이드바 숨김
 		$('.right_area').css("display","none");
 		//헤더 영역 사이즈
@@ -27,26 +26,31 @@
 		//메뉴바 위치
 		$('.menu_bar').css("margin-top","70px");
 		//페이지 로드 시 창 사이즈에 따른 메뉴바 상태 변경
-		if(oldSize < 950){
+		oldSize = $(window).width();
+		if(oldSize < 850){
 			$('#menu').css("display","none");
 			$('#header_logo').css("display","none");
 			$('#menu_login').css("display","none");
 			$('.toggle_bar').css("display","block");
 			$('.area').animate({
-				top:"-70px"},500);
+				top:"-70px"},200);
+		}else if(oldSize >= 850 && oldSize <= 1250){
+			$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
+			$('#menu').css("display","block");				/* 메뉴 나타남 */
+			$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
+			$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
+			$('#menu').css("left","150px");
+			$('.header_item').css("margin-right","20px");
+			$('.header_item a').css("font-size","18px");			
+			$('.area').animate({
+				top:"-70px"},200);
 		}
 	});
 	//창크기 조절 시 창 사이즈에 따른 메뉴바 상태 변경
 	$(window).resize(function(){
 		newSize = $(window).width();							/* newSize(새 창 크기)에 현재 창 크기 저장 */
-		if(oldSize < 950){										
-			if(newSize < 950){									/* 예전 창크기가 950보다 작을 때 새 창크기도 950보다 작으면 */
-				$('#menu').css("display","none");				/* 메뉴 사라짐 */
-				$('#menu_login').css("display","none");			/* 로그인 버튼 사라짐 */
-				$('#header_logo').css("display","none");		/* 파란 헤더 로고 사라짐 */
-				$('.toggle_bar').css("display","block");		/* 메뉴와 로그인을 담은 토글바 나타남 */
-				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
-			}else if(newSize >= 950 || newSize <= 1200){												/* 예전 창크기가 950보다 작을 때 새 창크기가 950보다 크면 */
+		if(oldSize < 850){										
+			if(newSize >= 850 && newSize <= 1250){		/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -55,38 +59,62 @@
 				$('.header_item').css("margin-right","20px");
 				$('.header_item a').css("font-size","18px");
 				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
-			}
-		}else if(oldSize >=950 || oldSize <=1200){
-			if(newSize < 950){
-				$('#menu').css("display","none");
-				$('#menu_login').css("display","none");
-				$('#header_logo').css("display","none");
-				$('.area').animate({
-					top:"-70px"},500);
-				$('.toggle_bar').css("display","block");
-				oldSize = $(window).width();
-			}else if(oldSize >=950 || oldSize <=1200){
-				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
-				$('#menu').css("display","block");				/* 메뉴 나타남 */
-				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
-				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
-				$('#menu').css("left","150px");
-				$('.header_item').css("margin-right","20px");
-				$('.header_item a').css("font-size","18px");
-				oldSize = $(window).width();
-			}else if(newSize > 1200){
+			}else if(newSize > 1250){
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
 				$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
 				$('.area').animate({							/* 헤더 원위치 */
-					top:"0px"},500);
+					top:"0px"},200);
 				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
 				$('#menu').css("left","300px");
+				$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
 				$('.header_item').css("margin-right","50px");
 				$('.header_item a').css("font-size","24px");
 				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
-			}				
+			}
+		}else if(oldSize >=850 && oldSize <=1250){
+			if(newSize < 850){
+				$('#menu').css("display","none");
+				$('#menu_login').css("display","none");
+				$('#header_logo').css("display","none");
+				$('.toggle_bar').css("display","block");
+				oldSize = $(window).width();
+			}else if(newSize > 1250){
+				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
+				$('#menu').css("display","block");				/* 메뉴 나타남 */
+				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
+				$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
+				$('.area').animate({							/* 헤더 원위치 */
+					top:"0px"},200);
+				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
+				$('#menu').css("left","300px");
+				$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
+				$('.header_item').css("margin-right","50px");
+				$('.header_item a').css("font-size","24px");
+				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
+			}
+		}else if(oldSize > 1250){
+			if(newSize >= 850 && newSize <= 1250){				/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
+				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
+				$('#menu').css("display","block");				/* 메뉴 나타남 */
+				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
+				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
+				$('#menu').css("left","150px");
+				$('.header_item').css("margin-right","20px");
+				$('.header_item a').css("font-size","18px");
+				$('.area').animate({
+					top:"-70px"},200);
+				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
+			}else if(newSize < 850){
+				$('#menu').css("display","none");
+				$('#menu_login').css("display","none");
+				$('#header_logo').css("display","none");
+				$('.toggle_bar').css("display","block");
+				$('.area').animate({
+					top:"-70px"},200);
+				oldSize = $(window).width();
+			}
 		}
 	}).resize();
 	//스크롤바 내렸을 때 헤더 위치 변경
@@ -166,7 +194,7 @@
  			<li class="header_item"><a href="/company">회사소개</a></li>
  			<li class="header_item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
- 		<div id="menu_login" style="float:right;margin-right:100px;width:100px;height:90%;margin-top:5px;">
+ 		<div id="menu_login" style="float:right;width:100px;height:90%;margin-top:5px;">
 			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50" height="50"></a></div>
  			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 		</div>
