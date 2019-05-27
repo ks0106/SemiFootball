@@ -25,14 +25,14 @@
 		$('.menu_bar').css("margin-top","70px");
 		//페이지 로드 시 창 사이즈에 따른 메뉴바 상태 변경
 		oldWidth = $(window).width();
-		if(oldWidth < 850){
+		if(oldWidth < 980){
 			$('#menu').css("display","none");
 			$('#header_logo').css("display","none");
 			$('#menu_login').css("display","none");
 			$('.toggle_bar').css("display","block");
 			$('.area').animate({
 				top:"-70px"},200);
-		}else if(oldWidth >= 850 && oldWidth <= 1250){
+		}else if(oldWidth >= 980 && oldWidth <= 1550){
 			$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 			$('#menu').css("display","block");				/* 메뉴 나타남 */
 			$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -40,15 +40,35 @@
 			$('#menu').css("left","150px");
 			$('.header_item').css("margin-right","20px");
 			$('.header_item a').css("font-size","18px");			
+			$('#header_logo').css("display","none");
 			$('.area').animate({
 				top:"-70px"},200);
+		}else if(oldWidth > 1550){
+			$('#header_logo').css("display","block");			
 		}
+		//메뉴바 마우스 올렸을 때 opacity값 변경
+		$('.menu_bar').mouseenter(function(){
+			if($('.menu_bar').css("opacity") == "0.5"){
+				$('.menu_bar').animate({
+					opacity:"0.9"
+				},200);
+			}
+		});
+		$('.menu_bar').mouseleave(function(){
+			if($('.menu_bar').css("opacity") == "0.9"){
+				if($('.right_area').css("display") == "none"){
+					$('.menu_bar').animate({
+						opacity:"0.5"
+					},200);
+				}
+			}
+		});
 	});
 	//창크기 조절 시 창 사이즈에 따른 메뉴바 상태 변경
 	$(window).resize(function(){
 		newWidth = $(window).width();							/* newWidth(새 창 크기)에 현재 창 크기 저장 */
-		if(oldWidth < 850){										
-			if(newWidth >= 850 && newWidth <= 1250){		/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
+		if(oldWidth < 980){										
+			if(newWidth >= 980 && newWidth <= 1550){		/* 예전 창크기가 980보다 작을 때 새 창크기가 980보다 크면 */
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -57,7 +77,7 @@
 				$('.header_item').css("margin-right","20px");
 				$('.header_item a').css("font-size","18px");
 				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
-			}else if(newWidth > 1250){
+			}else if(newWidth > 1550){
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -71,14 +91,14 @@
 				$('.header_item a').css("font-size","24px");
 				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
 			}
-		}else if(oldWidth >=850 && oldWidth <=1250){
-			if(newWidth < 850){
+		}else if(oldWidth >=980 && oldWidth <=1550){
+			if(newWidth < 980){
 				$('#menu').css("display","none");
 				$('#menu_login').css("display","none");
 				$('#header_logo').css("display","none");
 				$('.toggle_bar').css("display","block");
 				oldWidth = $(window).width();
-			}else if(newWidth > 1250){
+			}else if(newWidth > 1550){
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -87,13 +107,12 @@
 					top:"0px"},200);
 				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
 				$('#menu').css("left","300px");
-				$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
 				$('.header_item').css("margin-right","50px");
 				$('.header_item a').css("font-size","24px");
 				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
 			}
-		}else if(oldWidth > 1250){
-			if(newWidth >= 850 && newWidth <= 1250){				/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
+		}else if(oldWidth > 1550){
+			if(newWidth >= 980 && newWidth <= 1550){				/* 예전 창크기가 980보다 작을 때 새 창크기가 980보다 크면 */
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -101,10 +120,11 @@
 				$('#menu').css("left","150px");
 				$('.header_item').css("margin-right","20px");
 				$('.header_item a').css("font-size","18px");
+				$('#header_logo').css("display","none");
 				$('.area').animate({
 					top:"-70px"},200);
 				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
-			}else if(newWidth < 850){
+			}else if(newWidth < 980){
 				$('#menu').css("display","none");
 				$('#menu_login').css("display","none");
 				$('#header_logo').css("display","none");
@@ -127,6 +147,7 @@
 		line-height:40px;
 	}
 	.header_item a{
+		font-weight: bolder;
 		font-size: 24px;
 		text-decoration: none;
 		color:white;
@@ -141,18 +162,8 @@
 		position:relative;
 		overflow-x: hidden; 		/* 좌우 스크롤 제거 Css구문 */
 	}
-	.menu_bar:hover{
-		animation-name:menubar;
-		animation-duration:0.5s;
-		animation-fill-mode:forwards;
-	}
-	@keyframes menubar{
-		from{
-			opacity:0.5;
-		}
-		to{
-			opacity:0.9;
-		}
+	.right_menu_item{
+		margin-top:10px;
 	}
 	.right_menu_item a{
 		font-size: 30px;
@@ -165,7 +176,8 @@
 	$(document).ready(function(){
 		$('.toggle_bar').click(function(){
 			if($('.right_area').css("display") == "none"){
-				$('.right_area').css("display","block");				
+				$('.right_area').css("display","block");
+				$('.menu_bar').css("opacity","0.9");
 				$('.right_area').animate({
 					top:"-500px"},500);
 			}else{				
@@ -178,7 +190,7 @@
 </script>
 <header class="area">
 <!-- 헤더 작성 -->
-   	<a href="/" id="header_logo"><img src="/img/header_logo.png" width="180" height="180" id="header_logo" style="top:0px;left:50px;position:absolute;z-index:100;display:none;"></a>
+   	<a href="/" id="header_logo"><img src="/img/header_logo.png" width="180" height="180" id="header_logo" style="top:0px;left:50px;position:absolute;z-index:100;"></a>
 	<div class="menu_bar">
  		<a href="/" id="header_logo2"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
  		<div class="toggle_bar" style="width:70px;height:65px;float:right;margin-right:50px;margin-top:7px;cursor:pointer;display:none;">
@@ -194,7 +206,7 @@
  			<li class="header_item"><a href="/gallery">갤러리</a></li>
  			<li class="header_item"><a href="/notice">고객센터</a></li>
  			<li class="header_item"><a href="/company">회사소개</a></li>
- 			<li class="header_item"><a href="#" style="display:none;">관리자메뉴</a></li>
+ 			<li class="header_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
  		</ul>
  		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
 			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
@@ -204,21 +216,20 @@
 <!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
 	<nav class="right_area">
 		<div style="width:350px;height:100vh;background-color:black;opacity:0.9;float:right;">
-			<div style="background-color: red;">
-			<div style="background-color:red;width:100%;">
-				<a href="#" style="text-decoration:none;color:white;font-size:20px;">Member Login</a>
-				<img src="/img/login_icon_100px_white.png" width="100%">
+			<div style="width:210px;margin:0 auto;margin-top:10px;margin-bottom:10px;">
+				<a href="#" style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
+				<img src="/img/login_icon_100px_white.png" width="35px">
 			</div>
 			<hr style="width:80%;height:3px;border:0;margin:0 auto;padding:0;background-color:white;">
 			<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
-				<li class="right_menu_item"><a href="#">지점</a></li>
-				<li class="right_menu_item"><a href="#">대관</a></li>
-				<li class="right_menu_item"><a href="#">매치/용병</a></li>
-				<li class="right_menu_item"><a href="#">대회</a></li>
-				<li class="right_menu_item"><a href="#">갤러리</a></li>
-				<li class="right_menu_item"><a href="#">고객센터</a></li>
-				<li class="right_menu_item"><a href="#">회사소개</a></li>
-				<li class="right_menu_item"><a href="#">관리페이지</a></li>
+				<li class="right_menu_item"><a href="/branch">지점</a></li>
+				<li class="right_menu_item"><a href="/reservation">대관</a></li>
+				<li class="right_menu_item"><a href="/matching">매치/용병</a></li>
+				<li class="right_menu_item"><a href="/league">대회</a></li>
+				<li class="right_menu_item"><a href="/gallery">갤러리</a></li>
+				<li class="right_menu_item"><a href="/notice">고객센터</a></li>
+				<li class="right_menu_item"><a href="/company">회사소개</a></li>
+				<li class="right_menu_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
 			</ul>
 		</div>
 	</nav>
