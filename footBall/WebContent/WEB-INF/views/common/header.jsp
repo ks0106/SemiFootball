@@ -9,11 +9,9 @@
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
 <script>
-	var oldSize;
-	var newSize;
+	var oldWidth;
+	var newWidth;
 	$(document).ready(function(){
-		//토글 사이드바 숨김
-		$('.right_area').css("display","none");
 		//헤더 영역 사이즈
 		$('.area').css("width","100%");
 		//헤더 영역 위치
@@ -26,15 +24,15 @@
 		//메뉴바 위치
 		$('.menu_bar').css("margin-top","70px");
 		//페이지 로드 시 창 사이즈에 따른 메뉴바 상태 변경
-		oldSize = $(window).width();
-		if(oldSize < 850){
+		oldWidth = $(window).width();
+		if(oldWidth < 850){
 			$('#menu').css("display","none");
 			$('#header_logo').css("display","none");
 			$('#menu_login').css("display","none");
 			$('.toggle_bar').css("display","block");
 			$('.area').animate({
 				top:"-70px"},200);
-		}else if(oldSize >= 850 && oldSize <= 1250){
+		}else if(oldWidth >= 850 && oldWidth <= 1250){
 			$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 			$('#menu').css("display","block");				/* 메뉴 나타남 */
 			$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -48,9 +46,9 @@
 	});
 	//창크기 조절 시 창 사이즈에 따른 메뉴바 상태 변경
 	$(window).resize(function(){
-		newSize = $(window).width();							/* newSize(새 창 크기)에 현재 창 크기 저장 */
-		if(oldSize < 850){										
-			if(newSize >= 850 && newSize <= 1250){		/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
+		newWidth = $(window).width();							/* newWidth(새 창 크기)에 현재 창 크기 저장 */
+		if(oldWidth < 850){										
+			if(newWidth >= 850 && newWidth <= 1250){		/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -58,8 +56,8 @@
 				$('#menu').css("left","150px");
 				$('.header_item').css("margin-right","20px");
 				$('.header_item a').css("font-size","18px");
-				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
-			}else if(newSize > 1250){
+				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
+			}else if(newWidth > 1250){
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -71,16 +69,16 @@
 				$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
 				$('.header_item').css("margin-right","50px");
 				$('.header_item a').css("font-size","24px");
-				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
+				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
 			}
-		}else if(oldSize >=850 && oldSize <=1250){
-			if(newSize < 850){
+		}else if(oldWidth >=850 && oldWidth <=1250){
+			if(newWidth < 850){
 				$('#menu').css("display","none");
 				$('#menu_login').css("display","none");
 				$('#header_logo').css("display","none");
 				$('.toggle_bar').css("display","block");
-				oldSize = $(window).width();
-			}else if(newSize > 1250){
+				oldWidth = $(window).width();
+			}else if(newWidth > 1250){
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -92,10 +90,10 @@
 				$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
 				$('.header_item').css("margin-right","50px");
 				$('.header_item a').css("font-size","24px");
-				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
+				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
 			}
-		}else if(oldSize > 1250){
-			if(newSize >= 850 && newSize <= 1250){				/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
+		}else if(oldWidth > 1250){
+			if(newWidth >= 850 && newWidth <= 1250){				/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
 				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
 				$('#menu').css("display","block");				/* 메뉴 나타남 */
 				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
@@ -105,15 +103,15 @@
 				$('.header_item a').css("font-size","18px");
 				$('.area').animate({
 					top:"-70px"},200);
-				oldSize = $(window).width();					/* oldSize(예전 창 크기)에 현재 창 크기 저장 */
-			}else if(newSize < 850){
+				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
+			}else if(newWidth < 850){
 				$('#menu').css("display","none");
 				$('#menu_login').css("display","none");
 				$('#header_logo').css("display","none");
 				$('.toggle_bar').css("display","block");
 				$('.area').animate({
 					top:"-70px"},200);
-				oldSize = $(window).width();
+				oldWidth = $(window).width();
 			}
 		}
 	}).resize();
@@ -132,6 +130,10 @@
 		font-size: 24px;
 		text-decoration: none;
 		color:white;
+	}
+/* 토글 사이드바 숨김  */
+	.right_area{
+		display:none;
 	}
 	body{
 		margin:0;
@@ -194,8 +196,8 @@
  			<li class="header_item"><a href="/company">회사소개</a></li>
  			<li class="header_item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
- 		<div id="menu_login" style="float:right;width:100px;height:90%;margin-top:5px;">
-			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50" height="50"></a></div>
+ 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
  			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 		</div>
 	</div>
@@ -203,8 +205,9 @@
 	<nav class="right_area">
 		<div style="width:350px;height:100vh;background-color:black;opacity:0.9;float:right;">
 			<div style="background-color: red;">
+			<div style="background-color:red;width:100%;">
 				<a href="#" style="text-decoration:none;color:white;font-size:20px;">Member Login</a>
-				<img src="/img/login_icon_100px_white.png" width="30px">
+				<img src="/img/login_icon_100px_white.png" width="100%">
 			</div>
 			<hr style="width:80%;height:3px;border:0;margin:0 auto;padding:0;background-color:white;">
 			<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">

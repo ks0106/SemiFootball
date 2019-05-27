@@ -80,6 +80,8 @@
 	}
 </style>
 <script>
+	var oldHeight;
+	var newHeight;
 	$(document).ready(function(){
 		$('.bar_button').click(function(){
 			if($(this).attr('id') == 'prev'){
@@ -95,22 +97,42 @@
 			}
 		});
 		//페이지 로드 시 창 사이즈에 따른 사이드바 상태 변경
-		if($(window).height() < 900){
+		oldHeight = $(window).height();
+		if(oldHeight < 850){
 			$('sidebar').css("display","none");
 			$('header').css("display","block").css("position","absolute");
+			$('.area2').css("display","none");
+			$('.area').animate({
+				top:"-70px"},200);
 		}else{
 			$('sidebar').css("display","block");			
 			$('header').css("display","none");
+			$('.area2').css("display","block");
+			$('.area').animate({
+				top:"0px"},200);
 		}
 	});
 	//창크기 조절 시 창 사이즈에 따른 사이드바 상태 변경
 	$(window).resize(function(){
-		if($(window).height() < 900){
-			$('sidebar').css("display","none");
-			$('header').css("display","block").css("position","absolute");
-		}else{
-			$('sidebar').css("display","block");
-			$('header').css("display","none");
+		newHeight = $(window).height();
+		if(oldHeight < 850){
+			if(newHeight >= 850){
+				$('sidebar').css("display","block");
+				$('header').css("display","none");
+				$('.area2').css("display","block");
+				$('.area').animate({
+					top:"0px"},200);
+				oldHeight = $(window).height();
+			}
+		}else if(oldHeight >= 850){
+			if(newHeight < 850){
+				$('sidebar').css("display","none");
+				$('header').css("display","block").css("position","absolute");
+				$('.area2').css("display","none");
+				$('.area').animate({
+					top:"-70px"},200);				
+				oldHeight = $(window).height();
+			}
 		}
 	}).resize();
 </script>
@@ -122,7 +144,7 @@
 			Football Mania	
 		</div>
 		<div class="leftside_notice">
-			<div style="background-color:black;width:400px;height:30px;display:inline-block;border-radius:20px;">
+			<div style="background-color:black;margin:0 auto;width:400px;height:30px;display:block;border-radius:20px;">
 				<img src="/img/notice_white.png" width="20px">
 				공지사항 목록
 			</div>
@@ -152,61 +174,102 @@
 </sidebar>
 <!-- 여기서부터 메인인덱스 헤더(높이가 일정 크기 이하일 때 사이드 -> 헤더로 전환) -->
 <script>
-	var oldSize;
-	var newSize;
+	var oldWidth;
+	var newWidth;
 	$(document).ready(function(){
-		oldSize = $(window).width();
 		//헤더 영역 사이즈
-		$('.area').css("width","100%").css("height","200px");
+		$('.area').css("width","100%");
 		//헤더 영역 위치
 		$('.area').css("box-sizing","border-box").css("float","left");
-		$('.area').css("position","absolute");
+		$('.area').css("position","fixed");
 		//메뉴바 사이즈
 		$('.menu_bar').css("width","100%").css("height","80px");
 		//메뉴바 컬러 및 투명도
 		$('.menu_bar').css("background-color","black").css("opacity","0.5");
 		//메뉴바 위치
-		$('.menu_bar').css("margin-top","0px");
+		$('.menu_bar').css("margin-top","70px");
 		//페이지 로드 시 창 사이즈에 따른 메뉴바 상태 변경
-		if(oldSize < 1750){
+		oldWidth = $(window).width();
+		if(oldWidth < 850){
 			$('#menu').css("display","none");
 			$('#menu_login').css("display","none");
 			$('.toggle_bar').css("display","block");
+		}else if(oldWidth >= 850 && oldWidth <= 1250){
+			$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
+			$('#menu').css("display","block");				/* 메뉴 나타남 */
+			$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
+			$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
+			$('#menu').css("left","150px");
+			$('.header_item').css("margin-right","20px");
+			$('.header_item a').css("font-size","18px");			
 		}
 	});
 	//창크기 조절 시 창 사이즈에 따른 메뉴바 상태 변경
 	$(window).resize(function(){
-		newSize = $(window).width();
-		if(oldSize < 1750){
-			if(newSize < 1750){
+		newWidth = $(window).width();							/* newWidth(새 창 크기)에 현재 창 크기 저장 */
+		if(oldWidth < 850){										
+			if(newWidth >= 850 && newWidth <= 1250){		/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
+				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
+				$('#menu').css("display","block");				/* 메뉴 나타남 */
+				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
+				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
+				$('#menu').css("left","150px");
+				$('.header_item').css("margin-right","20px");
+				$('.header_item a').css("font-size","18px");
+				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
+			}else if(newWidth > 1250){
+				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
+				$('#menu').css("display","block");				/* 메뉴 나타남 */
+				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
+				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
+				$('#menu').css("left","300px");
+				$('.header_item').css("margin-right","50px");
+				$('.header_item a').css("font-size","24px");
+				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
+			}
+		}else if(oldWidth >=850 && oldWidth <=1250){
+			if(newWidth < 850){
 				$('#menu').css("display","none");
 				$('#menu_login').css("display","none");
 				$('.toggle_bar').css("display","block");
-				oldSize = $(window).width();
-			}else{
-				$('#menu').css("display","block");
-				$('#menu_login').css("display","block");
-				$('.toggle_bar').css("display","none");
-				oldSize = $(window).width();
-			}			
-		}else{
-			if(newSize < 1750){
+				oldWidth = $(window).width();
+			}else if(newWidth > 1250){
+				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
+				$('#menu').css("display","block");				/* 메뉴 나타남 */
+				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
+				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
+				$('#menu').css("left","300px");
+				$('.header_item').css("margin-right","50px");
+				$('.header_item a').css("font-size","24px");
+				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
+			}
+		}else if(oldWidth > 1250){
+			if(newWidth >= 850 && newWidth <= 1250){				/* 예전 창크기가 850보다 작을 때 새 창크기가 850보다 크면 */
+				$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
+				$('#menu').css("display","block");				/* 메뉴 나타남 */
+				$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
+				$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
+				$('#menu').css("left","150px");
+				$('.header_item').css("margin-right","20px");
+				$('.header_item a').css("font-size","18px");
+				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
+			}else if(newWidth < 850){
 				$('#menu').css("display","none");
 				$('#menu_login').css("display","none");
 				$('.toggle_bar').css("display","block");
-				oldSize = $(window).width();
-			}else{
-				$('#menu').css("display","block");
-				$('#menu_login').css("display","block");
-				$('.toggle_bar').css("display","none");
-				oldSize = $(window).width();
-			}						
+				oldWidth = $(window).width();
+			}
 		}
 	}).resize();
+	//스크롤바 내렸을 때 헤더 위치 변경
 </script>
-
 <style>
 /* 메뉴 li설정 (script 사용 시 로딩하는 동안 li기본형 뜨는 문제 때문에 css로 직접 줌) */
+	.area2{
+		position: absolute;
+		top:70px;
+		right:20px;
+	}
 	.header_item{
 		color:white;
 		display:inline-block;
@@ -217,6 +280,10 @@
 		font-size: 24px;
 		text-decoration: none;
 		color:white;
+	}
+/* 토글 사이드바 숨김  */
+	.right_area{
+		display:none;
 	}
 	body{
 		margin:0;
@@ -237,11 +304,19 @@
 		}
 	}
 </style>
+<header class="area2">
+	<div class="menu_bar2">
+ 		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
+ 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+		</div>
+	</div>
+</header>
 <header class="area">
 <!-- 헤더 작성 -->
 	<div class="menu_bar">
  		<a href="/" id="header_logo2"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
- 		<div class="toggle_bar" style="width:50px;height:100%;float:right;margin-right:50px;margin-top:5px;cursor:pointer;">
+ 		<div class="toggle_bar" style="width:70px;height:65px;float:right;margin-right:50px;margin-top:7px;cursor:pointer;display:none;">
  			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
  			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
  			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
@@ -256,10 +331,31 @@
  			<li class="header_item"><a href="/company">회사소개</a></li>
  			<li class="header_item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
- 		<div id="menu_login" style="float:right;margin-right:50px;width:100px;height:90%;margin-top:5px;">
-			<div style="margin-left:16px;"><a href="/login"><img src="/img/login_icon_100px_white.png" width="50" height="50"></a></div>
- 			<div><a href="/login" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+ 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
+ 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 		</div>
 	</div>
+<!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
+	<nav class="right_area">
+		<div style="width:350px;height:100vh;background-color:black;opacity:0.9;float:right;">
+			<div style="background-color: red;">
+			<div style="background-color:red;width:100%;">
+				<a href="#" style="text-decoration:none;color:white;font-size:20px;">Member Login</a>
+				<img src="/img/login_icon_100px_white.png" width="100%">
+			</div>
+			<hr style="width:80%;height:3px;border:0;margin:0 auto;padding:0;background-color:white;">
+			<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
+				<li class="right_menu_item"><a href="#">지점</a></li>
+				<li class="right_menu_item"><a href="#">대관</a></li>
+				<li class="right_menu_item"><a href="#">매치/용병</a></li>
+				<li class="right_menu_item"><a href="#">대회</a></li>
+				<li class="right_menu_item"><a href="#">갤러리</a></li>
+				<li class="right_menu_item"><a href="#">고객센터</a></li>
+				<li class="right_menu_item"><a href="#">회사소개</a></li>
+				<li class="right_menu_item"><a href="#">관리페이지</a></li>
+			</ul>
+		</div>
+	</nav>
 </header>
 </html>
