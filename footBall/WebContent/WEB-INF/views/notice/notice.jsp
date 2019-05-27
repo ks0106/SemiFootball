@@ -97,15 +97,15 @@
                <center> <h1><u>공지사항</u></h1>
               <table border="1">
                		<tr>
-               			<th>번호</th><th>제목</th><th>작성자</th><th>등록일</th>
+               			<th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th>
                		</tr>
                		<% for(NoticeVo nv : list) {%>
                		<tr>
-               			<td><%=nv.getSeqnoticeno() %></td><td><%=nv.getNoticetitle() %></td><td><%=nv.getNoticewriter() %></td><td><%=nv.getNoticedate() %></td>
+               			<td><%=nv.getSeqnoticeno() %></td><td><a href=""><%=nv.getNoticetitle() %></a></td><td><%=nv.getNoticewriter() %></td><td><%=nv.getNoticedate() %></td><td><%=nv.getNoticehit() %></td>
                		</tr>
                		<%} %>
                </table>
-               <div id="pageNavi"><%=pd.getPageNavi() %></div>
+               <div id="pageNavi">${pd.pageNavi }</div>
                </center>
                </div>
                <div id="T-con02" class="tab-con">

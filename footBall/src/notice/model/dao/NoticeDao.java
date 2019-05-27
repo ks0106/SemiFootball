@@ -41,6 +41,7 @@ public class NoticeDao {
 				nv.setNoticetitle(rset.getString("notice_title"));
 				nv.setNoticewriter(rset.getString("notice_writer"));
 				nv.setNoticedate(rset.getDate("notice_date"));
+				nv.setNoticehit(rset.getInt("notice_hit"));
 				nv.setFilename(rset.getString("filename"));
 				nv.setFilepath(rset.getString("filepath"));
 				list.add(nv);
@@ -49,16 +50,16 @@ public class NoticeDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		return list;
 	}
 	public int totalCount(Connection conn) {
+		int result = 0;
 		Statement stmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("totalCount");
-		int result = 0;
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
