@@ -2,6 +2,7 @@ package gallery.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import gallery.model.dao.GalleryDao;
@@ -27,4 +28,11 @@ public class GalleryService {
 		return result;
 	}
 
+	public ArrayList<Gallery> morePhoto(int start) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int length = 5;
+		ArrayList<Gallery> list = new GalleryDao().morePhoto(conn, start, start+length-1);
+		JDBCTemplate.close(conn);
+		return list;
+	}
 }

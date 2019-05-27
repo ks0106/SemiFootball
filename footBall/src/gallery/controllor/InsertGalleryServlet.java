@@ -3,6 +3,7 @@ package gallery.controllor;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,11 +50,11 @@ public class InsertGalleryServlet extends HttpServlet {
 			MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 			String photoWriter = mRequest.getParameter("photoWriter");
 			String photoContent = mRequest.getParameter("photoContent");
-			String filepath = mRequest.getFilesystemName("filepath");
+			String filename = mRequest.getFilesystemName("filename");
 			Gallery g = new Gallery();
 			g.setPhotoWriter(photoWriter);
 			g.setPhotoContent(photoContent);
-			g.setFilepath(filepath);
+			g.setFilename(filename);
 			int result=0;
 			try {
 				result = new GalleryService().insertPhoto(g);
@@ -62,12 +63,19 @@ public class InsertGalleryServlet extends HttpServlet {
 				}else {
 					request.setAttribute("msg", "등록 실패");
 				}
+				request.setAttribute("loc", "/gallery");
+				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
+				request.setAttribute("msg", "SQL구문 오류");
+				rd.forward(request, response);
 			}
-			request.setAttribute("loc", "/galleryList");
-			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			
+				
+//				RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
+//				request.setAttribute("msg", "SQL구문 오류");
+//				rd.forward(request, response);
+			
 		}
 	}
 

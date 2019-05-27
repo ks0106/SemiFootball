@@ -51,8 +51,8 @@
 					<tr >
 						<th >작성자</th>
 						<td>
-							${sessionScope.member.memberEmail }
-							<input type="hidden" name="photoWriter" value="${session.Scope.member.memberEmail}">
+							${sessionScope.member.memberEmail } ㅎㅇ
+							<input type="text" name="photoWriter">
 						</td>
 					</tr>
 					<tr >
