@@ -31,12 +31,13 @@
 			opacity: .5;
 		}
 		.icon {
-			width:30px;
-			height:30px;
+			width:35px;
+			height:35px;
 		}
-		.font-td {
-			font-size: 30px;
+		.font-li {
+			font-size: 35px;
 			text-align: left;
+			color: #446087;
 		}
 		.content-container {
 			position: absolute;
@@ -91,7 +92,12 @@
 						<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
 					</div>
 					<div class="content-right">
-						<table style="display: table; margin-top:10px; margin-left: auto; margin-right: auto;">
+						<ul style="list-style-type: none;">
+							<li class="font-li">${b.branchName }</li>
+							<li class="font-li"><img class="icon" src="img/branch_pinIcon.png">${b.branchAddr }</li>
+							<li class="font-li"><img class="icon" src="img/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+						</ul>
+						<%-- <table border="1px" style="display: table; margin-top:10px; margin-left: auto; margin-right: auto;">
 							<tr>
 								<td class="font-td" colspan="2">${b.branchName }</td>
 							</tr>
@@ -101,7 +107,7 @@
 							<tr>
 								<td><img class="icon" src="img/branch_phoneIcon.png"></td><td class="font-td">${b.branchPhone } / ${b.branchTel }</td>
 							</tr>
-						</table>
+						</table> --%>
 					</div>
 				</div>
 			</c:forEach>
@@ -112,7 +118,7 @@
 			$mainImgSrc = $('.subImg').eq(0).attr('src');
 			$('.mainImg').attr('src',$mainImgSrc);
 			$('.subImg').click(function(){
-				$('.mainImg').attr('src',$(this).attr('src'));
+				$(this).siblings().eq(0).attr('src',$(this).attr('src'));
 			});
 		});
 	</script>
