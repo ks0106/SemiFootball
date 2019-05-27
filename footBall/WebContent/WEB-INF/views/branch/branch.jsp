@@ -34,6 +34,9 @@
 			width:40%;
 			height:40%;
 		}
+		.font-td {
+			font-size: 30px;
+		}
 		.content-container {
 			position: absolute;
 			width: 100%;
@@ -88,15 +91,15 @@
 						<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
 					</div>
 					<div class="content-right">
-						<table border="1px" style="display: table; margin-top:10px; margin-left: auto; margin-right: auto;">
+						<table style="display: table; margin-top:10px; margin-left: auto; margin-right: auto;">
 							<tr>
-								<td colspan="2">${b.branchName }</td>
+								<td class="font-td" colspan="2">${b.branchName }</td>
 							</tr>
 							<tr>
-								<td><img class="icon" src="img/branch_pinIcon.png"></td><td>${b.brnachAddr }</td>
+								<td><img class="icon" src="img/branch_pinIcon.png"></td><td class="font-td">${b.branchAddr }</td>
 							</tr>
 							<tr>
-								<td><img class="icon" src="img/branch_phoneIcon.png"></td><td>${b.branchPhone } / ${b.branchTel }</td>
+								<td><img class="icon" src="img/branch_phoneIcon.png"></td><td class="font-td">${b.branchPhone } / ${b.branchTel }</td>
 							</tr>
 						</table>
 					</div>

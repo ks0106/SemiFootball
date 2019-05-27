@@ -16,7 +16,7 @@ import common.JDBCTemplate;
 public class BranchDao {
 	private Properties prop = new Properties();
 	public BranchDao() {
-		String fileName = BranchDao.class.getResource("/sql/barnch/barnchQuery.properties").getPath();
+		String fileName = BranchDao.class.getResource("/sql/branch/branchQuery.properties").getPath();
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (FileNotFoundException e) {
