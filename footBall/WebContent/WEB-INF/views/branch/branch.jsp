@@ -31,6 +31,7 @@
 						<div class="content-wrapper">
 							<div class="content-left">
 								<img class="mainImg" src="" alt="mainIng"><br>
+								<img class="subImg" src="img/branch_test5.jpg" alt="subImg">
 								<img class="subImg" src="img/branch_test.jpg" alt="subImg">
 								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
 								<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
