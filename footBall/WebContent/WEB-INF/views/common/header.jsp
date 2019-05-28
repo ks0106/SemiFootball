@@ -16,10 +16,10 @@
 	var newScroll;
 	$(document).ready(function(){
 		//헤더 영역 사이즈
-		$('.area').css("width","100%");
+		$('.header_area_all').css("width","100%");
 		//헤더 영역 위치
-		$('.area').css("box-sizing","border-box").css("float","left");
-		$('.area').css("position","fixed");
+		$('.header_area_all').css("box-sizing","border-box").css("float","left");
+		$('.header_area_all').css("position","fixed");
 		//메뉴바 사이즈
 		$('.menu_bar').css("width","100%").css("height","80px");
 		//메뉴바 컬러 및 투명도
@@ -34,7 +34,7 @@
 			$('#header_logo').css("display","none");
 			$('#menu_login').css("display","none");
 			$('.toggle_bar').css("display","block");
-			$('.area').animate({
+			$('.header_area_all').animate({
 				top:"-70px"},200);
 		}else if(oldWidth >= 980 && oldWidth <= 1550){
 			$('.right_area').css("display","none");			/* 토글 사이드바 사라짐 */
@@ -45,7 +45,7 @@
 			$('.header_item').css("margin-right","20px");
 			$('.header_item a').css("font-size","18px");			
 			$('#header_logo').css("display","none");
-			$('.area').animate({
+			$('.header_area_all').animate({
 				top:"-70px"},200);
 		}else if(oldWidth > 1550){
 			console.log(oldScroll);
@@ -53,7 +53,7 @@
 				$('#header_logo').css("display","block");							
 			}else{
 				$('#header_logo').css("display","none");
-				$('.area').animate({
+				$('.header_area_all').animate({
 					top:"-70px"},200);				
 			}
 		}
@@ -76,14 +76,14 @@
 			if(oldWidth > 1550){
 				if(oldScroll < "70"){
 					if(newScroll >= "70"){
-						$('.area').animate({
+						$('.header_area_all').animate({
 							top:"-70px"},200);	
 						$('#header_logo').css("display","none");
 						oldScroll = $(this).scrollTop();
 					}
 				}else{
 					if(newScroll < "70"){
-						$('.area').animate({
+						$('.header_area_all').animate({
 							top:"0px"},200);	
 						$('#header_logo').css("display","block");
 						oldScroll = $(this).scrollTop();						
@@ -111,7 +111,7 @@
 					$('#menu').css("display","block");				/* 메뉴 나타남 */
 					$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
 					$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
-					$('.area').animate({							/* 헤더 원위치 */
+					$('.header_area_all').animate({							/* 헤더 원위치 */
 						top:"0px"},200);
 					$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
 					$('#menu').css("left","300px");
@@ -143,7 +143,7 @@
 					$('#menu').css("display","block");				/* 메뉴 나타남 */
 					$('#menu_login').css("display","block");		/* 로그인 버튼 나타남 */
 					$('#header_logo').css("display","block");		/* 파란 헤더 로고 나타남 */
-					$('.area').animate({							/* 헤더 원위치 */
+					$('.header_area_all').animate({							/* 헤더 원위치 */
 						top:"0px"},200);
 					$('.toggle_bar').css("display","none");			/* 메뉴와 로그인을 담은 토글바 사라짐 */
 					$('#menu').css("left","300px");
@@ -171,7 +171,7 @@
 				$('.header_item').css("margin-right","20px");
 				$('.header_item a').css("font-size","18px");
 				$('#header_logo').css("display","none");
-				$('.area').animate({
+				$('.header_area_all').animate({
 					top:"-70px"},200);
 				oldWidth = $(window).width();					/* oldWidth(예전 창 크기)에 현재 창 크기 저장 */
 			}else if(newWidth < 980){
@@ -179,7 +179,7 @@
 				$('#menu_login').css("display","none");
 				$('#header_logo').css("display","none");
 				$('.toggle_bar').css("display","block");
-				$('.area').animate({
+				$('.header_area_all').animate({
 					top:"-70px"},200);
 				oldWidth = $(window).width();
 			}
@@ -238,7 +238,7 @@
 		});
 	});
 </script>
-<header class="area">
+<header class="header_area_all">
 <!-- 헤더 작성 -->
    	<a href="/" id="header_logo"><img src="/img/header_logo.png" width="180" height="180" id="header_logo" style="top:0px;left:50px;position:absolute;z-index:100;"></a>
 	<div class="menu_bar">

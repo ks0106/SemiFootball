@@ -49,18 +49,6 @@
 				$(this).css("color","#3366cc");											/* 컬러 연하게 */
 			}
 		});
-//		$('.company').click(function(){													/* 메뉴 클릭했을 때 */
-//			if($(this).siblings('ul').css("display") == "block"){						/* 메뉴 컬러가 연할 때 */
-//				$(this).siblings('ul').slideUp();										/* 메뉴 닫음 */
-//			}else{																		/* 메뉴 컬러가 진할 때 */
-//				$(this).siblings('ul').find('li:first,a:first').css("color","#3366cc");
-//				$(this).siblings('ul').find('li,a').not('li:first,a:first').css("color","silver");
-//				$(this).parents('div').siblings().children('ul').slideUp();				/* 다른 메뉴 닫음 */
-//				$(this).parents('div').siblings().children('a').css("color","#2c3c57");	/* 다른 메뉴 컬러 진하게 */
-//				$(this).siblings('ul').slideDown();										/* 메뉴 펼침 */
-//				$(this).css("color","#3366cc");											/* 컬러 연하게 */
-//			}
-//		});
 		$('.company_nav').click(function(){
 			$(this).css("color","#3366cc");
 			$(this).children('a').css("color","#3366cc");
@@ -99,7 +87,6 @@
 						<ul id="company_pr_menu">
 							<li class="company_nav"><a href="#">KS Sports</a></li>
 							<li class="company_nav"><a href="#">연혁</a></li>
-							<li class="company_nav"><a href="#">CEO 인사말</a></li>
 						</ul>
 					</div>
 					<div style="margin-bottom:15px;">
