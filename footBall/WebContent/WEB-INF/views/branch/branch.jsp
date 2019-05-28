@@ -26,19 +26,12 @@
 	<section class="page_area">
 		<div class="content-container">
 			<aside class="aside-bar">
-				<span id="testSpan">testSpan</span>
+				<div id="testSticky">테스트</div>
 			</aside>
 			<c:forEach items="${list}" var="b" varStatus="status">
 				<c:choose>
 					<c:when test="${status.index %2 == 0 }">
 						<div class="content-wrapper">
-							<div class="content-right">
-								<img class="mainImg" src="" alt="mainIng"><br>
-								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
-							</div>
 							<div class="content-left">
 								<ul style="list-style-type: none;">
 									<li class="font-li">${b.branchName }</li>
@@ -47,10 +40,26 @@
 									<li style="font-size: 25px; text-align:left; font-weight: bold;"><a class="btn-link" href="/branchInfo">지점 상세 정보</a></li>
 								</ul>
 							</div>
+							<div class="content-right">
+								<img class="mainImg" src="" alt="mainIng"><br>
+								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
+								<img class="subImg" src="img/branch_test.jpg" alt="subImg">
+								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
+								<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
+								%==0
+							</div>
+							
 						</div>
 					</c:when>
 					<c:when test="${status.index %2 == 1 }">
 						<div class="content-wrapper">
+							<div class="content-left">
+								<img class="mainImg" src="" alt="mainIng"><br>
+								<img class="subImg" src="img/branch_test.jpg" alt="subImg">
+								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
+								<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
+								%==1
+							</div>
 							<div class="content-right">
 								<ul style="list-style-type: none;">
 									<li class="font-li">${b.branchName }</li>
@@ -58,12 +67,6 @@
 									<li class="font-li"><img class="icon" src="img/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
 									<li style="font-size: 25px; text-align:left; font-weight: bold;"><a class="btn-link" href="/branchInfo">지점 상세 정보</a></li>
 								</ul>
-							</div>
-							<div class="content-left">
-								<img class="mainImg" src="" alt="mainIng"><br>
-								<img class="subImg" src="img/branch_test.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
 							</div>
 						</div>
 					</c:when>
