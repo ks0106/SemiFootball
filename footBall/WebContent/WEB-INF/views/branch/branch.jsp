@@ -18,7 +18,7 @@
 	<div id="continer">
 		<div id="mv">
 			<video id="video01" class="pblock" autoplay playsinline muted loop
-				title> <source src="" type="video/mp4"></video>
+				title> <source src="/img/page3.mp4" type="video/mp4"></video>
 		</div>
 		<!--영상 위 페이지 타이틀 -->
 		<div id="title">지점현황</div>
@@ -26,49 +26,52 @@
 	<section class="page_area">
 		<div class="content-container">
 			<aside class="aside-bar">
-				<div id="testSticky">테스트</div>
+				<div id="testSticky">지점안내</div>
 			</aside>
 			<c:forEach items="${list}" var="b" varStatus="status">
 				<c:choose>
 					<c:when test="${status.index %2 == 0 }">
-						<div class="content-wrapper">
-							<div class="content-left">
-								<ul style="list-style-type: none;">
-									<li class="font-li">${b.branchName }</li>
-									<li class="font-li"><img class="icon" src="img/branch_pinIcon.png">${b.branchAddr }</li>
-									<li class="font-li"><img class="icon" src="img/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
-									<li style="font-size: 25px; text-align:left; font-weight: bold;"><a class="btn-link" href="/branchInfo">지점 상세 정보</a></li>
-								</ul>
+						<form action="/branchInfo" method="get" enctype="multipart/form-data">
+							<div class="content-wrapper">
+								<div class="content-left">
+									<ul style="list-style-type: none;">
+										<li class="font-li">${b.branchName }</li>
+										<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
+										<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+										<li style="text-align:left"><button class="btn-submit" type="submit">지점 상세 정보</button></li>
+									</ul>
+								</div>
+								<div class="content-right">
+									<img class="mainImg right" src="" alt="mainIng"><br>
+									<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
+									<img class="subImg right" src="img/branch/branch_test.jpg" alt="subImg">
+									<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
+									<img class="subImg right" src="img/branch/branch_test3.jpg" alt="subImg">
+								</div>
+								<input type="hidden" name="branchName" value="${b.branchName }">
 							</div>
-							<div class="content-right">
-								<img class="mainImg" src="" alt="mainIng"><br>
-								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
-								%==0
-							</div>
-							
-						</div>
+						</form>
 					</c:when>
 					<c:when test="${status.index %2 == 1 }">
-						<div class="content-wrapper">
-							<div class="content-left">
-								<img class="mainImg" src="" alt="mainIng"><br>
-								<img class="subImg" src="img/branch_test.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
-								%==1
+						<form action="/branchInfo" method="get" enctype="miltipart/form-data">
+							<div class="content-wrapper">
+								<div class="content-left">
+									<img class="mainImg left" src="" alt="mainIng"><br>
+									<img class="subImg left" src="img/branch/branch_test.jpg" alt="subImg">
+									<img class="subImg left" src="img/branch/branch_test2.jpg" alt="subImg">
+									<img class="subImg left" src="img/branch/branch_test3.jpg" alt="subImg">
+								</div>
+								<div class="content-right">
+									<ul style="list-style-type: none;">
+										<li class="font-li">${b.branchName }</li>
+										<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
+										<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+										<li style="text-align:left"><button class="btn-submit" type="submit">지점 상세 정보</button></li>
+									</ul>
+								</div>
+								<input type="hidden" name="branchName" value="${b.branchName }">
 							</div>
-							<div class="content-right">
-								<ul style="list-style-type: none;">
-									<li class="font-li">${b.branchName }</li>
-									<li class="font-li"><img class="icon" src="img/branch_pinIcon.png">${b.branchAddr }</li>
-									<li class="font-li"><img class="icon" src="img/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
-									<li style="font-size: 25px; text-align:left; font-weight: bold;"><a class="btn-link" href="/branchInfo">지점 상세 정보</a></li>
-								</ul>
-							</div>
-						</div>
+						</form>
 					</c:when>
 				</c:choose>
 			</c:forEach>

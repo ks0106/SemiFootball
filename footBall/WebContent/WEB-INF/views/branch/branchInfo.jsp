@@ -20,6 +20,10 @@
 		</div>
 		<!--영상 위 페이지 타이틀 -->
 		<div id="title">지점현황</div>
+		<section class="page_area">
+			<p>지점 이름 : ${b.branchName }</p>
+			<p>지점 주소 : ${b.branchAddr }</p>
+		</section>
 	</div>
 </body>
 </html>
