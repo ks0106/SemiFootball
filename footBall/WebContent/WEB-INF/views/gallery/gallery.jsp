@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +10,12 @@
 <!-- 동영상CSS  -->
 <link rel="stylesheet" href="/css/common/pageCss.css">
 
+<!-- Carousel bootstrap -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -27,23 +34,42 @@
 		</div>
 	</div>
 	<!-- 내용 -->
-	<section class="page_area">
-		<div class="photo-container" style="width:80%; margin:0 auto; text-align:center">
-			<div id="photo-wrapper" style = "padding:100px"></div>
-			<div id="photo-btn-container">
-				<button currentCount="0" totalCount="${totalCount }" value="" id="more-btn" >더보기</button>
-				<c:if test="${sessionScope.member.id eq 'admin'}">
-					<button id="write-btn">글쓰기</button>
-				</c:if>
-			</div>
-		</div>
+	<section class="page_area" style="padding-top: 100px">
+		<table class="container" style="width:80%; margin:0 auto; text-align:center;">
+			<tr id="photo-origin">
+				<th colspan="5" style="text-align: center; padding-bottom: 50px;">
+					<img style='width: 300px; height: 300px' src="">
+				</th>
+			</tr>
+			<tr id="photo-wrapper"></tr>
+			<tr id="photo-btn-container">
+				<td colspan="5" align="center">
+					<c:if test="${sessionScope.member.id eq 'admin'}">
+						<button id="write-btn">글쓰기</button>
+					</c:if>
+				</td>
+			</tr>
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		      <span class="glyphicon glyphicon-chevron-left"></span>
+		      <span class="sr-only">Previous</span>
+		    </a>
+		    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+		      <span class="glyphicon glyphicon-chevron-right"></span>
+		      <span class="sr-only">Next</span>
+		    </a>
+		</table>
+		
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</section>
+	
 	<script>
 		$("#write-btn").click(function(){
 			location.href="/galleryWriteFrm";
 		});//글 작성 페이지로 이동
 		
 		$(document).ready(function(){
+			console.log($(".inputImg").attr('src'));
+			$("#photo-origin").children().eq(0).children().attr('src',$(".inputImg").eq(0).attr('src'));
 			fn_more(1);
 			$("#more-btn").click(function(){
 				fn_more($(this).val());
@@ -61,9 +87,9 @@
 					var html = "";
 					for(var i in data){
 						var p = data[i]; //포토 객체를 g에 저장
-						html += "<div style = 'width: 800px; margin:0 auto;'>";
-						html += "<img src='/upload/photo/"+p.filename+"' width: '100%'>";
-						html += "<p class='caption'>"+p.photoContent+"</p></div>";
+						html += "<td style = 'padding: 0; margin:0 auto; width: 200px'>";
+						html += "<img onclick='onImg();' class='inputImg' src='/upload/photo/"+p.filename+"'style = 'width: 200px; height: 100px'>";
+						html += "<p class='caption'>"+p.photoContent+"</p></td>";
 					}
 					// 사진 출력
 					$("#photo-wrapper").append(html);
@@ -83,6 +109,20 @@
 				}
 			});
 		}
+		
+		$(document).ready(function(){
+			console.log($("#photo-wrapper").children());
+			$("#photo-origin").children().eq(0).children().attr('src',$(".inputImg").eq(0).attr('src'));
+		}); 
+		
+		function onImg(){
+			$(".inputImg").click(function(){
+				var str = $(this).attr('src');
+				console.log(str);
+				$("#photo-origin").children().eq(0).children().attr('src',str);
+			});
+		}
+		
 	</script>
 </body>
 </html>
