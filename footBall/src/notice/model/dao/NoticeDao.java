@@ -1,12 +1,12 @@
 package notice.model.dao;
 
+import java.sql.Statement;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -24,10 +24,11 @@ public class NoticeDao {
 			e.printStackTrace();
 		}
 	}
+	
 	//전체리스트보기
-	public ArrayList<NoticeVo> NoticeList(Connection conn, int start,int end){
-		PreparedStatement pstmt = null;
+	public ArrayList<NoticeVo> NoticeList(Connection conn,int start,int end){
 		ArrayList<NoticeVo> list = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("NoticeList");
 		try {
@@ -38,13 +39,13 @@ public class NoticeDao {
 			list = new ArrayList<NoticeVo>();
 			while(rset.next()) {
 				NoticeVo nv = new NoticeVo();
-				nv.setSeqnoticeno(rset.getInt("seq_notice_no"));
-				nv.setNoticetitle(rset.getString("notice_title"));
-				nv.setNoticewriter(rset.getString("notice_writer"));
-				nv.setNoticedate(rset.getDate("notice_date"));
-				nv.setNoticehit(rset.getInt("notice_hit"));
-				nv.setFilename(rset.getString("filename"));
-				nv.setFilepath(rset.getString("filepath"));
+				nv.setNoticeNo(rset.getInt("notice_no"));
+				nv.setNoticeTitle(rset.getString("notice_title"));
+				nv.setNoticeWriter(rset.getString("notice_writer"));
+				nv.setNoticeDate(rset.getDate("notice_date"));
+				nv.setNoticeContent(rset.getString("notice_content"));
+				nv.setNoticeHit(rset.getInt("notice_hit"));
+				nv.setRnum(rset.getInt("rnum"));
 				list.add(nv);
 			}
 		} catch (SQLException e) {
@@ -77,49 +78,46 @@ public class NoticeDao {
 		return result;
 	}
 	
-	//하나의 게시물 보기
-	public NoticeVo ListOne(Connection conn, int seqNoticeNo) {
+	//게시물하나보기
+	public NoticeVo listOne(Connection conn,int noticeNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String quert = prop.getProperty("ListOne");
 		NoticeVo nv = null;
+		String query = prop.getProperty("ListOne");
 		try {
-			pstmt = conn.prepareStatement(quert);
-			pstmt.setInt(1, seqNoticeNo);
+			pstmt= conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				nv = new NoticeVo();
-				nv.setSeqnoticeno(rset.getInt("seq_notice_no"));
-				nv.setNoticetitle(rset.getString("notice_title"));
-				nv.setNoticewriter(rset.getString("notice_writer"));
-				nv.setNoticehit(rset.getInt("notice_hit"));
-				nv.setNoticecontent(rset.getString("notice_content"));
-				nv.setNoticedate(rset.getDate("notice_date"));
-				nv.setFilename(rset.getString("filename"));
-				nv.setFilepath(rset.getString("filepath"));
+				nv.setNoticeNo(rset.getInt("notice_no"));
+				nv.setNoticeTitle(rset.getString("notice_title"));
+				nv.setNoticeWriter(rset.getString("notice_writer"));
+				nv.setNoticeContent(rset.getString("notice_content"));
+				nv.setNoticeDate(rset.getDate("notice_date"));
+				nv.setNoticeHit(rset.getInt("notice_hit"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
 		return nv;
 	}
 	
-	//게시물 등록하기
-	public int NoticeInsert(Connection conn, NoticeVo nv) {
-		PreparedStatement pstmt = null;
+	//게시물등록
+	public int noticeInsert(Connection conn, NoticeVo nv) {
 		int result = 0;
-		String query = prop.getProperty("noticeinsert");
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("noticeInsert");
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, nv.getNoticetitle());
-			pstmt.setString(2, nv.getNoticewriter());
-			pstmt.setString(3, nv.getFilename());
-			pstmt.setString(4, nv.getFilepath());
-			pstmt.setString(5, nv.getNoticecontent());
+			pstmt.setString(1, nv.getNoticeTitle());
+			pstmt.setString(2, nv.getNoticeWriter());
+			pstmt.setString(3, nv.getNoticeContent());
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

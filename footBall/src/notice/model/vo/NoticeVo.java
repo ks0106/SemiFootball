@@ -3,79 +3,63 @@ package notice.model.vo;
 import java.sql.Date;
 
 public class NoticeVo {
-	private int seqnoticeno;
-	private String noticetitle;
-	private String noticewriter;
-	private Date noticedate;
-	private String noticecontent;
-	private int noticehit;
-	private String filename;
-	private String filepath;
+	private int noticeNo;
+	private String noticeTitle;
+	private String noticeWriter;
+	private Date noticeDate;
+	private String noticeContent;
+	private int noticeHit;
 	private int rnum;
 	public NoticeVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public NoticeVo(int seqnoticeno, String noticetitle, String noticewriter, Date noticedate, String noticecontent,
-			int noticehit, String filename, String filepath, int rnum) {
+	public NoticeVo(int noticeNo, String noticeTitle, String noticeWriter, Date noticeDate, String noticeContent,
+			int noticeHit, int rnum) {
 		super();
-		this.seqnoticeno = seqnoticeno;
-		this.noticetitle = noticetitle;
-		this.noticewriter = noticewriter;
-		this.noticedate = noticedate;
-		this.noticecontent = noticecontent;
-		this.noticehit = noticehit;
-		this.filename = filename;
-		this.filepath = filepath;
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeWriter = noticeWriter;
+		this.noticeDate = noticeDate;
+		this.noticeContent = noticeContent;
+		this.noticeHit = noticeHit;
 		this.rnum = rnum;
 	}
-	public int getSeqnoticeno() {
-		return seqnoticeno;
+	public int getNoticeNo() {
+		return noticeNo;
 	}
-	public void setSeqnoticeno(int seqnoticeno) {
-		this.seqnoticeno = seqnoticeno;
+	public void setNoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
 	}
-	public String getNoticetitle() {
-		return noticetitle;
+	public String getNoticeTitle() {
+		return noticeTitle;
 	}
-	public void setNoticetitle(String noticetitle) {
-		this.noticetitle = noticetitle;
+	public void setNoticeTitle(String noticeTitle) {
+		this.noticeTitle = noticeTitle;
 	}
-	public String getNoticewriter() {
-		return noticewriter;
+	public String getNoticeWriter() {
+		return noticeWriter;
 	}
-	public void setNoticewriter(String noticewriter) {
-		this.noticewriter = noticewriter;
+	public void setNoticeWriter(String noticeWriter) {
+		this.noticeWriter = noticeWriter;
 	}
-	public Date getNoticedate() {
-		return noticedate;
+	public Date getNoticeDate() {
+		return noticeDate;
 	}
-	public void setNoticedate(Date noticedate) {
-		this.noticedate = noticedate;
+	public void setNoticeDate(Date noticeDate) {
+		this.noticeDate = noticeDate;
 	}
-	public String getNoticecontent() {
-		return noticecontent;
+	public String getNoticeContent() {
+		return noticeContent;
 	}
-	public void setNoticecontent(String noticecontent) {
-		this.noticecontent = noticecontent;
+	public void setNoticeContent(String noticeContent) {
+		this.noticeContent = noticeContent;
 	}
-	public int getNoticehit() {
-		return noticehit;
+	public int getNoticeHit() {
+		return noticeHit;
 	}
-	public void setNoticehit(int noticehit) {
-		this.noticehit = noticehit;
-	}
-	public String getFilename() {
-		return filename;
-	}
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-	public String getFilepath() {
-		return filepath;
-	}
-	public void setFilepath(String filepath) {
-		this.filepath = filepath;
+	public void setNoticeHit(int noticeHit) {
+		this.noticeHit = noticeHit;
 	}
 	public int getRnum() {
 		return rnum;
@@ -83,5 +67,6 @@ public class NoticeVo {
 	public void setRnum(int rnum) {
 		this.rnum = rnum;
 	}
+	
 	
 }

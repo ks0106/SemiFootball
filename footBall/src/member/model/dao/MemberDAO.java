@@ -40,9 +40,23 @@ public class MemberDAO {
 			m.setPwd(rset.getString("pwd"));
 			m.setName(rset.getString("name"));
 			m.setPhone(rset.getString("phone"));
+			m.setEnrollDate(rset.getDate("enroll_Date"));
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return m;
+	}
+	public int insert(Connection conn, Member m)throws SQLException{
+		PreparedStatement pstmt =null;
+		int result =0;
+		String query = prop.getProperty("insert");
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, m.getId());
+		pstmt.setString(2, m.getPwd());
+		pstmt.setString(3, m.getName());
+		pstmt.setString(4, m.getPhone());
+		result = pstmt.executeUpdate();
+		return result;
 	}
 }
