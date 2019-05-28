@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <style>
 	footer{
-		position:absolute;
-		top:100%;
+		position:relative;
 		width:100%;
 		height:300px;
 		margin:0;
