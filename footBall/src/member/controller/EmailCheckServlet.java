@@ -2,6 +2,7 @@ package member.controller;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -11,6 +12,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,9 +55,20 @@ public class EmailCheckServlet extends HttpServlet {
 		// 메일 제목 
 		message.setSubject("KTKO SMTP TEST1111"); 
 		// 메일 내용 
-		message.setText("KTKO Success!!"); 
+		
+		Random random = new Random();
+		String num = new String();
+		for(int i =0;i<7;i++) {
+			num+=String.valueOf(random.nextInt(10));
+			
+		}
+		
+		message.setText(num); 
 		// send the message 
 		Transport.send(message); System.out.println("Success Message Send"); 
+		RequestDispatcher rd = request.getRequestDispatcher("/views/login/insert2.jsp");
+		request.setAttribute("num", num);
+		rd.forward(request, response);
 		} catch (MessagingException e) { 
 			e.printStackTrace(); } 
 		}

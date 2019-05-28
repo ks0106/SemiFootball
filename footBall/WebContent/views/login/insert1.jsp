@@ -60,7 +60,7 @@
            		<input type="text" name="id" id="id"><br><br>
            		
            		<span class="span">이메일 인증번호 전송</span>
-           		<input type="button" value="전송" class="button"><br><br>
+           		<input type="button" value="전송" class="button"><label id="eTxt"></label><br><br>
            		
            		
            		<span class="span">비밀번호</span><span class="text1">(필수)</span><span class="extext"></span><br><br>
@@ -85,7 +85,7 @@
     $(".button").click(function(){
         var email = $("#id").val();
         var url = "/emailCheck";
-        var pop = window.open("insert2.jsp","emailCheck","width=300,height=300");
+        var pop = window.open("insert2.jsp","emailCheck","width=400,height=300");
         pop.location.href=url+"?email="+email;
         
      });
