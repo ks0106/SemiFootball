@@ -26,4 +26,5 @@ public class NoticePageData {
 	public void setPageNavi(String pageNavi) {
 		this.pageNavi = pageNavi;
 	}
+	
 }
