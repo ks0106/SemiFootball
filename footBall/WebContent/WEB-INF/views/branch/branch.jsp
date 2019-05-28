@@ -6,6 +6,12 @@
 <!-- 동영상CSS  -->
 <link rel='stylesheet' href="css/common/pageCss.css">
 	<style>
+		a { text-decoration: none; }
+	    a:visited { text-decoration: none; }
+	    a:hover { text-decoration: none; }
+	    a:focus { text-decoration: none; }
+	    a:hover, a:active { text-decoration: none; }
+	    
 		.mainImg {
 			 border-radius: 10px;
 			 width: 500px;
@@ -37,7 +43,20 @@
 		.font-li {
 			font-size: 35px;
 			text-align: left;
+			font-weight: bold;
 			color: #446087;
+		}
+		.btn-link {
+			display:inline-block; 
+			text-align:center; 
+			border-radius:10px; ;
+			width:225px; 
+			height:70px; 
+			line-height:70px;
+			text-decoration: none;
+			background-color: #446087;
+			color: white;
+			
 		}
 		.content-container {
 			position: absolute;
@@ -62,9 +81,9 @@
 			width: 60%;
 			height: 100%;
 		}
+
 	</style>
 <head>
-<link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
 </head>
@@ -96,6 +115,7 @@
 							<li class="font-li">${b.branchName }</li>
 							<li class="font-li"><img class="icon" src="img/branch_pinIcon.png">${b.branchAddr }</li>
 							<li class="font-li"><img class="icon" src="img/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+							<li style="font-size: 25px; text-align:left; font-weight: bold;"><a class="btn-link" href="/branchInfo">지점 상세 정보</a></li>
 						</ul>
 						<%-- <table border="1px" style="display: table; margin-top:10px; margin-left: auto; margin-right: auto;">
 							<tr>
