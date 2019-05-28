@@ -20,4 +20,4 @@ Author E-mail: rockybd1995@gmail.com
 =====================================================================*/
 
 @import url("https://fonts.googleapis.com/css?family=Heebo:400,500,700|Roboto:300,400,500,700");
-img { max-width: 100%; }
+.inputImg { max-width: 100px; max-height: 100px; }
