@@ -205,7 +205,7 @@
 	.right_area{
 		display:none;
 	}
-	body{
+	.area{
 		margin:0;
 		padding:0;
 		position:relative;
