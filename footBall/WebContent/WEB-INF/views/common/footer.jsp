@@ -30,7 +30,7 @@
 </style>
 <footer>
 	<div class="footer_area">
-		<div style="width:350px;padding:0;margin-top:35px;margin-left:300px;float:left;">
+		<div style="width:350px;padding:0;margin-top:30px;margin-left:300px;float:left;">
 			<a href="/"><img src="/img/footer_logo.png" width="350" style="opacity:0.2;padding:0;margin:0;"></a>
 		</div>
 		<div style="height:100%;width:500px;margin-left:100px;float:left;">
@@ -41,8 +41,15 @@
 				<li class="footer_nav" style="color:gray;font-size:13px">|</li>
 				<li class="footer_nav"><a href="#">이메일무단수집거부</a></li>
 			</ul>
-		</div>
-		<div style="height:100%;width:500px;margin-left:500px;background-color:red;">
+			<div style="margin-top:15px;padding:0;color:gray;font-size:13px;">
+				서울 영등포구 선유동2로 57 이레빌딩 109,110층 KS Sports
+			</div>
+			<div style="margin-top:5px;padding:0;color:gray;font-size:13px;">
+				TEL : 02-3337-4380&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAX : 02-3337-4381
+			</div>
+			<div style="margin-top:5px;padding:0;color:gray;font-size:10px;font-weight:bolder;">
+				COPYRIGHT© KS SPORTS. ALLRIGHT RESERVED
+			</div>
 		</div>
 	</div>
 </footer>
