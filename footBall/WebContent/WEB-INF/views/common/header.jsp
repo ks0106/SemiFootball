@@ -48,7 +48,6 @@
 			$('.area').animate({
 				top:"-70px"},200);
 		}else if(oldWidth > 1550){
-			console.log(oldScroll);
 			if(oldScroll < "70"){
 				$('#header_logo').css("display","block");							
 			}else{
