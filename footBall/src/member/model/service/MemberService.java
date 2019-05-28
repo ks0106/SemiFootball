@@ -14,4 +14,15 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return m;
 	}
+	public int insert(Member m)throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MemberDAO().insert(conn,m);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }
