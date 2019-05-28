@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ page import="notice.model.vo.NoticeVo" %>
+   <%@ page import="notice.model.vo.NoticeVo" %>
     <%@ page import="java.util.ArrayList" %>
     <%@ page import="notice.model.vo.NoticePageData" %>
     <%
@@ -12,6 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
 <!-- 동영상CSS  -->
 <style>
@@ -69,6 +70,7 @@
    .selected{
    	background-color: lightgray;
    }
+
 </style>
 </head>
 <body>
@@ -96,28 +98,27 @@
             </ul>
             <div class="tab-content-wrapper">
                <div id="T-con01" class="tab-con">
-               <center> <h1><u>공지사항</u></h1>
+               <center> <h1>공지사항</h1>
                <a href="/noticeWriter">글쓰기</a>
                <br><br>
-              <table border="1">
+              <table class="table table-hover">
                		<tr>
-               			<th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th>
+               			<th>글번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th>
                		</tr>
                		<% for(NoticeVo nv : list) {%>
                		<tr>
-               			<td><%=nv.getSeqnoticeno() %></td>
-               			<td>
-               			<a href="/noticeView?seqNoticeNo=<%=nv.getSeqnoticeno() %>"><%=nv.getNoticetitle() %></a>
-               			</td>
-               			<td><%=nv.getNoticewriter() %></td>
-               			<td><%=nv.getNoticedate() %></td>
-               			<td><%=nv.getNoticehit() %></td>
+               			<th><%=nv.getNoticeNo() %></th>
+               			<th><a href="/noticeView?noticeNo=<%=nv.getNoticeNo() %>"><%=nv.getNoticeTitle() %></a></th>
+               			<th><%=nv.getNoticeWriter() %></th>
+               			<th><%=nv.getNoticeDate() %></th>
+               			<th><%=nv.getNoticeHit() %></th>
                		</tr>
                		<%} %>
                </table>
-               <!-- 페이징 -->
-               <div id="pageNavi">${pd.pageNavi }</div>
+               <!-- 페이징 --><br>
+                <div id="pageNavi">${pd.pageNavi }</div>
                </center>
+               <br><br><br>
                </div>
                <div id="T-con02" class="tab-con">
                ffff

@@ -1,7 +1,5 @@
 package notice.model.vo;
 
-import java.util.ArrayList;
-
 public class NoticeViewData {
 	private NoticeVo nv;
 
