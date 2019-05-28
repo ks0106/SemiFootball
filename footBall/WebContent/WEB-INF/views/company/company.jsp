@@ -96,9 +96,35 @@
 						<a class="company" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">오시는 길</a>
 					</div>
 				</div>
-				<div style="width:80%;height:300px;background-color:blue;float:right;">
-					<div style="width:60%;height:500px;background-color:pink;margin:0 auto;float:left;"></div>
-					<div style="width:400px;height:400px;background-color:yellow;margin:0 auto;float:right;">사진1</div>
+				<div style="width:80%;height:300px;float:right;">
+					<div style="width:55%;height:500px;margin:0 auto;float:left;border-left:1px solid silver;">
+						<div style="margin-left:80px;margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;float:left;">
+							<div style="width:5px;height:30px;float:left;">
+								<div style="width:100%;height:80%;background-color:silver;"></div>
+								<div style="width:100%;height:20%;background-color:#3366cc;"></div>
+							</div>&nbsp;생활 스포츠 대중화와 꿈나무 육성, KS가 이끌겠습니다
+						</div>
+						<br><br>
+						<div style="margin-left:80px;margin-top:100px;font-size:15px;color:#2c3c57;text-align:left;">
+						KS스포츠는 2010년에 설립되어 생활 스포츠를 전파하고 바쁜 삶을 사는 현대인들의 체력 증진에 도움을 주기 위하여 꾸준히 다양한 변화를 시도하고 있습니다. 2012년부터 자체 대회를 개최하고 있고, 2013년에는 인원수와 시간에 구애받지 않고 운동에만 전념할 수 있도록 용병 시스템을 도입했습니다. 이를 통해 이성용, 기청용, 존 흥민, 앙의조, 조연우와 같은 선수들을 배출함으로써 한국 스포츠의 위상을 높임은 물론 국민생활건강 증진에도 기여하고 있습니다.
+						</div>
+					</div>
+					<div style="width:400px;height:400px;margin:0 auto;float:right;overflow:hidden;border-radius:800px;"><img src="/img/ground3.jpg" height="400px"></div>
+				</div>
+				<div style="width:80%;height:300px;float:right;">
+					<div style="width:400px;height:400px;margin:0 auto;float:right;overflow:hidden;border-radius:800px;"><img src="/img/ground3.jpg" height="400px"></div>
+					<div style="width:55%;height:500px;margin:0 auto;float:left;border-left:1px solid silver;">
+						<div style="margin-left:80px;margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;float:left;">
+							<div style="width:5px;height:30px;float:left;">
+								<div style="width:100%;height:80%;background-color:silver;"></div>
+								<div style="width:100%;height:20%;background-color:#3366cc;"></div>
+							</div>&nbsp;생활 스포츠 대중화와 꿈나무 육성, KS가 이끌겠습니다
+						</div>
+						<br><br>
+						<div style="margin-left:80px;margin-top:100px;font-size:15px;color:#2c3c57;text-align:left;">
+							KS스포츠는 2010년에 설립되어 생활 스포츠를 전파하고 바쁜 삶을 사는 현대인들의 체력 증진에 도움을 주기 위하여 꾸준히 다양한 변화를 시도하고 있습니다. 2012년부터 자체 대회를 개최하고 있고, 2013년에는 인원수와 시간에 구애받지 않고 운동에만 전념할 수 있도록 용병 시스템을 도입했습니다. 이를 통해 이성용, 기청용, 존 흥민, 앙의조, 조연우와 같은 선수들을 배출함으로써 한국 스포츠의 위상을 높임은 물론 국민생활건강 증진에도 기여하고 있습니다.
+						</div>
+					</div>
 				</div>
 			</div>
 		</center>
