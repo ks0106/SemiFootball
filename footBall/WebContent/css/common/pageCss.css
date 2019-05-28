@@ -1,4 +1,7 @@
 @charset "UTF-8";
+	#continer{
+		position: relative;
+	}
 	#video01{
 		position:absolute;
 		top:50%;
@@ -9,6 +12,7 @@
 		z-index:-2;
 	}
 	/* 페이지 타이틀  */
+
 	#title{
 		position:absolute;
 		z-index: -1;
