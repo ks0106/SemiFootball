@@ -51,12 +51,12 @@ $(document).ready(function(){
 				    <!-- Wrapper for slides -->
 				    <div id="inner-car" class="carousel-inner" align="center">
 						   	<div class="item active">
-					      		<img class='bigImg' style = 'width: 100%; height: 700px;' src="/upload/photo/${list[0].filename }">
+					      		<img class='bigImg' style = 'width: 100%; height: 700px;' src="/img/gallery/${list[0].filename }">
 					    	</div>
 					    <c:forEach items="${list }" var="m" varStatus="i">
 						   	<c:if test="${i.count > 1 }"> <!-- 1보다 크면 동작(위에 item active에 index=0번이 들어가고 다음 사진이 index=1이 들어가야 하기 때문에 i.count가 1보다 클 때 를 조건으로 주고 시작한다.) -->
 							   	<div class="item">
-						      		<img class='bigImg' style = 'width: 100%; height: 700px;' src="/upload/photo/${m.filename }">
+						      		<img class='bigImg' style = 'width: 100%; height: 700px;' src="/img/gallery/${m.filename }">
 						    	</div> 
 					    	</c:if>
 						</c:forEach>
