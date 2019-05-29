@@ -178,6 +178,16 @@
 								<th class="th">시간선택</th>
 								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
 							</tr>
+							<tr>
+								<th class="th" colspan="1">마감여부</th>
+								<td class="td" colspan="3"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
+							</tr>
+							<tr>
+								<th colspan="4" class="th" >메모</th>
+							</tr>
+							<tr>
+								<td class="th" colspan="4" rowspan="4"><textarea rows="20" cols="140" style="resize: none;text-align: center;"></textarea> </td>
+							</tr>
 						</table>
 					</form>
 				</div>
