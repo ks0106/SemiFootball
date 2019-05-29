@@ -41,11 +41,11 @@
 </style>
 <script>
 	$(document).ready(function(){
-		$('#img1').append('<img src="/img/ground1.png" alt="호텔1" style="width:100%;height:500px;">');
-		$('#img2').append('<img src="/img/ground1.png" alt="호텔1" style="width:100%;height:500px;">');
-		$('#img3').append('<img src="/img/ground1.png" alt="호텔1" style="width:100%;height:500px;">');
-		$('#img4').append('<img src="/img/ground1.png" alt="호텔1" style="width:100%;height:500px;">');
-		$('#img5').append('<img src="/img/ground1.png" alt="호텔1" style="width:100%;height:500px;">');
+		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
+		$('#ground2').append('<img src="/img/ground2.png" alt="그라운드2" style="width:100%;height:500px;">');
+		$('#ground3').append('<img src="/img/ground3.png" alt="그라운드3" style="width:100%;height:500px;">');
+		$('#ground4').append('<img src="/img/ground4.png" alt="그라운드4" style="width:100%;height:500px;">');
+		$('#ground5').append('<img src="/img/ground5.png" alt="그라운드5" style="width:100%;height:500px;">');
 		$('.company_nav:first').css("color","#3366cc");
 		$('.company_nav a:first').css("color","#3366cc");
 		$('#company_pr_menu').css("display","block");

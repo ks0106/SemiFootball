@@ -255,33 +255,33 @@
 	<!--헤더 밑 영상  -->
 	<div id="container" style="width:100%;height:485px;overflow:hidden;">
 	    <!--Carousel을 이용한 메인사진-->
-	    <div id="demo" class="carousel slide" data-ride="carousel" style="text-align:center;height:500px;width:100%;">
+	    <div id="ground" class="carousel slide" data-ride="carousel" style="text-align:center;height:500px;width:100%;">
 	    <!--슬라이드 페이지 설정-->
-	        <ul class="carousel-indicators">
-	            <li data-target="#demo" data-slide-to="0" class="active"></li>
-	            <li data-target="#demo" data-slide-to="1"></li>
-	            <li data-target="#demo" data-slide-to="2"></li>
-	            <li data-target="#demo" data-slide-to="3"></li>
-	            <li data-target="#demo" data-slide-to="4"></li>
+	        <ul class="carousel-indicators" style="opacity:0;">
+	            <li data-target="#ground" data-slide-to="0" class="active"></li>
+	            <li data-target="#ground" data-slide-to="1"></li>
+	            <li data-target="#ground" data-slide-to="2"></li>
+	            <li data-target="#ground" data-slide-to="3"></li>
+	            <li data-target="#ground" data-slide-to="4"></li>
 	        </ul>
 	    <!--슬라이드 될 사진-->
 	        <div class="carousel-inner">
-	            <div class="carousel-item active" id="img1">
+	            <div class="carousel-item active" id="ground1">
 	            </div>
-	            <div class="carousel-item" id="img2">
+	            <div class="carousel-item" id="ground2">
 	            </div>
-	            <div class="carousel-item" id="img3">
+	            <div class="carousel-item" id="ground3">
 	            </div>
-	            <div class="carousel-item" id="img4">
+	            <div class="carousel-item" id="ground4">
 	            </div>
-	            <div class="carousel-item" id="img5">
+	            <div class="carousel-item" id="ground5">
 	            </div>
 	        </div>
 	    <!--오른쪽/왼쪽 컨트롤-->
-	        <a class="carousel-control-prev" href="#demo" data-slide="prev" style="">
+	        <a class="carousel-control-prev" href="#ground" data-slide="prev" style="opacity:0;">
 	            <span class="carousel-control-prev-icon"></span>
 	        </a>
-	        <a class="carousel-control-next" href="#demo" data-slide="next" style="">
+	        <a class="carousel-control-next" href="#ground" data-slide="next" style="opacity:0;">
 	            <span class="carousel-control-next-icon"></span>
 	        </a>
 	    </div><!--Carousel 종료-->
