@@ -54,6 +54,7 @@
             <h1>간편로그인</h1>
             <a id="kakao-login-btn"></a>
 			<a href="http://developers.kakao.com/logout">로그아웃</a>
+			<button onclick="kakaologout();">로그아웃1</button>
 			
         </div>
         <br>
@@ -101,9 +102,16 @@
 
          alert(JSON.stringify(error));
 
-       }
+       },
+       persistAccessToken:false
+       
 
      });
+  	function kakaologout(){
+        Kakao.Auth.logout(function () {
+           alert("로그아웃됨");
+           });
+     };
 </script>
 </body>
 </html>
