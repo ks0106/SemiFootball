@@ -10,42 +10,47 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
  <style>
- 	/* The Modal (background) */
+		/* The Modal (background) */
 	.modal {
-	  display: none; /* Hidden by default */
-	  position: fixed; /* Stay in place */
-	  z-index: 1; /* Sit on top */
-	  left: 0;
-	  top: 0;
-	  width: 100%; /* Full width */
-	  height: 100%; /* Full height */
-	  overflow: auto; /* Enable scroll if needed */
-	  background-color: rgb(0,0,0); /* Fallback color */
-	  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 	}
 	
 	/* Modal Content/Box */
-	.modal-content {
-	  background-color: #fefefe;
-	  margin: 15% auto; /* 15% from the top and centered */
-	  padding: 20px;
-	  border: 1px solid #888;
-	  width: 80%; /* Could be more or less, depending on screen size */
+	.branch-modal {
+		background-color: #fefefe;
+		margin: 8% auto; /* 15% from the top and centered */
+		min-margin:150px;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 60%; /* Could be more or less, depending on screen size */
+		height: 70%;
+		min-width: 1000px;
+		overflow: auto;
 	}
 	
 	/* The Close Button */
 	.close {
-	  color: #aaa;
-	  float: right;
-	  font-size: 28px;
-	  font-weight: bold;
+		position:static;
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
 	}
 	
 	.close:hover,
 	.close:focus {
-	  color: black;
-	  text-decoration: none;
-	  cursor: pointer;
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
 	}
  </style>
 </head>
@@ -54,6 +59,7 @@
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
 <script>
+	/* 헤더 슬라이드 이미지 */
 	$(document).ready(function(){
 		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
 		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
@@ -68,6 +74,7 @@
 		<!--영상 위 페이지 타이틀 -->
 		<div id="title">지점현황</div>
 			<div class="content-container">
+				<hr style="border:3px solid #2c3c57;margin:0 auto;padding:0;">
 				<!-- 사이드바 -->
 				<aside class="aside-bar">
 					<div id="testSticky">지점안내</div>
@@ -84,7 +91,6 @@
 											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
 											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
 											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
-											<li><button type="button" id="myBtn">Open Modal</button></li>
 										</ul>
 									</div>
 									<div class="content-right">
@@ -113,7 +119,6 @@
 											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
 											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
 											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
-											<li><button type="button" id="myBtn">Open Modal</button></li>
 										</ul>
 									</div>
 									<input type="hidden" name="branchName" value="${b.branchName }">
@@ -129,9 +134,11 @@
 		<div id="myModal" class="modal">
 		
 		  <!-- Modal content -->
-		  <div class="modal-content">
+		  <div class="branch-modal">
 		    <span class="close">&times;</span>
-		    <p>Some text in the Modal..</p>
+		    <div style="width:95%; height:800px; position:relative; top:30px; left:20px; background-color:red;">
+		    	test
+		    </div>
 		  </div>
 		
 		</div>
@@ -146,9 +153,7 @@
 			$('.btn-submit').click(function(){
 				$contentWrapper = $(this).parents().eq(3);
 				$input = $contentWrapper.children().last().val();
-				$.ajax {
-					
-				}
+				modal.style.display = "block";
 			});
 		});
 		// Get the modal
@@ -159,11 +164,6 @@
 
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks on the button, open the modal 
-		btn.onclick = function() {
-		  modal.style.display = "block";
-		}
 
 		// When the user clicks on <span> (x), close the modal
 		span.onclick = function() {
