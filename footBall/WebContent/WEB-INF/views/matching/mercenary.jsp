@@ -14,7 +14,6 @@
 	/* 페이지 메뉴바 css  */
 	.tab-container{
 	  margin:0 auto;
-      position:absolute;
       text-align:center;
       width:100%;
       height:80px;
@@ -182,11 +181,6 @@
 	
 		<!--헤더 밑 영상  -->
 	<div id="continer" style="display:block;">
-	<div id="mv">
-		<video id="video01" class="pblock" autoplay playsinline muted loop title> 
-			<source src="/img/page3.mp4" type="video/mp4"> 
-		</video>
-	</div>
 	<!--영상 위 페이지 타이틀 -->
 		<div id="title">
 			매치/용병
@@ -306,10 +300,10 @@
 	               		</div>
 	               </div>
 	               
-	              <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	            </div>
 	         </div>
 		</section>
+	              <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 		
    <script >
      $(".tab-container").each(function  () {

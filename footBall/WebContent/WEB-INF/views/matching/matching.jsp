@@ -14,7 +14,6 @@
 	/* 페이지 메뉴바 css  */
 	.tab-container{
 	  margin:0 auto;
-      position:absolute;
       text-align:center;
       width:100%;
       height:80px;
@@ -55,6 +54,7 @@
    .list-li>a:hover{
    		background-color:  green;
    		color:white;
+   		text-decoration: none;
    }
 	.tab-content{
 		margin: 0 auto;
@@ -110,6 +110,7 @@
 	}
 	.table-tr:hover {
 		background-color: #F2F2F2;
+
 	}
 	.pageNaviBtn{
 		width: 50px;
@@ -119,11 +120,9 @@
 		margin-right: 10px;
 		margin-left: 10px; 
 		border-radius: 15px;
+		line-height: 45px;
 	}
-	.btn{
-		line-height: 50px;
-		color: black;
-	}
+
 	.selectPage{
 		line-height: 50px;
 		color: white;
@@ -174,6 +173,10 @@
 	          opacity: 0.6;
 	          z-index: 0;
           }
+     .page_area{
+     	width: 100%;
+     	height: 130vh;
+     }
 </style>
 </head>
 <body>
@@ -181,12 +184,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
 		<!--헤더 밑 영상  -->
-	<div id="continer" style="display:block;">
-	<div id="mv">
-		<video id="video01" class="pblock" autoplay playsinline muted loop title> 
-			<source src="/img/page3.mp4" type="video/mp4"> 
-		</video>
-	</div>
+
 	<!--영상 위 페이지 타이틀 -->
 		<div id="title">
 			매치/용병
@@ -312,10 +310,10 @@
 	               </div>
 	               
 	              
-	         <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	            </div>
 	         </div>
 		</section>
+	         <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 		
    <script >
      $(".tab-container").each(function  () {
