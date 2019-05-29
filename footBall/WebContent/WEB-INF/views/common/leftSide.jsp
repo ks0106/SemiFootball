@@ -332,12 +332,29 @@
 	});
 </script>
 <header class="area2">
+	<%if(m==null){ %>
 	<div class="menu_bar2">
  		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
 			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
  			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 		</div>
 	</div>
+	<%}else{ %>
+	<div class="menu_bar2">
+ 		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+			<div style="margin-left:16px;"><a href="/logout"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
+ 			<div><a href="/logout" style="text-decoration:none;color:white;">로그아웃</a></div>
+		</div>
+	</div>
+		<%if(m.getId().equals("admin")){ %>
+		<div class="menu_bar2">
+	 		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:50px;">
+				<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
+	 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">관리자</a></div>
+			</div>
+		</div>
+		<%} %>
+	<%} %>
 </header>
 <header class="area">
 <!-- 헤더 작성 -->
