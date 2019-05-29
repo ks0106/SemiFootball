@@ -10,75 +10,141 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
 </head>
+<script
+	src="https://code.jquery.com/jquery-3.4.0.js"
+	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+	crossorigin="anonymous"></script>
+<script>
+	/* 헤더 슬라이드 이미지 */
+	$(document).ready(function(){
+		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
+		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
+		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
+		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
+		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
+	 });
+</script>
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<!--영상 위 페이지 타이틀 -->
-	<div id="title">지점현황</div>
-	<section class="page_area">
-		<div class="content-container">
-			<aside class="aside-bar">
-				<div id="testSticky">지점안내</div>
-			</aside>
-			<c:forEach items="${list}" var="b" varStatus="status">
-				<c:choose>
-					<c:when test="${status.index %2 == 0 }">
-						<form action="/branchInfo" method="get" enctype="multipart/form-data">
-							<div class="content-wrapper">
-								<div class="content-left">
-									<ul style="list-style-type: none;">
-										<li class="font-li">${b.branchName }</li>
-										<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
-										<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
-										<li style="text-align:left"><button class="btn-submit" type="submit">지점 상세 정보</button></li>
-									</ul>
+		<!--영상 위 페이지 타이틀 -->
+		<div id="title">지점현황</div>
+			<div class="content-container">
+				<hr style="border:3px solid #2c3c57;margin:0 auto;padding:0;">
+				<!-- 사이드바 -->
+				<aside class="aside-bar">
+					<div id="testSticky">지점안내</div>
+				</aside>
+				<!-- 좌우측 콘텐트 반복출력 -->
+				<c:forEach items="${list}" var="b" varStatus="status">
+					<c:choose>
+						<c:when test="${status.index %2 == 0 }">
+							<form action="/branchInfo" method="get" enctype="multipart/form-data">
+								<div class="content-wrapper">
+									<div class="content-left">
+										<ul style="list-style-type: none;">
+											<li class="font-li">${b.branchName }</li>
+											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
+											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
+										</ul>
+									</div>
+									<div class="content-right">
+										<img class="mainImg right" src="" alt="mainIng"><br>
+										<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
+										<img class="subImg right" src="img/branch/branch_test.jpg" alt="subImg">
+										<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
+										<img class="subImg right" src="img/branch/branch_test3.jpg" alt="subImg">
+									</div>
+									<input type="hidden" name="branchName" value="${b.branchName }">
 								</div>
-								<div class="content-right">
-									<img class="mainImg right" src="" alt="mainIng"><br>
-									<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
-									<img class="subImg right" src="img/branch/branch_test.jpg" alt="subImg">
-									<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
-									<img class="subImg right" src="img/branch/branch_test3.jpg" alt="subImg">
+							</form>
+						</c:when>
+						<c:when test="${status.index %2 == 1 }">
+							<form action="/branchInfo" method="get" enctype="miltipart/form-data">
+								<div class="content-wrapper">
+									<div class="content-left">
+										<img class="mainImg left" src="" alt="mainIng"><br>
+										<img class="subImg left" src="img/branch/branch_test.jpg" alt="subImg">
+										<img class="subImg left" src="img/branch/branch_test2.jpg" alt="subImg">
+										<img class="subImg left" src="img/branch/branch_test3.jpg" alt="subImg">
+									</div>
+									<div class="content-right">
+										<ul style="list-style-type: none;">
+											<li class="font-li">${b.branchName }</li>
+											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
+											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
+										</ul>
+									</div>
+									<input type="hidden" name="branchName" value="${b.branchName }">
 								</div>
-								<input type="hidden" name="branchName" value="${b.branchName }">
-							</div>
-						</form>
-					</c:when>
-					<c:when test="${status.index %2 == 1 }">
-						<form action="/branchInfo" method="get" enctype="miltipart/form-data">
-							<div class="content-wrapper">
-								<div class="content-left">
-									<img class="mainImg left" src="" alt="mainIng"><br>
-									<img class="subImg left" src="img/branch/branch_test.jpg" alt="subImg">
-									<img class="subImg left" src="img/branch/branch_test2.jpg" alt="subImg">
-									<img class="subImg left" src="img/branch/branch_test3.jpg" alt="subImg">
-								</div>
-								<div class="content-right">
-									<ul style="list-style-type: none;">
-										<li class="font-li">${b.branchName }</li>
-										<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
-										<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
-										<li style="text-align:left"><button class="btn-submit" type="submit">지점 상세 정보</button></li>
-									</ul>
-								</div>
-								<input type="hidden" name="branchName" value="${b.branchName }">
-							</div>
-						</form>
-					</c:when>
-				</c:choose>
-			</c:forEach>
-		</div>
+							</form>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+			</div>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-	</section>
+		
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="branch-modal">
+				<span class="close">&times;</span>
+				<div class="branchInfo" style="width:95%; height:800px; position:relative; top:30px; left:28px; background-color:red;">
+				
+				</div>
+			</div>
+		</div>
 	<script>
 		$(function(){
+			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
-			$mainImgSrc = $('.subImg').eq(0).attr('src');
+			console.log($('.content-wrapper img:eq(3)'));
+			$mainImgSrc = $('.content-wrapper img:eq(3)').attr('src');
 			$('.mainImg').attr('src',$mainImgSrc);
 			$('.subImg').click(function(){
 				$(this).siblings().eq(0).attr('src',$(this).attr('src'));
 			});
+			/* 상세정보 버튼 클릭시 - ajax */
+			$('.btn-submit').click(function(){
+				$contentWrapper = $(this).parents().eq(3);
+				var branchName = $contentWrapper.children().last().val();
+				modal.style.display = "block";
+				$.ajax({
+					url : "/branchInfo",
+					type : "get",
+					data : {branchName : branchName},
+					success :  function(data) {
+						var branchName = decodeURIComponent(data.branchName);
+						var branchAddr = decodeURIComponent(data.branchAddr);
+						var branchTel = data.branchTel;
+						var branchPhone = data.branchPhone;
+						$('.branchInfo').html("지점명 : "+branchName+"<br>지점 주소 : "+branchAddr+"<br>지점 전화번호 : "+branchTel +"/"+ branchPhone);
+					},
+					error : function(){
+						console.log("전송 실패");
+					}
+				});
+			});
 		});
+		/* modal scripts */
+		// Get the modal
+		var modal = document.getElementById("myModal");
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+		  modal.style.display = "none";
+		}
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		  if (event.target == modal) {
+		    modal.style.display = "none";
+		  }
+		}
 	</script>
 </body>
 </html>
