@@ -28,7 +28,8 @@
 	</div>
 
 	<!-- 내용 -->
-	<section class="page_area" style="padding-top: 100px; height: 1000px;" >
+	
+	<section style="padding-top: 100px; height: 1000px;" >
 		<div style="position: sticky; position: -webkit-stiky;">
 			<div align="right">
 				<c:if test="${sessionScope.member.id eq 'admin'}">
@@ -50,11 +51,11 @@
 				    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
 				    	<span class="glyphicon glyphicon-chevron-left"></span>
 				        <span class="sr-only">Previous</span>
-				   </a>
-				   <a class="right carousel-control" href="#myCarousel" data-slide="next">
+				    </a>
+				    <a class="right carousel-control" href="#myCarousel" data-slide="next">
 				     	<span class="glyphicon glyphicon-chevron-right"></span>
 				     	<span class="sr-only">Next</span>
-				   </a>
+				    </a>
 				 </div>
 				 <table class="carousel-inner" style="margin-top: 20px; width:100%; height:60px; text-align:center;">
 					<tr id="photo-wrapper" style="text-align: center">
@@ -79,8 +80,8 @@
 				</table>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</section>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	
 	<script>
 		$("#write-btn").click(function(){
