@@ -48,7 +48,7 @@ public class MatchingServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/matching.jsp");
 			rd.forward(request, response);
 		} catch (SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/common/sqlErrorPage.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			rd.forward(request, response);
 		}
 	}

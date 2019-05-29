@@ -6,18 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <style>
-	#video01{
-		position:absolute;
-		top:50%;
-		left:50%; 
-		min-width: 100%; 
-		min-height: 100%; 
-		transform:translateX(-50%) translateY(-55%);
-		z-index:-1;
-	}
 	/* 페이지 타이틀  */
 	#title{
 		position:absolute;
@@ -38,50 +32,77 @@
    	width:80%;
    	height: 300px;
    }
+     .page_area{
+      position:absolute;
+      z-index:-1;
+      width:100%;
+      top: 50px;
+   }
+   #footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:70px;   
+    background:#ccc;
+}
+#noticeview{
+	width: 70%;
+}
 </style>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
-		<!--헤더 밑 영상  -->
-	<div id="continer">
-	<div id="mv">
-		<video id="video01" class="pblock" autoplay playsinline muted loop title> 
-			<source src="/img/page3.mp4" type="video/mp4"> 
-		</video>
-	</div>
+<script>
+   $(document).ready(function(){
+      $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
+      $('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
+      $('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
+      $('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
+      $('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
+   });
+</script>
 	<!--영상 위 페이지 타이틀 -->
 		<div id="title">
 			고객센터
 		</div>
 	</div>
-		<section>
+		<section class="page_area">
 			<div class="tab-container">
 			<center><h1>공지사항</h1>
-         <table class="table">
+         <table class="table" id="noticeview">
             <tr>
                <th>제목</th>
-               <td>${nv.noticeTitle}</td>
+               <td>${nvd.nv.noticeTitle}</td>
             </tr>
             <tr>
                <th>작성자</th>
-               <td>${nv.noticeWriter}</td>
+               <td>${nvd.nv.noticeWriter}</td>
+            </tr>
+            <tr>
+               <th>조회수</th>
+               <td>${nvd.nv.noticeHit}</td>
             </tr>
             
             <tr>
                <th>내용</th>
-               <td>${nv.noticeContent}</td>
+               <td>${nvd.nv.noticeContent}</td>
             </tr>
             <tr>
                <th colspan="2">
+               	<c:if test="${sessionScope.member.id =='admin' }">
                   <a href="/noticeUpdate?noticeNo=${nvd.nv.noticeNo}">수정하기</a>
                   <a href="/noticeDelete?noticeNo=${nvd.nv.noticeNo}">삭제하기</a>
+                  </c:if>
                   <a href="/notice">목록으로</a>
                </th>
             </tr>
          </table></center>
          </div>
 	</section>
+	<div id="footer">
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	</div>
 </body>
 </html>

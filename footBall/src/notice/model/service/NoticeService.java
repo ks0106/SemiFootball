@@ -54,18 +54,31 @@ public class NoticeService {
 	}
 	
 	//하나의 게시물보기
-	public NoticeVo listOne(int noticeNo) {
+	public NoticeViewData listOne(int noticeNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		NoticeVo nv = new NoticeDao().listOne(conn,noticeNo);
-	//	NoticeViewData nvd = new NoticeViewData(nv);
+		NoticeViewData nvd = new NoticeViewData(nv);
 		JDBCTemplate.close(conn);
-		return nv;
+		return nvd;
 	}
 	
 	//게시물등록
 	public int noticeInsert(NoticeVo nv) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new NoticeDao().noticeInsert(conn,nv);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	//게시물 수정
+	public int noticeUpdate(NoticeVo nv) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new NoticeDao().noticeUpdate(conn,nv);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		}else {

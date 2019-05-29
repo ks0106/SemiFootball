@@ -29,7 +29,6 @@ public class MemberDAO {
 		Member m = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("login");
-		
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, id);
 		pstmt.setString(2, pwd);
