@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import member.model.service.MemberService;
+import member.model.vo.Member;
+
 /**
  * Servlet implementation class KakaoLoginServlet
  */
@@ -29,15 +32,26 @@ public class KakaoLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String num = request.getParameter("id");
+		String id = request.getParameter("id");
 		String name = request.getParameter("name");
-		System.out.println(name);
-
-		System.out.println(num);
-		HttpSession session = request.getSession();
+		
+		Member m = new MemberService().searchId(id);
+		if(m!=null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("member", m);
+			request.setAttribute("msg", "로그인 성공");
+			request.setAttribute("loc", "/");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			rd.forward(request, response);
+		}else {
+			request.setAttribute("msg", "로그인 실패");
+			request.setAttribute("loc", "/views/login/login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			rd.forward(request, response);
+		}
+		//HttpSession session = request.getSession();
 		//session.setAttribute("member", m);
-		RequestDispatcher rd = request.getRequestDispatcher("/");
-		rd.forward(request, response);
+	
 	}
 
 	/**

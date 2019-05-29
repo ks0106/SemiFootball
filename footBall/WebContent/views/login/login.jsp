@@ -53,7 +53,8 @@
             <br><br>
             <h1>간편로그인</h1>
             <a id="kakao-login-btn"></a>
-			<a href="http://developers.kakao.com/logout"></a>
+			<a href="http://developers.kakao.com/logout">로그아웃</a>
+			
         </div>
         <br>
     </div>
@@ -85,7 +86,9 @@
              console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
 
              console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-			location.href="/kakaoLogin?id="+res.id+"&name="+res.properties['nickname'];
+			
+            		 //var phone =prompt('추가 정보 핸드폰번호를 입력하세요(-포함)');
+            location.href="/kakaoLogin?id="+res.id+"&name="+res.properties['nickname'];
          // res.properties.nickname으로도 접근 가능 )
 
            }

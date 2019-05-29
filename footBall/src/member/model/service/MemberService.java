@@ -25,4 +25,10 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	public Member searchId(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		Member m = new MemberDAO().searchId(conn,id);
+		JDBCTemplate.close(conn);
+		return m;
+	}
 }
