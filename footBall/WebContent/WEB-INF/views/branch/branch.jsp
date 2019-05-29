@@ -13,16 +13,8 @@
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-
-	<!--헤더 밑 영상  -->
-	<div id="continer">
-		<div id="mv">
-			<video id="video01" class="pblock" autoplay playsinline muted loop
-				title> <source src="/img/page3.mp4" type="video/mp4"></video>
-		</div>
-		<!--영상 위 페이지 타이틀 -->
-		<div id="title">지점현황</div>
-	</div>
+	<!--영상 위 페이지 타이틀 -->
+	<div id="title">지점현황</div>
 	<section class="page_area">
 		<div class="content-container">
 			<aside class="aside-bar">

@@ -31,7 +31,10 @@
 		margin-left:20px;
 		display:none;
 	}
-}</style>
+	#mv{
+		background-image: url("/img/ground3.jpg");
+	}
+</style>
 <script>
 	$(document).ready(function(){
 		$('.company_nav:first').css("color","#3366cc");

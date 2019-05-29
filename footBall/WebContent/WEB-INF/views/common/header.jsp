@@ -191,6 +191,7 @@
 	.area{
 		position:absolute;
 		top:0;
+		z-index:2;
 	}
 	header{
 		width:100%;
@@ -227,6 +228,7 @@
 		text-decoration: none;
 		color:white;
 	}
+
 </style>
 <script>
 	/* 토글바 클릭 이벤트 */
@@ -249,9 +251,6 @@
 	<!--헤더 밑 영상  -->
 	<div id="container" style="width:100%;height:485px;overflow:hidden;">
 		<div id="mv" style="width:100%;height:485px;overflow:hidden;">
-			<video id="video01" class="pblock" autoplay playsinline muted loop title> 
-				<source src="/img/page3.mp4" type="video/mp4"> 
-			</video>
 		</div>
 	</div>
 <!-- 헤더 작성 -->
