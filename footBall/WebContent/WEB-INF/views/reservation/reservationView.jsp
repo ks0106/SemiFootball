@@ -87,29 +87,20 @@
 	<section>
 	<!-- 내용 작성 -->
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
-		<!-- 컨텐츠 -->
-		<div style="width:85%;background-color:white;margin:0 auto;">
-		<!-- 컨텐츠 사이드 메뉴 -->
-			<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
-				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">대관 예약/확인</div>
-				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지점별 예약</a>
+		<div>
+			<div style="width:85%;background-color:white;margin:0 auto;">
+				<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
+					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">대관 예약/확인</div>
+					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
+					<div style="margin-bottom:15px;">
+						<a class="side_a" id="side_menu1" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지점별 예약</a>
+					</div>
+					<div style="margin-bottom:15px;">
+						<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">예약확인</a>
+					</div>
 				</div>
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">예약확인</a>
-				</div>
-			</div><!-- 사이드 메뉴 종료 -->			
-		<!-- 컨텐츠 본문 -->
-   			<br><br>
-   		<!-- 컨텐츠 본문 타이틀 -->
-			<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대관 예약</div>
-				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
-		<!-- 컨텐츠 지점선택 파티션 -->
-				<div style="width:700px;height:400px;margin:0 auto;margin-bottom:100px;border-radius:50px;border:3px solid gray;">
-					
-				</div>			
+				<div style="width:78%;height:800px;border-left:1px solid silver;display:inline-block;overflow:hidden;">
+				</div>				
 			</div>
 		</div>
 	
