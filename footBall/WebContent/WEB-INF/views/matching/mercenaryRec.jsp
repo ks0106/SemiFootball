@@ -181,11 +181,6 @@
 	
 		<!--헤더 밑 영상  -->
 	<div id="continer" style="display:block;">
-	<div id="mv">
-		<video id="video01" class="pblock" autoplay playsinline muted loop title> 
-			<source src="/img/page3.mp4" type="video/mp4"> 
-		</video>
-	</div>
 	<!--영상 위 페이지 타이틀 -->
 		<div id="title">
 			매치/용병
