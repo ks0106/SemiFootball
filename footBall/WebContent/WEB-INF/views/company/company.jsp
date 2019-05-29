@@ -4,7 +4,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -83,7 +82,7 @@
 		<!-- center -->
 		<div>
 			<div style="width:85%;background-color:white;margin:0 auto;">
-				<div style="width:20%;height:300px;text-align:left;display:inline-block;">
+				<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">KS Sports</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
@@ -100,36 +99,38 @@
 						<a class="company" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">오시는 길</a>
 					</div>
 				</div>
-				<div style="width:80%;height:300px;display:inline-block;">
-					<div style="width:55%;height:500px;margin:0 auto;float:left;">
-						<div style="margin-left:80px;margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;float:left;">
-							<div style="width:5px;height:30px;float:left;">
-								<div style="width:100%;height:80%;background-color:silver;"></div>
-								<div style="width:100%;height:20%;background-color:#3366cc;"></div>
-							</div>&nbsp;생활 스포츠 대중화와 꿈나무 육성, KS가 이끌겠습니다
-						</div>
-						<br><br>
-						<div style="margin-left:80px;margin-top:100px;font-size:15px;color:#2c3c57;text-align:left;">
-						KS스포츠는 2010년에 설립되어 생활 스포츠를 전파하고 바쁜 삶을 사는 현대인들의 체력 증진에 도움을 주기 위하여 꾸준히 다양한 변화를 시도하고 있습니다. 2012년부터 자체 대회를 개최하고 있고, 2013년에는 인원수와 시간에 구애받지 않고 운동에만 전념할 수 있도록 용병 시스템을 도입했습니다. 이를 통해 이성용, 기청용, 존 흥민, 앙의조, 조연우와 같은 선수들을 배출함으로써 한국 스포츠의 위상을 높임은 물론 국민생활건강 증진에도 기여하고 있습니다.
-						</div>
-					</div>
-					<div style="width:400px;height:400px;margin:0 auto;float:right;overflow:hidden;border-radius:800px;"><img src="/img/ground3.jpg" height="400px"></div>
-				</div>
-				<div style="width:80%;height:300px;display:inline-block;">
-					<div style="width:400px;height:400px;margin:0 auto;float:right;overflow:hidden;border-radius:800px;"><img src="/img/ground3.jpg" height="400px"></div>
-					<div style="width:55%;height:500px;margin:0 auto;float:left;">
-						<div style="margin-left:80px;margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;float:left;">
-							<div style="width:5px;height:30px;float:left;">
-								<div style="width:100%;height:80%;background-color:silver;"></div>
-								<div style="width:100%;height:20%;background-color:#3366cc;"></div>
-							</div>&nbsp;생활 스포츠 대중화와 꿈나무 육성, KS가 이끌겠습니다
-						</div>
-						<br><br>
-						<div style="margin-left:80px;margin-top:100px;font-size:15px;color:#2c3c57;text-align:left;">
+				<div style="width:78%;height:120vh;border-left:1px solid silver;display:inline-block;">
+					<div style="width:100%;height:300px;">
+						<div style="width:55%;height:500px;margin:0 auto;float:left;">
+							<div style="margin-left:80px;margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;float:left;">
+								<div style="width:5px;height:30px;float:left;">
+									<div style="width:100%;height:80%;background-color:silver;"></div>
+									<div style="width:100%;height:20%;background-color:#3366cc;"></div>
+								</div>&nbsp;생활 스포츠 대중화와 꿈나무 육성, KS가 이끌겠습니다
+							</div>
+							<br><br>
+							<div style="margin-left:80px;margin-top:100px;font-size:15px;color:#2c3c57;text-align:left;">
 							KS스포츠는 2010년에 설립되어 생활 스포츠를 전파하고 바쁜 삶을 사는 현대인들의 체력 증진에 도움을 주기 위하여 꾸준히 다양한 변화를 시도하고 있습니다. 2012년부터 자체 대회를 개최하고 있고, 2013년에는 인원수와 시간에 구애받지 않고 운동에만 전념할 수 있도록 용병 시스템을 도입했습니다. 이를 통해 이성용, 기청용, 존 흥민, 앙의조, 조연우와 같은 선수들을 배출함으로써 한국 스포츠의 위상을 높임은 물론 국민생활건강 증진에도 기여하고 있습니다.
+							</div>
 						</div>
+						<div style="width:400px;height:400px;margin:0 auto;float:right;overflow:hidden;border-radius:800px;"><img src="/img/ground3.jpg" height="400px"></div>
 					</div>
-				</div>
+					<div style="width:100%;height:300px;">
+						<div style="width:55%;height:500px;margin:0 auto;float:left;">
+							<div style="margin-left:80px;margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;float:left;">
+								<div style="width:5px;height:30px;float:left;">
+									<div style="width:100%;height:80%;background-color:silver;"></div>
+									<div style="width:100%;height:20%;background-color:#3366cc;"></div>
+								</div>&nbsp;생활 스포츠 대중화와 꿈나무 육성, KS가 이끌겠습니다
+							</div>
+							<br><br>
+							<div style="margin-left:80px;margin-top:100px;font-size:15px;color:#2c3c57;text-align:left;">
+							KS스포츠는 2010년에 설립되어 생활 스포츠를 전파하고 바쁜 삶을 사는 현대인들의 체력 증진에 도움을 주기 위하여 꾸준히 다양한 변화를 시도하고 있습니다. 2012년부터 자체 대회를 개최하고 있고, 2013년에는 인원수와 시간에 구애받지 않고 운동에만 전념할 수 있도록 용병 시스템을 도입했습니다. 이를 통해 이성용, 기청용, 존 흥민, 앙의조, 조연우와 같은 선수들을 배출함으로써 한국 스포츠의 위상을 높임은 물론 국민생활건강 증진에도 기여하고 있습니다.
+							</div>
+						</div>
+						<div style="width:400px;height:400px;margin:0 auto;float:right;overflow:hidden;border-radius:800px;"><img src="/img/ground3.jpg" height="400px"></div>
+					</div>
+				<div>
 			</div>
 		</div>
 	</section>
