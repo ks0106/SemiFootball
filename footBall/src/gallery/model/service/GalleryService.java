@@ -35,4 +35,10 @@ public class GalleryService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+	
+	public ArrayList<Gallery> photoList() throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Gallery> list = new GalleryDao().photoList(conn);
+		return list;
+	}
 }

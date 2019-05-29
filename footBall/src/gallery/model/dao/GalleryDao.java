@@ -77,5 +77,23 @@ public class GalleryDao {
 		JDBCTemplate.close(pstmt);
 		return list;
 	}
-
+	
+	public ArrayList<Gallery> photoList(Connection conn) throws SQLException {
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("photoList");
+		ArrayList<Gallery> list = null;
+		stmt = conn.createStatement();
+		rset=stmt.executeQuery(query);
+		list = new ArrayList<Gallery>();
+		while(rset.next()) {
+			Gallery g = new Gallery();
+			g.setPhotoNo(rset.getInt("seq_photo_no"));
+			g.setFilename(rset.getString("filename"));
+			list.add(g);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(stmt);
+		return list;
+	}
 }
