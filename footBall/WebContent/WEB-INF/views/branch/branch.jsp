@@ -9,50 +9,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
- <style>
-		/* The Modal (background) */
-	.modal {
-		display: none; /* Hidden by default */
-		position: fixed; /* Stay in place */
-		z-index: 1; /* Sit on top */
-		left: 0;
-		top: 0;
-		width: 100%; /* Full width */
-		height: 100%; /* Full height */
-		overflow: auto; /* Enable scroll if needed */
-		background-color: rgb(0,0,0); /* Fallback color */
-		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	}
-	
-	/* Modal Content/Box */
-	.branch-modal {
-		background-color: #fefefe;
-		margin: 8% auto; /* 15% from the top and centered */
-		min-margin:150px;
-		padding: 20px;
-		border: 1px solid #888;
-		width: 60%; /* Could be more or less, depending on screen size */
-		height: 70%;
-		min-width: 1000px;
-		overflow: auto;
-	}
-	
-	/* The Close Button */
-	.close {
-		position:static;
-		color: #aaa;
-		float: right;
-		font-size: 28px;
-		font-weight: bold;
-	}
-	
-	.close:hover,
-	.close:focus {
-		color: black;
-		text-decoration: none;
-		cursor: pointer;
-	}
- </style>
 </head>
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
@@ -132,23 +88,25 @@
 		
 		<!-- The Modal -->
 		<div id="myModal" class="modal">
-		
-		  <!-- Modal content -->
-		  <div class="branch-modal">
-		    <span class="close">&times;</span>
-		    <div class="branchInfo" style="width:95%; height:800px; position:relative; top:30px; left:20px; background-color:red;">
-		    </div>
-		  </div>
-		
+			<!-- Modal content -->
+			<div class="branch-modal">
+				<span class="close">&times;</span>
+				<div class="branchInfo" style="width:95%; height:800px; position:relative; top:30px; left:28px; background-color:red;">
+				
+				</div>
+			</div>
 		</div>
 	<script>
 		$(function(){
+			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
-			$mainImgSrc = $('.subImg').eq(0).attr('src');
+			console.log($('.content-wrapper img:eq(3)'));
+			$mainImgSrc = $('.content-wrapper img:eq(3)').attr('src');
 			$('.mainImg').attr('src',$mainImgSrc);
 			$('.subImg').click(function(){
 				$(this).siblings().eq(0).attr('src',$(this).attr('src'));
 			});
+			/* 상세정보 버튼 클릭시 - ajax */
 			$('.btn-submit').click(function(){
 				$contentWrapper = $(this).parents().eq(3);
 				var branchName = $contentWrapper.children().last().val();
@@ -170,20 +128,17 @@
 				});
 			});
 		});
+		/* modal scripts */
 		// Get the modal
 		var modal = document.getElementById("myModal");
-
 		// Get the button that opens the modal
 		var btn = document.getElementById("myBtn");
-
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
-
 		// When the user clicks on <span> (x), close the modal
 		span.onclick = function() {
 		  modal.style.display = "none";
 		}
-
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
 		  if (event.target == modal) {
