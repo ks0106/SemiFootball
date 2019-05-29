@@ -195,7 +195,7 @@
 	.area{
 		position:absolute;
 		top:0;
-		z-index:2;
+		z-index:3;
 	}
 	header{
 		width:100%;
