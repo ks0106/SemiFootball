@@ -87,6 +87,58 @@ public class MatchDao {
 		JDBCTemplate.close(pstmt);
 		return m;
 	}
+	public int searchCount(Connection conn , String branch,String keyword) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset= null;
+		int result = 0;
+		String query ="select count(*) cnt from fb_matching where match_B_Name=? and match_writer=?";
+		pstmt=conn.prepareStatement(query);
+		pstmt.setString(1, branch);
+		pstmt.setString(2, keyword);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			result = rset.getInt("cnt");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public ArrayList<MatchList> searchList(Connection conn , int start , int end ,String branch,String keyword) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<MatchList> list = new ArrayList<MatchList>();
+		String query = "select * from (select ROWNUM as rNum,m.* from (select * from fb_matching where MATCH_WRITER=? and MATCH_B_NAME=?)m)  where rnum BETWEEN ? and ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, keyword);
+		System.out.println(keyword);
+		pstmt.setString(2, branch);
+		System.out.println(branch);
+		pstmt.setInt(3,start);
+		pstmt.setInt(4,end);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			MatchList m = new MatchList();
+			m.setSeqMatchNo(rset.getInt("seq_match_no"));
+			m.setMatchType(rset.getString("match_type"));
+			m.setMatchBName(rset.getString("match_b_name"));
+			m.setMatchCName(rset.getString("match_c_name"));
+			m.setMatchWriter(rset.getString("match_writer"));
+			m.setMatchPhone(rset.getString("match_phone"));
+			m.setMatchDate(rset.getDate("match_date"));
+			m.setMatchTime(rset.getString("match_time"));
+			m.setMatchTeamCount(rset.getInt("match_teamCount"));
+			m.setMatchUColor(rset.getString("match_u_color"));
+			m.setMatchLevel(rset.getString("match_level"));
+			m.setMatchAble(rset.getInt("match_able"));
+			m.setMatchPw(rset.getString("match_pw"));
+			m.setMatchMemo(rset.getString("match_memo"));
+			m.setMatchEnrollDate(rset.getDate("match_enroll_date"));
+			list.add(m);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+	}
 }
 
 

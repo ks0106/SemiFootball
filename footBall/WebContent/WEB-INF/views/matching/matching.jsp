@@ -23,6 +23,7 @@
       padding0;
       height:100%;
       list-style-type: none;
+      border-top:5px solid #2c3c57;
       border-bottom:1px solid  green;
       padding-left: 0;
    }
@@ -133,10 +134,9 @@
 	#matchView{
 		position:fixed;
 		width: 900px;
-		height: 800px;
+		height: 840px;
 		margin: 0 auto;
-		border: 1px solid black; 
-		top: 13%;
+		top: 9%;
 		left: 26%;
 		background-color: #FFF;
 		border-radius: 15px;
@@ -220,7 +220,7 @@
 							<!-- 매치 게시판 출력 테이블 -->
 								<div id="table-wraper">
 								
-									<table id="matchlist-table" style="width: 100%;">
+									<table id="matchlist-table"  style="width: 100%;">
 										<tr>
 											<th class="th">매치형태</th>
 											<th class="th">지점구분</th>
@@ -251,17 +251,13 @@
 								<form action="/matchSearch" method="get" style="height: 100%;">
 									<select name="branch" style="height: 100%; border:2px solid #A4A4A4; ">
 											<option value="">지점</option>
-											<option value="1">동대문점</option>
-											<option value="2">안산 고잔점</option>
-											<option value="3">서수원점</option>
-											<option value="4">일산점</option>
-											<option value="5">대전 탄방점</option>
-											<option value="6">동대전점 </option>
-									</select>
-									<select name="type" style="height: 100%;width:130px; border:2px solid #A4A4A4; ">
-										<option value="">매치형태</option>
-										<option value="5vs5">5 vs 5</option>
-										<option value="6vs6">6 vs 6</option>
+											<option value="부천">부천점</option>
+											<option value="고양">고양점</option>
+											<option value="남양주">남양주점</option>
+											<option value="성남">성남점</option>
+											<option value="수원">수원점</option>
+											<option value="안양">안양점 </option>
+											<option value="동대문지점">동대문점 </option>
 									</select>
 									<input type="text" size="30" name="keyword" style="height:100%;border:2px solid #A4A4A4;">
 									<button type="submit" style="background-color:#2c3c57; border:none; height: 100%;width: 70px;vertical-align: bottom; "><img src="/img/icon_search.png"></button>
@@ -269,8 +265,8 @@
 							</div>
 							<!-- 게시글 view -->
 							<div id="matchView" >
-								<div id="closeBtn" style="height: 10%;"><button type="button" onclick="close1(this)" style="width: 10%;float: right; border-radius: 15px;background-color: white; border:none;"><img src="/img/icon-close.png" width="100%" height="100%"></button></div>
-								<p style="text-align:left;margin: 0;margin-left: 30px;font-size: 30px;display: block; margin-bottom: 30px;">매치신청 상세보기</p>
+								<div id="closeBtn" style="height: 10%;"><button type="button" onclick="close1(this)" style="width: 10%;height:50px;float: right; border-radius: 15px;background-color: white; border:none;"><span style="font-size: 50px;">&times</span></button></div>
+								<p style="text-align:left;margin: 0;margin-left: 30px;font-size: 30px;display: block; margin-bottom: 30px;padding-left: 60px;">매치신청 상세보기</p>
 								<div id="view-table-div" >
 									<table id="view-table" style="margin: 0 auto; width: 80%; border-collapse: collapse;">
 										<tr id="tr11">
@@ -297,11 +293,14 @@
 										<tr>
 											<td colspan="4" class="view-td">
 										</tr>
+										<c:if test="${sessionScope.member==null}">
 										<tr>
 											<th class="view-th">비밀번호</th><td colspan="3" class="view-td"><input type="password" name="modifyPW" size="45" height="30"></td>
 										</tr>
+										</c:if>
 									</table>
-									<button type="button" onclick="modifyMactchCon()" style="margin-top: 20px;">수정하기</button>
+									
+									<div id="modiBtn-wrapper"><button type="button" class="btn btn-info btn-lg" onclick="modifyMactchCon()" style="margin-top: 20px;">수정하기</button></div>
 								</div>
 							</div>
 							
@@ -367,7 +366,9 @@
    				$("#tr11").next().next().next().next().next().find("td").eq(1).html(matchLevel);
    				$("#tr11").next().next().next().next().next().next().find("td").eq(0).html(matchTeamCount);
    				$("#tr11").next().next().next().next().next().next().find("td").eq(1).html(able);
-   				$("#tr11").next().next().next().next().next().next().next().find("td").html(matchMemo); 
+   				$("#tr11").next().next().next().next().next().next().next().find("td").html(matchMemo);
+   			
+   			
    			},
    			erorr : function () {
 				console.log("실패다");
@@ -382,9 +383,15 @@
    		$("#popup_mask").css('display','none')
    	}
    	function matchApply(){
-   		$(location).attr("href","/views/match/matchApply.jsp");
+   		$(location).attr("href","/matchApply");
    	}
-     
+    $(document).ready(function(){
+        $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
+        $('#ground2').append('<img src="/img/ground2.png" alt="그라운드2" style="width:100%;height:500px;">');
+        $('#ground3').append('<img src="/img/ground3.png" alt="그라운드3" style="width:100%;height:500px;">');
+        $('#ground4').append('<img src="/img/ground4.png" alt="그라운드4" style="width:100%;height:500px;">');
+        $('#ground5').append('<img src="/img/ground5.png" alt="그라운드5" style="width:100%;height:500px;">');
+     });
    </script>
    
    

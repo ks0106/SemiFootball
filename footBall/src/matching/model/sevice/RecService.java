@@ -44,4 +44,11 @@ public class RecService {
 		RecPageData rpd = new RecPageData(list, pageNavi);
 		return rpd;
 	}
+	public Recruit selectOne(int pageNum) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		Recruit r = new RecDao().selectOne(conn , pageNum);
+		JDBCTemplate.close(conn);
+		return r;
+		
+	}
 }

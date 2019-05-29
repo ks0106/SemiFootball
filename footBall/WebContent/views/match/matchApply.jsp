@@ -12,7 +12,7 @@
 <style>
 	
 	/* 페이지 메뉴바 css  */
-	.tab-container{
+	.tab-container1{
 	  margin:0 auto;
       position:absolute;
       text-align:center;
@@ -55,6 +55,7 @@
    .list-li>a:hover{
    		background-color:  green;
    		color:white;
+   		text-decoration: none;
    }
 	.tab-content{
 		margin: 0 auto;
@@ -74,7 +75,7 @@
 		border-top:2px solid #bfc4cc;
 		margin-bottom: 50px;
 	}
-	#form-container{
+	#form-cont{
 		margin: 0 auto;
 		width: 80%;
 	}
@@ -84,6 +85,8 @@
 		margin-top: 50px;
 		margin: 0 auto;
 		border-collapse: collapse;
+		border-top: 3px solid green;
+		border-bottom: 3px solid green;
 	}
 	.th{
 		width: 25%;
@@ -96,6 +99,10 @@
 		font-size: 30px;
 		text-align: left;
 	}
+	.page_area{
+     	width: 100%;
+     	height: 170vh;
+     }
 </style>
 </head>
 <body>
@@ -111,7 +118,7 @@
 	</div>
 	<section class="page_area">
 		<!-- 매치페이지 메뉴네비  -->
-		<div class="tab-container">
+		<div class="tab-container1">
 	            <ul class="tab-list">
 	               <li class="selected list-li"><a href="/matching" class="munebar">매칭신청</a></li>
 	               <li class="list-li"><a href="/mercenaryRec" class="munebar">용병모집</a></li>
@@ -121,7 +128,7 @@
 	               			<br><br><br>
 							<p class="content-header">매칭신청</p>
 							<div class="underline"></div>
-				<div id="form-container">
+				<div id="form-cont">
 					<form action="/matchApply" method="post">
 						<table id="input-table">
 							<tr>
@@ -150,7 +157,7 @@
 								<th class="th">신청자</th>
 								<td class="td"><input type="text" name="name" style="width: 297px;height: 40px;"></td>
 								<th class="th">연락처</th>
-								<td class="td"><input type="text" name="phone1" style="width: 87px;height: 40px;">-<input type="text" name="phone2" style="width: 88px;height: 40px;">-<input type="text" name="phone3" style="width: 88px;height: 40px;"></td>
+								<td class="td"><input type="text" name="phone1" style="width: 90px;height: 40px;">-<input type="text" name="phone2" style="width: 93px;height: 40px;">-<input type="text" name="phone3" style="width: 93px;height: 40px;"></td>
 							</tr>
 							<tr>
 								<th class="th">매치일정</th>
@@ -161,9 +168,9 @@
 							<tr>
 								<th class="th">유니폼 색상</th>
 								<td class="td">
-									<input type="text" name="phone1" style="width: 80px;height: 40px;" placeholder="상의">-
-									<input type="text" name="phone2" style="width: 80px;height: 40px;" placeholder="하의">-
-									<input type="text" name="phone3" style="width: 83px;height: 40px;" placeholder="스타킹">
+									<input type="text" name="phone1" style="width: 84px;height: 40px;" placeholder="상의">-
+									<input type="text" name="phone2" style="width: 84px;height: 40px;" placeholder="하의">-
+									<input type="text" name="phone3" style="width: 90px;height: 40px;" placeholder="스타킹">
 								</td>
 								<th class="th">팀수준</th>
 								<td class="td"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
@@ -181,9 +188,10 @@
 								<th colspan="4" class="th" >메모</th>
 							</tr>
 							<tr>
-								<td class="th" colspan="4" rowspan="4"><textarea rows="20" cols="140" style="resize: none;text-align: center;"></textarea> </td>
+								<td class="th" colspan="4" rowspan="4"><textarea rows="10" cols="60" style="resize: none;text-align: center;"></textarea> </td>
 							</tr>
 						</table>
+						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>
 					</form>
 				</div>
 							
@@ -194,7 +202,13 @@
 	         <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 		
    <script >
-  
+   $(document).ready(function(){
+	      $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
+	      $('#ground2').append('<img src="/img/ground2.png" alt="그라운드2" style="width:100%;height:500px;">');
+	      $('#ground3').append('<img src="/img/ground3.png" alt="그라운드3" style="width:100%;height:500px;">');
+	      $('#ground4').append('<img src="/img/ground4.png" alt="그라운드4" style="width:100%;height:500px;">');
+	      $('#ground5').append('<img src="/img/ground5.png" alt="그라운드5" style="width:100%;height:500px;">');
+	   });
    </script>
    
    

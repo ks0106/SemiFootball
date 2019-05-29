@@ -8,22 +8,22 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;import com.sun.org.apache.xerces.internal.impl.dv.dtd.NMTOKENDatatypeValidator;
+import javax.servlet.http.HttpServletResponse;
 
 import matching.model.sevice.MatchService;
 import matching.model.vo.MatchPageData;
 
 /**
- * Servlet implementation class MatchingServlet
+ * Servlet implementation class MatchSearchServlet
  */
-@WebServlet(name = "Matching", urlPatterns = { "/matching" })
-public class MatchingServlet extends HttpServlet {
+@WebServlet(name = "MatchSearch", urlPatterns = { "/matchSearch" })
+public class MatchSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MatchingServlet() {
+    public MatchSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +32,32 @@ public class MatchingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//페이징 처리를 위한 reqPage변수생성
 		int reqPage;
-		//첫페이지에는 reqPage가 없으므로 강제 1 입력
 		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		}catch(NumberFormatException e) {
-			reqPage= 1;
+			reqPage =1;
 		}
-		//페이지로 보내주기 위한 matchPageData 객체 생성
-		MatchPageData mpd;
+		String branch = request.getParameter("branch");
+		String keyword = request.getParameter("keyword");
 		try {
-			mpd = new MatchService().selectList(reqPage);
-			request.setAttribute("mpd", mpd);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/matching.jsp");
-			rd.forward(request, response);
+			MatchPageData mpd = new MatchService().searchList(reqPage,branch,keyword);
+			if(!mpd.getList().isEmpty()) {
+				request.setAttribute("mpd", mpd);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/matching.jsp");
+				rd.forward(request, response);
+			}else {
+				request.setAttribute("msg", "검색결과가 없습니다.");
+				request.setAttribute("loc","/matching");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				rd.forward(request, response);
+			}
+			
 		} catch (SQLException e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			rd.forward(request, response);
 		}
+		
 	}
 
 	/**
