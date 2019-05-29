@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/errorPage500.jsp");
 			request.setAttribute("msg", "SQL문 에러");
 			rd.forward(request, response);
+			
 		}
 	}
 

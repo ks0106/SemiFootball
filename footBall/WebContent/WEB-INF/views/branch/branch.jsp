@@ -9,50 +9,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
- <style>
-		/* The Modal (background) */
-	.modal {
-		display: none; /* Hidden by default */
-		position: fixed; /* Stay in place */
-		z-index: 1; /* Sit on top */
-		left: 0;
-		top: 0;
-		width: 100%; /* Full width */
-		height: 100%; /* Full height */
-		overflow: auto; /* Enable scroll if needed */
-		background-color: rgb(0,0,0); /* Fallback color */
-		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	}
-	
-	/* Modal Content/Box */
-	.branch-modal {
-		background-color: #fefefe;
-		margin: 8% auto; /* 15% from the top and centered */
-		min-margin:150px;
-		padding: 20px;
-		border: 1px solid #888;
-		width: 60%; /* Could be more or less, depending on screen size */
-		height: 70%;
-		min-width: 1000px;
-		overflow: auto;
-	}
-	
-	/* The Close Button */
-	.close {
-		position:static;
-		color: #aaa;
-		float: right;
-		font-size: 28px;
-		font-weight: bold;
-	}
-	
-	.close:hover,
-	.close:focus {
-		color: black;
-		text-decoration: none;
-		cursor: pointer;
-	}
- </style>
 </head>
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
@@ -95,10 +51,6 @@
 									</div>
 									<div class="content-right">
 										<img class="mainImg right" src="" alt="mainIng"><br>
-										<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
-										<img class="subImg right" src="img/branch/branch_test.jpg" alt="subImg">
-										<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
-										<img class="subImg right" src="img/branch/branch_test3.jpg" alt="subImg">
 									</div>
 									<input type="hidden" name="branchName" value="${b.branchName }">
 								</div>
@@ -109,9 +61,6 @@
 								<div class="content-wrapper">
 									<div class="content-left">
 										<img class="mainImg left" src="" alt="mainIng"><br>
-										<img class="subImg left" src="img/branch/branch_test.jpg" alt="subImg">
-										<img class="subImg left" src="img/branch/branch_test2.jpg" alt="subImg">
-										<img class="subImg left" src="img/branch/branch_test3.jpg" alt="subImg">
 									</div>
 									<div class="content-right">
 										<ul style="list-style-type: none;">
@@ -132,23 +81,37 @@
 		
 		<!-- The Modal -->
 		<div id="myModal" class="modal">
-		
-		  <!-- Modal content -->
-		  <div class="branch-modal">
-		    <span class="close">&times;</span>
-		    <div class="branchInfo" style="width:95%; height:800px; position:relative; top:30px; left:20px; background-color:red;">
-		    </div>
-		  </div>
-		
+			<!-- Modal content -->
+			<div class="branch-modal">
+				<span class="close">&times;</span>
+				<div class="branchModal-wrapper">
+					<div class="modalHeader">
+						<h1></h1>
+					</div>
+					<div class="modalBody">
+						<div class="infoForm">
+							<h2>지점 안내</h2>
+							<!-- img here : overflow: visible -->
+							<div id="infoFormFooter"><span class="infoSpan"></span><br><span class="infoSpan"></span></div>
+						</div>
+						<div class="locForm">
+							<h2>위치 안내</h2>
+							<!-- google maps api here -->
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	<script>
 		$(function(){
+			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
-			$mainImgSrc = $('.subImg').eq(0).attr('src');
+			$mainImgSrc = $('.content-wrapper img:eq(3)').attr('src');
 			$('.mainImg').attr('src',$mainImgSrc);
 			$('.subImg').click(function(){
 				$(this).siblings().eq(0).attr('src',$(this).attr('src'));
 			});
+			/* 상세정보 버튼 클릭시 - ajax */
 			$('.btn-submit').click(function(){
 				$contentWrapper = $(this).parents().eq(3);
 				var branchName = $contentWrapper.children().last().val();
@@ -158,11 +121,18 @@
 					type : "get",
 					data : {branchName : branchName},
 					success :  function(data) {
+						/* 변환함수 선언 */
+		                function replaceAll(sValue, param1, param2) {
+		                	 return sValue.split(param1).join(param2);
+		                }
+		                /* selvlet으로부터 변수받아옴 */
 						var branchName = decodeURIComponent(data.branchName);
 						var branchAddr = decodeURIComponent(data.branchAddr);
 						var branchTel = data.branchTel;
 						var branchPhone = data.branchPhone;
-						$('.branchInfo').html("지점명 : "+branchName+"<br>지점 주소 : "+branchAddr+"<br>지점 전화번호 : "+branchTel +"/"+ branchPhone);
+						$('.modalHeader h1').html(branchName);
+						$('.infoSpan:first').html("지점주소 : " + replaceAll(branchAddr,"+"," "));
+						$('.infoSpan:last').html("지점전화 : " + branchTel +"/"+ branchPhone);
 					},
 					error : function(){
 						console.log("전송 실패");
@@ -170,20 +140,15 @@
 				});
 			});
 		});
+		/* modal scripts */
 		// Get the modal
 		var modal = document.getElementById("myModal");
-
 		// Get the button that opens the modal
-		var btn = document.getElementById("myBtn");
-
-		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
-
 		// When the user clicks on <span> (x), close the modal
 		span.onclick = function() {
 		  modal.style.display = "none";
 		}
-
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
 		  if (event.target == modal) {

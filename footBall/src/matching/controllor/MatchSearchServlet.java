@@ -1,8 +1,7 @@
-package gallery.controllor;
+package matching.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import gallery.model.service.GalleryService;
-import gallery.model.vo.Gallery;
+import matching.model.sevice.MatchService;
+import matching.model.vo.MatchPageData;
 
 /**
- * Servlet implementation class GalleryServlet
+ * Servlet implementation class MatchSearchServlet
  */
-@WebServlet(name = "Gallery", urlPatterns = { "/gallery" })
-public class GalleryServlet extends HttpServlet {
+@WebServlet(name = "MatchSearch", urlPatterns = { "/matchSearch" })
+public class MatchSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GalleryServlet() {
+    public MatchSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +32,32 @@ public class GalleryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int totalCount = 0;
+		int reqPage;
 		try {
-			totalCount = new GalleryService().photoTotalCount();
-			ArrayList<Gallery> list = new GalleryService().photoList();
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/gallery/gallery.jsp");
-			request.setAttribute("totalCount", totalCount);
-			request.setAttribute("list", list);
-			rd.forward(request, response);
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage =1;
+		}
+		String branch = request.getParameter("branch");
+		String keyword = request.getParameter("keyword");
+		try {
+			MatchPageData mpd = new MatchService().searchList(reqPage,branch,keyword);
+			if(!mpd.getList().isEmpty()) {
+				request.setAttribute("mpd", mpd);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/matching.jsp");
+				rd.forward(request, response);
+			}else {
+				request.setAttribute("msg", "검색결과가 없습니다.");
+				request.setAttribute("loc","/matching");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				rd.forward(request, response);
+			}
+			
 		} catch (SQLException e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
-			request.setAttribute("msg", "SQL구문 오류");
 			rd.forward(request, response);
 		}
+		
 	}
 
 	/**

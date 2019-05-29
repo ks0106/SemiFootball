@@ -53,4 +53,30 @@ public class RecDao {
 		JDBCTemplate.close(pstmt);
 		return list;
 	}
+	public Recruit selectOne(Connection conn , int pageNum) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Recruit r = null;
+		String query = "select * from fb_recruit where seq_rec_no=?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, pageNum);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			r = new Recruit();
+			r.setSeqRecNo(rset.getInt("SEQ_REC_NO"));
+			r.setRecName(rset.getString("REC_NAME"));
+			r.setRecBName(rset.getString("REC_B_NAME"));
+			r.setRecPhone(rset.getString("REC_PHONE"));
+			r.setRecDate(rset.getDate("REC_DATE"));
+			r.setRecTime(rset.getString("REC_TIME"));
+			r.setRecLevel(rset.getString("REC_LEVEL"));
+			r.setRecAble(rset.getInt("REC_ABLE"));
+			r.setRecPw(rset.getString("REC_PW"));
+			r.setRecMemo(rset.getString("REC_MEMO"));
+			r.setRecEnrollDate(rset.getDate("REC_ENROLL_DATE"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return r;
+	}
 }

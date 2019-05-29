@@ -1,6 +1,7 @@
 package matching.model.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Recruit {
 	private int seqRecNo;
@@ -14,6 +15,8 @@ public class Recruit {
 	private String recPw;
 	private String recMemo;
 	private Date recEnrollDate;
+	private String date2;
+	private String able2;
 	public Recruit() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -107,5 +110,23 @@ public class Recruit {
 			able="마감";
 		}
 		return able;
+	}
+	public void setDate(Date recDate) {
+		SimpleDateFormat fo = new SimpleDateFormat("yyyy-MM-dd");
+		this.date2 = fo.format(recDate);
+	}
+	public String getDate() {
+		return date2;
+	}
+
+	public void setAble(int recAble) {
+		if(recAble==0) {
+			this.able2="가능";
+		}else {
+			this.able2="마감";
+		}
+	}
+	public String getAble() {
+		return able2;
 	}
 }

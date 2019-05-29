@@ -23,6 +23,7 @@
       padding0;
       height:100%;
       list-style-type: none;
+      border-top:3px solid purple;
       border-bottom:1px solid  green;
       padding-left: 0;
    }
@@ -54,6 +55,7 @@
    .list-li>a:hover{
    		background-color:  green;
    		color:white;
+   		text-decoration: none;
    }
 	.tab-content{
 		margin: 0 auto;
@@ -109,6 +111,7 @@
 	}
 	.table-tr:hover {
 		background-color: #F2F2F2;
+
 	}
 	.pageNaviBtn{
 		width: 50px;
@@ -118,11 +121,9 @@
 		margin-right: 10px;
 		margin-left: 10px; 
 		border-radius: 15px;
+		line-height: 45px;
 	}
-	.btn{
-		line-height: 50px;
-		color: black;
-	}
+
 	.selectPage{
 		line-height: 50px;
 		color: white;
@@ -133,10 +134,9 @@
 	#matchView{
 		position:fixed;
 		width: 900px;
-		height: 800px;
+		height: 840px;
 		margin: 0 auto;
-		border: 1px solid black; 
-		top: 13%;
+		top: 9%;
 		left: 26%;
 		background-color: #FFF;
 		border-radius: 15px;
@@ -173,6 +173,10 @@
 	          opacity: 0.6;
 	          z-index: 0;
           }
+     .page_area{
+     	width: 100%;
+     	height: 130vh;
+     }
 </style>
 </head>
 <body>
@@ -243,17 +247,13 @@
 								<form action="/matchSearch" method="get" style="height: 100%;">
 									<select name="branch" style="height: 100%; border:2px solid #A4A4A4; ">
 											<option value="">지점</option>
-											<option value="1">동대문점</option>
-											<option value="2">안산 고잔점</option>
-											<option value="3">서수원점</option>
-											<option value="4">일산점</option>
-											<option value="5">대전 탄방점</option>
-											<option value="6">동대전점 </option>
-									</select>
-									<select name="type" style="height: 100%;width:130px; border:2px solid #A4A4A4; ">
-										<option value="">매치형태</option>
-										<option value="5vs5">5 vs 5</option>
-										<option value="6vs6">6 vs 6</option>
+											<option value="부천">부천점</option>
+											<option value="고양">고양점</option>
+											<option value="남양주">남양주점</option>
+											<option value="성남">성남점</option>
+											<option value="수원">수원점</option>
+											<option value="안양">안양점 </option>
+											<option value="동대문지점">동대문점 </option>
 									</select>
 									<input type="text" size="30" name="keyword" style="height:100%;border:2px solid #A4A4A4;">
 									<button type="submit" style="background-color:#2c3c57; border:none; height: 100%;width: 70px;vertical-align: bottom; "><img src="/img/icon_search.png"></button>
@@ -299,7 +299,7 @@
 							
 	               		</div>
 	               </div>
-	               
+	               <div id="popup_mask"></div>
 	            </div>
 	         </div>
 		</section>
@@ -369,7 +369,13 @@
    	function close1(here){
    		$(here).parent().parent().css('display','none');
    	}
-     
+   	$(document).ready(function(){
+        $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
+        $('#ground2').append('<img src="/img/ground2.png" alt="그라운드2" style="width:100%;height:500px;">');
+        $('#ground3').append('<img src="/img/ground3.png" alt="그라운드3" style="width:100%;height:500px;">');
+        $('#ground4').append('<img src="/img/ground4.png" alt="그라운드4" style="width:100%;height:500px;">');
+        $('#ground5').append('<img src="/img/ground5.png" alt="그라운드5" style="width:100%;height:500px;">');
+     });
    </script>
    
    

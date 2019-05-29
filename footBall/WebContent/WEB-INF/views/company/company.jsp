@@ -119,7 +119,7 @@
 					</div>
 					<div style="width:100%;height:400px;">
 						<div style="width:400px;height:400px;margin:0 auto;overflow:hidden;border-radius:800px;display:inline-block;margin-left:80px;">
-							<img src="/img/ground3.jpg" height="400px">
+							<img src="/img/ground2.jpg" height="400px">
 						</div>
 						<div style="width:50%;margin:0 auto;float:right;">
 							<div style="margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;display:inline-block;">
@@ -157,7 +157,7 @@
 							</div>							
 						</div>
 						<div style="width:400px;height:400px;margin:0 auto;overflow:hidden;border-radius:800px;display:inline-block;margin-left:100px;">
-							<img src="/img/ground3.jpg" height="400px">
+							<img src="/img/ground4.jpg" height="400px">
 						</div>
 					</div>
 					<div style="width:100%;height:100px;"></div>
@@ -165,6 +165,6 @@
 			</div>
 		</div>
 	</section>
-		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

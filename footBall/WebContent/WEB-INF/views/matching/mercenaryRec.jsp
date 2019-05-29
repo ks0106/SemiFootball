@@ -10,10 +10,10 @@
 <title>Insert title here</title>
 <!-- 동영상CSS  -->
 <style>
+		
 	/* 페이지 메뉴바 css  */
 	.tab-container{
 	  margin:0 auto;
-      position:absolute;
       text-align:center;
       width:100%;
       height:80px;
@@ -23,6 +23,7 @@
       padding0;
       height:100%;
       list-style-type: none;
+      border-top:3px solid purple;
       border-bottom:1px solid  green;
       padding-left: 0;
    }
@@ -48,12 +49,13 @@
       display: block;
    }
    .selected > .munebar{
-      background-color: green;
+      background-color:  green;
     	color:white;
    }
    .list-li>a:hover{
-   		background-color: green;
+   		background-color:  green;
    		color:white;
+   		text-decoration: none;
    }
 	.tab-content{
 		margin: 0 auto;
@@ -109,6 +111,7 @@
 	}
 	.table-tr:hover {
 		background-color: #F2F2F2;
+
 	}
 	.pageNaviBtn{
 		width: 50px;
@@ -118,11 +121,9 @@
 		margin-right: 10px;
 		margin-left: 10px; 
 		border-radius: 15px;
+		line-height: 45px;
 	}
-	.btn{
-		line-height: 50px;
-		color: black;
-	}
+
 	.selectPage{
 		line-height: 50px;
 		color: white;
@@ -133,10 +134,9 @@
 	#matchView{
 		position:fixed;
 		width: 900px;
-		height: 800px;
+		height: 840px;
 		margin: 0 auto;
-		border: 1px solid black; 
-		top: 13%;
+		top: 9%;
 		left: 26%;
 		background-color: #FFF;
 		border-radius: 15px;
@@ -173,6 +173,10 @@
 	          opacity: 0.6;
 	          z-index: 0;
           }
+     .page_area{
+     	width: 100%;
+     	height: 130vh;
+     }
 </style>
 </head>
 <body>
@@ -245,30 +249,26 @@
 								<form action="/matchSearch" method="get" style="height: 100%;">
 									<select name="branch" style="height: 100%; border:2px solid #A4A4A4; ">
 											<option value="">지점</option>
-											<option value="1">동대문점</option>
-											<option value="2">안산 고잔점</option>
-											<option value="3">서수원점</option>
-											<option value="4">일산점</option>
-											<option value="5">대전 탄방점</option>
-											<option value="6">동대전점 </option>
-									</select>
-									<select name="type" style="height: 100%;width:130px; border:2px solid #A4A4A4; ">
-										<option value="">매치형태</option>
-										<option value="5vs5">5 vs 5</option>
-										<option value="6vs6">6 vs 6</option>
+											<option value="부천">부천점</option>
+											<option value="고양">고양점</option>
+											<option value="남양주">남양주점</option>
+											<option value="성남">성남점</option>
+											<option value="수원">수원점</option>
+											<option value="안양">안양점 </option>
+											<option value="동대문지점">동대문점 </option>
 									</select>
 									<input type="text" size="30" name="keyword" style="height:100%;border:2px solid #A4A4A4;">
 									<button type="submit" style="background-color:#2c3c57; border:none; height: 100%;width: 70px;vertical-align: bottom; "><img src="/img/icon_search.png"></button>
 								</form>							
 							</div>
 							<!-- 게시글 view -->
-							<!-- <div id="matchView" >
+							 <div id="matchView" >
 								<div id="closeBtn" style="height: 10%;"><button type="button" onclick="close1(this)" style="width: 10%;float: right; border-radius: 15px;background-color: white; border:none;"><img src="/img/icon-close.png" width="100%" height="100%"></button></div>
-								<p style="text-align:left;margin: 0;margin-left: 30px;font-size: 30px;display: block; margin-bottom: 30px;">매치신청 상세보기</p>
+								<p style="text-align:left;margin: 0;margin-left: 30px;font-size: 30px;display: block; margin-bottom: 30px;">용병모집 상세보기</p>
 								<div id="view-table-div" >
 									<table id="view-table" style="margin: 0 auto; width: 80%; border-collapse: collapse;">
 										<tr id="tr11">
-											<th class="view-th" >작성자 </th> <td class="view-td"></td><th class="view-th">매치형태</th> <td class="view-td">???</td>
+											<th class="view-th" >작성자 </th> <td class="view-td" colspan="3"></td>
 										</tr>
 										<tr>
 											<th class="view-th">지점</th><td colspan="3" class="view-td">???</td>
@@ -280,32 +280,26 @@
 											<th class="view-th">구장</th><td colspan="3" class="view-td">???</td>
 										</tr>
 										<tr>
-											<th class="view-th">유니폼 색</th><td colspan="3" class="view-td">???</td>
-										</tr>
-										<tr>
 											<th class="view-th">연락처</th> <td class="view-td">???</td><th class="view-th">팀수준</th> <td class="view-td">???</td>
 										</tr>
 										<tr>
-											<th class="view-th">신청가능팀 </th> <td class="view-td">???</td ><th class="view-th">신청가능여부</th> <td class="view-td">???</td>
+											<th class="view-th">모집인원 </th> <td class="view-td">???</td ><th class="view-th">신청가능여부</th> <td class="view-td">???</td>
 										</tr>
 										<tr>
 											<td colspan="4" class="view-td">
 										</tr>
-										<tr>
-											<th class="view-th">비밀번호</th><td colspan="3" class="view-td"><input type="password" name="modifyPW" size="45" height="30"></td>
-										</tr>
 									</table>
-									<button type="button" onclick="modifyMactchCon()" style="margin-top: 20px;">수정하기</button>
+									<button type="button" onclick="modifyMactchCon()" style="margin-top: 20px;" class="btn btn-info btn-lg">수정하기</button>
 								</div>
 							</div>
 							
-	               		</div> -->
+	               		</div>
 	               </div>
-	               
-	           <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	                <div id="popup_mask"></div>
 	            </div>
 	         </div>
 		</section>
+	           <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 		
 		
    <script >
@@ -334,33 +328,28 @@
    	function contentView(pageNum){
    		
    		$.ajax({
-   			url:"/matchContentView",
+   			url:"/recContentView",
    			type:"get",
    			dataType:"json",
    			data:{pageNum:pageNum},
    			success: function(data){
-   				var writer = data.matchWriter;
-   				var matchType = data.matchType;
-   				var matchBName = data.matchBName;
-   				var matchDate = data.date;
-   				var matchCName = data.matchCName;
-   				var matchUColor = data.matchUColor;
-   				var matchPhone = data.matchPhone;
-   				var matchLevel = data.matchLevel;
-   				var matchTeamCount = data.teamCount;
-   				var able = data.able;
-   				var matchMemo = data.matchMemo;
+   				var writer = data.recName;
+   				var BName = data.recBName;
+   				var Date = data.date2;
+   				var CName = data.recCName;
+   				var Phone = data.recPhone;
+   				var Level = data.recLevel;
+   				var able = data.able2;
+   				var Memo = data.recMemo;
    				$("#tr11").find("td").eq(0).html(writer);
-   				$("#tr11").find("td").eq(1).html(matchType);
-   				$("#tr11").next().find("td").html(matchBName);
-   				$("#tr11").next().next().find("td").html(matchDate);
-   				$("#tr11").next().next().next().find("td").html(matchCName);
-   				$("#tr11").next().next().next().next().find("td").html(matchUColor);
-   				$("#tr11").next().next().next().next().next().find("td").eq(0).html(matchPhone);
-   				$("#tr11").next().next().next().next().next().find("td").eq(1).html(matchLevel);
-   				$("#tr11").next().next().next().next().next().next().find("td").eq(0).html(matchTeamCount);
-   				$("#tr11").next().next().next().next().next().next().find("td").eq(1).html(able);
-   				$("#tr11").next().next().next().next().next().next().next().find("td").html(matchMemo); 
+   				$("#tr11").next().find("td").html(BName);
+   				$("#tr11").next().next().find("td").html(Date);
+   				$("#tr11").next().next().next().find("td").html(CName);
+   				$("#tr11").next().next().next().next().find("td").eq(0).html(Phone);
+   				$("#tr11").next().next().next().next().find("td").eq(1).html(Level);
+   				$("#tr11").next().next().next().next().next().find("td").eq(0).html("1명");
+   				$("#tr11").next().next().next().next().next().find("td").eq(1).html(able);
+   				$("#tr11").next().next().next().next().next().next().find("td").html(Memo);
    			},
    			erorr : function () {
 				console.log("실패다");
@@ -368,11 +357,19 @@
    			
    		});
    		$("#matchView").css('display','block');
+   		$("#popup_mask").css('display','block');
    	}
    	function close1(here){
    		$(here).parent().parent().css('display','none');
+   		$("#popup_mask").css('display','none');
    	}
-     
+   	$(document).ready(function(){
+        $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
+        $('#ground2').append('<img src="/img/ground2.png" alt="그라운드2" style="width:100%;height:500px;">');
+        $('#ground3').append('<img src="/img/ground3.png" alt="그라운드3" style="width:100%;height:500px;">');
+        $('#ground4').append('<img src="/img/ground4.png" alt="그라운드4" style="width:100%;height:500px;">');
+        $('#ground5').append('<img src="/img/ground5.png" alt="그라운드5" style="width:100%;height:500px;">');
+     });
    </script>
    
    

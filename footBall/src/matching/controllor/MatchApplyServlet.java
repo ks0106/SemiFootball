@@ -1,8 +1,6 @@
-package gallery.controllor;
+package matching.controllor;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,21 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import gallery.model.service.GalleryService;
-import gallery.model.vo.Gallery;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class GalleryServlet
+ * Servlet implementation class MatchApplyServlet
  */
-@WebServlet(name = "Gallery", urlPatterns = { "/gallery" })
-public class GalleryServlet extends HttpServlet {
+@WebServlet(name = "MatchApply", urlPatterns = { "/matchApply" })
+public class MatchApplyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GalleryServlet() {
+    public MatchApplyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +31,14 @@ public class GalleryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int totalCount = 0;
-		try {
-			totalCount = new GalleryService().photoTotalCount();
-			ArrayList<Gallery> list = new GalleryService().photoList();
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/gallery/gallery.jsp");
-			request.setAttribute("totalCount", totalCount);
-			request.setAttribute("list", list);
-			rd.forward(request, response);
-		} catch (SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
-			request.setAttribute("msg", "SQL구문 오류");
+		HttpSession session = request.getSession(false);
+		Member m = ((Member)session.getAttribute("member"));
+		if(m!=null) {
+			response.sendRedirect("/views/match/matchApply.jsp");
+		}else {
+			request.setAttribute("msg", "로그인 후 사용해주세요");
+			request.setAttribute("loc", "/views/login/login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 			rd.forward(request, response);
 		}
 	}
