@@ -8,7 +8,7 @@
 	/* 페이지 타이틀  */
 	#title{
 		position:absolute;
-		z-index: -1;
+		z-index: 3;
 		font-size: 70px;
 		font-weight:900;
 		color: white;
