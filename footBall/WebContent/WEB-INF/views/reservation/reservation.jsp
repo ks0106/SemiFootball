@@ -34,7 +34,9 @@ $(document).ready(function(){
 		대관
 	</div>
 	<section>
-	<!-- 본문 입력 -->
+	<!-- 내용 작성 -->
+		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
+	
 	
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
