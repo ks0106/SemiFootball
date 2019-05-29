@@ -24,21 +24,19 @@ public class MatchService {
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
 		
 		if(pageNo!=1) {
-			pageNavi += "<a class='btn' href='/matching?reqPage=1'><<</a>";
-			pageNavi += "<a class='btn' href='/matching?reqPage="+(pageNo-1)+"'><</a>";
+			pageNavi += "<a class='btn' href='/matching?reqPage="+(pageNo-1)+"'><div class='pageNaviBtn'>&lt</div></a>";
 		}
 		int i = 1;
 		while(!(i++>pageNaviSize||pageNo>totalPage)) {
 			if(reqPage==pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+				pageNavi += "<div class='pageNaviBtn selectPage'><span>"+pageNo+"</span></div>";
 			}else {
-				pageNavi +="<a class='btn' href='/matching?reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi +="<a class='btn' href='/matching?reqPage="+pageNo+"'><div class='pageNaviBtn'>"+pageNo+"</div></a>";
 			}
 			pageNo++;
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/matching?reqPage="+pageNo+"'>></a>";
-			pageNavi += "<a class='btn' href='/matching?reqPage="+totalPage+"'>>></a>";
+			pageNavi += "<a class='btn' href='/matching?reqPage="+pageNo+"'><div class='pageNaviBtn'>&gt</div></a>";
 			
 		}
 		
@@ -46,5 +44,13 @@ public class MatchService {
 		MatchPageData mpd = new MatchPageData(pageNavi,list);
 		return mpd;
 	}
-	
+	public MatchList selectOne(int pageNum) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		MatchList m = new MatchDao().selectOne(conn,pageNum);
+		m.setDate(m.getMatchDate());
+		m.setTeamCount(m.getMatchTeamCount());
+		m.setAble(m.getMatchAble());
+		JDBCTemplate.close(conn);
+		return m;
+	}
 }

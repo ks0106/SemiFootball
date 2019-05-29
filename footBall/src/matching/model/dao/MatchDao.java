@@ -57,6 +57,36 @@ public class MatchDao {
 		JDBCTemplate.close(pstmt);
 		return list;
 	}
+	public MatchList selectOne(Connection conn , int pageNum) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		MatchList m = null;
+		String query = "select * from Fb_matching where SEQ_MATCH_NO=?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1,pageNum);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			m = new MatchList();
+			m.setSeqMatchNo(rset.getInt("seq_match_no"));
+			m.setMatchType(rset.getString("match_type"));
+			m.setMatchBName(rset.getString("match_b_name"));
+			m.setMatchCName(rset.getString("match_c_name"));
+			m.setMatchWriter(rset.getString("match_writer"));
+			m.setMatchPhone(rset.getString("match_phone"));
+			m.setMatchDate(rset.getDate("match_date"));
+			m.setMatchTime(rset.getString("match_time"));
+			m.setMatchTeamCount(rset.getInt("match_teamCount"));
+			m.setMatchUColor(rset.getString("match_u_color"));
+			m.setMatchLevel(rset.getString("match_level"));
+			m.setMatchAble(rset.getInt("match_able"));
+			m.setMatchPw(rset.getString("match_pw"));
+			m.setMatchMemo(rset.getString("match_memo"));
+			m.setMatchEnrollDate(rset.getDate("match_enroll_date"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return m;
+	}
 }
 
 

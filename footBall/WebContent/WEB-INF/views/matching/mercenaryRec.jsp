@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 <!-- 동영상CSS  -->
 <style>
-	
 	/* 페이지 메뉴바 css  */
 	.tab-container{
 	  margin:0 auto;
@@ -49,11 +48,11 @@
       display: block;
    }
    .selected > .munebar{
-      background-color:  green;
+      background-color: green;
     	color:white;
    }
    .list-li>a:hover{
-   		background-color:  green;
+   		background-color: green;
    		color:white;
    }
 	.tab-content{
@@ -196,25 +195,25 @@
 		<!-- 매치페이지 메뉴네비  -->
 		<div class="tab-container">
 	            <ul class="tab-list">
-	               <li class="selected list-li"><a href="#T-con01" class="munebar">매칭신청</a></li>
-	               <li class="list-li"><a href="/mercenaryRec" class="munebar">용병모집</a></li>
+	               <li class="list-li"><a href="/matching" class="munebar">매칭신청</a></li>
+	               <li class="selected list-li"><a href="#T-con02" class="munebar">용병모집</a></li>
 	               <li class="list-li"><a href="/mercenary" class="munebar">용병지원</a></li>
 	            </ul>
 	            <!-- 탭컨텐츠 랩퍼-->
 	            <div class="tab-content-wrapper">
 	            <!-- 탭컨텐츠1 -->
-	               <div id="T-con01" class="tab-con">
+	               <div id="T-con02" class="tab-con">
 	               		<div class="tab-content" >
 	            <!-- 탭컨텐츠 제목 -->
 	               			<br><br><br>
-							<p class="content-header">매칭신청</p>
+							<p class="content-header">용병모집</p>
 							<div class="underline"></div>
 							<!-- 글쓰기 버튼 -->
 							<div class="btn-wrapper" style="margin: 0 auto; margin-top:30px;margin-bottom:30px; text-align: right;width: 100%;">
 								<div style="width: 90%;">
-									<button type="button" onclick="matchApply();" style="border:none;background-color: green;width: 150px;height: 50px;color:white;">
+									<button type="button" onclick="matching()" style="border:none;background-color: green;width: 150px;height: 50px;color:white;  ">
 									
-									<span style="color:white;height:80%;width: 100%;display: inline;font-size: 17px; vertical-align:super; "> 매치신청 </span> 
+									<span style="color:white;height:80%;width: 100%;display: inline;font-size: 17px; vertical-align:super; ">매칭신청 </span> 
 									<span><img src="/img/match_icon.png" style="vertical-align: sub;"></span>
 									</button>
 								</div>
@@ -224,30 +223,28 @@
 								
 									<table id="matchlist-table" style="width: 100%;">
 										<tr>
-											<th class="th">매치형태</th>
 											<th class="th">지점구분</th>
-											<th class="th" colspan="2">배치일자</th>
-											<th class="th">신청가능팀</th>
+											<th class="th" colspan="2">매치일자</th>
+											<th class="th">모집인원</th>
 											<th class="th">작성자</th>
 											<th class="th">작성일자</th>
 											<th class="th">신청</th>
 										</tr>
 										<!-- 게시판 리스트 출력 포문 -->
-										<c:forEach items="${mpd.list }" var="m">
-											<tr class="table-tr" onclick="contentView(${m.seqMatchNo});" >
-												<td class="td">${m.matchType } </td>
-												<td class="td">${m.matchBName }</td>
-												<td colspan="2" class="td">${m.matchDate }</td>
-												<td class="td">${m.teamCount1 }</td>
-												<td class="td">${m.matchWriter }</td>
-												<td class="td">${m.matchEnrollDate }</td>
-												<td class="td">${m.able1 }</td>
+										<c:forEach items="${rpd.list }" var="r">
+											<tr class="table-tr" onclick="contentView(${r.seqRecNo});" >
+												<td class="td">${r.recBName }</td>
+												<td colspan="2" class="td">${r.recDate }</td>
+												<td class="td">3명</td>
+												<td class="td">${r.recName }</td>
+												<td class="td">${r.recEnrollDate }</td>
+												<td class="td">${r.able1 }</td>
 											</tr>
 										</c:forEach> 
 									</table>
 								</div>
 							<!-- 페이지 네비 -->
-							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;">${mpd.pageNavi }</div>
+							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;">${rpd.pageNavi }</div>
 							<!-- Search폼태그 -->
 							<div style="height: 50px;">
 								<form action="/matchSearch" method="get" style="height: 100%;">
@@ -270,7 +267,7 @@
 								</form>							
 							</div>
 							<!-- 게시글 view -->
-							<div id="matchView" >
+							<!-- <div id="matchView" >
 								<div id="closeBtn" style="height: 10%;"><button type="button" onclick="close1(this)" style="width: 10%;float: right; border-radius: 15px;background-color: white; border:none;"><img src="/img/icon-close.png" width="100%" height="100%"></button></div>
 								<p style="text-align:left;margin: 0;margin-left: 30px;font-size: 30px;display: block; margin-bottom: 30px;">매치신청 상세보기</p>
 								<div id="view-table-div" >
@@ -307,15 +304,14 @@
 								</div>
 							</div>
 							
-	               		</div>
-	               		<div id="popup_mask"></div>
+	               		</div> -->
 	               </div>
 	               
-	              
-	         <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	           <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	            </div>
 	         </div>
 		</section>
+		
 		
    <script >
      $(".tab-container").each(function  () {
@@ -377,14 +373,9 @@
    			
    		});
    		$("#matchView").css('display','block');
-   		$("#popup_mask").css('display','block');
    	}
    	function close1(here){
    		$(here).parent().parent().css('display','none');
-   		$("#popup_mask").css('display','none')
-   	}
-   	function matchApply(){
-   		$(location).attr("href","/views/match/matchApply.jsp");
    	}
      
    </script>
