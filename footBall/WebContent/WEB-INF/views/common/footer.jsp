@@ -3,6 +3,7 @@
 <style>
 	footer{
 		position:relative;
+		margin-top:100%;
 		width:100%;
 		height:200px;
 		margin:0;

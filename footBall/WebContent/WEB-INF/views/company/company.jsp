@@ -61,25 +61,17 @@
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<!--헤더 밑 영상  -->
-	<div id="container">
-		<div id="mv">
-			<video id="video01" class="pblock" autoplay playsinline muted loop title> 
-				<source src="/img/page3.mp4" type="video/mp4"> 
-			</video>
-		</div>
-		<!--영상 위 페이지 타이틀 -->
-		<div id="title">
-			회사소개
-		</div>
+	<!--영상 위 페이지 타이틀 -->
+	<div id="title">
+		회사소개
 	</div>
-	<section class="page_area">
+	<section>
 	<!-- 내용 작성 -->
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 		<!-- center -->
-		<center>
-			<div style="width:85%;height:500px;background-color:white;margin:0 auto;">
-				<div style="width:20%;height:300px;float:left;text-align:left;">
+		<div>
+			<div style="width:85%;background-color:white;margin:0 auto;">
+				<div style="width:20%;height:300px;text-align:left;display:inline-block;">
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">KS Sports</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
@@ -96,8 +88,8 @@
 						<a class="company" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">오시는 길</a>
 					</div>
 				</div>
-				<div style="width:80%;height:300px;float:right;">
-					<div style="width:55%;height:500px;margin:0 auto;float:left;border-left:1px solid silver;">
+				<div style="width:80%;height:300px;display:inline-block;">
+					<div style="width:55%;height:500px;margin:0 auto;float:left;">
 						<div style="margin-left:80px;margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;float:left;">
 							<div style="width:5px;height:30px;float:left;">
 								<div style="width:100%;height:80%;background-color:silver;"></div>
@@ -111,9 +103,9 @@
 					</div>
 					<div style="width:400px;height:400px;margin:0 auto;float:right;overflow:hidden;border-radius:800px;"><img src="/img/ground3.jpg" height="400px"></div>
 				</div>
-				<div style="width:80%;height:300px;float:right;">
+				<div style="width:80%;height:300px;display:inline-block;">
 					<div style="width:400px;height:400px;margin:0 auto;float:right;overflow:hidden;border-radius:800px;"><img src="/img/ground3.jpg" height="400px"></div>
-					<div style="width:55%;height:500px;margin:0 auto;float:left;border-left:1px solid silver;">
+					<div style="width:55%;height:500px;margin:0 auto;float:left;">
 						<div style="margin-left:80px;margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;float:left;">
 							<div style="width:5px;height:30px;float:left;">
 								<div style="width:100%;height:80%;background-color:silver;"></div>
@@ -127,15 +119,8 @@
 					</div>
 				</div>
 			</div>
-		</center>
-	
-	
-	
-	
-	
-	
-	
-		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+		</div>
 	</section>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

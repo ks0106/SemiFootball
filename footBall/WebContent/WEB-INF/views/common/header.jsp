@@ -188,6 +188,15 @@
 
 <style>
 /* 메뉴 li설정 (script 사용 시 로딩하는 동안 li기본형 뜨는 문제 때문에 css로 직접 줌) */
+	.area{
+		position:absolute;
+		top:0;
+	}
+	header{
+		width:100%;
+		height:485px;
+		overflow:hidden;
+	}
 	.header_item{
 		color:white;
 		display:inline-block;
@@ -207,7 +216,6 @@
 	body{
 		margin:0;
 		padding:0;
-		position:relative;
 		overflow-x: hidden; 		/* 좌우 스크롤 제거 Css구문 */
 	}
 	.right_menu_item{
@@ -237,49 +245,59 @@
 		});
 	});
 </script>
-<header class="area">
-<!-- 헤더 작성 -->
-   	<a href="/" id="header_logo"><img src="/img/header_logo.png" width="180" height="180" id="header_logo" style="top:0px;left:50px;position:absolute;z-index:100;"></a>
-	<div class="menu_bar">
- 		<a href="/" id="header_logo2"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
- 		<div class="toggle_bar" style="width:70px;height:65px;float:right;margin-right:50px;margin-top:7px;cursor:pointer;display:none;">
- 			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
- 			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
- 			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
- 		</div> 		
- 		<ul id="menu" style="position:absolute;left:300px;list-style-type:none;padding:0;">
- 			<li class="header_item"><a href="/branch">지점</a></li>
- 			<li class="header_item"><a href="/reservation">대관</a></li>
- 			<li class="header_item"><a href="/matching">매치/용병</a></li>
- 			<li class="header_item"><a href="/league">대회</a></li>
- 			<li class="header_item"><a href="/gallery">갤러리</a></li>
- 			<li class="header_item"><a href="/notice">고객센터</a></li>
- 			<li class="header_item"><a href="/company">회사소개</a></li>
- 			<li class="header_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
- 		</ul>
- 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
-			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
- 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+<header>
+	<!--헤더 밑 영상  -->
+	<div id="container" style="width:100%;height:485px;overflow:hidden;">
+		<div id="mv" style="width:100%;height:485px;overflow:hidden;">
+			<video id="video01" class="pblock" autoplay playsinline muted loop title> 
+				<source src="/img/page3.mp4" type="video/mp4"> 
+			</video>
 		</div>
 	</div>
-<!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
-	<nav class="right_area">
-		<div style="width:350px;height:100vh;background-color:black;opacity:0.9;position:absolute;right:0;">
-			<div style="width:210px;margin:0 auto;margin-top:10px;margin-bottom:10px;">
-				<a href="#" style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
-				<img src="/img/login_icon_100px_white.png" width="35px">
+<!-- 헤더 작성 -->
+	<div class="area">
+	   	<a href="/" id="header_logo"><img src="/img/header_logo.png" width="180" height="180" id="header_logo" style="top:0px;left:50px;position:absolute;z-index:100;"></a>
+		<div class="menu_bar">
+	 		<a href="/" id="header_logo2"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
+	 		<div class="toggle_bar" style="width:70px;height:65px;float:right;margin-right:50px;margin-top:7px;cursor:pointer;display:none;">
+	 			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
+	 			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
+	 			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
+	 		</div> 		
+	 		<ul id="menu" style="position:absolute;left:300px;list-style-type:none;padding:0;">
+	 			<li class="header_item"><a href="/branch">지점</a></li>
+	 			<li class="header_item"><a href="/reservation">대관</a></li>
+	 			<li class="header_item"><a href="/matching">매치/용병</a></li>
+	 			<li class="header_item"><a href="/league">대회</a></li>
+	 			<li class="header_item"><a href="/gallery">갤러리</a></li>
+	 			<li class="header_item"><a href="/notice">고객센터</a></li>
+	 			<li class="header_item"><a href="/company">회사소개</a></li>
+	 			<li class="header_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
+	 		</ul>
+	 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+				<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
+	 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 			</div>
-			<hr style="width:80%;height:3px;border:0;margin:0 auto;padding:0;background-color:white;">
-			<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
-				<li class="right_menu_item"><a href="/branch">지점</a></li>
-				<li class="right_menu_item"><a href="/reservation">대관</a></li>
-				<li class="right_menu_item"><a href="/matching">매치/용병</a></li>
-				<li class="right_menu_item"><a href="/league">대회</a></li>
-				<li class="right_menu_item"><a href="/gallery">갤러리</a></li>
-				<li class="right_menu_item"><a href="/notice">고객센터</a></li>
-				<li class="right_menu_item"><a href="/company">회사소개</a></li>
-				<li class="right_menu_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
-			</ul>
 		</div>
-	</nav>
+	<!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
+		<nav class="right_area">
+			<div style="width:350px;height:100vh;background-color:black;opacity:0.9;position:absolute;right:0;">
+				<div style="width:210px;margin:0 auto;margin-top:10px;margin-bottom:10px;">
+					<a href="#" style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
+					<img src="/img/login_icon_100px_white.png" width="35px">
+				</div>
+				<hr style="width:80%;height:3px;border:0;margin:0 auto;padding:0;background-color:white;">
+				<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
+					<li class="right_menu_item"><a href="/branch">지점</a></li>
+					<li class="right_menu_item"><a href="/reservation">대관</a></li>
+					<li class="right_menu_item"><a href="/matching">매치/용병</a></li>
+					<li class="right_menu_item"><a href="/league">대회</a></li>
+					<li class="right_menu_item"><a href="/gallery">갤러리</a></li>
+					<li class="right_menu_item"><a href="/notice">고객센터</a></li>
+					<li class="right_menu_item"><a href="/company">회사소개</a></li>
+					<li class="right_menu_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
 </header>
