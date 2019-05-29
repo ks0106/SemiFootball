@@ -19,7 +19,7 @@ import gallery.model.vo.Gallery;
 /**
  * Servlet implementation class GallerymoreServlet
  */
-@WebServlet(name = "Gallerymore", urlPatterns = { "/gallerymore" })
+@WebServlet(name = "Gallerymore", urlPatterns = { "/galleryMore" })
 public class GallerymoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

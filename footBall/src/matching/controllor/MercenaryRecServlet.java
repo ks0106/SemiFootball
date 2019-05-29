@@ -1,6 +1,7 @@
-package notice.controllor;
+package matching.controllor;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
-import notice.model.vo.NoticePageData;
-
+import matching.model.sevice.RecService;
+import matching.model.vo.RecPageData;
 
 /**
- * Servlet implementation class NoticeServlet
+ * Servlet implementation class MercenaryRecServlet
  */
-@WebServlet(name = "Notice", urlPatterns = { "/notice" })
-public class NoticeServlet extends HttpServlet {
+@WebServlet(name = "MercenaryRec", urlPatterns = { "/mercenaryRec" })
+public class MercenaryRecServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeServlet() {
+    public MercenaryRecServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +32,21 @@ public class NoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		int reqPage;
 		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
-		}catch(NumberFormatException e) {
-			reqPage = 1;
+		}catch(NumberFormatException e){
+			reqPage =1;
 		}
-		NoticePageData pd = new NoticeService().NoticeList(reqPage);
-		request.setAttribute("pd", pd);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/notice.jsp");
-		rd.forward(request, response);
+		try {
+			RecPageData rpd = new RecService().selectList(reqPage);
+			request.setAttribute("rpd", rpd);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/mercenaryRec.jsp");
+			rd.forward(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

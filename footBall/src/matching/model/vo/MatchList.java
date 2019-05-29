@@ -1,6 +1,7 @@
 package matching.model.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class MatchList {
 	private int seqMatchNo;
@@ -18,6 +19,9 @@ public class MatchList {
 	private String matchPw;
 	private String matchMemo;
 	private Date matchEnrollDate;
+	private String date;
+	private String teamCount;
+	private String able;
 	public MatchList() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -194,10 +198,45 @@ public class MatchList {
 	public void setMatchEnrollDate(Date matchEnrollDate) {
 		this.matchEnrollDate = matchEnrollDate;
 	}
+	public void setDate(Date matchDate) {
+		SimpleDateFormat fo = new SimpleDateFormat("yyyy-MM-dd");
+		this.date = fo.format(matchDate);
+	}
+	public String getDate() {
+		return date;
+	}
 
-
+	public void setAble(int matchAble) {
+		if(matchAble==0) {
+			this.able="가능";
+		}else {
+			this.able="마감";
+		}
+	}
 	public String getAble() {
-		String able = "";
+		return able;
+	}
+	public void setTeamCount(int matchTeamCount) {
+		if(matchTeamCount==1) {
+			this.teamCount = "1팀";
+		}else if(matchTeamCount==2) {
+			this.teamCount="2팀";
+		}
+	}
+	public String getTeamCount() {
+		return teamCount;
+	}
+	public String getTeamCount1() {
+		String teamCount = "";
+		if(matchTeamCount==1) {
+			teamCount = "1팀";
+		}else if(matchTeamCount==2) {
+			teamCount="2팀";
+		}
+		return teamCount; 
+	}
+	public String getAble1() {
+		String able="";
 		if(matchAble==0) {
 			able="가능";
 		}else {
@@ -205,14 +244,4 @@ public class MatchList {
 		}
 		return able;
 	}
-	public String getTeamCount() {
-		String teamCount="";
-		if(matchTeamCount==1) {
-			teamCount = "1팀";
-		}else if(matchTeamCount==2) {
-			teamCount="2팀";
-		}
-		return teamCount;
-	}
-	
 }

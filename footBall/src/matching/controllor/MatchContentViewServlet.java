@@ -1,29 +1,33 @@
-package notice.controllor;
+package matching.controllor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
-import notice.model.vo.NoticePageData;
+import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
+
+import matching.model.sevice.MatchService;
+import matching.model.vo.MatchList;
 
 /**
- * Servlet implementation class NoticeServlet
+ * Servlet implementation class MatchContentViewServlet
  */
-@WebServlet(name = "Notice", urlPatterns = { "/notice" })
-public class NoticeServlet extends HttpServlet {
+@WebServlet(name = "MatchContentView", urlPatterns = { "/matchContentView" })
+public class MatchContentViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeServlet() {
+    public MatchContentViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +36,17 @@ public class NoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		int reqPage;
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		try {
-			reqPage = Integer.parseInt(request.getParameter("reqPage"));
-		}catch(NumberFormatException e) {
-			reqPage = 1;
+			MatchList m = new MatchService().selectOne(pageNum);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			new Gson().toJson(m,response.getWriter());
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		NoticePageData pd = new NoticeService().NoticeList(reqPage);
-		request.setAttribute("pd", pd);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/notice.jsp");
-		rd.forward(request, response);
 	}
 
 	/**
