@@ -21,18 +21,12 @@
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<!--헤더 밑 영상  -->
-	<div id="continer">
-	<div id="mv">
-		<video id="video01" class="pblock" autoplay playsinline muted loop title> 
-			<source src="/img/page3.mp4" type="video/mp4"> 
-		</video>
-	</div>
+
 	<!--영상 위 페이지 타이틀 -->
-		<div id="title">
-			갤러리
-		</div>
+	<div id="title">
+		갤러리
 	</div>
+
 	<!-- 내용 -->
 	<section class="page_area" style="padding-top: 100px; height: 1000px;" >
 		<div style="position: sticky; position: -webkit-stiky;">
@@ -65,10 +59,10 @@
 				 <table class="carousel-inner" style="margin-top: 20px; width:100%; height:60px; text-align:center;">
 					<tr id="photo-wrapper" style="text-align: center">
 						<td>
-							<a class="left carousel-control left-control" data-slide="prev" style="background: none; color: blue; margin-bottom: 20px;">
+							<button id="left-control" class="left carousel-control " data-slide="prev" style="border: none; background: none; color: blue; margin-bottom: 20px;">
 						    	<span class="glyphicon glyphicon-chevron-left"></span>
 						        <span class="sr-only">Previous</span>
-						    </a>
+						    </button>
 						</td>
 						
 						<td class="photo-wrapper">
@@ -76,10 +70,10 @@
 						</td>
 						
 						<td>
-						    <a currentCount="0" totalCount="${totalCount }" value="" class="right carousel-control right-control" data-slide="next" style="background: none; color: blue; margin-bottom: 20px;">
-					     		<span class="glyphicon glyphicon-chevron-right"></span>
-					     		<span class="sr-only">Next</span>
-					   		</a>
+						    <button currentCount="0" totalCount="${totalCount }" value="" id="right-control" class="right carousel-control " data-slide="next" style=" border:none; background: none; color: blue; margin-bottom: 20px;">
+					     		<span class="glyphicon glyphicon-chevron-right" ></span>
+					     		<span class="sr-only" >Next</span>
+					   		</button>
 						</td>
 					</tr>
 				</table>
