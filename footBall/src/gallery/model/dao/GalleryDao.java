@@ -48,8 +48,7 @@ public class GalleryDao {
 		String query = prop.getProperty("insertGallery");
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, g.getPhotoWriter());
-		pstmt.setString(2, g.getPhotoContent());
-		pstmt.setString(3, g.getFilename());
+		pstmt.setString(2, g.getFilename());
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
@@ -68,7 +67,6 @@ public class GalleryDao {
 			Gallery g = new Gallery();
 			g.setPhotoNo(rset.getInt("seq_photo_no"));
 			g.setPhotoWriter(rset.getString("photo_writer"));
-			g.setPhotoContent(rset.getString("photo_content"));
 			g.setFilename(rset.getString("filename"));
 			g.setPhotoDate(rset.getDate("photo_date"));
 			list.add(g);
