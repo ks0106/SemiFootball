@@ -136,8 +136,7 @@
 		  <!-- Modal content -->
 		  <div class="branch-modal">
 		    <span class="close">&times;</span>
-		    <div style="width:95%; height:800px; position:relative; top:30px; left:20px; background-color:red;">
-		    	test
+		    <div class="branchInfo" style="width:95%; height:800px; position:relative; top:30px; left:20px; background-color:red;">
 		    </div>
 		  </div>
 		
@@ -152,8 +151,23 @@
 			});
 			$('.btn-submit').click(function(){
 				$contentWrapper = $(this).parents().eq(3);
-				$input = $contentWrapper.children().last().val();
+				var branchName = $contentWrapper.children().last().val();
 				modal.style.display = "block";
+				$.ajax({
+					url : "/branchInfo",
+					type : "get",
+					data : {branchName : branchName},
+					success :  function(data) {
+						var branchName = decodeURIComponent(data.branchName);
+						var branchAddr = decodeURIComponent(data.branchAddr);
+						var branchTel = data.branchTel;
+						var branchPhone = data.branchPhone;
+						$('.branchInfo').html("지점명 : "+branchName+"<br>지점 주소 : "+branchAddr+"<br>지점 전화번호 : "+branchTel +"/"+ branchPhone);
+					},
+					error : function(){
+						console.log("전송 실패");
+					}
+				});
 			});
 		});
 		// Get the modal
