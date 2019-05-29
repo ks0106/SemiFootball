@@ -1,7 +1,9 @@
 @charset "UTF-8";
 	#video01{
+		position:relative;
 		min-width: 100%; 
 		min-height: 100%; 
+		z-index:-2;
 	}
 	/* 페이지 타이틀  */
 	#title{
