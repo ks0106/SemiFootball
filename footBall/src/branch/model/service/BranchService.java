@@ -17,4 +17,11 @@ public class BranchService {
 		return list;
 	}
 
+	public Branch selectOne(String branchName) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		Branch b = new BranchDao().selectOne(conn, branchName);
+		JDBCTemplate.close(conn);
+		return b;
+	}
+
 }

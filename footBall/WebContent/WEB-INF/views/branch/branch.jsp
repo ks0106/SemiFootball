@@ -5,86 +5,7 @@
 <html>
 <!-- 동영상CSS  -->
 <link rel='stylesheet' href="css/common/pageCss.css">
-	<style>
-		a { text-decoration: none; }
-	    a:visited { text-decoration: none; }
-	    a:hover { text-decoration: none; }
-	    a:focus { text-decoration: none; }
-	    a:hover, a:active { text-decoration: none; }
-	    
-		.mainImg {
-			 border-radius: 10px;
-			 width: 500px;
-			 height: 320px;
-			 margin-top:10px;
-			 margin-left:10px;
-			 margin-bottom:1px;
-			 float: left;
-		}
-		.subImg {
-			border-radius: 5px;
-			width: 100px;
-			height: 60px;
-			margin-top: 5px;
-			margin-left: 10px;
-			float: left;
-			cursor: pointer;
-			opacity: 1;
-			-webkit-transition: .3s ease-in-out;
-			transition: .3s ease-in-out;
-		}
-		.subImg:hover {
-			opacity: .5;
-		}
-		.icon {
-			width:25px;
-			height:25px;
-		}
-		.font-li {
-			font-size: 25px;
-			text-align: left;
-			font-weight: bold;
-			color: #446087;
-		}
-		.btn-link {
-			display:inline-block; 
-			text-align:center; 
-			border-radius:10px; ;
-			width:225px; 
-			height:70px; 
-			line-height:70px;
-			text-decoration: none;
-			background-color: #446087;
-			color: white;
-			
-		}
-		.content-container {
-			position: absolute;
-			width: 100%;
-			height: 1000px;
-			text-align: center;
-		}
-		.content-wrapper {
-			position: relative;
-			display: inline-block;
-			margin-top:25px;
-			width: 100%;
-			height: 40%;
-		}
-		.content-left {
-			float: left;
-			width: 40%;
-			height: 100%;
-			padding-left:10%;
-		}
-		.content-right {
-			float: left;
-			width: 40%;
-			height: 100%;
-			padding-right:10%;
-		}
-
-	</style>
+<link rel='stylesheet' href="css/branch/branch.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
@@ -104,48 +25,58 @@
 	</div>
 	<section class="page_area">
 		<div class="content-container">
+			<aside class="aside-bar">
+				<div id="testSticky">지점안내</div>
+			</aside>
 			<c:forEach items="${list}" var="b" varStatus="status">
 				<c:choose>
 					<c:when test="${status.index %2 == 0 }">
-						<div class="content-wrapper">
-							<div class="content-left">
-								<img class="mainImg" src="" alt="mainIng"><br>
-								<img class="subImg" src="img/branch_test.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
+						<form action="/branchInfo" method="get" enctype="multipart/form-data">
+							<div class="content-wrapper">
+								<div class="content-left">
+									<ul style="list-style-type: none;">
+										<li class="font-li">${b.branchName }</li>
+										<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
+										<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+										<li style="text-align:left"><button class="btn-submit" type="submit">지점 상세 정보</button></li>
+									</ul>
+								</div>
+								<div class="content-right">
+									<img class="mainImg right" src="" alt="mainIng"><br>
+									<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
+									<img class="subImg right" src="img/branch/branch_test.jpg" alt="subImg">
+									<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
+									<img class="subImg right" src="img/branch/branch_test3.jpg" alt="subImg">
+								</div>
+								<input type="hidden" name="branchName" value="${b.branchName }">
 							</div>
-							<div class="content-right">
-								<ul style="list-style-type: none;">
-									<li class="font-li">${b.branchName }</li>
-									<li class="font-li"><img class="icon" src="img/branch_pinIcon.png">${b.branchAddr }</li>
-									<li class="font-li"><img class="icon" src="img/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
-									<li style="font-size: 25px; text-align:left; font-weight: bold;"><a class="btn-link" href="/branchInfo">지점 상세 정보</a></li>
-								</ul>
-							</div>
-						</div>
+						</form>
 					</c:when>
 					<c:when test="${status.index %2 == 1 }">
-						<div class="content-wrapper">
-							<div class="content-left">
-								<ul style="list-style-type: none;">
-									<li class="font-li">${b.branchName }</li>
-									<li class="font-li"><img class="icon" src="img/branch_pinIcon.png">${b.branchAddr }</li>
-									<li class="font-li"><img class="icon" src="img/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
-									<li style="font-size: 25px; text-align:left; font-weight: bold;"><a class="btn-link" href="/branchInfo">지점 상세 정보</a></li>
-								</ul>
+						<form action="/branchInfo" method="get" enctype="miltipart/form-data">
+							<div class="content-wrapper">
+								<div class="content-left">
+									<img class="mainImg left" src="" alt="mainIng"><br>
+									<img class="subImg left" src="img/branch/branch_test.jpg" alt="subImg">
+									<img class="subImg left" src="img/branch/branch_test2.jpg" alt="subImg">
+									<img class="subImg left" src="img/branch/branch_test3.jpg" alt="subImg">
+								</div>
+								<div class="content-right">
+									<ul style="list-style-type: none;">
+										<li class="font-li">${b.branchName }</li>
+										<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
+										<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+										<li style="text-align:left"><button class="btn-submit" type="submit">지점 상세 정보</button></li>
+									</ul>
+								</div>
+								<input type="hidden" name="branchName" value="${b.branchName }">
 							</div>
-							<div class="content-right">
-								<img class="mainImg" src="" alt="mainIng"><br>
-								<img class="subImg" src="img/branch_test.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test2.jpg" alt="subImg">
-								<img class="subImg" src="img/branch_test3.jpg" alt="subImg">
-							</div>
-						</div>
+						</form>
 					</c:when>
 				</c:choose>
-				
 			</c:forEach>
 		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	</section>
 	<script>
 		$(function(){
