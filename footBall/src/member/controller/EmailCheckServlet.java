@@ -53,7 +53,7 @@ public class EmailCheckServlet extends HttpServlet {
 		message.setFrom(new InternetAddress(user)); 
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(id)); 
 		// 메일 제목 
-		message.setSubject("KTKO SMTP TEST1111"); 
+		message.setSubject("KH Sports Football"); 
 		// 메일 내용 
 		
 		Random random = new Random();
@@ -63,7 +63,7 @@ public class EmailCheckServlet extends HttpServlet {
 			
 		}
 		
-		message.setText(num); 
+		message.setText("회원님의 인증번호"+num); 
 		// send the message 
 		Transport.send(message); System.out.println("Success Message Send"); 
 		RequestDispatcher rd = request.getRequestDispatcher("/views/login/insert2.jsp");
