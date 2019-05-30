@@ -3,6 +3,7 @@ package reservation.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,6 +12,7 @@ import java.util.Properties;
 
 import branch.model.vo.Branch;
 import common.JDBCTemplate;
+import reservation.model.vo.Court;
 
 public class ReservationDao {
 	private Properties prop = new Properties();
@@ -27,7 +29,7 @@ public class ReservationDao {
 		ArrayList<Branch> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = "select * from fb_branch";
+		String query = prop.getProperty("reservationBranch");
 		stmt = conn.createStatement();
 		rset = stmt.executeQuery(query);
 		list = new ArrayList<Branch>();
@@ -42,6 +44,28 @@ public class ReservationDao {
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(stmt);
+		return list;
+	}
+	
+	public ArrayList<Court> reservationCourt(Connection conn,int rCode) throws SQLException{
+		ArrayList<Court> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationCourt");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, rCode);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Court>();
+		while(rset.next()) {
+			Court c = new Court();
+			c.setCourtBCode(rset.getInt("court_b_code"));
+			c.setCourtCCode(rset.getInt("court_c_code"));
+			c.setCourtName(rset.getString("court_name"));
+			c.setCourtStatus(rset.getInt("court_status"));
+			list.add(c);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
 		return list;
 	}
 
