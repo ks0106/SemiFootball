@@ -29,7 +29,6 @@ public class MemberDAO {
 		Member m = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("login");
-		
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, id);
 		pstmt.setString(2, pwd);
@@ -58,5 +57,31 @@ public class MemberDAO {
 		pstmt.setString(4, m.getPhone());
 		result = pstmt.executeUpdate();
 		return result;
+	}
+	public Member searchId(Connection conn , String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m =null;
+		String query = "select * from member where id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				m= new Member();
+				m.setId(rset.getString("id"));
+				m.setPwd(rset.getString("pwd"));
+				m.setName(rset.getString("name"));
+				m.setPhone(rset.getString("phone"));
+				m.setEnrollDate(rset.getDate("enroll_Date"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return m;
 	}
 }

@@ -39,8 +39,10 @@ public class GallerymoreServlet extends HttpServlet {
 		ArrayList<Gallery> list = null;
 		try {
 			list = new GalleryService().morePhoto(start);
-			response.setContentType("application/json; charset=utf-8");
-			new Gson().toJson(list, response.getWriter());
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);;
+			
+			/*response.setContentType("application/json; charset=utf-8");
+			new Gson().toJson(list, response.getWriter());*/
 		} catch (SQLException e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			request.setAttribute("msg", "SQL구문 오류");

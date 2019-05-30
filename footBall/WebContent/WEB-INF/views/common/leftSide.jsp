@@ -8,6 +8,7 @@
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!-- 사이드 헤더(높이가 일정 크기 이상일 때 사이드) -->
 <style>
 	body{
@@ -331,6 +332,16 @@
 		});
 	});
 </script>
+<script>
+	/*카카오톡 로그아웃*/
+	function kout(){
+	alert("script");
+	Kakao.Auth.logout(function(){
+		alert("script");
+			location.href="/https://kapi.kakao.com/v1/user/logout";
+        });
+}
+</script>
 <header class="area2">
 	<%if(m==null){ %>
 	<div class="menu_bar2">
@@ -342,8 +353,8 @@
 	<%}else{ %>
 	<div class="menu_bar2">
  		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
-			<div style="margin-left:16px;"><a href="/logout"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
- 			<div><a href="/logout" style="text-decoration:none;color:white;">로그아웃</a></div>
+			<div style="margin-left:16px;"><a href="/logout" onclick="kout();"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
+ 			<div><a href="/logout" onclick="kout();" style="text-decoration:none;color:white;">로그아웃</a></div>
 		</div>
 	</div>
 		<%if(m.getId().equals("admin")){ %>

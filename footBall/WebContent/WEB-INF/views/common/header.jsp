@@ -306,10 +306,17 @@
 	 			<li class="header_item"><a href="/company">회사소개</a></li>
 	 			<li class="header_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
 	 		</ul>
+	 		<%if(m == null){ %>
 	 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
 				<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
 	 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 			</div>
+			<%}else{ %>
+		 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+					<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/member_icon_100px_white.png" width="50px" height="50px"></a></div>
+		 			<div><a href="/" style="text-decoration:none;color:white;"><%=m.getName()%> 님!</a></div>
+				</div>				
+			<%} %>
 		</div>
 	<!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
 		<nav class="right_area">

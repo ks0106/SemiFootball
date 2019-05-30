@@ -111,12 +111,33 @@ public class NoticeDao {
 	public int noticeInsert(Connection conn, NoticeVo nv) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = prop.getProperty("noticeInsert");
+		String query = prop.getProperty("noticeinsert");
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, nv.getNoticeTitle());
 			pstmt.setString(2, nv.getNoticeWriter());
 			pstmt.setString(3, nv.getNoticeContent());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		System.out.println(result);
+		return result;
+	}
+	
+	//게시물 수정
+	public int noticeUpdate(Connection conn, NoticeVo nv) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("noticeupdate");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, nv.getNoticeTitle());
+			pstmt.setString(2, nv.getNoticeContent());
+			pstmt.setInt(3, nv.getNoticeNo());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -2,6 +2,7 @@ package gallery.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import gallery.model.service.GalleryService;
+import gallery.model.vo.Gallery;
 
 /**
  * Servlet implementation class GalleryServlet
@@ -34,8 +36,10 @@ public class GalleryServlet extends HttpServlet {
 		int totalCount = 0;
 		try {
 			totalCount = new GalleryService().photoTotalCount();
+			ArrayList<Gallery> list = new GalleryService().photoList();
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/gallery/gallery.jsp");
 			request.setAttribute("totalCount", totalCount);
+			request.setAttribute("list", list);
 			rd.forward(request, response);
 		} catch (SQLException e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");

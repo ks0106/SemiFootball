@@ -70,12 +70,6 @@
 						</td>
 					</tr>
 					<tr>
-						<th>내용</th>
-						<td>
-							<textarea rows="3" name="photoContent" style="width: 600px; height: 100px;"></textarea>
-						</td>
-					</tr>
-					<tr>
 						<th colspan="2">
 							<button id="input" type="submit">등록하기</button>
 						</th>

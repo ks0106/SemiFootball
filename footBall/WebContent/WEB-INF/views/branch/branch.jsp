@@ -51,10 +51,6 @@
 									</div>
 									<div class="content-right">
 										<img class="mainImg right" src="" alt="mainIng"><br>
-										<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
-										<img class="subImg right" src="img/branch/branch_test.jpg" alt="subImg">
-										<img class="subImg right" src="img/branch/branch_test2.jpg" alt="subImg">
-										<img class="subImg right" src="img/branch/branch_test3.jpg" alt="subImg">
 									</div>
 									<input type="hidden" name="branchName" value="${b.branchName }">
 								</div>
@@ -65,9 +61,6 @@
 								<div class="content-wrapper">
 									<div class="content-left">
 										<img class="mainImg left" src="" alt="mainIng"><br>
-										<img class="subImg left" src="img/branch/branch_test.jpg" alt="subImg">
-										<img class="subImg left" src="img/branch/branch_test2.jpg" alt="subImg">
-										<img class="subImg left" src="img/branch/branch_test3.jpg" alt="subImg">
 									</div>
 									<div class="content-right">
 										<ul style="list-style-type: none;">
@@ -91,8 +84,21 @@
 			<!-- Modal content -->
 			<div class="branch-modal">
 				<span class="close">&times;</span>
-				<div class="branchInfo" style="width:95%; height:800px; position:relative; top:30px; left:28px; background-color:red;">
-				
+				<div class="branchModal-wrapper">
+					<div class="modalHeader">
+						<h1></h1>
+					</div>
+					<div class="modalBody">
+						<div class="infoForm">
+							<h2>지점 안내</h2>
+							<!-- img here : overflow: visible -->
+							<div id="infoFormFooter"><span class="infoSpan"></span><br><span class="infoSpan"></span></div>
+						</div>
+						<div class="locForm">
+							<h2>위치 안내</h2>
+							<!-- google maps api here -->
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -100,7 +106,6 @@
 		$(function(){
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
-			console.log($('.content-wrapper img:eq(3)'));
 			$mainImgSrc = $('.content-wrapper img:eq(3)').attr('src');
 			$('.mainImg').attr('src',$mainImgSrc);
 			$('.subImg').click(function(){
@@ -116,11 +121,18 @@
 					type : "get",
 					data : {branchName : branchName},
 					success :  function(data) {
+						/* 변환함수 선언 */
+		                function replaceAll(sValue, param1, param2) {
+		                	 return sValue.split(param1).join(param2);
+		                }
+		                /* selvlet으로부터 변수받아옴 */
 						var branchName = decodeURIComponent(data.branchName);
 						var branchAddr = decodeURIComponent(data.branchAddr);
 						var branchTel = data.branchTel;
 						var branchPhone = data.branchPhone;
-						$('.branchInfo').html("지점명 : "+branchName+"<br>지점 주소 : "+branchAddr+"<br>지점 전화번호 : "+branchTel +"/"+ branchPhone);
+						$('.modalHeader h1').html(branchName);
+						$('.infoSpan:first').html("지점주소 : " + replaceAll(branchAddr,"+"," "));
+						$('.infoSpan:last').html("지점전화 : " + branchTel +"/"+ branchPhone);
 					},
 					error : function(){
 						console.log("전송 실패");
@@ -132,8 +144,6 @@
 		// Get the modal
 		var modal = document.getElementById("myModal");
 		// Get the button that opens the modal
-		var btn = document.getElementById("myBtn");
-		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
 		// When the user clicks on <span> (x), close the modal
 		span.onclick = function() {

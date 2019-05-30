@@ -35,7 +35,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-		
 		try {
 			Member m = new MemberService().login(id,pwd);
 			if(m!=null) {
@@ -56,6 +55,7 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/errorPage500.jsp");
 			request.setAttribute("msg", "SQL문 에러");
 			rd.forward(request, response);
+			
 		}
 	}
 

@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import member.model.vo.Member;
 
 
 /**
@@ -29,8 +32,20 @@ public class NoticeWriterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeWriter.jsp");
-		rd.forward(request, response);
+		HttpSession session = request.getSession(false);
+		if(session!=null) {
+			String id = ((Member)session.getAttribute("member")).getId();
+			if(id.equals("admin")) {
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeWriter.jsp");
+				rd.forward(request, response);
+			}else {
+				request.setAttribute("msg", "글쓰기 권한이 없습니다.");
+				request.setAttribute("loc", "/notice");
+				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			}
+		}else {
+			response.sendRedirect("/");
+		}
 	}
 
 	/**

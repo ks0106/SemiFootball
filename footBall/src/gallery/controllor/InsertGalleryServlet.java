@@ -46,15 +46,13 @@ public class InsertGalleryServlet extends HttpServlet {
 			return;
 		}else {
 			String root = getServletContext().getRealPath("/");
-			String saveDirectory = root+"upload/photo";
+			String saveDirectory = root+"img/gallery";
 			int maxSize = 10*1024*1024;
 			MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 			String photoWriter = mRequest.getParameter("photoWriter");
-			String photoContent = mRequest.getParameter("photoContent");
 			String filename = mRequest.getFilesystemName("filename");
 			Gallery g = new Gallery();
 			g.setPhotoWriter(photoWriter);
-			g.setPhotoContent(photoContent);
 			g.setFilename(filename);
 			int result=0;
 			try {
@@ -70,6 +68,7 @@ public class InsertGalleryServlet extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 				request.setAttribute("msg", "SQL구문 오류");
 				rd.forward(request, response);
+				e.printStackTrace();
 			}
 			
 				

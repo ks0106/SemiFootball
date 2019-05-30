@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import notice.model.service.NoticeService;
+import notice.model.vo.NoticeViewData;
 import notice.model.vo.NoticeVo;
 
 /**
@@ -33,22 +34,17 @@ public class NoticeViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-//		NoticeViewData nvd = new NoticeService().listOne(noticeNo);
-//		String view = "";
-//		if(nvd.getNv()!=null) {
-//			request.setAttribute("nvd", nvd);
-//			view = "/WEB-INF/views/common/msg.jsp";
-//		}else {
-//			request.setAttribute("msg", "삭제된 공지사항입니다.");
-//			request.setAttribute("loc", "/notice");
-//			view = "/WEB-INF/views/common/msg.jsp";
-//		}
-//		RequestDispatcher rd = request.getRequestDispatcher(view);
-//		rd.forward(request, response);
-		
-		NoticeVo nv = new NoticeService().listOne(noticeNo);
-		request.setAttribute("nv", nv);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeView.jsp");
+		NoticeViewData nvd = new NoticeService().listOne(noticeNo);
+		String view = "";
+		if(nvd.getNv()!=null) {
+			request.setAttribute("nvd", nvd);
+			view = "/WEB-INF/views/notice/noticeView.jsp";
+		}else {
+			request.setAttribute("msg", "삭제된 공지사항입니다.");
+			request.setAttribute("loc", "/notice");
+			view = "/WEB-INF/views/common/msg.jsp";
+		}
+		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
 
