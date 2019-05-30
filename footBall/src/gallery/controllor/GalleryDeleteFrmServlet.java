@@ -49,7 +49,7 @@ public class GalleryDeleteFrmServlet extends HttpServlet {
 		System.out.println(g.getPhotoNo());
 		int result=0;
 		try {
-			result = new GalleryService().GalleryDao(g);
+			result = new GalleryService().deletePhoto(g);
 			if(result > 0) {
 				File deleteFile = new File(saveDirectory+filename);
 				deleteFile.delete();

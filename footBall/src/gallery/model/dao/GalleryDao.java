@@ -104,4 +104,26 @@ public class GalleryDao {
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
+	public ArrayList<Gallery> galleryList(Connection conn, int start, int end) throws SQLException {
+		ArrayList<Gallery> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectList");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, start);
+		pstmt.setInt(2, end);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Gallery>();
+		while(rset.next()) {
+			Gallery g = new Gallery();
+			g.setPhotoNo(rset.getInt("seq_photo_no"));
+			g.setPhotoWriter(rset.getString("photo_writer"));
+			g.setFilename(rset.getString("filename"));
+			g.setPhotoDate(rset.getDate("photo_date"));
+			list.add(g);
+		}
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rset);
+		return list;
+	}
 }

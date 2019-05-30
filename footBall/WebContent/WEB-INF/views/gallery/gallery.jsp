@@ -27,6 +27,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+	
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
@@ -79,15 +80,16 @@ $(document).ready(function(){
 						        <span class="sr-only">Previous</span>
 						    </button>
 						</td>
-						
-						<td class="photo-wrapper">
-							<c:forEach items="${list }" var="m">
-						    	<img class="small-Img" Count="${m.photoNo }" src="/img/gallery/${m.filename }" style="width: 60px; height: 60px; margin-right: 20px;"></img>
+						<td id="sm-Img" class="photo-wrapper">
+							<c:forEach items="${list }" var="m" varStatus="i">
+								<c:if test="${i.index <= 4 }">
+						    		<img class="small-Img" Count="${m.photoNo }" src="/img/gallery/${m.filename }" style="width: 60px; height: 60px; margin-right: 20px;"></img>
+						    	</c:if>
 						    </c:forEach>
 						</td>
 						
 						<td>
-						    <button currentCount="0" totalCount="${totalCount }" value="" id="right-control" class="right carousel-control " data-slide="next" style=" border:none; background: none; color: blue; margin-bottom: 20px;">
+						    <button id="right-control" class="right carousel-control " data-slide="next" style=" border:none; background: none; color: blue; margin-bottom: 20px;">
 					     		<span class="glyphicon glyphicon-chevron-right" ></span>
 					     		<span class="sr-only" >Next</span>
 					   		</button>
@@ -97,19 +99,27 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</section>
-		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-	
-	
 	<script>
-		/* $(".bigImg").click(function(){
+		/* /$(".bigImg").click(function(){
 			var check = confirm("정말로 삭제 하시겠습니까?");
 			if(check){
 				
 				fn_del($(this).attr("Count"),$(this).attr("src")); 
 			}
 			window.open("/galleryDeleteFrm","new", "width=300, height=200, left=150, top=150,scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
-		}); */
-		if(${sessionScope.member.id.equals('admin')}){
+		});  */
+		$(document).ready(function(){
+			if(${gpd.pageNo <= totalPage}){
+				$("#right-control").css("display",'none');
+			}
+		});
+		$(document).ready(function(){
+			if(${gpd.pageNo <= 1 }){
+				$("#left-control").css("display",'none');
+			}
+		});
+		
+		if(${sessionScope.member.id eq 'admin'}){
 			function fileDel(photoNo, filename){
 				var check = confirm("정말로 삭제하시겠습니까?");
 				if(check){
@@ -120,14 +130,13 @@ $(document).ready(function(){
 		}
 		
 		
-		
 		$("#write-btn").click(function(){
 			location.href="/galleryWriteFrm";
 		});//글 작성 페이지로 이동
 		
 		$(".small-Img").click(function(){
 			var sI = $(this).attr("src");
-			$(".item").children().attr('src',sI);
+			$(".active").children().attr('src',sI);
 		});
 		
 		function fn_del(count, src){
@@ -234,4 +243,5 @@ $(document).ready(function(){
 
 	</script> -->
 </body>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </html>

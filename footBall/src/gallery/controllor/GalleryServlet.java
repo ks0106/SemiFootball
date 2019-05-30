@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import gallery.model.service.GalleryService;
 import gallery.model.vo.Gallery;
+import gallery.model.vo.GalleryPageData;
 
 /**
  * Servlet implementation class GalleryServlet
@@ -33,10 +34,19 @@ public class GalleryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int reqPage = 1;
 		int totalCount = 0;
 		try {
 			totalCount = new GalleryService().photoTotalCount();
 			ArrayList<Gallery> list = new GalleryService().photoList();
+			try {
+				reqPage = Integer.parseInt(request.getParameter("reqPage"));
+			} catch(NumberFormatException e) {
+				reqPage = 1;
+			}
+			GalleryPageData gpd = new GalleryService().GalleryList(reqPage);
+			request.setAttribute("gpd", gpd);
+			System.out.println(gpd.getPageNavi());
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/gallery/gallery.jsp");
 			request.setAttribute("totalCount", totalCount);
 			request.setAttribute("list", list);
