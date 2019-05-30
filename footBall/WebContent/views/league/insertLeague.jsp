@@ -13,7 +13,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>대회</title>
+<title>대회 신청</title>
 <style>
 </style>
 
@@ -37,7 +37,7 @@
 		margin-left:20px;
 		display:none;
 	}
-	.insertLeagueBtn{
+	#insertLeagueBtn{
 		width:200px;
 		height: 50px;
 		color:teal;
@@ -45,10 +45,16 @@
 		background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 	}
 	.th{
-		width: 20%;
-		border-bottom: 1px solid gray;
-		padding-top : 10px;
-		padding-bottom: 10px;
+		padding: 15px;
+		width: 25%;
+		text-align: center;
+		height: 20px;
+		font-size: 20px;
+	}
+	.td{
+		padding: 15px;
+		width: 25%;
+		text-align: left;
 	}
 </style>
 </head>
@@ -82,79 +88,55 @@
    			<br><br>
    		<!-- 컨텐츠 본문 타이틀 -->
 			<div id="con1" style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 공지</div>
+				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 신청</div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->
-				<div  style="width:700px;margin:0 auto;margin-bottom:50px;">
-					<img src="/img/poster.png" width="100%" height="100%">
-				</div>
-				<div id="btn-wrapper" style="margin: 0 auto; width: 100%; text-align: center;margin-bottom:100px;">
-					<button type="button" class="insertLeagueBtn" onclick="insertLeague();" >참가 신청</button>
-					<button type="button" class="insertLeagueBtn" onclick="teamView();" >참가 팀 보기</button>
-				</div>			
-				<div id="table-wrapper1" style="margin-bottom: 300px;text-align: center;">
-					<p style="font-size: 30px; font-weight: bold;">지난 공지</p>
-					<table style="margin-top: 50px; border-top: 3px solid green;border-bottom:3px solid green; width: 80%; margin: 0 auto;border-collapse: collapse;">
-						<tr>
-							<th class="th">번호</th>
-							<th class="th" colspan="2">제목</th>
-							<th class="th">작성자</th>
-							<th class="th">등록일</th>
-						</tr>
-						<tr>
-							<td class="th">7</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2019-4-29</td>
-						</tr>
-						<tr>
-							<td class="th">6</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2019-4-14</td>
-						</tr>
-						<tr>
-							<td class="th">5</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2019-3-7</td>
-						</tr>
-						<tr>
-							<td class="th">4</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2018-10-2</td>
-						</tr>
-						<tr>
-							<td class="th">3</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2018-9-10</td>
-						</tr>
-						<tr>
-							<td class="th">2</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2018-6-23</td>
-						</tr>
-						<tr>
-							<td class="th">1</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2018-5-10</td>
-						</tr>
-					</table>
-					<c:if test="${sessionScope.member.id=='admin' }">
-					<div style="margin-top: 50px;">
-						<button type="button" onclick="addLeague();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">공지추가</button>
+				<div  style="width:100%;margin:0 auto;margin-bottom:700px;">
+					<div id="top1-container" style="width: 100%;height: 130px;"> 
+						<form action="/insertLaegue" method="post" enctype="multipart/form-data">
+							<table id="form-table" style="border-top: 3px solid green; border-bottom:3px solid green; margin: 0 auto; width: 80%;">
+								<tr>
+									<th class="th" >팀이름</th>
+									<td class="td" ><input type="text" name="teamName" size="30" style="height:30px;"></td>
+									<th class="th" >대표자 이메일</th>
+									<td class="td" ><input type="text" name="teamEmail" size="30" style="height:30px;"></td>
+								</tr>
+								<tr>
+									<th class="th">대표자 이름</th>
+									<td class="td"><input type="text" name="teamRep" size="30" style="height:30px;" value="${sessionScope.member.name }"></td>
+									<th class="th">대표자 연락처</th>
+									<td class="td"><input type="text" name="teamPhone" size="30" style="height:30px;" value="${sessionScope.member.phone }"></td>
+								</tr>
+								<tr>
+									<th class="th">홈 유니폼 색상</th>
+									<td class="td"><input type="text" name="teamColorHome" size="30" style="height:30px;"></td>
+									<th class="th">어웨이 유니폼 색상</th>
+									<td class="td"><input type="text" name="teamColorAway" size="30" style="height:30px;"></td>
+								</tr>
+								<tr>
+								
+								</tr>
+									<th class="th">팀 엠블럼 사진</th>
+									<td class="td" ><input type="file" name="filepath" onchange="loadImg(this)"></td>
+									<th class="th">이미지 보기</th>
+									<td class="td">
+										<div id="img-viewer">
+											<img id="img-view" width="350">
+										</div>
+									</td>
+							</table>
+							<div id="btn-wrapper" style="width: 80%; margin: 0 auto; height: 50px; text-align: center; margin-top: 60px; margin-bottom: 60px;">
+								<button type="submit" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">신청하기</button>
+								<button type="button" onclick="close();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">취소</button>
+							</div>
+						</form>
 					</div>
-					</c:if>
+					
 				</div>
 			</div>
 		</div>
 	
 	</section>
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	
 <script>
 	$(document).ready(function(){
@@ -174,15 +156,23 @@
 		});
 	
 	});
-		function insertLeague(){
-			location.href="/views/league/insertLeague.jsp";
+	function close(){
+		location.href="/league";
+	}
+	function loadImg(f){
+		if(f.files.length !=0 && f.files[0] !=0){
+			//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
+			//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
+			var reader = new FileReader();
+			reader.readAsDataURL(f.files[0]); //선택한 파일 경로를 읽어옴
+			reader.onload=function(e){ //다 읽어 왔으면 실행
+				$("#img-view").attr('src', e.target.result);
+			}
+		}else{
+			$("#img-view").attr('src','');
 		}
-		function addLeague(){
-			alert("까먹지말고 만들어!");
-		}
-		function teamView(){
-			location.href="/gameTable#teamViewpoint"
-		}
+	}
 </script>
 </body>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </html>
