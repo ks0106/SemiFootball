@@ -53,7 +53,6 @@ public class BranchDao {
 			BranchData bd = new BranchData();
 			bd.setB(b);
 			bd.setBi(bi);
-			System.out.println(bd.getBi().getBi1());
 			list.add(bd);
 		}
 		JDBCTemplate.close(rset);

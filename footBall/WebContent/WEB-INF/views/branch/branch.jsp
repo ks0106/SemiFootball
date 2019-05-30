@@ -33,7 +33,12 @@
 				<hr style="border:3px solid #2c3c57;margin:0 auto;padding:0;">
 				<!-- 사이드바 -->
 				<aside class="aside-bar">
-					<div id="testSticky">지점안내</div>
+					<div id="testSticky">
+						<h2>지점 바로가기</h2>
+						<c:forEach items="${list }" var="bd">
+							<a href="#${bd.b.branchName }" class="go_btn">${bd.b.branchName }</a><br>
+						</c:forEach>
+					</div>
 				</aside>
 				<!-- 좌우측 콘텐트 반복출력 -->
 				<c:forEach items="${list}" var="bd" varStatus="status">
@@ -43,14 +48,14 @@
 								<div class="content-wrapper">
 									<div class="content-left">
 										<ul style="list-style-type: none;">
-											<li class="font-li">${bd.b.branchName }</li>
+											<li class="font-li"><a id="${bd.b.branchName }">${bd.b.branchName }</a></li>
 											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${bd.b.branchAddr }</li>
 											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${bd.b.branchPhone } / ${bd.b.branchTel }</li>
 											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
 										</ul>
 									</div>
 									<div class="content-right">
-										<img class="mainImg right" src="" alt="mainIng"><br>
+										<img class="mainImg right" src="${bd.bi.bi1 }" alt="mainIng"><br>
 										<c:if test="${bd.bi != null}">
 											<img class="subImg right" src="${bd.bi.bi1 }" alt="subImg">
 											<img class="subImg right" src="${bd.bi.bi2 }" alt="subImg">
@@ -58,7 +63,6 @@
 											<img class="subImg right" src="${bd.bi.bi4 }" alt="subImg">
 										</c:if>
 									</div>
-									<input type="hidden" name="branchCode" value="${bd.b.branchCode }">
 									<input type="hidden" name="branchName" value="${bd.b.branchName }">
 								</div>
 							</form>
@@ -67,7 +71,7 @@
 							<form action="/branchInfo" method="get" enctype="miltipart/form-data">
 								<div class="content-wrapper">
 									<div class="content-left">
-										<img class="mainImg left" src="" alt="mainIng"><br>
+										<img class="mainImg left" src="${bd.bi.bi1 }" alt="mainIng"><br>
 										<c:if test="${bd.bi != null }">
 											<img class="subImg left" src="${bd.bi.bi1 }" alt="subImg">
 											<img class="subImg left" src="${bd.bi.bi2 }" alt="subImg">
@@ -77,13 +81,12 @@
 									</div>
 									<div class="content-right">
 										<ul style="list-style-type: none;">
-											<li class="font-li">${bd.b.branchName }</li>
+											<li class="font-li"><a id="${bd.b.branchName }">${bd.b.branchName }</a></li>
 											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${bd.b.branchAddr }</li>
 											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${bd.b.branchPhone } / ${bd.b.branchTel }</li>
 											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
 										</ul>
 									</div>
-									<input type="hidden" name="branchCode" value="${bd.b.branchCode }">
 									<input type="hidden" name="branchName" value="${bd.b.branchName }">
 								</div>
 							</form>
@@ -124,10 +127,17 @@
 			if($('.subImg').attr('src') == "") {
 				$(this).css('display','none');
 			}
-			$mainImgSrc = $('.content-wrapper img:eq(3)').attr('src');
-			$('.mainImg').attr('src',$mainImgSrc);
+			/* 서브이미지 클릭시 메인이미지 대체 */
 			$('.subImg').click(function(){
 				$(this).siblings().eq(0).attr('src',$(this).attr('src'));
+			});
+			
+			$('.go_btn').click(function(event){
+				event.preventDefault();
+				var targetId = ($(this).attr('href')).substring(1);
+				var position = $('#'+targetId).offset();
+				console.log(position);
+				$('html,body').animate({scrollTop:position.top-156},500);
 			});
 			/* 상세정보 버튼 클릭시 - ajax */
 			$('.btn-submit').click(function(){
