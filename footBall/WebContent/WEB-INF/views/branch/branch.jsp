@@ -198,11 +198,7 @@
 			var markerMaxWidth	= 300;				// 마커를 클릭했을때 나타나는 말풍선의 최대 크기
 
 			// 말풍선 내용
-			var contentString	= '<div>' +
-			'<h2>대구남구</h2>'+
-			'<p>안녕하세요. 구글지도입니다.</p>' +
-			
-			'</div>';
+			var contentString	= '<div>' + '<h2>대구남구</h2>' + '<p>안녕하세요. 구글지도입니다.</p>' + '</div>';
 			var myLatlng = new google.maps.LatLng(Y_point, X_point);
 			var mapOptions = {
 				zoom: zoomLevel,
