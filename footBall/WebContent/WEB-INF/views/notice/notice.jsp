@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>공지사항리스트</title>
 <!-- 동영상CSS  -->
 <style>
 
@@ -65,12 +65,6 @@
    .selected{
    	background-color: lightgray;
    }
-#footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height: 5px;   
-}
      .page_area{
       position:absolute;
       z-index:-1;
@@ -83,8 +77,9 @@
    		text-align: center;
    }
    .full{
-   	height: 600px;
+   	height: 1200px;
    }
+   
 </style>
 </head>
 <body>
@@ -120,46 +115,47 @@
 					<center>
 						<h1>공지사항</h1>
 						<c:if test="${sessionScope.member.id =='admin' }">
-							<a href="/noticeWriter">글쓰기</a>
+							<a href="/noticeWriter" class="btn btn-outline-primary btn-sm">글쓰기</a>
 						</c:if>
 						<br>
 						<br>
-						<table class="table" id="table_notice">
+						<table class="table table-dark table-hover" id="table_notice">
+							<thead>
+								<tr>
+									<th>글번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>등록일</th>
+									<th>죄회수</th>
+								</tr>
+							</thead>
+							<tbody>
+						<% for(NoticeVo nv : list) {%>
 							<tr>
-								<th>글번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>등록일</th>
-								<th>조회수</th>
-							</tr>
-							<% for(NoticeVo nv : list) {%>
-							<tr>
-								<th><%=nv.getNoticeNo() %></th>
+								<th><%=nv.getRnum() %></th>
 								<th><a href="/noticeView?noticeNo=<%=nv.getNoticeNo() %>"><%=nv.getNoticeTitle() %></a></th>
 								<th><%=nv.getNoticeWriter() %></th>
 								<th><%=nv.getNoticeDate() %></th>
 								<th><%=nv.getNoticeHit() %></th>
-							</tr>
+							</tr>	
 							<%} %>
+							</tbody>
 						</table>
 						<!-- 페이징 -->
 						<div id="pageNavi">${pd.pageNavi }</div>
+						<br><br>
+						<input type="text" id="search"><button>검색</button>
 					</center>
-					<br>
-					<br>
-					<br>
 				</div>
 				<div id="T-con02" class="tab-con">
 					<h1>F A Q</h1>
 				</div>
 			</div>
 		</div>
-		<div id="footer">
-			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-		</div>
+		
 	</div>
 	<script>
-	  $(".tab-container").each(function  () {
+	  $(".tab-container").each(function() {
 	      var $cmTabList = $(this).children(".tab-list");
 	      var $cmTabListli = $cmTabList.find("li");
 	      var
@@ -186,5 +182,6 @@
 				});
 	</script>
 
+			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

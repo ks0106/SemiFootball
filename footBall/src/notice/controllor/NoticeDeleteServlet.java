@@ -10,19 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import notice.model.service.NoticeService;
-import notice.model.vo.NoticeViewData;
 
 /**
- * Servlet implementation class NoticeUpdateServlet
+ * Servlet implementation class NoticeDeleteServlet
  */
-@WebServlet(name = "NoticeUpdate", urlPatterns = { "/noticeUpdate" })
-public class NoticeUpdateServlet extends HttpServlet {
+@WebServlet(name = "NoticeDelete", urlPatterns = { "/noticeDelete" })
+public class NoticeDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateServlet() {
+    public NoticeDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +30,16 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		NoticeViewData nvd = new NoticeService().listOne(noticeNo);
-		if(nvd.getNv()!=null) {
-			request.setAttribute("noticeVo", nvd.getNv());
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeUpdate.jsp");
-			rd.forward(request, response);
+		int result = new NoticeService().noticeDelete(noticeNo);
+		if(result>0) {
+			request.setAttribute("msg", "공지사항을 삭제하셨습니다.");
 		}else {
-			request.setAttribute("msg", "정보가 없습니다.");
-			request.setAttribute("loc", "/");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			rd.forward(request, response);
+			request.setAttribute("msg", "공지사항 삭제 중 Error발생");
 		}
+		request.setAttribute("loc", "/notice");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

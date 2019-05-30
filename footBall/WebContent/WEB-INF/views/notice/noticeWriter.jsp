@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>공지사항작성</title>
 </head>
 <style>
 /* 페이지 타이틀  */
@@ -31,21 +31,12 @@
 	width: 100%;
 	height: 100px;
 }
-#footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:70px;   
-    background:#ccc;
-}
-     .page_area{
-      position:absolute;
-      z-index:-1;
-      width:100%;
-      top: 550px;
-   }
+
    #noticewriter{
    	width: 60%;
+   }
+   #full{
+   height: 1200px;
    }
 </style>
 <body>
@@ -63,12 +54,13 @@
 </script>
 	
 	<div id="title">고객센터</div>
-
+<div id="full">
+	<section>
 	
 	<div class="table-wrapper"
 		style="text-align: center; width: 80%; margin: 0 auto;">
 		<form action="/noticeInsert" method="post">
-		<section class="page_area">
+		<br><br><br><br>
 			<table class="table table-bordered" id="noticewriter">
 				<tr>
 					<th colspan="2" style="font-size: 20px; font-weight: bold; text-align:center;">공지사항
@@ -81,8 +73,8 @@
 				</tr>
 				<tr>
 					<th style="text-align:center;">작성자</th>
-					<td><p style="text-align:left;"><%=m.getId() %></p> <input type="hidden" class="form-controll"
-						name="noticeWriter" style="text-align:left;" value="<%=m.getId() %>">
+					<td><p style="text-align:left;"><%=m.getName() %></p> <input type="hidden" class="form-controll"
+						name="noticeWriter" style="text-align:left;" value="<%=m.getName() %>">
 					</td>
 				</tr>
 				<tr>
@@ -98,9 +90,10 @@
 			</table>
 		</form>
 	</div>
+	
 	</section>
-	<div id="footer">
+</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-	</div>
+
 </body>
 </html>
