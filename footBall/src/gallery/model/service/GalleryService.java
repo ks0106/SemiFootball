@@ -41,4 +41,15 @@ public class GalleryService {
 		ArrayList<Gallery> list = new GalleryDao().photoList(conn);
 		return list;
 	}
+
+	public int GalleryDao(Gallery g) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new GalleryDao().deletePhoto(conn, g);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
 }

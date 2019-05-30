@@ -94,4 +94,14 @@ public class GalleryDao {
 		JDBCTemplate.close(stmt);
 		return list;
 	}
+	public int deletePhoto(Connection conn, Gallery g) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("deletePhoto");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, g.getPhotoNo());
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
 }
