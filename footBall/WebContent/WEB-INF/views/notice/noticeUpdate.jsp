@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>공지사항수정</title>
 <style>
 	/* 페이지 타이틀  */
 	#title{
@@ -23,6 +23,12 @@
 		color: white;
 		left: 10%;
 		top: 400px;
+		}
+
+    #full{
+   height: 1200px;
+   }
+</style>
 </style>
 </head>
 <body>
@@ -43,19 +49,20 @@
 		<div id="title">
 			고객센터
 		</div>
-	
+	 <div id="full">
    <section>
-      <div class="table-wrapper" style="text-align:center; width:80%; margin:0 auto;">
-         <form action="/noticeUpdate" method="post">
+  
+      <div class="table-wrapper" style="width:80%; margin:0 auto;">
+         <form action="/noticeUpdateEnd" method="post"><br><br><br><br>
             <table class="table table-bordered">
-            <input type="hidden" name="noticeNo" value="">
+            		<input type="hidden" name="noticeNo" value="<%=nv.getNoticeNo() %>">
                <tr>
-                  <th colspan="2" style="font-size:20px; font-weight:bold;"></th>
+                  <th colspan="2" style="font-size:20px; font-weight:bold; text-align:center;">공지사항수정</th>
                </tr>
                <tr>
                		<th style="text-align:center;">제목</th>
                		<td>
-               			<input type="text" name="noticeTitle" style="width:100%;" value="">
+               			<input type="text" name="noticeTitle" style="width:100%;" value="<%=nv.getNoticeTitle() %>">
                		</td>
                </tr>
                <tr>
@@ -66,7 +73,7 @@
                   <th style="text-align:center;">내용</th>
                   <td>
                      <textarea name="noticeContent" class="form-control" rows="3" style="resize: none;">
-                        
+                        <%=nv.getNoticeContent() %>
                      </textarea>
                   </td>
                </tr>
@@ -78,6 +85,9 @@
             </table>
          </form>
       </div>
-   </section>
+      
+   </section></div>
+   			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+   
 </body>
 </html>

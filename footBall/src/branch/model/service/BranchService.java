@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import branch.model.dao.BranchDao;
-import branch.model.vo.Branch;
 import branch.model.vo.BranchData;
 import common.JDBCTemplate;
 
@@ -18,11 +17,11 @@ public class BranchService {
 		return list;
 	}
 
-	public Branch selectOne(String branchName) throws SQLException {
+	public BranchData selectOne(String branchName) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		Branch b = new BranchDao().selectOne(conn, branchName);
+		BranchData bd = new BranchDao().selectOne(conn, branchName);
 		JDBCTemplate.close(conn);
-		return b;
+		return bd;
 	}
 
 }

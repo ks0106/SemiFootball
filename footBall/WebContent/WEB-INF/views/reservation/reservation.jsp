@@ -51,8 +51,43 @@
 			location.href="/reservationView";
 		});
 	});
+	$("#jQ1").click(function(){
+		var selectVal = $("select[name=reservation]").val();
+		$.ajax({
+			url : "/reservationStart.do",
+			data : {selectVal : selectVal},
+			type : "get",
+			success : function(){				//요청 성공한 경우 수행할 함수
+			},
+			error : function(){					//요청 실패한 경우 수행할 함수
+				console.log("서버 전송 실패");
+			}
+		});
+	});
+
+	function reservationCheck(){
+		if($('select[name=reservationSelect]').val() == 'default' || $('select[name=reservationSelect]').val() == null){
+			alert("지점을 선택해주세요!");
+			return false;
+		}else{
+			return true;
+		}
+	}
 </script>
 <style>
+	#btn_Res:hover{
+		animation-name:btn_color;
+		animation-duration: 1s;
+		animation-fill-mode: forwards;
+	}
+	@keyframes btn_color{
+		from{
+			background-color:#2c3c57;
+		}
+		to{
+			background-color:#3366cc;
+		}
+	}
 	.side_nav{
 		margin:5px;
 		color:silver;
@@ -103,20 +138,31 @@
 		<!-- 컨텐츠 본문 -->
    		<!-- 컨텐츠 본문 타이틀 -->
 			<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-   			<br><br>
 				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대관예약</div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->
-				<div style="width:700px;height:400px;margin:0 auto;margin-bottom:100px;border-radius:10px;border:3px solid #2c3c57;">
-					<div style="position:relative;width:100%;height:100px;background-color:#2c3c57;color:white;font-size:30px;font-weight:bolder;text-align:center;">
-						<div style="width:100%;height:100%;position:absolute;top:25px;">원하는 지점을 선택하세요</div>
+				<div style="width:700px;height:400px;margin:0 auto;margin-bottom:100px;border-radius:10px;border:3px solid #2c3c57;background-color:rgb(235,235,235)">
+		<!-- 지점선택 타이틀 -->
+					<div style="width:100%;height:100px;background-color:#2c3c57;color:white;font-size:30px;font-weight:bolder;position:relative;">
+						<img src="/img/map_nav_white.png" style="margin-left:120px;">
+						<p style="float:right;margin-top:25px;margin-right:120px;">예약할 지점을 선택하세요</p>
 					</div>
+		<!-- 지점선택 본문 -->
 					<div style="width:100%;height:350px;text-align:center;">
-						<select name="reservation">
-							<c:forEach items="${list}" var="b" varStatus="i">
-								<option value="${b.branchCode}">${b.branchName}</option>
-							</c:forEach>
-						</select>		
+		<!-- 지점선택 폼 -->
+						<form style="margin-top:75px;" action="/reservationForm" method="post" onsubmit="return reservationCheck();">
+							<select name="reservationSelect" style="width:400px;height:50px;font-size:20px;padding:0;margin-left:6px;">
+								<option value="default" selected disabled hidden>지점선택</option>
+								<c:forEach items="${list}" var="b" varStatus="i">
+									<option value="${b.branchCode}">${b.branchName}</option>
+								</c:forEach>
+							</select>
+							<br>
+							<br>
+							<button id="btn_Res" type="submit" style="width:400px;height:80px;padding:0;font-size:25px;background-color:#2c3c57;color:white;font-weight:bolder;border:none;line-height:5px;cursor:pointer;">
+								대관예약
+							</button>
+						</form>
 					</div>
 				</div>			
 		

@@ -124,7 +124,23 @@ public class NoticeDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
-		System.out.println(result);
+		return result;
+	}
+	//조회수 증가
+	public int noticeHit(Connection conn, int noticeNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("noticehit");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
 		return result;
 	}
 	
@@ -144,6 +160,24 @@ public class NoticeDao {
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	//게시물삭제
+	public int noticeDelete(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("noticeDelete");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
 		}
 		return result;
 	}

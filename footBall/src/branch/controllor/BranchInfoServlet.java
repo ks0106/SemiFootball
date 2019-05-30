@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import branch.model.service.BranchService;
-import branch.model.vo.Branch;
+import branch.model.vo.BranchData;
 
 /**
  * Servlet implementation class BranchInfoServlet
@@ -37,12 +37,13 @@ public class BranchInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String branchName = request.getParameter("branchName");
 		try {
-			Branch b = new BranchService().selectOne(branchName);
+			BranchData bd = new BranchService().selectOne(branchName);
 			JSONObject result = new JSONObject();
-			result.put("branchName", URLEncoder.encode(b.getBranchName(),"utf-8"));
-			result.put("branchAddr", URLEncoder.encode(b.getBranchAddr(),"utf-8"));
-			result.put("branchTel", b.getBranchTel());
-			result.put("branchPhone", b.getBranchPhone());
+			result.put("branchName", URLEncoder.encode(bd.getB().getBranchName(),"utf-8"));
+			result.put("branchAddr", URLEncoder.encode(bd.getB().getBranchAddr(),"utf-8"));
+			result.put("branchTel", bd.getB().getBranchTel());
+			result.put("branchPhone", bd.getB().getBranchPhone());
+			result.put("bi1", bd.getBi().getBi1());
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();
 			out.print(result);

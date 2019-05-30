@@ -81,7 +81,7 @@
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 		<!-- center -->
 		<div>
-			<div style="width:85%;background-color:white;margin:0 auto;">
+			<div style="width:85%;background-color:white;margin:0 auto;overflow:hidden;">
 				<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">KS Sports</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">

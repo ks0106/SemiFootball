@@ -57,6 +57,14 @@ public class NoticeService {
 	public NoticeViewData listOne(int noticeNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		NoticeVo nv = new NoticeDao().listOne(conn,noticeNo);
+		if(nv!=null) {
+			int result = new NoticeDao().noticeHit(conn,noticeNo);
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		}
 		NoticeViewData nvd = new NoticeViewData(nv);
 		JDBCTemplate.close(conn);
 		return nvd;
@@ -79,6 +87,19 @@ public class NoticeService {
 	public int noticeUpdate(NoticeVo nv) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new NoticeDao().noticeUpdate(conn,nv);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	//게시물 삭제
+	public int noticeDelete(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new NoticeDao().noticeDelete(conn, noticeNo);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		}else {
