@@ -26,6 +26,10 @@
 </script>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<!--영상 위 페이지 타이틀 -->
+	<div id="title">
+		대관
+	</div>
 	<section>
 	<!-- 내용 작성 -->
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
