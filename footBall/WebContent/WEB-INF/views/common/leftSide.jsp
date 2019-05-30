@@ -333,14 +333,25 @@
 	});
 </script>
 <script>
-	/*카카오톡 로그아웃*/
+	/*카카오톡 로그아웃
 	function kout(){
 	alert("script");
 	Kakao.Auth.logout(function(){
-		alert("script");
+		setTimeout(function () {
 			location.href="/https://kapi.kakao.com/v1/user/logout";
+						
+		},1000);
         });
-}
+}*/
+	function  kout() {
+		$.ajax({
+			type : "get",
+			url: "http://developers.kakao.com/logout",
+			success:function(){
+				alert("z");
+			};
+		});
+	};
 </script>
 <header class="area2">
 	<%if(m==null){ %>

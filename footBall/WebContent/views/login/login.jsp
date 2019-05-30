@@ -47,13 +47,13 @@
             <div style="border:1px solid darkgray"></div>
             <br>
             <br>
-            <a href="#">아이디 찾기</a>
+            <a href="/views/login/searchId.jsp" onclick="window.open(this.href,'아이디 찾기','width=350,height=300');return false;">아이디 찾기</a>
             <a href="#">비밀번호 찾기</a>
             <a href="/views/login/insert.jsp">회원가입</a>
             <br><br>
             <h1>간편로그인</h1>
             <a id="kakao-login-btn"></a>
-			<a href="http://developers.kakao.com/logout"></a>
+			<a href="http://developers.kakao.com/logout">로그아웃</a>
         </div>
         <br>
     </div>
@@ -85,6 +85,7 @@
              console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
 
              console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
+            
 			location.href="/kakaoLogin?id="+res.id+"&name="+res.properties['nickname'];
          // res.properties.nickname으로도 접근 가능 )
 
