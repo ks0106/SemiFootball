@@ -97,7 +97,7 @@
 				<div id="cal_title"
 					style="width: 367px; height: 40px; margin: 0 auto; margin-bottom: 15px;">
 					<!-- 이전달 -->
-					<div id="prev_month" style="width: 40px; height: 40px; display: inline-block; margin: 0 auto;">
+					<div id="prev_month" style="width: 40px; height: 40px; display: inline-block; margin: 0 auto;float:left;">
 						<%if(m == 0){ %>
 							<a href="/views/test/calendar.jsp?month=<%=m + 11%>&years=<%=y-1%>" target="_self"><img src="/img/prev_gray.png" width="30px" height="30px"></a>
 						<%}else{ %>
@@ -108,7 +108,7 @@
 					<div id="this_month"
 						style="font-size: 30px; display: inline-block; margin: 0 auto; margin-right: 60px; margin-left: 60px;"><%=y%>. <%=(m + 1)%></div>
 					<!-- 다음달 -->
-					<div id="next_month" style="width: 40px; height: 40px; cursor: pointer; display: inline-block; margin: 0 auto;">
+					<div id="next_month" style="width: 40px; height: 40px; cursor: pointer; display: inline-block; margin: 0 auto;float:right;">
 						<%if(m == 11){ %>
 							<a href="/views/test/calendar.jsp?month=<%=m - 11%>&years=<%=y+1%>" target="_self"><img src="/img/next_gray.png" width="30px" height="30px"></a>
 						<%}else{ %>
