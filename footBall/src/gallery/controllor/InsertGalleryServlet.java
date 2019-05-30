@@ -69,13 +69,7 @@ public class InsertGalleryServlet extends HttpServlet {
 				request.setAttribute("msg", "SQL구문 오류");
 				rd.forward(request, response);
 				e.printStackTrace();
-			}
-			
-				
-//				RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
-//				request.setAttribute("msg", "SQL구문 오류");
-//				rd.forward(request, response);
-			
+			}	
 		}
 	}
 

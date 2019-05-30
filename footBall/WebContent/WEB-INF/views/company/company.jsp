@@ -15,19 +15,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-	.company_nav{
+	.side_nav{
 		margin:5px;
 		color:silver;
 	}
-	.company_nav a{
+	.side_nav a{
 		text-decoration:none;
 		color:silver;
 		font-size:16px;
 	}
-	#company_menu1{
+	#side_menu1{
 		display:block;
 	}
-	#company_pr_menu{
+	#side_pr_menu{
 		list-style-type:square;
 		padding:0;
 		margin:0;
@@ -45,10 +45,10 @@
 		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
 		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
 		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
-		$('.company_nav:first').css("color","#3366cc");
-		$('.company_nav a:first').css("color","#3366cc");
-		$('#company_pr_menu').css("display","block");
-		$('.company').click(function(){													/* 메뉴 클릭했을 때 */
+		$('.side_nav:first').css("color","#3366cc");
+		$('.side_nav a:first').css("color","#3366cc");
+		$('#side_pr_menu').css("display","block");
+		$('.side_a').click(function(){													/* 메뉴 클릭했을 때 */
 			if($(this).siblings('ul').css("display") == "block"){						/* 메뉴 컬러가 연할 때 */
 				$(this).siblings('ul').slideUp();										/* 메뉴 닫음 */
 			}else{																		/* 메뉴 컬러가 진할 때 */
@@ -60,7 +60,7 @@
 				$(this).css("color","#3366cc");											/* 컬러 연하게 */
 			}
 		});
-		$('.company_nav').click(function(){
+		$('.side_nav').click(function(){
 			$(this).css("color","#3366cc");
 			$(this).children('a').css("color","#3366cc");
 			$(this).siblings('li').css("color","silver");
@@ -86,17 +86,14 @@
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">KS Sports</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
-						<a class="company" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">회사소개</a>
-						<ul id="company_pr_menu">
-							<li class="company_nav"><a href="#">KS Sports</a></li>
-							<li class="company_nav"><a href="#">연혁</a></li>
+						<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">회사소개</a>
+						<ul id="side_pr_menu">
+							<li class="side_nav" id="side_menu2"><a href="#">KS Sports</a></li>
+							<li class="side_nav" id="side_menu3"><a href="#">연혁</a></li>
 						</ul>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="company" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">제휴제안</a>
-					</div>
-					<div style="margin-bottom:15px;">
-						<a class="company" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">오시는 길</a>
+						<a class="side_a" id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">오시는 길</a>
 					</div>
 				</div>
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">

@@ -57,6 +57,14 @@
         input::placeholder{
         	font-size: 20px;
         }
+        select{
+        	width:160px;
+        	padding: .8em .5em; /* 여백으로 높이 설정 */ 
+        	font-family: inherit; /* 폰트 상속 */ 
+        	border: 1px solid #999; border-radius: 0px; /* iOS 둥근모서리 제거 */        	
+        	-moz-appearance: none; 
+        	appearance: none;
+        }
 	</style>
 <body>
 		<div style="height:900px;" id="maindiv">
@@ -75,6 +83,17 @@
            		
            		<span class="span">비밀번호 재확인</span><span class="text1">(필수)</span><span id="extext2"></span><br><br>
            		<input type="password" name="pwd1" id="pwd1"><br><br>
+           		
+           		<span class="span">비밀번호 찾기 힌트</span><span class="text1">(필수)</span><br>
+           		<select name="pwdHint">
+           			<option>선택하세요</option>
+           			<option value="가장 좋아하는 색상">가장 좋아하는 색상</option>
+           			<option value="가장 좋아하는 연예인">가장 좋아하는 연예인</option>
+           			<option value="내가 나온 초등학교 이름">내가 나온 초등학교 이름</option>
+           		</select><br><br>
+           		<span class="span">비밀번호 찾기 정답</span><span class="text1">(필수)</span><br>
+           		<input type="text" name="pwdHintAnswer">
+           		<br><br>
            		
            		<span class="span">이름</span><span class="text1">(필수)</span><span id="extext3"></span><br><br>
            		<input type="text" name="name" id="name"><br><br>

@@ -5,6 +5,8 @@ import java.sql.Date;
 public class Member {
 	private String id;
 	private String pwd;
+	private String pwdHint;
+	private String pwdHintAnswer;
 	private String name;
 	private String phone;
 	private Date enrollDate;
@@ -12,10 +14,13 @@ public class Member {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Member(String id, String pwd, String name, String phone, Date enrollDate) {
+	public Member(String id, String pwd, String pwdHint, String pwdHintAnswer, String name, String phone,
+			Date enrollDate) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
+		this.pwdHint = pwdHint;
+		this.pwdHintAnswer = pwdHintAnswer;
 		this.name = name;
 		this.phone = phone;
 		this.enrollDate = enrollDate;
@@ -31,6 +36,18 @@ public class Member {
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+	public String getPwdHint() {
+		return pwdHint;
+	}
+	public void setPwdHint(String pwdHint) {
+		this.pwdHint = pwdHint;
+	}
+	public String getPwdHintAnswer() {
+		return pwdHintAnswer;
+	}
+	public void setPwdHintAnswer(String pwdHintAnswer) {
+		this.pwdHintAnswer = pwdHintAnswer;
 	}
 	public String getName() {
 		return name;
@@ -50,6 +67,7 @@ public class Member {
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+
 	
 	
 }

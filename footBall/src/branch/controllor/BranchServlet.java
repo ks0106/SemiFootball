@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import branch.model.service.BranchService;
-import branch.model.vo.Branch;
+import branch.model.vo.BranchData;
 
 /**
  * Servlet implementation class BranchServlet
@@ -33,13 +33,13 @@ public class BranchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			ArrayList<Branch> list = new BranchService().callList();
+			ArrayList<BranchData> list = new BranchService().callList();
 			if(list != null) {
 				request.setAttribute("list", list);
 			}
 			request.getRequestDispatcher("/WEB-INF/views/branch/branch.jsp").forward(request, response);
 		} catch (SQLException e) {
-			request.getRequestDispatcher("/views/common/eqlErrorPage.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/common/sqlErrorPage.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 	}

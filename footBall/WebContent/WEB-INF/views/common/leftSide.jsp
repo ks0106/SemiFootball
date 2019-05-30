@@ -336,8 +336,9 @@
 	/*카카오톡 로그아웃*/
 	function kout(){
 	alert("script");
-	Kakao.Auth.logout(function(data){
-		location.href="/";
+	Kakao.Auth.logout(function(){
+		alert("script");
+			location.href="/https://kapi.kakao.com/v1/user/logout";
         });
 }
 </script>
@@ -353,7 +354,7 @@
 	<div class="menu_bar2">
  		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
 			<div style="margin-left:16px;"><a href="/logout" onclick="kout();"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
- 			<div><a href="/logout" style="text-decoration:none;color:white;">로그아웃</a></div>
+ 			<div><a href="/logout" onclick="kout();" style="text-decoration:none;color:white;">로그아웃</a></div>
 		</div>
 	</div>
 		<%if(m.getId().equals("admin")){ %>
