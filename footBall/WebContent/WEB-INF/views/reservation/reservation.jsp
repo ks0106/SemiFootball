@@ -91,26 +91,44 @@
 		<div style="width:85%;background-color:white;margin:0 auto;">
 		<!-- 컨텐츠 사이드 메뉴 -->
 			<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
-				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">대관 예약/확인</div>
+				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">대관예약/확인</div>
 				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지점별 예약</a>
+					<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대관예약</a>
 				</div>
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">예약확인</a>
 				</div>
 			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 본문 -->
-   			<br><br>
    		<!-- 컨텐츠 본문 타이틀 -->
 			<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대관 예약</div>
+   			<br><br>
+				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대관예약</div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->
-				<div style="width:700px;height:400px;margin:0 auto;margin-bottom:100px;border-radius:50px;border:3px solid gray;">
-					
+				<div style="width:700px;height:400px;margin:0 auto;margin-bottom:100px;border-radius:10px;border:3px solid #2c3c57;">
+					<div style="position:relative;width:100%;height:100px;background-color:#2c3c57;color:white;font-size:30px;font-weight:bolder;text-align:center;">
+						<div style="width:100%;height:100%;position:absolute;top:25px;">원하는 지점을 선택하세요</div>
+					</div>
+					<div style="width:100%;height:350px;text-align:center;">
+						<select name="reservation">
+							<c:forEach items="${list}" var="b" varStatus="i">
+								<option value="${b.branchCode}">${b.branchName}</option>
+							</c:forEach>
+						</select>		
+					</div>
 				</div>			
-			</div>
+		
+<!-- 				<div style="width:700px;height:400px;margin:0 auto;margin-bottom:100px;border-radius:10px;border:3px solid #2c3c57;">
+					<div style="width:50%;height:100%;float:left;">
+						<div style="width:100%;height:50px;background-color:#2c3c57;color:white;font-size:30px;font-weight:bolder;text-align:center;">지점 선택</div>
+					</div>
+					<div style="width:50%;height:100%;float:right;">
+						<div style="width:100%;height:50px;background-color:#2c3c57;color:white;font-size:30px;font-weight:bolder;text-align:center;">검색</div>
+					</div>
+				</div>			
+ -->			</div>
 		</div>
 	
 	</section>
