@@ -58,6 +58,7 @@
 											<img class="subImg right" src="${bd.bi.bi4 }" alt="subImg">
 										</c:if>
 									</div>
+									<input type="hidden" name="branchCode" value="${bd.b.branchCode }">
 									<input type="hidden" name="branchName" value="${bd.b.branchName }">
 								</div>
 							</form>
@@ -82,6 +83,7 @@
 											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
 										</ul>
 									</div>
+									<input type="hidden" name="branchCode" value="${bd.b.branchCode }">
 									<input type="hidden" name="branchName" value="${bd.b.branchName }">
 								</div>
 							</form>
