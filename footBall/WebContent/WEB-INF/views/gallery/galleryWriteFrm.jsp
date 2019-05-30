@@ -80,7 +80,8 @@
 	</section>
 	<script>
 		function loadImg(f){
-			if(f.files.length !=0 && f.files[0] !=0){//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
+			if(f.files.length !=0 && f.files[0] !=0){
+				//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
 				//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
 				var reader = new FileReader();
 				reader.readAsDataURL(f.files[0]); //선택한 파일 경로를 읽어옴
