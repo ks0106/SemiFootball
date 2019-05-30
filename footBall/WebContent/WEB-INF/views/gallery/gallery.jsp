@@ -40,10 +40,9 @@ $(document).ready(function(){
 	<section style="padding-top: 100px; height: 1000px;" >
 		<div style="position: sticky; position: -webkit-stiky;">
 			<div align="right">
-			<button  style="width: 100px; height: 10%; " id="write-btn">글쓰기</button>
-			<button  style="width: 100px; height: 10%; " id="delete-btn">삭제하기</button>
 				<c:if test="${sessionScope.member.id eq 'admin'}">
-				 	
+				 	<button style="width: 100px; height: 10%; " id="write-btn">글쓰기</button>
+					<button onclick="HI();"  style="width: 100px; height: 10%; " id="delete-btn">삭제하기</button>
 				</c:if>
 			</div>
 			<div class="container">
@@ -51,12 +50,12 @@ $(document).ready(function(){
 				    <!-- Wrapper for slides -->
 				    <div id="inner-car" class="carousel-inner" align="center">
 						   	<div class="item active">
-					      		<img class='bigImg' style = 'width: 100%; height: 700px;' src="/img/gallery/${list[0].filename }">
+					      		<img onclick="fileDel('${list[0].photoNo}','${list[0].filename }')" class='bigImg' Count=${list[0].photoNo } style = 'width: 100%; height: 700px;' src="/img/gallery/${list[0].filename }">
 					    	</div>
 					    <c:forEach items="${list }" var="m" varStatus="i">
 						   	<c:if test="${i.count > 1 }"> <!-- 1보다 크면 동작(위에 item active에 index=0번이 들어가고 다음 사진이 index=1이 들어가야 하기 때문에 i.count가 1보다 클 때 를 조건으로 주고 시작한다.) -->
 							   	<div class="item">
-						      		<img class='bigImg' style = 'width: 100%; height: 700px;' src="/img/gallery/${m.filename }">
+						      		<img onclick="fileDel('${m.photoNo}','${m.filename }')" class='bigImg' Count="${m.photoNo }" style = 'width: 100%; height: 700px;' src="/img/gallery/${m.filename }">
 						    	</div> 
 					    	</c:if>
 						</c:forEach>
@@ -83,7 +82,7 @@ $(document).ready(function(){
 						
 						<td class="photo-wrapper">
 							<c:forEach items="${list }" var="m">
-						    	<img class="small-Img" src="/upload/photo/${m.filename }" style="width: 60px; height: 60px; margin-right: 20px;"></img>
+						    	<img class="small-Img" Count="${m.photoNo }" src="/img/gallery/${m.filename }" style="width: 60px; height: 60px; margin-right: 20px;"></img>
 						    </c:forEach>
 						</td>
 						
@@ -102,9 +101,25 @@ $(document).ready(function(){
 	
 	
 	<script>
-		$(document).ready(function(){
-			/* location.href="/gallery"; */
-		});
+		/* $(".bigImg").click(function(){
+			var check = confirm("정말로 삭제 하시겠습니까?");
+			if(check){
+				
+				fn_del($(this).attr("Count"),$(this).attr("src")); 
+			}
+			window.open("/galleryDeleteFrm","new", "width=300, height=200, left=150, top=150,scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
+		}); */
+		if(${sessionScope.member.id.equals('admin')}){
+			function fileDel(photoNo, filename){
+				var check = confirm("정말로 삭제하시겠습니까?");
+				if(check){
+					var url = "/galleryDeleteFrm";
+					location.href=url+"?photoNo="+photoNo+"&filename="+filename;
+				}
+			}
+		}
+		
+		
 		
 		$("#write-btn").click(function(){
 			location.href="/galleryWriteFrm";
@@ -114,6 +129,21 @@ $(document).ready(function(){
 			var sI = $(this).attr("src");
 			$(".item").children().attr('src',sI);
 		});
+		
+		function fn_del(count, src){
+			var allData = {"count": count, "src":src};
+			$.ajax({
+				url : "/galleryDeleteFrm.do",
+				type : "post",
+				data : allData,
+				success: function(data){
+					alert("삭제 완료");
+				},
+				error : function(){
+					console.log("ajax 처리 실패");
+				}
+			});
+		}
 	</script>
 	
 	
