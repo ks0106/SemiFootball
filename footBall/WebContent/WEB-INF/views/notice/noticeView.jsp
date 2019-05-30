@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>공지사항뷰</title>
 <style>
 	/* 페이지 타이틀  */
 	#title{
@@ -32,19 +32,10 @@
    	width:80%;
    	height: 300px;
    }
-     .page_area{
-      position:absolute;
-      z-index:-1;
-      width:100%;
-      top: 50px;
+
+   .full{
+   height: 1200px;
    }
-   #footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:70px;   
-    background:#ccc;
-}
 #noticeview{
 	width: 70%;
 }
@@ -68,7 +59,9 @@
 			고객센터
 		</div>
 	</div>
-		<section class="page_area">
+	
+		<div class="full">
+		
 			<div class="tab-container">
 			<center><h1>공지사항</h1>
          <table class="table" id="noticeview">
@@ -90,19 +83,20 @@
                <td>${nvd.nv.noticeContent}</td>
             </tr>
             <tr>
-               <th colspan="2">
+          	   <th colspan="2">
                	<c:if test="${sessionScope.member.id =='admin' }">
-                  <a href="/noticeUpdate?noticeNo=${nvd.nv.noticeNo}">수정하기</a>
-                  <a href="/noticeDelete?noticeNo=${nvd.nv.noticeNo}">삭제하기</a>
+                  <a href="/noticeUpdate?noticeNo=${nvd.nv.noticeNo}" class="btn btn-outline-primary btn-sm">수정하기</a>
+                  <a href="/noticeDelete?noticeNo=${nvd.nv.noticeNo}" class="btn btn-outline-primary btn-sm">삭제하기</a>
                   </c:if>
-                  <a href="/notice">목록으로</a>
+                  <a href="/notice" class="btn btn-outline-primary btn-sm">목록으로</a>
                </th>
             </tr>
          </table></center>
          </div>
-	</section>
-	<div id="footer">
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+         
 	</div>
+
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	
 </body>
 </html>
