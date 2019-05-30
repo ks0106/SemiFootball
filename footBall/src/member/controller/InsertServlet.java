@@ -34,9 +34,14 @@ public class InsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
+		String pwdHint = request.getParameter("pwdHint");
+		System.out.println(pwdHint);
+		String pwdHintAnswer = request.getParameter("pwdHintAnswer");
+		System.out.println(pwdHintAnswer);
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
-		Member m =new Member(id, pwd, name, phone, null);
+		
+		Member m =new Member(id, pwd, pwdHint, pwdHintAnswer, name, phone, null);
 		try {
 			int result = new MemberService().insert(m);
 			if(result>0) {
