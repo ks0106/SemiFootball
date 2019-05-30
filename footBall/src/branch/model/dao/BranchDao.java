@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import branch.model.vo.Branch;
+import branch.model.vo.BranchData;
+import branch.model.vo.BranchImgs;
 import common.JDBCTemplate;
 
 public class BranchDao {
@@ -28,13 +30,13 @@ public class BranchDao {
 		}
 	}
 
-	public ArrayList<Branch> callList(Connection conn) throws SQLException {
+	public ArrayList<BranchData> callList(Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("callList");
 		pstmt = conn.prepareStatement(query);
 		rset = pstmt.executeQuery();
-		ArrayList<Branch> list = new ArrayList<Branch>();
+		ArrayList<BranchData> list = new ArrayList<BranchData>();
 		while(rset.next()) {
 			Branch b = new Branch();
 			b.setBranchCode(rset.getInt("branch_code"));
@@ -42,7 +44,17 @@ public class BranchDao {
 			b.setBranchAddr(rset.getString("branch_addr"));
 			b.setBranchPhone(rset.getString("branch_phone"));
 			b.setBranchTel(rset.getString("branch_tel"));
-			list.add(b);
+			BranchImgs bi = new BranchImgs();
+			bi.setBiBCode(rset.getInt("bi_b_code"));
+			bi.setBi1(rset.getString("bi1"));
+			bi.setBi2(rset.getString("bi2"));
+			bi.setBi3(rset.getString("bi3"));
+			bi.setBi4(rset.getString("bi4"));
+			BranchData bd = new BranchData();
+			bd.setB(b);
+			bd.setBi(bi);
+			System.out.println(bd.getBi().getBi1());
+			list.add(bd);
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);

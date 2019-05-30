@@ -36,23 +36,29 @@
 					<div id="testSticky">지점안내</div>
 				</aside>
 				<!-- 좌우측 콘텐트 반복출력 -->
-				<c:forEach items="${list}" var="b" varStatus="status">
+				<c:forEach items="${list}" var="bd" varStatus="status">
 					<c:choose>
 						<c:when test="${status.index %2 == 0 }">
 							<form action="/branchInfo" method="get" enctype="multipart/form-data">
 								<div class="content-wrapper">
 									<div class="content-left">
 										<ul style="list-style-type: none;">
-											<li class="font-li">${b.branchName }</li>
-											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
-											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+											<li class="font-li">${bd.b.branchName }</li>
+											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${bd.b.branchAddr }</li>
+											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${bd.b.branchPhone } / ${bd.b.branchTel }</li>
 											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
 										</ul>
 									</div>
 									<div class="content-right">
 										<img class="mainImg right" src="" alt="mainIng"><br>
+										<c:if test="${bd.bi != null}">
+											<img class="subImg right" src="${bd.bi.bi1 }" alt="subImg">
+											<img class="subImg right" src="${bd.bi.bi2 }" alt="subImg">
+											<img class="subImg right" src="${bd.bi.bi3 }" alt="subImg">
+											<img class="subImg right" src="${bd.bi.bi4 }" alt="subImg">
+										</c:if>
 									</div>
-									<input type="hidden" name="branchName" value="${b.branchName }">
+									<input type="hidden" name="branchName" value="${bd.b.branchName }">
 								</div>
 							</form>
 						</c:when>
@@ -61,16 +67,22 @@
 								<div class="content-wrapper">
 									<div class="content-left">
 										<img class="mainImg left" src="" alt="mainIng"><br>
+										<c:if test="${bd.bi != null }">
+											<img class="subImg left" src="${bd.bi.bi1 }" alt="subImg">
+											<img class="subImg left" src="${bd.bi.bi2 }" alt="subImg">
+											<img class="subImg left" src="${bd.bi.bi3 }" alt="subImg">
+											<img class="subImg left" src="${bd.bi.bi4 }" alt="subImg">
+										</c:if>
 									</div>
 									<div class="content-right">
 										<ul style="list-style-type: none;">
-											<li class="font-li">${b.branchName }</li>
-											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${b.branchAddr }</li>
-											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${b.branchPhone } / ${b.branchTel }</li>
+											<li class="font-li">${bd.b.branchName }</li>
+											<li class="font-li"><img class="icon" src="img/branch/branch_pinIcon.png">${bd.b.branchAddr }</li>
+											<li class="font-li"><img class="icon" src="img/branch/branch_phoneIcon.png">${bd.b.branchPhone } / ${bd.b.branchTel }</li>
 											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
 										</ul>
 									</div>
-									<input type="hidden" name="branchName" value="${b.branchName }">
+									<input type="hidden" name="branchName" value="${bd.b.branchName }">
 								</div>
 							</form>
 						</c:when>
@@ -106,6 +118,10 @@
 		$(function(){
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
+			/* 소스 없는 서브이미지 태그 감추기 */
+			if($('.subImg').attr('src') == "") {
+				$(this).css('display','none');
+			}
 			$mainImgSrc = $('.content-wrapper img:eq(3)').attr('src');
 			$('.mainImg').attr('src',$mainImgSrc);
 			$('.subImg').click(function(){
