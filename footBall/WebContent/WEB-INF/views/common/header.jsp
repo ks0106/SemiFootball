@@ -302,7 +302,7 @@
 	 			<li class="header_item"><a href="/matching">매치/용병</a></li>
 	 			<li class="header_item"><a href="/league">대회</a></li>
 	 			<li class="header_item"><a href="/gallery">갤러리</a></li>
-	 			<li class="header_item"><a href="/notice">고객센터</a></li>
+	 			<li class="header_item"><a href="/notice">커뮤니티</a></li>
 	 			<li class="header_item"><a href="/company">회사소개</a></li>
 	 			<li class="header_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
 	 		</ul>
@@ -332,7 +332,7 @@
 					<li class="right_menu_item"><a href="/matching">매치/용병</a></li>
 					<li class="right_menu_item"><a href="/league">대회</a></li>
 					<li class="right_menu_item"><a href="/gallery">갤러리</a></li>
-					<li class="right_menu_item"><a href="/notice">고객센터</a></li>
+					<li class="right_menu_item"><a href="/notice">커뮤니티</a></li>
 					<li class="right_menu_item"><a href="/company">회사소개</a></li>
 					<li class="right_menu_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
 				</ul>
