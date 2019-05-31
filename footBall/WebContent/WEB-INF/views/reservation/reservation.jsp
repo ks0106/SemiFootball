@@ -51,20 +51,6 @@
 			location.href="/reservationView";
 		});
 	});
-	$("#jQ1").click(function(){
-		var selectVal = $("select[name=reservation]").val();
-		$.ajax({
-			url : "/reservationStart.do",
-			data : {selectVal : selectVal},
-			type : "get",
-			success : function(){				//요청 성공한 경우 수행할 함수
-			},
-			error : function(){					//요청 실패한 경우 수행할 함수
-				console.log("서버 전송 실패");
-			}
-		});
-	});
-
 	function reservationCheck(){
 		if($('select[name=reservationSelect]').val() == 'default' || $('select[name=reservationSelect]').val() == null){
 			alert("지점을 선택해주세요!");

@@ -70,16 +70,23 @@
 							<div style="border-bottom:1px solid darkgray;">
 								<jsp:include page="/views/test/calendar.jsp"/>
 							</div>
-							<div style="width:90%;height:100px;margin:0 auto;">
-								<span id="receipt-cal">날짜 선택</span>
+							<div style="width:90%;height:80px;margin:0 auto;display:table;">
+								<div style="display:table-cell;vertical-align:middle;font-weight:bolder;font-size:18px;">날짜선택</div><span id="receipt-cal" style="display:table-cell;vertical-align:middle;font-size:20px;"></span>
+							</div>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;padding:0;background-color:darkgray;">
+							<div style="width:90%;height:150px;margin:0 auto;">
+								<div style="font-weight:bolder;font-size:18px;margin-top:30px;display:inline-block;">구장선택</div><span style="color:orangered;font-size:12px;float:right;">※구장을 선택하면 대관 가능 시간이 출력됩니다.</span>
+								<select name="courtSelect" style="width:100%;height:50px;font-size:16px;padding:0;margin-top:10px;">
+									<option value="default" selected>::: 구장선택 :::</option>
+									<c:forEach items="${rfd.list}" var="r" varStatus="i">
+										<option value="${r.courtCCode}">${r.courtName}</option>
+									</c:forEach>
+								</select>
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;padding:0;background-color:darkgray;">
 							<div style="width:90%;height:100px;margin:0 auto;">
-							
-							</div>
-							<hr style="width:90%;height:1px;border:0;margin:0 auto;padding:0;background-color:darkgray;">
-							<div style="width:90%;height:100px;margin:0 auto;">
-							
+								<div style="font-weight:bolder;font-size:18px;margin-top:30px;display:inline-block;">구장선택</div><span style="color:orangered;font-size:12px;float:right;">※구장을 선택하면 대관 가능 시간이 출력됩니다.</span>
+								
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;padding:0;background-color:darkgray;">
 							<div style="width:90%;height:100px;margin:0 auto;">
@@ -101,9 +108,14 @@
 	<script>
 		$(document).on("click",".future",function(){
 			var month = $(this).parents('tr').siblings('tr').find('#tbCalendarYM').text();
-			var txt = "<span>"+month+"."+$(this).text()+"</span>";
-			console.log(txt);
-			$('#receipt-cal').after(txt);
+			var day = parseInt($(this).text());
+			var txt;
+			if(day > 9){
+				txt = month+"."+$(this).text();				
+			}else{
+				txt = month+"."+"0"+$(this).text();
+			}
+			$('#receipt-cal').text(txt);
 		});
 	</script>
 
