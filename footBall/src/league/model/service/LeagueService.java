@@ -2,6 +2,7 @@ package league.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import league.model.dao.LeagueDao;
@@ -18,5 +19,11 @@ public class LeagueService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	public ArrayList<League> teamList() throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<League> list = new LeagueDao().teamList(conn);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 }

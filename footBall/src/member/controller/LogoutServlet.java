@@ -39,8 +39,8 @@ public class LogoutServlet extends HttpServlet {
 		if(session!=null) {
 			//String url = "/http://developers.kakao.com/logout";
 			URL obj = new URL("http://developers.kakao.com/logout");
-			URLConnection conn = 	obj.openConnection();
-			//HttpURLConnection con = (HttpURLConnection)obj.openConnection();
+			HttpURLConnection conn = (HttpURLConnection)obj.openConnection();
+			
 			session.invalidate();
 			
 			

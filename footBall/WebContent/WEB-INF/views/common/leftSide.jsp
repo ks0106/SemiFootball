@@ -342,14 +342,19 @@
 						
 		},1000);
         });
-}*/
+	}*/
 	function  kout() {
+		var url = "http://developers.kakao.com/logout";
 		$.ajax({
 			type : "get",
-			url: "http://developers.kakao.com/logout",
+			url: url,
 			success:function(){
 				alert("z");
-			};
+			
+			},
+			erorr : function () {
+			 	alert("zz");	
+			}
 		});
 	};
 </script>
@@ -370,6 +375,7 @@
 	</div>
 	<%} %>
 </header>
+
 <header class="area">
 <!-- 헤더 작성 -->
 	<div class="menu_bar">

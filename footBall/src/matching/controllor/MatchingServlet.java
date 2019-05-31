@@ -1,6 +1,8 @@
 package matching.controllor;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;

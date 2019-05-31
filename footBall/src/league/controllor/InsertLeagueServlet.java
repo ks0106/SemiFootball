@@ -55,7 +55,7 @@ public class InsertLeagueServlet extends HttpServlet {
 			String teamColorHome = mRequest.getParameter("teamColorHome");
 			String teamColorAway = mRequest.getParameter("teamColorAway");
 			String filepath = mRequest.getFilesystemName("filepath");
-			League t = new League(0, teamName, teamRep, teamPhone, teamEmail, teamColorHome, teamColorAway, filepath);
+			League t = new League(0, teamName, teamRep, teamPhone, teamEmail, teamColorHome, teamColorAway, filepath,0);
 			
 			int result=0;
 			try {
@@ -71,7 +71,6 @@ public class InsertLeagueServlet extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 				request.setAttribute("msg", "SQL구문 오류");
 				rd.forward(request, response);
-				e.printStackTrace();
 			}	
 		}
 	}
