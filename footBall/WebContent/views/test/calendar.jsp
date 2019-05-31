@@ -94,8 +94,11 @@
 	            //테이블에 정확한 날짜 찍는 변수
 	            //innerHTML : js 언어를 HTML의 권장 표준 언어로 바꾼다
 	            //new를 찍지 않아서 month는 +1을 더해줘야 한다. 
-	             tbCalendarYM.innerHTML = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월"; 
-	 
+	            if(today.getMonth()+1 > 9){
+		             tbCalendarYM.innerHTML = today.getFullYear() + "." + (today.getMonth() + 1); 
+	            }else{
+		             tbCalendarYM.innerHTML = today.getFullYear() + ".0" + (today.getMonth() + 1); 	            	
+	            }	 
 	             /*while은 이번달이 끝나면 다음달로 넘겨주는 역할*/
 	            while (tbCalendar.rows.length > 2) {
 	            //열을 지워줌
@@ -158,14 +161,14 @@
 	</script>
 	</head>
 	<body>
-	<table id="calendar" align="center" style="border:1px solid darkgray;background-color:rgb(240,240,240);">
+	<table id="calendar" align="center" style="background-color:rgb(240,240,240);">
 	    <tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
 	    	<td align="center" colspan="7" style="height:80px;">
 				<div onclick="prevCalendar()" id="prev_month" style="width: 84px; height: 84px; display: inline-block; margin: 0 auto;float:left;cursor:pointer;">
 		        	<img src="/img/prev_gray.png" width="30px" height="30px" style="margin-top:25px;">
 				</div>
 	        	<div id="tbCalendarYM" class="this_month" style="margin-top:18px;">
-       		        yyyy년 m월
+       		        yyyy.mm
 	        	</div>
 				<div onclick="nextCalendar()" id="next_month" style="width: 84px; height: 84px; display: inline-block; margin: 0 auto;float:right;cursor:pointer;">
 		        	<img src="/img/next_gray.png" width="30px" height="30px" style="margin-top:25px;">

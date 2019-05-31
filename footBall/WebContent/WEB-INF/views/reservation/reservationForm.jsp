@@ -48,7 +48,7 @@
 				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">대관예약/확인</div>
 				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu1" style="color:#3366cc;">대관예약</a>
+					<a href="/reservation" class="side_a" id="side_menu1" style="color:#3366cc;">대관예약</a>
 				</div>
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu2" style="color:#2c3c57;">예약확인</a>
@@ -62,17 +62,50 @@
 		<!-- 컨텐츠 본문 -->
 				<div style="width:100%;height:150vh;">
 					<div style="margin-left:10px;font-size:20px;font-weight:bolder;">예약 가능 일정</div>
-					<hr style="margin-left:10px;width:120px;border:3px solid #2c3c57;margin-bottom:30px;padding:0;float:left;">
-					<hr style="width:20px;border:3px solid #3366cc;margin-bottom:30px;padding:0;float:left;">
-				</div>
+					<hr style="margin-left:10px;width:120px;border:2px solid #2c3c57;padding:0;float:left;">
+					<hr style="width:20px;border:2px solid #3366cc;padding:0;float:left;">
 		<!-- 달력 -->
-				<div style="margin-left:10px;background-color:pink;margin-top:50px;position:absolute;top:680px;">
-					<jsp:include page="/views/test/calendar.jsp"/>
+					<div style="margin-left:10px;margin-top:50px;position:absolute;top:680px;">
+						<div style="width:590px;height:1500px;border: 1px solid darkgray;">
+							<div style="border-bottom:1px solid darkgray;">
+								<jsp:include page="/views/test/calendar.jsp"/>
+							</div>
+							<div style="width:90%;height:100px;margin:0 auto;">
+								<span id="receipt-cal">날짜 선택</span>
+							</div>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;padding:0;background-color:darkgray;">
+							<div style="width:90%;height:100px;margin:0 auto;">
+							
+							</div>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;padding:0;background-color:darkgray;">
+							<div style="width:90%;height:100px;margin:0 auto;">
+							
+							</div>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;padding:0;background-color:darkgray;">
+							<div style="width:90%;height:100px;margin:0 auto;">
+							
+							</div>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;padding:0;background-color:darkgray;">
+							<div style="width:90%;height:100px;margin:0 auto;">
+							
+							</div>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;padding:0;background-color:darkgray;">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+	<script>
+		$(document).on("click",".future",function(){
+			var month = $(this).parents('tr').siblings('tr').find('#tbCalendarYM').text();
+			var txt = "<span>"+month+"."+$(this).text()+"</span>";
+			console.log(txt);
+			$('#receipt-cal').after(txt);
+		});
+	</script>
 
 </body>
 </html>
