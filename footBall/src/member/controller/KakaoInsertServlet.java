@@ -1,32 +1,26 @@
 package member.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class KakaoInsertServlet
  */
-@WebServlet(name = "Logout", urlPatterns = { "/logout" })
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "KakaoInsert", urlPatterns = { "/kakaoInsert" })
+public class KakaoInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public KakaoInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,17 +29,9 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if(session!=null) {
-			//String url = "/http://developers.kakao.com/logout";
-			
-
-		
-			session.invalidate();
-			
-			
-		}
-		response.sendRedirect("/");
+		String id =request.getParameter("id");
+		String name = request.getParameter("name");
+		//Member m = new MemberService().kakaoInsert(id,name);
 	}
 
 	/**

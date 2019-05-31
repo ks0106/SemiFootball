@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDUqmobb6MbacXONycKU0UweQir-dpu3kM" ></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wsxy6r6myr&submodules=geocoder"></script> <!-- 네이버 api 추가 -->
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
@@ -116,7 +116,7 @@
 						<div class="locForm">
 							<h2>위치 안내</h2>
 							<!-- google maps api here -->
-							<div id="map_ma"></div>
+							<div id="map" style="width:100%; height:500px;"></div>
 						</div>
 					</div>
 				</div>
@@ -188,38 +188,62 @@
 		  }
 		}
 		
-		/* google maps api */
-		$(function(){
-			var myLatlng = new google.maps.LatLng(35.837143,128.558612); // 위치값 위도 경도
-			var Y_point			= 35.837143;		// Y 좌표
-			var X_point			= 128.558612;		// X 좌표
-			var zoomLevel		= 18;				// 지도의 확대 레벨 : 숫자가 클수록 확대정도가 큼
-			var markerTitle		= "대구광역시";		// 현재 위치 마커에 마우스를 오버을때 나타나는 정보
-			var markerMaxWidth	= 300;				// 마커를 클릭했을때 나타나는 말풍선의 최대 크기
-
-			// 말풍선 내용
-			var contentString	= '<div>' + '<h2>대구남구</h2>' + '<p>안녕하세요. 구글지도입니다.</p>' + '</div>';
-			var myLatlng = new google.maps.LatLng(Y_point, X_point);
-			var mapOptions = {
-				zoom: zoomLevel,
-				center: myLatlng,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			}
-			var map = new google.maps.Map(document.getElementById('map_ma'), mapOptions);
-			var marker = new google.maps.Marker({
-							position: myLatlng,
-							map: map,
-							title: markerTitle
-						});
-			var infowindow = new google.maps.InfoWindow({
-								content: contentString,
-								maxWizzzdth: markerMaxWidth
-														
-							});
-			google.maps.event.addListener(marker, 'click', function() {
-					infowindow.open(map, marker);
+		/* naver map api */
+		window.onload = function() {
+			/* var map = new naver.maps.Map('map');  */
+			var map = new naver.maps.Map('map',{
+				center : new naver.maps.LatLng(37.533807,126.896772),
+				zoom : 11,
+				zoomControl :true,
+				zoomControlOptions:{
+					position : naver.maps.Position.TOP_RIGHT,
+					style : naver.maps.ZoomControlStyle.SMALL
+				}
+			});
+			var marker = new naver.maps.Marker({
+				position : new naver.maps.LatLng(37.533807,126.896772),
+				map : map
+			});
+			naver.maps.Event.addListener(map,'click',function(e){
+				marker.setPosition(e.coord);
+				if(infoWindow.getMap()) {
+					infoWindow.close();
+				}
+				//위도, 경도는 바로 구할 수 있음
+				//위도, 경도를 바탕으로 주소를 갖고오기 - using geocode - 위(import script)에 submodule을 추가해야함
+				naver.maps.Service.reverseGeocode({ //cf) .geocode : 주소를 위.경도로 바꾸기
+					location : new naver.maps.LatLng(e.coord.lat(),e.coord.lng())
+					}, function(status,response) {
+						if(status !== naver.maps.Service.Status.OK) {/* !== : 자료형까지 비교하는 JS 연산자 */
+							return alert('주소정보 없음');
+						}
+						var result = response.result;
+						items = result.items; /* 도로명주소, 지번주소의 배열형태로 전달받음 */
+						address = items[1].address;
+						contentString = [
+							'<div class="iw_inner">',
+							'<p>'+address+'</p>',
+							'</div>'
+						].join('');
 				});
-		});
-		</script>
+			});
+			var contentString = [
+				'<div class="iw_inner>"',
+				'<p>서울시 영등포구 선유동2로 57 이레빌딩</p>',
+				'</div>'
+			].join('');
+			var infoWindow = new naver.maps.InfoWindow();
+			naver.maps.Event.addListener(marker, 'click', function(e){
+				if(infoWindow.getMap()) {
+					infoWindow.close();
+				} else {
+					infoWindow.setContent(contentString);
+					infoWindow.open(map, marker);
+				}
+					
+			});
+		}
+		
+	</script>
 </body>
 </html>

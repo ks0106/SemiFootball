@@ -60,7 +60,7 @@ public class MemberDAO {
 		result = pstmt.executeUpdate();
 		return result;
 	}
-	public Member searchId(Connection conn , String id) {
+	public Member kakaosearchId(Connection conn , String id) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Member m =null;
@@ -85,5 +85,42 @@ public class MemberDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return m;
+	}
+	public int kakaoInsert(Connection conn, String id , String name) {
+		PreparedStatement pstmt = null;
+		int result =0;
+		String query = prop.getProperty("kakaoInsert");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+		
+	}
+	public String searchId(Connection conn,String name , String pwdHint,String pwdHintAnswer)throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String id =null;
+		String query = prop.getProperty("searchId");
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, name);
+		pstmt.setString(2, pwdHint);
+		pstmt.setString(3, pwdHintAnswer);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			id=rset.getString("id");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return id;
 	}
 }
