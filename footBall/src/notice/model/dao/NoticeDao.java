@@ -181,4 +181,60 @@ public class NoticeDao {
 		}
 		return result;
 	}
+	
+	//titleCount
+	public int titleCount(Connection conn,String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query = prop.getProperty("titleCount");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	//searchKeywordTitle
+	public ArrayList<NoticeVo> searchKeywordTitle(Connection conn,int start,int end,String keyword){
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<NoticeVo> list = null;
+		String query = prop.getProperty("searchKeywordTitle");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<NoticeVo>();
+			while(rset.next()) {
+				NoticeVo nv = new NoticeVo();
+				nv.setNoticeNo(rset.getInt("notice_no"));
+				nv.setNoticeTitle(rset.getString("notice_title"));
+				nv.setNoticeWriter(rset.getString("notice_writer"));
+				nv.setNoticeContent(rset.getString("notice_content"));
+				nv.setNoticeDate(rset.getDate("notice_date"));
+				nv.setNoticeHit(rset.getInt("notice_hit"));
+				nv.setRnum(rset.getInt("rnum"));
+				list.add(nv);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		} 
+		return list;
+	}
 }

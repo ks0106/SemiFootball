@@ -16,71 +16,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/notice/notice.css">
 <title>공지사항리스트</title>
-<!-- 동영상CSS  -->
-<style>
-
-	/* 페이지 타이틀  */
-	#title{
-		position:absolute;
-		z-index: 100;
-		font-size: 70px;
-		font-weight:900;
-		color: white;
-		left: 10%;
-		top: 400px;
-	}
-	 .tab-container{
-      position:absolute;
-      top:485px;
-      width:100%;
-      height:100px;
-   }
-	.tab-list{
-      margin:0;
-      padding0;
-      height:100%;
-      list-style-type: none;
-      border-bottom:1px solid black;
-      padding-left: 0;
-   }
-   .list-li{
-      height: 100%;
-      width: 50%;
-      float: left;
-      text-align: center;
-      line-height: 100px;
-      font-size: 40px;
-      font-weight: bold;
-      border-right: 1px solid black;
-      box-sizing: border-box;
-   }
-   .navi_match_li:last-child{
-      border-right: none;
-   }
-   .munebar{
-   	text-decoration: none;
-   	color : black;
-   }
-   .selected{
-   	background-color: lightgray;
-   }
-     .page_area{
-      position:absolute;
-      z-index:-1;
-      width:100%;
-      top: 50px;
-   }
-   #table_notice{
-   		width:70%;
-   		height: 200px;
-   		text-align: center;
-   }
-   .full{
-   	height: 1200px;
-   }
-   
-</style>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -144,11 +81,15 @@
 						<!-- 페이징 -->
 						<div id="pageNavi">${pd.pageNavi }</div>
 						<br><br>
-						<input type="text" id="search"><button>검색</button>
+						<form action="/searchKeyword" method="get">
+							<input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해주세요">
+							<button type="submit" id="search">검색</button>
+						</form>
 					</center>
 				</div>
 				<div id="T-con02" class="tab-con">
 					<h1>F A Q</h1>
+					
 				</div>
 			</div>
 		</div>
@@ -181,7 +122,6 @@
 					});
 				});
 	</script>
-
 			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
