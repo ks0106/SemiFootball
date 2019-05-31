@@ -29,7 +29,7 @@ public class ReservationDao {
 		ArrayList<Branch> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = prop.getProperty("reservationBranch");
+		String query = prop.getProperty("reservationBranchList");
 		stmt = conn.createStatement();
 		rset = stmt.executeQuery(query);
 		list = new ArrayList<Branch>();
@@ -67,6 +67,27 @@ public class ReservationDao {
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return list;
+	}
+	
+	public Branch reservationBranch(Connection conn, int rCode) throws SQLException {
+		Branch b = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationBranch");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, rCode);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			b = new Branch();
+			b.setBranchCode(rset.getInt("branch_code"));
+			b.setBranchName(rset.getString("branch_name"));
+			b.setBranchAddr(rset.getString("branch_addr"));
+			b.setBranchPhone(rset.getString("branch_phone"));
+			b.setBranchTel(rset.getString("branch_tel"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return b;
 	}
 
 }

@@ -345,6 +345,7 @@
    			dataType:"json",
    			data:{pageNum:pageNum},
    			success: function(data){
+   				
    				var writer = data.matchWriter;
    				var matchType = data.matchType;
    				var matchBName = data.matchBName;

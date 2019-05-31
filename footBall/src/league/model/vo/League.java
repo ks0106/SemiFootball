@@ -9,12 +9,10 @@ public class League {
 	private String teamColorHome;
 	private String teamColorAway;
 	private String filepath;
-	public League() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	private int teamTableLevel;
+
 	public League(int teamNo, String teamName, String teamRep, String teamPhone, String teamEmail, String teamColorHome,
-			String teamColorAway, String filepath) {
+			String teamColorAway, String filepath, int teamTableLevel) {
 		super();
 		this.teamNo = teamNo;
 		this.teamName = teamName;
@@ -24,7 +22,14 @@ public class League {
 		this.teamColorHome = teamColorHome;
 		this.teamColorAway = teamColorAway;
 		this.filepath = filepath;
+		this.teamTableLevel = teamTableLevel;
 	}
+
+	public League() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getTeamNo() {
 		return teamNo;
 	}
@@ -72,6 +77,13 @@ public class League {
 	}
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
+	}
+	public int getTeamTableLevel() {
+		return teamTableLevel;
+	}
+	
+	public void setTeamTableLevel(int teamTableLevel) {
+		this.teamTableLevel = teamTableLevel;
 	}
 	  
 }

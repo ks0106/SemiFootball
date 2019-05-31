@@ -2,7 +2,6 @@ package reservation.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.sun.media.jfxmediaimpl.MediaDisposer.ResourceDisposer;
+
+import member.model.vo.Member;
 import reservation.model.service.ReservationService;
-import reservation.model.vo.Court;
+import reservation.model.vo.ReservationFormData;
 
 /**
  * Servlet implementation class ReservationFormServlet
@@ -33,15 +36,24 @@ public class ReservationFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		int rCode = Integer.parseInt(request.getParameter("reservationSelect"));
-		try {
-			ArrayList<Court> list = new ReservationService().reservationCourt(rCode);
-			request.setAttribute("list", list);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationForm.jsp");
+		HttpSession session = request.getSession(false);
+		Member m = (Member)session.getAttribute("member");
+		if(m != null) {
+			request.setCharacterEncoding("utf-8");
+			int rCode = Integer.parseInt(request.getParameter("reservationSelect"));		
+			try {
+				ReservationFormData rfd = new ReservationService().reservationCourt(rCode);
+				request.setAttribute("rfd", rfd);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationForm.jsp");
+				rd.forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			request.setAttribute("msg", "로그인을 해주세요.");
+			request.setAttribute("loc", "/views/login/login.jsp");
 			rd.forward(request, response);
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 

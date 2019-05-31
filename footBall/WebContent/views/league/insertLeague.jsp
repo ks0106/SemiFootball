@@ -93,7 +93,7 @@
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:100%;margin:0 auto;margin-bottom:700px;">
 					<div id="top1-container" style="width: 100%;height: 130px;"> 
-						<form action="/insertLaegue" method="post" enctype="multipart/form-data">
+						<form action="/insertLeague" method="post" enctype="multipart/form-data">
 							<table id="form-table" style="border-top: 3px solid green; border-bottom:3px solid green; margin: 0 auto; width: 80%;">
 								<tr>
 									<th class="th" >팀이름</th>
@@ -120,8 +120,8 @@
 									<td class="td" ><input type="file" name="filepath" onchange="loadImg(this)"></td>
 									<th class="th">이미지 보기</th>
 									<td class="td">
-										<div id="img-viewer">
-											<img id="img-view" width="350">
+										<div id="img-viewer" style="width: 200px; height: 200px;">
+											<img id="img-view" width="100%" height="100%">
 										</div>
 									</td>
 							</table>
