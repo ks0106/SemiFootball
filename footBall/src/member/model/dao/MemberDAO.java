@@ -86,6 +86,25 @@ public class MemberDAO {
 		}
 		return m;
 	}
+	public int kakaoInsert(Connection conn, String id , String name) {
+		PreparedStatement pstmt = null;
+		int result =0;
+		String query = prop.getProperty("kakaoInsert");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+		
+	}
 	public String searchId(Connection conn,String name , String pwdHint,String pwdHintAnswer)throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

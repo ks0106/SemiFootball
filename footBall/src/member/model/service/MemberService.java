@@ -25,11 +25,23 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
-	public Member kakaosearchId(String id) {
+	public Member kakaosearchId(String id,String name) {
 		Connection conn = JDBCTemplate.getConnection();
 		Member m = new MemberDAO().kakaosearchId(conn,id);
-		JDBCTemplate.close(conn);
-		return m;
+		if(m!=null) {
+			JDBCTemplate.close(conn);
+			return m;			
+		}else {
+			int result = new MemberDAO().kakaoInsert(conn,id,name);
+			if(result>0) {
+				m = new MemberDAO().kakaosearchId(conn,id);
+				JDBCTemplate.close(conn);
+				return m;
+			}else {
+				return m;
+			}
+		}
+		
 	}
 	public String searchId(String name , String pwdHint, String pwdHintAnswer)throws SQLException {
 		Connection conn =JDBCTemplate.getConnection();
@@ -37,4 +49,5 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return id ;
 	}
+	
 }

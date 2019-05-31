@@ -9,6 +9,7 @@
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 사이드 헤더(높이가 일정 크기 이상일 때 사이드) -->
 <style>
 	body{
@@ -330,7 +331,21 @@
 					top:"-500px"},500);
 			}
 		});
+		
 	});
+	function  kout() {
+		var url = "http://developers.kakao.com/logout";
+		$.ajax({
+			
+			url: url,
+			dataType: 'jsonp',
+			jsonpCallback: "myCallback",
+			
+			complete : function(){      //try~catch의 finally (옵션)
+	               location.href="/logout";
+	           }
+		});
+	};
 </script>
 <script>
 	/*카카오톡 로그아웃
@@ -343,20 +358,7 @@
 		},1000);
         });
 	}*/
-	function  kout() {
-		var url = "http://developers.kakao.com/logout";
-		$.ajax({
-			type : "get",
-			url: url,
-			success:function(){
-				alert("z");
-			
-			},
-			erorr : function () {
-			 	alert("zz");	
-			}
-		});
-	};
+	
 </script>
 <header class="area2">
 	<%if(m==null){ %>
@@ -369,8 +371,8 @@
 	<%}else{ %>
 	<div class="menu_bar2">
  		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
-			<div style="margin-left:16px;"><a href="/logout" onclick="kout();"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
- 			<div><a href="/logout" onclick="kout();" style="text-decoration:none;color:white;">로그아웃</a></div>
+			<div style="margin-left:16px;"><a  onclick="kout();"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
+ 			<div><a onclick="kout();" style="text-decoration:none;color:white;">로그아웃</a></div>
 		</div>
 	</div>
 		<%if(m.getId().equals("admin")){ %>

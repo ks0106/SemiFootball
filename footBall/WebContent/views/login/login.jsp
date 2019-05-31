@@ -53,7 +53,7 @@
             <br><br>
             <h1>간편로그인</h1>
             <a id="kakao-login-btn"></a>
-			<a href="http://developers.kakao.com/logout">로그아웃</a>
+			<a href="http://developers.kakao.com/logout"></a>
 			
         </div>
         <br>

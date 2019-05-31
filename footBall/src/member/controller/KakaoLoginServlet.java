@@ -35,7 +35,7 @@ public class KakaoLoginServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		
-		Member m = new MemberService().kakaosearchId(id);
+		Member m = new MemberService().kakaosearchId(id,name);
 		if(m!=null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", m);
