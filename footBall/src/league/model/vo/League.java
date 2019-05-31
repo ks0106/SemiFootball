@@ -10,9 +10,38 @@ public class League {
 	private String teamColorAway;
 	private String filepath;
 	private int teamTableLevel;
+	private int match1;
+	private int match2;
+	private int match3;
+	
+	
+
+	public int getMatch1() {
+		return match1;
+	}
+
+	public void setMatch1(int match1) {
+		this.match1 = match1;
+	}
+
+	public int getMatch2() {
+		return match2;
+	}
+
+	public void setMatch2(int match2) {
+		this.match2 = match2;
+	}
+
+	public int getMatch3() {
+		return match3;
+	}
+
+	public void setMatch3(int match3) {
+		this.match3 = match3;
+	}
 
 	public League(int teamNo, String teamName, String teamRep, String teamPhone, String teamEmail, String teamColorHome,
-			String teamColorAway, String filepath, int teamTableLevel) {
+			String teamColorAway, String filepath, int teamTableLevel, int match1, int match2, int match3) {
 		super();
 		this.teamNo = teamNo;
 		this.teamName = teamName;
@@ -23,6 +52,9 @@ public class League {
 		this.teamColorAway = teamColorAway;
 		this.filepath = filepath;
 		this.teamTableLevel = teamTableLevel;
+		this.match1 = match1;
+		this.match2 = match2;
+		this.match3 = match3;
 	}
 
 	public League() {

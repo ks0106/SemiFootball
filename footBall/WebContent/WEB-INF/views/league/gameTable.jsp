@@ -29,9 +29,11 @@
 			location.href="/league";
 		});
 		$("#side_menu2").click(function(){
-			location.href="/gameTable"
 		});
 		$("#side_menu3").click(function(){
+		});
+		$("#side_menu4").click(function(){
+			location.href="/gameTable"
 		});
 	
 	});
@@ -198,6 +200,15 @@
 		top: 74%;
 		left: 91%;
 	}
+	.lose{
+		width:100%;
+		height:100%;
+		background-color:black;
+		position:absolute;
+		top:0%;
+		left: 0%;
+		opacity: 0.5;
+	}
 </style>
 </head>
 <body>
@@ -220,10 +231,13 @@
 					<a class="side_a" id="side_menu1" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 공지</a>
 				</div>
 				<div style="margin-bottom:15px;">
-					<a class="side_a selected" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
+					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
 				</div>
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난 대회 결과</a>
+				</div>
+				<div style="margin-bottom:15px;">
+					<a class="side_a selected" id="side_menu4" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
 				</div>
 			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 본문 -->
@@ -235,20 +249,34 @@
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:100%;margin:0 auto;margin-bottom:1500px;">
 				<!-- 대진표 배경 div  -->
+				<c:set var="top4" value="4" />
 					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
-					<div id="top1"></div>
-					<div id="top2" class="win2"></div>
-					<div id="top3" class="win2"></div>
-					<div id="top4" class="win4"></div>
-					<div id="top5" class="win4"></div>
-					<div id="top6" class="win4"></div>
-					<div id="top7" class="win4"></div>
+							<div id="top1"></div>
+							<div id="top2" class="win2"></div>
+							<div id="top3" class="win2"></div>
+							<div id="top4" class="win4-1"></div>
+							<div id="top5" class="win4-1"></div>
+							<div id="top6" class="win4-2"></div>
+							<div id="top7" class="win4-2"></div>
 					<c:forEach items="${list }" var="l" varStatus="i">
-						
-						<div id="top${i.count+7 }" class="win8"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;"></div>
-						 
+						<c:if test="${(i.count+7)<10 }">
+							<div id="top${i.count+7 }" class="win8-1"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" onclick="winner(${l.teamNo});"><div></div></div>
+						</c:if>
+						<c:if test="${(i.count+7)>9&&(i.count+7)<12 }">
+							<div id="top${i.count+7 }" class="win8-2"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" onclick="winner(${l.teamNo});"><div></div></div>
+						</c:if>
+						<c:if test="${(i.count+7)>11&&(i.count+7)<14 }">
+							<div id="top${i.count+7 }" class="win8-3"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" onclick="winner(${l.teamNo});"><div></div></div>
+						</c:if>
+						<c:if test="${(i.count+7)>13&&(i.count+7)<16 }">
+							<div id="top${i.count+7 }" class="win8-4"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" onclick="winner(${l.teamNo});"><div></div></div>
+						</c:if>
 					</c:forEach>
 				</div>
+				<div id="cansleBtn" style="margin: 0 auto; width: 30%;">
+					<button onclick="cansle()">초기화</button>
+					<button onclick="confirm">확정하기</button>
+				 </div>
 				<!-- 현재 참가팀 엠블럼  -->
 				<div id="teamViewpoint" style="height: 100px;"></div>
 				<div id="teamView" style="margin: 0 auto; width: 80%; height: 500px; ">
@@ -265,21 +293,74 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	<script>
 		$(document).ready(function(){
-			$(".win8").click(function(){
-				var img;
+		$(".win8-1").click(function(){
 				img = "<img src='"+$(this).children().attr("src")+"' style='"+$(this).children().attr("style")+"'>";
+				$("#top4").empty();
+				$(this).siblings().filter($(".win8-1")).append("<div></div>");
+				$(this).children().remove("div");
+				$(this).siblings().filter($(".win8-1")).children().filter("div").addClass("lose");
+				$("#top4").append(img);
 				
-				$(".win4").click(function() {
-					if($(this).children().is("img")){
-						img="";
-					}else{
-						$(this).append(img);
-						img="";
-					}
-				});
+			});
+			
+			$(".win8-2").click(function(){
+				img = "<img src='"+$(this).children().attr("src")+"' style='"+$(this).children().attr("style")+"'>";
+				$("#top5").empty();
+				$(this).siblings().filter($(".win8-2")).append("<div></div>");
+				$(this).children().remove("div");
+				$(this).siblings().filter($(".win8-2")).children().filter("div").addClass("lose");
+				$("#top5").append(img);
+			});
+			
+			$(".win8-3").click(function(){
+				img = "<img src='"+$(this).children().attr("src")+"' style='"+$(this).children().attr("style")+"'>";
+				$("#top6").empty();
+				$(this).siblings().filter($(".win8-3")).append("<div></div>");
+				$(this).children().remove("div");
+				$(this).siblings().filter($(".win8-3")).children().filter("div").addClass("lose");
+				$("#top6").append(img);
+			});
+			$(".win8-4").click(function(){
+				img = "<img src='"+$(this).children().attr("src")+"' style='"+$(this).children().attr("style")+"'>";
+				$("#top7").empty();
+				$(this).siblings().filter($(".win8-4")).append("<div></div>");
+				$(this).children().remove("div");
+				$(this).siblings().filter($(".win8-4")).children().filter("div").addClass("lose");
+				$("#top7").append(img);
+			});
+			$(".win4-1").click(function(){
+				img = "<img src='"+$(this).children().attr("src")+"' style='"+$(this).children().attr("style")+"'>";
+				$("#top2").empty();
+				$(this).siblings().filter($(".win4-1")).append("<div></div>");
+				$(this).children().remove("div");
+				$(this).siblings().filter($(".win4-1")).children().filter("div").addClass("lose");
+				$("#top2").append(img);
+			});
+			$(".win4-2").click(function(){
+				img = "<img src='"+$(this).children().attr("src")+"' style='"+$(this).children().attr("style")+"'>";
+				$("#top3").empty();
+				$(this).siblings().filter($(".win4-2")).append("<div></div>");
+				$(this).children().remove("div");
+				$(this).siblings().filter($(".win4-2")).children().filter("div").addClass("lose");
+				$("#top3").append(img);
+			});
+			$(".win2").click(function(){
+				img = "<img src='"+$(this).children().attr("src")+"' style='"+$(this).children().attr("style")+"'>";
+				$("#top1").empty();
+				$(this).siblings().filter($(".win2")).append("<div></div>");
+				$(this).children().remove("div");
+				$(this).siblings().filter($(".win2")).children().filter("div").addClass("lose");
+				$("#top1").append(img);
 			});
 			
 		});
+		/* function winner(teamNo){
+			location.href="/winner?teamNo="+teamNo;
+			$(this).chiledren().filter("div").addClass("lose");
+		} */
+		function cansle(){
+			location.href="/settingGameTable"
+		}
 	</script>
 </body>
 </html>

@@ -37,6 +37,7 @@ public class LeagueDao {
 		rset = stmt.executeQuery(query);
 		while(rset.next()) {
 			League l = new League();
+			l.setTeamNo(rset.getInt("team_no"));
 			l.setTeamName(rset.getString("team_name"));
 			l.setTeamRep(rset.getString("team_rep"));
 			l.setTeamPhone(rset.getString("team_Phone"));
@@ -45,10 +46,32 @@ public class LeagueDao {
 			l.setTeamColorAway(rset.getString("team_color_away"));
 			l.setFilepath(rset.getString("filepath"));
 			l.setTeamTableLevel(rset.getInt("team_table_level"));
+			l.setMatch1(rset.getInt("match1"));
+			l.setMatch2(rset.getInt("match2"));
+			l.setMatch3(rset.getInt("match3"));
 			list.add(l);
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(stmt);
 		return list;
+	}
+	public int winner(Connection conn , int teamNo) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update fb_team set team_table_level= team_table_level+1 where team_no=?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, teamNo);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int setGame(Connection conn ) throws SQLException {
+		Statement stmt= null;
+		int result = 0;
+		String query = "update fb_team set team_table_level =0,match1= 0,match2= 0,match3= 0";
+		stmt = conn.createStatement();
+		result = stmt.executeUpdate(query);
+		JDBCTemplate.close(stmt);
+		return result;
 	}
 }
