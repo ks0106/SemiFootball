@@ -47,13 +47,14 @@
             <div style="border:1px solid darkgray"></div>
             <br>
             <br>
-            <a href="/views/login/searchId.jsp" onclick="window.open(this.href,'아이디 찾기','width=350,height=300');return false;">아이디 찾기</a>
-            <a href="#">비밀번호 찾기</a>
+            <a href="/views/login/searchId.jsp" onclick="window.open(this.href,'아이디 찾기','width=450,height=400');return false;">아이디 찾기</a>
+            <a href="/views/login/searchPwd.jsp" onclick="window.open(this.href,'비밀번호 찾기','width=450,height=400');return false;">비밀번호 찾기</a>
             <a href="/views/login/insert.jsp">회원가입</a>
             <br><br>
             <h1>간편로그인</h1>
             <a id="kakao-login-btn"></a>
 			<a href="http://developers.kakao.com/logout">로그아웃</a>
+			
         </div>
         <br>
     </div>
