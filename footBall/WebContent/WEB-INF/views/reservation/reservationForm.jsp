@@ -26,6 +26,10 @@
 </script>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<!--영상 위 페이지 타이틀 -->
+	<div id="title">
+		대관
+	</div>
 	<section>
 	<!-- 내용 작성 -->
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
@@ -42,13 +46,13 @@
 					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">예약확인</a>
 				</div>
 			</div><!-- 사이드 메뉴 종료 -->			
-   		<!-- 컨텐츠 본문 타이틀 -->
+		<!-- 컨텐츠 본문 -->
 			<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
+   		<!-- 컨텐츠 본문 타이틀 -->
 				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대관예약</div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
-		<!-- 컨텐츠 본문 -->
 		<!-- 달력 -->
-				<div style="width:600px;height:500px;background-color:silver;"></div>
+				<jsp:include page="/views/test/calendar.jsp"/>
 			</div>
 		</div>
 	</section>

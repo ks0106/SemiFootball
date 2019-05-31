@@ -108,4 +108,42 @@ public class NoticeService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	//검색기능
+	public NoticePageData searchKeyword(int reqPage, String keyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		int numPerPage = 5;
+		int totalCount = 0;
+		int totalPage = 0;
+		int start = 0;
+		int end = 0;
+		ArrayList<NoticeVo> list = null;
+		totalCount = new NoticeDao().titleCount(conn,keyword);
+		totalPage = (totalCount%numPerPage==0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+		start = (reqPage-1)*numPerPage+1;
+		end = reqPage*numPerPage;
+		list = new NoticeDao().searchKeywordTitle(conn,start,end,keyword);
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		if(pageNo!=1) {
+			pageNavi+="<a class='btn' href='/searchKeywordNotice?reqPage="+(pageNo-1)+"&keyword="+keyword+"'>이전</a>";
+		}
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) { //둘 중 하나라도 만족하면 수행하지 않겠다
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>"+pageNo+"</span>"; //보고있는 페이지는 누를수 없게 하기
+			}else {
+				pageNavi += "<a class='btn' href='/searchKeyword?reqPage="+pageNo+"&keyword="+keyword+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		//다음 버튼 생성
+		if(pageNo <= totalPage) {
+			pageNavi +="<a class='btn' href='/searchKeyword?reqPage="+pageNo+"&keyword="+keyword+"'>다음</a>";
+		}
+		NoticePageData pd = new NoticePageData(list,pageNavi);
+		JDBCTemplate.close(conn);
+		return pd;
+		}
 }
