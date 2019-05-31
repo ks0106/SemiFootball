@@ -34,14 +34,23 @@ public class ReservationFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		int rCode = Integer.parseInt(request.getParameter("reservationSelect"));
-		try {
-			ArrayList<Court> list = new ReservationService().reservationCourt(rCode);
-			request.setAttribute("list", list);
+		String years = request.getParameter("years");
+		String month = request.getParameter("month");
+		if(years != null || month != null) {
+			request.setAttribute("years", years);
+			request.setAttribute("month", month);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationForm.jsp");
-			rd.forward(request, response);
-		} catch (SQLException e) {
-			e.printStackTrace();
+			rd.forward(request, response);			
+		}else {
+			int rCode = Integer.parseInt(request.getParameter("reservationSelect"));
+			try {
+				ArrayList<Court> list = new ReservationService().reservationCourt(rCode);
+				request.setAttribute("list", list);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationForm.jsp");
+				rd.forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
