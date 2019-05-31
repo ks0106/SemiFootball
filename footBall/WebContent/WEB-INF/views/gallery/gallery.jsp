@@ -48,16 +48,25 @@ $(document).ready(function(){
 			</div>
 			<div class="container">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				    <ul class="carousel-indicators" style="display:none">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                        <li data-target="#myCarousel" data-slide-to="5"></li>
+                    </ul>
+                    	
 				    <!-- Wrapper for slides -->
 				    <div id="inner-car" class="carousel-inner" align="center">
-						   	<div class="item active">
-					      		<img onclick="fileDel('${list[0].photoNo}','${list[0].filename }')" class='bigImg' Count=${list[0].photoNo } style = 'width: 100%; height: 700px;' src="/img/gallery/${list[0].filename }">
-					    	</div>
+				    	<div class="item active">
+					    	<img onclick="fileDel('${list[0].photoNo}','${list[0].filename }')" class='bigImg' Count=${list[0].photoNo } style = 'width: 100%; height: 700px;' src="/img/gallery/${list[0].filename }">
+                      	</div>
 					    <c:forEach items="${list }" var="m" varStatus="i">
 						   	<c:if test="${i.count > 1 }"> <!-- 1보다 크면 동작(위에 item active에 index=0번이 들어가고 다음 사진이 index=1이 들어가야 하기 때문에 i.count가 1보다 클 때 를 조건으로 주고 시작한다.) -->
-							   	<div class="item">
-						      		<img onclick="fileDel('${m.photoNo}','${m.filename }')" class='bigImg' Count="${m.photoNo }" style = 'width: 100%; height: 700px;' src="/img/gallery/${m.filename }">
-						    	</div> 
+								<div class="item">
+							      	<img  onclick="fileDel('${m.photoNo}','${m.filename }')" class='bigImg' Count="${m.photoNo }" style = 'width: 100%; height: 700px;' src="/img/gallery/${m.filename }">
+						    	</div>
 					    	</c:if>
 						</c:forEach>
 				    </div>
@@ -72,6 +81,8 @@ $(document).ready(function(){
 				     	<span class="sr-only">Next</span>
 				    </a>
 				 </div>
+				 
+				 <!-- 작은 화면 -->
 				 <table class="carousel-inner" style="margin-top: 20px; width:100%; height:60px; text-align:center;">
 					<tr id="photo-wrapper" style="text-align: center">
 						<td>
@@ -80,11 +91,9 @@ $(document).ready(function(){
 						        <span class="sr-only">Previous</span>
 						    </button>
 						</td>
-						<td id="sm-Img" class="photo-wrapper">
+						<td id="sm-Img">
 							<c:forEach items="${list }" var="m" varStatus="i">
-								<c:if test="${i.index <= 4 }">
-						    		<img class="small-Img" Count="${m.photoNo }" src="/img/gallery/${m.filename }" style="width: 60px; height: 60px; margin-right: 20px;"></img>
-						    	</c:if>
+						    	<a href="" data-target="#myCarousel" data-slide-to="${i.index }"><img class="small-Img" Count="${m.photoNo }" src="/img/gallery/${m.filename }" style="width: 60px; height: 60px; margin-right: 20px;"></a>
 						    </c:forEach>
 						</td>
 						
@@ -109,15 +118,40 @@ $(document).ready(function(){
 			window.open("/galleryDeleteFrm","new", "width=300, height=200, left=150, top=150,scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
 		});  */
 		$(document).ready(function(){
+			
 			if(${gpd.pageNo <= totalPage}){
 				$("#right-control").css("display",'none');
 			}
-		});
-		$(document).ready(function(){
-			if(${gpd.pageNo <= 1 }){
+			
+			/* if(${gpd.pageNo <= 1 }){
 				$("#left-control").css("display",'none');
-			}
+			} */ 
 		});
+		
+		 $(document).ready(function(){
+			var n = 0;
+ 			console.log($(".small-Img").length);
+			if($(".small-Img").length > 4){
+				$(".small-Img:gt(4)").css('display', 'none');
+			};
+			
+			 $("#right-control").click(function(){
+				 if(n != ${gpd.totalPage}){
+					 n++; 
+				 }
+				 $(".small-Img:lt("+5n+")").css('display', 'none'); // 5, 10, 15 이상 감추기
+				 $(".small-Img:gt("+(5*n-1)+")").css('display', 'inline'); // 9, 14, 감추기 보여주기
+				 $(".small-Img:gt("+(5*n+4)+")").css('display', 'none'); // 9, 14 이상 감추기
+			});
+			
+			$("#left-control").click(function(){
+				$(".small-Img:lt("+5n+")").css('display', 'inline'); // 0, 5, 10 이하 보여주기
+				if(n != 1 && n != 0){
+					n--;
+				}
+				$(".small-Img:gt("+(5*n-1)+")").css('display', 'none'); // 4, 9, 14 이상 감추기
+			}); 
+		}); 
 		
 		if(${sessionScope.member.id eq 'admin'}){
 			function fileDel(photoNo, filename){
@@ -134,10 +168,13 @@ $(document).ready(function(){
 			location.href="/galleryWriteFrm";
 		});//글 작성 페이지로 이동
 		
-		$(".small-Img").click(function(){
-			var sI = $(this).attr("src");
-			$(".active").children().attr('src',sI);
-		});
+		<%--$(".small-Img").click(function(){
+			console.log($('.active').children().attr('src'));
+			$('.item').attr('class', 'item');
+			var index = $(this).index();
+			$(".bigImg").eq(index).parents('.item').attr("class", "item active");
+		}); //작은 사진 클릭시 이벤트 --%>
+		
 		
 		function fn_del(count, src){
 			var allData = {"count": count, "src":src};
