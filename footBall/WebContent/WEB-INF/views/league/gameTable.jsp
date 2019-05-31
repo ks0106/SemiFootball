@@ -69,9 +69,135 @@
 		box-sizing: border-box;
 		display: inline-block;
 		float: left;
-		border: 1px solid;
+		text-align: center;
+		font-size: 15px;
+		font-weight: 700;
+		line-height: 45px;
 	}
-	
+	.teamE{
+		width: 100%;
+		height: 80%;
+	}
+	#top1{
+		position:absolute;
+		width: 150px;
+		height: 150px;
+		border: 1px solid;
+		top: 1%;
+		left: 44%;
+	}
+	#top2{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 28%;
+		left: 19%;
+	}
+	#top3{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 28%;
+		left: 72%;
+	}
+	#top4{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 50%;
+		left: 6%;
+	}
+	#top5{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 50%;
+		left: 32%;
+	}
+	#top6{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 50%;
+		left: 59%;
+	}
+	#top7{
+	position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 50%;
+		left: 85%;
+	}
+	#top8{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: -1%;
+	}
+	#top9{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 13%;
+	}
+	#top10{
+	position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 26%;
+	}
+	#top11{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 39%;
+	}
+	#top12{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 52%;
+	}
+	#top13{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 65%;
+	}
+	#top14{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 78%;
+	}
+	#top15{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 91%;
+	}
 </style>
 </head>
 <body>
@@ -109,23 +235,51 @@
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:100%;margin:0 auto;margin-bottom:1500px;">
 				<!-- 대진표 배경 div  -->
-					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%;margin: 0 auto;">
+					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
+					<div id="top1"></div>
+					<div id="top2" class="win2"></div>
+					<div id="top3" class="win2"></div>
+					<div id="top4" class="win4"></div>
+					<div id="top5" class="win4"></div>
+					<div id="top6" class="win4"></div>
+					<div id="top7" class="win4"></div>
+					<c:forEach items="${list }" var="l" varStatus="i">
+						
+						<div id="top${i.count+7 }" class="win8"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;"></div>
+						 
+					</c:forEach>
 				</div>
+				<!-- 현재 참가팀 엠블럼  -->
 				<div id="teamViewpoint" style="height: 100px;"></div>
-				<div id="teamView" style="margin: 0 auto; width: 80%; height: 500px; border: 1px solid;">
-					<div class="attendTeam"></div>
-					<div class="attendTeam"></div>
-					<div class="attendTeam"></div>
-					<div class="attendTeam"></div>
-					<div class="attendTeam"></div>
-					<div class="attendTeam"></div>
-					<div class="attendTeam"></div>
-					<div class="attendTeam"></div>
+				<div id="teamView" style="margin: 0 auto; width: 80%; height: 500px; ">
+				<p style="width: 80%;height: 50px; margin: 0 auto;text-align: center;font-size: 50px;font-weight: 700;margin-bottom: 50px;">현재 참가팀</p>
+				<c:forEach items="${list }" var="l">
+					<div class="attendTeam"><div class="teamE"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;"></div>${l.teamName }</div>
+					
+				</c:forEach>
 				</div>
 			</div>
 		</div>
 	
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	<script>
+		$(document).ready(function(){
+			$(".win8").click(function(){
+				var img;
+				img = "<img src='"+$(this).children().attr("src")+"' style='"+$(this).children().attr("style")+"'>";
+				
+				$(".win4").click(function() {
+					if($(this).children().is("img")){
+						img="";
+					}else{
+						$(this).append(img);
+						img="";
+					}
+				});
+			});
+			
+		});
+	</script>
 </body>
 </html>
