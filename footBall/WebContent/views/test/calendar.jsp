@@ -20,8 +20,8 @@
 	}
 	.past{
 		font-size:18px;
-		width:83px;
-		height:68px;
+		width:78px;
+		height:63px;
 	 	border: 1px solid darkgray;
 	 	cursor: pointer;
 	 	color:lightgray;
@@ -29,8 +29,8 @@
 	 }
 	.future{
 		font-size:18px;
-		width:83px;
-		height:68px;
+		width:78px;
+		height:63px;
 		border: 1px solid darkgray;
 		cursor: pointer;
 		text-align:center;
@@ -45,8 +45,8 @@
 	}
 	.week{
 		font-size:18px;
-		width:83px;
-		height:68px;
+		width:78px;
+		height:63px;
 		text-align:center;
 	}
 </style>
@@ -158,7 +158,7 @@
 	</script>
 	</head>
 	<body>
-	<table id="calendar" align="center" style="border:1px solid darkgray;background-color:rgb(240,245,245);">
+	<table id="calendar" align="center" style="border:1px solid darkgray;background-color:rgb(240,240,240);">
 	    <tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
 	    	<td align="center" colspan="7" style="height:80px;">
 				<div onclick="prevCalendar()" id="prev_month" style="width: 84px; height: 84px; display: inline-block; margin: 0 auto;float:left;cursor:pointer;">

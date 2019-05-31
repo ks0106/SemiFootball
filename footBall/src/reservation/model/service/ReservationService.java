@@ -8,6 +8,7 @@ import branch.model.vo.Branch;
 import common.JDBCTemplate;
 import reservation.model.dao.ReservationDao;
 import reservation.model.vo.Court;
+import reservation.model.vo.ReservationFormData;
 
 public class ReservationService {
 	public ArrayList<Branch> reservationBranch() throws SQLException{
@@ -16,11 +17,12 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
-	public ArrayList<Court> reservationCourt(int rCode) throws SQLException{
+	public ReservationFormData reservationCourt(int rCode) throws SQLException{
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Court> list = new ReservationDao().reservationCourt(conn,rCode);
+		Branch b = new ReservationDao().reservationBranch(conn,rCode);
+		ReservationFormData rfd = new ReservationFormData(list,b);
 		JDBCTemplate.close(conn);
-		return list;
+		return rfd;
 	}
-
 }
