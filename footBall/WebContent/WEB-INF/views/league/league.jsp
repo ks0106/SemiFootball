@@ -69,7 +69,7 @@
 				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">Reague</div>
 				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 공지</a>
+					<a class="side_a selected" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 공지</a>
 				</div>
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
@@ -77,6 +77,10 @@
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난 대회 결과</a>
 				</div>
+				<div style="margin-bottom:15px;">
+					<a class="side_a " id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
+				</div>
+				
 			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 본문 -->
    			<br><br>
@@ -168,9 +172,11 @@
 			location.href="/league";
 		});
 		$("#side_menu2").click(function(){
-			location.href="/gameTable"
 		});
 		$("#side_menu3").click(function(){
+		});
+		$("#side_menu4").click(function(){
+			location.href="/gameTable"
 		});
 	
 	});
