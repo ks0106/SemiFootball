@@ -53,10 +53,14 @@
 				alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 			}
 		});
-
 	});
 </script>
 <style>
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+	    -webkit-appearance: none;
+	    margin: 0;
+	}
 	.side_a{
 		font-weight:bolder;
 		font-size:18px;
@@ -78,6 +82,43 @@
 		color:white;
 		display:inline-block;
 		margin:1px;cursor:pointer;
+	}
+	.reservationGoods{
+		width:45%;
+		height:30px;
+		font-size:15px;
+		paddign:0;
+		margin:0 auto;
+		border:1px solid lightgray;
+ 		display:none;
+	}
+	.reservationOption{
+		width:25%;
+		height:30px;
+		font-size:15px;
+		paddign:0;
+		margin:0 auto;
+		border:1px solid lightgray;
+ 		display:none;
+	}
+	.reservationAmount{
+		width:15%;
+		height:30px;
+		font-size:15px;
+		padding:0;
+		margin:0 auto;
+		border:1px solid lightgray;
+ 		display:none;
+	}
+	.addBtn{
+		width:10%;
+		height:30px;
+		background-color: silver;
+		border:0;
+		color:white;
+		font-weight:bolder;
+		font-size:15px;
+ 		display:none;
 	}
 </style>
 <body>
@@ -139,28 +180,44 @@
 								<div style="font-size:18px;margin-top:30px;display:inline-block;">물품대여 및 구매</div><span id="referenceText3" style="color:red;font-size:15px;float:right;">※필수 선택사항이 아닙니다.</span>	
 								<div style="width:90%;margin:0 auto;margin-top:30px;">
 									<div style="margin-top:20px;">
-										물<br>
-										<select id="reservationWater" name="reservationWater" style="width:100%;height:30px;font-size:15px;paddign:0;margin:0 auto;border:1px solid lightgray;">
+										<label><input type="checkbox" class="checkGoods" id="checkWater">물</label><span style="font-size:13px;float:right;">구매 가능 수량 : <span class="goodsCount"></span>개</span><br>
+										<select class="reservationGoods" id="reservationWater" name="reservationWater">
 											<option id="default" value="default" selected>::: 제품 선택 :::</option>
 										</select>
+										<select class="reservationOption" id="reservationWaterOption" name="reservationWaterOption">
+											<option id="default" value="default" selected>::: 옵션 선택 :::</option>
+										</select>
+										<input type="number" class="reservationAmount" id="reservationWaterAmount" name="reservationWaterAmount" placeholder="수량" min="1">
+										<input class="addBtn" id="addWater" type="button" value="추가">
 									</div>
 									<div style="margin-top:20px;">
-										조끼<br>
-										<select id="reservationVest" name="reservationVest" style="width:100%;height:30px;font-size:15px;paddign:0;margin:0 auto;border:1px solid lightgray;">
+										<label><input type="checkbox" class="checkGoods" id="checkVest">조끼</label><span style="font-size:13px;float:right;">구매 가능 수량 : <span class="goodsCount"></span>개</span><br>
+										<select class="reservationGoods" id="reservationVest" name="reservationVest">
 											<option id="default" value="default" selected>::: 제품 선택 :::</option>
 										</select>										
+										<select class="reservationOption" id="reservationVestOption" name="reservationVestOption">
+											<option id="default" value="default" selected>::: 옵션 선택 :::</option>
+										</select>
+										<input type="number" class="reservationAmount" id="reservationVestAmount" name="reservationVestAmount" placeholder="수량" min="1">
+										<input class="addBtn" id="addVest" type="button" value="추가">
 									</div>
 									<div style="margin-top:20px;">
-										신발
-										<select id="reservationShoes" name="reservationShoes" style="width:100%;height:30px;font-size:15px;paddign:0;margin:0 auto;border:1px solid lightgray;">
+										<label><input type="checkbox" class="checkGoods" id="checkShoes">신발</label><span style="font-size:13px;float:right;">구매 가능 수량 : <span class="goodsCount"></span>개</span><br>
+										<select class="reservationGoods" id="reservationShoes" name="reservationShoes">
 											<option id="default" value="default" selected>::: 제품 선택 :::</option>
 										</select>										
+										<select class="reservationOption" id="reservationShoesOption" name="reservationShoesOption">
+											<option id="default" value="default" selected>::: 옵션 선택 :::</option>
+										</select>
+										<input type="number" class="reservationAmount" id="reservationShoesAmount" name="reservationShoesAmount" placeholder="수량" min="1">
+										<input class="addBtn" id="addShoes" type="button" value="추가">
 									</div>
 								</div>								
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
-							<div style="display:table;width:90%;margin:0 auto;margin-top:30px;">
-								<div style="display:table-cell;vertical-align:middle;font-size:18px;">합계</div><span id="allCost" style="display:table-cell;vertical-align:middle;font-size:20px;float:right;">0원</span>
+							<div id="reservationReceipt" style="width:90%;margin:0 auto;margin-top:30px;">
+								<div class="reservationCost" style="font-size:18px;width:100%;float:left;">삼다수 x 8<span style="font-size:20px;float:right;">6400원</span></div>
+								<div id="reservationAllCost" style="font-size:18px;width:100%;">합계<span id="allCost" style="font-size:20px;float:right;">0원</span></div>
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 						</div>
@@ -172,10 +229,31 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 	<script>
+		/* 합계 금액을 저장하는 변수 */
+		var allCost = 0;
+		/* 년/월/일을 하나로 합쳐 저장하는 변수 */
 		var txt;
-		$(document).on("click",".future",function(){
+		$(document).ready(function(){
 			var month = $('#tbCalendarYM').text();
-			var day = parseInt($(this).text());
+			var day = parseInt($('.select-cell').text());
+			if(day > 9){
+				txt = month+"."+day;
+			}else{
+				txt = month+"."+"0"+day;
+			}
+			$('#receipt-cal').text(txt);			
+		});
+		/* 동적 개체인 달력을 클릭했을 때 동작하는 함수 */
+		$(document).on("click",".future",function(){
+			/* 영수증 초기화 */
+			var $receipt = $('#reservationReceipt');
+			$receipt.find("div").not('#reservationAllCost').remove();
+			/* 합계 금액 초기화 */
+			allCost = 0;
+			$('#allCost').html(allCost.toLocaleString()+'원');				
+			/* 달력 함수 */
+			month = $('#tbCalendarYM').text();
+			day = parseInt($(this).text());
 			if(day > 9){
 				txt = month+"."+day;
 			}else{
@@ -208,8 +286,25 @@
 					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 				}
 			});
+			/* 물품대여 및 구매 초기화 */
+			$('.checkGoods').prop('checked', false);
+			$('.reservationGoods').css("display","none");
+			$('.reservationOption').css("display","none");
+			$('.reservationAmount').css("display","none");
+			$('.addBtn').css("display","none");
+			$('.reservationAmount').val('');
+			$('.goodsCount').text('');
 		});
+		
+		/* 구장 선택 select가 변경되었을 때 동작하는 함수 */
 		$('#courtSelect').change(function(){
+			/* 영수증 초기화 */
+			var $receipt = $('#reservationReceipt');
+			$receipt.find("div").not('#reservationAllCost').remove();
+			/* 합계 금액 초기화 */
+			allCost = 0;
+			$('#allCost').html(allCost.toLocaleString()+'원');				
+			/* 구장 선택 함수 */
 			var result = txt.replace(/\./gi,'/');
 			var cCode = $("#courtSelect").val();
 			if(cCode != 'default'){
@@ -232,7 +327,7 @@
 								var scheduleCost = data[i].scheduleCost;
 								var scheduleStatus = data[i].scheduleStatus;
 								if(scheduleStatus == 0){
-									$select.append('<div class="scheduleList" id="'+scheduleNo+'"><div style="text-align:center;padding:10px;">'+scheduleStartTime+'~'+scheduleEndTime+'<br><span class="reservationCost">'+scheduleCost.toLocaleString()+'</span>원</div></div>');
+									$select.append('<div class="scheduleList"><div style="text-align:center;padding:10px;"><span class="startTime">'+scheduleStartTime+'</span>~<span class="endTime">'+scheduleEndTime+'</span><br><span class="reservationCost">'+scheduleCost.toLocaleString()+'</span>원</div></div>');
 								}
 							}							
 						}else{
@@ -243,28 +338,160 @@
 						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");					
 					}
 				});
+				$('.checkGoods').prop('checked', false);
+				$('.reservationGoods').css("display","none");
+				$('.reservationOption').css("display","none");
+				$('.reservationAmount').css("display","none");
+				$('.addBtn').css("display","none");
+				$('.reservationAmount').val('');
+				$('.goodsCount').text('');
 			}else{
 				var $select = $('#courtTime');
 				$select.find("div").remove();
 				$('#referenceText2').text('※대관 가능한 시간만 표시됩니다.');
 				$('#referenceText2').css("color","red");
+				$('.checkGoods').prop('checked', false);
+				$('.reservationGoods').css("display","none");
+				$('.reservationOption').css("display","none");
+				$('.reservationAmount').css("display","none");
+				$('.addBtn').css("display","none");
+				$('.reservationAmount').val('');
+				$('.goodsCount').text('');
 			}
 		});
-		var allCost = 0;
 		$(document).on("click",".scheduleList",function(){
 			$(this).addClass('scheduleSelect');
 			$(this).removeClass('scheduleList');
 			allCost += parseInt($(this).find('.reservationCost').html().replace(",",""));
-			$('#allCost').html(allCost.toLocaleString()+'원');				
+			$('#allCost').html(allCost.toLocaleString()+'원');	
+			
 		});
 		$(document).on("click",".scheduleSelect",function(){
 			$(this).addClass('scheduleList');
 			$(this).removeClass('scheduleSelect');
 			allCost -= parseInt($(this).find('.reservationCost').html().replace(",",""));
-			$('#allCost').html(allCost.toLocaleString()+'원');				
+			$('#allCost').html(allCost.toLocaleString()+'원');	
 		});
 		
+		/* 물품대여 체크박스 체크했을 때 동작하는 함수 */
+		$('.checkGoods').click(function(){
+			if($(this).is(':checked') == true){
+				$(this).parents().siblings('.reservationGoods').css("display","inline-block");
+				
+				var result = $(this).parents('label').text();
+				var bCode = ${b.branchCode};
+				var $select = $(this).parents().siblings('.reservationGoods');
+				$select.find("option").not('#default').remove();
+				$.ajax({
+					url : "/reservationGoodsList.do",
+					type : "get",
+					data : {result:result,bCode:bCode},
+					success : function(data){
+						for(var i=0;i<data.length;i++){
+							var goodsBCode = data[i].goodsBCode;
+							var goodsCategory = data[i].goodsCategory;
+							var goodsName = data[i].goodsName;
+							$select.append('<option>'+goodsName+'</option>');
+						}
+					},
+					error : function(){
+						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+					}
+				});
+				$(this).siblings('.addBtn').css("display","none");
+				$(this).parents().siblings('.reservationAmount').val('');
+				$('.goodsCount').val('');				
+			}else{
+				$(this).parents().siblings('.reservationGoods').css("display","none");
+				$(this).parents().siblings('.reservationOption').css("display","none");
+				$(this).parents().siblings('.reservationAmount').css("display","none");
+				$(this).siblings('.addBtn').css("display","none");
+				$(this).parents().siblings('.reservationAmount').val('');
+				$(this).parents().siblings('span').find('.goodsCount').text('');				
+			}
+		});
 
+		/* 제품선택 select를 바꿨을 때 동작하는 함수 */
+		$('.reservationGoods').change(function(){
+			if($(this).val() != 'default'){
+				$(this).siblings('.reservationOption').css("display","inline-block");
+				
+				var result = $(this).find('option:selected').html();
+				var bCode = ${b.branchCode};
+				var $select = $(this).siblings('.reservationOption');
+				$select.find("option").not('#default').remove();
+				$.ajax({
+					url : "/reservationOptionList.do",
+					type : "get",
+					data : {result:result,bCode:bCode},
+					success : function(data){
+						for(var i=0;i<data.length;i++){
+							var goodsBCode = data[i].goodsBCode;
+							var goodsGId = data[i].goodsGId;
+							var goodsCategory = data[i].goodsCategory;
+							var goodsName = data[i].goodsName;
+							var goodsSize = data[i].goodsSize;
+							var goodsPrice = data[i].goodsPrice;
+							var goodsCount = data[i].goodsCount;
+							$select.append('<option value="'+goodsGId+'">'+goodsSize+'</option>');
+						}
+					},
+					error : function(){
+						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+					}
+				});
+				$(this).siblings('.addBtn').css("display","none");
+				$(this).parents().siblings('.reservationAmount').val('');
+				$(this).siblings('span').find('.goodsCount').text('');				
+			}else{
+				$(this).siblings('.reservationOption').css("display","none");
+				$(this).siblings('.reservationAmount').css("display","none");
+				$(this).siblings('.addBtn').css("display","none");
+				$(this).parents().siblings('.reservationAmount').val('');
+				$(this).siblings('span').find('.goodsCount').text('');				
+			}
+		});
+		
+		/* 제품옵션 select를 바꿨을 때 동작하는 함수 */
+		$('.reservationOption').change(function(){
+			if($(this).val() != 'default'){
+				$(this).siblings('.reservationAmount').css("display","inline-block");
+				$(this).siblings('.addBtn').css("display","inline-block");
+				var goodsCount = $(this).siblings('span').find('.goodsCount');
+				
+				var result = $(this).find('option:selected').html();
+				var goodsGId = $(this).find('option:selected').val();
+				var bCode = ${b.branchCode};
+				var $select = $(this).siblings('.reservationOption');
+				$select.find("option").not('#default').remove();
+				$.ajax({
+					url : "/reservationGoodsCount.do",
+					type : "get",
+					data : {result:result,goodsGId:goodsGId,bCode:bCode},
+					success : function(data){
+						goodsCount.text(data);
+					},
+					error : function(){
+						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+					}
+				});
+				$(this).siblings('span').find('.goodsCount').text('');								
+			}else{
+				$(this).siblings('.reservationAmount').val('');
+				$(this).siblings('.reservationAmount').css("display","none");
+				$(this).siblings('.addBtn').css("display","none");
+				$(this).parents().siblings('.reservationAmount').val('');
+				$(this).siblings('span').find('.goodsCount').text('');				
+			}
+		});
+
+		$('.reservationAmount').keyup(function(){
+			var count = parseInt($(this).siblings('span').find('.goodsCount').text());
+			if($(this).val() > count){
+				alert("재고보다 많은 수를 입력할 수 없습니다.");
+				$(this).val(count);
+			}
+		});
 	</script>
 
 </body>

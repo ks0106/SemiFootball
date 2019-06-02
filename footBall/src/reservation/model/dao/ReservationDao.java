@@ -13,6 +13,7 @@ import java.util.Properties;
 import branch.model.vo.Branch;
 import common.JDBCTemplate;
 import court.model.vo.Court;
+import goods.model.vo.Goods;
 import schedule.model.vo.Schedule;
 
 public class ReservationDao {
@@ -117,5 +118,71 @@ public class ReservationDao {
 		JDBCTemplate.close(pstmt);
 		return list;
 	}
-
+	
+	public ArrayList<Goods> reservationGoodsList(Connection conn, String result, int bCode) throws SQLException{
+		ArrayList<Goods> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationGoodsList");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, bCode);
+		pstmt.setString(2, result);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Goods>();
+		while(rset.next()) {
+			Goods g = new Goods();
+			g.setGoodsBCode(rset.getInt("goods_b_code"));
+			g.setGoodsCategory(rset.getString("goods_category"));
+			g.setGoodsName(rset.getString("goods_name"));
+			list.add(g);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+	}
+	
+	public ArrayList<Goods> reservationOptionList(Connection conn, String result, int bCode) throws SQLException{
+		ArrayList<Goods> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationOptionList");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, result);
+		pstmt.setInt(2, bCode);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Goods>();
+		while(rset.next()) {
+			Goods g = new Goods();
+			g.setGoodsBCode(rset.getInt("goods_b_code"));
+			g.setGoodsGId(rset.getInt("goods_g_id"));
+			g.setGoodsCategory(rset.getString("goods_category"));
+			g.setGoodsName(rset.getString("goods_name"));
+			g.setGoodsSize(rset.getString("goods_size"));
+			g.setGoodsPrice(rset.getInt("goods_price"));
+			g.setGoodsCount(rset.getInt("goods_count"));
+			list.add(g);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+	}
+	
+	public int reservationGoodsCount(Connection conn, String result, int goodsGId, int bCode) throws SQLException {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationGoodsCount");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, result);
+		pstmt.setInt(2, goodsGId);
+		pstmt.setInt(3, bCode);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			count = rset.getInt("goods_count");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return count;
+	}
 }
+ 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import branch.model.vo.Branch;
 import common.JDBCTemplate;
 import court.model.vo.Court;
+import goods.model.vo.Goods;
 import reservation.model.dao.ReservationDao;
 import schedule.model.vo.Schedule;
 
@@ -34,5 +35,23 @@ public class ReservationService {
 		ArrayList<Schedule> list = new ReservationDao().reservationCourtSelect(conn, result, cCode);
 		JDBCTemplate.close(conn);
 		return list;
+	}
+	public ArrayList<Goods> reservationGoodsList(String result, int bCode) throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Goods> list = new ReservationDao().reservationGoodsList(conn, result, bCode);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	public ArrayList<Goods> reservationOptionList(String result, int bCode) throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Goods> list = new ReservationDao().reservationOptionList(conn, result, bCode);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	public int reservationGoodsCount(String result, int goodsGId, int bCode) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int count = new ReservationDao().reservationGoodsCount(conn, result, goodsGId, bCode);
+		JDBCTemplate.close(conn);
+		return count;
 	}
 }

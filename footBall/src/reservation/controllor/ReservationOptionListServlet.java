@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import goods.model.vo.Goods;
 import reservation.model.service.ReservationService;
-import schedule.model.vo.Schedule;
 
 /**
- * Servlet implementation class ReservationCourtSelectServlet
+ * Servlet implementation class ReservationOptionListServlet
  */
-@WebServlet(name = "ReservationCourtSelect", urlPatterns = { "/reservationCourtSelect.do" })
-public class ReservationCourtSelectServlet extends HttpServlet {
+@WebServlet(name = "ReservationOptionList", urlPatterns = { "/reservationOptionList.do" })
+public class ReservationOptionListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationCourtSelectServlet() {
+    public ReservationOptionListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,9 +36,9 @@ public class ReservationCourtSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String result = request.getParameter("result");
-		int cCode = Integer.parseInt(request.getParameter("cCode"));
+		int bCode = Integer.parseInt(request.getParameter("bCode"));
 		try {
-			ArrayList<Schedule> list = new ReservationService().reservationCourtSelect(result, cCode);
+			ArrayList<Goods> list = new ReservationService().reservationOptionList(result, bCode);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			new Gson().toJson(list,response.getWriter());			
