@@ -137,7 +137,7 @@
 					<div style="width:100%;height:350px;text-align:center;">
 		<!-- 지점선택 폼 -->
 						<form style="margin-top:75px;" action="/reservationForm" method="post" onsubmit="return reservationCheck();">
-							<select name="reservationSelect" style="width:400px;height:50px;font-size:20px;padding:0;margin-left:6px;">
+							<select name="reservationSelect" style="width:400px;height:50px;font-size:20px;padding:0;margin-left:6px;border:1px solid lightgray;">
 								<option value="default" selected>::: 지점선택 :::</option>
 								<c:forEach items="${list}" var="b" varStatus="i">
 									<option value="${b.branchCode}">${b.branchName}</option>

@@ -5,28 +5,27 @@ import java.util.ArrayList;
 import branch.model.vo.Branch;
 
 public class ReservationFormData {
-	private ArrayList<Court> list;
-	private Branch b;
-	public ArrayList<Court> getList() {
-		return list;
-	}
-	public void setList(ArrayList<Court> list) {
-		this.list = list;
-	}
-	public Branch getB() {
-		return b;
-	}
-	public void setB(Branch b) {
-		this.b = b;
-	}
-	public ReservationFormData(ArrayList<Court> list, Branch b) {
-		super();
-		this.list = list;
-		this.b = b;
-	}
+	private ArrayList<Court> cList;
+	private ArrayList<Schedule> sList;
 	public ReservationFormData() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
+	public ReservationFormData(ArrayList<Court> cList, ArrayList<Schedule> sList) {
+		super();
+		this.cList = cList;
+		this.sList = sList;
+	}
+	public ArrayList<Court> getcList() {
+		return cList;
+	}
+	public void setcList(ArrayList<Court> cList) {
+		this.cList = cList;
+	}
+	public ArrayList<Schedule> getsList() {
+		return sList;
+	}
+	public void setsList(ArrayList<Schedule> sList) {
+		this.sList = sList;
+	}
+	
 }

@@ -13,6 +13,7 @@ import java.util.Properties;
 import branch.model.vo.Branch;
 import common.JDBCTemplate;
 import reservation.model.vo.Court;
+import reservation.model.vo.Schedule;
 
 public class ReservationDao {
 	private Properties prop = new Properties();
@@ -47,28 +48,6 @@ public class ReservationDao {
 		return list;
 	}
 	
-	public ArrayList<Court> reservationCourt(Connection conn,int rCode) throws SQLException{
-		ArrayList<Court> list = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String query = prop.getProperty("reservationCourt");
-		pstmt = conn.prepareStatement(query);
-		pstmt.setInt(1, rCode);
-		rset = pstmt.executeQuery();
-		list = new ArrayList<Court>();
-		while(rset.next()) {
-			Court c = new Court();
-			c.setCourtBCode(rset.getInt("court_b_code"));
-			c.setCourtCCode(rset.getInt("court_c_code"));
-			c.setCourtName(rset.getString("court_name"));
-			c.setCourtStatus(rset.getInt("court_status"));
-			list.add(c);
-		}
-		JDBCTemplate.close(rset);
-		JDBCTemplate.close(pstmt);
-		return list;
-	}
-	
 	public Branch reservationBranch(Connection conn, int rCode) throws SQLException {
 		Branch b = null;
 		PreparedStatement pstmt = null;
@@ -88,6 +67,54 @@ public class ReservationDao {
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return b;
+	}
+	
+	public ArrayList<Court> reservationCourtList(Connection conn, String result, int bCode) throws SQLException{
+		ArrayList<Court> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationCourtList");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, bCode);
+		pstmt.setString(2, result);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Court>();
+		while(rset.next()) {
+			Court c = new Court();
+			c.setCourtBCode(rset.getInt("court_b_code"));
+			c.setCourtCCode(rset.getInt("court_c_code"));
+			c.setCourtName(rset.getString("court_name"));
+			c.setCourtStatus(rset.getInt("court_status"));
+			list.add(c);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+	}
+	
+	public ArrayList<Schedule> reservationCourtSelect(Connection conn, int cCode) throws SQLException{
+		ArrayList<Schedule> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationCourtSelect");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, cCode);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Schedule>();
+		while(rset.next()) {
+			Schedule s = new Schedule();
+			s.setScheduleNo(rset.getInt("schedule_no"));
+			s.setScheduleCCode(rset.getInt("schedule_c_code"));
+			s.setScheduleDate(rset.getDate("schedule_date"));
+			s.setScheduleStartTime(rset.getString("schedule_start_time"));
+			s.setScheduleEndTime(rset.getString("schedule_end_time"));
+			s.setScheduleCost(rset.getInt("schedule_cost"));
+			s.setScheduleStatus(rset.getInt("schedule_status"));
+			list.add(s);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
 	}
 
 }

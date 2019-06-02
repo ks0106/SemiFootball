@@ -21,6 +21,7 @@
 	$(document).ready(function(){
 		//헤더 영역 사이즈
 		$('.area').css("width","100%");
+		$('.area').css("height","150px");
 		//헤더 영역 위치
 		$('.area').css("box-sizing","border-box").css("float","left");
 		$('.area').css("position","fixed");
