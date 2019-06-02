@@ -2,7 +2,7 @@ package reservation.model.vo;
 
 import java.util.ArrayList;
 
-import branch.model.vo.Branch;
+import court.model.vo.Court;
 
 public class ReservationFormData {
 	private ArrayList<Court> cList;

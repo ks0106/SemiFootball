@@ -12,7 +12,7 @@ import java.util.Properties;
 
 import branch.model.vo.Branch;
 import common.JDBCTemplate;
-import reservation.model.vo.Court;
+import court.model.vo.Court;
 import reservation.model.vo.Schedule;
 
 public class ReservationDao {
@@ -92,13 +92,14 @@ public class ReservationDao {
 		return list;
 	}
 	
-	public ArrayList<Schedule> reservationCourtSelect(Connection conn, int cCode) throws SQLException{
+	public ArrayList<Schedule> reservationCourtSelect(Connection conn, String result, int cCode) throws SQLException{
 		ArrayList<Schedule> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("reservationCourtSelect");
 		pstmt = conn.prepareStatement(query);
-		pstmt.setInt(1, cCode);
+		pstmt.setString(1, result);
+		pstmt.setInt(2, cCode);
 		rset = pstmt.executeQuery();
 		list = new ArrayList<Schedule>();
 		while(rset.next()) {

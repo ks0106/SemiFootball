@@ -50,7 +50,7 @@
 				}
 			},
 			error : function(){
-				alert("실패");
+				alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 			}
 		});
 
@@ -62,6 +62,22 @@
 		font-size:18px;
 		text-decoration:none;
 		cursor:pointer;
+	}
+	.scheduleList{
+		width:175px;
+		height:60px;
+		background-color:#2c3c57;
+		color:white;
+		display:inline-block;
+		margin:1px;cursor:pointer;
+	}
+	.scheduleSelect{
+		width:175px;
+		height:60px;
+		background-color:#3366cc;
+		color:white;
+		display:inline-block;
+		margin:1px;cursor:pointer;
 	}
 </style>
 <body>
@@ -103,28 +119,48 @@
 								<jsp:include page="/views/test/calendar.jsp"/>
 							</div>
 							<div style="display:table;width:90%;margin:0 auto;margin-top:30px;">
-								<div style="display:table-cell;vertical-align:middle;font-weight:bolder;font-size:18px;">날짜선택</div><span id="receipt-cal" style="display:table-cell;vertical-align:middle;font-size:20px;"></span>
+								<div style="display:table-cell;vertical-align:middle;font-size:18px;">날짜선택</div><span id="receipt-cal" style="display:table-cell;vertical-align:middle;font-size:20px;"></span>
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 							<div style="width:90%;margin:0 auto;">
-								<div style="font-weight:bolder;font-size:18px;margin-top:30px;display:inline-block;">구장선택</div><span style="color:orangered;font-size:12px;float:right;">※구장을 선택하면 대관 가능 시간이 출력됩니다.</span>
+								<div style="font-size:18px;margin-top:30px;display:inline-block;">구장선택</div><span style="color:red;font-size:15px;float:right;">※구장을 선택하면 대관 가능 시간이 출력됩니다.</span>
 								<select id="courtSelect" name="courtSelect" style="width:100%;height:50px;font-size:16px;padding:0;margin-top:10px;border:1px solid lightgray;">
 									<option id="default" value="default" selected>::: 구장선택 :::</option>
 								</select>
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 							<div style="width:90%;margin:0 auto;">
-								<div style="font-weight:bolder;font-size:18px;margin-top:30px;display:inline-block;">시간선택</div><span style="color:orangered;font-size:12px;float:right;">※대관 가능한 시간만 표시됩니다.</span>
+								<div style="font-size:18px;margin-top:30px;display:inline-block;">시간선택</div><span id="referenceText2" style="color:red;font-size:15px;float:right;">※대관 가능한 시간만 표시됩니다.</span>
 								<div id="courtTime" style="width:100%;padding:0;margin-top:10px;">
 								</div>
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
-							<div style="width:90%;height:100px;margin:0 auto;">
-							
+							<div style="width:90%;margin:0 auto;">
+								<div style="font-size:18px;margin-top:30px;display:inline-block;">물품대여 및 구매</div><span id="referenceText3" style="color:red;font-size:15px;float:right;">※필수 선택사항이 아닙니다.</span>	
+								<div style="width:90%;margin:0 auto;margin-top:30px;">
+									<div style="margin-top:20px;">
+										물<br>
+										<select id="reservationWater" name="reservationWater" style="width:100%;height:30px;font-size:15px;paddign:0;margin:0 auto;border:1px solid lightgray;">
+											<option id="default" value="default" selected>::: 제품 선택 :::</option>
+										</select>
+									</div>
+									<div style="margin-top:20px;">
+										조끼<br>
+										<select id="reservationVest" name="reservationVest" style="width:100%;height:30px;font-size:15px;paddign:0;margin:0 auto;border:1px solid lightgray;">
+											<option id="default" value="default" selected>::: 제품 선택 :::</option>
+										</select>										
+									</div>
+									<div style="margin-top:20px;">
+										신발
+										<select id="reservationShoes" name="reservationShoes" style="width:100%;height:30px;font-size:15px;paddign:0;margin:0 auto;border:1px solid lightgray;">
+											<option id="default" value="default" selected>::: 제품 선택 :::</option>
+										</select>										
+									</div>
+								</div>								
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
-							<div style="width:90%;height:100px;margin:0 auto;">
-							
+							<div style="display:table;width:90%;margin:0 auto;margin-top:30px;">
+								<div style="display:table-cell;vertical-align:middle;font-size:18px;">합계</div><span id="allCost" style="display:table-cell;vertical-align:middle;font-size:20px;float:right;">0원</span>
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 						</div>
@@ -136,16 +172,18 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 	<script>
+		var txt;
 		$(document).on("click",".future",function(){
 			var month = $('#tbCalendarYM').text();
 			var day = parseInt($(this).text());
-			var txt;
 			if(day > 9){
 				txt = month+"."+day;
 			}else{
 				txt = month+"."+"0"+day;
 			}
 			$('#receipt-cal').text(txt);
+			var $select = $('#courtTime');
+			$select.find("div").remove();
 			var result = txt.replace(/\./gi,'/');
 			var bCode = ${b.branchCode};
 			$.ajax({
@@ -172,32 +210,61 @@
 			});
 		});
 		$('#courtSelect').change(function(){
+			var result = txt.replace(/\./gi,'/');
 			var cCode = $("#courtSelect").val();
 			if(cCode != 'default'){
 				$.ajax({
 					url : "/reservationCourtSelect.do",
 					type : "get",
-					data : {cCode:cCode},
+					data : {cCode:cCode,result:result},
 					success : function(data){
 						var $select = $('#courtTime');
 						$select.find("div").remove();
-						for(var i=0;i<data.length;i++){
-							var scheduleNo = data[i].scheduleNo;
-							var scheduleCCode = data[i].scheduleCCode;
-							var scheduleDate = data[i].scheduleDate;
-							var scheduleStartTime = data[i].scheduleStartTime;
-							var scheduleEndTime = data[i].scheduleEndTime;
-							var scheduleCost = data[i].scheduleCost;
-							var scheduleStatus = data[i].scheduleStatus;
-							$select.append('<div class="scheduleList" id="'+scheduleNo+'" style="width:175px;height:60px;background-color:#2c3c57;color:white;display:inline-block;margin:1px;cursor:pointer;"><div style="text-align:center;padding:10px;">'+scheduleStartTime+'~'+scheduleEndTime+'<br>'+scheduleCost.toLocaleString()+'원</div></div>');
+						$('#referenceText2').text('※한 타임에 두 시간, 여러 타임 예약 가능합니다.');
+						$('#referenceText2').css("color","#3366cc");
+						if(data.length > 0){
+							for(var i=0;i<data.length;i++){
+								var scheduleNo = data[i].scheduleNo;
+								var scheduleCCode = data[i].scheduleCCode;
+								var scheduleDate = data[i].scheduleDate;
+								var scheduleStartTime = data[i].scheduleStartTime;
+								var scheduleEndTime = data[i].scheduleEndTime;
+								var scheduleCost = data[i].scheduleCost;
+								var scheduleStatus = data[i].scheduleStatus;
+								if(scheduleStatus == 0){
+									$select.append('<div class="scheduleList" id="'+scheduleNo+'"><div style="text-align:center;padding:10px;">'+scheduleStartTime+'~'+scheduleEndTime+'<br><span class="reservationCost">'+scheduleCost.toLocaleString()+'</span>원</div></div>');
+								}
+							}							
+						}else{
+							$select.append('<div style="width:100%;color:red;display:inline-block;margin:1px;cursor:pointer;">선택하신 구장의 모든 시간이 마감되었습니다.</div>');
 						}
 					},
 					error : function(){
 						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");					
 					}
 				});
+			}else{
+				var $select = $('#courtTime');
+				$select.find("div").remove();
+				$('#referenceText2').text('※대관 가능한 시간만 표시됩니다.');
+				$('#referenceText2').css("color","red");
 			}
 		});
+		var allCost = 0;
+		$(document).on("click",".scheduleList",function(){
+			$(this).addClass('scheduleSelect');
+			$(this).removeClass('scheduleList');
+			allCost += parseInt($(this).find('.reservationCost').html().replace(",",""));
+			$('#allCost').html(allCost.toLocaleString()+'원');				
+		});
+		$(document).on("click",".scheduleSelect",function(){
+			$(this).addClass('scheduleList');
+			$(this).removeClass('scheduleSelect');
+			allCost -= parseInt($(this).find('.reservationCost').html().replace(",",""));
+			$('#allCost').html(allCost.toLocaleString()+'원');				
+		});
+		
+
 	</script>
 
 </body>

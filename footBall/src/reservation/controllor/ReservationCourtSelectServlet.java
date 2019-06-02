@@ -35,9 +35,10 @@ public class ReservationCourtSelectServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		String result = request.getParameter("result");
 		int cCode = Integer.parseInt(request.getParameter("cCode"));
 		try {
-			ArrayList<Schedule> list = new ReservationService().reservationCourtSelect(cCode);
+			ArrayList<Schedule> list = new ReservationService().reservationCourtSelect(result, cCode);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			new Gson().toJson(list,response.getWriter());			
