@@ -1,4 +1,4 @@
-package reservation.model.vo;
+package schedule.model.vo;
 
 import java.sql.Date;
 

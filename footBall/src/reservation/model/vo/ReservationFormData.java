@@ -3,6 +3,7 @@ package reservation.model.vo;
 import java.util.ArrayList;
 
 import court.model.vo.Court;
+import schedule.model.vo.Schedule;
 
 public class ReservationFormData {
 	private ArrayList<Court> cList;

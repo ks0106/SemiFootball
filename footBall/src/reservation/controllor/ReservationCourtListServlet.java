@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import court.model.vo.Court;
 import reservation.model.service.ReservationService;
-import reservation.model.vo.Court;
 
 /**
  * Servlet implementation class ReservationCourtListServlet

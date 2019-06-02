@@ -13,7 +13,7 @@ import java.util.Properties;
 import branch.model.vo.Branch;
 import common.JDBCTemplate;
 import court.model.vo.Court;
-import reservation.model.vo.Schedule;
+import schedule.model.vo.Schedule;
 
 public class ReservationDao {
 	private Properties prop = new Properties();
