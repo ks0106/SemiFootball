@@ -55,7 +55,7 @@ public class InsertLeagueServlet extends HttpServlet {
 			String teamColorHome = mRequest.getParameter("teamColorHome");
 			String teamColorAway = mRequest.getParameter("teamColorAway");
 			String filepath = mRequest.getFilesystemName("filepath");
-			League t = new League(0, teamName, teamRep, teamPhone, teamEmail, teamColorHome, teamColorAway, filepath,0);
+			League t = new League(0, teamName, teamRep, teamPhone, teamEmail, teamColorHome, teamColorAway, filepath,0, 0, 0, 0);
 			
 			int result=0;
 			try {

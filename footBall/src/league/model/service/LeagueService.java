@@ -66,6 +66,23 @@ public class LeagueService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
-
+	}
+	public int countTeam() {
+		Connection conn = JDBCTemplate.getConnection();
+		int cnt = new LeagueDao().countTeam(conn);
+		JDBCTemplate.close(conn);
+		return cnt;
+	}
+	public int removeTeam(String teamEmail) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new LeagueDao().removeTeam(conn,teamEmail);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	
 	}
 }
