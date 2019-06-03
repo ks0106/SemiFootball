@@ -251,6 +251,15 @@
 					left:"-500px"},500);
 			}
 		});
+		$('#menu_login').click(function(){
+			if($("#myPage").attr('class') != 'selectMyPage'){
+				$("#myPage").addClass('selectMyPage');
+				$("#myPage").css("display","inline-block");				
+			}else{
+				$("#myPage").removeClass('selectMyPage');
+				$("#myPage").css("display","none");								
+			}
+		});				
 	});
 </script>
 <header>
@@ -317,7 +326,28 @@
 		 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
 					<div style="margin-left:16px;"><img src="/img/member_icon_100px_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
 		 			<div><a style="text-decoration:none;color:white;cursor:pointer;"><%=m.getName()%> 님!</a></div>
-				</div>				
+		 			<div id="myPage" style="display:none;">
+						<div style="width:300px;height:220px;position:absolute;right:0;top:180px;z-index:10;">
+							<div style="color:white;text-align:center;font-size:20px;font-weight:bolder;">회원 정보</div>
+							<div style="width:100%;margin:0 auto;box-sizing:border-box;">
+								<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
+							</div>
+							<div style="color:white;text-align:center;">ID : <%=m.getId()%></div>
+							<div style="color:white;text-align:center;">Name : <%=m.getName()%></div>
+							<div style="color:white;text-align:center;">Phone : <%=m.getPhone()%></div>
+							<div style="color:white;text-align:center;">가입일 : <%=m.getEnrollDate()%></div>				
+							<div style="width:100%;margin:0 auto;box-sizing:border-box;">
+								<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
+							</div>
+							<div style="color:white;text-align:center;margin-top:15px;">
+								<input onclick="kout();" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="로그아웃">
+							</div>				
+						</div>
+						<div style="width:300px;height:220px;position:absolute;right:0;top:150px;opacity:0.5;">
+							<img src="/img/textArea_black.png">
+						</div>
+					</div>
+				</div>
 			<%} %>
 		</div>
 	<!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
@@ -352,9 +382,9 @@
 				<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
 					<%if(m != null){ %>
 						<li class="right_menu_item"><a onclick="kout();" style="cursor:pointer;">로그아웃</a></li>
-					<%} %>
-					<%if(m.getId().equals("admin")){ %>
-						<li class="right_menu_item"><a href="/admin">관리자메뉴</a></li>
+						<%if(m.getId().equals("admin")){ %>
+							<li class="right_menu_item"><a href="/admin">관리자메뉴</a></li>
+						<%} %>
 					<%} %>
 				</ul>
 			</div>
