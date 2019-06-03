@@ -30,15 +30,18 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<!--영상 위 페이지 타이틀 -->
 		<div id="title">지점현황</div>
+			<hr class="hr-menu">
 			<div class="content-container">
-				<hr style="border:3px solid #2c3c57;margin:0 auto;padding:0;">
 				<!-- 사이드바 -->
 				<aside class="aside-bar">
 					<div id="testSticky">
-						<h2>지점 바로가기</h2>
-						<c:forEach items="${list }" var="bd">
-							<a href="#${bd.b.branchName }" class="go_btn">${bd.b.branchName }</a><br>
-						</c:forEach>
+						<div id="nav-wrapper">
+							<span class="nav-span">지점 바로가기</span><br style="clear: both;">
+							<hr class="hr-menu" style="border: 2px solid #2c3c57;">
+							<c:forEach items="${list }" var="bd">
+								<a href="#${bd.b.branchName }" class="go_btn">${bd.b.branchName }</a><br>
+							</c:forEach>
+						</div>
 					</div>
 				</aside>
 				<!-- 좌우측 콘텐트 반복출력 -->
@@ -97,9 +100,9 @@
 			</div>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 		
-		<!-- The Modal -->
+		<!-- 지점상세 모달 -->
 		<div id="myModal" class="modal">
-			<!-- Modal content -->
+			<!-- 모달 정보창 -->
 			<div class="branch-modal">
 				<span class="close">&times;</span>
 				<div class="branchModal-wrapper">
@@ -109,14 +112,14 @@
 					<div class="modalBody">
 						<h2>지점 안내</h2>
 						<div class="infoForm">
-							<!-- img here : overflow: visible -->
+							<!-- img here : overflow: visible? -->
 							<img id="spec" src="${bd.bi.bi1 }" alt="상세정보">
 							<div id="infoFormFooter"><span class="infoSpan"></span><br><span class="infoSpan"></span></div>
 						</div>
 						<div class="locForm">
 							<h2>위치 안내</h2>
-							<!-- google maps api here -->
-							<div id="map" style="width:100%; height:500px;"></div>
+							<!-- naver maps api here -->
+							<div id="map" style="position:relative; left:100px; width:80%; height:400px;"></div>
 						</div>
 					</div>
 				</div>
