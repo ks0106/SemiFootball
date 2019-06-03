@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- 동영상CSS  -->
+<head>
 <link rel='stylesheet' href="css/common/pageCss.css">
 <link rel='stylesheet' href="css/branch/branch.css">
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wsxy6r6myr&submodules=geocoder"></script> <!-- 네이버 api 추가 -->
@@ -30,15 +30,19 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<!--영상 위 페이지 타이틀 -->
 		<div id="title">지점현황</div>
+			<hr class="hr-menu">
 			<div class="content-container">
-				<hr style="border:3px solid #2c3c57;margin:0 auto;padding:0;">
 				<!-- 사이드바 -->
 				<aside class="aside-bar">
 					<div id="testSticky">
-						<h2>지점 바로가기</h2>
-						<c:forEach items="${list }" var="bd">
-							<a href="#${bd.b.branchName }" class="go_btn">${bd.b.branchName }</a><br>
-						</c:forEach>
+						<div id="nav-wrapper">
+							<span class="nav-span">지점 바로가기</span><br style="clear: both;">
+							<hr class="hr-menu" style="border: 2px solid #2c3c57;">
+							<c:forEach items="${list }" var="bd">
+								<a href="#${bd.b.branchName }" class="internal-link">${bd.b.branchName }</a><br>
+							</c:forEach>
+							<a href="/branchManage" id="manage-link">[관리자] 지점 관리</a><br>
+						</div>
 					</div>
 				</aside>
 				<!-- 좌우측 콘텐트 반복출력 -->
@@ -97,9 +101,9 @@
 			</div>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 		
-		<!-- The Modal -->
+		<!-- 지점상세 모달 -->
 		<div id="myModal" class="modal">
-			<!-- Modal content -->
+			<!-- 모달 정보창 -->
 			<div class="branch-modal">
 				<span class="close">&times;</span>
 				<div class="branchModal-wrapper">
@@ -109,14 +113,14 @@
 					<div class="modalBody">
 						<h2>지점 안내</h2>
 						<div class="infoForm">
-							<!-- img here : overflow: visible -->
+							<!-- img here : overflow: visible? -->
 							<img id="spec" src="${bd.bi.bi1 }" alt="상세정보">
 							<div id="infoFormFooter"><span class="infoSpan"></span><br><span class="infoSpan"></span></div>
 						</div>
 						<div class="locForm">
 							<h2>위치 안내</h2>
-							<!-- google maps api here -->
-							<div id="map" style="width:100%; height:500px;"></div>
+							<!-- naver maps api here -->
+							<div id="map" style="position:relative; left:100px; width:80%; height:400px;"></div>
 						</div>
 					</div>
 				</div>
@@ -127,7 +131,7 @@
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
 			/* 소스 없는 서브이미지 태그 감추기 */
-			if($('.subImg').attr('src') == "") {
+			if($('.subImg').attr('src') == null) {
 				$(this).css('display','none');
 			}
 			/* 서브이미지 클릭시 메인이미지 대체 */
@@ -135,7 +139,7 @@
 				$(this).siblings().eq(0).attr('src',$(this).attr('src'));
 			});
 			/* 사이드바 지점 바로가기 */
-			$('.go_btn').click(function(event){
+			$('.internal-link').click(function(event){
 				event.preventDefault();
 				var targetId = ($(this).attr('href')).substring(1);
 				var position = $('#'+targetId).offset();

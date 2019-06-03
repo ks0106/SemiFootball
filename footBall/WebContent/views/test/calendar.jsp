@@ -60,7 +60,7 @@
 	        var yCheck = date.getFullYear();
 	        var mCheck = date.getMonth();
 	        var dCheck = date.getDate();
-	        var checkMonth = new Date(date.getFullYear(),date.getMonth(),date.getDate()-1);
+	        var checkMonth = new Date(date.getFullYear(),date.getMonth(),date.getDate());
 	        function prevCalendar() {//이전 달
 	        // 이전 달을 today에 값을 저장하고 달력에 today를 넣어줌
 	        //today.getFullYear() 현재 년도//today.getMonth() 월  //today.getDate() 일 
@@ -121,8 +121,9 @@
 	             }
 	            /*달력 출력*/
 	             for (i=1; i<=lastDate.getDate(); i++) { 
+	     	        var testMonth = new Date(today.getFullYear(),today.getMonth(),i);
 	             //1일부터 마지막 일까지 돌림
-	             	if(doMonth < checkMonth){
+	             	if(testMonth < checkMonth){
 		                  cell = row.insertCell();//열 한칸한칸 계속 만들어주는 역할
 		                  cell.className = 'past';
 		                  cell.innerHTML = i;//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
