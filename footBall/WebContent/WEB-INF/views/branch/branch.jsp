@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- 동영상CSS  -->
+<head>
 <link rel='stylesheet' href="css/common/pageCss.css">
 <link rel='stylesheet' href="css/branch/branch.css">
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wsxy6r6myr&submodules=geocoder"></script> <!-- 네이버 api 추가 -->
@@ -39,8 +39,9 @@
 							<span class="nav-span">지점 바로가기</span><br style="clear: both;">
 							<hr class="hr-menu" style="border: 2px solid #2c3c57;">
 							<c:forEach items="${list }" var="bd">
-								<a href="#${bd.b.branchName }" class="go_btn">${bd.b.branchName }</a><br>
+								<a href="#${bd.b.branchName }" class="internal-link">${bd.b.branchName }</a><br>
 							</c:forEach>
+							<a href="/branchManage" id="manage-link">[관리자] 지점 관리</a><br>
 						</div>
 					</div>
 				</aside>
@@ -130,7 +131,7 @@
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
 			/* 소스 없는 서브이미지 태그 감추기 */
-			if($('.subImg').attr('src') == "") {
+			if($('.subImg').attr('src') == null) {
 				$(this).css('display','none');
 			}
 			/* 서브이미지 클릭시 메인이미지 대체 */
@@ -138,7 +139,7 @@
 				$(this).siblings().eq(0).attr('src',$(this).attr('src'));
 			});
 			/* 사이드바 지점 바로가기 */
-			$('.go_btn').click(function(event){
+			$('.internal-link').click(function(event){
 				event.preventDefault();
 				var targetId = ($(this).attr('href')).substring(1);
 				var position = $('#'+targetId).offset();

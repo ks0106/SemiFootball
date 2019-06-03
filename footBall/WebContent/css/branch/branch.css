@@ -54,19 +54,18 @@
 			color: white;
 			text-decoration: none;
 			background-color: #446087;
+			cursor: pointer;
 		}
 		.content-container {
 			position: relative;
 			top: 30px;
 			width: 100%;
 			height: 100%;
-			text-align: center;
 		}
 		.aside-bar{
 			position: absolute;
 			width: 465px;
-			height: 99.77%;
-			text-align: center;
+			height: 98.80%;
 			border-right:2px solid #2c3c57;
 			background-color: white;
 			z-index: 2;
@@ -77,7 +76,7 @@
   			top: 110px; /* 필수 */
 			display: inline-block;
 			width: 100%;
-			height: 700px;
+			height: 670px;
 			border-right:2px solid #2c3c57;
 			background-color: white;
 		}
@@ -86,15 +85,32 @@
 			left: 150px;
 			width: 60%;
 			height: 100%;
-			background-color:white;
+			background-color:salmon;
+			text-align:left;
 		}
 		.nav-span{
 			font-size: 30px;
 			color: #446087;
 			font-weight: bolder;
 			line-height: 45px;
-			float: left;
 		}
+		.internal-link {
+			color: rgb(44, 60, 87); 
+			font-weight: bolder; 
+			font-size: 18px; 
+			line-height: 2;
+			text-decoration: none; 
+			cursor: pointer;
+		}
+		#manage-link {
+			color: rgb(44, 60, 87); 
+			font-weight: bolder; 
+			font-size: 18px; 
+			line-height: 2;
+			text-decoration: none; 
+			cursor: pointer;
+		}
+		
 		.content-wrapper {
 			position: relative;
 			display: inline-block;
