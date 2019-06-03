@@ -216,62 +216,7 @@
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 							<div id="reservationReceipt" style="width:90%;margin:0 auto;margin-top:30px;">
-								<div class="reservationReceiptList" style="width:100%;height:40px;border:1px solid lightgray;position:relative;margin-top:2px;margin-bottom:2px;">
-									<div style="position:absolute;font-size:14px;top:2px;color:gray;">
-										<div>제품명 : <span class="reservationGoodsName">삼다수</span></div>
-										<div>규격/용량 : <span class="reservationGoodsOption">500ml</span></div>
-									</div>
-									<div style="position:absolute;left:250px;font-size:13px;text-align: center;top:2px;color:gray;">
-										수량<br>
-										<input class="reservationGoodsAmount" type="number" style="width:50px;height:13px;border:1px solid lightgray;" min="0">
-									</div>
-									<div style="left:400px;font-size:15px;margin-right:50px;margin-top:10px;float:right;text-align:right;color:gray;">
-										<span class="reservationGoodsPrice">6,400</span>원
-									</div>
-									<div style="position:absolute;left:500px;top:8px;">	
-										<div class="cancelBtn" style="width:20px;height:20px;border-radius:20px;text-align:center;border:2px solid lightgray;line-height:15px;font-size:23px;color:red;cursor:pointer;padding:0;margin:0;">
-											×
-										</div>
-									</div>
-								</div>
-<!-- 								<div class="reservationReceiptList" style="width:100%;height:40px;border:1px solid lightgray;position:relative;margin-top:2px;margin-bottom:2px;">
-									<div style="position:absolute;font-size:14px;top:2px;color:gray;">
-										<div>제품명 : 조끼(빨강)</div>
-										<div>규격/용량 : XL</div>
-									</div>
-									<div style="position:absolute;left:250px;font-size:13px;text-align: center;top:2px;color:gray;">
-										수량<br>
-										<input type="number" style="width:50px;height:13px;border:1px solid lightgray;" min="0">
-									</div>
-									<div style="left:400px;font-size:15px;margin-right:50px;margin-top:10px;float:right;text-align:right;color:gray;">
-										1,500원
-									</div>
-									<div style="position:absolute;left:500px;top:8px;">	
-										<div style="width:20px;height:20px;border-radius:20px;text-align:center;border:2px solid lightgray;line-height:15px;font-size:23px;color:red;cursor:pointer;padding:0;margin:0;">
-											×
-										</div>
-									</div>
-								</div>
-								<div class="reservationReceiptList" style="width:100%;height:40px;border:1px solid lightgray;position:relative;margin-top:2px;margin-bottom:2px;">
-									<div style="position:absolute;font-size:14px;top:2px;color:gray;">
-										<div>제품명 : 축구화</div>
-										<div>규격/용량 : 250</div>
-									</div>
-									<div style="position:absolute;left:250px;font-size:13px;text-align:center;top:2px;color:gray;">
-										수량<br>
-										<input type="number" style="width:50px;height:13px;border:1px solid lightgray;" min="0">
-									</div>
-									<div style="left:400px;font-size:15px;margin-right:50px;margin-top:10px;float:right;text-align:right;color:gray;">
-										5,000원
-									</div>
-									<div style="position:absolute;left:500px;top:8px;">	
-										<div style="width:20px;height:20px;border-radius:20px;text-align:center;border:2px solid lightgray;line-height:15px;font-size:23px;color:red;cursor:pointer;padding:0;margin:0;">
-											×
-										</div>
-									</div>
-								</div>
- -->								
-								<div id="reservationAllCost" style="font-size:18px;width:100%;">합계<span id="allCost" style="font-size:20px;float:right;">0원</span></div>
+								<div id="reservationAllCost" style="font-size:18px;width:100%;">합계<span style="font-size:20px;float:right;"><span id="allCost">0</span>원</span></div>
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 						</div>
@@ -299,12 +244,15 @@
 		});
 		/* 동적 개체인 달력을 클릭했을 때 동작하는 함수 */
 		$(document).on("click",".future",function(){
+			/* 시간선택 안내 초기화 */
+			$('#referenceText2').text('※대관 가능한 시간만 표시됩니다.');
+			$('#referenceText2').css("color","red");
 			/* 영수증 초기화 */
 			var $receipt = $('#reservationReceipt');
 			$receipt.find("div").not('#reservationAllCost').remove();
 			/* 합계 금액 초기화 */
 			allCost = 0;
-			$('#allCost').html(allCost.toLocaleString()+'원');				
+			$('#allCost').html(allCost.toLocaleString());				
 			/* 달력 함수 */
 			month = $('#tbCalendarYM').text();
 			day = parseInt($(this).text());
@@ -357,7 +305,7 @@
 			$receipt.find("div").not('#reservationAllCost').remove();
 			/* 합계 금액 초기화 */
 			allCost = 0;
-			$('#allCost').html(allCost.toLocaleString()+'원');				
+			$('#allCost').html(allCost.toLocaleString());				
 			/* 구장 선택 함수 */
 			var result = txt.replace(/\./gi,'/');
 			var cCode = $("#courtSelect").val();
@@ -413,23 +361,26 @@
 				$('.goodsCount').text('');
 			}
 		});
+		/* 시간선택 버튼을 누른 경우 */
 		$(document).on("click",".scheduleList",function(){
 			$(this).addClass('scheduleSelect');
 			$(this).removeClass('scheduleList');
 			allCost += parseInt($(this).find('.reservationCost').html().replace(",",""));
-			$('#allCost').html(allCost.toLocaleString()+'원');	
+			$('#allCost').html(allCost.toLocaleString());	
 			
 			/* 영수증 초기화 */
 			var scheduleNo = $(this).attr('id');
 			var $receipt = $('#reservationAllCost');
-			$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;">대관('+$(this).find('.startTime').text()+'~'+$(this).find('.endTime').text()+')<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');
+			$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관('+$(this).find('.startTime').text()+'~'+$(this).find('.endTime').text()+')<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');
 			
 		});
+		
+		/* 시간선택 버튼을 눌렀는데 이미 선택되어있는 경우 */
 		$(document).on("click",".scheduleSelect",function(){
 			$(this).addClass('scheduleList');
 			$(this).removeClass('scheduleSelect');
 			allCost -= parseInt($(this).find('.reservationCost').html().replace(",",""));
-			$('#allCost').html(allCost.toLocaleString()+'원');	
+			$('#allCost').html(allCost.toLocaleString());	
 
 			var scheduleNo = $(this).attr('id');
 			var $receipt = $('#reservationReceipt');
@@ -443,7 +394,9 @@
 				$('.goodsCount').text('');
 				$('.checkGoods').prop('checked',false);				
 				var scheduleNo = $(this).attr('id');
-				var $receipt = $('#reservationReceipt').find('div').not('#reservationAllCost').remove();
+				$('#reservationReceipt').find('div').not('#reservationAllCost').remove();
+				allCost = 0;
+				$('#allCost').html(allCost.toLocaleString());	
 			}
 
 		});
@@ -492,7 +445,7 @@
 									if($('.reservationReceiptList:eq('+j+')').find('.reservationGoodsName').text() == goodsName){
 										var price = $('.reservationReceiptList:eq('+j+')').find('.reservationGoodsPrice').text().replace(",","");
 										allCost -= price;
-										$('#allCost').html(allCost.toLocaleString()+'원');	
+										$('#allCost').html(allCost.toLocaleString());	
 										$('.reservationReceiptList:eq('+j+')').remove();
 									}
 								}
@@ -633,7 +586,7 @@
 								}else{
 									$('.reservationReceiptList:eq('+i+')').find('.reservationGoodsPrice').text((oldPrice+((oldPrice/oldAmount)*amount)).toLocaleString());
 									allCost += (oldPrice/oldAmount)*amount;
-									$('#allCost').html(allCost.toLocaleString()+'원');
+									$('#allCost').html(allCost.toLocaleString());
 								}
 							},
 							error : function(){
@@ -661,7 +614,7 @@
 									addReceipt += '<div style="position:absolute;left:500px;top:8px;"><div class="cancelBtn" style="width:20px;height:20px;border-radius:20px;text-align:center;border:2px solid lightgray;line-height:15px;font-size:23px;color:red;cursor:pointer;padding:0;margin:0;">×</div></div></div>';
 									$receipt.prepend(addReceipt);
 									allCost += allPrice;
-									$('#allCost').html(allCost.toLocaleString()+'원');	
+									$('#allCost').html(allCost.toLocaleString());	
 								}else{
 									alert("수량을 입력해주세요.");
 								}
@@ -683,7 +636,7 @@
 		$(document).on("click",'.cancelBtn',function(){
 			var price = $(this).parents('.reservationReceiptList').find('.reservationGoodsPrice').text().replace(",","");
 			allCost -= price;
-			$('#allCost').html(allCost.toLocaleString()+'원');	
+			$('#allCost').html(allCost.toLocaleString());	
 			$(this).parents('.reservationReceiptList').remove();
 		});			
 		
