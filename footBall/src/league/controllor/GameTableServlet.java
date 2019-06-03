@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import league.model.service.LeagueService;
 import league.model.vo.League;
+import league.model.vo.WinList;
 
 /**
  * Servlet implementation class GameTalbeServlet
@@ -35,7 +36,7 @@ public class GameTableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			ArrayList<League> list = new LeagueService().teamList();
+			WinList list = new LeagueService().teamList();
 			request.setAttribute("list", list);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/league/gameTable.jsp");
 			rd.forward(request, response);

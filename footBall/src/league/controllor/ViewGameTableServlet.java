@@ -11,18 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import league.model.service.LeagueService;
+import league.model.vo.WinList;
 
 /**
- * Servlet implementation class WinnerServlet
+ * Servlet implementation class ViewGameTableServlet
  */
-@WebServlet(name = "Winner", urlPatterns = { "/winner" })
-public class WinnerServlet extends HttpServlet {
+@WebServlet(name = "ViewGameTable", urlPatterns = { "/viewGameTable" })
+public class ViewGameTableServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WinnerServlet() {
+    public ViewGameTableServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +32,17 @@ public class WinnerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int teamNo = Integer.parseInt(request.getParameter("teamNo"));
-		System.out.println(teamNo);
-			int result;
-			try {
-				result = new LeagueService().winner(teamNo);
-				if(result>0) {
-					RequestDispatcher rd = request.getRequestDispatcher("/gameTable");
-					rd.forward(request, response);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			WinList list = new LeagueService().teamList();
+			request.setAttribute("list", list);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/league/viewGameTable.jsp");
+			rd.forward(request, response);
+		} catch (SQLException e) {
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
+			request.setAttribute("msg", "SQL구문 오류");
+			rd.forward(request, response);
+			e.printStackTrace();
+		}
 	}
 
 	/**
