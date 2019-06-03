@@ -37,9 +37,9 @@ public class NoticeInsertServlet extends HttpServlet {
 		NoticeVo nv = new NoticeVo(0, noticeTitle, noticeWriter, null, noticeContent, 0, 0);
 		int result = new NoticeService().noticeInsert(nv);
 		if(result>0) {
-			request.setAttribute("msg", "등록성공");
+			request.setAttribute("msg", "공지사항 작성에 성공하였습니다.");
 		}else {
-			request.setAttribute("msg", "등록실패");
+			request.setAttribute("msg", "공지사항 작성에 실패하였습니다.");
 		}
 		request.setAttribute("loc", "/notice");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");

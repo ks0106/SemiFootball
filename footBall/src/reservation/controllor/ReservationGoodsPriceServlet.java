@@ -1,4 +1,4 @@
-package member.controller;
+package reservation.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,19 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import member.model.service.MemberService;
+import goods.model.vo.Goods;
+import reservation.model.service.ReservationService;
 
 /**
- * Servlet implementation class SearchPwdServlet
+ * Servlet implementation class ReservationGoodsPriceServlet
  */
-@WebServlet(name = "SearchPwd", urlPatterns = { "/searchPwd" })
-public class SearchPwdServlet extends HttpServlet {
+@WebServlet(name = "ReservationGoodsPrice", urlPatterns = { "/reservationGoodsPrice.do" })
+public class ReservationGoodsPriceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchPwdServlet() {
+    public ReservationGoodsPriceServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +33,14 @@ public class SearchPwdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		
+		request.setCharacterEncoding("utf-8");
+		String goods = request.getParameter("goods");
+		String option = request.getParameter("option");
 		try {
-			String id1 = new MemberService().searchPwd(id,name);
+			Goods g = new ReservationService().reservationGoodsPrice(goods, option);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
-			new Gson().toJson(id1,response.getWriter());
+			new Gson().toJson(g,response.getWriter());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,29 +1,25 @@
-package member.controller;
+package admin.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
-import member.model.service.MemberService;
-
 /**
- * Servlet implementation class SearchPwdServlet
+ * Servlet implementation class AdminServlet
  */
-@WebServlet(name = "SearchPwd", urlPatterns = { "/searchPwd" })
-public class SearchPwdServlet extends HttpServlet {
+@WebServlet(name = "admin", urlPatterns = { "/admin" })
+public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchPwdServlet() {
+    public AdminServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +28,7 @@ public class SearchPwdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		
-		try {
-			String id1 = new MemberService().searchPwd(id,name);
-			response.setContentType("application/json");
-			response.setCharacterEncoding("utf-8");
-			new Gson().toJson(id1,response.getWriter());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp").forward(request, response);;
 	}
 
 	/**

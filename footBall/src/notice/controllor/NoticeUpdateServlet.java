@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import notice.model.service.NoticeService;
-import notice.model.vo.NoticeViewData;
+import notice.model.vo.NoticeVo;
 
 /**
  * Servlet implementation class NoticeUpdateServlet
@@ -33,9 +33,9 @@ public class NoticeUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		NoticeViewData nvd = new NoticeService().listOne(noticeNo);
-		if(nvd.getNv()!=null) {
-			request.setAttribute("noticeVo", nvd.getNv());
+		NoticeVo nv = new NoticeService().listOne(noticeNo);
+		if(nv!=null) {
+			request.setAttribute("noticeVo", nv);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeUpdate.jsp");
 			rd.forward(request, response);
 		}else {

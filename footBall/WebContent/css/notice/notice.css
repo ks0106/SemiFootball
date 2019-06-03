@@ -65,12 +65,12 @@
 
 #table_notice {
 	width: 70%;
-	height: 200px;
+	height: 500px;
 	text-align: center;
 }
 /* 전체 div */
 .full {
-	height: 1200px;
+	height: 1000px;
 }
 /* 검색창 */
 #keyword {
@@ -125,7 +125,7 @@
 	overflow: auto;
 	height: 100px;
 }
-
+/* faq */
 .faqul{
 	border: 1px solid gray;
 }

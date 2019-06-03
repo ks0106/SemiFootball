@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class NoticePageData {
 	private ArrayList<NoticeVo> list;
 	private String pageNavi;
+	
 	public NoticePageData() {
 		super();
 		// TODO Auto-generated constructor stub

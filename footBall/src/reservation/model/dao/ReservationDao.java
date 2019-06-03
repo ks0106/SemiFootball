@@ -184,5 +184,30 @@ public class ReservationDao {
 		JDBCTemplate.close(pstmt);
 		return count;
 	}
+	
+	public Goods reservationGoodsPrice(Connection conn, String goods, String option) throws SQLException {
+		Goods g = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationGoodsPrice");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, goods);
+		pstmt.setString(2, option);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			g = new Goods();
+			g.setGoodsBCode(rset.getInt("goods_b_code"));
+			g.setGoodsGId(rset.getInt("goods_g_id"));
+			g.setGoodsCategory(rset.getString("goods_category"));
+			g.setGoodsName(rset.getString("goods_name"));
+			g.setGoodsSize(rset.getString("goods_size"));
+			g.setGoodsPrice(rset.getInt("goods_price"));
+			g.setGoodsCount(rset.getInt("goods_count"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return g;
+		
+	}
 }
  

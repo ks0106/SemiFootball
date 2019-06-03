@@ -1,29 +1,29 @@
-package member.controller;
+package board.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+import board.model.service.BoardService;
+import board.model.vo.BoardPageData;
 
-import member.model.service.MemberService;
 
 /**
- * Servlet implementation class SearchPwdServlet
+ * Servlet implementation class BoardListServlet
  */
-@WebServlet(name = "SearchPwd", urlPatterns = { "/searchPwd" })
-public class SearchPwdServlet extends HttpServlet {
+@WebServlet(name = "BoardList", urlPatterns = { "/boardList" })
+public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchPwdServlet() {
+    public BoardListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +32,18 @@ public class SearchPwdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		
+		int reqPage;
 		try {
-			String id1 = new MemberService().searchPwd(id,name);
-			response.setContentType("application/json");
-			response.setCharacterEncoding("utf-8");
-			new Gson().toJson(id1,response.getWriter());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e){
+			reqPage = 1;
 		}
+		BoardPageData bpd = new BoardService().boardList(reqPage);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp");
+		request.setAttribute("bpd", bpd);
+		rd.forward(request, response);
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

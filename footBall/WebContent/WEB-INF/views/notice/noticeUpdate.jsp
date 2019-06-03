@@ -26,7 +26,7 @@
 		}
 
     #full{
-   height: 1200px;
+   height: 800px;
    }
 </style>
 </style>
@@ -52,7 +52,7 @@
 	 <div id="full">
    <section>
   
-      <div class="table-wrapper" style="width:80%; margin:0 auto;">
+      <div class="table-wrapper" style="width:60%; margin:0 auto;">
          <form action="/noticeUpdateEnd" method="post"><br><br><br><br>
             <table class="table table-bordered">
             		<input type="hidden" name="noticeNo" value="<%=nv.getNoticeNo() %>">
@@ -70,16 +70,18 @@
                   <td><%=nv.getNoticeWriter() %></td>
                </tr>
                <tr>
-                  <th style="text-align:center;">내용</th>
+                  <th style="text-align:center; height: 400px;">내용</th>
                   <td>
-                     <textarea name="noticeContent" class="form-control" rows="3" style="resize: none;">
+                     <textarea name="noticeContent" class="form-control" rows="3" style="resize: none; height: 400px;">
                         <%=nv.getNoticeContent() %>
                      </textarea>
                   </td>
                </tr>
                <tr>
                   <th colspan="2">
-                     <button type="submit" class="btn btn-outline-primary">수정하기</button>
+                     <center><button type="submit" class="btn btn-outline-primary" style="color:gray;">수정하기</button>
+                     <button type="reset" class="btn" style="color:gray;">취소</button></a>
+                     </center>
                   </th>
                </tr>
             </table>

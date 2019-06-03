@@ -10,6 +10,7 @@
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous">
 </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 	<style>
 		select{
@@ -23,15 +24,14 @@
         table{
         	margin: 0 auto;
         	padding-top: 20px;
-        
+        	}
 	</style>
 <body>
 		<center>
         <form >
-        	
-        	<table>
+        	<table >
         		<tr>
-        			<td colspan="2" style="text-align: center;"><h2>아이디 찾기</h2></td>
+        			<td colspan="2" style="text-align: center;"><img  src="/img/header_logo.png" style="width: 50px;height: 50px;"><h2>아이디 찾기</h2></td>
         		</tr>
         		<tr>
         			<td style="float: right;">이름 :</td><td><input type="text" name="name" id="name"></td>
@@ -55,7 +55,7 @@
         		</tr>
         	</table>
         	<input type="reset" value="취소">
-        	<input type="button" value="확인" id="sub"><br>
+        	<input type="button" class="btn btn-success" value="확인" id="sub"><br>
         	<input type="button" value="닫기" id="close">
         </form>
 		</center>

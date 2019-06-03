@@ -23,7 +23,9 @@
         table{
         	margin: 0 auto;
         	padding-top: 20px;
-        
+        	text-align: center;
+        	
+        	}
 	</style>
 <body>
 		<center>
@@ -41,30 +43,41 @@
         	</table>
         	<input type="reset" value="취소">
         	<input type="button" value="확인" id="sub"><br>
-        	<input type="button" value="닫기" id="close">
+        	
         </form>
         
          <form >
-        	<table id="pwd" style="visibility: hidden;" >
+        	<table id="pwd" style="visibility: hiddin;" >
         		<tr>
         			<td colspan="2" style="text-align: center;"><h2>비밀번호 변경</h2></td>
         		</tr>
         		<tr>
-        			<td style="float: right;">비밀번호:</td><td colspan="2"><input type="text" name="name" id="name"></td>
+        			<td style="text-align: right;" colspan="3"><span id="extext1"></span></td>
         		</tr>
         		<tr>
-        			<td style="float: right;">비밀번호 재입력 :</td><td colspan="2"><input type="text" name="id" id="id"></td>
+        			<td style="float: right;">비밀번호:</td><td colspan="2"><input type="password" name="repwd" id="repwd"></td>
         		</tr>
         		<tr>
-        			<td><input type="reset" value="취소"></td><td><input type="button" value="확인" id="sub"><br></td>
-        			<td><input type="button" value="닫기" id="close"></td>
+        			<td style="text-align: right;" colspan="3"><span id="extext2"></span></td>
+        		</tr>
+        		<tr>
+        			<td style="float: right;">비밀번호 재입력 :</td><td colspan="2"><input type="password" name="repwd1" id="repwd1"></td>
+        		</tr>
+        		<tr>
+        			<td colspan="3">
+        			<input type="reset" value="취소">
+        			<input type="button" value="확인" id="pwdsub">
+        			<input type="button" value="닫기" id="close">
+        			</td>
         		</tr>
         	</table>
-        
+        	
+        	
+        	
         </form>
 		</center>
 	<script type="text/javascript">
-		$("#close").hide();
+		
 		$("#sub").click(function () {
 			var name = $("#name").val();
 			var id = $("#id").val();
@@ -86,7 +99,7 @@
 								$("#close").click(function () {
 									 self.close();
 								});
-								
+								$("#pwd").css("visibility","visible ");
 							}
 					
 							
@@ -98,6 +111,67 @@
 				});
 			});
 		
+	</script>
+	<script type="text/javascript">
+		$("#close").hide();
+		$("#pwdsub").click(function () {
+			var repwd = $("#repwd").val();
+			var repwd1 = $("#repwd1").val();
+		});
+	</script>
+	<script type="text/javascript">
+		var result = [false,false];
+		$(document).ready(function () {
+			$("#repwd").blur(function () {
+				var pwd = $("#repwd").val();
+				var text = /^[a-z][a-z0-9]{5,17}$/i;
+				if(pwd==''){
+					$('#extext1').html('');
+				}else{
+					if(!text.test(pwd)){
+						$("#extext1").html('영어 대/소문자+숫자 6~18자리');
+						$("#extext1").css('color','red');
+						$("#extext1").css('font-size','15px');
+						
+						return false;
+					}else{
+						$('#extext1').html('');
+						result[1]='true';
+						return true;
+					};
+					
+				};
+			});
+			
+			$('#repwd1').blur(function () {
+				var pwd = $('#repwd').val();
+				var pwd1 = $('#repwd1').val();
+				if(pwd1==''){
+					$('#extext2').html('');
+				}else{					
+					if(!(pwd==pwd1)){
+						$('#extext2').html('비밀번호가 일치하지 않습니다.');
+						$('#extext2').css('color','red');
+						$('#extext2').css('font-size','15px');
+						return false;
+					}else{
+						$('#extext2').html('');
+						result[2]='true';
+						return true;
+					};				
+				}
+			});
+			$('#pwdsub').click(function(event){
+	               for(var i=0;i<result.length;i++){
+	                    console.log(result[i]);
+	                        if(!result[i]){
+	                            alert("입력을 확인하세요");
+	                            event.isDefaultPrevented;
+	                            return false;
+	                        };
+	                };
+	        });
+		});
 	</script>
 </body>
 </html>
