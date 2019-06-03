@@ -1,4 +1,4 @@
-package notice.controllor;
+package board.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
-import notice.model.vo.NoticeVo;
+import board.model.service.BoardService;
+import board.model.vo.BoardPageData;
+
 
 /**
- * Servlet implementation class NoticeUpdateServlet
+ * Servlet implementation class BoardListServlet
  */
-@WebServlet(name = "NoticeUpdate", urlPatterns = { "/noticeUpdate" })
-public class NoticeUpdateServlet extends HttpServlet {
+@WebServlet(name = "BoardList", urlPatterns = { "/boardList" })
+public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateServlet() {
+    public BoardListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +32,18 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		NoticeVo nv = new NoticeService().listOne(noticeNo);
-		if(nv!=null) {
-			request.setAttribute("noticeVo", nv);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeUpdate.jsp");
-			rd.forward(request, response);
-		}else {
-			request.setAttribute("msg", "정보가 없습니다.");
-			request.setAttribute("loc", "/");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			rd.forward(request, response);
+		int reqPage;
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e){
+			reqPage = 1;
 		}
+		BoardPageData bpd = new BoardService().boardList(reqPage);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp");
+		request.setAttribute("bpd", bpd);
+		rd.forward(request, response);
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

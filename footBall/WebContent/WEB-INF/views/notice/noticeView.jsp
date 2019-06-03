@@ -34,7 +34,8 @@
    }
 
    .full{
-   height: 1200px;
+   height: 800px;
+   text-align:center;
    }
 #noticeview{
 	width: 70%;
@@ -58,42 +59,39 @@
 		<div id="title">
 			고객센터
 		</div>
-	</div>
+
 	
 		<div class="full">
-		
-			<div class="tab-container">
-			<center><h1>공지사항</h1>
+		<section>
+			<div class="table-wrapper" style="text-align: center; width: 60%; margin: 0 auto;">
+			<center><h1>공지사항</h1></center><br><br><br>
+         <center>
          <table class="table" id="noticeview">
+					<tr>
+						<th style="font-size: 25px; font-weight: bold; text-align: center;">${nv.noticeTitle}</th>
+							<th>${nv.noticeDate}</th>
+					</tr>
             <tr>
-               <th>제목</th>
-               <td>${nvd.nv.noticeTitle}</td>
+               <td>작성자 : ${nv.noticeWriter}</td>
+            	<td>조회수 : ${nv.noticeHit}</td>
             </tr>
             <tr>
-               <th>작성자</th>
-               <td>${nvd.nv.noticeWriter}</td>
+               <td style="height: 500px;">${nv.noticeContent}</td>
+            	<td></td>
             </tr>
             <tr>
-               <th>조회수</th>
-               <td>${nvd.nv.noticeHit}</td>
-            </tr>
-            
-            <tr>
-               <th>내용</th>
-               <td>${nvd.nv.noticeContent}</td>
-            </tr>
-            <tr>
-          	   <th colspan="2">
+          	   <th colspan="2"><center>
                	<c:if test="${sessionScope.member.id =='admin' }">
-                  <a href="/noticeUpdate?noticeNo=${nvd.nv.noticeNo}" class="btn btn-outline-primary btn-sm">수정하기</a>
-                  <a href="/noticeDelete?noticeNo=${nvd.nv.noticeNo}" class="btn btn-outline-primary btn-sm">삭제하기</a>
+                  <a href="/noticeUpdate?noticeNo=${nv.noticeNo}" class="btn btn-outline-primary btn-sm">수정하기</a>
+                  <a href="/noticeDelete?noticeNo=${nv.noticeNo}" class="btn btn-outline-primary btn-sm">삭제하기</a>
                   </c:if>
-                  <a href="/notice" class="btn btn-outline-primary btn-sm">목록으로</a>
+                  <a href="/notice" class="btn btn-outline-primary">목록으로</a></center>
                </th>
             </tr>
-         </table></center>
+         </table>
+         </center>
          </div>
-         
+         </section>
 	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import notice.model.dao.NoticeDao;
 import notice.model.vo.NoticePageData;
-import notice.model.vo.NoticeViewData;
 import notice.model.vo.NoticeVo;
 
 public class NoticeService {
@@ -14,7 +13,7 @@ public class NoticeService {
 	public NoticePageData NoticeList(int reqPage){
 		Connection conn = JDBCTemplate.getConnection();
 		//페이지 당 게시물 수
-		int numPerPage = 5;
+		int numPerPage = 10;
 		//총 게시물 수 구하기
 		int totalCount = new NoticeDao().totalCount(conn);
 		//총 페이지 수 구하기
@@ -48,13 +47,13 @@ public class NoticeService {
 		if(pageNo <= totalPage) {
 		pageNavi +="<a class='btn' href='/notice?reqPage="+pageNo+"'>다음</a>";
 		}
-		NoticePageData bpd = new NoticePageData(list,pageNavi);
+		NoticePageData pd = new NoticePageData(list,pageNavi);
 		JDBCTemplate.close(conn);
-		return bpd;
+		return pd;
 	}
 	
 	//하나의 게시물보기
-	public NoticeViewData listOne(int noticeNo) {
+	public NoticeVo listOne(int noticeNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		NoticeVo nv = new NoticeDao().listOne(conn,noticeNo);
 		if(nv!=null) {
@@ -65,9 +64,8 @@ public class NoticeService {
 				JDBCTemplate.rollback(conn);
 			}
 		}
-		NoticeViewData nvd = new NoticeViewData(nv);
 		JDBCTemplate.close(conn);
-		return nvd;
+		return nv;
 	}
 	
 	//게시물등록
@@ -112,7 +110,7 @@ public class NoticeService {
 	//검색기능
 	public NoticePageData searchKeyword(int reqPage, String keyword) {
 		Connection conn = JDBCTemplate.getConnection();
-		int numPerPage = 5;
+		int numPerPage = 10;
 		int totalCount = 0;
 		int totalPage = 0;
 		int start = 0;

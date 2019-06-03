@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <title>공지사항작성</title>
 </head>
 <style>
@@ -36,7 +37,7 @@
    	width: 60%;
    }
    #full{
-   height: 1200px;
+   height: 800px;
    }
 </style>
 <body>
@@ -60,7 +61,7 @@
 	<div class="table-wrapper"
 		style="text-align: center; width: 80%; margin: 0 auto;">
 		<form action="/noticeInsert" method="post">
-		<br><br><br><br>
+		<br><br><br><br><center>
 			<table class="table table-bordered" id="noticewriter">
 				<tr>
 					<th colspan="2" style="font-size: 20px; font-weight: bold; text-align:center;">공지사항
@@ -68,8 +69,7 @@
 				</tr>
 				<tr>
 					<th style="text-align:center;">제목</th>
-					<td><input type="text" class="form-controll"
-						name="noticeTitle" style="width:100%;"></td>
+					<td><input type="text" class="form-controll" name="noticeTitle" style="width:100%;"></td>
 				</tr>
 				<tr>
 					<th style="text-align:center;">작성자</th>
@@ -80,14 +80,17 @@
 				<tr>
 					<th style="text-align:center;">내용</th>
 					<td><textarea name="noticeContent" class="form-controll"
-							rows="3" cols="40" style="resize: none;width:100%;height:150px;"></textarea></td>
+							rows="3" cols="40" style="resize: none;width:100%;height:400px;"></textarea></td>
 				</tr>
-				<tr style="text-align: center;">
+				<tr>
 					<th colspan="2">
-						<button type="submit" class="btn btn-outline-primary"  style="text-align:right;">등록하기</button>
+						<center>
+						<button type="submit" class="btn btn-outline-primary" style="color:gray;">등록하기</button>
+						<a href="/notice"><button class="btn" style="color:gray;">취소</button></a>
+						</center>
 					</th>
 				</tr>
-			</table>
+			</table></center>
 		</form>
 	</div>
 	
