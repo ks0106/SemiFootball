@@ -229,7 +229,8 @@
 		height:50px;
 	}
 	.right_menu_item a{
-		font-size: 30px;
+		font-size: 25px;
+		font-weight:bolder;
 		text-decoration: none;
 		color:white;
 	}
@@ -314,19 +315,28 @@
 			</div>
 			<%}else{ %>
 		 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
-					<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/member_icon_100px_white.png" width="50px" height="50px"></a></div>
-		 			<div><a href="/" style="text-decoration:none;color:white;"><%=m.getName()%> 님!</a></div>
+					<div style="margin-left:16px;"><img src="/img/member_icon_100px_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
+		 			<div><a style="text-decoration:none;color:white;cursor:pointer;"><%=m.getName()%> 님!</a></div>
 				</div>				
 			<%} %>
 		</div>
 	<!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
 		<nav class="right_area">
 			<div style="width:350px;height:100vh;background-color:black;opacity:0.9;position:absolute;right:0;">
-				<div style="width:210px;margin:0 auto;margin-top:10px;margin-bottom:10px;">
-					<a href="#" style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
-					<img src="/img/login_icon_100px_white.png" width="35px">
+				<%if(m == null){ %>
+					<div style="width:100%;margin:0 auto;margin-top:10px;margin-bottom:10px;">
+						<div onclick="loginLocation();" style="float:right;margin-right:30px;cursor:pointer;"><a style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
+						<img src="/img/login_icon_100px_white.png" width="30px"></div>
+					</div>
+				<%}else{ %>
+					<div style="width:100%;margin:0 auto;margin-top:10px;margin-bottom:10px;">
+						<div id="myPage" style="float:right;margin-right:30px;cursor:pointer;"><a style="text-decoration:none;color:white;font-size:25px;"><%=m.getName()%> 님!</a>
+						<img src="/img/member_icon_100px_white.png" width="30px"></div>
+					</div>
+				<%} %>
+				<div style="width:80%;margin:0 auto;box-sizing:border-box;">
+					<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
 				</div>
-				<hr style="width:80%;height:3px;border:0;margin:0 auto;padding:0;background-color:white;">
 				<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
 					<li class="right_menu_item"><a href="/branch">지점</a></li>
 					<li class="right_menu_item"><a href="/reservation">대관</a></li>
@@ -335,9 +345,39 @@
 					<li class="right_menu_item"><a href="/gallery">갤러리</a></li>
 					<li class="right_menu_item"><a href="/notice">커뮤니티</a></li>
 					<li class="right_menu_item"><a href="/company">회사소개</a></li>
-					<li class="right_menu_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
+				</ul>
+					<div style="width:80%;margin:0 auto;box-sizing:border-box;">
+						<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
+					</div>
+				<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
+					<%if(m != null){ %>
+						<li class="right_menu_item"><a onclick="kout();" style="cursor:pointer;">로그아웃</a></li>
+					<%} %>
+					<%if(m.getId().equals("admin")){ %>
+						<li class="right_menu_item"><a href="/admin">관리자메뉴</a></li>
+					<%} %>
 				</ul>
 			</div>
 		</nav>
 	</div>
+	
+	<script>
+		function loginLocation(){
+			location.href="/views/login/login.jsp";
+		}
+		$('#myPage').on("click",function(){
+
+		});
+		function  kout() {
+			var url = "http://developers.kakao.com/logout";
+			$.ajax({
+				url: url,
+				dataType: 'jsonp',
+				jsonpCallback: "myCallback",
+				complete : function(){      //try~catch의 finally (옵션)
+		               location.href="/logout";
+				}
+			});
+		};
+	</script>
 </header>

@@ -56,11 +56,6 @@
 	});
 </script>
 <style>
-	input[type="number"]::-webkit-outer-spin-button,
-	input[type="number"]::-webkit-inner-spin-button {
-	    -webkit-appearance: none;
-	    margin: 0;
-	}
 	.side_a{
 		font-weight:bolder;
 		font-size:18px;
@@ -144,7 +139,7 @@
 				</div>
 			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 -->
-			<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
+			<div style="width:78%;height:2000px;border-left:1px solid silver;display:inline-block;overflow:hidden;">
    		<!-- 컨텐츠 타이틀 -->
 				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">${b.branchName}<대관예약> </div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
@@ -155,7 +150,7 @@
 					<hr style="width:20px;border:2px solid #3366cc;padding:0;float:left;">
 		<!-- 달력 -->
 					<div style="margin-left:10px;margin-top:50px;position:absolute;top:680px;">
-						<div style="width:590px;height:1500px;border: 1px solid darkgray;">
+						<div style="width:590px;border: 1px solid darkgray;">
 							<div style="border-bottom:1px solid darkgray;">
 								<jsp:include page="/views/test/calendar.jsp"/>
 							</div>
@@ -216,7 +211,9 @@
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 							<div id="reservationReceipt" style="width:90%;margin:0 auto;margin-top:30px;">
-								<div class="reservationCost" style="font-size:18px;width:100%;float:left;">삼다수 x 8<span style="font-size:20px;float:right;">6400원</span></div>
+								<div class="reservationCost" style="font-size:18px;width:100%;float:left;">삼다수 500ml [800원 * 8개]<span style="font-size:20px;float:right;">6,400원</span></div>
+								<div class="reservationCost" style="font-size:18px;width:100%;float:left;">조끼(빨강) XL [1,500원 * 8벌]<span style="font-size:20px;float:right;">12,000원</span></div>
+								<div class="reservationCost" style="font-size:18px;width:100%;float:left;">축구화 250size [5,000원 * 8켤레]<span style="font-size:20px;float:right;">40,000원</span></div>
 								<div id="reservationAllCost" style="font-size:18px;width:100%;">합계<span id="allCost" style="font-size:20px;float:right;">0원</span></div>
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
@@ -327,7 +324,7 @@
 								var scheduleCost = data[i].scheduleCost;
 								var scheduleStatus = data[i].scheduleStatus;
 								if(scheduleStatus == 0){
-									$select.append('<div class="scheduleList"><div style="text-align:center;padding:10px;"><span class="startTime">'+scheduleStartTime+'</span>~<span class="endTime">'+scheduleEndTime+'</span><br><span class="reservationCost">'+scheduleCost.toLocaleString()+'</span>원</div></div>');
+									$select.append('<div class="scheduleList" id="scheduleNo'+scheduleNo+'"><div style="text-align:center;padding:10px;"><span class="startTime">'+scheduleStartTime+'</span>~<span class="endTime">'+scheduleEndTime+'</span><br><span class="reservationCost">'+scheduleCost.toLocaleString()+'</span>원</div></div>');
 								}
 							}							
 						}else{
@@ -365,49 +362,73 @@
 			allCost += parseInt($(this).find('.reservationCost').html().replace(",",""));
 			$('#allCost').html(allCost.toLocaleString()+'원');	
 			
+			/* 영수증 초기화 */
+			var scheduleNo = $(this).attr('id');
+			var $receipt = $('#reservationReceipt');
+			$receipt.prepend('<div name="'+scheduleNo+'" class="reservationCost" style="font-size:18px;width:100%;float:left;">대관('+$(this).find('.startTime').text()+'~'+$(this).find('.endTime').text()+')<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');
+			
 		});
 		$(document).on("click",".scheduleSelect",function(){
 			$(this).addClass('scheduleList');
 			$(this).removeClass('scheduleSelect');
 			allCost -= parseInt($(this).find('.reservationCost').html().replace(",",""));
 			$('#allCost').html(allCost.toLocaleString()+'원');	
+
+			var scheduleNo = $(this).attr('id');
+			var $receipt = $('#reservationReceipt');
+			$receipt.find("div[name="+scheduleNo+"]").remove();
+			if($(this).siblings('.scheduleSelect').attr('class') != 'scheduleSelect'){
+				$('.reservationGoods').css("display","none");
+				$('.reservationOption').css("display","none");
+				$('.reservationAmount').css("display","none");
+				$('.addBtn').css("display","none");
+				$('.reservationAmount').val('');
+				$('.goodsCount').text('');
+				$('.checkGoods').prop('checked',false);				
+			}
+
 		});
 		
 		/* 물품대여 체크박스 체크했을 때 동작하는 함수 */
-		$('.checkGoods').click(function(){
-			if($(this).is(':checked') == true){
-				$(this).parents().siblings('.reservationGoods').css("display","inline-block");
-				
-				var result = $(this).parents('label').text();
-				var bCode = ${b.branchCode};
-				var $select = $(this).parents().siblings('.reservationGoods');
-				$select.find("option").not('#default').remove();
-				$.ajax({
-					url : "/reservationGoodsList.do",
-					type : "get",
-					data : {result:result,bCode:bCode},
-					success : function(data){
-						for(var i=0;i<data.length;i++){
-							var goodsBCode = data[i].goodsBCode;
-							var goodsCategory = data[i].goodsCategory;
-							var goodsName = data[i].goodsName;
-							$select.append('<option>'+goodsName+'</option>');
+		$('.checkGoods').on("click",function(e){
+			if($('#courtTime').children('.scheduleSelect').attr('class') == 'scheduleSelect'){
+				if($(this).is(':checked') == true){
+					$(this).parents().siblings('.reservationGoods').css("display","inline-block");
+					
+					var result = $(this).parents('label').text();
+					var bCode = ${b.branchCode};
+					var $select = $(this).parents().siblings('.reservationGoods');
+					$select.find("option").not('#default').remove();
+					$.ajax({
+						url : "/reservationGoodsList.do",
+						type : "get",
+						data : {result:result,bCode:bCode},
+						success : function(data){
+							for(var i=0;i<data.length;i++){
+								var goodsBCode = data[i].goodsBCode;
+								var goodsCategory = data[i].goodsCategory;
+								var goodsName = data[i].goodsName;
+								$select.append('<option>'+goodsName+'</option>');
+							}
+						},
+						error : function(){
+							alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 						}
-					},
-					error : function(){
-						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
-					}
-				});
-				$(this).siblings('.addBtn').css("display","none");
-				$(this).parents().siblings('.reservationAmount').val('');
-				$('.goodsCount').val('');				
+					});
+					$(this).parents().siblings('.addBtn').css("display","none");
+					$(this).parents().siblings('.reservationAmount').val('');
+					$('.goodsCount').val('');				
+				}else{
+					$(this).parents().siblings('.reservationGoods').css("display","none");
+					$(this).parents().siblings('.reservationOption').css("display","none");
+					$(this).parents().siblings('.reservationAmount').css("display","none");
+					$(this).parents().siblings('.addBtn').css("display","none");
+					$(this).parents().siblings('.reservationAmount').val('');
+					$(this).parents().siblings('span').find('.goodsCount').text('');				
+				}
 			}else{
-				$(this).parents().siblings('.reservationGoods').css("display","none");
-				$(this).parents().siblings('.reservationOption').css("display","none");
-				$(this).parents().siblings('.reservationAmount').css("display","none");
-				$(this).siblings('.addBtn').css("display","none");
-				$(this).parents().siblings('.reservationAmount').val('');
-				$(this).parents().siblings('span').find('.goodsCount').text('');				
+				e.preventDefault();
+				alert("대관 시간을 정해주세요.");
 			}
 		});
 
@@ -440,14 +461,13 @@
 						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 					}
 				});
-				$(this).siblings('.addBtn').css("display","none");
-				$(this).parents().siblings('.reservationAmount').val('');
+				$(this).siblings('.reservationAmount').val('');
 				$(this).siblings('span').find('.goodsCount').text('');				
 			}else{
 				$(this).siblings('.reservationOption').css("display","none");
 				$(this).siblings('.reservationAmount').css("display","none");
 				$(this).siblings('.addBtn').css("display","none");
-				$(this).parents().siblings('.reservationAmount').val('');
+				$(this).siblings('.reservationAmount').val('');
 				$(this).siblings('span').find('.goodsCount').text('');				
 			}
 		});
@@ -475,13 +495,14 @@
 						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 					}
 				});
+				$(this).siblings('.reservationAmount').val('');
 				$(this).siblings('span').find('.goodsCount').text('');								
 			}else{
 				$(this).siblings('.reservationAmount').val('');
 				$(this).siblings('.reservationAmount').css("display","none");
 				$(this).siblings('.addBtn').css("display","none");
 				$(this).parents().siblings('.reservationAmount').val('');
-				$(this).siblings('span').find('.goodsCount').text('');				
+				$(this).siblings('span').find('.goodsCount').text('');
 			}
 		});
 
@@ -491,6 +512,17 @@
 				alert("재고보다 많은 수를 입력할 수 없습니다.");
 				$(this).val(count);
 			}
+		});
+		$('.reservationAmount').on("focusout",function(){
+			var count = parseInt($(this).siblings('span').find('.goodsCount').text());
+			if($(this).val() > count){
+				alert("재고보다 많은 수를 입력할 수 없습니다.");
+				$(this).val(count);
+			}			
+		});
+		
+		$('.addBtn').on("click",function(){
+			
 		});
 	</script>
 
