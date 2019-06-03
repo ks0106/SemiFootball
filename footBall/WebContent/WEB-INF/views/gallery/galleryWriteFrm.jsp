@@ -6,14 +6,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/common/pageCss.css">
+<script
+	src="https://code.jquery.com/jquery-3.4.0.js"
+	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+	crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+    $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
+    $('#ground2').append('<img src="/img/ground2.png" alt="그라운드2" style="width:100%;height:500px;">');
+    $('#ground3').append('<img src="/img/ground3.png" alt="그라운드3" style="width:100%;height:500px;">');
+    $('#ground4').append('<img src="/img/ground4.png" alt="그라운드4" style="width:100%;height:500px;">');
+    $('#ground5').append('<img src="/img/ground5.png" alt="그라운드5" style="width:100%;height:500px;">');
+ });
+</script>
 </head>
+
 <style>
 	body{
-		background : black;
+		background : #A9E2C5;
 		
 	}
 	#galleryWriterTbl{
-		background : blue;
+		background : #9197B5;
 		border-collapse:collapse;
 		color: white;
 		text-align: center;
@@ -27,18 +41,12 @@
 	}
 </style>
 <body>
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<!--헤더 밑 영상  -->
-	<div id="continer">
-	<div id="mv">
-		<video id="video01" class="pblock" autoplay playsinline muted loop title> 
-			<source src="/img/page3.mp4" type="video/mp4"> 
-		</video>
-	</div>
+	<!-- 헤더 불러오기 -->
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 	<!--영상 위 페이지 타이틀 -->
-		<div id="title">
-			갤러리
-		</div>
+	<div id="title">
+		갤러리
 	</div>
 	<!-- 내용 -->
 	<section class="page_area">
