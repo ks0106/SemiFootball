@@ -80,9 +80,6 @@
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
 				</div>
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난 대회 결과</a>
-				</div>
 			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 본문 -->
    			<br><br>
@@ -127,7 +124,7 @@
 							</table>
 							<div id="btn-wrapper" style="width: 80%; margin: 0 auto; height: 50px; text-align: center; margin-top: 60px; margin-bottom: 60px;">
 								<button type="submit" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">신청하기</button>
-								<button type="button" onclick="close();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">취소</button>
+								<button type="button" onclick="back();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">취소</button>
 							</div>
 						</form>
 					</div>
@@ -150,13 +147,11 @@
 			location.href="/league";
 		});
 		$("#side_menu2").click(function(){
-			location.href="/gameTable"
-		});
-		$("#side_menu3").click(function(){
+			location.href="/viewGameTable"
 		});
 	
 	});
-	function close(){
+	function back(){
 		location.href="/league";
 	}
 	function loadImg(f){

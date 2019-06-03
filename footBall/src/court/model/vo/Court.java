@@ -1,4 +1,4 @@
-package reservation.model.vo;
+package court.model.vo;
 
 public class Court {
 	private int courtBCode;

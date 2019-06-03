@@ -1,28 +1,23 @@
-package league.controllor;
+package branch.controllor;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import league.model.service.LeagueService;
-
 /**
- * Servlet implementation class WinnerServlet
+ * Servlet implementation class BranchManageServlet
  */
-@WebServlet(name = "Winner", urlPatterns = { "/winner" })
-public class WinnerServlet extends HttpServlet {
+@WebServlet(name = "BranchManage", urlPatterns = { "/branchManage" })
+public class BranchManageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WinnerServlet() {
+    public BranchManageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +26,7 @@ public class WinnerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int teamNo = Integer.parseInt(request.getParameter("teamNo"));
-		System.out.println(teamNo);
-			int result;
-			try {
-				result = new LeagueService().winner(teamNo);
-				if(result>0) {
-					RequestDispatcher rd = request.getRequestDispatcher("/gameTable");
-					rd.forward(request, response);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		request.getRequestDispatcher("/WEB-INF/views/branch/branchManage.jsp").forward(request, response);
 	}
 
 	/**

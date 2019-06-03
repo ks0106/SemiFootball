@@ -1,8 +1,6 @@
-package league.controllor;
+package admin.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,21 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import league.model.service.LeagueService;
-import league.model.vo.League;
-import league.model.vo.WinList;
-
 /**
- * Servlet implementation class GameTalbeServlet
+ * Servlet implementation class AdminServlet
  */
-@WebServlet(name = "GameTable", urlPatterns = { "/gameTable" })
-public class GameTableServlet extends HttpServlet {
+@WebServlet(name = "admin", urlPatterns = { "/admin" })
+public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GameTableServlet() {
+    public AdminServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +28,7 @@ public class GameTableServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		try {
-			WinList list = new LeagueService().teamList();
-			request.setAttribute("list", list);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/league/gameTable.jsp");
-			rd.forward(request, response);
-		} catch (SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
-			request.setAttribute("msg", "SQL구문 오류");
-			rd.forward(request, response);
-			e.printStackTrace();
-		}
+		request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp").forward(request, response);;
 	}
 
 	/**

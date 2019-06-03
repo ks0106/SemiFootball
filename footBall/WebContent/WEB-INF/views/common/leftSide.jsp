@@ -104,12 +104,14 @@
 			$('sidebar').css("display","none");
 			$('header').css("display","block").css("position","absolute");
 			$('.area2').css("display","none");
+			$('#myPage2').css("display","none");
 			$('.area').animate({
 				top:"-70px"},200);
 		}else{
 			$('sidebar').css("display","block");			
 			$('header').css("display","none");
 			$('.area2').css("display","block");
+			$('#myPage').css("display","none");
 			$('.area').animate({
 				top:"0px"},200);
 		}
@@ -122,6 +124,7 @@
 				$('sidebar').css("display","block");
 				$('header').css("display","none");
 				$('.area2').css("display","block");
+				$('#myPage').css("display","none");
 				$('.area').animate({
 					top:"0px"},200);
 				oldHeight = $(window).height();
@@ -131,6 +134,7 @@
 				$('sidebar').css("display","none");
 				$('header').css("display","block").css("position","absolute");
 				$('.area2').css("display","none");
+				$('#myPage2').css("display","none");
 				$('.area').animate({
 					top:"-70px"},200);				
 				oldHeight = $(window).height();
@@ -142,8 +146,8 @@
 <sidebar>
 	<div class="leftside_area">
 		<div class="leftside_title">
-			<img src="/img/header_logo2.png" width="100px" height="100px">
-			Football Mania	
+			<a href="#"><img src="/img/header_logo2.png" width="100px" height="100px"></a>
+			<a href="#" style="text-decoration:none;color:white;">Football Mania</a>
 		</div>
 		<div class="leftside_notice">
 			<div style="background-color:black;margin:0 auto;width:400px;height:30px;display:block;border-radius:20px;">
@@ -332,6 +336,24 @@
 			}
 		});
 		
+		$('#menu_login').click(function(){
+			if($("#myPage").attr('class') != 'selectMyPage'){
+				$("#myPage").addClass('selectMyPage');
+				$("#myPage").css("display","inline-block");				
+			}else{
+				$("#myPage").removeClass('selectMyPage');
+				$("#myPage").css("display","none");								
+			}
+		});		
+		$('#menu_login2').click(function(){
+			if($("#myPage2").attr('class') != 'selectMyPage'){
+				$("#myPage2").addClass('selectMyPage');
+				$("#myPage2").css("display","inline-block");				
+			}else{
+				$("#myPage2").removeClass('selectMyPage');
+				$("#myPage2").css("display","none");								
+			}
+		});		
 	});
 	function  kout() {
 		var url = "http://developers.kakao.com/logout";
@@ -346,6 +368,7 @@
 	           }
 		});
 	};
+
 </script>
 <script>
 	/*카카오톡 로그아웃
@@ -361,28 +384,42 @@
 	
 </script>
 <header class="area2">
-	<%if(m==null){ %>
+	<%if(m == null){ %>
 	<div class="menu_bar2">
- 		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
 			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
- 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 		</div>
 	</div>
 	<%}else{ %>
 	<div class="menu_bar2">
  		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
-			<div style="margin-left:16px;"><a  onclick="kout();"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
- 			<div><a onclick="kout();" style="text-decoration:none;color:white;">로그아웃</a></div>
-		</div>
-	</div>
-		<%if(m.getId().equals("admin")){ %>
-		<div class="menu_bar2">
-	 		<div id="menu_login2" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:50px;">
-				<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
-	 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">관리자</a></div>
+			<div style="margin-left:16px;"><img src="/img/member_icon_100px_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
+ 			<div><a style="text-decoration:none;color:white;cursor:pointer;"><%=m.getName()%> 님!</a></div>
+ 			<div id="myPage2" style="display:none;">
+				<div style="width:300px;height:220px;position:absolute;right:0;top:110px;z-index:10;">
+					<div style="color:white;text-align:center;font-size:20px;font-weight:bolder;">회원 정보</div>
+					<div style="width:100%;margin:0 auto;box-sizing:border-box;">
+						<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
+					</div>
+					<div style="color:white;text-align:center;">ID : <%=m.getId()%></div>
+					<div style="color:white;text-align:center;">Name : <%=m.getName()%></div>
+					<div style="color:white;text-align:center;">Phone : <%=m.getPhone()%></div>
+					<div style="color:white;text-align:center;">가입일 : <%=m.getEnrollDate()%></div>				
+					<div style="width:100%;margin:0 auto;box-sizing:border-box;">
+						<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
+					</div>
+					<div style="color:white;text-align:center;margin-top:15px;">
+						<input onclick="kout();" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="로그아웃">
+						<input onclick="location.href='/admin'" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="관리자">
+					</div>				
+				</div>
+				<div style="width:300px;height:220px;position:absolute;right:0;top:80px;opacity:0.5;">
+					<img src="/img/textArea_black.png">
+				</div>
 			</div>
-		</div>
-		<%} %>
+		</div>				
+	</div>
 	<%} %>
 </header>
 
@@ -405,19 +442,57 @@
  			<li class="header_item"><a href="/company">회사소개</a></li>
  			<li class="header_item"><a href="#" style="display:none;">관리자메뉴</a></li>
  		</ul>
- 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
-			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
- 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
-		</div>
+	 		<%if(m == null){ %>
+		 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+					<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
+		 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+				</div>
+			<%}else{ %>
+		 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+					<div style="margin-left:16px;"><img src="/img/member_icon_100px_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
+		 			<div><a style="text-decoration:none;color:white;cursor:pointer;"><%=m.getName()%> 님!</a></div>
+		 			<div id="myPage" style="display:none;">
+						<div style="width:300px;height:220px;position:absolute;right:0;top:180px;z-index:10;">
+							<div style="color:white;text-align:center;font-size:20px;font-weight:bolder;">회원 정보</div>
+							<div style="width:100%;margin:0 auto;box-sizing:border-box;">
+								<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
+							</div>
+							<div style="color:white;text-align:center;">ID : <%=m.getId()%></div>
+							<div style="color:white;text-align:center;">Name : <%=m.getName()%></div>
+							<div style="color:white;text-align:center;">Phone : <%=m.getPhone()%></div>
+							<div style="color:white;text-align:center;">가입일 : <%=m.getEnrollDate()%></div>				
+							<div style="width:100%;margin:0 auto;box-sizing:border-box;">
+								<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
+							</div>
+							<div style="color:white;text-align:center;margin-top:15px;">
+								<input onclick="kout();" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="로그아웃">
+								<input onclick="location.href='/admin'" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="관리자">
+							</div>				
+						</div>
+						<div style="width:300px;height:220px;position:absolute;right:0;top:150px;opacity:0.5;">
+							<img src="/img/textArea_black.png">
+						</div>
+					</div>
+				</div>	
+			<%} %>
 	</div>
 <!-- 토글바 클릭 시 나오는 오른쪽 사이드바 작성 -->
 	<nav class="right_area">
 		<div style="width:350px;height:100vh;background-color:black;opacity:0.9;position:absolute;right:0;">
-			<div style="width:210px;margin:0 auto;margin-top:10px;margin-bottom:10px;">
-				<a href="#" style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
-				<img src="/img/login_icon_100px_white.png" width="35px">
+			<%if(m == null){ %>
+				<div style="width:100%;margin:0 auto;margin-top:10px;margin-bottom:10px;">
+					<div onclick="loginLocation();" style="float:right;margin-right:30px;cursor:pointer;"><a style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
+					<img src="/img/login_icon_100px_white.png" width="30px"></div>
+				</div>
+			<%}else{ %>
+				<div style="width:100%;margin:0 auto;margin-top:10px;margin-bottom:10px;">
+					<div id="myPage" style="float:right;margin-right:30px;cursor:pointer;"><a style="text-decoration:none;color:white;font-size:25px;"><%=m.getName()%> 님!</a>
+					<img src="/img/member_icon_100px_white.png" width="30px"></div>
+				</div>
+			<%} %>
+			<div style="width:80%;margin:0 auto;box-sizing:border-box;">
+				<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
 			</div>
-			<hr style="width:80%;height:3px;border:0;margin:0 auto;padding:0;background-color:white;">
 			<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
 				<li class="right_menu_item"><a href="/branch">지점</a></li>
 				<li class="right_menu_item"><a href="/reservation">대관</a></li>
@@ -426,9 +501,27 @@
 				<li class="right_menu_item"><a href="/gallery">갤러리</a></li>
 				<li class="right_menu_item"><a href="/notice">커뮤니티</a></li>
 				<li class="right_menu_item"><a href="/company">회사소개</a></li>
-				<li class="right_menu_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
+			</ul>
+				<div style="width:80%;margin:0 auto;box-sizing:border-box;">
+					<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
+				</div>
+			<ul id="side_menu" style="list-style-type:none;padding:0;margin-left:10%;">
+				<%if(m != null){ %>
+					<li class="right_menu_item"><a onclick="kout();" style="cursor:pointer;">로그아웃</a></li>
+					<%if(m.getId().equals("admin")){ %>
+						<li class="right_menu_item"><a href="/admin">관리자메뉴</a></li>
+					<%} %>
+				<%} %>
 			</ul>
 		</div>
 	</nav>
+	<script>
+		function loginLocation(){
+			location.href="/views/login/login.jsp";
+		}
+		$('#myPage').on("click",function(){
+	
+		});
+	</script>
 </header>
 </html>

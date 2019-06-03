@@ -1,4 +1,8 @@
 @charset "UTF-8";
+		.hr-menu {
+			border:3px solid #2c3c57;
+			margin:0 auto;
+		}
 		.mainImg {
 			 border-radius: 10px;
 			 width: 450px;
@@ -50,30 +54,63 @@
 			color: white;
 			text-decoration: none;
 			background-color: #446087;
+			cursor: pointer;
 		}
 		.content-container {
 			position: relative;
+			top: 30px;
 			width: 100%;
 			height: 100%;
-			text-align: center;
 		}
 		.aside-bar{
 			position: absolute;
-			width: 350px;
-			height: 99.77%;
-			text-align: center;
-			background-color: orange;
+			width: 25%;
+			height: 98.80%;
+			border-right:2px solid #2c3c57;
+			background-color: white;
 			z-index: 2;
 		}
 		#testSticky{
-			position: sticky;/* required */
-			position: -webkit-sticky;/* required */
-  			top: 80px; /* required */
+			position: sticky;/* 필수 */
+			position: -webkit-sticky;/* 필수 */
+  			top: 110px; /* 필수 */
 			display: inline-block;
 			width: 100%;
-			height: 695px;
-			background-color: red;
+			height: 670px;
+			border-right:2px solid #2c3c57;
+			background-color: white;
 		}
+		#nav-wrapper{
+			position: absolute;
+			left: 150px;
+			width: 60%;
+			height: 100%;
+			background-color:salmon;
+			text-align:left;
+		}
+		.nav-span{
+			font-size: 30px;
+			color: #446087;
+			font-weight: bolder;
+			line-height: 45px;
+		}
+		.internal-link {
+			color: rgb(44, 60, 87); 
+			font-weight: bolder; 
+			font-size: 18px; 
+			line-height: 2;
+			text-decoration: none; 
+			cursor: pointer;
+		}
+		#manage-link {
+			color: rgb(44, 60, 87); 
+			font-weight: bolder; 
+			font-size: 18px; 
+			line-height: 2;
+			text-decoration: none; 
+			cursor: pointer;
+		}
+		
 		.content-wrapper {
 			position: relative;
 			display: inline-block;
@@ -85,14 +122,14 @@
 			width: 31%;
 			height: 370px;
 			padding-top:50px;
-			padding-right:14%;
+			padding-right:9%;
 		}
 		.content-left {
 			float: left;
 			width: 30%;
 			height: 370px;
 			padding-top:50px;
-			padding-left:25%;
+			padding-left:30%;
 		}
 		
 		/* The Modal (background) */
@@ -111,11 +148,11 @@
 		/* Modal Content/Box */
 		.branch-modal {
 			background-color: #fefefe;
-			margin: 8% auto; /* 15% from the top and centered */
-			min-margin:150px;
+			margin: 8% auto; /* 8% from the top and centered */
+			min-margin:90px;
 			padding: 20px;
 			border: 1px solid #888;
-			width: 70%; /* Could be more or less, depending on screen size */
+			width: 70%; 
 			height: 80%;
 			min-width: 1000px;
 			overflow: auto;
@@ -125,7 +162,7 @@
 			height:800px; 
 			position:relative; 
 			top:10px;
-			left:26px; 
+			left:30px;
 			background-color:red;
 			text-align:center;
 		}
@@ -141,7 +178,7 @@
 			position:relative;
 			width:80%;
 			height: 500px;
-			left: 100px;
+			left: 10%;
 			background-color: blue;
 		}
 		#spec {
@@ -172,12 +209,13 @@
 			height: 500px;
 			background-color:salmon;
 		}
-		#map_ma {
-			width:100%; 
-			height:400px; 
-			clear:both; 
-			border:solid 1px red;
+		#map {
+			 position:relative; 
+			 left:10%;
+			 width:80%; 
+			 height:400px;
 		}
+
 		/* The Close Button */
 		.close {
 			position:static;

@@ -43,7 +43,6 @@ $(document).ready(function(){
 			<div align="right">
 				<c:if test="${sessionScope.member.id eq 'admin'}">
 				 	<button style="width: 100px; height: 10%; " id="write-btn">글쓰기</button>
-					<button onclick="HI();"  style="width: 100px; height: 10%; " id="delete-btn">삭제하기</button>
 				</c:if>
 			</div>
 			<div class="container">
@@ -118,8 +117,7 @@ $(document).ready(function(){
 			window.open("/galleryDeleteFrm","new", "width=300, height=200, left=150, top=150,scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
 		});  */
 		$(document).ready(function(){
-			
-			if(${gpd.pageNo <= totalPage}){
+			if(${gpd.pageNo >= gpd.totalPage}){
 				$("#right-control").css("display",'none');
 			}
 			
@@ -129,28 +127,68 @@ $(document).ready(function(){
 		});
 		
 		 $(document).ready(function(){
-			var n = 0;
+			
  			console.log($(".small-Img").length);
+ 			
+ 			
 			if($(".small-Img").length > 4){
 				$(".small-Img:gt(4)").css('display', 'none');
 			};
-			
+			var n = 1;
 			 $("#right-control").click(function(){
-				 if(n != ${gpd.totalPage}){
-					 n++; 
+				 console.log("r클릭 후"+n);
+				 $("#left-control").css('display', 'inline');
+				 
+				 if (n >= ${gpd.totalPage-1}){
+					 $("#right-control").css('display','none');
 				 }
-				 $(".small-Img:lt("+5n+")").css('display', 'none'); // 5, 10, 15 이상 감추기
-				 $(".small-Img:gt("+(5*n-1)+")").css('display', 'inline'); // 9, 14, 감추기 보여주기
-				 $(".small-Img:gt("+(5*n+4)+")").css('display', 'none'); // 9, 14 이상 감추기
+				 $(".small-Img:lt("+5 * n+")").css('display', 'none'); // 4, 9, 14 이하 감추기
+				 $(".small-Img:gt("+(5 * n - 1)+")").css('display', 'inline'); //5, 10, 15 이상 보여주기
+				 $(".small-Img:gt("+(5 * n + 4)+")").css('display', 'none'); // 10, 15 이상 감추기
+				 console.log("right n++ if문 전"+n);
+				 if(n != ${gpd.totalPage}){
+					 ++n;
+				 }
+				 console.log("right n++ if문 후"+n);
+				 
+				 console.log("right : " + n);
+				 console.log("total : " + ${gpd.totalPage});
+				 
 			});
-			
-			$("#left-control").click(function(){
-				$(".small-Img:lt("+5n+")").css('display', 'inline'); // 0, 5, 10 이하 보여주기
-				if(n != 1 && n != 0){
-					n--;
+			 // 1 : 5 2 : 10 3 : 15 -> 4부터 감추기 9부터 감추기 14부터 감추기
+			 // 1 : 4 2 : 9 3 : 14	-> 5부터 보기 10부터 보기 15부터 보기
+			 // 1 : 9 2 : 14 3 : 19 -> 10부터 감추기 15부터 감추기 20부터 감추기
+				 
+ 			 console.log('onload : '+n);
+			 if(n == 1){
+					$("#left-control").css('display', 'none');
 				}
-				$(".small-Img:gt("+(5*n-1)+")").css('display', 'none'); // 4, 9, 14 이상 감추기
-			}); 
+			$("#left-control").click(function(){
+				console.log("ㅣ클릭 후"+n);
+				console.log('left : '+n);
+				console.log('left2 if문 전 : '+n);
+				if(n != 1 || n<1){
+					--n;
+					console.log("left if문 안"+n);
+				}
+				console.log('left3 if문 후 : '+n);
+				$(".small-Img:lt("+(5 * n)+")").css('display', 'inline'); // 5, 10, 15 이상 감추기
+				$(".small-Img:lt("+ 5 * (n - 1) +")").css('display', 'none'); // 0, 4, 9 이하 감추기
+				$(".small-Img:gt("+(5 * n - 1)+")").css('display', 'none'); // 10, 15 이상 감추기
+				if(n == 1){
+					$(".small-Img:eq(0)").css('display', 'inline'); // 0 초과 보여주기
+					
+				}
+				if(n == 1){
+					$("#left-control").css('display', 'none');
+				}
+				
+				console.log('left4 if문 후 : '+n); 
+				$("#right-control").css('display','inline');
+				// 0~4, 5~9, 10~14, 15~19
+				//	1	 2	   3	  4
+				//5 미만 10미만   
+			});
 		}); 
 		
 		if(${sessionScope.member.id eq 'admin'}){
@@ -179,7 +217,7 @@ $(document).ready(function(){
 		function fn_del(count, src){
 			var allData = {"count": count, "src":src};
 			$.ajax({
-				url : "/galleryDeleteFrm.do",
+				url : "/galleryDeleteFrm",
 				type : "post",
 				data : allData,
 				success: function(data){

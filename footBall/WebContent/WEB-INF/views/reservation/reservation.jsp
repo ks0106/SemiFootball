@@ -51,20 +51,6 @@
 			location.href="/reservationView";
 		});
 	});
-	$("#jQ1").click(function(){
-		var selectVal = $("select[name=reservation]").val();
-		$.ajax({
-			url : "/reservationStart.do",
-			data : {selectVal : selectVal},
-			type : "get",
-			success : function(){				//요청 성공한 경우 수행할 함수
-			},
-			error : function(){					//요청 실패한 경우 수행할 함수
-				console.log("서버 전송 실패");
-			}
-		});
-	});
-
 	function reservationCheck(){
 		if($('select[name=reservationSelect]').val() == 'default' || $('select[name=reservationSelect]').val() == null){
 			alert("지점을 선택해주세요!");
@@ -151,7 +137,7 @@
 					<div style="width:100%;height:350px;text-align:center;">
 		<!-- 지점선택 폼 -->
 						<form style="margin-top:75px;" action="/reservationForm" method="post" onsubmit="return reservationCheck();">
-							<select name="reservationSelect" style="width:400px;height:50px;font-size:20px;padding:0;margin-left:6px;">
+							<select name="reservationSelect" style="width:400px;height:50px;font-size:20px;padding:0;margin-left:6px;border:1px solid lightgray;">
 								<option value="default" selected>::: 지점선택 :::</option>
 								<c:forEach items="${list}" var="b" varStatus="i">
 									<option value="${b.branchCode}">${b.branchName}</option>

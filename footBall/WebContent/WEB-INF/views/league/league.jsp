@@ -74,12 +74,11 @@
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
 				</div>
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난 대회 결과</a>
-				</div>
-				<div style="margin-bottom:15px;">
-					<a class="side_a " id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
-				</div>
+				<c:if test="${sessionScope.member.id eq'admin' }">
+					<div style="margin-bottom:15px;">
+						<a class="side_a " id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
+					</div>
+				</c:if>
 				
 			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 본문 -->
@@ -93,7 +92,7 @@
 					<img src="/img/poster.png" width="100%" height="100%">
 				</div>
 				<div id="btn-wrapper" style="margin: 0 auto; width: 100%; text-align: center;margin-bottom:100px;">
-					<button type="button" class="insertLeagueBtn" onclick="insertLeague();" >참가 신청</button>
+					<button type="button" class="insertLeagueBtn" onclick="insertLeague();" id="addTeam">참가 신청</button>
 					<button type="button" class="insertLeagueBtn" onclick="teamView();" >참가 팀 보기</button>
 				</div>			
 				<div id="table-wrapper1" style="margin-bottom: 300px;text-align: center;">
@@ -148,7 +147,7 @@
 							<td class="th">2018-5-10</td>
 						</tr>
 					</table>
-					<c:if test="${sessionScope.member.id=='admin' }">
+					<c:if test="${sessionScope.member.id eq 'admin' }">
 					<div style="margin-top: 50px;">
 						<button type="button" onclick="addLeague();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">공지추가</button>
 					</div>
@@ -172,13 +171,16 @@
 			location.href="/league";
 		});
 		$("#side_menu2").click(function(){
+			location.href="/viewGameTable"
 		});
 		$("#side_menu3").click(function(){
 		});
 		$("#side_menu4").click(function(){
 			location.href="/gameTable"
 		});
-	
+		.ajax({
+			
+		});
 	});
 		function insertLeague(){
 			location.href="/views/league/insertLeague.jsp";
@@ -187,8 +189,9 @@
 			alert("까먹지말고 만들어!");
 		}
 		function teamView(){
-			location.href="/gameTable#teamViewpoint"
+			location.href="/viewGameTable#teamViewpoint"
 		}
+		
 </script>
 </body>
 </html>

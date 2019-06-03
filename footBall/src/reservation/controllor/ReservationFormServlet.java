@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.media.jfxmediaimpl.MediaDisposer.ResourceDisposer;
-
+import branch.model.vo.Branch;
 import member.model.vo.Member;
 import reservation.model.service.ReservationService;
-import reservation.model.vo.ReservationFormData;
 
 /**
  * Servlet implementation class ReservationFormServlet
@@ -42,8 +40,8 @@ public class ReservationFormServlet extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			int rCode = Integer.parseInt(request.getParameter("reservationSelect"));		
 			try {
-				ReservationFormData rfd = new ReservationService().reservationCourt(rCode);
-				request.setAttribute("rfd", rfd);
+				Branch b = new ReservationService().reservationBranch(rCode);
+				request.setAttribute("b", b);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationForm.jsp");
 				rd.forward(request, response);
 			} catch (SQLException e) {
