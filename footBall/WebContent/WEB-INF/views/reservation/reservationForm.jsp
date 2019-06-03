@@ -376,7 +376,7 @@
 
 			var scheduleNo = $(this).attr('id');
 			var $receipt = $('#reservationReceipt');
-			$receipt.find("div[name="+scheduleNo+"]").remove();
+			$receipt.find("div[name="+scheduleNo+"]").remove();			
 			if($(this).siblings('.scheduleSelect').attr('class') != 'scheduleSelect'){
 				$('.reservationGoods').css("display","none");
 				$('.reservationOption').css("display","none");
@@ -385,6 +385,9 @@
 				$('.reservationAmount').val('');
 				$('.goodsCount').text('');
 				$('.checkGoods').prop('checked',false);				
+				var scheduleNo = $(this).attr('id');
+				var $receipt = $('#reservationReceipt');
+				$receipt.prepend('<div name="'+scheduleNo+'" class="reservationCost" style="font-size:18px;width:100%;float:left;">대관('+$(this).find('.startTime').text()+'~'+$(this).find('.endTime').text()+')<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');
 			}
 
 		});
@@ -522,6 +525,29 @@
 		});
 		
 		$('.addBtn').on("click",function(){
+			var $receipt = $('#reservationReceipt');
+			var goods = $(this).siblings('.reservationGoods').children('option:selected').html();
+			var option = $(this).siblings('.reservationOption').children('option:selected').html();
+			var amount = parseInt($(this).siblings('.reservationAmount').val());
+			
+			$.ajax({
+				url : "/reservationGoodsPrice.do",
+				type : "get",
+				data : {goods:goods,option:option},
+				success : function(data){
+					if(amount > 0){
+						var price = parseInt(data.goodsPrice);
+						var allPrice = (price*amount);
+						$receipt.prepend('<div class="reservationCost" style="font-size:18px;width:100%;float:left;">'+goods+' '+option+' ['+price+'원 * '+amount+'개]<span style="font-size:20px;float:right;">'+allPrice.toLocaleString()+'원</span></div>');
+					}else{
+						alert("수량을 입력해주세요.");
+					}
+				},
+				error : function(){
+					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+				}
+			});
+
 			
 		});
 	</script>

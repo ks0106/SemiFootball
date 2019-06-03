@@ -54,4 +54,10 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return count;
 	}
+	public Goods reservationGoodsPrice(String goods, String option) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		Goods g = new ReservationDao().reservationGoodsPrice(conn, goods, option);
+		JDBCTemplate.close(conn);
+		return g;
+	}
 }
