@@ -1,30 +1,23 @@
 package member.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
-import member.model.service.MemberService;
-
 /**
- * Servlet implementation class SearchServlet
+ * Servlet implementation class SearchPwdServlet
  */
-@WebServlet(name = "Search", urlPatterns = { "/search" })
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "SearchPwd", urlPatterns = { "/searchPwd" })
+public class SearchPwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchServlet() {
+    public SearchPwdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +26,8 @@ public class SearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String pwdHint = request.getParameter("pwdHint");
-		String pwdHintAnswer = request.getParameter("pwdHintAnswer");
-		
-		try {
-		String id =	new MemberService().searchId(name,pwdHint,pwdHintAnswer);
-		
-			response.setContentType("application/json");
-			response.setCharacterEncoding("utf-8");
-			new Gson().toJson(id,response.getWriter());
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
