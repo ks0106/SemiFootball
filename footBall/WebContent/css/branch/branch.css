@@ -1,4 +1,8 @@
 @charset "UTF-8";
+		.hr-menu {
+			border:3px solid #2c3c57;
+			margin:0 auto;
+		}
 		.mainImg {
 			 border-radius: 10px;
 			 width: 450px;
@@ -53,26 +57,43 @@
 		}
 		.content-container {
 			position: relative;
+			top: 30px;
 			width: 100%;
 			height: 100%;
 			text-align: center;
 		}
 		.aside-bar{
 			position: absolute;
-			width: 350px;
+			width: 465px;
 			height: 99.77%;
 			text-align: center;
-			background-color: orange;
+			border-right:2px solid #2c3c57;
+			background-color: white;
 			z-index: 2;
 		}
 		#testSticky{
-			position: sticky;/* required */
-			position: -webkit-sticky;/* required */
-  			top: 80px; /* required */
+			position: sticky;/* 필수 */
+			position: -webkit-sticky;/* 필수 */
+  			top: 110px; /* 필수 */
 			display: inline-block;
 			width: 100%;
-			height: 695px;
-			background-color: red;
+			height: 700px;
+			border-right:2px solid #2c3c57;
+			background-color: white;
+		}
+		#nav-wrapper{
+			position: absolute;
+			left: 150px;
+			width: 60%;
+			height: 100%;
+			background-color:white;
+		}
+		.nav-span{
+			font-size: 30px;
+			color: #446087;
+			font-weight: bolder;
+			line-height: 45px;
+			float: left;
 		}
 		.content-wrapper {
 			position: relative;
@@ -111,11 +132,11 @@
 		/* Modal Content/Box */
 		.branch-modal {
 			background-color: #fefefe;
-			margin: 8% auto; /* 15% from the top and centered */
+			margin: 8% auto; /* 8% from the top and centered */
 			min-margin:150px;
 			padding: 20px;
 			border: 1px solid #888;
-			width: 70%; /* Could be more or less, depending on screen size */
+			width: 70%; 
 			height: 80%;
 			min-width: 1000px;
 			overflow: auto;
@@ -172,12 +193,7 @@
 			height: 500px;
 			background-color:salmon;
 		}
-		#map_ma {
-			width:100%; 
-			height:400px; 
-			clear:both; 
-			border:solid 1px red;
-		}
+
 		/* The Close Button */
 		.close {
 			position:static;

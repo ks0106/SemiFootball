@@ -37,7 +37,8 @@
 <body>
 	<div style="height:900px;" id="maindiv">
         <div id="div">
-            <img src="/img/header_logo.png" style="margin-bottom: 50px;">
+        	<a href="/">
+            <img src="/img/header_logo.png" style="margin-bottom: 50px;"></a>
             <form action="/login" method="post">
             <input type="text" name="id" placeholder="이메일" class="loginInput"><br><br>
             <input type="password" name="pwd" placeholder="비밀번호" class="loginInput"><br><br>

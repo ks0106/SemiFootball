@@ -28,46 +28,49 @@
 <body>
 		<center>
         <form >
-        	
         	<table>
         		<tr>
-        			<td colspan="2" style="text-align: center;"><h2>아이디 찾기</h2></td>
+        			<td colspan="2" style="text-align: center;"><h2>비밀번호 찾기</h2></td>
         		</tr>
         		<tr>
-        			<td style="float: right;">이름 :</td><td><input type="text" name="name" id="name"></td>
+        			<td style="float: right;">이름 :</td><td colspan="2"><input type="text" name="name" id="name"></td>
         		</tr>
         		<tr>
-        			<td>아이디 찾기 힌트 :</td>
-        			<td>
-        				<select name="pwdHint" id="pwdHint">
-		           			<option>선택하세요</option>
-		           			<option value="가장 좋아하는 색상">가장 좋아하는 색상</option>
-		           			<option value="가장 좋아하는 연예인">가장 좋아하는 연예인</option>
-		           			<option value="내가 나온 초등학교 이름">내가 나온 초등학교 이름</option>
-	           			</select>
-        			</td>
-        		</tr>
-        		<tr>
-        			<td>아이디 찾기 정답 :</td>
-        			<td>
-        				<input type="text" name="pwdHintAnswer" id="pwdHintAnswer">
-        			</td>
+        			<td style="float: right;">아이디 :</td><td colspan="2"><input type="text" name="id" id="id"></td>
         		</tr>
         	</table>
         	<input type="reset" value="취소">
         	<input type="button" value="확인" id="sub"><br>
         	<input type="button" value="닫기" id="close">
         </form>
+        
+         <form >
+        	<table id="pwd" style="visibility: hidden;" >
+        		<tr>
+        			<td colspan="2" style="text-align: center;"><h2>비밀번호 변경</h2></td>
+        		</tr>
+        		<tr>
+        			<td style="float: right;">비밀번호:</td><td colspan="2"><input type="text" name="name" id="name"></td>
+        		</tr>
+        		<tr>
+        			<td style="float: right;">비밀번호 재입력 :</td><td colspan="2"><input type="text" name="id" id="id"></td>
+        		</tr>
+        		<tr>
+        			<td><input type="reset" value="취소"></td><td><input type="button" value="확인" id="sub"><br></td>
+        			<td><input type="button" value="닫기" id="close"></td>
+        		</tr>
+        	</table>
+        
+        </form>
 		</center>
 	<script type="text/javascript">
 		$("#close").hide();
 		$("#sub").click(function () {
 			var name = $("#name").val();
-			var pwdHint = $("#pwdHint").val();
-			var pwdHintAnswer = $("#pwdHintAnswer").val();
+			var id = $("#id").val();
 			$.ajax({
-					url : "/search",
-					data : {name:name,pwdHint:pwdHint,pwdHintAnswer:pwdHintAnswer},
+					url : "/searchPwd",
+					data : {name:name,id:id},
 					method: "POST",
 					dataType : "json",
 					success : function (data) {
@@ -78,13 +81,12 @@
 								opener.location.href="/views/login/login.jsp";
 								self.close();
 							}else{
-								console.log(data);
+								
 								$("#close").show();
 								$("#close").click(function () {
 									 self.close();
 								});
-								var id = decodeURIComponent(data);
-								$("#sub").after('<h4>회원님의 아이디는 :'+id+'입니다.');
+								
 							}
 					
 							

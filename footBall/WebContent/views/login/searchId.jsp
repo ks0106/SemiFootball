@@ -66,7 +66,7 @@
 			var pwdHint = $("#pwdHint").val();
 			var pwdHintAnswer = $("#pwdHintAnswer").val();
 			$.ajax({
-					url : "/search",
+					url : "/searchId",
 					data : {name:name,pwdHint:pwdHint,pwdHintAnswer:pwdHintAnswer},
 					method: "POST",
 					dataType : "json",
