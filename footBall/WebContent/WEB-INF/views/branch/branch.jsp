@@ -120,7 +120,7 @@
 						<div class="locForm">
 							<h2>위치 안내</h2>
 							<!-- naver maps api here -->
-							<div id="map" style="position:relative; left:100px; width:80%; height:400px;"></div>
+							<div id="map"></div>
 						</div>
 					</div>
 				</div>
@@ -130,6 +130,7 @@
 		$(function(){
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
+			$('.content-wrapper:even ul').css('padding','0px');
 			/* 소스 없는 서브이미지 태그 감추기 */
 			$('.subImg').each(function(index,item){
 				if(!($(item).attr('src'))) {
