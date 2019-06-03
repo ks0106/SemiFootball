@@ -10,28 +10,9 @@
 <table>
 	<tr>
 		<th>?로 이동</th>
-		<th>?로 이동</th>
-		<th>?로 이동</th>
-		<th>?로 이동</th>
-		<th>?로 이동</th>
-		<th>?로 이동</th>
-		<th>?로 이동</th>
-		<th>?로 이동</th>
-		<th>?로 이동</th>
-		<th>?로 이동</th>
-		<th>?로 이동</th>
 	</tr>
 	<tr>
-		<td></td>
-	</tr>
-	<tr>
-		<td></td>
-	</tr>
-	<tr>
-		<td></td>
-	</tr>
-	<tr>
-		<td></td>
+		<td>gd</td>
 	</tr>
 </table>
 </body>

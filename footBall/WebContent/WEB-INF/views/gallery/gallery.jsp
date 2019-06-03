@@ -217,7 +217,7 @@ $(document).ready(function(){
 		function fn_del(count, src){
 			var allData = {"count": count, "src":src};
 			$.ajax({
-				url : "/galleryDeleteFrm.do",
+				url : "/galleryDeleteFrm",
 				type : "post",
 				data : allData,
 				success: function(data){
