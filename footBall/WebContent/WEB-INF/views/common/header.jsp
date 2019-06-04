@@ -400,9 +400,6 @@
 		function loginLocation(){
 			location.href="/views/login/login.jsp";
 		}
-		$('#myPage').on("click",function(){
-
-		});
 		function  kout() {
 			var url = "http://developers.kakao.com/logout";
 			$.ajax({

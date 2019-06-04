@@ -370,7 +370,25 @@
 			/* 영수증 초기화 */
 			var scheduleNo = $(this).attr('id');
 			var $receipt = $('#reservationAllCost');
-			$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관('+$(this).find('.startTime').text()+'~'+$(this).find('.endTime').text()+')<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');
+			var newTime = parseInt($(this).find('.startTime').text().replace(":",""));
+			var reservationCount = $('.reservationStartTime').length;
+			if(reservationCount > 0){
+				for(var i=0;i<reservationCount;i++){
+					var $addReceipt = $('.reservationReceiptList:eq('+i+')');
+					var oldTime = parseInt($('.reservationReceiptList:eq('+i+')').find('.reservationStartTime').text().replace(":",""));
+					if(oldTime < newTime){
+						if(i == reservationCount -1){
+							$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관(<span class="reservationStartTime">'+$(this).find('.startTime').text()+'</span>~<span class="reservationEndTime">'+$(this).find('.endTime').text()+'</span>)<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');					
+							i = reservationCount+1;
+						}
+					}else{
+						$addReceipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관(<span class="reservationStartTime">'+$(this).find('.startTime').text()+'</span>~<span class="reservationEndTime">'+$(this).find('.endTime').text()+'</span>)<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');					
+						i = reservationCount+1;
+					}
+				}
+			}else{
+				$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관(<span class="reservationStartTime">'+$(this).find('.startTime').text()+'</span>~<span class="reservationEndTime">'+$(this).find('.endTime').text()+'</span>)<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');									
+			}
 			
 		});
 		
