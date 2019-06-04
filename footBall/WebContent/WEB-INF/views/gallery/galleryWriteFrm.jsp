@@ -23,11 +23,11 @@ $(document).ready(function(){
 
 <style>
 	body{
-		background : #A9E2C5;
+		background : #EF798A;
 		
 	}
 	#galleryWriterTbl{
-		background : #9197B5;
+		background : #FFF07C;
 		border-collapse:collapse;
 		color: white;
 		text-align: center;
@@ -46,7 +46,7 @@ $(document).ready(function(){
 
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">
-		갤러리
+		사진등록{관리자}
 	</div>
 	<!-- 내용 -->
 	<section class="page_area">
