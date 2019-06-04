@@ -101,9 +101,18 @@
 				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">오시는 길</div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>				
 		<!-- 컨텐츠 지도 파티션 -->
-				<div id="map" style="margin-left:20px;width:600px;height:600px;margin-bottom:50px;"></div>
-	
-	
+				<div id="map" style="float:left;margin-left:20px;width:600px;height:600px;margin-bottom:50px;"></div>
+				<div style="float:left;margin-left:20px;">
+					<div style="font-size:20px;font-weight:bolder;">주소</div>
+					<hr style="width:120px;height:4px;background-color:#2c3c57;border:0;padding:0;display:inline-block;float:left;">
+					<hr style="width:20px;height:4px;background-color:#3366cc;border:0;padding:0;display:inline-block;float:left;">
+				</div>
+				<br>
+				<br>
+				<br>
+	<!-- 컨텐츠 주소 -->
+				<div style="float:left;margin-left:20px;font-size:13px;">서울 영등포구 선유동2로 57 이레빌딩 109,110층 KS Sports</div>
+				<div style="float:left;margin-left:20px;font-size:13px;">57, Seonyudong 2-ro, Yeongdeungpo-gu, Seoul, Republic of Korea</div>
 			</div>
 		</div>
 	</section>
@@ -125,7 +134,6 @@
 				map : map
 			});
 			naver.maps.Event.addListener(map, 'click', function(e){
-				marker.setPosition(e.coord);			//클릭한 위치로 마커 변경
 				if(infoWindow.getMap()){
 					infoWindow.close();
 				}
@@ -141,20 +149,16 @@
 						var result = response.result,
 						items = result.items;
 						address = items[0].address;
-						contentString = [
-							'<div class="iw_inner"',
-							'<h3>'+address+'</h3>',
-							'</div>'
-						].join('');
 				});
 			});
 			var contentString = [						//마커 클릭 시 출력할 주소 배열
-				'<div class="iw_inner"',
-				'<h3>KS Sports 당산 본점</h3>',
-				'<p>서울 영등포구 양평동4가 2 | 서울시 영등포구 선유동2로 57 이레빌딩<br>',
-				'TEL : 02-3337-4380 | FAX : 02-3337-4381</p>',
-				'<img src="/img/header_logo.png" width="55" height="55" alt="KS Sports" class="thumb">',
-				'</div>'
+		        '   <h3 style="display:inline-block">KS Sports 당산 본점</h3>',
+		        '       <img src="/img/header_logo.png" width="55" height="55" alt="KS" style="float:right;" class="thumb" /><br />',
+		        '   	<p style="font-size:13px;">서울 영등포구 양평동4가 2 | 서울시 영등포구 선유동2로 57 이레빌딩<br />',
+		        '       TEL : 02-3337-4380 | FAX : 02-3337-4381<br />',
+		        '       <a href="http://www.kssports.go.kr" target="_blank" style="text-decoration:none;">http://www.kssports.go.kr/</a>',
+		        '   </p>',
+		        '</div>'
 			].join('');									//배열 값을 String으로 합침
 			var infoWindow = new naver.maps.InfoWindow();		//마커 클릭 시 띄우는 창
 			naver.maps.Event.addListener(marker,'click',function(){
