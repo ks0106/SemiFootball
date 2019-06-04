@@ -100,11 +100,11 @@
 		background : grey;
 	}
 	#galleryWriterTbl{
-		background : #9ce6ff;
+		background : #ffcd31;
 		border-collapse:collapse;
 		color: black;
 		text-align: center;
-		margin-top: 300px;
+		margin-top: 150px;
 	}
 	#galleryWriterTbl th,td{
 		border: 1px solid skyblue;
@@ -159,10 +159,9 @@
              <li class="header_item"><a href="/reservation">대관</a></li>
              <li class="header_item"><a href="/matching">매치/용병</a></li>
              <li class="header_item"><a href="/league">대회</a></li>
-             <li class="header_item"><a href="/galleryWrite">갤러리 사진등록</a></li>
+             <li class="header_item"><a href="/galleryWriteFrm">갤러리 사진등록</a></li>
              <li class="header_item"><a href="/adminGallery">갤러리 사진 삭제</a></li>
-             <li class="header_item"><a href="/noticeWrite">공지작성</a></li>
-             <li class="header_item"><a href="#" style="display:none;">관리자메뉴</a></li>
+             <li class="header_item"><a href="/noticeWriter">공지작성</a></li>
           </ul>
              <%if(m == null){ %>
                 <div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">

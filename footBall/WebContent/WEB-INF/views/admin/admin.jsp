@@ -10,7 +10,6 @@
    crossorigin="anonymous"></script>
    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <script>
 
    $(document).ready(function(){
@@ -118,7 +117,7 @@
              <div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
              <div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
              <div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
-          </div>       
+          </div>
           <ul id="menu" style="position:absolute;left:150px;list-style-type:none;padding:0;">
              <li class="header_item"><a href="/branchManage">지점관리</a></li>
              <li class="header_item"><a href="/reservation">대관</a></li>
@@ -126,7 +125,7 @@
              <li class="header_item"><a href="/league">대회</a></li>
              <li class="header_item"><a href="/galleryWriteFrm">갤러리 사진등록</a></li>
              <li class="header_item"><a href="/adminGallery">갤러리 사진 삭제</a></li>
-             <li class="header_item"><a href="/noticeWrite">공지작성</a></li>
+             <li class="header_item"><a href="/noticeWriter">공지작성</a></li>
           </ul>
              <%if(m == null){ %>
                 <div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
