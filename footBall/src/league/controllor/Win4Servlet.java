@@ -35,25 +35,31 @@ public class Win4Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String win4 = request.getParameter("win4");
 		String win2 = request.getParameter("win2");
-		int top1 = Integer.parseInt(request.getParameter("top1"));
+		String top = request.getParameter("top1");
+		int top1 = 0;
 		StringTokenizer st1 = new StringTokenizer(win4, ",");
-		int teamNo4[] = null;
+		ArrayList<Integer> teamNo4 = new ArrayList<Integer>();
+		ArrayList<Integer> teamNo2 = new ArrayList<Integer>();
 		while(st1.hasMoreTokens()) {
-			teamNo4 = new int [4];
-			for(int i=0;i<teamNo4.length;i++) {
-				teamNo4[i] = Integer.parseInt(st1.nextToken());
-			}
+				teamNo4.add(Integer.parseInt(st1.nextToken())); 
 		}
-		StringTokenizer st2 = new StringTokenizer(win2, ",");
-		int teamNo2[] = null;
-		while(st2.hasMoreTokens()) {
-			teamNo2 = new int [2];
-			for(int i=0;i<teamNo2.length;i++) {
-				teamNo2[i] = Integer.parseInt(st2.nextToken());
+			if(win2!=null) {
+				StringTokenizer st2 = new StringTokenizer(win2, ",");
+				while(st2.hasMoreTokens()) {
+						teamNo2.add(Integer.parseInt(st2.nextToken()));
+				}
 			}
-		}
+			if(!top.equals("")) {
+				top1 = Integer.parseInt(top);
+			}
 		try {
-			int result = new LeagueService().matchUp(teamNo4,teamNo2,top1);
+			int result = new LeagueService().matchUp1(teamNo4);
+			if(win2!=null) {
+				int result1 = new LeagueService().matchUp2(teamNo2);
+			}
+			if(top!=null) {
+				int result2 = new LeagueService().matchUp3(top1);
+			}
 			if(result>0) {
 				request.setAttribute("msg", "변경이 완료되었습니다.");
 				request.setAttribute("loc", "/gameTable");

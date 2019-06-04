@@ -208,18 +208,20 @@
 		});
 	});
 		function removeTeam(){
-			$.ajax({
-	   			url:"/sendId",
-	   			type:"get",
-	   			dataType:"json",
-	   			success: function(data){
-	   				for(var i=0 ; i<data.length;i++){
-							if(data[i].teamEmail=="${sessionScope.member.id}"){
-								location.href="/removeTeam?teamEmail=${sessionScope.member.id}&filepath="+data[i].filepath;
-							}
-					}	   					
-				}
-			});
+			if(confirm("대회신청을 취소하시겠습니까?")){
+				$.ajax({
+		   			url:"/sendId",
+		   			type:"get",
+		   			dataType:"json",
+		   			success: function(data){
+		   				for(var i=0 ; i<data.length;i++){
+								if(data[i].teamEmail=="${sessionScope.member.id}"){
+									location.href="/removeTeam?teamEmail=${sessionScope.member.id}&filepath="+data[i].filepath;
+								}
+						}	   					
+					}
+				});
+			}
 		}
 		function insertLeague(){
 			if(${sessionScope.member != null}){

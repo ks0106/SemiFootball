@@ -360,16 +360,26 @@
 		} */
 		function ok(){
 			if(confirm("변경한 내용을 저장하시겠습니까?")){
-				var win4 =[];
-				$(".win4").each(function(index){
-					win4[index] =$(this).children().filter("img").attr("value");
+				var win4="";
+				 $(".win4").each(function(index){
+					 if($(".win4").eq(index).children().is("img")){
+							win4 +=$(this).children().filter("img").attr("value")+",";
+					 }
 				});
-				var win2 = [];
-				$(".win2").each(function(index){
-					win2[index] =$(this).children().filter("img").attr("value");
-				});
-				var top1;
-				top1 =$("#top1").children().filter("img").attr("value");
+					 win4 = win4.substring(0,win4.length-1);
+					
+					
+				var win2 ="";
+				 $(".win2").each(function(index){
+					 if($(".win2").eq(index).children().is("img")){
+							win2 +=$(this).children().filter("img").attr("value")+",";
+					 }
+				}); 
+				 win2 = win2.substring(0,win2.length-1);
+				var top1="";
+				if($("#top1").children().is("img")){
+					top1 =$("#top1").children().filter("img").attr("value"); 
+				}
 				
 				location.href="/win4?win4="+win4+"&win2="+win2+"&top1="+top1;
 				

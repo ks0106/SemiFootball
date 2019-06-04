@@ -248,7 +248,7 @@
 				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 대진표</div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->
-				<div  style="width:100%;margin:0 auto;margin-bottom:1500px;">
+				<div  style="width:100%;margin:0 auto;margin-bottom:500px;">
 				<!-- 대진표 배경 div  -->
 				<c:set var="top4" value="4" />
 					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
@@ -315,20 +315,26 @@
 			}else if($("#top7").children().filter("img").attr("value")==$(".win8-4").eq(1).children().filter("img").attr("value")){
 				$(".win8-4").eq(0).children().filter("div").addClass("lose");	
 			}
-			if($("#top2").children().filter("img").attr("value")==$(".win4").eq(0).children().filter("img").attr("value")){
-				$(".win4").eq(1).children().filter("div").addClass("lose");
-			}else if($("#top2").children().filter("img").attr("value")==$(".win4").eq(1).children().filter("img").attr("value")){
-				$(".win4").eq(0).children().filter("div").addClass("lose");	
+			if($("#top2").children().is("img")){
+				if($("#top2").children().filter("img").attr("value")==$(".win4").eq(0).children().filter("img").attr("value")){
+					$(".win4").eq(1).children().filter("div").addClass("lose");
+				}else if($("#top2").children().filter("img").attr("value")==$(".win4").eq(1).children().filter("img").attr("value")){
+					$(".win4").eq(0).children().filter("div").addClass("lose");	
+				}
 			}
-			if($("#top3").children().filter("img").attr("value")==$(".win4").eq(2).children().filter("img").attr("value")){
-				$(".win4").eq(3).children().filter("div").addClass("lose");
-			}else{
-				$(".win4").eq(2).children().filter("div").addClass("lose");	
+			if($("#top3").children().is("img")){
+				if($("#top3").children().filter("img").attr("value")==$(".win4").eq(2).children().filter("img").attr("value")){
+					$(".win4").eq(3).children().filter("div").addClass("lose");
+				}else if($("#top3").children().filter("img").attr("value")==$(".win4").eq(3).children().filter("img").attr("value")){
+					$(".win4").eq(2).children().filter("div").addClass("lose");	
+				}
 			}
-			if($("#top1").children().filter("img").attr("value")==$(".win2").eq(0).children().filter("img").attr("value")){
-				$(".win2").eq(1).children().filter("div").addClass("lose");
-			}else{
-				$(".win2").eq(0).children().filter("div").addClass("lose");	
+			if($("#top1").children().is("img")){
+				if($("#top1").children().filter("img").attr("value")==$(".win2").eq(0).children().filter("img").attr("value")){
+					$(".win2").eq(1).children().filter("div").addClass("lose");
+				}else if($("#top1").children().filter("img").attr("value")==$(".win2").eq(1).children().filter("img").attr("value")){
+					$(".win2").eq(0).children().filter("div").addClass("lose");	
+				}
 			}
 		});
 	</script>

@@ -65,15 +65,12 @@ public class LeagueDao {
 		JDBCTemplate.close(stmt);
 		return result;
 	}
-	public int win4(Connection conn , int[] teamNo) throws SQLException {
+	public int win4(Connection conn , int teamNo) throws SQLException {
 		PreparedStatement pstmt =null;
 		int result = 0;
-		String query="update fb_team set match1= 1 where team_no in (?,?,?,?)";
+		String query="update fb_team set match1= 1 where team_no = ?";
 		pstmt=conn.prepareStatement(query);
-		pstmt.setInt(1, teamNo[0]);
-		pstmt.setInt(2, teamNo[1]);
-		pstmt.setInt(3, teamNo[2]);
-		pstmt.setInt(4, teamNo[3]);
+		pstmt.setInt(1, teamNo);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
@@ -132,13 +129,12 @@ public class LeagueDao {
 		JDBCTemplate.close(stmt);
 		return list;
 	}
-	public int win2(Connection conn , int[] teamNo) throws SQLException {
+	public int win2(Connection conn , int teamNo) throws SQLException {
 		PreparedStatement pstmt =null;
 		int result = 0;
-		String query="update fb_team set match2= 1 where team_no in (?,?)";
+		String query="update fb_team set match2= 1 where team_no =?";
 		pstmt=conn.prepareStatement(query);
-		pstmt.setInt(1, teamNo[0]);
-		pstmt.setInt(2, teamNo[1]);
+		pstmt.setInt(1, teamNo);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;

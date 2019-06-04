@@ -81,7 +81,7 @@
 	}
 	#input-table{
 		text-align: center;
-		width: 80%;
+		width: 90%;
 		margin-top: 50px;
 		margin: 0 auto;
 		border-collapse: collapse;
@@ -157,7 +157,7 @@
 								<th class="th">신청자</th>
 								<td class="td"><input type="text" name="name" style="width: 297px;height: 40px;"></td>
 								<th class="th">연락처</th>
-								<td class="td"><input type="text" name="phone1" style="width: 90px;height: 40px;">-<input type="text" name="phone2" style="width: 93px;height: 40px;">-<input type="text" name="phone3" style="width: 93px;height: 40px;"></td>
+								<td class="td"><input type="text" name="phone1" style="width: 88px;height: 40px;">-<input type="text" name="phone2" style="width: 88px;height: 40px;">-<input type="text" name="phone3" style="width: 88px;height: 40px;"></td>
 							</tr>
 							<tr>
 								<th class="th">매치일정</th>
@@ -168,9 +168,9 @@
 							<tr>
 								<th class="th">유니폼 색상</th>
 								<td class="td">
-									<input type="text" name="phone1" style="width: 84px;height: 40px;" placeholder="상의">-
-									<input type="text" name="phone2" style="width: 84px;height: 40px;" placeholder="하의">-
-									<input type="text" name="phone3" style="width: 90px;height: 40px;" placeholder="스타킹">
+									<input type="text" name="phone1" style="width: 80px;height: 40px;" placeholder="상의">-
+									<input type="text" name="phone2" style="width: 80px;height: 40px;" placeholder="하의">-
+									<input type="text" name="phone3" style="width: 80px;height: 40px;" placeholder="스타킹">
 								</td>
 								<th class="th">팀수준</th>
 								<td class="td"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
@@ -188,7 +188,7 @@
 								<th colspan="4" class="th" >메모</th>
 							</tr>
 							<tr>
-								<td class="th" colspan="4" rowspan="4"><textarea rows="10" cols="60" style="resize: none;text-align: center;"></textarea> </td>
+								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" style="resize: none;text-align: center;"></textarea> </td>
 							</tr>
 						</table>
 						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>

@@ -36,19 +36,18 @@ public class MatchDao {
 		rset = pstmt.executeQuery();
 		while(rset.next()) {
 			MatchList m = new MatchList();
-			m.setSeqMatchNo(rset.getInt("seq_match_no"));
+			m.setSeqMatchNo(rset.getInt("match_no"));
 			m.setMatchType(rset.getString("match_type"));
-			m.setMatchBName(rset.getString("match_b_name"));
-			m.setMatchCName(rset.getString("match_c_name"));
+			m.setMatchBCode(rset.getInt("match_b_code"));
+			m.setMatchCCode(rset.getInt("match_c_code"));
 			m.setMatchWriter(rset.getString("match_writer"));
 			m.setMatchPhone(rset.getString("match_phone"));
 			m.setMatchDate(rset.getDate("match_date"));
 			m.setMatchTime(rset.getString("match_time"));
-			m.setMatchTeamCount(rset.getInt("match_teamCount"));
+			m.setMatchTeamCount(rset.getInt("match_amount"));
 			m.setMatchUColor(rset.getString("match_u_color"));
 			m.setMatchLevel(rset.getString("match_level"));
 			m.setMatchAble(rset.getInt("match_able"));
-			m.setMatchPw(rset.getString("match_pw"));
 			m.setMatchMemo(rset.getString("match_memo"));
 			m.setMatchEnrollDate(rset.getDate("match_enroll_date"));
 			list.add(m);
@@ -61,25 +60,24 @@ public class MatchDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		MatchList m = null;
-		String query = "select * from Fb_matching where SEQ_MATCH_NO=?";
+		String query = "select * from Fb_matching where MATCH_NO=?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1,pageNum);
 		rset = pstmt.executeQuery();
 		if(rset.next()) {
 			m = new MatchList();
-			m.setSeqMatchNo(rset.getInt("seq_match_no"));
+			m.setSeqMatchNo(rset.getInt("match_no"));
 			m.setMatchType(rset.getString("match_type"));
-			m.setMatchBName(rset.getString("match_b_name"));
-			m.setMatchCName(rset.getString("match_c_name"));
+			m.setMatchBCode(rset.getInt("match_b_code"));
+			m.setMatchCCode(rset.getInt("match_c_code"));
 			m.setMatchWriter(rset.getString("match_writer"));
 			m.setMatchPhone(rset.getString("match_phone"));
 			m.setMatchDate(rset.getDate("match_date"));
 			m.setMatchTime(rset.getString("match_time"));
-			m.setMatchTeamCount(rset.getInt("match_teamCount"));
+			m.setMatchTeamCount(rset.getInt("match_amount"));
 			m.setMatchUColor(rset.getString("match_u_color"));
 			m.setMatchLevel(rset.getString("match_level"));
 			m.setMatchAble(rset.getInt("match_able"));
-			m.setMatchPw(rset.getString("match_pw"));
 			m.setMatchMemo(rset.getString("match_memo"));
 			m.setMatchEnrollDate(rset.getDate("match_enroll_date"));
 		}
@@ -118,19 +116,18 @@ public class MatchDao {
 		rset = pstmt.executeQuery();
 		while(rset.next()) {
 			MatchList m = new MatchList();
-			m.setSeqMatchNo(rset.getInt("seq_match_no"));
+			m.setSeqMatchNo(rset.getInt("match_no"));
 			m.setMatchType(rset.getString("match_type"));
-			m.setMatchBName(rset.getString("match_b_name"));
-			m.setMatchCName(rset.getString("match_c_name"));
+			m.setMatchBCode(rset.getInt("match_b_code"));
+			m.setMatchCCode(rset.getInt("match_c_code"));
 			m.setMatchWriter(rset.getString("match_writer"));
 			m.setMatchPhone(rset.getString("match_phone"));
 			m.setMatchDate(rset.getDate("match_date"));
 			m.setMatchTime(rset.getString("match_time"));
-			m.setMatchTeamCount(rset.getInt("match_teamCount"));
+			m.setMatchTeamCount(rset.getInt("match_amount"));
 			m.setMatchUColor(rset.getString("match_u_color"));
 			m.setMatchLevel(rset.getString("match_level"));
 			m.setMatchAble(rset.getInt("match_able"));
-			m.setMatchPw(rset.getString("match_pw"));
 			m.setMatchMemo(rset.getString("match_memo"));
 			m.setMatchEnrollDate(rset.getDate("match_enroll_date"));
 			list.add(m);

@@ -234,7 +234,7 @@
 										<c:forEach items="${mpd.list }" var="m">
 											<tr class="table-tr" onclick="contentView(${m.seqMatchNo});" >
 												<td class="td">${m.matchType } </td>
-												<td class="td">${m.matchBName }</td>
+												<td class="td">${m.matchBCode }</td>
 												<td colspan="2" class="td">${m.matchDate }</td>
 												<td class="td">${m.teamCount1 }</td>
 												<td class="td">${m.matchWriter }</td>
@@ -348,7 +348,7 @@
    				
    				var writer = data.matchWriter;
    				var matchType = data.matchType;
-   				var matchBName = data.matchBName;
+   				var matchBCode = data.matchBCode;
    				var matchDate = data.date;
    				var matchCName = data.matchCName;
    				var matchUColor = data.matchUColor;
@@ -359,7 +359,7 @@
    				var matchMemo = data.matchMemo;
    				$("#tr11").find("td").eq(0).html(writer);
    				$("#tr11").find("td").eq(1).html(matchType);
-   				$("#tr11").next().find("td").html(matchBName);
+   				$("#tr11").next().find("td").html(matchBCode);
    				$("#tr11").next().next().find("td").html(matchDate);
    				$("#tr11").next().next().next().find("td").html(matchCName);
    				$("#tr11").next().next().next().next().find("td").html(matchUColor);
