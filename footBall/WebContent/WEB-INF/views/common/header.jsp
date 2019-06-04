@@ -334,7 +334,7 @@
 						<div style="width:300px;height:220px;position:absolute;right:0;top:180px;z-index:10;">
 							<div style="color:white;text-align:center;font-size:20px;font-weight:bolder;">회원 정보</div>
 							<div style="width:100%;margin:0 auto;box-sizing:border-box;">
-								<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
+							<hr style="width:85%;height:2px;border:0;margin:0;padding:0;background-color:white;display:inline-block;"><hr style="width:15%;height:2px;border:0;margin:0;padding:0;background-color:#3366cc;display:inline-block;">
 							</div>
 							<div style="color:white;text-align:center;">ID : <%=m.getId()%></div>
 							<div style="color:white;text-align:center;">Name : <%=m.getName()%></div>

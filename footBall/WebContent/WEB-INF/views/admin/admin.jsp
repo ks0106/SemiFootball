@@ -12,7 +12,6 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script>
-
 	$(document).ready(function(){
 		//헤더 영역 사이즈
 		$('.area').css("width","100%");
@@ -29,6 +28,7 @@
 	body{
 		margin:0;
 		padding:0;
+		background: grey;
 	}
 	.bar_button_area{
 		display:table-cell;
@@ -68,7 +68,7 @@
 	.header_item{
 		color:white;
 		display:inline-block;
-		margin-right:50px;
+		margin-right:30px;
 		line-height:40px;
 	}
 	.header_item a{
@@ -86,8 +86,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<<<<<<< HEAD
-=======
 <header class="area">
 <!-- 헤더 작성 -->
 	<div class="menu_bar">
@@ -97,15 +95,15 @@
  			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
  			<div style="width:50px;height:8px;background-color:white;border-radius:10px;margin:10px;"></div>
  		</div> 		
- 		<ul id="menu" style="position:absolute;left:300px;list-style-type:none;padding:0;">
- 			<li class="header_item"><a href="/branch">지점</a></li>
- 			<li class="header_item"><a href="/reservation">대관</a></li>
- 			<li class="header_item"><a href="/matching">매치/용병</a></li>
- 			<li class="header_item"><a href="/league">대회</a></li>
- 			<li class="header_item"><a href="/gallery">갤러리</a></li>
- 			<li class="header_item"><a href="/notice">커뮤니티</a></li>
- 			<li class="header_item"><a href="/company">회사소개</a></li>
- 			<li class="header_item"><a href="#" style="display:none;">관리자메뉴</a></li>
+ 		<ul id="menu" style="position:absolute;left:200px;list-style-type:none;padding:0;">
+ 			<li class="header_item"><a href="/branchManage">지점관리</a></li>
+ 			<li class="header_item"><a href="/reservation">대관관리</a></li>
+ 			<li class="header_item"><a href="/matching">매치/용병 관리</a></li>
+ 			<li class="header_item"><a href="/gameTable">대진표 관리</a></li>
+ 			<li class="header_item"><a href="/galleryWriteFrm">갤러리 사진등록</a></li>
+ 			<li class="header_item"><a href="/gallery">사진삭제</a></li>
+ 			<li class="header_item"><a href="/noticeWriter">공지사항 글쓰기</a></li>
+ 			<li class="header_item"><a href="/admin" style="display:none;">관리자메뉴</a></li>
  		</ul>
 	 		<%if(m == null){ %>
 		 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
@@ -148,10 +146,33 @@
 		$('#myPage').on("click",function(){
 	
 		});
+		$(document).ready(function(){
+			$('.toggle_bar').click(function(){
+				if($('.right_area').css("display") == "none"){
+					$('.right_area').css("display","block");
+					$('.menu_bar1').css("opacity","0.9");
+					$('.right_area').animate({
+						left:"-500px"},500);
+				}else{				
+					$('.right_area').css("display","none");
+					$('.right_area').animate({
+						left:"-500px"},500);
+				}
+			});
+			$('#menu_login').click(function(){
+				if($("#myPage").attr('class') != 'selectMyPage'){
+					$("#myPage").addClass('selectMyPage');
+					$("#myPage").css("display","inline-block");				
+				}else{
+					$("#myPage").removeClass('selectMyPage');
+					$("#myPage").css("display","none");								
+				}
+			});				
+		});
 	</script>
 </header>
 <body>
->>>>>>> 7ea5d75c0b391ed8b88a137a8e679143018c34c4
+
 
 </body>
 </html>
