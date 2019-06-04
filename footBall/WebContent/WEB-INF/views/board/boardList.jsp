@@ -13,13 +13,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/notice/notice.css">
-<title>Insert title here</title>
+<title>자유게시판 리스트</title>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -50,7 +48,7 @@
 			<u><b>자유게시판</b></u>
 		</h1>
 		<c:if test="${sessionScope.member !=null }">
-			<a href="#" class="btn btn-info">글쓰기</a>
+			<a href="/boardWriter" class="btn btn-info">글쓰기</a>
 		</c:if>
 		<br> <br>
 		<table class="table table-dark table-hover" id="table_notice">
