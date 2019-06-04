@@ -134,6 +134,29 @@ public class BoardDao {
 		return result;
 	}
 	
+	//수정
+	public int boardUpdate(Connection conn, BoardVo bv) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("boardUpdate");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bv.getBoardTitle());
+			pstmt.setString(2, bv.getBoardContent());
+			pstmt.setString(3, bv.getBoardFilename());
+			pstmt.setString(4, bv.getBoardFilepath());
+			pstmt.setInt(5, bv.getBoardNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	
 	//조회수증가
 	public int boardHit(Connection conn, int boardNo) {
 		int result = 0;

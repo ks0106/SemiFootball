@@ -7,8 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>자유게시판 작성</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/css/bootstrap.mibv.css">
 <script src="https://code.jquery.com/jquery-3.3.1.mibv.js"></script>
@@ -38,8 +37,7 @@
 				<li class="list-li"><a href="/noticeFAQ" class="munebar">FAQ</a></li>
 				<li class="selected list-li"><a href="/boardList" class="munebar">자유게시판</a></li>
 			</ul>
-		</div>
-	</div>
+		
 		<section>
 		<div class="table-wrapper" style="text-align:center;width:80%;margin:0 auto;">
 			<form action="/boardInsert" method="post" enctype="multipart/form-data">
@@ -85,6 +83,8 @@
 				</table>
 			</form>
 		</div>
+		</div>
+	</div>
 	</section>
 		<script>
 		function loadImg(f){

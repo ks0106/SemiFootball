@@ -69,8 +69,10 @@
             </tr>
             <tr>
                <th colspan="2">
+               <c:if test="${sessionScope.member.id == bvd.bv.boardWriter}">
                   <a href="/boardUpdate?boardNo=${bvd.bv.boardNo}" class="btn btn-outline-primary btn-sm">수정하기</a>
                   <a href="/boardDelete?boardNo=${bvd.bv.boardNo}" class="btn btn-outline-primary btn-sm">삭제하기</a><!-- 최종 목적지를 list로 -->
+               </c:if>
                   <a href="/boardList" class="btn btn-outline-primary btn-sm">목록으로</a>
                </th>
             </tr>

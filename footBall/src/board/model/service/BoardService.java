@@ -85,5 +85,16 @@ public class BoardService {
 		return result;
 	}
 	
-	
+	//글수정
+	public int boardUpdate(BoardVo bv) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BoardDao().boardUpdate(conn,bv);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }
