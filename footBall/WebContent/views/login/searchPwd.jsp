@@ -47,7 +47,7 @@
         </form>
         
          <form >
-        	<table id="pwd" style="visibility: hiddin;" >
+        	<table id="pwd" style="visibility: hidden;" >
         		<tr>
         			<td colspan="2" style="text-align: center;"><h2>비밀번호 변경</h2></td>
         		</tr>
