@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
+import league.model.vo.AfterLeague;
 import matching.model.dao.MatchDao;
 import matching.model.vo.MatchList;
 import matching.model.vo.MatchPageData;
@@ -86,4 +87,5 @@ public class MatchService {
 		MatchPageData mpd = new MatchPageData(pageNavi,list);
 		return mpd;
 	}
+	
 }

@@ -45,7 +45,8 @@ public class RemoveTeamServlet extends HttpServlet {
 		try {
 			result = new LeagueService().removeTeam(teamEmail);
 			if(result > 0) {
-				File deleteFile = new File(saveDirectory+filepath);
+				File deleteFile = new File(saveDirectory+"/"+filepath);
+				System.out.println(deleteFile);
 				deleteFile.delete();
 				request.setAttribute("msg", "삭제 성공");
 			}else {

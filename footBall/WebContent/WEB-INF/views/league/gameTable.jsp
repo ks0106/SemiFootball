@@ -273,9 +273,9 @@
 						</c:if>
 					</c:forEach>
 				</div>
-				<div id="cansleBtn" style="margin: 0 auto; width: 30%;">
-					<button onclick="location.href='/settingGameTable'">초기화</button>
-					<button onclick="ok();">확정하기</button>
+				<div id="cansleBtn" style="margin: 0 auto; width: 80%;text-align: center;">
+					<button onclick="location.href='/settingGameTable'" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">초기화</button>
+					<button onclick="ok();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">확정하기</button>
 				 </div>
 				<!-- 현재 참가팀 엠블럼  -->
 				<div id="teamViewpoint" style="height: 100px;"></div>
