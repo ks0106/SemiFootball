@@ -59,7 +59,7 @@ public class GalleryDeleteFrmServlet extends HttpServlet {
 			}
 			response.setContentType("application/json; charset=utf-8");
 			new Gson().toJson(result, response.getWriter());
-			request.setAttribute("loc", "/gallery");
+			request.setAttribute("loc", "/AdminGallery");
 			request.getRequestDispatcher("WEB-INF/views/common/msg.jsp").forward(request, response);
 			
 		} catch (SQLException e) {

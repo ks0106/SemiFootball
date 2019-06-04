@@ -55,14 +55,13 @@ public class NoticeService {
 	//하나의 게시물보기
 	public NoticeVo listOne(int noticeNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		NoticeVo nv = new NoticeDao().listOne(conn,noticeNo);
-		if(nv!=null) {
-			int result = new NoticeDao().noticeHit(conn,noticeNo);
-			if(result>0) {
-				JDBCTemplate.commit(conn);
-			}else {
-				JDBCTemplate.rollback(conn);
-			}
+		NoticeVo nv = null;
+		int result = new NoticeDao().noticeHit(conn,noticeNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);		
+			nv = new NoticeDao().listOne(conn,noticeNo);
+		}else {
+			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
 		return nv;

@@ -1,7 +1,6 @@
-package admin.controller;
+package board.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.model.service.MemberService;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class AdminServlet
+ * Servlet implementation class BoardWriterSerlvet
  */
-@WebServlet(name = "admin", urlPatterns = { "/admin" })
-public class AdminServlet extends HttpServlet {
+@WebServlet(name = "BoardWriter", urlPatterns = { "/boardWriter" })
+public class BoardWriterSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminServlet() {
+    public BoardWriterSerlvet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,24 +32,21 @@ public class AdminServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		Member m = (Member)session.getAttribute("member");
-		if(m!=null) {
-			if(m.getId().equals("admin")) {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp");
+		if(session!=null) {
+			String id = ((Member)session.getAttribute("member")).getId();
+			if(id!=null) {
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/boardWriter.jsp");
 				rd.forward(request, response);
 			}else {
-				request.setAttribute("msg", "넌 못들어간다.");
-				request.setAttribute("loc", "/");
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-				rd.forward(request, response);
+				request.setAttribute("msg", "글쓰기 권한이 없습니다.");
+				request.setAttribute("loc", "/boardList");
+				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			}
 		}else {
-			request.setAttribute("msg", "로그인을 해주세요");
-			request.setAttribute("loc", "/views/login/login.jsp");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			rd.forward(request, response);
+			response.sendRedirect("/");
 		}
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

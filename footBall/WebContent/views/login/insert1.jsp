@@ -10,6 +10,11 @@
       integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
       crossorigin="anonymous">
     </script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 	<style>
 		#maindiv{
@@ -58,12 +63,15 @@
         	font-size: 20px;
         }
         select{
-        	width:160px;
+        	width:200px;
         	padding: .8em .5em; /* 여백으로 높이 설정 */ 
         	font-family: inherit; /* 폰트 상속 */ 
         	border: 1px solid #999; border-radius: 0px; /* iOS 둥근모서리 제거 */        	
         	-moz-appearance: none; 
         	appearance: none;
+        }
+        #eTxt{
+         color: red;
         }
 	</style>
 <body>
@@ -76,7 +84,7 @@
            		<input type="text" name="id" id="id" placeholder="test@naver.com";><br><br>
            		
            		<span class="span">이메일 인증번호 전송</span>
-           		<input type="button" value="전송" class="button"><label id="eTxt"></label><br><br>
+           		<input type="button" value="전송" class="button btn btn-primary"><label id="eTxt">인증 실패</label><br><br>
            		
            		
            		<span class="span">비밀번호</span><span class="text1">(필수)</span><span id="extext1"></span><br><br>
@@ -120,6 +128,7 @@
  	<script>
  		var result =[false,false,false,false,false]
  		$(document).ready(function() {
+ 			$(".button").prop("disabled",true);
 			$("#id").blur(function () {
 				var id = $("#id").val();
 				var text = /[a-z0-9]@[a-z]+\.[a-z]{2,6}$/;
@@ -129,11 +138,18 @@
 					 if(!text.test(id)){
 	                     $('#extext').html('이메일 형식으로 입력하세요');
 	                     $('#extext').css('color','red');
+	                     $(".button").prop("disabled",true);
 	                     return false;
 	                 }else{
 	                      $('#extext').html('');
-	                     result[0]='true';
-	                     return true;
+	                     
+	                     $(".button").prop("disabled",false);
+	                     if($("#eTxt").text()=="인증완료"){
+	                    		console.log($("#eTxt").text()); 
+	                    		result[0]='true';
+	                    	 return true;
+	                     }
+	                     
 	                 };	
 				 };
 			});

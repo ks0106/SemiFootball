@@ -14,6 +14,7 @@ import branch.model.vo.Branch;
 import branch.model.vo.BranchData;
 import branch.model.vo.BranchImgs;
 import common.JDBCTemplate;
+import court.model.vo.Court;
 
 public class BranchDao {
 	private Properties prop = new Properties();
@@ -85,6 +86,31 @@ public class BranchDao {
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return bd;
+	}
+
+	public ArrayList<Court> selectCourt(Connection conn, int branchCode) {
+		ArrayList<Court> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectCourt");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, branchCode);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<Court>();
+			while(rset.next()) {
+				Court c = new Court();
+				c.setCourtName(rset.getString("court_name"));
+				list.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
 	}
 
 }
