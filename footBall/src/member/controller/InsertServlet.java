@@ -35,9 +35,9 @@ public class InsertServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		String pwdHint = request.getParameter("pwdHint");
-		System.out.println(pwdHint);
+		
 		String pwdHintAnswer = request.getParameter("pwdHintAnswer");
-		System.out.println(pwdHintAnswer);
+		
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		
