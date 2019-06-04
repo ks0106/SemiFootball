@@ -215,10 +215,9 @@
 								</div>								
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
-							<div id="reservationReceipt" style="width:90%;margin:0 auto;margin-top:30px;">
+							<div id="reservationReceipt" style="width:90%;margin:0 auto;margin-top:30px;margin-bottom:30px;">
 								<div id="reservationAllCost" style="font-size:18px;width:100%;">합계<span style="font-size:20px;float:right;"><span id="allCost">0</span>원</span></div>
 							</div>
-							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 						</div>
 					</div>
 				</div>
