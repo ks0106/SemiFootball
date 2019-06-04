@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import branch.model.dao.BranchDao;
 import branch.model.vo.BranchData;
 import common.JDBCTemplate;
+import court.model.vo.Court;
 
 public class BranchService {
 
@@ -23,5 +24,14 @@ public class BranchService {
 		JDBCTemplate.close(conn);
 		return bd;
 	}
+
+	public ArrayList<Court> selectCourt(int branchCode) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Court> list = new BranchDao().selectCourt(conn, branchCode);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	
 
 }
