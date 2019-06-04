@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -192,6 +191,8 @@ $(document).ready(function(){
 		}); 
 		
 		if(${sessionScope.member.id eq 'admin'}){
+			alert("삭제하고 싶은 사진을 클릭해주세요(큰 사진)");
+			$(".item").css("cursor", "pointer");
 			function fileDel(photoNo, filename){
 				var check = confirm("정말로 삭제하시겠습니까?");
 				if(check){

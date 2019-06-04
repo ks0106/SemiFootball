@@ -123,4 +123,21 @@ public class MemberDAO {
 		JDBCTemplate.close(pstmt);
 		return id;
 	}
+	public String searchPwd(Connection conn, String id , String name)throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String id1 = null;
+		String query = prop.getProperty("searchPwd");
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, id);
+		pstmt.setString(2, name);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			id1=rset.getString("id");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return id1;
+	}
 }

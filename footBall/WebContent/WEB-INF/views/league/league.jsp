@@ -94,6 +94,8 @@
 				<div id="btn-wrapper" style="margin: 0 auto; width: 100%; text-align: center;margin-bottom:100px;">
 					<button type="button" class="insertLeagueBtn" onclick="insertLeague();" id="addTeam">참가 신청</button>
 					<button type="button" class="insertLeagueBtn" onclick="teamView();" >참가 팀 보기</button>
+					
+					
 				</div>			
 				<div id="table-wrapper1" style="margin-bottom: 300px;text-align: center;">
 					<p style="font-size: 30px; font-weight: bold;">지난 공지</p>
@@ -178,12 +180,55 @@
 		$("#side_menu4").click(function(){
 			location.href="/gameTable"
 		});
-		.ajax({
-			
+ 		$.ajax({
+   			url:"/countTeam",
+   			type:"get",
+   			dataType:"json",
+   			success: function(data){
+				if(data<8){
+					$("#addTeam").html("참가 신청.")
+				}else{
+					$("#addTeam").html("신청이 마감되었습니다.")
+					$("#addTeam").prop("disabled", true);
+				}
+   			}
+		}); 
+ 		$.ajax({
+   			url:"/sendId",
+   			type:"get",
+   			dataType:"json",
+   			success: function(data){
+   					
+   					for(var i=0 ; i<data.length;i++){
+   						 if(data[i].teamEmail=="${sessionScope.member.id}"){
+   							$("#btn-wrapper").append("<button type='button' class='insertLeagueBtn' onclick='removeTeam();' >참가신청 취소</button>");
+   						} 
+   					}
+				}
 		});
 	});
+		function removeTeam(){
+			if(confirm("대회신청을 취소하시겠습니까?")){
+				$.ajax({
+		   			url:"/sendId",
+		   			type:"get",
+		   			dataType:"json",
+		   			success: function(data){
+		   				for(var i=0 ; i<data.length;i++){
+								if(data[i].teamEmail=="${sessionScope.member.id}"){
+									location.href="/removeTeam?teamEmail=${sessionScope.member.id}&filepath="+data[i].filepath;
+								}
+						}	   					
+					}
+				});
+			}
+		}
 		function insertLeague(){
-			location.href="/views/league/insertLeague.jsp";
+			if(${sessionScope.member != null}){
+				location.href="/views/league/insertLeague.jsp";
+			}else{
+				alert("로그인후 사용가능합니다.")
+			}
 		}
 		function addLeague(){
 			alert("까먹지말고 만들어!");

@@ -1,5 +1,6 @@
-package member.controller;
+package league.controllor;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -10,20 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.model.service.MemberService;
-import member.model.vo.Member;
+import com.google.gson.Gson;
+
+import gallery.model.service.GalleryService;
+import gallery.model.vo.Gallery;
+import league.model.service.LeagueService;
 
 /**
- * Servlet implementation class InsertServlet
+ * Servlet implementation class RemoveTeamServlet
  */
-@WebServlet(name = "Insert", urlPatterns = { "/insert" })
-public class InsertServlet extends HttpServlet {
+@WebServlet(name = "RemoveTeam", urlPatterns = { "/removeTeam" })
+public class RemoveTeamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertServlet() {
+    public RemoveTeamServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,31 +36,35 @@ public class InsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
-		String pwdHint = request.getParameter("pwdHint");
-		
-		String pwdHintAnswer = request.getParameter("pwdHintAnswer");
-		
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
-		
-		Member m =new Member(id, pwd, pwdHint, pwdHintAnswer, name, phone, null);
+		String root = getServletContext().getRealPath("/");
+		String saveDirectory = root+"img/league";
+		String teamEmail = request.getParameter("teamEmail");
+		String filepath = request.getParameter("filepath");
+		System.out.println(filepath);
+		int result=0;
 		try {
-			int result = new MemberService().insert(m);
-			if(result>0) {
-				request.setAttribute("msg", "회원가입성공");
+			result = new LeagueService().removeTeam(teamEmail);
+			if(result > 0) {
+				File deleteFile = new File(saveDirectory+filepath);
+				deleteFile.delete();
+				request.setAttribute("msg", "삭제 성공");
 			}else {
-				request.setAttribute("msg", "회원가입실패");
+				request.setAttribute("msg", "삭제 실패");
 			}
-			request.setAttribute("loc", "/views/login/login.jsp");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			rd.forward(request, response);
+			request.setAttribute("loc", "/league");
+			request.getRequestDispatcher("WEB-INF/views/common/msg.jsp").forward(request, response);
+			
 		} catch (SQLException e) {
+			System.out.println("catch 테스트");
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
+			request.setAttribute("msg", "SQL구문 오류");
 			rd.forward(request, response);
+			e.printStackTrace();
 		}
+		
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

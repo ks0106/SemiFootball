@@ -96,7 +96,7 @@
 									<th class="th" >팀이름</th>
 									<td class="td" ><input type="text" name="teamName" size="30" style="height:30px;"></td>
 									<th class="th" >대표자 이메일</th>
-									<td class="td" ><input type="text" name="teamEmail" size="30" style="height:30px;"></td>
+									<td class="td" ><input type="text" name="teamEmail" size="30" style="height:30px;" value="${sessionScope.member.id }"></td>
 								</tr>
 								<tr>
 									<th class="th">대표자 이름</th>

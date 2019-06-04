@@ -49,5 +49,10 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return id ;
 	}
-	
+	public String searchPwd(String id, String name)throws SQLException {
+		Connection conn =JDBCTemplate.getConnection();
+		String id1 = new MemberDAO().searchPwd(conn,id,name);
+		JDBCTemplate.close(conn);
+		return id1;
+	}
 }

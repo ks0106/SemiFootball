@@ -44,28 +44,58 @@ public class LeagueService {
 		return result;
 	}
 
-	public int matchUp(int[] teamNo4, int[] teamNo2, int top1) throws SQLException {
+	public int matchUp1(ArrayList<Integer> teamNo4) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new LeagueDao().win4(conn, teamNo4);
+		int result = 0;
+		for(int i= 0 ; i<teamNo4.size();i++) {
+			result = new LeagueDao().win4(conn, teamNo4.get(i));
+		}
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		return result;
+	}
+	public int matchUp2(ArrayList<Integer> teamNo2) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = 0;
+		for(int i= 0 ; i<teamNo2.size();i++) {
+			result = new LeagueDao().win2(conn, teamNo2.get(i));
+		}
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-		int result1 = new LeagueDao().win2(conn, teamNo2);
-		if (result1 > 0) {
+		return result;
+	}
+	public int matchUp3(int top1) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new LeagueDao().top1(conn, top1);
+		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-		int result2 = new LeagueDao().top1(conn, top1);
-		if (result2 > 0) {
+		return result;
+	}
+	public int countTeam() {
+		Connection conn = JDBCTemplate.getConnection();
+		int cnt = new LeagueDao().countTeam(conn);
+		JDBCTemplate.close(conn);
+		return cnt;
+	}
+	public int removeTeam(String teamEmail) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new LeagueDao().removeTeam(conn,teamEmail);
+		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
 		return result;
-
+	
 	}
 }

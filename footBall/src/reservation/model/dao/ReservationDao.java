@@ -167,14 +167,14 @@ public class ReservationDao {
 		return list;
 	}
 	
-	public int reservationGoodsCount(Connection conn, String result, int goodsGId, int bCode) throws SQLException {
+	public int reservationGoodsCount(Connection conn, String result, String option, int bCode) throws SQLException {
 		int count = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("reservationGoodsCount");
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, result);
-		pstmt.setInt(2, goodsGId);
+		pstmt.setString(2, option);
 		pstmt.setInt(3, bCode);
 		rset = pstmt.executeQuery();
 		if(rset.next()) {
@@ -185,13 +185,13 @@ public class ReservationDao {
 		return count;
 	}
 	
-	public Goods reservationGoodsPrice(Connection conn, String goods, String option) throws SQLException {
+	public Goods reservationGoodsPrice(Connection conn, String result, String option) throws SQLException {
 		Goods g = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("reservationGoodsPrice");
 		pstmt = conn.prepareStatement(query);
-		pstmt.setString(1, goods);
+		pstmt.setString(1, result);
 		pstmt.setString(2, option);
 		rset = pstmt.executeQuery();
 		if(rset.next()) {

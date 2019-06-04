@@ -34,10 +34,10 @@ public class ReservationGoodsCountServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String result = request.getParameter("result");
-		int goodsGId = Integer.parseInt(request.getParameter("goodsGId"));
+		String option = request.getParameter("option");
 		int bCode = Integer.parseInt(request.getParameter("bCode"));
 		try {
-			int count = new ReservationService().reservationGoodsCount(result, goodsGId, bCode);
+			int count = new ReservationService().reservationGoodsCount(result, option, bCode);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			new Gson().toJson(count,response.getWriter());

@@ -15,7 +15,7 @@ public class LeagueDao {
 	public int insertTeam(Connection conn , League t) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into fb_team values(seq_team_no.nextval,?,?,?,?,?,?,?,0)";
+		String query = "insert into fb_team values(seq_team_no.nextval,?,?,?,?,?,?,?,0,default,default,default)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, t.getTeamName());
 			pstmt.setString(2, t.getTeamRep());
@@ -65,15 +65,12 @@ public class LeagueDao {
 		JDBCTemplate.close(stmt);
 		return result;
 	}
-	public int win4(Connection conn , int[] teamNo) throws SQLException {
+	public int win4(Connection conn , int teamNo) throws SQLException {
 		PreparedStatement pstmt =null;
 		int result = 0;
-		String query="update fb_team set match1= 1 where team_no in (?,?,?,?)";
+		String query="update fb_team set match1= 1 where team_no = ?";
 		pstmt=conn.prepareStatement(query);
-		pstmt.setInt(1, teamNo[0]);
-		pstmt.setInt(2, teamNo[1]);
-		pstmt.setInt(3, teamNo[2]);
-		pstmt.setInt(4, teamNo[3]);
+		pstmt.setInt(1, teamNo);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
@@ -132,13 +129,12 @@ public class LeagueDao {
 		JDBCTemplate.close(stmt);
 		return list;
 	}
-	public int win2(Connection conn , int[] teamNo) throws SQLException {
+	public int win2(Connection conn , int teamNo) throws SQLException {
 		PreparedStatement pstmt =null;
 		int result = 0;
-		String query="update fb_team set match2= 1 where team_no in (?,?)";
+		String query="update fb_team set match2= 1 where team_no =?";
 		pstmt=conn.prepareStatement(query);
-		pstmt.setInt(1, teamNo[0]);
-		pstmt.setInt(2, teamNo[1]);
+		pstmt.setInt(1, teamNo);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
@@ -149,6 +145,36 @@ public class LeagueDao {
 		String query="update fb_team set match3= 1 where team_no=?";
 		pstmt=conn.prepareStatement(query);
 		pstmt.setInt(1, top1);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int countTeam(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int cnt = 0;
+		String query = "select count(*) as cnt from fb_team";
+		try {
+			stmt= conn.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()) {
+				cnt = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return cnt;
+	}
+	public int removeTeam(Connection conn , String teamEmail) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from fb_team where team_Email=?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, teamEmail);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;

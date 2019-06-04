@@ -88,12 +88,11 @@
 					<div style="margin-bottom:15px;">
 						<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">회사소개</a>
 						<ul id="side_pr_menu">
-							<li class="side_nav" id="side_menu2"><a href="#">KS Sports</a></li>
-							<li class="side_nav" id="side_menu3"><a href="#">연혁</a></li>
+							<li class="side_nav" id="side_menu2"><a href="/company">KS Sports</a></li>
 						</ul>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">오시는 길</a>
+						<a href="/companyLocation" class="side_a" id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">오시는 길</a>
 					</div>
 				</div>
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">

@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 public class MatchList {
 	private int seqMatchNo;
 	private String matchType;
-	private String matchBName;
-	private String matchCName;
+	private int matchBCode;
+	private int matchCCode;
 	private String matchWriter;
 	private String matchPhone;
 	private Date matchDate;
@@ -28,14 +28,14 @@ public class MatchList {
 	}
 	
 	
-	public MatchList(int seqMatchNo, String matchType, String matchBName, String matchCName, String matchWriter,
+	public MatchList(int seqMatchNo, String matchType, int matchBCode, int matchCCode, String matchWriter,
 			String matchPhone, Date matchDate, String matchTime, int matchTeamCount, String matchUColor,
 			String matchLevel, int matchAble, String matchPw, String matchMemo, Date matchEnrollDate) {
 		super();
 		this.seqMatchNo = seqMatchNo;
 		this.matchType = matchType;
-		this.matchBName = matchBName;
-		this.matchCName = matchCName;
+		this.matchBCode = matchBCode;
+		this.matchCCode = matchCCode;
 		this.matchWriter = matchWriter;
 		this.matchPhone = matchPhone;
 		this.matchDate = matchDate;
@@ -70,23 +70,23 @@ public class MatchList {
 	}
 
 
-	public String getMatchBName() {
-		return matchBName;
+	public int getMatchBCode() {
+		return matchBCode;
 	}
 
 
-	public void setMatchBName(String matchBName) {
-		this.matchBName = matchBName;
+	public void setMatchBCode(int matchBCode) {
+		this.matchBCode = matchBCode;
 	}
 
 
-	public String getMatchCName() {
-		return matchCName;
+	public int getmatchCCode() {
+		return matchCCode;
 	}
 
 
-	public void setMatchCName(String matchCName) {
-		this.matchCName = matchCName;
+	public void setMatchCCode(int matchCCode) {
+		this.matchCCode = matchCCode;
 	}
 
 

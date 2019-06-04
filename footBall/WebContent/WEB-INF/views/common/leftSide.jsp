@@ -440,7 +440,12 @@
  			<li class="header_item"><a href="/gallery">갤러리</a></li>
  			<li class="header_item"><a href="/notice">커뮤니티</a></li>
  			<li class="header_item"><a href="/company">회사소개</a></li>
- 			<li class="header_item"><a href="#" style="display:none;">관리자메뉴</a></li>
+			<%if(m != null){ %>
+				<%if(m.getId().equals("admin")){ %>
+		 			<li class="header_item"><a href="/admin">관리자메뉴</a></li>
+				<%} %>
+			<%} %>
+
  		</ul>
 	 		<%if(m == null){ %>
 		 		<div id="menu_login" style="float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
