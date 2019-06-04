@@ -85,7 +85,6 @@
 			left: 150px;
 			width: 60%;
 			height: 100%;
-			background-color:salmon;
 			text-align:left;
 		}
 		.nav-span{
@@ -148,74 +147,20 @@
 		/* Modal Content/Box */
 		.branch-modal {
 			background-color: #fefefe;
-			margin: 8% auto; /* 8% from the top and centered */
-			min-margin:90px;
+			margin: 4% auto; /* 8% from the top and centered */
 			padding: 20px;
 			border: 1px solid #888;
-			width: 70%; 
-			height: 80%;
-			min-width: 1000px;
+			border-radius: 5px;
+			width: 1000px; 
+			height: 800px;
 			overflow: auto;
 		}
-		.branchModal-wrapper {
-			width:95%; 
-			height:800px; 
-			position:relative; 
-			top:10px;
-			left:30px;
-			background-color:red;
-			text-align:center;
-		}
-		.modalHeader{
-			height: 50px;
-			background-color:orange;
-		}
-		.modelBody{
-			height:500px;
-			background-color:salmon;
-		}
-		.infoForm {
-			position:relative;
-			width:80%;
-			height: 500px;
-			left: 10%;
-			background-color: blue;
-		}
-		#spec {
-			position:relative;
-			width:100%;
-			height:500px;
-			overflow:hidden;
-		}
-		#infoFormFooter{
-			position:relative;
-			width: 100%;
-			height:65px;
-			top:-65px;
-			background-color:black;
-			opacity: .5;
-			color:white;
-			-webkit-transition: .3s ease-in-out;
-			transition: .3s ease-in-out;
-		}
-		#infoFormFooter:hover{
-			opacity: 1;
-		}
-		.infoSpan {
-			font-size: 25px;
+		#map img {
+			max-width: none;
+			height: auto;
+			border: 0;
 		}
 		
-		.locForm {
-			height: 500px;
-			background-color:salmon;
-		}
-		#map {
-			 position:relative; 
-			 left:10%;
-			 width:80%; 
-			 height:400px;
-		}
-
 		/* The Close Button */
 		.close {
 			position:static;

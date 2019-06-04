@@ -68,7 +68,10 @@
 											<img class="subImg right" src="${bd.bi.bi4 }" alt="subImg">
 										</c:if>
 									</div>
-									<input type="hidden" name="branchName" value="${bd.b.branchName }">
+									<div class="hidden-wrapper">
+										<input type="hidden" name="branchCode" value="${bd.b.branchCode }">
+										<input type="hidden" name="branchName" value="${bd.b.branchName }">
+									</div>	
 								</div>
 							</form>
 						</c:when>
@@ -92,7 +95,10 @@
 											<li style="text-align:left"><button class="btn-submit" type="button">지점 상세 정보</button></li>
 										</ul>
 									</div>
-									<input type="hidden" name="branchName" value="${bd.b.branchName }">
+									<div class="hidden-wrapper">
+										<input type="hidden" name="branchCode" value="${bd.b.branchCode }">
+										<input type="hidden" name="branchName" value="${bd.b.branchName }">
+									</div>	
 								</div>
 							</form>
 						</c:when>
@@ -106,22 +112,13 @@
 			<!-- 모달 정보창 -->
 			<div class="branch-modal">
 				<span class="close">&times;</span>
-				<div class="branchModal-wrapper">
-					<div class="modalHeader">
-						<span style="font-size:40px; font-weight:bold;"> </span>
+				<div class="modalContent-wrapper" style="position:relative; left:10%; width:80%; height:99.5%; background:red; ">
+					<div class="modalContent-head" style="position:relative; width:100%; height:80px; text-align:center; line-height:2.0; background:orange;">
+						<span style="font-size:40px; font-weight:bold;"></span>
 					</div>
-					<div class="modalBody">
-						<h2>지점 안내</h2>
-						<div class="infoForm">
-							<!-- img here : overflow: visible? -->
-							<img id="spec" src="${bd.bi.bi1 }" alt="상세정보">
-							<div id="infoFormFooter"><span class="infoSpan"></span><br><span class="infoSpan"></span></div>
-						</div>
-						<div class="locForm">
-							<h2>위치 안내</h2>
-							<!-- naver maps api here -->
-							<div id="map"></div>
-						</div>
+					<div class="modalContent-body" style="position:relative; width:100%; height:99.5%%; text-align:center;">
+						<table id="modalTable" style="width: 100%; height: 360px; font-size:25px;"></table>
+						<div id="map" style="width:100%; height:360px;"></div>
 					</div>
 				</div>
 			</div>
@@ -130,7 +127,7 @@
 		$(function(){
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
-			$('.content-wrapper:even ul').css('padding','0px');
+			$('.content-wrapper:even ul').css('padding','2px');
 			/* 소스 없는 서브이미지 태그 감추기 */
 			$('.subImg').each(function(index,item){
 				if(!($(item).attr('src'))) {
@@ -148,17 +145,18 @@
 				var position = $('#'+targetId).offset();
 				$('html,body').animate({scrollTop:position.top-156},500);
 			});
-			/* 상세정보 버튼 클릭시 - ajax */
+			/* 상세정보 버튼 클릭시 - ajax로 지점정보 불러오기 */
 			$('.btn-submit').click(function(){
 				$contentWrapper = $(this).parents().eq(3);
-				var branchName = $contentWrapper.children().last().val();
+				var branchCode = $contentWrapper.children().last().children().first().val();
+				var branchName = $contentWrapper.children().last().children().last().val();
 				modal.style.display = "block";
 				$.ajax({
 					url : "/branchInfo",
 					type : "get",
 					data : {branchName : branchName},
 					success :  function(data) {
-						/* 변환함수 선언 */
+						/* 공백문자 변환함수 선언 */
 		                function replaceAll(sValue, param1, param2) {
 		                	 return sValue.split(param1).join(param2);
 		                }
@@ -168,10 +166,39 @@
 						var branchTel = data.branchTel;
 						var branchPhone = data.branchPhone;
 						var bi1 = data.bi1;
-						$('.modalHeader span').html(branchName);
-						$('.infoSpan:first').html("지점주소 : " + replaceAll(branchAddr,"+"," "));
-						$('.infoSpan:last').html("지점전화 : " + branchTel +"/"+ branchPhone);
-						$('#spec').attr('src',bi1);
+						$('.modalContent-head span').html(branchName);
+						/* $('.infoSpan:first').html("지점주소 : " + replaceAll(branchAddr,"+"," "));
+						$('.infoSpan:last').html("지점전화 : " + branchTel +"/"+ branchPhone); */
+					},
+					error : function(){
+						console.log("전송 실패");
+					}
+				});
+				/* 상세정보 버튼 클릭시 - ajax로 구장정보 불러오기 */
+				$.ajax({
+					url : "/branchCourtInfo",
+					type : "get",
+					data : {branchCode : branchCode},
+					success : function(data) {
+						$('#modalTable').empty();
+						var initText="<tr><th>구장 타입</th><th>구분</th><th>사이즈</th><th>대관금액</th></tr>";
+						var resultText="";
+						var isIndoor = "";
+						var size = "";
+						var cost = "";
+						for(var i=0; i<data.length; i++){
+							var courtName = data[i].courtName;
+							switch(courtName) {
+								case 'A' : isIndoor="실외"; size = "42*25(m)"; cost="120,000￦";
+								break;
+								case 'B' : isIndoorr="실외"; size = "40*22.5(m)"; cost="100,000￦";
+								break;
+								case 'C' : isIndoor="실내"; size = "38*20(m)"; cost="80,000￦";
+							}
+							resultText += "<tr><td>"+courtName+"</td>"+"<td>"+isIndoor+"</td><td>"+size+"</td><td>"+cost+"</td></tr>";
+						}
+						initText += resultText;
+						$('#modalTable').append(initText);
 					},
 					error : function(){
 						console.log("전송 실패");
@@ -194,62 +221,16 @@
 		    modal.style.display = "none";
 		  }
 		}
-		
-		/* naver map api */
-		window.onload = function() {
-			/* var map = new naver.maps.Map('map');  */
-			var map = new naver.maps.Map('map',{
-				center : new naver.maps.LatLng(37.533807,126.896772),
-				zoom : 11,
-				zoomControl :true,
-				zoomControlOptions:{
-					position : naver.maps.Position.TOP_RIGHT,
-					style : naver.maps.ZoomControlStyle.SMALL
-				}
-			});
-			var marker = new naver.maps.Marker({
-				position : new naver.maps.LatLng(37.533807,126.896772),
-				map : map
-			});
-			naver.maps.Event.addListener(map,'click',function(e){
-				marker.setPosition(e.coord);
-				if(infoWindow.getMap()) {
-					infoWindow.close();
-				}
-				//위도, 경도는 바로 구할 수 있음
-				//위도, 경도를 바탕으로 주소를 갖고오기 - using geocode - 위(import script)에 submodule을 추가해야함
-				naver.maps.Service.reverseGeocode({ //cf) .geocode : 주소를 위.경도로 바꾸기
-					location : new naver.maps.LatLng(e.coord.lat(),e.coord.lng())
-					}, function(status,response) {
-						if(status !== naver.maps.Service.Status.OK) {/* !== : 자료형까지 비교하는 JS 연산자 */
-							return alert('주소정보 없음');
-						}
-						var result = response.result;
-						items = result.items; /* 도로명주소, 지번주소의 배열형태로 전달받음 */
-						address = items[1].address;
-						contentString = [
-							'<div class="iw_inner">',
-							'<p>'+address+'</p>',
-							'</div>'
-						].join('');
-				});
-			});
-			var contentString = [
-				'<div class="iw_inner>"',
-				'<p>서울시 영등포구 선유동2로 57 이레빌딩</p>',
-				'</div>'
-			].join('');
-			var infoWindow = new naver.maps.InfoWindow();
-			naver.maps.Event.addListener(marker, 'click', function(e){
-				if(infoWindow.getMap()) {
-					infoWindow.close();
-				} else {
-					infoWindow.setContent(contentString);
-					infoWindow.open(map, marker);
-				}
-					
-			});
-		}
+		/* 네이버 맵 */
+		var map = new naver.maps.Map('map',{
+			center : new naver.maps.LatLng(37.533807,126.896772),
+			zoom : 11,
+			zoomControl :true,
+			zoomControlOptions:{
+				position : naver.maps.Position.TOP_RIGHT,
+				style : naver.maps.ZoomControlStyle.SMALL
+			}
+		});
 		
 	</script>
 </body>

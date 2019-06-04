@@ -10,37 +10,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>공지사항뷰</title>
-<style>
-	/* 페이지 타이틀  */
-	#title{
-		position:absolute;
-		z-index: 100;
-		font-size: 70px;
-		font-weight:900;
-		color: white;
-		left: 10%;
-		top: 400px;
-	}
-	 .tab-container{
-      position:absolute;
-      top:485px;
-      width:100%;
-      height:100px;
-   }
-   .notice{
-   	width:80%;
-   	height: 300px;
-   }
+<link rel="stylesheet" href="/css/notice/notice.css">
 
-   .full{
-   height: 800px;
-   text-align:center;
-   }
-#noticeview{
-	width: 70%;
-}
-</style>
+<title>공지사항뷰</title>
+
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -62,6 +35,12 @@
 
 	
 		<div class="full">
+		<div class="tab-container">
+			<ul class="tab-list">
+				<li class="selected list-li"><a href="/notice" class="munebar">공지사항</a></li>
+				<li class="list-li"><a href="/noticeFAQ" class="munebar">FAQ</a></li>
+				<li class="list-li"><a href="/boardList" class="munebar">자유게시판</a></li>
+			</ul>
 		<section>
 			<div class="table-wrapper" style="text-align: center; width: 60%; margin: 0 auto;">
 			<center><h1>공지사항</h1></center><br><br><br>
@@ -93,7 +72,7 @@
          </div>
          </section>
 	</div>
-
+</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	
 </body>
