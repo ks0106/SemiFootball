@@ -56,6 +56,11 @@
 	});
 </script>
 <style>
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+	    -webkit-appearance: none;
+	    margin: 0;
+	}
 	.side_a{
 		font-weight:bolder;
 		font-size:18px;
@@ -193,7 +198,7 @@
 										<select class="reservationOption" id="reservationVestOption" name="reservationVestOption">
 											<option id="default" value="default" selected>::: 옵션 선택 :::</option>
 										</select>
-										<input type="number" class="reservationAmount" id="reservationVestAmount" name="reservationVestAmount" placeholder="수량" min="1">
+										<input type="number" class="reservationAmount" id="reservationVestAmount" name="reservationVestAmount" placeholder="수량" min="0">
 										<input class="addBtn" id="addVest" type="button" value="추가">
 									</div>
 									<div style="margin-top:20px;">
@@ -211,10 +216,7 @@
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 							<div id="reservationReceipt" style="width:90%;margin:0 auto;margin-top:30px;">
-								<div class="reservationCost" style="font-size:18px;width:100%;float:left;"><div class="reservationMinusBtn" style="width:15px;height:15px;border-radius:50px;border:2px solid silver;background-color:white;color:red;font-weight:bolder;float:left;font-size:35px;cursor:pointer;margin-top:5px;line-height:5px;">-</div>삼다수 500ml [800원 * 8개]<span style="font-size:20px;float:right;">6,400원</span></div>
-								<div class="reservationCost" style="font-size:18px;width:100%;float:left;"><div class="reservationMinusBtn" style="width:15px;height:15px;border-radius:50px;border:2px solid silver;background-color:white;color:red;font-weight:bolder;float:left;font-size:35px;cursor:pointer;margin-top:5px;line-height:5px;">-</div>조끼(빨강) XL [1,500원 * 8벌]<span style="font-size:20px;float:right;">12,000원</span></div>
-								<div class="reservationCost" style="font-size:18px;width:100%;float:left;"><div class="reservationMinusBtn" style="width:15px;height:15px;border-radius:50px;border:2px solid silver;background-color:white;color:red;font-weight:bolder;float:left;font-size:35px;cursor:pointer;margin-top:5px;line-height:5px;">-</div>축구화 250size [5,000원 * 8켤레]<span style="font-size:20px;float:right;">40,000원</span></div>
-								<div id="reservationAllCost" style="font-size:18px;width:100%;">합계<span id="allCost" style="font-size:20px;float:right;">0원</span></div>
+								<div id="reservationAllCost" style="font-size:18px;width:100%;">합계<span style="font-size:20px;float:right;"><span id="allCost">0</span>원</span></div>
 							</div>
 							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
 						</div>
@@ -242,12 +244,15 @@
 		});
 		/* 동적 개체인 달력을 클릭했을 때 동작하는 함수 */
 		$(document).on("click",".future",function(){
+			/* 시간선택 안내 초기화 */
+			$('#referenceText2').text('※대관 가능한 시간만 표시됩니다.');
+			$('#referenceText2').css("color","red");
 			/* 영수증 초기화 */
 			var $receipt = $('#reservationReceipt');
 			$receipt.find("div").not('#reservationAllCost').remove();
 			/* 합계 금액 초기화 */
 			allCost = 0;
-			$('#allCost').html(allCost.toLocaleString()+'원');				
+			$('#allCost').html(allCost.toLocaleString());				
 			/* 달력 함수 */
 			month = $('#tbCalendarYM').text();
 			day = parseInt($(this).text());
@@ -300,7 +305,7 @@
 			$receipt.find("div").not('#reservationAllCost').remove();
 			/* 합계 금액 초기화 */
 			allCost = 0;
-			$('#allCost').html(allCost.toLocaleString()+'원');				
+			$('#allCost').html(allCost.toLocaleString());				
 			/* 구장 선택 함수 */
 			var result = txt.replace(/\./gi,'/');
 			var cCode = $("#courtSelect").val();
@@ -356,23 +361,26 @@
 				$('.goodsCount').text('');
 			}
 		});
+		/* 시간선택 버튼을 누른 경우 */
 		$(document).on("click",".scheduleList",function(){
 			$(this).addClass('scheduleSelect');
 			$(this).removeClass('scheduleList');
 			allCost += parseInt($(this).find('.reservationCost').html().replace(",",""));
-			$('#allCost').html(allCost.toLocaleString()+'원');	
+			$('#allCost').html(allCost.toLocaleString());	
 			
 			/* 영수증 초기화 */
 			var scheduleNo = $(this).attr('id');
-			var $receipt = $('#reservationReceipt');
-			$receipt.prepend('<div name="'+scheduleNo+'" class="reservationCost" style="font-size:18px;width:100%;float:left;">대관('+$(this).find('.startTime').text()+'~'+$(this).find('.endTime').text()+')<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');
+			var $receipt = $('#reservationAllCost');
+			$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관('+$(this).find('.startTime').text()+'~'+$(this).find('.endTime').text()+')<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');
 			
 		});
+		
+		/* 시간선택 버튼을 눌렀는데 이미 선택되어있는 경우 */
 		$(document).on("click",".scheduleSelect",function(){
 			$(this).addClass('scheduleList');
 			$(this).removeClass('scheduleSelect');
 			allCost -= parseInt($(this).find('.reservationCost').html().replace(",",""));
-			$('#allCost').html(allCost.toLocaleString()+'원');	
+			$('#allCost').html(allCost.toLocaleString());	
 
 			var scheduleNo = $(this).attr('id');
 			var $receipt = $('#reservationReceipt');
@@ -386,22 +394,24 @@
 				$('.goodsCount').text('');
 				$('.checkGoods').prop('checked',false);				
 				var scheduleNo = $(this).attr('id');
-				var $receipt = $('#reservationReceipt');
-				$receipt.prepend('<div name="'+scheduleNo+'" class="reservationCost" style="font-size:18px;width:100%;float:left;">대관('+$(this).find('.startTime').text()+'~'+$(this).find('.endTime').text()+')<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');
+				$('#reservationReceipt').find('div').not('#reservationAllCost').remove();
+				allCost = 0;
+				$('#allCost').html(allCost.toLocaleString());	
 			}
 
 		});
 		
 		/* 물품대여 체크박스 체크했을 때 동작하는 함수 */
 		$('.checkGoods').on("click",function(e){
+			var result = $(this).parents('label').text();
+			var bCode = ${b.branchCode};
+			var $select = $(this).parents().siblings('.reservationGoods');
+			$select.find("option").not('#default').remove();
+
 			if($('#courtTime').children('.scheduleSelect').attr('class') == 'scheduleSelect'){
 				if($(this).is(':checked') == true){
 					$(this).parents().siblings('.reservationGoods').css("display","inline-block");
 					
-					var result = $(this).parents('label').text();
-					var bCode = ${b.branchCode};
-					var $select = $(this).parents().siblings('.reservationGoods');
-					$select.find("option").not('#default').remove();
 					$.ajax({
 						url : "/reservationGoodsList.do",
 						type : "get",
@@ -422,6 +432,30 @@
 					$(this).parents().siblings('.reservationAmount').val('');
 					$('.goodsCount').val('');				
 				}else{
+					$.ajax({
+						url : "/reservationGoodsList.do",
+						type : "get",
+						data : {result:result,bCode:bCode},
+						success : function(data){
+							for(var i=0;i<data.length;i++){
+								var goodsBCode = data[i].goodsBCode;
+								var goodsCategory = data[i].goodsCategory;
+								var goodsName = data[i].goodsName;
+								for(var j = $('.reservationReceiptList').length; j >= 0; j--){
+									if($('.reservationReceiptList:eq('+j+')').find('.reservationGoodsName').text() == goodsName){
+										var price = $('.reservationReceiptList:eq('+j+')').find('.reservationGoodsPrice').text().replace(",","");
+										allCost -= price;
+										$('#allCost').html(allCost.toLocaleString());	
+										$('.reservationReceiptList:eq('+j+')').remove();
+									}
+								}
+							}
+						},
+						error : function(){
+							alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+						}
+					});
+					
 					$(this).parents().siblings('.reservationGoods').css("display","none");
 					$(this).parents().siblings('.reservationOption').css("display","none");
 					$(this).parents().siblings('.reservationAmount').css("display","none");
@@ -482,15 +516,15 @@
 				$(this).siblings('.addBtn').css("display","inline-block");
 				var goodsCount = $(this).siblings('span').find('.goodsCount');
 				
-				var result = $(this).find('option:selected').html();
-				var goodsGId = $(this).find('option:selected').val();
+				var result = $(this).siblings('.reservationGoods').find('option:selected').html();
+				var option = $(this).find('option:selected').html();
 				var bCode = ${b.branchCode};
 				var $select = $(this).siblings('.reservationOption');
 				$select.find("option").not('#default').remove();
 				$.ajax({
 					url : "/reservationGoodsCount.do",
 					type : "get",
-					data : {result:result,goodsGId:goodsGId,bCode:bCode},
+					data : {result:result,option:option,bCode:bCode},
 					success : function(data){
 						goodsCount.text(data);
 					},
@@ -516,6 +550,7 @@
 				$(this).val(count);
 			}
 		});
+				
 		$('.reservationAmount').on("focusout",function(){
 			var count = parseInt($(this).siblings('span').find('.goodsCount').text());
 			if($(this).val() > count){
@@ -526,36 +561,131 @@
 		/* 추가 버튼 눌렀을 때 동작하는 함수 */
 		$('.addBtn').on("click",function(){
 			var $receipt = $('#reservationReceipt');
-			var goods = $(this).siblings('.reservationGoods').children('option:selected').html();
+			var result = $(this).siblings('.reservationGoods').children('option:selected').html();
 			var option = $(this).siblings('.reservationOption').children('option:selected').html();
+			var bCode = ${b.branchCode};
 			var amount = parseInt($(this).siblings('.reservationAmount').val());
-			
-			$.ajax({
-				url : "/reservationGoodsPrice.do",
-				type : "get",
-				data : {goods:goods,option:option},
-				success : function(data){
-					if(amount > 0){
-						var price = parseInt(data.goodsPrice);
-						var allPrice = (price*amount);
-						$receipt.prepend('<div class="reservationCost" style="font-size:18px;width:100%;float:left;"><div class="reservationMinusBtn" style="width:15px;height:15px;border-radius:50px;border:2px solid silver;background-color:white;color:red;font-weight:bolder;float:left;font-size:35px;cursor:pointer;margin-top:5px;">-</div>'+goods+' '+option+' ['+price+'원 * '+amount+'개]<span style="font-size:20px;float:right;">'+allPrice.toLocaleString()+'원</span></div>');
+			var addReceipt = "";
+			for(var i = 0 ; i < $('.reservationReceiptList').length; i++){
+				if($('.reservationReceiptList:eq('+i+')').find('.reservationGoodsName').text() == result && $('.reservationReceiptList:eq('+i+')').find('.reservationGoodsOption').text() == option){
+					if(amount != 0 && isNaN(amount) != true){
+						var oldAmount = parseInt($('.reservationReceiptList:eq('+i+')').find('.reservationGoodsAmount').val());
+						var oldPrice = parseInt($('.reservationReceiptList:eq('+i+')').find('.reservationGoodsPrice').text().replace(",",""));
+						$('.reservationReceiptList:eq('+i+')').find('.reservationGoodsAmount').val(amount+oldAmount);
+						
+						var $select = $('.reservationReceiptList:eq('+i+')').find('.reservationGoodsAmount');
+						$.ajax({
+							url : "/reservationGoodsCount.do",
+							type : "get",
+							data : {result:result,option:option,bCode:bCode},
+							success : function(data){
+								var count = parseInt(data);
+								if((oldAmount+amount) > count){
+									alert("재고보다 많은 수를 입력할 수 없습니다.");
+									$select.val(count);
+								}else{
+									$('.reservationReceiptList:eq('+i+')').find('.reservationGoodsPrice').text((oldPrice+((oldPrice/oldAmount)*amount)).toLocaleString());
+									allCost += (oldPrice/oldAmount)*amount;
+									$('#allCost').html(allCost.toLocaleString());
+								}
+							},
+							error : function(){
+								alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+							}
+						});
+						i = $('.reservationReceiptList').length+1;						
 					}else{
 						alert("수량을 입력해주세요.");
+						i = $('.reservationReceiptList').length+1;
 					}
-				},
-				error : function(){
-					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+				}else{
+					if(i == $('.reservationReceiptList').length-1){
+						$.ajax({
+							url : "/reservationGoodsPrice.do",
+							type : "get",
+							data : {result:result,option:option},
+							success : function(data){
+								if(amount > 0){
+									var price = parseInt(data.goodsPrice);
+									var allPrice = (price*amount);
+									addReceipt += '<div class="reservationReceiptList" style="width:100%;height:40px;border:1px solid lightgray;position:relative;margin-top:2px;margin-bottom:2px;"><div style="position:absolute;font-size:14px;top:2px;color:gray;"><div>제품명 : <span class="reservationGoodsName">'+result+'</span></div><div>규격/용량 : <span class="reservationGoodsOption">'+option+'</span></div></div>';
+									addReceipt += '<div style="position:absolute;left:250px;font-size:13px;text-align: center;top:2px;color:gray;">수량<br><input class="reservationGoodsAmount" type="number" style="width:50px;height:13px;border:1px solid lightgray;" min="0" value="'+amount+'"></div>';
+									addReceipt += '<div style="left:400px;font-size:15px;margin-right:50px;margin-top:10px;float:right;text-align:right;color:gray;"><span class="reservationGoodsPrice">'+allPrice.toLocaleString()+'</span>원</div>';
+									addReceipt += '<div style="position:absolute;left:500px;top:8px;"><div class="cancelBtn" style="width:20px;height:20px;border-radius:20px;text-align:center;border:2px solid lightgray;line-height:15px;font-size:23px;color:red;cursor:pointer;padding:0;margin:0;">×</div></div></div>';
+									$receipt.prepend(addReceipt);
+									allCost += allPrice;
+									$('#allCost').html(allCost.toLocaleString());	
+								}else{
+									alert("수량을 입력해주세요.");
+								}
+							},
+							error : function(){
+								alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+							}
+						});
+						i = $('.reservationReceiptList').length+1;
+					}
 				}
-			});
+			}
 			$(this).siblings('.reservationGoods').find('option:eq(0)').prop("selected",true);
 			$(this).siblings('.reservationOption').find('option:eq(0)').prop("selected",true);
 			$(this).siblings('.reservationAmount').val('');
 			$(this).siblings('span').find('.goodsCount').text('');	
 		});
 		
-		$(document).on("click",'.reservationMinusBtn',function(){
-			$(this).parents('.reservationCost').remove();
+		$(document).on("click",'.cancelBtn',function(){
+			var price = $(this).parents('.reservationReceiptList').find('.reservationGoodsPrice').text().replace(",","");
+			allCost -= price;
+			$('#allCost').html(allCost.toLocaleString());	
+			$(this).parents('.reservationReceiptList').remove();
 		});			
+		
+		$(document).on('keyup','.reservationGoodsAmount',function(){
+			var result = $(this).parents('.reservationReceiptList').find('.reservationGoodsName').text();
+			var option = $(this).parents('.reservationReceiptList').find('.reservationGoodsOption').text();
+			var bCode = ${b.branchCode};
+			var $select = $(this);
+			var selectCount = parseInt($select.val());
+			$.ajax({
+				url : "/reservationGoodsCount.do",
+				type : "get",
+				data : {result:result,option:option,bCode:bCode},
+				success : function(data){
+					var count = parseInt(data);
+					if(selectCount > count){
+						alert("재고보다 많은 수를 입력할 수 없습니다.");
+						$select.val(count);
+					}
+				},
+				error : function(){
+					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+				}
+			});
+			
+		});
+		$(document).on('focusout','.reservationGoodsAmount',function(){
+			var result = $(this).parents('.reservationReceiptList').find('.reservationGoodsName').text();
+			var option = $(this).parents('.reservationReceiptList').find('.reservationGoodsOption').text();
+			var bCode = ${b.branchCode};
+			var $select = $(this);
+			var selectCount = parseInt($select.val());
+			$.ajax({
+				url : "/reservationGoodsCount.do",
+				type : "get",
+				data : {result:result,option:option,bCode:bCode},
+				success : function(data){
+					var count = parseInt(data);
+					if(selectCount > count){
+						alert("재고보다 많은 수를 입력할 수 없습니다.");
+						$select.val(count);
+					}
+				},
+				error : function(){
+					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+				}
+			});
+			
+		});
 	</script>
 
 </body>

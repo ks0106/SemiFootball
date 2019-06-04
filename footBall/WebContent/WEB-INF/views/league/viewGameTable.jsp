@@ -265,16 +265,16 @@
 					</c:forEach>
 					<c:forEach items="${list.allList }" var="l" varStatus="i">
 						<c:if test="${(i.count+7)<10 }">
-							<div id="top${i.count+7 }" class="win8-1"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
+							<div id="top${i.count+7 }" class="win8 win8-1"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
 						</c:if>
 						<c:if test="${(i.count+7)>9&&(i.count+7)<12 }">
-							<div id="top${i.count+7 }" class="win8-2"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
+							<div id="top${i.count+7 }" class="win8 win8-2"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
 						</c:if>
 						<c:if test="${(i.count+7)>11&&(i.count+7)<14 }">
-							<div id="top${i.count+7 }" class="win8-3"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
+							<div id="top${i.count+7 }" class="win8 win8-3"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
 						</c:if>
 						<c:if test="${(i.count+7)>13&&(i.count+7)<16 }">
-							<div id="top${i.count+7 }" class="win8-4"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
+							<div id="top${i.count+7 }" class="win8 win8-4"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -297,33 +297,33 @@
 			$("#top4").children().filter("img").attr("value");
 			if($("#top4").children().filter("img").attr("value")==$(".win8-1").eq(0).children().filter("img").attr("value")){
 				$(".win8-1").eq(1).children().filter("div").addClass("lose");
-			}else{
+			}else if($("#top4").children().filter("img").attr("value")==$(".win8-1").eq(1).children().filter("img").attr("value")){
 				$(".win8-1").eq(0).children().filter("div").addClass("lose");	
 			}
 			if($("#top5").children().filter("img").attr("value")==$(".win8-2").eq(0).children().filter("img").attr("value")){
 				$(".win8-2").eq(1).children().filter("div").addClass("lose");
-			}else{
+			}else if($("#top5").children().filter("img").attr("value")==$(".win8-2").eq(1).children().filter("img").attr("value")){
 				$(".win8-2").eq(0).children().filter("div").addClass("lose");	
 			}
 			if($("#top6").children().filter("img").attr("value")==$(".win8-3").eq(0).children().filter("img").attr("value")){
 				$(".win8-3").eq(1).children().filter("div").addClass("lose");
-			}else{
+			}else if($("#top6").children().filter("img").attr("value")==$(".win8-3").eq(1).children().filter("img").attr("value")){
 				$(".win8-3").eq(0).children().filter("div").addClass("lose");	
 			}
 			if($("#top7").children().filter("img").attr("value")==$(".win8-4").eq(0).children().filter("img").attr("value")){
 				$(".win8-4").eq(1).children().filter("div").addClass("lose");
-			}else{
+			}else if($("#top7").children().filter("img").attr("value")==$(".win8-4").eq(1).children().filter("img").attr("value")){
 				$(".win8-4").eq(0).children().filter("div").addClass("lose");	
 			}
 			if($("#top2").children().filter("img").attr("value")==$(".win4").eq(0).children().filter("img").attr("value")){
-				$(".win4-1").eq(1).children().filter("div").addClass("lose");
-			}else{
-				$(".win4-1").eq(0).children().filter("div").addClass("lose");	
+				$(".win4").eq(1).children().filter("div").addClass("lose");
+			}else if($("#top2").children().filter("img").attr("value")==$(".win4").eq(1).children().filter("img").attr("value")){
+				$(".win4").eq(0).children().filter("div").addClass("lose");	
 			}
-			if($("#top3").children().filter("img").attr("value")==$(".win4").eq(3).children().filter("img").attr("value")){
-				$(".win4-1").eq(4).children().filter("div").addClass("lose");
+			if($("#top3").children().filter("img").attr("value")==$(".win4").eq(2).children().filter("img").attr("value")){
+				$(".win4").eq(3).children().filter("div").addClass("lose");
 			}else{
-				$(".win4-1").eq(3).children().filter("div").addClass("lose");	
+				$(".win4").eq(2).children().filter("div").addClass("lose");	
 			}
 			if($("#top1").children().filter("img").attr("value")==$(".win2").eq(0).children().filter("img").attr("value")){
 				$(".win2").eq(1).children().filter("div").addClass("lose");

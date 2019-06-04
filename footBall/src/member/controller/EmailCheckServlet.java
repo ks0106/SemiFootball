@@ -40,21 +40,25 @@ public class EmailCheckServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("email");
 		String host = "smtp.naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정 
-		String user = "rudtjr008@naver.com"; // 패스워드 
-		String password = "vkfl1643!@";      // SMTP 서버 정보를 설정한다. 
+		String user = "kdh930624@naver.com"; // 패스워드 
+		String password = "rlaehdgh21";      // SMTP 서버 정보를 설정한다. 
 		Properties props = new Properties(); 
 		props.put("mail.smtp.host", host); 
 		props.put("mail.smtp.port", 587); 
-		props.put("mail.smtp.auth", "true"); 
+		props.put("mail.smtp.auth", "true");
+
+
+		
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
 			protected PasswordAuthentication getPasswordAuthentication() { 
 				return new PasswordAuthentication(user, password); } }); 
-		try { MimeMessage message = new MimeMessage(session); 
-		message.setFrom(new InternetAddress(user)); 
-		message.addRecipient(Message.RecipientType.TO, new InternetAddress(id)); 
-		// 메일 제목 
-		message.setSubject("KH Sports Football"); 
-		// 메일 내용 
+		try {
+			MimeMessage message = new MimeMessage(session); 
+			message.setFrom(new InternetAddress(user)); 
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(id)); 
+			// 메일 제목 
+			message.setSubject("KH Sports Football"); 
+			
 		
 		Random random = new Random();
 		String num = new String();
@@ -62,10 +66,11 @@ public class EmailCheckServlet extends HttpServlet {
 			num+=String.valueOf(random.nextInt(10));
 			
 		}
-		
+		// 메일 내용 
 		message.setText("회원님의 인증번호"+num); 
 		// send the message 
-		Transport.send(message); System.out.println("Success Message Send"); 
+		Transport.send(message); 
+		System.out.println("Success Message Send"); 
 		RequestDispatcher rd = request.getRequestDispatcher("/views/login/insert2.jsp");
 		request.setAttribute("num", num);
 		rd.forward(request, response);

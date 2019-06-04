@@ -1,7 +1,8 @@
-package member.controller;
+package league.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import member.model.service.MemberService;
+import league.model.service.LeagueService;
+import league.model.vo.League;
+import league.model.vo.WinList;
 
 /**
- * Servlet implementation class SearchPwdServlet
+ * Servlet implementation class SendIdServlet
  */
-@WebServlet(name = "SearchPwd", urlPatterns = { "/searchPwd" })
-public class SearchPwdServlet extends HttpServlet {
+@WebServlet(name = "SendId", urlPatterns = { "/sendId" })
+public class SendIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchPwdServlet() {
+    public SendIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +35,17 @@ public class SearchPwdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		
 		try {
-			String id1 = new MemberService().searchPwd(id,name);
+			WinList list1 = new LeagueService().teamList();
+			ArrayList<League> list = list1.getAllList();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
-			new Gson().toJson(id1,response.getWriter());
+			new Gson().toJson(list,response.getWriter());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**

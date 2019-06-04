@@ -48,15 +48,15 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
-	public int reservationGoodsCount(String result, int goodsGId, int bCode) throws SQLException {
+	public int reservationGoodsCount(String result, String option, int bCode) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		int count = new ReservationDao().reservationGoodsCount(conn, result, goodsGId, bCode);
+		int count = new ReservationDao().reservationGoodsCount(conn, result, option, bCode);
 		JDBCTemplate.close(conn);
 		return count;
 	}
-	public Goods reservationGoodsPrice(String goods, String option) throws SQLException {
+	public Goods reservationGoodsPrice(String result, String option) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		Goods g = new ReservationDao().reservationGoodsPrice(conn, goods, option);
+		Goods g = new ReservationDao().reservationGoodsPrice(conn, result, option);
 		JDBCTemplate.close(conn);
 		return g;
 	}

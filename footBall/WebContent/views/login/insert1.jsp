@@ -69,7 +69,8 @@
 <body>
 		<div style="height:900px;" id="maindiv">
         <div id="div">
-            <img src="/img/header_logo.png" style="margin-bottom: 50px;">
+        	<a href="/">
+            <img src="/img/header_logo.png" style="margin-bottom: 50px;"></a>
            	<form action="/insert" method="post">
            		<span class="span">아이디(이메일)</span><span class="text1">(필수)</span><span id="extext"></span><br><br>
            		<input type="text" name="id" id="id" placeholder="test@naver.com";><br><br>
@@ -102,7 +103,7 @@
            		<input type="text" name="phone" id="phone" placeholder="(-)함께 작성하세요";><br><br>
            		
            		<input type="reset" value="취소하기" class="button1" onclick="rset();">
-           		<input type="submit" value="가입하기" class="button1" id="btn1">
+           		<input type="submit" value="가입하기" class="button1" id="btn1" >
            	</form>
         </div>
         <br>
