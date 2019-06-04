@@ -71,10 +71,9 @@
         			</td>
         		</tr>
         	</table>
-        	
-        	
-        	
         </form>
+        	<input type="hidden" id="randomNum">
+        
 		</center>
 	<script type="text/javascript">
 		
@@ -94,12 +93,8 @@
 								opener.location.href="/views/login/login.jsp";
 								self.close();
 							}else{
-								
-								$("#close").show();
-								$("#close").click(function () {
-									 self.close();
-								});
-								$("#pwd").css("visibility","visible ");
+								$("#randomNum").val(data);
+								console.log($("#randomNum").val());
 							}
 					
 							
