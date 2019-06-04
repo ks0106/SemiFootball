@@ -40,8 +40,8 @@ public class EmailCheckServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("email");
 		String host = "smtp.naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정 
-		String user = "kdh930624@naver.com"; // 패스워드 
-		String password = "rlaehdgh21";      // SMTP 서버 정보를 설정한다. 
+		final String user = "kdh930624@naver.com"; // 패스워드 
+		final String password = "rlaehdgh21";      // SMTP 서버 정보를 설정한다. 
 		Properties props = new Properties(); 
 		props.put("mail.smtp.host", host); 
 		props.put("mail.smtp.port", 587); 
