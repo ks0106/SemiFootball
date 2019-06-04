@@ -35,11 +35,8 @@ public class AdminServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
-		/*String id = request.getParameter("id");
-		System.out.println(id);*/
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
-				request.setAttribute("msg", "관리자님 환영합니다.");
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp");
 				rd.forward(request, response);
 			}else {

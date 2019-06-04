@@ -95,6 +95,11 @@
 					<button type="button" class="insertLeagueBtn" onclick="insertLeague();" id="addTeam">참가 신청</button>
 					<button type="button" class="insertLeagueBtn" onclick="teamView();" >참가 팀 보기</button>
 					
+					<c:if test="${sessionScope.member.id eq 'admin' }">
+					<div style="margin-top: 50px;">
+						<button type="button" onclick="addLeague();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">공지추가</button>
+					</div>
+					</c:if>
 					
 				</div>			
 				<div id="table-wrapper1" style="margin-bottom: 300px;text-align: center;">
@@ -106,54 +111,8 @@
 							<th class="th">작성자</th>
 							<th class="th">등록일</th>
 						</tr>
-						<tr>
-							<td class="th">7</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2019-4-29</td>
-						</tr>
-						<tr>
-							<td class="th">6</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2019-4-14</td>
-						</tr>
-						<tr>
-							<td class="th">5</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2019-3-7</td>
-						</tr>
-						<tr>
-							<td class="th">4</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2018-10-2</td>
-						</tr>
-						<tr>
-							<td class="th">3</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2018-9-10</td>
-						</tr>
-						<tr>
-							<td class="th">2</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2018-6-23</td>
-						</tr>
-						<tr>
-							<td class="th">1</td>
-							<td class="th" colspan="2">2019 고양시청배 풋살대회</td>
-							<td class="th">관리자</td>
-							<td class="th">2018-5-10</td>
-						</tr>
+						
 					</table>
-					<c:if test="${sessionScope.member.id eq 'admin' }">
-					<div style="margin-top: 50px;">
-						<button type="button" onclick="addLeague();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">공지추가</button>
-					</div>
-					</c:if>
 				</div>
 			</div>
 		</div>
@@ -231,7 +190,7 @@
 			}
 		}
 		function addLeague(){
-			alert("까먹지말고 만들어!");
+			location.href="/views/league/addLeague.jsp";
 		}
 		function teamView(){
 			location.href="/viewGameTable#teamViewpoint"

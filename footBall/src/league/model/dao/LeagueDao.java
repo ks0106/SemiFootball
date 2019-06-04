@@ -8,7 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
+import league.model.vo.AfterLeague;
 import league.model.vo.League;
+import league.model.vo.LeagueList;
 
 public class LeagueDao {
 
@@ -178,5 +180,60 @@ public class LeagueDao {
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
+	}
+	public int countLeague(Connection conn) throws SQLException {
+		Statement stmt = null;
+		ResultSet rset= null;
+		int result = 0;
+		String query ="select count(*) cnt from fb_after_league";
+		stmt = conn.createStatement();
+		rset = stmt.executeQuery(query);
+		if(rset.next()) {
+			result = rset.getInt("cnt");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(stmt);
+		return result;
+	}
+	public ArrayList<AfterLeague> afterLeagueList(Connection conn , int start , int end) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AfterLeague> list = new ArrayList<AfterLeague>();
+		String query = "select * from (select ROWNUM as rNum,m.* from (select * from fb_after_league order by 1 desc) m) where rnum BETWEEN ? and ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, start);
+		pstmt.setInt(2, end);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			AfterLeague al = new AfterLeague();
+			al.setLeagueAfterNo(rset.getInt("league_after_no"));
+			al.setLeagueAfterTitle(rset.getString("league_after_title"));
+			al.setLeagueAfterWriter(rset.getString("league_after_writer"));
+			al.setLeagueAfterEnrolldate(rset.getDate("league_after_enrolldate"));
+			al.setFilepath(rset.getString("filepath"));
+			list.add(al);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+	}
+	public LeagueList nowLeague(Connection conn) throws SQLException {
+		Statement stmt = null;
+		ResultSet rset = null;
+		LeagueList ll = null;
+		String query = "select * from fb_league";
+		stmt=conn.createStatement();
+		rset = stmt.executeQuery(query);
+		if(rset.next()) {
+			ll = new LeagueList();
+			ll.setLeagueNo(rset.getInt("league_no"));
+			ll.setLeagueTitle(rset.getString("league_title"));
+			ll.setLeagueWriter(rset.getString("league_writer"));
+			ll.setLeagueEnrolldate(rset.getDate("league_enrolldate"));
+			ll.setFilepath(rset.getString("filepath"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(stmt);
+		return ll;
 	}
 }

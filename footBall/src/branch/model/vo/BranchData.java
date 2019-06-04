@@ -1,5 +1,7 @@
 package branch.model.vo;
 
+import court.model.vo.Court;
+
 public class BranchData {
 	private Branch b;
 	private BranchImgs bi;
@@ -12,6 +14,7 @@ public class BranchData {
 		this.b = b;
 		this.bi = bi;
 	}
+	
 	public Branch getB() {
 		return b;
 	}
@@ -24,7 +27,5 @@ public class BranchData {
 	public void setBi(BranchImgs bi) {
 		this.bi = bi;
 	}
-	
-	
 	
 }
