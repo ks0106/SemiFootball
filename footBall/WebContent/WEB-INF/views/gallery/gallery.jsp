@@ -39,11 +39,6 @@ $(document).ready(function(){
 	
 	<section style="padding-top: 100px; height: 1000px;" >
 		<div style="position: sticky; position: -webkit-stiky;">
-			<div align="right">
-				<c:if test="${sessionScope.member.id eq 'admin'}">
-				 	<button style="width: 100px; height: 10%; " id="write-btn">글쓰기</button>
-				</c:if>
-			</div>
 			<div class="container">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				    <ul class="carousel-indicators" style="display:none">
@@ -107,22 +102,10 @@ $(document).ready(function(){
 		</div>
 	</section>
 	<script>
-		/* /$(".bigImg").click(function(){
-			var check = confirm("정말로 삭제 하시겠습니까?");
-			if(check){
-				
-				fn_del($(this).attr("Count"),$(this).attr("src")); 
-			}
-			window.open("/galleryDeleteFrm","new", "width=300, height=200, left=150, top=150,scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
-		});  */
 		$(document).ready(function(){
 			if(${gpd.pageNo >= gpd.totalPage}){
 				$("#right-control").css("display",'none');
 			}
-			
-			/* if(${gpd.pageNo <= 1 }){
-				$("#left-control").css("display",'none');
-			} */ 
 		});
 		
 		 $(document).ready(function(){
@@ -152,7 +135,7 @@ $(document).ready(function(){
 				 
 				 console.log("right : " + n);
 				 console.log("total : " + ${gpd.totalPage});
-				 
+			 
 			});
 			 // 1 : 5 2 : 10 3 : 15 -> 4부터 감추기 9부터 감추기 14부터 감추기
 			 // 1 : 4 2 : 9 3 : 14	-> 5부터 보기 10부터 보기 15부터 보기
@@ -190,31 +173,6 @@ $(document).ready(function(){
 			});
 		}); 
 		
-		if(${sessionScope.member.id eq 'admin'}){
-			alert("삭제하고 싶은 사진을 클릭해주세요(큰 사진)");
-			$(".item").css("cursor", "pointer");
-			function fileDel(photoNo, filename){
-				var check = confirm("정말로 삭제하시겠습니까?");
-				if(check){
-					var url = "/galleryDeleteFrm";
-					location.href=url+"?photoNo="+photoNo+"&filename="+filename;
-				}
-			}
-		}
-		
-		
-		$("#write-btn").click(function(){
-			location.href="/galleryWriteFrm";
-		});//글 작성 페이지로 이동
-		
-		<%--$(".small-Img").click(function(){
-			console.log($('.active').children().attr('src'));
-			$('.item').attr('class', 'item');
-			var index = $(this).index();
-			$(".bigImg").eq(index).parents('.item').attr("class", "item active");
-		}); //작은 사진 클릭시 이벤트 --%>
-		
-		
 		function fn_del(count, src){
 			var allData = {"count": count, "src":src};
 			$.ajax({
@@ -230,94 +188,6 @@ $(document).ready(function(){
 			});
 		}
 	</script>
-	
-	
-	
-	
-	
-<!-- 	<script>
-		
-		
-		$("#delete-btn").click(function(){
-			window.open("/galleryDeleteFrm","new", "width=300, height=200, left=30, top=30,scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
-			fn_delete(this);
-		});//글 삭제 창 띄움
-		
-		 $(document).ready(function(){
-			fn_more(1);
-			$("#right-control").click(function(){
-				fn_more($(this).val());
-			});
-		}); //완료 되자마자 5개를 보여줌 1페이지.
-		function fn_delete(photo){
-			var photo = {photo:photo};
-			$.ajax({
-				url : "/galleryDeleteFrm",
-				data : photo,
-				type : "post",
-				dataType : "json",
-				success : function(){
-					alert("삭제 완료");
-				},
-				error : function(){
-					alert("삭제 실패");
-				}
-			})
-		}
-		function fn_more(start){
-			var param = {start:start};
-			$.ajax({
-				url : "/galleryMore",
-				data : param,
-				type : "post",
-				dataType : "json",
-				success : function(data){ //포토 객체를 5개 받아 옴(리스트 형태)
-					 var html ="";
-					 var html2 ="";
-					 for (var i in data){
-						var p = data[i]; //포토 객체를 p에 저장
-						html2 += "<div class='item'>";
-						html2 += "<img onclick=del(); class='bigImg' style='width: 100%; height: 700px' src='upload/photo/"+p.filename+"'>";
-						html2 += "</div>";
-						html += "<img class='inImg' onclick=onImg(); src='/upload/photo/"+p.filename+"' style='width: 60px; height: 60px; margin-right: 20px;'>";
-					}
-					//사진 출력
-					$("#photo-wrapper").append(html);
-					$("#inner-car").append(html2);
-					//value, currentCount 값 세팅
-					$("#right-control").val(Number(start)+5);
-					$("#right-control").attr("currentCount",Number($("#right-control").attr("currentCount"))+data.length);
-					
-					//현재값을 가져와서 넘어온 데이터의 길이를 더함
-					//totalCount와 currentCount값을 비교 마지막에 더보기 버튼 비활성화를 위함.
-					var totalCount = $('#right-control').attr("totalCount");
-					var currentCount = $('#right-control').attr("currentCount");
-					if(totalCount == currentCount){
-						$("#right-control").attr("disabled", true);
-						$("#right-control").css("cursor", "not-allowed"); //마우스가 버튼에 올려왔을때 마우스 포인터 모양을 바꿈
-					}
-				},
-				error : function(){
-					console.log("ajax 처리 실패");
-				}
-			})
-		} 
-		
-		function onImg(){
-			$(".inImg").click(function(){
-				var str = $(this).attr('src');
-				$(".item").children().attr('src',str);
-			});
-		}
-		
-		function del(){
-			$(".bigImg").click(function(){
-				window.open("/galleryDeleteFrm","new", "width=300, height=200, left=30, top=30,scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
-				fn_delete($(this).attr('src'));
-			});
-		}
-
-	</script> -->
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </html>
