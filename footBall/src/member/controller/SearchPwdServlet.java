@@ -49,7 +49,7 @@ public class SearchPwdServlet extends HttpServlet {
 		for(int i =0;i<7;i++) {
 			num+=String.valueOf(random.nextInt(10));
 		}
-		System.out.println(num);
+		
 		try {
 			String id1 = new MemberService().searchPwd(id,name);
 			if(id1==null) {
@@ -68,8 +68,8 @@ public class SearchPwdServlet extends HttpServlet {
 		}
 		
 		String host = "smtp.naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정 
-		final String user = "rudtjr008@naver.com"; // 패스워드 
-		final String password = "vkfl1643!@";      // SMTP 서버 정보를 설정한다. 
+		final String user = "kdh930624@naver.com"; // 패스워드 
+		final String password = "rlaehdgh!2";      // SMTP 서버 정보를 설정한다. 
 		Properties props = new Properties(); 
 		props.put("mail.smtp.host", host); 
 		props.put("mail.smtp.port", 587); 
@@ -93,7 +93,17 @@ public class SearchPwdServlet extends HttpServlet {
 		
 		
 		// 메일 내용 
-		message.setText("회원님의 비밀번호 인증번호"+num); 
+		message.setContent("<!DOCTYPE html>\r\n" + 
+				"<html>\r\n" + 
+				"<head>\r\n" + 
+				"<meta charset=\"UTF-8\">\r\n" + 
+				"<title>Insert title here</title>\r\n" + 
+				"</head>\r\n" + 
+				"<body>\r\n" + 
+				"    <a href='http://localhost/views/login/searchPwdEmail.jsp?num="+num+"' onclick=\"window.open(this.href,'아이디 찾기','width=450,height=400');\">인증하기 </a>\r\n" + 
+				"    \r\n" + 
+				"</body>\r\n" + 
+				"</html>","text/html;charset=euc-kr"); 
 		// send the message 
 		Transport.send(message); 
 		System.out.println("Success Message Send"); 
