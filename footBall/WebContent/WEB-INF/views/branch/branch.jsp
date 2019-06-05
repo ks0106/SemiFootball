@@ -70,6 +70,7 @@
 									</div>
 									<div class="hidden-wrapper">
 										<input type="hidden" name="branchCode" value="${bd.b.branchCode }">
+										<input type="hidden" name="branchCode" value="${bd.b.branchAddr }">
 										<input type="hidden" name="branchName" value="${bd.b.branchName }">
 									</div>	
 								</div>
@@ -97,6 +98,7 @@
 									</div>
 									<div class="hidden-wrapper">
 										<input type="hidden" name="branchCode" value="${bd.b.branchCode }">
+										<input type="hidden" name="branchCode" value="${bd.b.branchAddr }">
 										<input type="hidden" name="branchName" value="${bd.b.branchName }">
 									</div>	
 								</div>
@@ -112,18 +114,37 @@
 			<!-- 모달 정보창 -->
 			<div class="branch-modal">
 				<span class="close">&times;</span>
-				<div class="modalContent-wrapper" style="position:relative; left:10%; width:80%; height:99.5%; background:red; ">
-					<div class="modalContent-head" style="position:relative; width:100%; height:80px; text-align:center; line-height:2.0; background:orange;">
+				<div class="modalContent-wrapper" style="position:relative; left:10%; width:80%; height:99.5%;">
+					<div class="modalContent-head" style="position:relative; width:100%; height:80px; text-align:center; line-height:2.0;">
 						<span style="font-size:40px; font-weight:bold;"></span>
 					</div>
 					<div class="modalContent-body" style="position:relative; width:100%; height:99.5%%; text-align:center;">
-						<table id="modalTable" style="width: 100%; height: 360px; font-size:25px;"></table>
-						<div id="map" style="width:100%; height:360px;"></div>
+						<table id="modalTable" border="1"></table>
+						<div id="map" style="width:800px; height:376px;"></div>
+						<div id="infoFooter">
+							<span class="infoSpan"></span><br>
+							<span class="infoSpan"></span>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	<script>
+		/* 네이버 맵 */
+		var map = new naver.maps.Map('map',{
+			center : new naver.maps.LatLng(37.3595316, 127.1052133),
+			zoom : 11,
+			zoomControl :true,
+			zoomControlOptions:{
+				position : naver.maps.Position.TOP_RIGHT,
+				style : naver.maps.ZoomControlStyle.SMALL
+			}
+		});
+		var marker = new naver.maps.Marker({
+			position : new naver.maps.LatLng(37.3595316, 127.1052133),
+			map : map
+		});
+
 		$(function(){
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
@@ -145,11 +166,36 @@
 				var position = $('#'+targetId).offset();
 				$('html,body').animate({scrollTop:position.top-156},500);
 			});
-			/* 상세정보 버튼 클릭시 - ajax로 지점정보 불러오기 */
+			/* 상세정보 버튼 클릭시 */
 			$('.btn-submit').click(function(){
+				/* 공통변수 */
 				$contentWrapper = $(this).parents().eq(3);
 				var branchCode = $contentWrapper.children().last().children().first().val();
+				var branchAddr = $contentWrapper.children().last().children().eq(1).val();
 				var branchName = $contentWrapper.children().last().children().last().val();
+				targetCoord = [];
+				/* 네이버 맵 좌표설정 */				
+				naver.maps.Service.geocode({
+			        query: branchAddr
+			    }, function(status, response) {
+			    	if (status === naver.maps.Service.Status.ERROR) {
+			            return alert('Something Wrong!');
+			        }
+
+			        if (response.v2.meta.totalCount === 0) {
+			            return alert('totalCount' + response.v2.meta.totalCount);
+			        }
+
+			        item = response.v2.addresses[0],
+		            point = new naver.maps.Point(item.x, item.y);
+			        map.setCenter(point);
+			        marker.setPosition(point);
+					/* console.log(item.x);
+			        console.log(item.y);
+			        console.log(item); */	
+			    });				
+				
+				/* ajax로 지점정보 불러오기 */
 				modal.style.display = "block";
 				$.ajax({
 					url : "/branchInfo",
@@ -167,14 +213,14 @@
 						var branchPhone = data.branchPhone;
 						var bi1 = data.bi1;
 						$('.modalContent-head span').html(branchName);
-						/* $('.infoSpan:first').html("지점주소 : " + replaceAll(branchAddr,"+"," "));
-						$('.infoSpan:last').html("지점전화 : " + branchTel +"/"+ branchPhone); */
+						$('.infoSpan:first').html("지점주소 : " + replaceAll(branchAddr,"+"," "));
+						$('.infoSpan:last').html("지점전화 : " + branchTel +"/"+ branchPhone);
 					},
 					error : function(){
 						console.log("전송 실패");
 					}
 				});
-				/* 상세정보 버튼 클릭시 - ajax로 구장정보 불러오기 */
+				/* ajax로 구장정보 불러오기 */
 				$.ajax({
 					url : "/branchCourtInfo",
 					type : "get",
@@ -220,18 +266,7 @@
 		  if (event.target == modal) {
 		    modal.style.display = "none";
 		  }
-		}
-		/* 네이버 맵 */
-		var map = new naver.maps.Map('map',{
-			center : new naver.maps.LatLng(37.533807,126.896772),
-			zoom : 11,
-			zoomControl :true,
-			zoomControlOptions:{
-				position : naver.maps.Position.TOP_RIGHT,
-				style : naver.maps.ZoomControlStyle.SMALL
-			}
-		});
-		
+		}		
 	</script>
 </body>
 </html>
