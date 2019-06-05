@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel='stylesheet' href="css/common/pageCss.css">
+<link rel='stylesheet' href="css/common/admin.css">
 <link rel='stylesheet' href="css/branch/branchManage.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,13 +31,43 @@
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		<!--영상 위 페이지 타이틀 -->
-		<div id="title">[관리자]지점 관리</div>
-			<hr class="hr-menu">
-			<div class="content-container" style="top:0">
-				<div class="content-wrapper">
-				</div>
-			</div>
+	<jsp:include page="/WEB-INF/views/admin/admin.jsp" />
+	<hr class="hr-menu">
+	<div class="content-container" style="top:0">
+		<div class="content-wrapper">
+			<table class="manageTable" border="1">
+				<tr>
+					<th>지점 이름</th><th>주 소</th><th>구장 정보</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
+				</tr>
+				<c:forEach items="${list }" var="bd">
+					<tr>
+						<td>${bd.b.branchName }</td>
+						<td>${bd.b.branchAddr }</td>
+						<td>${bd.b.branchPhone }</td>
+						<td>${bd.b.branchTel }</td>
+						<td>
+							<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi1 }</span></span><br>
+							<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi2 }</span></span><br>
+							<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi3 }</span></span><br>
+							<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi4 }</span></span><br>
+						</td>
+						<td><button class="btn-modify" onclick="location.href='/modifyBranch?branchName=${bd.b.branchName}'">정보 수정</button></td>
+						<td><button class="btn-delete" onclick="location.href='/deleteBranch?branchName=${bd.b.branchName}'">지점 삭제</button></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
 </body>
+	<script>
+		$(function(){
+			console.log($('.identifier'));
+			/* 소스 없는 서브이미지 태그 감추기 */
+			$('.identifier').each(function(index,item){
+				if(!($(item).children().last().html())) {
+					$(this).css('display','none');
+				}
+			});
+		});
+	</script>
 </html>
