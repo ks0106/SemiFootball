@@ -26,10 +26,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">
 		갤러리
