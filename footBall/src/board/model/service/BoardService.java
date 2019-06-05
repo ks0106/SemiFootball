@@ -97,4 +97,105 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	//글삭제
+	public int boardDelete(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BoardDao().boardDelete(conn,boardNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	//댓글작성
+	public int insertBoardComment(BoardComment bc) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BoardDao().insertBoardComment(conn, bc);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	//댓글수정
+	public int updateBoardComment(int boardCommentNo, String boardCommentContent) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BoardDao().updateBoardComment(conn, boardCommentNo,boardCommentContent);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	//댓글삭제
+	public int boardCommentDelete(int boardCommentNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BoardDao().boardCommentDelete(conn,boardCommentNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	//검색기능
+	public BoardPageData searchKeyword(int reqPage,String type,String keyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		int numPerPage = 10;
+		int totalCount=0;
+		int totalPage = 0;
+		int start = 0;
+		int end = 0;
+		ArrayList<BoardVo> list = null;
+		switch(type) {
+		case "boardTitle":
+			totalCount = new BoardDao().titleCount(conn,keyword);
+			totalPage = (totalCount%numPerPage==0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+			start = (reqPage-1)*numPerPage+1;
+			end = reqPage*numPerPage;
+			list = new BoardDao().searchKeywordBoardTitle(conn,start,end,keyword);
+			break;
+		case "boardWriter":
+			totalCount = new BoardDao().writerCount(conn,keyword);
+			totalPage = (totalCount%numPerPage==0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+			start = (reqPage-1)*numPerPage+1;
+			end = reqPage*numPerPage;
+			list = new BoardDao().searchKeywordBoardWriter(conn,start,end,keyword);
+			break;
+		}
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		if(pageNo!=1) {
+			pageNavi+="<a class='btn' href='/searchKeyword?reqPage="+(pageNo-1)+"&type="+type+"&keyword="+keyword+"'>이전</a>";
+		}
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) { //둘 중 하나라도 만족하면 수행하지 않겠다
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>"+pageNo+"</span>"; //4페이지 상태에서 4페이지를 누를수가 없도록 하기 위해서 a태그 없애줌 
+			}else {
+				pageNavi += "<a class='btn' href='/searchKeyword?reqPage="+pageNo+"&type="+type+"&keyword="+keyword+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		//다음 버튼 생성
+		if(pageNo <= totalPage) {
+			pageNavi +="<a class='btn' href='/searchKeyword?reqPage="+pageNo+"&type="+type+"&keyword="+keyword+"'>다음</a>";
+		}
+		BoardPageData bpd = new BoardPageData(list,pageNavi);
+		JDBCTemplate.close(conn);
+		return bpd;
+	}	
 }

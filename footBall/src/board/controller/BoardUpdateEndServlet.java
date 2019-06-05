@@ -37,7 +37,7 @@ public class BoardUpdateEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		
 	      if(!ServletFileUpload.isMultipartContent(request)) {
 	         request.setAttribute("msg", "자유게시판 수정 오류[enctype!]");
 	         request.setAttribute("loc", "/");
@@ -57,8 +57,8 @@ public class BoardUpdateEndServlet extends HttpServlet {
 	      String oldFilename = mRequest.getParameter("oldFilename");
 	      String oldFilepath = mRequest.getParameter("oldFilepath");
 	      String status = mRequest.getParameter("status");
-	      File f = mRequest.getFile("filename");
-	      if(f!=null && f.length()>0) {
+	      File f = mRequest.getFile("boardFilename");
+	      if(f!=null && f.length()>0) {//첨부파일이 있는 경우 는 기존에 파일이 있는지만 검사하면 된다
 	         if(oldFilename !=null) {
 	            File deleteFile = new File(saveDirectory+"/"+oldFilepath);
 	            boolean bool = deleteFile.delete();
@@ -74,7 +74,7 @@ public class BoardUpdateEndServlet extends HttpServlet {
 	            System.out.println(bool?"삭제성공":"삭제실패");
 	         }
 	      }
-	      BoardVo bv = new BoardVo(0, boardTitle, null, boardContent, null, boardFilename, boardFilepath, 0, 0);
+	      BoardVo bv = new BoardVo(boardNo, boardTitle, null, boardContent, null, boardFilename, boardFilepath, 0, 0);
 	      int result = new BoardService().boardUpdate(bv);
 	      if(result>0) {
 	         request.setAttribute("msg", "게시판 수정이 완료되었습니다.");

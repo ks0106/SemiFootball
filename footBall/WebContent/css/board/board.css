@@ -70,7 +70,7 @@
 }
 /* 전체 div */
 .full {
-	height: 1000px;
+	height: 1500px;
 }
 /* 검색창 */
 #keyword {
@@ -129,9 +129,6 @@
 .faqul{
 	border: 1px solid gray;
 }
-
-
-
 	.commentList{
 		width:100%;
 		clear:both;
@@ -143,4 +140,62 @@
 		float:left;		
 		color:black;
 		font-weight:900;	
+	}
+/* 게시판 */
+	#con{
+		resize: none;
+		height: 400px;
+	}
+	
+	#boardWriter{
+		width: 80%;
+		height: 500px;
+		border: 1px solid black;
+	}
+	#tit{
+	font-size: 30px;
+	text-align: center;
+	}
+	
+	.form-controll{
+		width:100%;
+	}
+	.tth{
+		text-align: center;
+	}
+	
+	.btn{
+		color:gray;
+	}
+	/* 게시판 화면 */
+	#toptit{
+	 width:80%;
+	 font-size:20px; 
+	 font-weight:bold;
+	}
+	.viewcon{
+		width:800px;
+	}
+	#viewcon2{
+		height: 300px;
+	}
+	.bbtn{
+		color: gray;
+	}
+	
+	#barea{
+		width: 800px;
+		resize: none;
+		height: 45px;
+	}
+	
+	#bsub{
+		height: 50px;
+		width: 80px;
+	}
+	
+	.commentList{
+		width:800px;
+		height: 20px;
+		list-style: none;
 	}

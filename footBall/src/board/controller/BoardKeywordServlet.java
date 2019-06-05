@@ -1,29 +1,28 @@
-package branch.controllor;
+package board.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import branch.model.service.BranchService;
-import branch.model.vo.BranchData;
+import board.model.service.BoardService;
+import board.model.vo.BoardPageData;
 
 /**
- * Servlet implementation class BranchManageServlet
+ * Servlet implementation class BoardKeywordServlet
  */
-@WebServlet(name = "BranchManage", urlPatterns = { "/branchManage" })
-public class BranchManageServlet extends HttpServlet {
+@WebServlet(name = "BoardKeyword", urlPatterns = { "/boardKeyword" })
+public class BoardKeywordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BranchManageServlet() {
+    public BoardKeywordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +31,19 @@ public class BranchManageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		int reqPage;
 		try {
-			ArrayList<BranchData> list = new BranchService().callList();
-			request.setAttribute("list", list);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
 		}
-		request.getRequestDispatcher("/WEB-INF/views/branch/branchManage.jsp").forward(request, response);
+		String type = request.getParameter("type");
+		String keyword = request.getParameter("keyword");
+		BoardPageData bpd = new BoardService().searchKeyword(reqPage,type,keyword);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp");
+		request.setAttribute("bpd", bpd);
+		rd.forward(request, response);
 	}
 
 	/**

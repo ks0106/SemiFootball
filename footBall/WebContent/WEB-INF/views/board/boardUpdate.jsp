@@ -41,7 +41,7 @@
 					class="munebar">자유게시판</a></li>
 			</ul>
 
-			<script>
+<script>
    $(document).ready(function() {
       $("#fileDelBtn").click(function() {
          if(confirm("첨부파일을 삭제하시겠습니까?")){
@@ -51,12 +51,10 @@
          }
       });      
    });
-   </script>
+</script>
 			<section>
-			<div class="table-wrapper"
-				style="text-align: center; width: 80%; margin: 0 auto;">
-				<form action="/boardUpdateEnd" method="post"
-					enctype="multipart/form-data">
+			<div class="table-wrapper" style="text-align: center; width: 80%; margin: 0 auto;">
+				<form action="/boardUpdateEnd" method="post" enctype="multipart/form-data">
 					<table class="table table-bordered">
 						<input type="hidden" name="boardNo" value="<%=bv.getBoardNo() %>">
 						<tr>
@@ -64,8 +62,7 @@
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><input type="text" class="form-control"
-								name="boardTitle" value="<%=bv.getBoardTitle() %>"></td>
+							<td><input type="text" class="form-control" name="boardTitle" value="<%=bv.getBoardTitle() %>"></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
@@ -73,26 +70,25 @@
 						</tr>
 						<tr>
 							<th>첨부파일</th>
-							<td><input type="hidden" id="status" name="status"
-								value="stay"> <%if(bv.getBoardFilepath()!=null){ %> <img
-								class="delFile" src="/img/file.png" width="16px"> <input
-								type="file" name="boardFilename" id="file" style="display: none">
-								<span class="delFile"><%=bv.getBoardFilename() %></span>
-								<button type="button" id="fileDelBtn"
-									class="btn btn-primary btn-sm delFile">삭제</button> <input
-								type="hidden" name="oldFilename"
-								value="<%=bv.getBoardFilename() %>"> <input
-								type="hidden" name="oldFilename"
-								value="<%=bv.getBoardFilepath() %>"> <a
-								href="javascript:fileDownload('<%=bv.getBoardFilename() %>','<%=bv.getBoardFilepath() %>');">
-							</a> <!-- 파일 클릭시 noticefileDownload 경로와 filename&filepath 인자를 보내준다 -->
-								<%}else{ %> <input type="file" name="boardFilename"> <%} %>
+							<td>
+									<input type="hidden" id="status" name="status" value="stay">
+								<%if(bv.getBoardFilepath()!=null){ %> 
+									<img class="delFile" src="/img/file.png" width="16px"> 
+									<input type="file" name="boardFilename" id="file" style="display: none">
+									<span class="delFile"><%=bv.getBoardFilename() %></span>
+									<button type="button" id="fileDelBtn" class="btn btn-primary btn-sm delFile">삭제</button> 
+									<input type="hidden" name="oldFilename" value="<%=bv.getBoardFilename() %>"> 
+									<input type="hidden" name="oldFilepath" value="<%=bv.getBoardFilepath() %>">
+									<a href="javascript:fileDownload('<%=bv.getBoardFilename() %>','<%=bv.getBoardFilepath() %>');"></a> 
+ 							<!-- 파일 클릭시 noticefileDownload 경로와 filename&filepath 인자를 보내준다 -->
+								<%}else{ %> 
+								<input type="file" name="boardFilename"> 
+								<%} %>
 							</td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea name="noticeContent" class="form-control"
-									rows="3">
+							<td><textarea name="boardContent" class="form-control" rows="3">
                         <%=bv.getBoardContent() %>
                      </textarea></td>
 						</tr>

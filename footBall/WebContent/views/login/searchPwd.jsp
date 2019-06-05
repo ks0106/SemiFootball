@@ -10,6 +10,7 @@
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous">
 </script>
+
 </head>
 	<style>
 		select{
@@ -38,7 +39,7 @@
         			<td style="float: right;">이름 :</td><td colspan="2"><input type="text" name="name" id="name"></td>
         		</tr>
         		<tr>
-        			<td style="float: right;">아이디 :</td><td colspan="2"><input type="text" name="id" id="id"></td>
+        			<td style="float: right;">아이디 :</td><td colspan="2"><input type="text" name="id" id="id" value="rudtjr008@naver.com"></td>
         		</tr>
         	</table>
         	<input type="reset" value="취소">
@@ -72,21 +73,23 @@
         		</tr>
         	</table>
         </form>
-        	<input type="hidden" id="randomNum"> <!--ajax로 servlet호출한뒤 servlet에서 받은 난수 저장용 -->
-        
-        <fieldset>
+        	<input type="hidden" id="randomNum" value="1"> <!--ajax로 servlet호출한뒤 servlet에서 받은 난수 저장용 -->
+        	<input type="hidden" id="randomNum1" value="2"> <!--메일에서 jsp호출해서 웹소켓 에서 받은 난수 저장용 -->
+        	
+        <!--  <fieldset>
 		<textarea rows="10" cols="50" readonly="true" id="messageWindow"></textarea>
 			<br/>
 			<input id="inputMessage" type="text"/>
-			<input type="submit" value="send" onclick="send()"/>
-		</fieldset>
+			<input type="submit" value="send" onclick="send()" />
+		</fieldset>-->
         
 		</center>
-	<script type="text/javascript">
+	<script type="text/javascript"> //비밀번호 찾기 아작스 호출
 		
 		$("#sub").click(function () {
 			var name = $("#name").val();
 			var id = $("#id").val();
+			
 			$.ajax({
 					url : "/searchPwd",
 					data : {name:name,id:id},
@@ -100,8 +103,10 @@
 								opener.location.href="/views/login/login.jsp";
 								self.close();
 							}else{
-								$("#randomNum").val(data);
-								console.log($("#randomNum").val());
+							 	$("#randomNum").val(data);
+								alert("입력하신 이메일로 인증 전송");
+								//webSocket.send($("#randomNum").val());
+							 
 							}
 					
 							
@@ -111,9 +116,11 @@
 					}
 			
 				});
+			
 			});
 		
 	</script>
+	
 	<script type="text/javascript">
 		$("#close").hide();
 		$("#pwdsub").click(function () {
@@ -176,7 +183,7 @@
 		});
 	</script>
 	<script type="text/javascript">
-		var textarea = document.getElementById("messageWindow");
+		var random = document.getElementById("randomNum1");
 		var webSocket = new WebSocket('ws://localhost:80/footBall/broadcasting');
 		var inputMessage = document.getElementById('inputMessage');
 		webSocket.onerror = function (event) {
@@ -184,25 +191,63 @@
 		};
 		webSocket.onopen = function (event) {
 			onOpen(event)
-			
 		};
 		webSocket.onmessage = function (event) {
 			onMessage(event)
 		};
 		function onMessage(event) {
-			textarea.value += "상대 :"+event.data+"\n"; 
+			//textarea.value += "상대 :"+event.data+"\n";
+			random.value = event.data; 
+			$("#randomNum1").focus();
 		}
 		function onOpen(event) {
-			textarea.value += "연결 성공\n "+event.data;
+			//textarea.value += "연결 성공\n ";
 		}
 		function onError(event) {
 			alert(event.data);
 		}
 		function send() {
+			//1111111
 			textarea.value += "나 :" + inputMessage.value + "\n";
 			webSocket.send(inputMessage.value);
 			inputMessage.value="";
 		}
+		
+	</script>
+	<script type="text/javascript">
+		
+		//var randomNum = $("#randomNum").val();
+		//var randomNum1 = $("#randomNum1").val();
+		
+				
+/* 				$("#randomNum1").ondataavailable(function () {
+					var randomNum = $("#randomNum").val();
+					var randomNum1 = $("#randomNum1").val();
+						console.log(randomNum);
+						console.log(randomNum1);
+					if(randomNum==randomNum1){
+						$("#close").click(function () {
+							 self.close();
+						});
+						$("#pwd").css("visibility","visible ");
+					}
+				});
+ */				
+			
+				$(document).on("focusout","#randomNum1",function(){
+					var randomNum = $("#randomNum").val();
+					var randomNum1 = $("#randomNum1").val();
+						console.log(randomNum);
+						console.log(randomNum1);
+					if(randomNum==randomNum1){
+						$("#close").click(function () {
+							 self.close();
+						});
+						$("#pwd").css("visibility","visible");
+					}
+					
+				});
+			
 	</script>
 </body>
 </html>

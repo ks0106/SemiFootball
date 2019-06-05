@@ -78,7 +78,11 @@
 			<li class="page-item">${bpd.pageNavi }</li>
 		</ul>
 		<br> <br>
-		<form action="#" method="get">
+		<form action="/boardKeyword" method="get">
+		<select name="type" class="form-control" style="display:inline-block; width:100px; height:30px; font-size:0.8em;">
+					<option value="boardTitle">제목</option>
+					<option value="boardWriter">작성자</option>
+				</select>
 			<input type="text" name="keyword" id="keyword"
 				placeholder="검색어를 입력해주세요">
 			<button type="submit" id="search">검색</button>

@@ -1,0 +1,8 @@
+CREATE TABLE FB_NOTICE(
+    SEQ_NOTICE_NO               NUMBER,                         -- 공지사항번호(SEQ)
+    NOTICE_TITLE                VARCHAR2(20)    NOT NULL,       -- 제목
+    NOTICE_WRITER               VARCHAR2(50)    NOT NULL,       -- 작성자
+    NOTICE_CONTENT              VARCHAR2(2000),                 -- 내용
+    FILENAME                    VARCHAR2(50)    NOT NULL,       -- 파일이름
+    FILEPATH                    VARCHAR2(200)   NOT NULL        -- 경로경로
+); -- 공지사항 테이블

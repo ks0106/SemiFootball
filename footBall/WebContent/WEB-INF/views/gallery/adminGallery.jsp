@@ -1,42 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="member.model.vo.Member"%>
+    <%
+      Member m = (Member)session.getAttribute("member");
+   %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- 동영상CSS  -->
-<link rel="stylesheet" href="/css/common/pageCss.css">
-
 <!-- Carousel bootstrap -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-    $('#ground2').append('<img src="/img/ground2.png" alt="그라운드2" style="width:100%;height:500px;">');
-    $('#ground3').append('<img src="/img/ground3.png" alt="그라운드3" style="width:100%;height:500px;">');
-    $('#ground4').append('<img src="/img/ground4.png" alt="그라운드4" style="width:100%;height:500px;">');
-    $('#ground5').append('<img src="/img/ground5.png" alt="그라운드5" style="width:100%;height:500px;">');
- });
-</script>
+<link rel="stylesheet" href="/css/common/pageCss.css">
 </head>
+<style>
+	#menu>li>a {
+		height: 80px !important;
+	}
+</style>
 <body>
-	<!-- 헤더 불러오기 -->
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<!--영상 위 페이지 타이틀 -->
-	<div id="title">
-		갤러리
-	</div>
-
+	<jsp:include page="/WEB-INF/views/admin/admin.jsp"/>
 	<!-- 내용 -->
-	
-	<section style="padding-top: 100px; height: 1000px;" >
+	<section style="padding-top: 180px; height: 1000px;" >
 		<div style="position: sticky; position: -webkit-stiky;">
+			<%-- <div align="right">
+				<c:if test="${sessionScope.member.id eq 'admin'}">
+				 	<button style="width: 100px; height: 10%; " id="write-btn">글쓰기</button>
+				</c:if>
+			</div>  --%>
 			<div class="container">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				    <ul class="carousel-indicators" style="display:none">
@@ -99,11 +94,16 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</section>
-	<script>
+</body>
+<script>
 		$(document).ready(function(){
 			if(${gpd.pageNo >= gpd.totalPage}){
 				$("#right-control").css("display",'none');
 			}
+			
+			/* if(${gpd.pageNo <= 1 }){
+				$("#left-control").css("display",'none');
+			} */ 
 		});
 		
 		 $(document).ready(function(){
@@ -133,7 +133,7 @@ $(document).ready(function(){
 				 
 				 console.log("right : " + n);
 				 console.log("total : " + ${gpd.totalPage});
-			 
+				 
 			});
 			 // 1 : 5 2 : 10 3 : 15 -> 4부터 감추기 9부터 감추기 14부터 감추기
 			 // 1 : 4 2 : 9 3 : 14	-> 5부터 보기 10부터 보기 15부터 보기
@@ -171,6 +171,23 @@ $(document).ready(function(){
 			});
 		}); 
 		
+		if(${sessionScope.member.id eq 'admin'}){
+			alert("삭제하고 싶은 사진을 클릭해주세요(큰 사진)");
+			$(".item").css("cursor", "pointer");
+			function fileDel(photoNo, filename){
+				var check = confirm("정말로 삭제하시겠습니까?");
+				if(check){
+					var url = "/galleryDeleteFrm";
+					location.href=url+"?photoNo="+photoNo+"&filename="+filename;
+				}
+			}
+		}
+		
+		
+/* 		$("#write-btn").click(function(){
+			location.href="/galleryWriteFrm";
+		});//글 작성 페이지로 이동 */
+		
 		function fn_del(count, src){
 			var allData = {"count": count, "src":src};
 			$.ajax({
@@ -186,6 +203,4 @@ $(document).ready(function(){
 			});
 		}
 	</script>
-</body>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </html>
