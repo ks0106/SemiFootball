@@ -134,7 +134,7 @@ public class BoardDao {
 		return result;
 	}
 	
-	//수정
+	//글수정
 	public int boardUpdate(Connection conn, BoardVo bv) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -146,6 +146,24 @@ public class BoardDao {
 			pstmt.setString(3, bv.getBoardFilename());
 			pstmt.setString(4, bv.getBoardFilepath());
 			pstmt.setInt(5, bv.getBoardNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	//글삭제
+	public int boardDelete(Connection conn,int boardNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("boardDelete");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -206,4 +224,177 @@ public class BoardDao {
 		}
 		return list;
 	}	
+	
+	//댓글작성
+	public int insertBoardComment(Connection conn,BoardComment bc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("insertBoardComment");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bc.getBoardCommentLevel());
+			pstmt.setString(2, bc.getBoardCommentWriter());
+			pstmt.setString(3, bc.getBoardCommentContent());
+			pstmt.setInt(4, bc.getBoardRef());
+			pstmt.setString(5, bc.getBoardCommentRef()==0?null:String.valueOf(bc.getBoardCommentRef()));
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	//댓글수정
+	public int updateBoardComment(Connection conn,int boardCommentNo,String boardCommentContent) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("updateBoardComment");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, boardCommentContent);
+			pstmt.setInt(2, boardCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	//댓글삭제
+	public int boardCommentDelete(Connection conn,int boardCommentNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("boardCommentDelete");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	//서치
+	public int titleCount(Connection conn,String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query = prop.getProperty("titleCount");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	public int writerCount(Connection conn,String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query = prop.getProperty("writerCount");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public ArrayList<BoardVo> searchKeywordBoardTitle(Connection conn,int start,int end,String keyword){
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<BoardVo> list = null;
+		String query = prop.getProperty("searchKeywordBoardTitle");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<BoardVo>();
+			while(rset.next()) {
+				BoardVo bv = new BoardVo();
+				bv.setBoardNo(rset.getInt("board_no"));
+				bv.setBoardTitle(rset.getString("board_title"));
+				bv.setBoardWriter(rset.getString("board_writer"));
+				bv.setBoardContent(rset.getString("board_content"));
+				bv.setBoardDate(rset.getDate("board_date"));
+				bv.setBoardFilename(rset.getString("board_filename"));
+				bv.setBoardFilepath(rset.getString("board_filepath"));
+				bv.setBoardHit(rset.getInt("board_hit"));
+				bv.setRnum(rset.getInt("rnum"));
+				list.add(bv);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		} 
+		return list;
+	}
+	public ArrayList<BoardVo> searchKeywordBoardWriter(Connection conn,int start,int end,String keyword){
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<BoardVo> list = null;
+		String query = prop.getProperty("searchKeywordBoardWriter");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<BoardVo>();
+			while(rset.next()) {
+				BoardVo bv = new BoardVo();
+				bv.setBoardNo(rset.getInt("board_no"));
+				bv.setBoardTitle(rset.getString("board_title"));
+				bv.setBoardWriter(rset.getString("board_writer"));
+				bv.setBoardContent(rset.getString("board_content"));
+				bv.setBoardDate(rset.getDate("board_date"));
+				bv.setBoardFilename(rset.getString("board_filename"));
+				bv.setBoardFilepath(rset.getString("board_filepath"));
+				bv.setBoardHit(rset.getInt("board_hit"));
+				bv.setRnum(rset.getInt("rnum"));
+				list.add(bv);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		} 
+		return list;
+	}
 }

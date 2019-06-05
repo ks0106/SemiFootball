@@ -36,16 +36,16 @@
 				<li class="selected list-li"><a href="/boardList" class="munebar">자유게시판</a></li>
 			</ul>
 			   <section>
-      <div class="table-wrapper" style="text-align:center; width:80%; margin:0 auto;">
+      <div class="table-wrapper">
          			<center><h1>자유게시판</h1></center><br><br><br>
-         
-         <table class="table table-bordered">
+         <center>
+         <table class="table table-bordered" border="1">
             <tr>
-               <th colspan="2" style="font-size:20px; font-weight:bold;"></th>
+               <th colspan="2" id="toptit"></th>
             </tr>
             <tr>
                <th>제목</th>
-               <td>${bvd.bv.boardTitle}</td>
+               <td class="viewcon">${bvd.bv.boardTitle}</td>
             </tr>
             <tr>
                <th>작성자</th>
@@ -63,21 +63,21 @@
                </td>
             </tr>
             <tr>
-               <th>내용</th>
-               <td>${bvd.bv.boardContent}</td> <!-- 개행을 처리해줘야함 --> 
+               <th id="viewcon2">내용</th>
+               <td class="viewcon">${bvd.bv.boardContent}</td> <!-- 개행을 처리해줘야함 --> 
                <!-- bv.getboardContent().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>") -->
             </tr>
             <tr>
                <th colspan="2">
-               <c:if test="${sessionScope.member.id == bvd.bv.boardWriter}">
-                  <a href="/boardUpdate?boardNo=${bvd.bv.boardNo}" class="btn btn-outline-primary btn-sm">수정하기</a>
-                  <a href="/boardDelete?boardNo=${bvd.bv.boardNo}" class="btn btn-outline-primary btn-sm">삭제하기</a><!-- 최종 목적지를 list로 -->
+               <c:if test="${sessionScope.member.id == bvd.bv.boardWriter || sessionScope.member.id=='admin'}">
+                  <a href="/boardUpdate?boardNo=${bvd.bv.boardNo}" class="btn btn-outline-primary"><button type="button" class="bbtn">수정하기</button></a>
+                  <a href="/boardDelete?boardNo=${bvd.bv.boardNo}" class="btn btn-outline-primary"><button type="button" class="bbtn">삭제하기</button></a><!-- 최종 목적지를 list로 -->
                </c:if>
-                  <a href="/boardList" class="btn btn-outline-primary btn-sm">목록으로</a>
+                  <a href="/boardList" class="btn btn-outline-primary"><button type="button" class="bbtn">목록으로</button></a>
                </th>
             </tr>
-         </table>
-      </div>
+         </table></center>
+      </div><br><br>
       <!-- 댓글 -->
       	<c:if test="${sessionScope.member != null}"> 
       		<div class="comment-write" style="text-align: center;width:80%;margin:0 auto;"> 
@@ -86,29 +86,32 @@
 					<input type="hidden" name="boardRef" value="${bvd.bv.boardNo}">
 					<input type="hidden" name="boardCommentLevel" value="1">
 					<input type="hidden" name="boardCommentRef" value="0">
+					<center>
 					<table class="table">
 						<tr>
-							<td width="85%"><textarea rows="1" class="form-control" name="boardCommentContent"></textarea></td>
-							<td width="15%">
-								<button type="submit" class="btn btn-primary">등록</button>
+							<td><textarea rows="1" class="form-control" name="boardCommentContent" id="barea"></textarea></td>
+							<td>
+								<button type="submit" class="btn btn-primary" id="bsub">등록</button>
 							</td>
 						</tr>
 					</table>
+					</center>
 				</form>
 			</div>
       	</c:if>
       <div class="comment-wrapper" style="text-align: center;width:80%;margin:0 auto;">
   			<c:forEach items="${bvd.list}" var="bc">
   				<c:if test="${bc.boardCommentLevel==1 }">
+  				<center>
   					<ul class="commentList">
-								<li style="width:5%;"><span>${bc.boardCommentWriter}</span></li>
-								<li style="width:65%; text-align: left; padding-left:30px;">
+								<li style="width:10%;"><span>${bc.boardCommentWriter}</span></li>
+								<li style="width:50%;text-align:left;">
 									<span>${bc.boardCommentContent}</span>
 									<input type="text" class="form-control" name="boardCommentContent" value="${bc.boardCommentContent}" style="display:none;height:22px;">									
 								</li>
-								<li style="width:10%;"><span>${bc.boardCommentDate}</span></li>
-								<c:if test="${not empty sessionScope.member} ">
-									<li style="width:20%">
+								<li style="width:15%;"><span>${bc.boardCommentDate}</span></li>
+								<c:if test="${sessionScope.member != null}">
+									<li style="width:25%;">
 									<a href="javascript:void(0)" onclick="insertComment(this,'${bc.boardCommentNo}');">댓글달기</a>
 									<c:if test="${sessionScope.member.id == bc.boardCommentWriter}">
 										<a href="javascript:void(0);" onclick="modifyComment(this,'${bc.boardCommentNo}');">수정</a>
@@ -117,28 +120,28 @@
 								</c:if>
 									</li><!-- 댓글 수정 삭제 버튼 li 종료 -->
 					</ul>	<!-- 댓글 ul 종료 -->
+					</center>
   				</c:if>
+  				<!-- 대댓글 -->
   				<c:forEach items="${bvd.list }" var="bcr">
   					<c:if test="${bcr.boardCommentLevel ==2 && bcr.boardCommentRef==bc.boardCommentNo }">
+  					<center>
   						<ul class="commentList">
 						<li style="width:5%"><span>└─</span></li>
 						<li style="width:5%;"><span>${bcr.boardCommentWriter}</span></li>
-						<li style="width:60%; text-align: left; padding-left:30px;">
+						<li style="width:50%; text-align: left; padding-left:30px;">
 							<span>${bcr.boardCommentContent}</span>
 							<input type="text" class="form-control" name="boardCommentContent" value="${bcr.boardCommentContent}" style="display:none;height:22px;">
 						</li>
-						<li style="width:10%;"><span>${bcr.boardCommentDate}</span></li>
+						<li style="width:15%;"><span>${bcr.boardCommentDate}</span></li>
 						<li style="width:20%">
-  					
-  					<c:if test="${not empty sessionScope.member }">
-  						<c:if test="${session.Scope.member == bcr.boardCommentWriter }">
-  							<a></a>
+  						<c:if test="${sessionScope.member.id == bcr.boardCommentWriter }">
 							<a href="javascript:void(0);" onclick="modifyComment(this,'${bcr.boardCommentNo}');">수정</a>
 							<a href="javascript:void(0);" onclick="deleteComment(this,'${bcr.boardCommentNo}');">삭제</a>
   						</c:if>
-  					</c:if>
   						</li><!-- 댓글 수정 삭제 버튼 li 종료 -->
 						</ul>	<!-- 댓글 ul 종료 -->
+						</center>
   					</c:if>
   				</c:forEach>
   			</c:forEach>
@@ -190,12 +193,12 @@
 			$(obj).parent().hide();
 			var $form =  $("<form action='/boardCommentInsert' method='post'></form>");
 			var $ul = $("<ul class='commentList'></ul>");
-			$form.append($("<input type='hidden' name='boardCommentWriter' value="+${sessionScope.member.id}+">"));
-			$form.append($("<input type='hidden' name='boardRef' value="+${bvd.bv.boardNo}+">"));
+			$form.append($("<input type='hidden' name='boardCommentWriter' value='${sessionScope.member.id}'>"));
+			$form.append($("<input type='hidden' name='boardRef' value='${bvd.bv.boardNo}'>"));
 			$form.append($("<input type='hidden' name='boardCommentLevel' value='2'>"));
 			$form.append($("<input type='hidden' name='boardCommentRef' value='"+commentNo+"'>"));
 			var $li1 = $("<li style='width:5%'>└─</li>")
-			var $li2 = $("<li style='width:75%'></li>");
+			var $li2 = $("<li style='width:50%'></li>");
 			$li2.append($("<input type='text' name='boardCommentContent' class='form-control' style='height:100%;'>"));
 			var $li3 = $("<li style='width:20%'></li>");
 			$li3.append($("<button type='submit' class='btn btn-link btn-sm'>등록</button>"));

@@ -9,9 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>자유게시판 작성</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/css/bootstrap.mibv.css">
 <script src="https://code.jquery.com/jquery-3.3.1.mibv.js"></script>
-<script src="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/js/bootstrap.mibv.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/board/board.css">
 </head>
 <body>
@@ -41,16 +41,17 @@
 		<section>
 		<div class="table-wrapper" style="text-align:center;width:80%;margin:0 auto;">
 			<form action="/boardInsert" method="post" enctype="multipart/form-data">
-				<table class="table table-bordered" style="text-align:left;">
+			<center><br><br><br>
+				<table class="table table-bordered" id="boardWriter">
 					<tr>
-						<th colspan="2" style="font-size:20px;font-weight:bold">자유게시판 작성</th>
+						<th colspan="2" id="tit">자유게시판 작성</th>
 					</tr>
 					<tr>
-						<th>제목</th>
+						<th class="tth">제목</th>
 						<td><input type="text" class="form-controll" name="boardTitle"></td>
 					</tr>
 					<tr>
-						<th>작성자</th>
+						<th class="tth">작성자</th>
 						<td>
 							<%=m.getId() %>
 						<input type="hidden" class="form-controll" name="boardWriter" value="<%=m.getId() %>">
@@ -58,29 +59,24 @@
 						</td>
 					</tr>
 					<tr>
-						<th>첨부파일</th>
+						<th class="tth">첨부파일</th>
 						<td><input type="file" name="boardFilename" onchange="loadImg(this)"></td>
 					</tr>
 					<tr>
-						<th>이미지 보기</th>
-						<td>
-						<div id="img-viewer">
-							<img id="img-view" width="350">
-						</div>
-						</td>
-					</tr>
-					<tr>
-						<th>내용</th>
-						<td>
-							<textarea name="boardContent" class="form-controll" rows="3" cols="40"></textarea>
+						<th class="tth">내용</th>
+						<td><!--  style="resize: none;" -->
+							<textarea name="boardContent" class="form-controll" rows="3" cols="40" id="con"></textarea>
 						</td>
 					</tr>
 					<tr style="text-align:center;">
-						<th colspan="2">
+						<th colspan="2"><center>
 							<button type="submit" class="btn btn-outline-primary">등록하기</button>
+							<a href="/boardList">
+							<button type="button" class="btn btn-outline-primary">취소</button></a></center>
 						</th>
 					</tr>
 				</table>
+				</center>
 			</form>
 		</div>
 		</div>
