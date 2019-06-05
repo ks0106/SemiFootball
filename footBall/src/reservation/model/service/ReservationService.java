@@ -60,4 +60,46 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return g;
 	}
+	public int reservationPayment(String memberId,String memberPhone,int bCode,String resDate,int cCode,String[] resGoodsName,String[] resGoodsOption,String[] resGoodsAmount,String[] resGoodsPrice,String[] resStartTime,String[] resEndTime,String[] resCost,int allCost) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int orderAdd = new ReservationDao().reservationOrderSheet(conn,memberId,memberPhone,bCode,cCode,resDate,resStartTime,resEndTime,allCost);
+		if(orderAdd > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		if(resGoodsName != null) {
+			int resNo = new ReservationDao().reservationOrderNo(conn,memberId,bCode,cCode,resDate,resStartTime,resEndTime,allCost);
+			for(int i=0;i<resGoodsName.length;i++) {
+				int goodsNo = new ReservationDao().reservationGoodsNo(conn,bCode,resGoodsName[i],resGoodsOption[i]);
+				if(i == 0) {
+					int rentalAdd = new ReservationDao().reservationRentalAddNextval(conn,memberId,resNo,goodsNo,Integer.parseInt(resGoodsAmount[i]));
+					if(rentalAdd > 0) {
+						JDBCTemplate.commit(conn);
+					}else {
+						JDBCTemplate.rollback(conn);
+					}
+				}else if(i > 0) {
+					int rentalAdd = new ReservationDao().reservationRentalAddCurrval(conn,memberId,resNo,goodsNo,Integer.parseInt(resGoodsAmount[i]));
+					if(rentalAdd > 0) {
+						JDBCTemplate.commit(conn);
+					}else {
+						JDBCTemplate.rollback(conn);
+					}
+				}
+			}
+			int rentalNo = new ReservationDao().reservationRentalNo(conn,memberId,resNo);
+			int result = new ReservationDao().reservationOrderSheetUpdate(conn,memberId,bCode,cCode,resDate,resStartTime,resEndTime,allCost,rentalNo);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+			JDBCTemplate.close(conn);
+			return result;
+		}else {
+			JDBCTemplate.close(conn);
+			return orderAdd;
+		}
+	}
 }
