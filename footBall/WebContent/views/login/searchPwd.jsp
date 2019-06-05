@@ -73,8 +73,8 @@
         		</tr>
         	</table>
         </form>
-        	<input type="text" id="randomNum" value="1"> <!--ajax로 servlet호출한뒤 servlet에서 받은 난수 저장용 -->
-        	<input type="text" id="randomNum1" value="2"> <!--메일에서 jsp호출해서 웹소켓 에서 받은 난수 저장용 -->
+        	<input type="hidden" id="randomNum" value="1"> <!--ajax로 servlet호출한뒤 servlet에서 받은 난수 저장용 -->
+        	<input type="hidden" id="randomNum1" value="2"> <!--메일에서 jsp호출해서 웹소켓 에서 받은 난수 저장용 -->
         	
         <!--  <fieldset>
 		<textarea rows="10" cols="50" readonly="true" id="messageWindow"></textarea>
@@ -196,8 +196,9 @@
 			onMessage(event)
 		};
 		function onMessage(event) {
-			//textarea.value += "상대 :"+event.data+"\n"; 
+			//textarea.value += "상대 :"+event.data+"\n";
 			random.value = event.data; 
+			$("#randomNum1").focus();
 		}
 		function onOpen(event) {
 			//textarea.value += "연결 성공\n ";
@@ -218,8 +219,8 @@
 		//var randomNum = $("#randomNum").val();
 		//var randomNum1 = $("#randomNum1").val();
 		
-			
-				$("#randomNum1").on("input",function () {
+				
+/* 				$("#randomNum1").ondataavailable(function () {
 					var randomNum = $("#randomNum").val();
 					var randomNum1 = $("#randomNum1").val();
 						console.log(randomNum);
@@ -231,8 +232,21 @@
 						$("#pwd").css("visibility","visible ");
 					}
 				});
-				
+ */				
 			
+				$(document).on("focusout","#randomNum1",function(){
+					var randomNum = $("#randomNum").val();
+					var randomNum1 = $("#randomNum1").val();
+						console.log(randomNum);
+						console.log(randomNum1);
+					if(randomNum==randomNum1){
+						$("#close").click(function () {
+							 self.close();
+						});
+						$("#pwd").css("visibility","visible");
+					}
+					
+				});
 			
 	</script>
 </body>
