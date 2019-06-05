@@ -99,17 +99,17 @@
 							<table id="form-table" style="border-top: 3px solid green; border-bottom:3px solid green; margin: 0 auto; width: 80%;">
 								<tr>
 									<th class="th" colspan="1" >대회이름</th>
-									<td class="td" colspan="3"><input type="text" name="teamName" size="50" style="height:30px;"></td>
+									<td class="td" colspan="3"><input type="text" name="leagueTitle" size="50" style="height:30px;"></td>
 									
 								</tr>
 								<tr>
 									<th class="th" colspan="1">작성자</th>
-									<td class="td" colspan="3"><input type="text" name="teamRep" size="50" style="height:30px;" value="${sessionScope.member.id}" readonly></td>
+									<td class="td" colspan="3"><input type="text" name="leagueWriter" size="50" style="height:30px;" value="${sessionScope.member.id}" readonly></td>
 									
 								</tr>
 							
 								<tr>
-									<th class="th" colspan="1">팀 엠블럼 사진</th>
+									<th class="th" colspan="1">포스터사진</th>
 									<td class="td" colspan="3" ><input type="file" name="filepath" onchange="loadImg(this)"></td>
 								</tr>
 								<tr>
