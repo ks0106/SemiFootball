@@ -97,9 +97,7 @@ public class SearchPwdServlet extends HttpServlet {
 		// send the message 
 		Transport.send(message); 
 		System.out.println("Success Message Send"); 
-		RequestDispatcher rd = request.getRequestDispatcher("/views/login/insert2.jsp");
-		request.setAttribute("num", num);
-		rd.forward(request, response);
+		
 		} catch (MessagingException e) { 
 			e.printStackTrace(); } 
 	}

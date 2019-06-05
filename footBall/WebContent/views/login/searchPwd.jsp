@@ -72,7 +72,14 @@
         		</tr>
         	</table>
         </form>
-        	<input type="hidden" id="randomNum">
+        	<input type="hidden" id="randomNum"> <!--ajax로 servlet호출한뒤 servlet에서 받은 난수 저장용 -->
+        
+        <fieldset>
+		<textarea rows="10" cols="50" readonly="true" id="messageWindow"></textarea>
+			<br/>
+			<input id="inputMessage" type="text"/>
+			<input type="submit" value="send" onclick="send()"/>
+		</fieldset>
         
 		</center>
 	<script type="text/javascript">
@@ -167,6 +174,35 @@
 	                };
 	        });
 		});
+	</script>
+	<script type="text/javascript">
+		var textarea = document.getElementById("messageWindow");
+		var webSocket = new WebSocket('ws://localhost:80/footBall/broadcasting');
+		var inputMessage = document.getElementById('inputMessage');
+		webSocket.onerror = function (event) {
+			onError(event)
+		};
+		webSocket.onopen = function (event) {
+			onOpen(event)
+			
+		};
+		webSocket.onmessage = function (event) {
+			onMessage(event)
+		};
+		function onMessage(event) {
+			textarea.value += "상대 :"+event.data+"\n"; 
+		}
+		function onOpen(event) {
+			textarea.value += "연결 성공\n "+event.data;
+		}
+		function onError(event) {
+			alert(event.data);
+		}
+		function send() {
+			textarea.value += "나 :" + inputMessage.value + "\n";
+			webSocket.send(inputMessage.value);
+			inputMessage.value="";
+		}
 	</script>
 </body>
 </html>
