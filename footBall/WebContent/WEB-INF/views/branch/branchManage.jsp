@@ -37,10 +37,11 @@
 		<div class="content-wrapper">
 			<table class="manageTable" border="1">
 				<tr>
-					<th>지점 이름</th><th>주 소</th><th>구장 정보</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
+					<th>지점 번호</th><th>지점 이름</th><th>주 소</th><th>구장 정보</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
 				</tr>
 				<c:forEach items="${list }" var="bd" varStatus="index">
 					<tr>
+						<td>${bd.b.branchCode }</td>
 						<td>${bd.b.branchName }</td>
 						<td>${bd.b.branchAddr }</td>
 						<td>${bd.cd.c1 }<br>${bd.cd.c2 }<br>${bd.cd.c3 }<br></td>
