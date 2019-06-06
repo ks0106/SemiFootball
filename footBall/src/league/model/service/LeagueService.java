@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import league.model.dao.LeagueDao;
 import league.model.vo.AfterLeague;
+import league.model.vo.AfterTeam;
 import league.model.vo.League;
 import league.model.vo.LeagueList;
 import league.model.vo.LeaguePageData;
@@ -104,7 +105,7 @@ public class LeagueService {
 		return result;
 	
 	}
-	public LeaguePageData LeaguePage(int reqPage) throws SQLException {
+	public LeaguePageData afterLeaguePage(int reqPage) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		int numPerPage=10;
 		int totalCount= new LeagueDao().countLeague(conn);
@@ -112,7 +113,6 @@ public class LeagueService {
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
 		ArrayList<AfterLeague> list= new LeagueDao().afterLeagueList(conn,start,end);
-		LeagueList ll = new LeagueDao().nowLeague(conn);
 		String pageNavi ="";
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
@@ -135,8 +135,74 @@ public class LeagueService {
 		}
 		
 		JDBCTemplate.close(conn);
-		LeaguePageData lpd = new LeaguePageData(list, ll, pageNavi);
+		LeaguePageData lpd = new LeaguePageData(list, pageNavi);
 		return lpd;
 	}
-	
+	public int addLeague(LeagueList ll) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new LeagueDao().addLeague(conn,ll);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	public int deleteLeague(int leagueNo,LeagueList ll) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result1=0;
+		result1 = new LeagueDao().addAfterLeague(conn,ll,leagueNo);
+		if (result1 > 0) {
+			JDBCTemplate.commit(conn);
+			int result = new LeagueDao().deleteLeague(conn,leagueNo);
+			if (result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result1;
+	}
+	public int deleteTeam(int leagueNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<League> list = new LeagueDao().teamList(conn);
+		int result = 0;
+		int result2 = 0;
+		if(!list.isEmpty()) {
+			for(int i=0;i<list.size();i++) {
+				result = new LeagueDao().addAfterTeam(conn,list.get(i),leagueNo);
+			}
+		}
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+			result2 = new LeagueDao().deleteTeam(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result2;
+	}
+	public LeagueList leaguePage() throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		LeagueList ll = new LeagueDao().nowLeague(conn);
+		JDBCTemplate.close(conn);
+		return ll;
+	}
+	public ArrayList<AfterTeam> afterTeamList(int leagueNo) throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<AfterTeam> list = new LeagueDao().afterteamList(conn,leagueNo);
+		JDBCTemplate.close(conn);
+		return list;
+		
+	}
+	public AfterLeague afterLeagueSelect(int leagueNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		AfterLeague al = new LeagueDao().afterLeagueSelect(conn,leagueNo);
+		JDBCTemplate.close(conn);
+		return al;
+	}
 }

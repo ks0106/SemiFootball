@@ -17,18 +17,19 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import league.model.service.LeagueService;
 import league.model.vo.League;
+import league.model.vo.LeagueList;
 
 /**
- * Servlet implementation class InsertLaegueServlet
+ * Servlet implementation class AddLeagueServlet
  */
-@WebServlet(name = "InsertLeague", urlPatterns = { "/insertLeague" })
-public class InsertLeagueServlet extends HttpServlet {
+@WebServlet(name = "AddLeague", urlPatterns = { "/addLeague" })
+public class AddLeagueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertLeagueServlet() {
+    public AddLeagueServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,18 +49,15 @@ public class InsertLeagueServlet extends HttpServlet {
 			String saveDirectory = root+"img/league";
 			int maxSize = 10*1024*1024;
 			MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-			String teamName = mRequest.getParameter("teamName");
-			String teamEmail = mRequest.getParameter("teamEmail");
-			String teamRep = mRequest.getParameter("teamRep");
-			String teamPhone = mRequest.getParameter("teamPhone");
-			String teamColorHome = mRequest.getParameter("teamColorHome");
-			String teamColorAway = mRequest.getParameter("teamColorAway");
+			String leagueTitle = mRequest.getParameter("leagueTitle");
+			String leagueWriter = mRequest.getParameter("leagueWriter");
 			String filepath = mRequest.getFilesystemName("filepath");
-			League t = new League(0, teamName, teamRep, teamPhone, teamEmail, teamColorHome, teamColorAway, filepath,0, 0, 0, 0);
-			
-			int result=0;
+			LeagueList ll = new LeagueList();
+			ll.setLeagueTitle(leagueTitle);
+			ll.setLeagueWriter(leagueWriter);
+			ll.setFilepath(filepath);
 			try {
-				result = new LeagueService().insertTeam(t);
+				int result = new LeagueService().addLeague(ll);
 				if(result > 0) {
 					request.setAttribute("msg", "등록 성공");
 				}else {
@@ -68,9 +66,10 @@ public class InsertLeagueServlet extends HttpServlet {
 				request.setAttribute("loc", "/league");
 				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			} catch (SQLException e) {
-				RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
-				request.setAttribute("msg", e);
-				rd.forward(request, response);
+				System.out.println(e);
+				/*RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
+				request.setAttribute("msg", "SQL구문 오류");
+				rd.forward(request, response);*/
 			}	
 		}
 	}

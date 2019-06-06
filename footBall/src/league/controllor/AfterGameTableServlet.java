@@ -2,28 +2,30 @@ package league.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import league.model.service.LeagueService;
-import league.model.vo.WinList;
+import league.model.vo.AfterTeam;
 
 /**
- * Servlet implementation class ViewGameTableServlet
+ * Servlet implementation class AfterGameTableServlet
  */
-@WebServlet(name = "ViewGameTable", urlPatterns = { "/viewGameTable" })
-public class ViewGameTableServlet extends HttpServlet {
+@WebServlet(name = "AfterGameTable", urlPatterns = { "/afterGameTable" })
+public class AfterGameTableServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewGameTableServlet() {
+    public AfterGameTableServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +34,15 @@ public class ViewGameTableServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int leagueNo = Integer.parseInt(request.getParameter("leagueNo"));
 		try {
-			WinList list = new LeagueService().teamList();
-			request.setAttribute("list", list);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/league/viewGameTable.jsp");
-			rd.forward(request, response);
+			ArrayList<AfterTeam> list = new LeagueService().afterTeamList(leagueNo);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			new Gson().toJson(list,response.getWriter());
 		} catch (SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/league/viewGameTable.jsp");
-			rd.forward(request, response);
-			// 페이지 완성후 수정
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

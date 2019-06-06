@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import league.model.service.LeagueService;
-import league.model.vo.WinList;
+import league.model.vo.LeagueList;
 
 /**
- * Servlet implementation class ViewGameTableServlet
+ * Servlet implementation class DownLeagueServlet
  */
-@WebServlet(name = "ViewGameTable", urlPatterns = { "/viewGameTable" })
-public class ViewGameTableServlet extends HttpServlet {
+@WebServlet(name = "DownLeague", urlPatterns = { "/downLeague" })
+public class DownLeagueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewGameTableServlet() {
+    public DownLeagueServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +32,28 @@ public class ViewGameTableServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int leagueNo = Integer.parseInt(request.getParameter("leagueNo"));
+		String leagueTitle= request.getParameter("leagueTitle");
+		String leagueWriter = request.getParameter("leagueWriter");
+		String filepath = request.getParameter("filepath");
+		LeagueList ll = new LeagueList();
+		ll.setLeagueTitle(leagueTitle);
+		ll.setLeagueWriter(leagueWriter);
+		ll.setFilepath(filepath);
 		try {
-			WinList list = new LeagueService().teamList();
-			request.setAttribute("list", list);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/league/viewGameTable.jsp");
-			rd.forward(request, response);
+			int result = new LeagueService().deleteLeague(leagueNo,ll);
+			if(result >0) {
+				int result2 = new LeagueService().deleteTeam(leagueNo);
+				if(result2>0) {
+					RequestDispatcher rd = request.getRequestDispatcher("/league");
+					rd.forward(request, response);
+				}
+			}
 		} catch (SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/league/viewGameTable.jsp");
-			rd.forward(request, response);
-			// 페이지 완성후 수정
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 	}
 
 	/**

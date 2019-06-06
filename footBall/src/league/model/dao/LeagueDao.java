@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import league.model.vo.AfterLeague;
+import league.model.vo.AfterTeam;
 import league.model.vo.League;
 import league.model.vo.LeagueList;
 
@@ -17,7 +18,7 @@ public class LeagueDao {
 	public int insertTeam(Connection conn , League t) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into fb_team values(seq_team_no.nextval,?,?,?,?,?,?,?,0,default,default,default)";
+		String query = "insert into fb_team values(seq_team_no.nextval,?,?,?,?,?,?,default,default,default,?)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, t.getTeamName());
 			pstmt.setString(2, t.getTeamRep());
@@ -47,7 +48,6 @@ public class LeagueDao {
 			l.setTeamColorHome(rset.getString("team_color_home"));
 			l.setTeamColorAway(rset.getString("team_color_away"));
 			l.setFilepath(rset.getString("filepath"));
-			l.setTeamTableLevel(rset.getInt("team_table_level"));
 			l.setMatch1(rset.getInt("match1"));
 			l.setMatch2(rset.getInt("match2"));
 			l.setMatch3(rset.getInt("match3"));
@@ -61,7 +61,7 @@ public class LeagueDao {
 	public int setGame(Connection conn ) throws SQLException {
 		Statement stmt= null;
 		int result = 0;
-		String query = "update fb_team set team_table_level =0,match1= 0,match2= 0,match3= 0";
+		String query = "update fb_team set match1= 0,match2= 0,match3= 0";
 		stmt = conn.createStatement();
 		result = stmt.executeUpdate(query);
 		JDBCTemplate.close(stmt);
@@ -94,7 +94,6 @@ public class LeagueDao {
 			l.setTeamColorHome(rset.getString("team_color_home"));
 			l.setTeamColorAway(rset.getString("team_color_away"));
 			l.setFilepath(rset.getString("filepath"));
-			l.setTeamTableLevel(rset.getInt("team_table_level"));
 			l.setMatch1(rset.getInt("match1"));
 			l.setMatch2(rset.getInt("match2"));
 			l.setMatch3(rset.getInt("match3"));
@@ -121,7 +120,6 @@ public class LeagueDao {
 			l.setTeamColorHome(rset.getString("team_color_home"));
 			l.setTeamColorAway(rset.getString("team_color_away"));
 			l.setFilepath(rset.getString("filepath"));
-			l.setTeamTableLevel(rset.getInt("team_table_level"));
 			l.setMatch1(rset.getInt("match1"));
 			l.setMatch2(rset.getInt("match2"));
 			l.setMatch3(rset.getInt("match3"));
@@ -199,17 +197,18 @@ public class LeagueDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<AfterLeague> list = new ArrayList<AfterLeague>();
-		String query = "select * from (select ROWNUM as rNum,m.* from (select * from fb_after_league order by 1 desc) m) where rnum BETWEEN ? and ?";
+		String query = "select * from (select ROWNUM as rn , t.* from (select * from (select ROWNUM as rNum,m.* from (select * from fb_after_league order by league_after_no ) m)order by 1 desc) t ) where rn between ? and?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, start);
 		pstmt.setInt(2, end);
 		rset = pstmt.executeQuery();
 		while(rset.next()) {
 			AfterLeague al = new AfterLeague();
-			al.setLeagueAfterNo(rset.getInt("league_after_no"));
+			al.setLeagueAfterNo(rset.getInt("rnum"));
 			al.setLeagueAfterTitle(rset.getString("league_after_title"));
 			al.setLeagueAfterWriter(rset.getString("league_after_writer"));
 			al.setLeagueAfterEnrolldate(rset.getDate("league_after_enrolldate"));
+			al.setLeagueNo(rset.getInt("league_no"));
 			al.setFilepath(rset.getString("filepath"));
 			list.add(al);
 		}
@@ -235,5 +234,104 @@ public class LeagueDao {
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(stmt);
 		return ll;
+	}
+	public int addLeague(Connection conn , LeagueList ll) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into fb_league values(seq_fb_league.nextval,?,?,sysdate,?)";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, ll.getLeagueTitle());
+		pstmt.setString(2, ll.getLeagueWriter());
+		pstmt.setString(3,ll.getFilepath());
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int deleteLeague(Connection conn , int leagueNo) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from fb_league where league_no=?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1,leagueNo );
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int addAfterLeague(Connection conn , LeagueList ll, int leagueNo) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into fb_after_league values(seq_fb_after_league.nextval,?,?,sysdate,?,?)";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, ll.getLeagueTitle());
+		pstmt.setString(2, ll.getLeagueWriter());
+		pstmt.setInt(3, leagueNo);
+		pstmt.setString(4,ll.getFilepath());
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int addAfterTeam(Connection conn , League team ,int leagueNo ) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result =0;
+		String query = "insert into fb_after_team values(?,?,?,?,?,?)";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1,team.getTeamName());
+		pstmt.setString(2, team.getFilepath());
+		pstmt.setInt(3, leagueNo);
+		pstmt.setInt(4, team.getMatch1());
+		pstmt.setInt(5, team.getMatch2());
+		pstmt.setInt(6, team.getMatch3());
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int deleteTeam(Connection conn) throws SQLException {
+		Statement stmt = null;
+		int result = 0;
+		String query = "delete from fb_team";
+		stmt = conn.createStatement();
+		result = stmt.executeUpdate(query);
+		JDBCTemplate.close(stmt);
+		return result;
+	}
+	public ArrayList<AfterTeam> afterteamList(Connection conn,int leagueNo) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AfterTeam> list = new ArrayList<AfterTeam>();
+		String query = "select * from fb_after_team where league_no = ?";
+		pstmt =conn.prepareStatement(query);
+		pstmt.setInt(1, leagueNo);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			AfterTeam at = new AfterTeam();
+			at.setTeamName(rset.getString("team_name"));
+			at.setleagueNo(rset.getInt("league_No"));
+			at.setFilepath(rset.getString("filepath"));
+			at.setMatch1(rset.getInt("match1"));
+			at.setMatch2(rset.getInt("match2"));
+			at.setMatch3(rset.getInt("match3"));
+			list.add(at);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+		
+	}
+	public AfterLeague afterLeagueSelect(Connection conn , int leagueNo) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		AfterLeague al = null;
+		String query ="select * from fb_after_league where league_No=?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, leagueNo);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			al = new AfterLeague();
+			al.setFilepath(rset.getString("filepath"));
+			al.setLeagueAfterTitle(rset.getString("league_after_title"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return al;
 	}
 }

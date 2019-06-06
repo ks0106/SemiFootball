@@ -10,16 +10,16 @@ public class Reservation {
 	private String resMPhone;
 	private Date resDate;
 	private String resTime;
-	private int resRWater;
-	private int resRWear;
-	private int resRShose;
+	private int resRentalNo;
 	private int resTotalCost;
+	private Date resOrderDate;
+	private int resPayment;
 	private int resCancel;
 	public Reservation() {
 		super();
 	}
 	public Reservation(int resNo, int resBCode, int resCCode, String resMEmail, String resMPhone, Date resDate,
-			String resTime, int resRWater, int resRWear, int resRShose, int resTotalCost, int resCancel) {
+			String resTime, int resRentalNo, int resTotalCost, Date resOrderDate, int resPayment, int resCancel) {
 		super();
 		this.resNo = resNo;
 		this.resBCode = resBCode;
@@ -28,10 +28,10 @@ public class Reservation {
 		this.resMPhone = resMPhone;
 		this.resDate = resDate;
 		this.resTime = resTime;
-		this.resRWater = resRWater;
-		this.resRWear = resRWear;
-		this.resRShose = resRShose;
+		this.resRentalNo = resRentalNo;
 		this.resTotalCost = resTotalCost;
+		this.resOrderDate = resOrderDate;
+		this.resPayment = resPayment;
 		this.resCancel = resCancel;
 	}
 	public int getResNo() {
@@ -76,23 +76,11 @@ public class Reservation {
 	public void setResTime(String resTime) {
 		this.resTime = resTime;
 	}
-	public int getResRWater() {
-		return resRWater;
+	public int getResRentalNo() {
+		return resRentalNo;
 	}
-	public void setResRWater(int resRWater) {
-		this.resRWater = resRWater;
-	}
-	public int getResRWear() {
-		return resRWear;
-	}
-	public void setResRWear(int resRWear) {
-		this.resRWear = resRWear;
-	}
-	public int getResRShose() {
-		return resRShose;
-	}
-	public void setResRShose(int resRShose) {
-		this.resRShose = resRShose;
+	public void setResRentalNo(int resRentalNo) {
+		this.resRentalNo = resRentalNo;
 	}
 	public int getResTotalCost() {
 		return resTotalCost;
@@ -100,12 +88,23 @@ public class Reservation {
 	public void setResTotalCost(int resTotalCost) {
 		this.resTotalCost = resTotalCost;
 	}
+	public Date getResOrderDate() {
+		return resOrderDate;
+	}
+	public void setResOrderDate(Date resOrderDate) {
+		this.resOrderDate = resOrderDate;
+	}
+	public int getResPayment() {
+		return resPayment;
+	}
+	public void setResPayment(int resPayment) {
+		this.resPayment = resPayment;
+	}
 	public int getResCancel() {
 		return resCancel;
 	}
 	public void setResCancel(int resCancel) {
 		this.resCancel = resCancel;
 	}
-	
 
 }
