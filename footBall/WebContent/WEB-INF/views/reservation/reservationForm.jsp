@@ -927,7 +927,6 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				data : {bCode:bCode,resDate:resDate,cCode:cCode,resGoodsName:resGoodsName,resGoodsOption:resGoodsOption,resGoodsAmount:resGoodsAmount,resGoodsPrice:resGoodsPrice,resStartTime:resStartTime,resEndTime:resEndTime,resCost:resCost,allCost:allCost},
 				success : function(data){
 					if(data > 0){
-						alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
 						paymentPage(bCode,resDate,cCode,resStartTime,resEndTime,allCost);
 					}else{
 						alert(data);
@@ -946,6 +945,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				data : {bCode:bCode,resDate:resDate,cCode:cCode,resStartTime:resStartTime,resEndTime:resEndTime,allCost:allCost},
 				success : function(data){
 					console.log(data);
+					alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
 					location.href="/reservationPaymentPage?allCost="+allCost+"&resNo="+data;
 				},
 				error : function(){
