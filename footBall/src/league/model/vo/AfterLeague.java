@@ -8,27 +8,21 @@ public class AfterLeague {
 	private String leagueAfterTitle;
 	private String leagueAfterWriter;
 	private Date leagueAfterEnrolldate;
-	private int leagueNo;
 	private String filepath;
 	public AfterLeague() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-
 	public AfterLeague(int leagueAfterNo, String leagueAfterTitle, String leagueAfterWriter, Date leagueAfterEnrolldate,
-			int leagueNo, String filepath) {
+			String filepath) {
 		super();
 		this.leagueAfterNo = leagueAfterNo;
 		this.leagueAfterTitle = leagueAfterTitle;
 		this.leagueAfterWriter = leagueAfterWriter;
 		this.leagueAfterEnrolldate = leagueAfterEnrolldate;
-		this.leagueNo = leagueNo;
 		this.filepath = filepath;
 	}
-
-
 
 	public int getLeagueAfterNo() {
 		return leagueAfterNo;
@@ -61,18 +55,6 @@ public class AfterLeague {
 
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
-	}
-
-
-
-	public int getLeagueNo() {
-		return leagueNo;
-	}
-
-
-
-	public void setLeagueNo(int leagueNo) {
-		this.leagueNo = leagueNo;
 	}
 	
 }

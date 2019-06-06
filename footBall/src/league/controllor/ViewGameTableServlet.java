@@ -38,9 +38,10 @@ public class ViewGameTableServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/league/viewGameTable.jsp");
 			rd.forward(request, response);
 		} catch (SQLException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/league/viewGameTable.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
+			request.setAttribute("msg", "SQL구문 오류");
 			rd.forward(request, response);
-			// 페이지 완성후 수정
+			e.printStackTrace();
 		}
 	}
 

@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.0.js"
+	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
@@ -63,253 +56,180 @@
 	});
 </script>
 <style>
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
-	{
-	-webkit-appearance: none;
-	margin: 0;
-}
-
-.side_a {
-	font-weight: bolder;
-	font-size: 18px;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.scheduleList {
-	width: 175px;
-	height: 60px;
-	background-color: #2c3c57;
-	color: white;
-	display: inline-block;
-	margin: 1px;
-	cursor: pointer;
-}
-
-.scheduleSelect {
-	width: 175px;
-	height: 60px;
-	background-color: #3366cc;
-	color: white;
-	display: inline-block;
-	margin: 1px;
-	cursor: pointer;
-}
-
-.reservationGoods {
-	width: 45%;
-	height: 30px;
-	font-size: 15px;
-	paddign: 0;
-	margin: 0 auto;
-	border: 1px solid lightgray;
-	display: none;
-}
-
-.reservationOption {
-	width: 25%;
-	height: 30px;
-	font-size: 15px;
-	paddign: 0;
-	margin: 0 auto;
-	border: 1px solid lightgray;
-	display: none;
-}
-
-.reservationAmount {
-	width: 15%;
-	height: 30px;
-	font-size: 15px;
-	padding: 0;
-	margin: 0 auto;
-	border: 1px solid lightgray;
-	display: none;
-}
-
-.addBtn {
-	width: 10%;
-	height: 30px;
-	background-color: darkgray;
-	border: 0;
-	color: white;
-	font-weight: bolder;
-	font-size: 15px;
-	display: none;
-}
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+	    -webkit-appearance: none;
+	    margin: 0;
+	}
+	.side_a{
+		font-weight:bolder;
+		font-size:18px;
+		text-decoration:none;
+		cursor:pointer;
+	}
+	.scheduleList{
+		width:175px;
+		height:60px;
+		background-color:#2c3c57;
+		color:white;
+		display:inline-block;
+		margin:1px;cursor:pointer;
+	}
+	.scheduleSelect{
+		width:175px;
+		height:60px;
+		background-color:#3366cc;
+		color:white;
+		display:inline-block;
+		margin:1px;cursor:pointer;
+	}
+	.reservationGoods{
+		width:45%;
+		height:30px;
+		font-size:15px;
+		paddign:0;
+		margin:0 auto;
+		border:1px solid lightgray;
+ 		display:none;
+	}
+	.reservationOption{
+		width:25%;
+		height:30px;
+		font-size:15px;
+		paddign:0;
+		margin:0 auto;
+		border:1px solid lightgray;
+ 		display:none;
+	}
+	.reservationAmount{
+		width:15%;
+		height:30px;
+		font-size:15px;
+		padding:0;
+		margin:0 auto;
+		border:1px solid lightgray;
+ 		display:none;
+	}
+	.addBtn{
+		width:10%;
+		height:30px;
+		background-color: silver;
+		border:0;
+		color:white;
+		font-weight:bolder;
+		font-size:15px;
+ 		display:none;
+	}
 </style>
 <body>
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!--영상 위 페이지 타이틀 -->
-	<div id="title">대관</div>
-	<section> <!-- 내용 작성 -->
-	<hr
-		style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
-	<!-- 컨텐츠 -->
-	<div
-		style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
-		<!-- 컨텐츠 사이드 메뉴 -->
-		<div
-			style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
-			<div
-				style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">대관예약/확인</div>
-			<hr
-				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
-			<div style="margin-bottom: 15px;">
-				<a href="/reservation" class="side_a" id="side_menu1"
-					style="color: #3366cc;">대관예약</a>
-			</div>
-			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu2" style="color: #2c3c57;">예약확인</a>
-			</div>
-		</div>
-		<!-- 사이드 메뉴 종료 -->
+	<div id="title">
+		대관
+	</div>
+	<section>
+	<!-- 내용 작성 -->
+		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 		<!-- 컨텐츠 -->
-		<div
-			style="width: 78%; height: 2000px; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
-			<!-- 컨텐츠 타이틀 -->
-			<div
-				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">${b.branchName}<대관예약>
-			</div>
-			<div class="underline"
-				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
-			<!-- 컨텐츠 본문 -->
-			<div style="width: 100%; height: 150vh;">
-				<div
-					style="margin-left: 10px; font-size: 20px; font-weight: bolder;">예약
-					가능 일정</div>
-				<hr
-					style="margin-left: 10px; width: 120px; border: 2px solid #2c3c57; padding: 0; float: left;">
-				<hr
-					style="width: 20px; border: 2px solid #3366cc; padding: 0; float: left;">
-				<!-- 달력 -->
-				<div
-					style="margin-left: 10px; margin-top: 50px; position: absolute; top: 680px;">
-					<div style="width: 590px; border: 1px solid darkgray;">
-						<div style="border-bottom: 1px solid darkgray;">
-							<jsp:include page="/views/test/calendar.jsp" />
-						</div>
-						<div
-							style="display: table; width: 90%; margin: 0 auto; margin-top: 30px;">
-							<div
-								style="display: table-cell; vertical-align: middle; font-size: 18px;">날짜선택</div>
-							<span id="receipt-cal"
-								style="display: table-cell; vertical-align: middle; font-size: 20px;"></span>
-						</div>
-						<hr
-							style="width: 90%; height: 1px; border: 0; margin: 0 auto; margin-top: 30px; padding: 0; background-color: darkgray;">
-						<div style="width: 90%; margin: 0 auto;">
-							<div
-								style="font-size: 18px; margin-top: 30px; display: inline-block;">구장선택</div>
-							<span style="color: red; font-size: 15px; float: right;">※구장을
-								선택하면 대관 가능 시간이 출력됩니다.</span> <select id="courtSelect"
-								name="courtSelect"
-								style="width: 100%; height: 50px; font-size: 16px; padding: 0; margin-top: 10px; border: 1px solid lightgray;">
-								<option id="default" value="default" selected>::: 구장선택
-									:::</option>
-							</select>
-						</div>
-						<hr
-							style="width: 90%; height: 1px; border: 0; margin: 0 auto; margin-top: 30px; padding: 0; background-color: darkgray;">
-						<div style="width: 90%; margin: 0 auto;">
-							<div
-								style="font-size: 18px; margin-top: 30px; display: inline-block;">시간선택</div>
-							<span id="referenceText2"
-								style="color: red; font-size: 15px; float: right;">※대관
-								가능한 시간만 표시됩니다.</span>
-							<div id="courtTime"
-								style="width: 100%; padding: 0; margin-top: 10px;"></div>
-						</div>
-						<hr
-							style="width: 90%; height: 1px; border: 0; margin: 0 auto; margin-top: 30px; padding: 0; background-color: darkgray;">
-						<div style="width: 90%; margin: 0 auto;">
-							<div
-								style="font-size: 18px; margin-top: 30px; display: inline-block;">물품대여
-								및 구매</div>
-							<span id="referenceText3"
-								style="color: red; font-size: 15px; float: right;">※필수
-								선택사항이 아닙니다.</span>
-							<div style="width: 90%; margin: 0 auto; margin-top: 30px;">
-								<div style="margin-top: 20px;">
-									<label><input type="checkbox" class="checkGoods"
-										id="checkWater">물</label><span
-										style="font-size: 13px; float: right;">구매 가능 수량 : <span
-										class="goodsCount"></span>개
-									</span><br> <select class="reservationGoods"
-										id="reservationWater" name="reservationWater">
-										<option id="default" value="default" selected>::: 제품
-											선택 :::</option>
-									</select> <select class="reservationOption" id="reservationWaterOption"
-										name="reservationWaterOption">
-										<option id="default" value="default" selected>::: 옵션
-											선택 :::</option>
-									</select> <input type="number" class="reservationAmount"
-										id="reservationWaterAmount" name="reservationWaterAmount"
-										placeholder="수량" min="1"> <input class="addBtn"
-										id="addWater" type="button" value="추가">
-								</div>
-								<div style="margin-top: 20px;">
-									<label><input type="checkbox" class="checkGoods"
-										id="checkVest">조끼</label><span
-										style="font-size: 13px; float: right;">구매 가능 수량 : <span
-										class="goodsCount"></span>개
-									</span><br> <select class="reservationGoods" id="reservationVest"
-										name="reservationVest">
-										<option id="default" value="default" selected>::: 제품
-											선택 :::</option>
-									</select> <select class="reservationOption" id="reservationVestOption"
-										name="reservationVestOption">
-										<option id="default" value="default" selected>::: 옵션
-											선택 :::</option>
-									</select> <input type="number" class="reservationAmount"
-										id="reservationVestAmount" name="reservationVestAmount"
-										placeholder="수량" min="0"> <input class="addBtn"
-										id="addVest" type="button" value="추가">
-								</div>
-								<div style="margin-top: 20px;">
-									<label><input type="checkbox" class="checkGoods"
-										id="checkShoes">신발</label><span
-										style="font-size: 13px; float: right;">구매 가능 수량 : <span
-										class="goodsCount"></span>개
-									</span><br> <select class="reservationGoods"
-										id="reservationShoes" name="reservationShoes">
-										<option id="default" value="default" selected>::: 제품
-											선택 :::</option>
-									</select> <select class="reservationOption" id="reservationShoesOption"
-										name="reservationShoesOption">
-										<option id="default" value="default" selected>::: 옵션
-											선택 :::</option>
-									</select> <input type="number" class="reservationAmount"
-										id="reservationShoesAmount" name="reservationShoesAmount"
-										placeholder="수량" min="1"> <input class="addBtn"
-										id="addShoes" type="button" value="추가">
+		<div style="width:85%;background-color:white;margin:0 auto;overflow:hidden;">
+		<!-- 컨텐츠 사이드 메뉴 -->
+			<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
+				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">대관예약/확인</div>
+				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
+				<div style="margin-bottom:15px;">
+					<a href="/reservation" class="side_a" id="side_menu1" style="color:#3366cc;">대관예약</a>
+				</div>
+				<div style="margin-bottom:15px;">
+					<a class="side_a" id="side_menu2" style="color:#2c3c57;">예약확인</a>
+				</div>
+			</div><!-- 사이드 메뉴 종료 -->			
+		<!-- 컨텐츠 -->
+			<div style="width:78%;height:2000px;border-left:1px solid silver;display:inline-block;overflow:hidden;">
+   		<!-- 컨텐츠 타이틀 -->
+				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">${b.branchName}<대관예약> </div>
+				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
+		<!-- 컨텐츠 본문 -->
+				<div style="width:100%;height:150vh;">
+					<div style="margin-left:10px;font-size:20px;font-weight:bolder;">예약 가능 일정</div>
+					<hr style="margin-left:10px;width:120px;border:2px solid #2c3c57;padding:0;float:left;">
+					<hr style="width:20px;border:2px solid #3366cc;padding:0;float:left;">
+		<!-- 달력 -->
+					<div style="margin-left:10px;margin-top:50px;position:absolute;top:680px;">
+						<div style="width:590px;border: 1px solid darkgray;">
+							<div style="border-bottom:1px solid darkgray;">
+								<jsp:include page="/views/test/calendar.jsp"/>
+							</div>
+							<div style="display:table;width:90%;margin:0 auto;margin-top:30px;">
+								<div style="display:table-cell;vertical-align:middle;font-size:18px;">날짜선택</div><span id="receipt-cal" style="display:table-cell;vertical-align:middle;font-size:20px;"></span>
+							</div>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
+							<div style="width:90%;margin:0 auto;">
+								<div style="font-size:18px;margin-top:30px;display:inline-block;">구장선택</div><span style="color:red;font-size:15px;float:right;">※구장을 선택하면 대관 가능 시간이 출력됩니다.</span>
+								<select id="courtSelect" name="courtSelect" style="width:100%;height:50px;font-size:16px;padding:0;margin-top:10px;border:1px solid lightgray;">
+									<option id="default" value="default" selected>::: 구장선택 :::</option>
+								</select>
+							</div>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
+							<div style="width:90%;margin:0 auto;">
+								<div style="font-size:18px;margin-top:30px;display:inline-block;">시간선택</div><span id="referenceText2" style="color:red;font-size:15px;float:right;">※대관 가능한 시간만 표시됩니다.</span>
+								<div id="courtTime" style="width:100%;padding:0;margin-top:10px;">
 								</div>
 							</div>
-						</div>
-						<hr
-							style="width: 90%; height: 1px; border: 0; margin: 0 auto; margin-top: 30px; padding: 0; background-color: darkgray;">
-						<div id="reservationReceipt"
-							style="width: 90%; margin: 0 auto; margin-top: 30px; margin-bottom: 30px;">
-							<div id="reservationAllCost"
-								style="font-size: 18px; width: 100%;">
-								합계<span style="font-size: 20px; float: right;"><span
-									id="allCost">0</span>원</span>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
+							<div style="width:90%;margin:0 auto;">
+								<div style="font-size:18px;margin-top:30px;display:inline-block;">물품대여 및 구매</div><span id="referenceText3" style="color:red;font-size:15px;float:right;">※필수 선택사항이 아닙니다.</span>	
+								<div style="width:90%;margin:0 auto;margin-top:30px;">
+									<div style="margin-top:20px;">
+										<label><input type="checkbox" class="checkGoods" id="checkWater">물</label><span style="font-size:13px;float:right;">구매 가능 수량 : <span class="goodsCount"></span>개</span><br>
+										<select class="reservationGoods" id="reservationWater" name="reservationWater">
+											<option id="default" value="default" selected>::: 제품 선택 :::</option>
+										</select>
+										<select class="reservationOption" id="reservationWaterOption" name="reservationWaterOption">
+											<option id="default" value="default" selected>::: 옵션 선택 :::</option>
+										</select>
+										<input type="number" class="reservationAmount" id="reservationWaterAmount" name="reservationWaterAmount" placeholder="수량" min="1">
+										<input class="addBtn" id="addWater" type="button" value="추가">
+									</div>
+									<div style="margin-top:20px;">
+										<label><input type="checkbox" class="checkGoods" id="checkVest">조끼</label><span style="font-size:13px;float:right;">구매 가능 수량 : <span class="goodsCount"></span>개</span><br>
+										<select class="reservationGoods" id="reservationVest" name="reservationVest">
+											<option id="default" value="default" selected>::: 제품 선택 :::</option>
+										</select>										
+										<select class="reservationOption" id="reservationVestOption" name="reservationVestOption">
+											<option id="default" value="default" selected>::: 옵션 선택 :::</option>
+										</select>
+										<input type="number" class="reservationAmount" id="reservationVestAmount" name="reservationVestAmount" placeholder="수량" min="0">
+										<input class="addBtn" id="addVest" type="button" value="추가">
+									</div>
+									<div style="margin-top:20px;">
+										<label><input type="checkbox" class="checkGoods" id="checkShoes">신발</label><span style="font-size:13px;float:right;">구매 가능 수량 : <span class="goodsCount"></span>개</span><br>
+										<select class="reservationGoods" id="reservationShoes" name="reservationShoes">
+											<option id="default" value="default" selected>::: 제품 선택 :::</option>
+										</select>										
+										<select class="reservationOption" id="reservationShoesOption" name="reservationShoesOption">
+											<option id="default" value="default" selected>::: 옵션 선택 :::</option>
+										</select>
+										<input type="number" class="reservationAmount" id="reservationShoesAmount" name="reservationShoesAmount" placeholder="수량" min="1">
+										<input class="addBtn" id="addShoes" type="button" value="추가">
+									</div>
+								</div>								
+							</div>
+							<hr style="width:90%;height:1px;border:0;margin:0 auto;margin-top:30px;padding:0;background-color:darkgray;">
+							<div id="reservationReceipt" style="width:90%;margin:0 auto;margin-top:30px;margin-bottom:30px;">
+								<div id="reservationAllCost" style="font-size:18px;width:100%;">합계<span style="font-size:20px;float:right;"><span id="allCost">0</span>원</span></div>
 							</div>
 						</div>
-					</div>
-					<div>
-						<button onclick="location.href='/reservation'"
-							style="width: 100px; height: 40px; border: 2px solid darkgray; background-color: darkgray; padding: 0; margin-top: 5px; font-weight: bolder; font-size: 16px; border-radius: 2px; line-height: 30px; color: white;">취소</button>
-						<button
-							style="width: 100px; height: 40px; border: 2px solid #2c3c57; background-color: #2c3c57; padding: 0; margin-top: 5px; margin-left: 281px; font-weight: bolder; font-size: 16px; border-radius: 2px; line-height: 30px; color: white;">장바구니</button>
-						<button id="paymentBtn"
-							style="width: 100px; height: 40px; border: 2px solid #2c3c57; background-color: #2c3c57; padding: 0; margin-top: 5px; font-weight: bolder; font-size: 16px; border-radius: 2px; line-height: 30px; color: white;">결제하기</button>
+						<div>
+							<button onclick="location.href='/reservation'" style="width:100px;height:40px;border:2px solid darkgray;background-color:darkgray;padding:0;margin-top:5px;font-weight:bolder;font-size:16px;border-radius:2px;line-height:30px;color:white;">취소</button>
+							<button style="width:100px;height:40px;border:2px solid #2c3c57;background-color:#2c3c57;padding:0;margin-top:5px;margin-left:281px;font-weight:bolder;font-size:16px;border-radius:2px;line-height:30px;color:white;">장바구니</button>
+							<button style="width:100px;height:40px;border:2px solid #2c3c57;background-color:#2c3c57;padding:0;margin-top:5px;font-weight:bolder;font-size:16px;border-radius:2px;line-height:30px;color:white;">결제하기</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</section>
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 	<script>
 		/* 합계 금액을 저장하는 변수 */
@@ -463,16 +383,16 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 					var oldTime = parseInt($('.reservationReceiptList:eq('+i+')').find('.reservationStartTime').text().replace(":",""));
 					if(oldTime < newTime){
 						if(i == reservationCount -1){
-							$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관(<span class="reservationStartTime">'+$(this).find('.startTime').text()+'</span>~<span class="reservationEndTime">'+$(this).find('.endTime').text()+'</span>)<span style="font-size:20px;float:right;"><span class="reservationCostNum">'+$(this).find('.reservationCost').text()+'</span>원</span></div>');					
+							$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관(<span class="reservationStartTime">'+$(this).find('.startTime').text()+'</span>~<span class="reservationEndTime">'+$(this).find('.endTime').text()+'</span>)<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');					
 							i = reservationCount+1;
 						}
 					}else{
-						$addReceipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관(<span class="reservationStartTime">'+$(this).find('.startTime').text()+'</span>~<span class="reservationEndTime">'+$(this).find('.endTime').text()+'</span>)<span style="font-size:20px;float:right;"><span class="reservationCostNum">'+$(this).find('.reservationCost').text()+'</span>원</span></div>');					
+						$addReceipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관(<span class="reservationStartTime">'+$(this).find('.startTime').text()+'</span>~<span class="reservationEndTime">'+$(this).find('.endTime').text()+'</span>)<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');					
 						i = reservationCount+1;
 					}
 				}
 			}else{
-				$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관(<span class="reservationStartTime">'+$(this).find('.startTime').text()+'</span>~<span class="reservationEndTime">'+$(this).find('.endTime').text()+'</span>)<span style="font-size:20px;float:right;"><span class="reservationCostNum">'+$(this).find('.reservationCost').text()+'</span>원</span></div>');									
+				$receipt.before('<div name="'+scheduleNo+'" class="reservationReceiptList" style="font-size:18px;width:100%;float:left;color:gray;">대관(<span class="reservationStartTime">'+$(this).find('.startTime').text()+'</span>~<span class="reservationEndTime">'+$(this).find('.endTime').text()+'</span>)<span style="font-size:20px;float:right;">'+$(this).find('.reservationCost').text()+'원</span></div>');									
 			}
 			
 		});
@@ -717,7 +637,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 										var price = parseInt(data.goodsPrice);
 										var allPrice = (price*amount);
 										addReceipt += '<div class="reservationReceiptListBox" style="width:100%;height:40px;border:1px solid lightgray;position:relative;margin-top:2px;margin-bottom:2px;"><div style="position:absolute;font-size:14px;top:2px;color:gray;"><div>제품명 : <span class="reservationGoodsName">'+result+'</span></div><div>규격/용량 : <span class="reservationGoodsOption">'+option+'</span></div></div>';
-										addReceipt += '<div style="position:absolute;left:250px;font-size:13px;text-align: center;top:2px;color:gray;">수량<br><input class="reservationGoodsAmount" type="number" style="width:50px;height:13px;border:1px solid lightgray;" min="0" value="'+amount+'" readonly></div>';
+										addReceipt += '<div style="position:absolute;left:250px;font-size:13px;text-align: center;top:2px;color:gray;">수량<br><input class="reservationGoodsAmount" type="number" style="width:50px;height:13px;border:1px solid lightgray;" min="0" value="'+amount+'"></div>';
 										addReceipt += '<div style="left:400px;font-size:15px;margin-right:50px;margin-top:10px;float:right;text-align:right;color:gray;"><span class="reservationGoodsPrice">'+allPrice.toLocaleString()+'</span>원</div>';
 										addReceipt += '<div style="position:absolute;left:500px;top:8px;"><div class="cancelBtn" style="width:20px;height:20px;border-radius:20px;text-align:center;border:2px solid lightgray;line-height:15px;font-size:23px;color:red;cursor:pointer;padding:0;margin:0;">×</div></div></div>';
 										$receipt.prepend(addReceipt);
@@ -745,7 +665,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 							var price = parseInt(data.goodsPrice);
 							var allPrice = (price*amount);
 							addReceipt += '<div class="reservationReceiptListBox" style="width:100%;height:40px;border:1px solid lightgray;position:relative;margin-top:2px;margin-bottom:2px;"><div style="position:absolute;font-size:14px;top:2px;color:gray;"><div>제품명 : <span class="reservationGoodsName">'+result+'</span></div><div>규격/용량 : <span class="reservationGoodsOption">'+option+'</span></div></div>';
-							addReceipt += '<div style="position:absolute;left:250px;font-size:13px;text-align: center;top:2px;color:gray;">수량<br><input class="reservationGoodsAmount" type="number" style="width:50px;height:13px;border:1px solid lightgray;" min="0" value="'+amount+'" readonly></div>';
+							addReceipt += '<div style="position:absolute;left:250px;font-size:13px;text-align: center;top:2px;color:gray;">수량<br><input class="reservationGoodsAmount" type="number" style="width:50px;height:13px;border:1px solid lightgray;" min="0" value="'+amount+'" disabled></div>';
 							addReceipt += '<div style="left:400px;font-size:15px;margin-right:50px;margin-top:10px;float:right;text-align:right;color:gray;"><span class="reservationGoodsPrice">'+allPrice.toLocaleString()+'</span>원</div>';
 							addReceipt += '<div style="position:absolute;left:500px;top:8px;"><div class="cancelBtn" style="width:20px;height:20px;border-radius:20px;text-align:center;border:2px solid lightgray;line-height:15px;font-size:23px;color:red;cursor:pointer;padding:0;margin:0;">×</div></div></div>';
 							$receipt.prepend(addReceipt);
@@ -822,73 +742,6 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		
 		
 		/* 결제하기 눌렀을 때 */
-		$(document).on("click","#paymentBtn",function(){
-			if($('#allCost').text() == '0'){
-				alert("대관예약 정보를 작성해주세요.");
-			}else{
-				alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
-				
-/* 				var memberId = ${sessionScope.member.id};
-				console.log("아이디 : "+memberId);
-				var memberPhone = ${sessionScope.member.phone};
-				console.log("연락처 : "+memberPhone); */
-				var bCode = ${b.branchCode};
-				console.log("선택된 지점 코드 : "+bCode);
-				var resDate = ($('#receipt-cal').text().replace(/\./gi,'/')).replace('2019','19');
-				console.log("선택된 날짜 : "+resDate);
-				var cCode = $('#courtSelect').find('option:selected').val();
-				console.log("선택된 구장 : "+cCode);
-				var resGoodsName = new Array($('.reservationReceiptListBox').length);
-				var resGoodsOption = new Array($('.reservationReceiptListBox').length);;
-				var resGoodsAmount = new Array($('.reservationReceiptListBox').length);;
-				var resGoodsPrice = new Array($('.reservationReceiptListBox').length);;
-				if($('.reservationReceiptListBox').length > 0){
-					for(var i=0;i<$('.reservationReceiptListBox').length;i++){
-						resGoodsName[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsName').text();
-						resGoodsOption[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsOption').text();
-						resGoodsAmount[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsAmount').val();
-						resGoodsPrice[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsPrice').text().replace(",","");
-						console.log("대여 물품명 : "+resGoodsName[i]);
-						console.log("대여 물품 옵션 : "+resGoodsOption[i]);
-						console.log("대여 물품 수량 : "+resGoodsAmount[i]);
-						console.log("대여 물품 가격 : "+resGoodsPrice[i]);
-					}
-				}
-				var resStartTime = new Array($('.reservationReceiptList').length);;
-				var resEndTime = new Array($('.reservationReceiptList').length);;
-				var resCost = new Array($('.reservationReceiptList').length);;
-				if($('.reservationReceiptList').length > 0){
-					for(var i=0;i<$('.reservationReceiptList').length;i++){
-						resStartTime[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationStartTime').text();
-						resEndTime[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationEndTime').text();
-						resCost[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationCostNum').text().replace(",","");
-						console.log("대관 시작 시간 : "+resStartTime[i]);
-						console.log("대관 종료 시간 : "+resEndTime[i]);
-						console.log("대관료 : "+resCost[i]);
-					}
-				}
-				var allCost = $('#allCost').text().replace(/,/gi,"");
-				console.log("합계 : "+allCost);
-				
-				$.ajax({
-					url : '/reservationPayment.do',
-					type : 'get',
-					data : {bCode:bCode,resDate:resDate,cCode:cCode,resGoodsName:resGoodsName,resGoodsOption:resGoodsOption,resGoodsAmount:resGoodsAmount,resGoodsPrice:resGoodsPrice,resStartTime:resStartTime,resEndTime:resEndTime,resCost:resCost,allCost:allCost},
-					success : function(data){
-						if(data > 0){
-							alert("결제가 완료되었습니다.");
-							location.href = "/reservationView";							
-						}else{
-							alert(data);
-						}
-					},
-					error : function(){
-						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
-					}
-				});
-				
-			}
-		});
 		
 	</script>
 

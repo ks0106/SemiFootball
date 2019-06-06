@@ -32,7 +32,6 @@
 			location.href="/viewGameTable"
 		});
 		$("#side_menu3").click(function(){
-			location.href="/afterLeague"
 		});
 		$("#side_menu4").click(function(){
 			location.href="/gameTable"
@@ -234,9 +233,6 @@
 				</div>
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
-				</div>
-				<div style="margin-bottom:15px;">
-					<a class="side_a selected" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난대회결과</a>
 				</div>
 				<c:if test="${sessionScope.member.id eq'admin' }">
 				<div style="margin-bottom:15px;">
