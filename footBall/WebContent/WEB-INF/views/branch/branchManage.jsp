@@ -36,6 +36,7 @@
 	<div class="content-container" style="top:0">
 		<div class="content-wrapper">
 			<table class="manageTable" border="1">
+				<tr><td colspan="9"><button id="btn-insert" onclick="location.href='/insertBranch'">지점 추가</button></td></tr>
 				<tr>
 					<th>지점 번호</th><th>지점 이름</th><th>주 소</th><th>구장 정보</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
 				</tr>

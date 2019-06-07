@@ -10,6 +10,10 @@
 		margin:0 auto;
 		border-collapse: collapse;
 	}
+	#btn-insert {
+		position:relative;
+		float: right;
+	}
 	.identifier {
 		text-align:left;
 		left:20px;
