@@ -36,22 +36,29 @@
 				<li class="selected list-li"><a href="/boardList" class="munebar">자유게시판</a></li>
 			</ul>
 			   <section>
-      <div class="table-wrapper">
+      <div class="table-wrapper" style="text-align: center; width: 60%; margin: 0 auto;">
          			<center><h1>자유게시판</h1></center><br><br><br>
          <center>
-         <table class="table table-bordered" border="1">
+         <table class="table">
             <tr>
                <th colspan="2" id="toptit"></th>
             </tr>
             <tr>
-               <th>제목</th>
-               <td class="viewcon">${bvd.bv.boardTitle}</td>
+               <th style="font-size: 25px; font-weight: bold; text-align: center;">${bvd.bv.boardTitle}</th>
+               <th>${bvd.bv.boardDate }</th>
             </tr>
             <tr>
-               <th>작성자</th>
-               <td>${bvd.bv.boardWriter}</td>
+               <td>작성자 : ${bvd.bv.boardWriter}</td>
+               <td>
+               	  <c:if test="${not empty bvd.bv.boardFilepath}">
+               	  	<img src="/img/file.png" width="16px">
+                    <a href="javascript:fileDownload('${bvd.bv.boardFilename}','${bvd.bv.boardFilepath}');">
+                       	 ${bvd.bv.boardFilename}
+                    </a> 
+          		 </c:if>
+               </td>
             </tr>
-            <tr>
+            <%-- <tr>
                <th>첨부파일</th>
                <td>
                	  <c:if test="${not empty bvd.bv.boardFilepath}">
@@ -61,10 +68,10 @@
                     </a> 
           		 </c:if>
                </td>
-            </tr>
+            </tr> --%>
             <tr>
-               <th id="viewcon2">내용</th>
-               <td class="viewcon">${bvd.bv.boardContent}</td> <!-- 개행을 처리해줘야함 --> 
+               <td class="viewcon" style="height: 500px;">
+               ${bvd.bv.boardContent}</td> <!-- 개행을 처리해줘야함 --> 
                <!-- bv.getboardContent().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>") -->
             </tr>
             <tr>

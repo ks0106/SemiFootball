@@ -2,7 +2,6 @@ package reservation.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
+import goods.model.vo.Goods;
 import member.model.vo.Member;
 import reservation.model.service.ReservationService;
-import reservation.model.vo.Reservation;
+import reservation.model.vo.ReservationViewPageData;
 
 /**
  * Servlet implementation class ReservationViewServlet
@@ -38,11 +40,12 @@ public class ReservationViewServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
 		if(m != null) {
+			int resNo = Integer.parseInt(request.getParameter("resNo"));
 			try {
-				ArrayList<Reservation> list = new ReservationService().reservationViewList(m.getId());
-				request.setAttribute("list", list);
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationViewList.jsp");
-				rd.forward(request, response);
+				ReservationViewPageData rvpd = new ReservationService().reservationView(resNo);
+				System.out.println(rvpd);
+				request.setAttribute("rvpd", rvpd);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -52,6 +55,7 @@ public class ReservationViewServlet extends HttpServlet {
 			request.setAttribute("loc", "/views/login/login.jsp");
 			rd.forward(request, response);
 		}
+		
 	}
 
 	/**

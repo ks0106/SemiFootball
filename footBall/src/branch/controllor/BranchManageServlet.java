@@ -1,7 +1,7 @@
 package branch.controllor;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import branch.model.service.BranchService;
 import branch.model.vo.BranchData;
-import branch.model.vo.CourtData;
 /**
  * Servlet implementation class BranchManageServlet
  */

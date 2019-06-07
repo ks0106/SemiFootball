@@ -114,6 +114,10 @@
 						%>
 
 					</table>
+					<!-- 페이징 -->
+						<ul class="pagination">
+							<li class="page-item">${pd.pageNavi }</li>
+						</ul>
 				</center>
 
 				<!-- <script type="text/javascript">

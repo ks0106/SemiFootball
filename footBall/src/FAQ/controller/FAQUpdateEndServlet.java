@@ -33,7 +33,7 @@ public class FAQUpdateEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int faqNo = Integer.parseInt(request.getParameter("faqNo"));
 		String faqTitle = request.getParameter("faqTitle");
-		String faqContent = request.getParameter("faqContent");
+		String faqContent = request.getParameter("faqContent").replaceAll("\n", "<br>");
 		FAQVo fv = new FAQVo(faqNo, faqTitle, faqContent);
 		int result = new FAQService().faqUpdate(fv);
 		if(result>0) {

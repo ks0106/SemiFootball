@@ -51,7 +51,7 @@ public class BoardUpdateEndServlet extends HttpServlet {
 	      MultipartRequest mRequest = new MultipartRequest(request, saveDirectory,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 	      int boardNo = Integer.parseInt(mRequest.getParameter("boardNo"));
 	      String boardTitle = mRequest.getParameter("boardTitle");
-	      String boardContent = mRequest.getParameter("boardContent");
+	      String boardContent = mRequest.getParameter("boardContent").replaceAll("\n", "<br>");
 	      String boardFilename = mRequest.getOriginalFileName("boardFilename");
 	      String boardFilepath = mRequest.getFilesystemName("boardFilename");
 	      String oldFilename = mRequest.getParameter("oldFilename");

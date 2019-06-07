@@ -79,8 +79,7 @@
 						<tr>
 							<th style="text-align: center; height: 400px;">내용</th>
 							<td><textarea name="faqContent" class="form-control"
-									rows="3" style="resize: none; height: 400px;">
-                        <%=fv.getFaqContent() %>
+									rows="3" style="resize: none; height: 400px;"><%=fv.getFaqContent() %>
                      </textarea></td>
 						</tr>
 						<tr>
