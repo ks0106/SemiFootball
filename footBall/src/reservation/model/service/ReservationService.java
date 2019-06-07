@@ -87,6 +87,12 @@ public class ReservationService {
 						JDBCTemplate.rollback(conn);
 					}
 				}
+				int goodsUpdate = new ReservationDao().reservationGoodsAmountUpdate(conn,goodsNo,Integer.parseInt(resGoodsAmount[i]));
+				if(goodsUpdate > 0) {
+					conn.commit();
+				}else {
+					conn.rollback();
+				}
 			}
 			int rentalNo = new ReservationDao().reservationRentalNo(conn,memberId,resNo);
 			int result = new ReservationDao().reservationOrderSheetUpdate(conn,memberId,bCode,cCode,resDate,resStartTime,resEndTime,allCost,rentalNo);
@@ -101,5 +107,31 @@ public class ReservationService {
 			JDBCTemplate.close(conn);
 			return orderAdd;
 		}
+	}
+	
+	public int reservationCheckCourt(String resDate, int cCode, String startTime, String endTime) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ReservationDao().reservationCheckCourt(conn,resDate,cCode,startTime,endTime);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int reservationOrderNo(String memberId,int bCode,String resDate,int cCode,String[] resStartTime,String[] resEndTime,int allCost) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int resNo = new ReservationDao().reservationOrderNo(conn,memberId,bCode,cCode,resDate,resStartTime,resEndTime,allCost);
+		JDBCTemplate.close(conn);
+		return resNo;
+	}
+	
+	public int reservationPaymentUpdate(String paymentId,String paymentNum,String paymentDate,int resNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ReservationDao().reservationPaymentUpdate(conn,paymentId,paymentNum,paymentDate,resNo);
+		if(result > 0) {
+			conn.commit();
+		}else {
+			conn.rollback();
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 }

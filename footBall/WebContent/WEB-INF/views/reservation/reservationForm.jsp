@@ -4,21 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.0.js"
+	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -290,7 +279,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 						<div id="reservationReceipt"
 							style="width: 90%; margin: 0 auto; margin-top: 30px; margin-bottom: 30px;">
 							<div id="reservationAllCost"
-								style="font-size: 18px; width: 100%;">
+								style="font-size: 18px; width:100%;color:#3366cc;">
 								합계<span style="font-size: 20px; float: right;"><span
 									id="allCost">0</span>원</span>
 							</div>
@@ -825,13 +814,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		$(document).on("click","#paymentBtn",function(){
 			if($('#allCost').text() == '0'){
 				alert("대관예약 정보를 작성해주세요.");
-			}else{
-				alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
-				
-/* 				var memberId = ${sessionScope.member.id};
-				console.log("아이디 : "+memberId);
-				var memberPhone = ${sessionScope.member.phone};
-				console.log("연락처 : "+memberPhone); */
+			}else{				
 				var bCode = ${b.branchCode};
 				console.log("선택된 지점 코드 : "+bCode);
 				var resDate = ($('#receipt-cal').text().replace(/\./gi,'/')).replace('2019','19');
@@ -870,25 +853,106 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				var allCost = $('#allCost').text().replace(/,/gi,"");
 				console.log("합계 : "+allCost);
 				
+				if($('.reservationReceiptListBox').length > 0){
+					goodsCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
+				}else{
+					courtCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
+				}
+			}
+		});
+		
+		
+		function goodsCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost) {
+			/* 주문장 만들기 전에 상품 수량 확인 */
+			for(var i=0;i<$('.reservationReceiptListBox').length;i++){
+				var amountCheck;
+				var goodsAmount = parseInt(resGoodsAmount[i]);
+				var result = resGoodsName[i];
+				var option = resGoodsOption[i];
 				$.ajax({
-					url : '/reservationPayment.do',
-					type : 'get',
-					data : {bCode:bCode,resDate:resDate,cCode:cCode,resGoodsName:resGoodsName,resGoodsOption:resGoodsOption,resGoodsAmount:resGoodsAmount,resGoodsPrice:resGoodsPrice,resStartTime:resStartTime,resEndTime:resEndTime,resCost:resCost,allCost:allCost},
+					url : "/reservationGoodsCount.do",
+					type : "get",
+					data : {result:result,option:option,bCode:bCode},
 					success : function(data){
-						if(data > 0){
-							alert("결제가 완료되었습니다.");
-							location.href = "/reservationView";							
+						amountCheck = parseInt(data);
+						if(amountCheck < goodsAmount){
+							alert("재고가 부족합니다. 재고 : "+result+" "+option+" - "+amountCheck);
+							$('.reservationReceiptListBox:eq['+i+']').find('.reservationGoodsAmount').focus();
+							i = $('.reservationReceiptListBox').length + 1;
 						}else{
-							alert(data);
+							courtCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
 						}
 					},
 					error : function(){
 						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 					}
 				});
-				
-			}
-		});
+			}			
+		}
+		
+		
+		function courtCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost){
+			/* 주문장 만들기 전에 대관 여부 확인 */
+			for(var i=0;i<$('.reservationReceiptList').length;i++){
+				var startTime = resStartTime[i];
+				var endTime = resEndTime[i];
+				var check;
+				$.ajax({
+					url : "/reservationCheckCourt.do",
+					type : "get",
+					data : {resDate:resDate,cCode:cCode,startTime:startTime,endTime:endTime},
+					success : function(data){
+						check = parseInt(data);
+						if(check == 0){
+							if(i == $('.reservationReceiptList').length){
+								payment(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
+							}
+						}else{
+							alert(startTime+"~"+endTime+" 타임이 마감되어 대관할 수 없습니다.");
+							$('.reservationReceiptList:eq('+i+')').remove();
+							i = $('.reservationReceiptList').length + 1;
+						}
+					},
+					error : function(){
+						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+					}
+				});
+			}			
+		}
+		
+		function payment(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost){
+			$.ajax({
+				url : '/reservationPayment.do',
+				type : 'get',
+				data : {bCode:bCode,resDate:resDate,cCode:cCode,resGoodsName:resGoodsName,resGoodsOption:resGoodsOption,resGoodsAmount:resGoodsAmount,resGoodsPrice:resGoodsPrice,resStartTime:resStartTime,resEndTime:resEndTime,resCost:resCost,allCost:allCost},
+				success : function(data){
+					if(data > 0){
+						paymentPage(bCode,resDate,cCode,resStartTime,resEndTime,allCost);
+					}else{
+						alert(data);
+					}
+				},
+				error : function(){
+					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+				}
+			});			
+		}
+		
+		function paymentPage(bCode,resDate,cCode,resStartTime,resEndTime,allCost){
+			$.ajax({
+				url : '/reservationNo.do',
+				type : 'get',
+				data : {bCode:bCode,resDate:resDate,cCode:cCode,resStartTime:resStartTime,resEndTime:resEndTime,allCost:allCost},
+				success : function(data){
+					console.log(data);
+					alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
+					location.href="/reservationPaymentPage?allCost="+allCost+"&resNo="+data;
+				},
+				error : function(){
+					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+				}
+			});			
+		}	
 		
 	</script>
 

@@ -20,7 +20,7 @@
 			<br/>
 			<input id="inputMessage" type="text"/>
 		</fieldset>-->
-			<input type="submit" value="변경하기" onclick="send()" />
+			<input type="button" id="btn" value="변경하기" >
 	<script type="text/javascript">
 		var textarea = document.getElementById("messageWindow");
 		var webSocket = new WebSocket('ws://localhost:80/footBall/broadcasting');
@@ -38,7 +38,8 @@
 			event.data; 
 		}
 		function onOpen(event) {
-			textarea.value += "연결 성공\n ";
+			//textarea.value += "연결 성공\n ";
+			webSocket.send(<%=random%>);
 		}
 		function onError(event) {
 			alert(event.data);
@@ -50,7 +51,8 @@
 			//inputMessage.value="";
 		}
 		
+		
 	</script>
-	
+
 </body>
 </html>

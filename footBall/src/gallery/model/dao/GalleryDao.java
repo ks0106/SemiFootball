@@ -65,7 +65,7 @@ public class GalleryDao {
 		list = new ArrayList<Gallery>();
 		while(rset.next()) {
 			Gallery g = new Gallery();
-			g.setPhotoNo(rset.getInt("seq_photo_no"));
+			g.setPhotoNo(rset.getInt("photo_no"));
 			g.setPhotoWriter(rset.getString("photo_writer"));
 			g.setFilename(rset.getString("filename"));
 			g.setPhotoDate(rset.getDate("photo_date"));
@@ -86,7 +86,7 @@ public class GalleryDao {
 		list = new ArrayList<Gallery>();
 		while(rset.next()) {
 			Gallery g = new Gallery();
-			g.setPhotoNo(rset.getInt("seq_photo_no"));
+			g.setPhotoNo(rset.getInt("photo_no"));
 			g.setFilename(rset.getString("filename"));
 			list.add(g);
 		}
@@ -116,7 +116,7 @@ public class GalleryDao {
 		list = new ArrayList<Gallery>();
 		while(rset.next()) {
 			Gallery g = new Gallery();
-			g.setPhotoNo(rset.getInt("seq_photo_no"));
+			g.setPhotoNo(rset.getInt("photo_no"));
 			g.setPhotoWriter(rset.getString("photo_writer"));
 			g.setFilename(rset.getString("filename"));
 			g.setPhotoDate(rset.getDate("photo_date"));

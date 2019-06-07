@@ -347,5 +347,50 @@ public class ReservationDao {
 		JDBCTemplate.close(pstmt);
 		return result;		
 	}
+	
+	public int reservationGoodsAmountUpdate(Connection conn,int goodsNo,int resGoodsAmount) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationGoodsAmountUpdate");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resGoodsAmount);
+		pstmt.setInt(2, goodsNo);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	
+	public int reservationCheckCourt(Connection conn,String resDate,int cCode,String startTime,String endTime) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationCheckCourt");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, cCode);
+		pstmt.setString(2, resDate);
+		pstmt.setString(3, startTime);
+		pstmt.setString(4, endTime);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			result = rset.getInt("schedule_status");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	
+	public int reservationPaymentUpdate(Connection conn,String paymentId,String paymentNum,String paymentDate,int resNo) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationPaymentUpdate");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, paymentId);
+		pstmt.setString(2, paymentNum);
+		pstmt.setString(3, paymentDate);
+		pstmt.setInt(4, resNo);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
 }
  

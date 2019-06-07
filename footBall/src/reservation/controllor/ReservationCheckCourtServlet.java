@@ -1,8 +1,7 @@
-package branch.controllor;
+package reservation.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import branch.model.service.BranchService;
-import branch.model.vo.BranchData;
-import branch.model.vo.CourtData;
+import com.google.gson.Gson;
+
+import reservation.model.service.ReservationService;
+
 /**
- * Servlet implementation class BranchManageServlet
+ * Servlet implementation class ReservationCheckCourtServlet
  */
-@WebServlet(name = "BranchManage", urlPatterns = { "/branchManage" })
-public class BranchManageServlet extends HttpServlet {
+@WebServlet(name = "ReservationCheckCourt", urlPatterns = { "/reservationCheckCourt.do" })
+public class ReservationCheckCourtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BranchManageServlet() {
+    public ReservationCheckCourtServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +32,19 @@ public class BranchManageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<BranchData> list = new BranchService().selectAll();
-		for(BranchData bd : list) {
-			System.out.println("Servlet----------------");
-			System.out.println(bd.getB().getBranchCode());
-			System.out.println(bd.getBi().getBi1());
-			System.out.println(bd.getCd().getC1());
+		String resDate = request.getParameter("resDate");
+		int cCode = Integer.parseInt(request.getParameter("cCode"));
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		try {
+			int result = new ReservationService().reservationCheckCourt(resDate,cCode,startTime,endTime);
+			System.out.println("대관 가능 여부 : "+result);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			new Gson().toJson(result,response.getWriter());	
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/WEB-INF/views/branch/branchManage.jsp").forward(request, response);
 	}
 
 	/**

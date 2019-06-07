@@ -1,29 +1,23 @@
 package branch.controllor;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import branch.model.service.BranchService;
-import branch.model.vo.BranchData;
-import branch.model.vo.CourtData;
 /**
- * Servlet implementation class BranchManageServlet
+ * Servlet implementation class InsertBranchServlet
  */
-@WebServlet(name = "BranchManage", urlPatterns = { "/branchManage" })
-public class BranchManageServlet extends HttpServlet {
+@WebServlet(name = "insertBranch", urlPatterns = { "/insertBranch" })
+public class InsertBranchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BranchManageServlet() {
+    public InsertBranchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +26,7 @@ public class BranchManageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<BranchData> list = new BranchService().selectAll();
-		for(BranchData bd : list) {
-			System.out.println("Servlet----------------");
-			System.out.println(bd.getB().getBranchCode());
-			System.out.println(bd.getBi().getBi1());
-			System.out.println(bd.getCd().getC1());
-		}
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/WEB-INF/views/branch/branchManage.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/branch/insertBranch.jsp");
 	}
 
 	/**

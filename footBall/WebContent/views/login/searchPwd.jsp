@@ -128,7 +128,7 @@
 			var repwd1 = $("#repwd1").val();
 		});
 	</script>
-	<script type="text/javascript">
+	<script type="text/javascript"> //비밀번호 재변경 정규식
 		var result = [false,false];
 		$(document).ready(function () {
 			$("#repwd").blur(function () {
@@ -182,7 +182,7 @@
 	        });
 		});
 	</script>
-	<script type="text/javascript">
+	<script type="text/javascript"> //웹소켓 연결 
 		var random = document.getElementById("randomNum1");
 		var webSocket = new WebSocket('ws://localhost:80/footBall/broadcasting');
 		var inputMessage = document.getElementById('inputMessage');
@@ -198,7 +198,7 @@
 		function onMessage(event) {
 			//textarea.value += "상대 :"+event.data+"\n";
 			random.value = event.data; 
-			$("#randomNum1").focus();
+			$val();
 		}
 		function onOpen(event) {
 			//textarea.value += "연결 성공\n ";
@@ -215,25 +215,8 @@
 		
 	</script>
 	<script type="text/javascript">
-		
-		//var randomNum = $("#randomNum").val();
-		//var randomNum1 = $("#randomNum1").val();
-		
-				
-/* 				$("#randomNum1").ondataavailable(function () {
-					var randomNum = $("#randomNum").val();
-					var randomNum1 = $("#randomNum1").val();
-						console.log(randomNum);
-						console.log(randomNum1);
-					if(randomNum==randomNum1){
-						$("#close").click(function () {
-							 self.close();
-						});
-						$("#pwd").css("visibility","visible ");
-					}
-				});
- */				
-			
+	
+/* 
 				$(document).on("focusout","#randomNum1",function(){
 					var randomNum = $("#randomNum").val();
 					var randomNum1 = $("#randomNum1").val();
@@ -246,7 +229,20 @@
 						$("#pwd").css("visibility","visible");
 					}
 					
-				});
+				}); */
+				
+				$val = function () {
+					var randomNum = $("#randomNum").val();
+					var randomNum1 = $("#randomNum1").val();
+						console.log(randomNum);
+						console.log(randomNum1);
+					if(randomNum==randomNum1){
+						$("#close").click(function () {
+							 self.close();
+						});
+						$("#pwd").css("visibility","visible");
+					}
+				};
 			
 	</script>
 </body>

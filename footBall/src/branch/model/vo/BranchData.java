@@ -1,11 +1,10 @@
 package branch.model.vo;
 
-import court.model.vo.Court;
 
 public class BranchData {
 	private Branch b;
 	private BranchImgs bi;
-	private Court c;
+	private CourtData cd;
 	public BranchData() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -15,11 +14,11 @@ public class BranchData {
 		this.b = b;
 		this.bi = bi;
 	}
-	public BranchData(Branch b, BranchImgs bi, Court c) {
+	public BranchData(Branch b, BranchImgs bi, CourtData cd) {
 		super();
 		this.b = b;
 		this.bi = bi;
-		this.c = c;
+		this.cd = cd;
 	}
 	public Branch getB() {
 		return b;
@@ -33,11 +32,11 @@ public class BranchData {
 	public void setBi(BranchImgs bi) {
 		this.bi = bi;
 	}
-	public Court getC() {
-		return c;
+	public CourtData getCd() {
+		return cd;
 	}
-	public void setC(Court c) {
-		this.c = c;
+	public void setC(CourtData cd) {
+		this.cd = cd;
 	}
 	
 	
