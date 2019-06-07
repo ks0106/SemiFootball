@@ -29,7 +29,9 @@
         	}
 	</style>
 <body>
+		<img  src="/img/header_logo.png" style="width:100px;">
 		<center>
+		<div id="pwdsearch">
         <form >
         	<table>
         		<tr>
@@ -43,12 +45,20 @@
         		</tr>
         	</table>
         	<input type="reset" value="취소">
-        	<input type="button" value="확인" id="sub"><br>
-        	
+        	<input type="button" value="인증" id="sub" onclick="return check();"><br>
+        	<div id="mint">
+        	<span class="countTimeMinute" ></span>분
+         	<span class="countTimeSecond" ></span>초
+        	</div>
+         	<div id="layerPopup">
+		      <p id="checkMsg">인증 시간이 초과 되었습니다.</p>
+		      <button type="button">닫기</button>
+		    </div>
         </form>
-        
+		</div>
+        	
          <form >
-        	<table id="pwd" style="visibility: hidden;" >
+        	<table id="pwd" style="visibility: hidden;"  >
         		<tr>
         			<td colspan="2" style="text-align: center;"><h2>비밀번호 변경</h2></td>
         		</tr>
@@ -67,8 +77,8 @@
         		<tr>
         			<td colspan="3">
         			<input type="reset" value="취소">
-        			<input type="button" value="확인" id="pwdsub">
-        			<input type="button" value="닫기" id="close">
+        			<input type="button" value="확인" id="researchpwd">
+        			
         			</td>
         		</tr>
         	</table>
@@ -84,11 +94,12 @@
 		</fieldset>-->
         
 		</center>
+	
 	<script type="text/javascript"> //비밀번호 찾기 아작스 호출
 		
 		$("#sub").click(function () {
 			var name = $("#name").val();
-			var id = $("#id").val();
+			 id = $("#id").val();
 			
 			$.ajax({
 					url : "/searchPwd",
@@ -119,18 +130,38 @@
 			
 			});
 		
-	</script>
-	
-	<script type="text/javascript">
-		$("#close").hide();
-		$("#pwdsub").click(function () {
+		$("#researchpwd").click(function () { //비밀번호 변경
 			var repwd = $("#repwd").val();
-			var repwd1 = $("#repwd1").val();
+			
+			$.ajax({
+				url : "/reSearchPwd",
+				data : {repwd:repwd,id:id},
+				method: "POST",
+				dataType : "json",
+				success : function (data) {
+						if(data==0){	
+							alert("비밀번호 변경 실패.");
+							opener.location.href="/views/login/login.jsp";
+							self.close();
+						}else{	 	
+							alert("비밀번호 변경 성공");
+							self.close();
+						}	
+				},
+				erorr : function () {
+					
+				}
+		
+			});
 		});
 	</script>
 	<script type="text/javascript"> //비밀번호 재변경 정규식
 		var result = [false,false];
 		$(document).ready(function () {
+			$("#layerPopup").hide(); //인증초과 div태크 숨김
+			$("#mint").hide();//인증시간 분 span태그 숨김
+			
+			
 			$("#repwd").blur(function () {
 				var pwd = $("#repwd").val();
 				var text = /^[a-z][a-z0-9]{5,17}$/i;
@@ -215,33 +246,54 @@
 		
 	</script>
 	<script type="text/javascript">
-	
-/* 
-				$(document).on("focusout","#randomNum1",function(){
-					var randomNum = $("#randomNum").val();
-					var randomNum1 = $("#randomNum1").val();
-						console.log(randomNum);
-						console.log(randomNum1);
-					if(randomNum==randomNum1){
-						$("#close").click(function () {
-							 self.close();
-						});
-						$("#pwd").css("visibility","visible");
-					}
-					
-				}); */
-				
+		
+		function check() {
+			$("#mint").show();//인증시간 분 span태그 show
+	      var minute = 1;
+	      var second = 59;
+	      
+	      $(".countTimeMinute").html(minute);
+	      $(".countTimeSecond").html(second);
+	   
+	        timer = setInterval(function(){
+	         $(".countTimeMinute").html(minute);
+	         $(".countTimeSecond").html(second);
+	        
+	         if(second == 0 && minute == 0){
+	            $("#layerPopup p").html("인증 시간이 초과 되었습니다.");
+	            $("#layerPopup").show();
+	            clearInterval(timer);
+	            //self.close();
+	         }else{
+	            second--;
+	            
+	            if(second < 0){
+	               minute--;
+	               second = 59
+	            }
+	         }
+	      },1000);   
+	  	
+		}
+   
+	   $("#layerPopup button").click(function(){
+	       $("#layerPopup").hide();
+	          self.close();
+	       
+	   });
 				$val = function () {
+					
 					var randomNum = $("#randomNum").val();
 					var randomNum1 = $("#randomNum1").val();
 						console.log(randomNum);
 						console.log(randomNum1);
 					if(randomNum==randomNum1){
-						$("#close").click(function () {
-							 self.close();
-						});
+						
 						$("#pwd").css("visibility","visible");
-					}
+						$("#mint").hide();
+						clearInterval(timer);
+						$("#pwdsearch").hide();
+				}
 				};
 			
 	</script>

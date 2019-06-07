@@ -1,26 +1,29 @@
-package FAQ.controller;
+package member.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import FAQ.model.service.FAQService;
-import FAQ.model.vo.FAQVo;
+import com.google.gson.Gson;
+
+import member.model.service.MemberService;
 
 /**
- * Servlet implementation class InsertFAQServlet
+ * Servlet implementation class ReSearchPwdServlet
  */
-@WebServlet(name = "InsertFAQ", urlPatterns = { "/insertFAQ" })
-public class InsertFAQServlet extends HttpServlet {
+@WebServlet(name = "ReSearchPwd", urlPatterns = { "/reSearchPwd" })
+public class ReSearchPwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertFAQServlet() {
+    public ReSearchPwdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,18 +32,18 @@ public class InsertFAQServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String faqTitle = request.getParameter("faqtitle");
-		String faqContent = request.getParameter("faqcontent").replaceAll("\n", "<br>");
-		FAQVo fv = new FAQVo(0, faqTitle, faqContent);
-		int result = new FAQService().insert(fv);
-		if(result>0) {
-			request.setAttribute("msg", "FAQ등록에 성공하셨습니다.");
-		}else {
-			request.setAttribute("msg", "FAQ등록에 실패하셨습니다.");
+		String repwd = request.getParameter("repwd");
+		String id = request.getParameter("id");
+		
+		try {
+			int result = new MemberService().researchPwd(id,repwd);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			new Gson().toJson(result,response.getWriter());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		request.setAttribute("loc", "/fAQ");
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

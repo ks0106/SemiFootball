@@ -88,8 +88,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea name="boardContent" class="form-control" rows="3">
-                        <%=bv.getBoardContent() %>
+							<td><textarea name="boardContent" class="form-control" rows="3"><%=bv.getBoardContent() %>
                      </textarea></td>
 						</tr>
 						<tr>

@@ -22,12 +22,13 @@ public class Recruit {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Recruit(int seqRecNo, String recName, String recBName, String recPhone, Date recDate, String recTime,
+	public Recruit(int seqRecNo, String recName, String recBName, String recCName ,String recPhone, Date recDate, String recTime,
 			String recLevel, int recAble, String recPw, String recMemo, Date recEnrollDate) {
 		super();
 		this.seqRecNo = seqRecNo;
 		this.recName = recName;
 		this.recBName = recBName;
+		this.recCName = recCName;
 		this.recPhone = recPhone;
 		this.recDate = recDate;
 		this.recTime = recTime;
@@ -36,6 +37,12 @@ public class Recruit {
 		this.recPw = recPw;
 		this.recMemo = recMemo;
 		this.recEnrollDate = recEnrollDate;
+	}
+	public String getRecCName() {
+		return recCName;
+	}
+	public void setRecCName(String recCName) {
+		this.recCName = recCName;
 	}
 	public int getSeqRecNo() {
 		return seqRecNo;

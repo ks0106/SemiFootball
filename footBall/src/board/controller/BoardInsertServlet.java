@@ -48,7 +48,7 @@ public class BoardInsertServlet extends HttpServlet {
 				int maxSize = 10*1024*1024;
 				MultipartRequest mRequest = new MultipartRequest(request, saveDirectory,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 				String boardTitle = mRequest.getParameter("boardTitle");
-				String boardContent = mRequest.getParameter("boardContent");
+				String boardContent = mRequest.getParameter("boardContent").replaceAll("\n", "<br>");
 				String boardWriter = mRequest.getParameter("boardWriter");
 				String boardFilename = mRequest.getOriginalFileName("boardFilename");
 				String boardFilepath = mRequest.getFilesystemName("boardFilename");

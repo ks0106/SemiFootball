@@ -87,6 +87,10 @@ public class MatchService {
 		MatchPageData mpd = new MatchPageData(pageNavi,list);
 		return mpd;
 	}
+	public int mercenaryAdd() {
+		
+		return 0;
+	}
 	
 	public int addMatchList(MatchList m) {
 		Connection conn = JDBCTemplate.getConnection();

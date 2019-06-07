@@ -51,10 +51,9 @@
 				<br>
 				<br>
 				<center>
-					<table class="table" id="noticeview">
+					<table class="table">
 						<tr>
-							<th
-								style="font-size: 25px; font-weight: bold; text-align: center;">${nv.noticeTitle}</th>
+							<th style="font-size: 25px; font-weight: bold; text-align: center;">${nv.noticeTitle}</th>
 							<th>${nv.noticeDate}</th>
 						</tr>
 						<tr>
@@ -62,8 +61,7 @@
 							<td>조회수 : ${nv.noticeHit}</td>
 						</tr>
 						<tr>
-							<td style="height: 500px;">${nv.noticeContent}</td>
-							<td></td>
+							<td style="height: 500px;" colspan="2">${nv.noticeContent}</td>
 						</tr>
 						<tr>
 							<th colspan="2"><center>

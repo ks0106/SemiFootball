@@ -99,9 +99,25 @@ public class SearchPwdServlet extends HttpServlet {
 				"<meta charset=\"UTF-8\">\r\n" + 
 				"<title>Insert title here</title>\r\n" + 
 				"</head>\r\n" + 
+				"    <style>\r\n" + 
+				"        div{\r\n" + 
+				"           \r\n" + 
+				"        }\r\n" + 
+				"    </style>\r\n" + 
 				"<body>\r\n" + 
-				"    <a href='http://localhost/views/login/searchPwdEmail.jsp?num="+num+"' >인증하기 </a>\r\n" + 
-				"    \r\n" + 
+				"    <div style=\"padding-left: 50px;padding-top:20px; margin: 100px; width:1155px; border: 2px solid darkgray;\" >\r\n" + 
+				"        <img src=\"http://localhost/img/header_logo.png\" style=\"width:200px;height:200px;\"><br>\r\n" + 
+				"        <div style=\"padding-top:30px;font-weight:bold;\">\r\n" + 
+				"    <p style=\"text-align:left;\">\r\n" + 
+				"        저희 KS Sports Football를 이용해 주셔서 감사합니다.<br><br>\r\n" + 
+				"        \r\n" + 
+				"        암호를 재설정하려면 <a href='http://localhost/views/login/searchPwdEmail.jsp?num="+num+"'>이 링크</a>를 클릭하십시오.<br><br>\r\n" + 
+				"        보안을 위해 이 링크는 전송된 후 2분이 지나면 만료됩니다. 암호화 관련된 문제가 계속 발생 하는경우 <a href=\"http://localhost/fAQ\">KS Sports Football 고객센터로</a> 문의하세요.<br><br>\r\n" + 
+				"        감사합니다. <br>\r\n" + 
+				"        KS Sports Football 팀\r\n" + 
+				"    </p>\r\n" + 
+				"       </div>\r\n" + 
+				"    </div>\r\n" + 
 				"</body>\r\n" + 
 				"</html>","text/html;charset=euc-kr"); 
 		// send the message 

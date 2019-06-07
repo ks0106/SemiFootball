@@ -55,4 +55,15 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return id1;
 	}
+	public int researchPwd(String id , String rePwd)throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MemberDAO().researchPwd(conn,id,rePwd);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
+	
 }

@@ -1,5 +1,7 @@
 package reservation.model.vo;
 
+import java.util.ArrayList;
+
 import branch.model.vo.Branch;
 import court.model.vo.Court;
 import rental.model.vo.Rental;
@@ -8,16 +10,16 @@ public class ReservationViewPageData {
 	private Reservation res;
 	private Branch b;
 	private Court c ;
-	private Rental r;
+	private ArrayList<Rental> rList;
 	public ReservationViewPageData() {
 		super();
 	}
-	public ReservationViewPageData(Reservation res, Branch b, Court c, Rental r) {
+	public ReservationViewPageData(Reservation res, Branch b, Court c, ArrayList<Rental> rList) {
 		super();
 		this.res = res;
 		this.b = b;
 		this.c = c;
-		this.r = r;
+		this.rList = rList;
 	}
 	public Reservation getRes() {
 		return res;
@@ -37,11 +39,10 @@ public class ReservationViewPageData {
 	public void setC(Court c) {
 		this.c = c;
 	}
-	public Rental getR() {
-		return r;
+	public ArrayList<Rental> getrList() {
+		return rList;
 	}
-	public void setR(Rental r) {
-		this.r = r;
+	public void setrList(ArrayList<Rental> rList) {
+		this.rList = rList;
 	}
-
 }
