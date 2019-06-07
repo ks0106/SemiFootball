@@ -11,7 +11,8 @@
 	$(document).ready(function(){
 		var id = '${memberId}';
 		var name = '${memberName}';
-		var resNo = ${resNo};
+		var resNo = '${resNo}';
+		$('#resNo').val(resNo);
 		var price = ${allCost};
 		var d = new Date();
 		var date = d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
@@ -32,7 +33,6 @@
 				$('#paymentId').val(info1);
 				$('#paymentNum').val(info3);
 				$('#paymentDate').val(info4);
-				$('#resNo').val(resNo);
 				$('#paymentSuccess').submit();
 			}else{
 				alert("결제가 취소되었습니다.");
