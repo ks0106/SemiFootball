@@ -100,10 +100,33 @@
       </div>
    </div>
    <!-- 섹션 -->
-   <section>
-   		<img src="/img/headerlogo.png">
-   </section>
+   <div id="main_img">
+   		<img src="/img/header_logo.png"/>
+   		<p>관리자 페이지 입니다!!</p>
+   </div>
 </body>
+<style>
+	#main_img{
+		position:relative;
+		width: 100%;
+		height: 700px;
+	}
+	#main_img img{
+		position:absolute;
+        width:300px; height:300px;
+        opacity: 0.5;
+        margin:auto;
+        top:0; bottom:0; left:0; right:0;
+	}
+	#main_img p{
+		position:absolute;
+        width:320px; height:0px;
+        margin:auto;
+        top:500px; bottom:0; left:0; right:0;
+        font-size: 30px;
+        font-weight: bolder;
+	}
+</style>
 <script>
    $(document).ready(function(){
       //헤더 영역 사이즈

@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-<style>
 	.menu_bar{height:150px; width: 100%;}
 	#menu{
 		margin: 0; padding: 0; 
@@ -70,4 +69,6 @@
 		left: 10%;
 		top: 120px;
 	}
-</style>
+	#insec{
+		height: 1000px;
+	}

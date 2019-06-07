@@ -65,8 +65,7 @@
 					<br>
 					<br>
 					<table class="table table-bordered">
-						<input type="hidden" name="noticeNo"
-							value="<%=nv.getNoticeNo() %>">
+						<input type="hidden" name="noticeNo" value="<%=nv.getNoticeNo() %>">
 						<tr>
 							<th colspan="2"
 								style="font-size: 20px; font-weight: bold; text-align: center;">공지사항수정</th>
@@ -94,7 +93,6 @@
 									<button type="submit" class="btn btn-outline-primary"
 										style="color: gray;">수정하기</button>
 									<button type="reset" class="btn" style="color: gray;">취소</button>
-									</a>
 								</center>
 							</th>
 						</tr>
