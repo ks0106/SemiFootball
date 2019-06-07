@@ -15,6 +15,69 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
+	.side_nav{
+		margin:5px;
+		color:silver;
+	}
+	.side_nav a{
+		text-decoration:none;
+		color:silver;
+		font-size:16px;
+	}
+	#side_menu1{
+		display:block;
+	}
+	#side_pr_menu{
+		list-style-type:square;
+		padding:0;
+		margin:0;
+		margin-left:20px;
+		display:none;
+	}
+	#mv{
+		background-image: url("/img/ground1.png");
+	}
+	
+	.content-header{
+		color:#403d3f;
+		font-size: 40px;
+		margin-bottom:20px;
+		margin-top: 0px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.underline{
+		margin:0 auto;
+		width:7%;
+		text-align:center;
+		border-top:2px solid #bfc4cc;
+		margin-bottom: 50px;
+		margin-top: 20px;
+	}
+	#form-cont{
+		margin: 0 auto;
+		width: 80%;
+	}
+	#input-table{
+		text-align: center;
+		width: 90%;
+		margin-top: 50px;
+		margin: 0 auto;
+		border-collapse: collapse;
+		border-top: 3px solid green;
+		border-bottom: 3px solid green;
+	}
+	.th{
+		width: 25%;
+		padding: 20px;
+		font-size: 30px;
+	}
+	.td{
+		width: 25%;
+		padding: 20px;
+		font-size: 30px;
+		text-align: left;
+	}
 </style>
 <script>
 	$(document).ready(function(){
@@ -44,307 +107,111 @@
 			$(this).siblings('li').css("color","silver");
 			$(this).siblings('li').children('a').css("color","silver");
 		});
-		$('#side_menu1').click(function(){
-			location.href="/reservation";
-		});
-		$('#side_menu2').click(function(){
-			location.href="/reservationView";
-		});
 	});
 </script>
-<style>
-	.side_nav{
-		margin:5px;
-		color:silver;
-	}
-	.side_nav a{
-		text-decoration:none;
-		color:silver;
-		font-size:16px;
-	}
-	#side_menu1{
-		display:block;
-	}
-	#side_pr_menu{
-		list-style-type:square;
-		padding:0;
-		margin:0;
-		margin-left:20px;
-		display:none;
-	}
-	#mv{
-		background-image: url("/img/ground1.png");
-	}
-</style>
-<style>
-	.side_nav{
-		margin:5px;
-		color:silver;
-	}
-	.side_nav a{
-		text-decoration:none;
-		color:silver;
-		font-size:16px;
-	}
-	#side_menu1{
-		display:block;
-	}
-	#side_pr_menu{
-		list-style-type:square;
-		padding:0;
-		margin:0;
-		margin-left:20px;
-		display:none;
-	}
-	.insertLeagueBtn{
-		width:200px;
-		height: 50px;
-		color:teal;
-		border:none;
-		background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
-	}
-	.th{
-		width: 20%;
-		border-bottom: 1px solid gray;
-		padding-top : 10px;
-		padding-bottom: 10px;
-	}
-	.td{
-		padding: 16px;
-		border-bottom: 1px solid #d5d8dd;
-		height: 21px;
-		font-size: 18px;
-		line-height: 21px;
-	}
-	#imgView:hover{
-		background-color: #F2F2F2;
-		cursor: pointer;
-	}
-		#top1{
-		position:absolute;
-		width: 150px;
-		height: 150px;
-		border: 1px solid;
-		top: 1%;
-		left: 44%;
-	}
-	#top2{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 28%;
-		left: 19%;
-	}
-	#top3{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 28%;
-		left: 72%;
-	}
-	#top4{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 50%;
-		left: 6%;
-	}
-	#top5{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 50%;
-		left: 32%;
-	}
-	#top6{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 50%;
-		left: 59%;
-	}
-	#top7{
-	position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 50%;
-		left: 85%;
-	}
-	#top8{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 74%;
-		left: -1%;
-	}
-	#top9{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 74%;
-		left: 13%;
-	}
-	#top10{
-	position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 74%;
-		left: 26%;
-	}
-	#top11{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 74%;
-		left: 39%;
-	}
-	#top12{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 74%;
-		left: 52%;
-	}
-	#top13{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 74%;
-		left: 65%;
-	}
-	#top14{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 74%;
-		left: 78%;
-	}
-	#top15{
-		position:absolute;
-		width: 120px;
-		height: 110px;
-		border: 1px solid;
-		top: 74%;
-		left: 91%;
-	}
-	.lose{
-		width:100%;
-		height:100%;
-		background-color:black;
-		position:absolute;
-		top:0%;
-		left: 0%;
-		opacity: 0.5;
-		z-index: 2;
-	}
-	#content{
-		display: none;
-	}
-</style>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">
-		대관
+		매치
 	</div>
 	<section>
 	<!-- 내용 작성 -->
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
-		<!-- 컨텐츠 -->
-		<div style="width:85%;background-color:white;margin:0 auto;">
-		<!-- 컨텐츠 사이드 메뉴 -->
-			<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
-				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">대관예약/확인</div>
-				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu1" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대관예약</a>
+		<!-- center -->
+		<div style="width: 85%; background-color: white; margin: 0 auto;">
+			<!-- 컨텐츠 사이드 메뉴 -->
+			<div
+				style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+				<div
+					style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">대관예약/확인</div>
+				<hr
+					style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
+				<div style="margin-bottom: 15px;">
+					<a class="side_a" id="side_menu1"
+						style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">대관예약</a>
 				</div>
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">예약확인</a>
+				<div style="margin-bottom: 15px;">
+					<a class="side_a" id="side_menu2"
+						style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">예약확인</a>
 				</div>
-			</div><!-- 사이드 메뉴 종료 -->			
-		<!-- 컨텐츠 본문 -->
-   		<!-- 컨텐츠 본문 타이틀 -->
-			<div style="width:78%;height:120vh;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">예약확인</div>
-				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
-		<!-- 컨텐츠 지점선택 파티션 -->
-				<div  style="width:90%;margin:0 auto;margin-bottom:50px;">
-				<div id="table-wrapper1" style="margin-bottom: 100px;text-align: center;">
-					<p style="font-size: 30px; font-weight: bold;">주문장 목록</p>
-					<table style="margin-top: 50px; border-top: 3px solid #2c3c57;border-bottom:3px solid #2c3c57; width: 80%; margin: 0 auto;border-collapse: collapse;">
-						<tr>
-							<th class="th">주문번호</th>
-							<th class="th" colspan="2">날짜</th>
-							<th class="th">금액</th>
-							<th class="th">결제</th>
-						</tr>
-						<c:if test="${!empty list}">
-							<c:forEach items="${list}" var="r" >
-								<tr id="imgView" onclick="imgView('')">
-									<td class="td">${r.resNo}</td>
-									<td class="td" colspan="2">${r.resDate}</td>
-									<td class="td">${r.resTotalCost}</td>
-									<c:if test="${r.resPayment == 1}">
-										<td class="td">결제완료</td>
-									</c:if>
-								</tr>
-							</c:forEach>
-						</c:if>
-					</table>
-				</div>			
-					<!-- 페이지 네비 -->
-						<div id="pageNavi" style="width:80%; margin:0 auto; margin-bottom: 100px;">${mpd.pageNavi }</div>
-				</div>
-				<div id="content">
-				<!-- 타이틀자리 -->
-				<div id="title-position" style="margin: 0 auto;width: 60%;text-align: center; font-size: 30px;"></div>
-				<!-- 포스터자리 -->
-				<div  style="width:700px;margin:0 auto;margin-bottom:50px;">
-					<img id="poster"  width="100%" height="100%">
-				</div>
-				<!-- 대진표 배경 div  -->
-					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
-							<div id="top1"><img  style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top2" class="win2"><img  style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top3" class="win2"><img  style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top4" class="win4-1 win4"><img  style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top5" class="win4-1 win4"><img  style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top6" class="win4-1 win4"><img  style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top7" class="win4-1 win4"><img  style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top8" class="win8 win8-1"><img style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top9" class="win8 win8-1"><img style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top10" class="win8 win8-2"><img style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top11" class="win8 win8-2"><img style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top12" class="win8 win8-3"><img style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top13" class="win8 win8-3"><img style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top14" class="win8 win8-4"><img style="width: 100%;height: 100%;"><div></div></div>
-							<div id="top15" class="win8 win8-4"><img style="width: 100%;height: 100%;"><div></div></div>
+			</div>
+			<!-- 사이드 메뉴 종료 -->
+				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
+				<p class="content-header">용병지원</p>
+							<div class="underline"></div>
+				<form action="/matchApply" method="post">
+						<table id="input-table">
+							<tr>
+								<th class="th">지점</th>
+								<td class="td">
+									<select name="Bname" style="width: 300px;height:50px;">
+										<option value="">지점선택</option>
+										<option value="부천점">부천지점</option>
+										<option value="고양점">고양지점</option>
+										<option value="남양주점">남양주지점</option>
+										<option value="성남점">성남지점</option>
+										<option value="수원점">수원지점</option>
+										<option value="안양점">안양지점</option>
+									</select>
+								</td>
+								<th class="th">구장</th>
+								<td class="td">
+									<select name="Cname" style="width: 300px;height:50px;">
+										<option value="">구장선택</option>
+										<option value="A">A구장</option>
+										<option value="B">B구장</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th class="th">신청자</th>
+								<td class="td"><input type="text" name="name" style="width: 297px;height: 40px;"></td>
+								<th class="th">연락처</th>
+								<td class="td"><input type="text" name="phone1" style="width: 88px;height: 40px;">-<input type="text" name="phone2" style="width: 88px;height: 40px;">-<input type="text" name="phone3" style="width: 88px;height: 40px;"></td>
+							</tr>
+							<tr>
+								<th class="th">매치일정</th>
+								<td class="td"><input type="text" name="matchDate" style="width: 297px;height: 40px;"></td>
+								<th class="th">시간선택</th>
+								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
+							</tr>
+							<tr>
+								<th class="th">유니폼 색상</th>
+								<td class="td">
+									<input type="text" name="phone1" style="width: 80px;height: 40px;" placeholder="상의">-
+									<input type="text" name="phone2" style="width: 80px;height: 40px;" placeholder="하의">-
+									<input type="text" name="phone3" style="width: 80px;height: 40px;" placeholder="스타킹">
+								</td>
+								<th class="th">팀수준</th>
+								<td class="td"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
+							</tr>
+								<th class="th">매치일정</th>
+								<td class="td"><input type="text" name="matchDate" style="width: 297px;height: 40px;"></td>
+								<th class="th">시간선택</th>
+								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
+							</tr>
+							<tr>
+								<th class="th" colspan="1">마감여부</th>
+								<td class="td" colspan="3"><input type="text" name="matchAble" style="width: 297px;height: 40px;"></td>
+							</tr>
+							<tr>
+								<th colspan="4" class="th" >메모</th>
+							</tr>
+							<tr>
+								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" name="memo" style="resize: none;text-align: center;"></textarea> </td>
+							</tr>
+						</table>
+						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>
+					</form>
 					
-				</div>
-			
+					
+					<div style="width:100%;height:100px;"></div>
+				<div>
 			</div>
 		</div>
-	
-				
-			</div>
-		</div>
-	
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

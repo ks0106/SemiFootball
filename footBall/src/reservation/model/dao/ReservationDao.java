@@ -499,25 +499,27 @@ public class ReservationDao {
 		return c;
 	}
 	
-	public Rental reservationRentalView(Connection conn, int resNo) throws SQLException {
-		Rental r = null;
+	public ArrayList<Rental> reservationRentalView(Connection conn, int resNo) throws SQLException {
+		ArrayList<Rental> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("reservationRentalView");
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, resNo);
 		rset = pstmt.executeQuery();
-		if(rset.next()) {
-			r = new Rental();
+		list = new ArrayList<Rental>();
+		while(rset.next()) {
+			Rental r = new Rental();
 			r.setRentalNo(rset.getInt("rental_no"));
 			r.setRentalId(rset.getString("rental_id"));
 			r.setRentalResNo(rset.getInt("rental_res_no"));
 			r.setRentalGNo(rset.getInt("rental_g_no"));
 			r.setRentalGAmount(rset.getInt("rental_g_amount"));
+			list.add(r);
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
-		return r;
+		return list;
 	}
 
 }
