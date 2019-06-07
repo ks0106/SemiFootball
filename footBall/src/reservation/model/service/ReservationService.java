@@ -8,8 +8,10 @@ import branch.model.vo.Branch;
 import common.JDBCTemplate;
 import court.model.vo.Court;
 import goods.model.vo.Goods;
+import rental.model.vo.Rental;
 import reservation.model.dao.ReservationDao;
 import reservation.model.vo.Reservation;
+import reservation.model.vo.ReservationViewPageData;
 import schedule.model.vo.Schedule;
 
 public class ReservationService {
@@ -156,5 +158,15 @@ public class ReservationService {
 		ArrayList<Reservation> list = new ReservationDao().reservationViewList(conn, memberId);
 		JDBCTemplate.close(conn);
 		return list;
+	}
+	
+	public ReservationViewPageData reservationView(int resNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		Reservation res = new ReservationDao().reservationResView(conn, resNo);
+		Branch b = new ReservationDao().reservationBranch(conn, res.getResNo());
+		Court c = new ReservationDao().reservationCourtView(conn, res.getResCCode());
+		Rental r = new ReservationDao().reservationRentalView(conn, res.getResNo());
+		JDBCTemplate.close(conn);
+		return new ReservationViewPageData(res,b,c,r);
 	}
 }

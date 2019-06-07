@@ -340,7 +340,7 @@
 						</tr>
 						<c:if test="${!empty list}">
 							<c:forEach items="${list}" var="r">
-								<tr id="imgView" onclick="reservationView(${r.resNo});">
+								<tr id="imgView" onclick="reservationView('${r.resNo}');">
 									<td class="td"><span class="priamryNo">${r.resNo}</span></td>
 									<td class="td" colspan="2">${r.resDate}</td>
 									<td class="td">${r.resTotalCost}</td>
@@ -436,27 +436,7 @@
 	
 	<script>
 		function reservationView(resNo){
-			$.ajax({
-				url : "/reservationView.do",
-				type : "get",
-				data : {resNo:resNo},
-				success : function(data){
-					check = parseInt(data);
-					if(check == 0){
-						if(i == $('.reservationReceiptList').length){
-							payment(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
-							i = $('.reservationReceiptList').length + 1;
-						}
-					}else{
-						alert(startTime+"~"+endTime+" 타임이 마감되어 대관할 수 없습니다.");
-						$('.reservationReceiptList:eq('+i+')').remove();
-						i = $('.reservationReceiptList').length + 1;
-					}
-				},1000),
-				error : function(){
-					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
-				}
-			});
+			location.href = "/reservationView?resNo="+resNo;
 		}
 	
 	</script>
