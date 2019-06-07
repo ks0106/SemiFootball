@@ -289,18 +289,18 @@
 					<p style="font-size: 30px; font-weight: bold;">주문장 목록</p>
 					<table style="margin-top: 50px; border-top: 3px solid #2c3c57;border-bottom:3px solid #2c3c57; width: 80%; margin: 0 auto;border-collapse: collapse;">
 						<tr>
-							<th class="th">번호</th>
+							<th class="th">주문번호</th>
 							<th class="th" colspan="2">날짜</th>
 							<th class="th">금액</th>
 							<th class="th">결제</th>
 						</tr>
 						<c:if test="${!empty list}">
 							<c:forEach items="${list}" var="r" >
-								<tr id="imgView" onclick="imgView('${l.leagueNo}')">
+								<tr id="imgView" onclick="imgView('')">
 									<td class="td">${r.resNo}</td>
 									<td class="td" colspan="2">${r.resDate}</td>
 									<td class="td">${r.resTotalCost}</td>
-									<c:if test="${r.payment} == 1">
+									<c:if test="${r.resPayment == 1}">
 										<td class="td">결제완료</td>
 									</c:if>
 								</tr>

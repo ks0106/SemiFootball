@@ -19,20 +19,22 @@
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"></jsp:include>
 	<!-- 헤더 불러오기 -->
 	<div id="title">[관리자] 지점 관리</div>
-	<section id="insec" >
+	<section style="margin-top:120px;" >
 		<div class="content-container" style="top:0">
 			<div class="content-wrapper">
 				<table class="manageTable" border="1">
-					<tr><td colspan="9"><button id="btn-insert" onclick="location.href='/insertBranch'">지점 추가</button></td></tr>
+					<tr><td colspan="11"><button id="btn-insert" onclick="location.href='/insertBranch'">지점 추가</button></td></tr>
 					<tr>
-						<th>지점 번호</th><th>지점 이름</th><th>주 소</th><th>구장 정보</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
+						<th>지점 번호</th><th>지점 이름</th><th>주 소</th><th>구장이름</th><th>구장 타입</th><th>실내/실외</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
 					</tr>
 					<c:forEach items="${list }" var="bd" varStatus="index">
 						<tr>
 							<td>${bd.b.branchCode }</td>
 							<td>${bd.b.branchName }</td>
 							<td>${bd.b.branchAddr }</td>
-							<td>${bd.cd.c1 }<br>${bd.cd.c2 }<br>${bd.cd.c3 }<br></td>
+							<td>${bd.cd.c1 }<br>${bd.cd.c2 }<br>${bd.cd.c3 }</td>
+							<td>${bd.cd.t1 }<br>${bd.cd.t2 }<br>${bd.cd.t3 }</td>
+							<td>${bd.cd.i1 }<br>${bd.cd.i2 }<br>${bd.cd.i3 }</td>
 							<td>${bd.b.branchPhone }</td>
 							<td>${bd.b.branchTel }</td>
 							<td>

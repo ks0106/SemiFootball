@@ -271,6 +271,9 @@ function contentView(pageNum){
    		$(here).parent().parent().css('display','none');
    		$("#popup_mask").css('display','none');
    	}
+   	function matchApply(){
+   		location.href="/matchApply";
+   	}
 </script>
 </head>
 <body>

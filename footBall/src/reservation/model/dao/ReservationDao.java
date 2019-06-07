@@ -14,6 +14,7 @@ import branch.model.vo.Branch;
 import common.JDBCTemplate;
 import court.model.vo.Court;
 import goods.model.vo.Goods;
+import rental.model.vo.Rental;
 import reservation.model.vo.Reservation;
 import schedule.model.vo.Schedule;
 
@@ -181,6 +182,7 @@ public class ReservationDao {
 		if(rset.next()) {
 			count = rset.getInt("goods_count");
 		}
+		System.out.println("DAO검증 : "+result+" "+option+" "+bCode+" "+count);
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return count;
@@ -435,12 +437,89 @@ public class ReservationDao {
 			r.setResPaymentDate(rset.getString("res_payment_date"));
 			r.setResPayment(rset.getInt("res_payment"));
 			r.setResCancel(rset.getInt("res_cancel"));
+			r.setResBName(rset.getString("B_Name"));
+			r.setResCName(rset.getString("C_name"));
 			list.add(r);
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return list;
 	}
+	
+	public Reservation reservationResView(Connection conn, int resNo) throws SQLException {
+		Reservation res = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationResView");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resNo);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			res = new Reservation();
+			res.setResNo(rset.getInt("res_no"));
+			res.setResBCode(rset.getInt("res_b_code"));
+			res.setResCCode(rset.getInt("res_c_code"));
+			res.setResMEmail(rset.getString("res_m_email"));
+			res.setResMPhone(rset.getString("res_m_phone"));
+			res.setResDate(rset.getDate("res_date"));
+			res.setResTime(rset.getString("res_time"));
+			res.setResRentalNo(rset.getInt("res_rental_no"));
+			res.setResTotalCost(rset.getInt("res_total_cost"));
+			res.setResOrderDate(rset.getDate("res_order_date"));
+			res.setResPaymentId(rset.getString("res_payment_id"));
+			res.setResPaymentNum(rset.getString("res_payment_num"));
+			res.setResPaymentDate(rset.getString("res_payment_date"));
+			res.setResPayment(rset.getInt("res_payment"));
+			res.setResCancel(rset.getInt("res_cancel"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return res;
+	}
+	
+	public Court reservationCourtView(Connection conn, int cCode) throws SQLException {
+		Court c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationCourtView");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, cCode);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			c = new Court();
+			c.setCourtBCode(rset.getInt("court_b_code"));
+			c.setCourtCCode(rset.getInt("court_c_code"));
+			c.setCourtName(rset.getString("court_name"));
+			c.setCourtType(rset.getString("court_type"));
+			c.setCourtStatus(rset.getInt("court_status"));
+			c.setCourtIndoor(rset.getString("court_indoor"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return c;
+	}
+	
+	public Rental reservationRentalView(Connection conn, int resNo) throws SQLException {
+		Rental r = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationRentalView");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resNo);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			r = new Rental();
+			r.setRentalNo(rset.getInt("rental_no"));
+			r.setRentalId(rset.getString("rental_id"));
+			r.setRentalResNo(rset.getInt("rental_res_no"));
+			r.setRentalGNo(rset.getInt("rental_g_no"));
+			r.setRentalGAmount(rset.getInt("rental_g_amount"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return r;
+	}
 
 }
+
  

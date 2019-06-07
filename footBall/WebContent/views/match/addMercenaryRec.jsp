@@ -192,13 +192,13 @@
 							</tr>
 							<tr>
 								<th class="th" colspan="1">마감여부</th>
-								<td class="td" colspan="3"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
+								<td class="td" colspan="3"><input type="text" name="matchAble" style="width: 297px;height: 40px;"></td>
 							</tr>
 							<tr>
 								<th colspan="4" class="th" >메모</th>
 							</tr>
 							<tr>
-								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" style="resize: none;text-align: center;"></textarea> </td>
+								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" name="memo" style="resize: none;text-align: center;"></textarea> </td>
 							</tr>
 						</table>
 						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>
