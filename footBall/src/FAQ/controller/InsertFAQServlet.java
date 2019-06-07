@@ -31,7 +31,7 @@ public class InsertFAQServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String faqTitle = request.getParameter("faqtitle");
-		String faqContent = request.getParameter("faqcontent");
+		String faqContent = request.getParameter("faqcontent").replaceAll("\n", "<br>");
 		FAQVo fv = new FAQVo(0, faqTitle, faqContent);
 		int result = new FAQService().insert(fv);
 		if(result>0) {

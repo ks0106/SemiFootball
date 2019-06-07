@@ -33,7 +33,7 @@ public class NoticeUpdateEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		String noticeTitle = request.getParameter("noticeTitle");
-		String noticeContent = request.getParameter("noticeContent");
+		String noticeContent = request.getParameter("noticeContent").replaceAll("\n", "<br>");
 		NoticeVo nv = new NoticeVo(noticeNo, noticeTitle, null, null, noticeContent, 0, 0);
 		int result = new NoticeService().noticeUpdate(nv);
 		if(result>0) {
