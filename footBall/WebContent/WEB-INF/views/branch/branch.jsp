@@ -145,7 +145,14 @@
 			map : map
 		});
 
+		/* 공백문자 변환함수 */
+        function replaceAll(sValue, param1, param2) {
+        	 return sValue.split(param1).join(param2);
+        }
+		
 		$(function(){
+			/* 관리자 확인 후 버튼 노출 */
+			
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
 			$('.content-wrapper:even ul').css('padding','2px');
@@ -202,10 +209,6 @@
 					type : "get",
 					data : {branchName : branchName},
 					success :  function(data) {
-						/* 공백문자 변환함수 선언 */
-		                function replaceAll(sValue, param1, param2) {
-		                	 return sValue.split(param1).join(param2);
-		                }
 		                /* selvlet으로부터 변수받아옴 */
 						var branchName = decodeURIComponent(data.branchName);
 						var branchAddr = decodeURIComponent(data.branchAddr);
