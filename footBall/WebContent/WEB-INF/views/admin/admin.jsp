@@ -100,10 +100,10 @@
       </div>
    </div>
    <!-- 섹션 -->
-   <div id="main_img">
-   		<img src="/img/header_logo.png"/>
+   <section align="center" id="main_img">
+   		<img src="/img/header_logo.png">
    		<p>관리자 페이지 입니다!!</p>
-   </div>
+   </section>
 </body>
 <style>
 	#main_img{
@@ -120,7 +120,7 @@
 	}
 	#main_img p{
 		position:absolute;
-        width:320px; height:0px;
+        width:330px; height:0px;
         margin:auto;
         top:500px; bottom:0; left:0; right:0;
         font-size: 30px;

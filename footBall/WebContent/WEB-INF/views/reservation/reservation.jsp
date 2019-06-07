@@ -48,7 +48,7 @@
 			location.href="/reservation";
 		});
 		$('#side_menu2').click(function(){
-			location.href="/reservationView";
+			location.href="/reservationViewList";
 		});
 	});
 	function reservationCheck(){

@@ -38,12 +38,7 @@ public class ReservationPaymentUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
-		if(m == null) {
-			String msg = "잘못된 접근입니다.";
-			response.setContentType("application/json");
-			response.setCharacterEncoding("utf-8");
-			new Gson().toJson(msg,response.getWriter());			
-		}else {
+		if(m != null) {
 			String memberId = m.getId();
 			String paymentId = request.getParameter("paymentId");
 			String paymentNum = request.getParameter("paymentNum");
@@ -52,22 +47,23 @@ public class ReservationPaymentUpdateServlet extends HttpServlet {
 			//스케쥴 처리용 변수들
 			String resDate = request.getParameter("resDate");
 			int cCode = Integer.parseInt(request.getParameter("cCode"));
-			System.out.println(resDate);
-			System.out.println(cCode);
-			String startTime = request.getParameter("startTime");
-			String endTime = request.getParameter("endTime");		
+			String[] startTime = request.getParameterValues("startTime");
+			String[] endTime = request.getParameterValues("endTime");		
 			try {
 				//스케쥴 불가로 변경
 				int status = new ReservationService().reservationScheduleStatus(resDate,cCode,startTime,endTime);
 				//주문장 추가 및 결제 체크
 				int result = new ReservationService().reservationPaymentUpdate(memberId,paymentId,paymentNum,paymentDate,resNo);
-				if(result > 0) {
-					RequestDispatcher rd = request.getRequestDispatcher("/reservationView");
-					rd.forward(request, response);
-				}
+				RequestDispatcher rd = request.getRequestDispatcher("/reservationViewList");
+				rd.forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			request.setAttribute("msg", "로그인을 해주세요.");
+			request.setAttribute("loc", "/views/login/login.jsp");
+			rd.forward(request, response);
 		}
 	}
 

@@ -124,13 +124,16 @@ public class ReservationService {
 		return resNo;
 	}
 	
-	public int reservationScheduleStatus(String resDate,int cCode,String startTime,String endTime) throws SQLException {
+	public int reservationScheduleStatus(String resDate,int cCode,String[] startTime,String[] endTime) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new ReservationDao().reservationScheduleStatus(conn, resDate, cCode, startTime, endTime);
-		if(result > 0) {
-			conn.commit();
-		}else {
-			conn.rollback();
+		int result = 0;
+		for(int i=0;i<startTime.length;i++) {
+			result = new ReservationDao().reservationScheduleStatus(conn, resDate, cCode, startTime[i], endTime[i]);
+			if(result > 0) {
+				conn.commit();
+			}else {
+				conn.rollback();
+			}
 		}
 		JDBCTemplate.close(conn);
 		return result;
@@ -148,7 +151,7 @@ public class ReservationService {
 		return result;
 	}
 	
-	public ArrayList<Reservation> reservationView(String memberId) throws SQLException{
+	public ArrayList<Reservation> reservationViewList(String memberId) throws SQLException{
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Reservation> list = new ReservationDao().reservationViewList(conn, memberId);
 		JDBCTemplate.close(conn);
