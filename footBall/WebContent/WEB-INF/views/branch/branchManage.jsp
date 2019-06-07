@@ -32,7 +32,7 @@
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"></jsp:include>
 	<!-- 헤더 불러오기 -->
 	<div id="title">[관리자] 지점 관리</div>
-	<section style="padding-top: 120px; height: 1000px;" >
+	<section id="insec" >
 		<div class="content-container" style="top:0">
 			<div class="content-wrapper">
 				<table class="manageTable" border="1">
