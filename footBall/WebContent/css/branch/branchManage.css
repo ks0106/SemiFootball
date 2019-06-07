@@ -13,6 +13,7 @@
 	#btn-insert {
 		position:relative;
 		float: right;
+		right: 15px;
 	}
 	.identifier {
 		text-align:left;

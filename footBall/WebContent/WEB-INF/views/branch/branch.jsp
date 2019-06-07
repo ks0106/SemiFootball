@@ -9,7 +9,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지점현황</title>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wsxy6r6myr&submodules=geocoder"></script> <!-- 네이버 api 추가 -->
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cd02i4r7os&submodules=geocoder"></script> <!-- 네이버 api 추가 -->
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
@@ -237,9 +237,10 @@
 							switch(courtName) {
 								case 'A' : isIndoor="실외"; size = "42*25(m)"; cost="120,000￦";
 								break;
-								case 'B' : isIndoorr="실외"; size = "40*22.5(m)"; cost="100,000￦";
+								case 'B' : isIndoor="실외"; size = "40*22.5(m)"; cost="100,000￦";
 								break;
 								case 'C' : isIndoor="실내"; size = "38*20(m)"; cost="80,000￦";
+								break;
 							}
 							resultText += "<tr><td>"+courtName+"</td>"+"<td>"+isIndoor+"</td><td>"+size+"</td><td>"+cost+"</td></tr>";
 						}
