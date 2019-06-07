@@ -12,7 +12,10 @@
 		var id = '${memberId}';
 		var name = '${memberName}';
 		var resNo = '${resNo}';
-		$('#resNo').val(resNo);
+		var resDate = '${resDate}';
+		var cCode = ${cCode};
+		var startTime = '${startTime}';
+		var endTime = '${endTime}';
 		var price = ${allCost};
 		var d = new Date();
 		var date = d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
@@ -26,13 +29,18 @@
 		},function(rsp){
 			if(rsp.success){
 				alert("결제가 완료되었습니다.");
-				var info1 = "고유ID : "+rsp.imp_uid;
-				var info2 = "결제 금액 : "+rsp.paid_amount;
-				var info3 = "카드 승인 번호 : "+rsp.apply_num;
-				var info4 = "결제 일시 : "+d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
+				var info1 = rsp.imp_uid;		//고유ID
+				var info2 = rsp.paid_amount;	//결제금액
+				var info3 = rsp.apply_num;		//카드넘버
+				var info4 = d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();		//결제일시
 				$('#paymentId').val(info1);
 				$('#paymentNum').val(info3);
 				$('#paymentDate').val(info4);
+				$('#resNo').val(resNo);
+				$('#resDate').val(resDate);
+				$('#cCode').val(cCode);
+				$('#startTime').val(startTime);
+				$('#endTime').val(endTime);
 				$('#paymentSuccess').submit();
 			}else{
 				alert("결제가 취소되었습니다.");
@@ -55,10 +63,14 @@
 </style>
 <body>
 	<form id="paymentSuccess" action="/reservationPaymentUpdate" method="post">
-		<input id="paymentId" type="text">
-		<input id="paymentNum" type="text">
-		<input id="paymentDate" type="text">
-		<input id="resNo" type="text">
+		<input id="paymentId" name="paymentId" type="text">
+		<input id="paymentNum" name="paymentNum" type="text">
+		<input id="paymentDate" name="paymentDate" type="text">
+		<input id="resNo" name="resNo" type="text">
+		<input id="resDate" name="resDate" type="text">
+		<input id="cCode" name="cCode" type="text">
+		<input id="startTime" name="startTime" type="text">
+		<input id="endTime" name="endTime" type="text">
 	</form>
 
 

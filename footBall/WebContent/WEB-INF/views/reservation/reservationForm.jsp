@@ -49,6 +49,12 @@
 				alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 			}
 		});
+		$('#side_menu1').click(function(){
+			location.href="/reservation";
+		});
+		$('#side_menu2').click(function(){
+			location.href="/reservationView";
+		});	
 	});
 </script>
 <style>
@@ -946,7 +952,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				success : function(data){
 					console.log(data);
 					alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
-					location.href="/reservationPaymentPage?allCost="+allCost+"&resNo="+data;
+					location.href="/reservationPaymentPage?allCost="+allCost+"&resNo="+data+"&resDate="+resDate+"&cCode="+cCode+"&resStartTime="+resStartTime+"&resEndTime="+resEndTime;
 				},
 				error : function(){
 					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
