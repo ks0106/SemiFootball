@@ -100,10 +100,10 @@
       </div>
    </div>
    <!-- 섹션 -->
-   <div id="main_img">
-   		<img src="/img/header_logo.png"/>
+   <section>
+   		<img src="/img/headerlogo.png">
    		<p>관리자 페이지 입니다!!</p>
-   </div>
+   </section>
 </body>
 <style>
 	#main_img{

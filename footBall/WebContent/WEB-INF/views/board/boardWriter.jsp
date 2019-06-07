@@ -64,7 +64,7 @@
 					</tr>
 					<tr>
 						<th class="tth">내용</th>
-						<td><!--  style="resize: none;" -->
+						<td>
 							<textarea name="boardContent" class="form-controll" rows="3" cols="40" id="con"></textarea>
 						</td>
 					</tr>

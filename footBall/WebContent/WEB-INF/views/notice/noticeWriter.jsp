@@ -14,7 +14,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/common/admin.css">
-
+<link rel="stylesheet" href="/css/notice/notice.css">
 <title>공지사항작성</title>
 </head>
 <style>
@@ -40,46 +40,15 @@
 	width: 60%;
 }
 
-#full {
-	height: 800px;
-}
 </style>
 <body>
 	<!-- 헤더 불러오기 -->
-	<jsp:include page="/WEB-INF/views/admin/adminheader.jsp" />
+	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
 
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#ground1')
-									.append(
-											'<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-							$('#ground2')
-									.append(
-											'<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-							$('#ground3')
-									.append(
-											'<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-							$('#ground4')
-									.append(
-											'<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-							$('#ground5')
-									.append(
-											'<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
-						});
-	</script>
 
 	<div id="title">고객센터</div>
-	<div id="full">
-		<div class="tab-container">
-			<ul class="tab-list">
-				<li class="selected list-li"><a href="/notice" class="munebar">공지사항</a></li>
-				<li class="list-li"><a href="/fAQ" class="munebar">FAQ</a></li>
-				<li class="list-li"><a href="/boardList" class="munebar">자유게시판</a></li>
-			</ul>
-			<section>
-
+			<section id="insec">
+<br><br><br><br>
 			<div class="table-wrapper"
 				style="text-align: center; width: 80%; margin: 0 auto;">
 				<form action="/noticeInsert" method="post">
@@ -88,7 +57,7 @@
 						<table class="table table-bordered" id="noticewriter">
 							<tr>
 								<th colspan="2"
-									style="font-size: 20px; font-weight: bold; text-align: center;">공지사항
+									style="font-size: 20px; font-weight: bold; text-align: center; background:lightgray;">공지사항
 									작성</th>
 							</tr>
 							<tr>
@@ -121,11 +90,7 @@
 					</center>
 				</form>
 			</div>
-
 			</section>
-		</div>
-	</div>
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 </body>
 </html>
