@@ -40,15 +40,28 @@
 	.insertLeagueBtn{
 		width:200px;
 		height: 50px;
-		color:teal;
+		color:#ebebeb;
 		border:none;
-		background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+		background-color: #757575;
+		font-size:14px;
+		
 	}
 	.th{
 		width: 20%;
 		border-bottom: 1px solid gray;
 		padding-top : 10px;
 		padding-bottom: 10px;
+	}
+	.td{
+		padding: 16px;
+		border-bottom: 1px solid #d5d8dd;
+		height: 21px;
+		font-size: 18px;
+		line-height: 21px;
+	}
+	#imgView:hover{
+		background-color: #F2F2F2;
+		cursor: pointer;
 	}
 </style>
 </head>
@@ -74,6 +87,9 @@
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
 				</div>
+				<div style="margin-bottom:15px;">
+					<a class="side_a selected" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난대회결과</a>
+				</div>
 				<c:if test="${sessionScope.member.id eq'admin' }">
 					<div style="margin-bottom:15px;">
 						<a class="side_a " id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
@@ -89,31 +105,32 @@
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:700px;margin:0 auto;margin-bottom:50px;">
-					<img src="/img/poster.png" width="100%" height="100%">
+				<c:choose>
+				<c:when test="${ll !=null }">
+					<img src="/img/league/${ll.filepath }" width="100%" height="100%">
+				</c:when>
+				<c:when test="${ll ==null }">
+					<div style="margin: 0 auto;text-align: center;width: 80%;font-size: 35px;">현재 진행중인 대회가 없습니다.</div>
+				</c:when>
+				</c:choose>
 				</div>
 				<div id="btn-wrapper" style="margin: 0 auto; width: 100%; text-align: center;margin-bottom:100px;">
+				<c:choose>
+				<c:when test="${ll !=null }">
 					<button type="button" class="insertLeagueBtn" onclick="insertLeague();" id="addTeam">참가 신청</button>
 					<button type="button" class="insertLeagueBtn" onclick="teamView();" >참가 팀 보기</button>
+				</c:when>
+				</c:choose>
 					
 					<c:if test="${sessionScope.member.id eq 'admin' }">
 					<div style="margin-top: 50px;">
 						<button type="button" onclick="addLeague();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">공지추가</button>
+						<button type="button" onclick="downLeague();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">공지내리기</button>
 					</div>
 					</c:if>
 					
 				</div>			
-				<div id="table-wrapper1" style="margin-bottom: 300px;text-align: center;">
-					<p style="font-size: 30px; font-weight: bold;">지난 공지</p>
-					<table style="margin-top: 50px; border-top: 3px solid green;border-bottom:3px solid green; width: 80%; margin: 0 auto;border-collapse: collapse;">
-						<tr>
-							<th class="th">번호</th>
-							<th class="th" colspan="2">제목</th>
-							<th class="th">작성자</th>
-							<th class="th">등록일</th>
-						</tr>
-						
-					</table>
-				</div>
+				
 			</div>
 		</div>
 	
@@ -135,6 +152,7 @@
 			location.href="/viewGameTable"
 		});
 		$("#side_menu3").click(function(){
+				location.href="/afterLeague"
 		});
 		$("#side_menu4").click(function(){
 			location.href="/gameTable"
@@ -145,13 +163,15 @@
    			dataType:"json",
    			success: function(data){
 				if(data<8){
-					$("#addTeam").html("참가 신청.")
+					$("#addTeam").html("참가 신청")
 				}else{
 					$("#addTeam").html("신청이 마감되었습니다.")
 					$("#addTeam").prop("disabled", true);
 				}
    			}
 		}); 
+ 		if(${sessionScope.member != null}){
+ 			
  		$.ajax({
    			url:"/sendId",
    			type:"get",
@@ -165,6 +185,7 @@
    					}
 				}
 		});
+ 		}
 	});
 		function removeTeam(){
 			if(confirm("대회신청을 취소하시겠습니까?")){
@@ -178,7 +199,7 @@
 									location.href="/removeTeam?teamEmail=${sessionScope.member.id}&filepath="+data[i].filepath;
 								}
 						}	   					
-					}
+		   			}
 				});
 			}
 		}
@@ -195,6 +216,12 @@
 		function teamView(){
 			location.href="/viewGameTable#teamViewpoint"
 		}
+		function downLeague(){
+			if(confirm("현재 공지를 마감하시겠습니까?")){
+				location.href="/downLeague?leagueNo=${ll.leagueNo}&leagueTitle=${ll.leagueTitle}&leagueWriter=${ll.leagueWriter}&filepath=${ll.filepath}";
+			}
+		}
+		
 		
 </script>
 </body>

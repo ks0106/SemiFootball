@@ -91,7 +91,7 @@
 	.th{
 		width: 25%;
 		padding: 20px;
-		font-size: 30px;
+		font-size: 17px;
 	}
 	.td{
 		width: 25%;
@@ -185,10 +185,8 @@
 								<td class="td" colspan="3"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
 							</tr>
 							<tr>
-								<th colspan="4" class="th" >메모</th>
-							</tr>
-							<tr>
-								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" style="resize: none;text-align: center;"></textarea> </td>
+								<th colspan="1" class="th" >메모</th>
+								<td class="th" colspan="3" style="text-align: left;"><textarea rows="3" cols="100" style="resize: none;text-align: center;"></textarea> </td>
 							</tr>
 						</table>
 						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>

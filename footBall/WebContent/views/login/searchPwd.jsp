@@ -73,8 +73,8 @@
         		</tr>
         	</table>
         </form>
-        	<input type="text" id="randomNum" value="1"> <!--ajax로 servlet호출한뒤 servlet에서 받은 난수 저장용 -->
-        	<input type="text" id="randomNum1" value="2"> <!--메일에서 jsp호출해서 웹소켓 에서 받은 난수 저장용 -->
+        	<input type="hidden" id="randomNum" value="1"> <!--ajax로 servlet호출한뒤 servlet에서 받은 난수 저장용 -->
+        	<input type="hidden" id="randomNum1" value="2"> <!--메일에서 jsp호출해서 웹소켓 에서 받은 난수 저장용 -->
         	
         <!--  <fieldset>
 		<textarea rows="10" cols="50" readonly="true" id="messageWindow"></textarea>
@@ -128,7 +128,7 @@
 			var repwd1 = $("#repwd1").val();
 		});
 	</script>
-	<script type="text/javascript">
+	<script type="text/javascript"> //비밀번호 재변경 정규식
 		var result = [false,false];
 		$(document).ready(function () {
 			$("#repwd").blur(function () {
@@ -182,7 +182,7 @@
 	        });
 		});
 	</script>
-	<script type="text/javascript">
+	<script type="text/javascript"> //웹소켓 연결 
 		var random = document.getElementById("randomNum1");
 		var webSocket = new WebSocket('ws://localhost:80/footBall/broadcasting');
 		var inputMessage = document.getElementById('inputMessage');
@@ -196,8 +196,9 @@
 			onMessage(event)
 		};
 		function onMessage(event) {
-			//textarea.value += "상대 :"+event.data+"\n"; 
+			//textarea.value += "상대 :"+event.data+"\n";
 			random.value = event.data; 
+			$val();
 		}
 		function onOpen(event) {
 			//textarea.value += "연결 성공\n ";
@@ -214,12 +215,9 @@
 		
 	</script>
 	<script type="text/javascript">
-		
-		//var randomNum = $("#randomNum").val();
-		//var randomNum1 = $("#randomNum1").val();
-		
-			
-				$("#randomNum1").on("input",function () {
+	
+/* 
+				$(document).on("focusout","#randomNum1",function(){
 					var randomNum = $("#randomNum").val();
 					var randomNum1 = $("#randomNum1").val();
 						console.log(randomNum);
@@ -228,11 +226,23 @@
 						$("#close").click(function () {
 							 self.close();
 						});
-						$("#pwd").css("visibility","visible ");
+						$("#pwd").css("visibility","visible");
 					}
-				});
+					
+				}); */
 				
-			
+				$val = function () {
+					var randomNum = $("#randomNum").val();
+					var randomNum1 = $("#randomNum1").val();
+						console.log(randomNum);
+						console.log(randomNum1);
+					if(randomNum==randomNum1){
+						$("#close").click(function () {
+							 self.close();
+						});
+						$("#pwd").css("visibility","visible");
+					}
+				};
 			
 	</script>
 </body>

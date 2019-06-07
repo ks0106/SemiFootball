@@ -100,7 +100,7 @@ public class SearchPwdServlet extends HttpServlet {
 				"<title>Insert title here</title>\r\n" + 
 				"</head>\r\n" + 
 				"<body>\r\n" + 
-				"    <a href='http://localhost/views/login/searchPwdEmail.jsp?num="+num+"' onclick=\"window.open(this.href,'아이디 찾기','width=450,height=400');\">인증하기 </a>\r\n" + 
+				"    <a href='http://localhost/views/login/searchPwdEmail.jsp?num="+num+"' >인증하기 </a>\r\n" + 
 				"    \r\n" + 
 				"</body>\r\n" + 
 				"</html>","text/html;charset=euc-kr"); 

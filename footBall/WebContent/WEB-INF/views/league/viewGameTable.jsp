@@ -32,6 +32,7 @@
 			location.href="/viewGameTable"
 		});
 		$("#side_menu3").click(function(){
+				location.href="/afterLeague"
 		});
 		$("#side_menu4").click(function(){
 			location.href="/gameTable"
@@ -235,6 +236,9 @@
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
 				</div>
+				<div style="margin-bottom:15px;">
+					<a class="side_a selected" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난대회결과</a>
+				</div>
 				<c:if test="${sessionScope.member.id eq'admin' }">
 				<div style="margin-bottom:15px;">
 					<a class="side_a selected" id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
@@ -250,13 +254,17 @@
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:100%;margin:0 auto;margin-bottom:500px;">
 				<!-- 대진표 배경 div  -->
-				<c:set var="top4" value="4" />
+				<c:choose>
+				<c:when test="${empty list.allList }"><div style="margin: 0 auto;text-align: center;width: 80%;font-size: 35px;">현재 진행중인 대회가 없습니다.</div></c:when>
+				<c:when test="${!empty list.allList }">
 					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
+					
 					<c:forEach items="${list.allList }" var="l" varStatus="i">
 						<c:if test="${l.match3==1 }">
 							<div id="top1"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
 						</c:if>
 					</c:forEach>
+					
 					<c:forEach items="${list.win2List }" var="l" varStatus="i">
 							<div id="top${i.count+1 }" class="win2" name="match2" value="match2"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
 					</c:forEach>
@@ -286,6 +294,8 @@
 					<div class="attendTeam"><div class="teamE"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;"></div>${l.teamName }</div>
 					
 				</c:forEach>
+				</c:when>
+				</c:choose>
 				</div>
 			</div>
 		</div>
@@ -294,46 +304,47 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	<script>
 		$(document).ready(function(){
-			$("#top4").children().filter("img").attr("value");
-			if($("#top4").children().filter("img").attr("value")==$(".win8-1").eq(0).children().filter("img").attr("value")){
-				$(".win8-1").eq(1).children().filter("div").addClass("lose");
-			}else if($("#top4").children().filter("img").attr("value")==$(".win8-1").eq(1).children().filter("img").attr("value")){
-				$(".win8-1").eq(0).children().filter("div").addClass("lose");	
-			}
-			if($("#top5").children().filter("img").attr("value")==$(".win8-2").eq(0).children().filter("img").attr("value")){
-				$(".win8-2").eq(1).children().filter("div").addClass("lose");
-			}else if($("#top5").children().filter("img").attr("value")==$(".win8-2").eq(1).children().filter("img").attr("value")){
-				$(".win8-2").eq(0).children().filter("div").addClass("lose");	
-			}
-			if($("#top6").children().filter("img").attr("value")==$(".win8-3").eq(0).children().filter("img").attr("value")){
-				$(".win8-3").eq(1).children().filter("div").addClass("lose");
-			}else if($("#top6").children().filter("img").attr("value")==$(".win8-3").eq(1).children().filter("img").attr("value")){
-				$(".win8-3").eq(0).children().filter("div").addClass("lose");	
-			}
-			if($("#top7").children().filter("img").attr("value")==$(".win8-4").eq(0).children().filter("img").attr("value")){
-				$(".win8-4").eq(1).children().filter("div").addClass("lose");
-			}else if($("#top7").children().filter("img").attr("value")==$(".win8-4").eq(1).children().filter("img").attr("value")){
-				$(".win8-4").eq(0).children().filter("div").addClass("lose");	
-			}
-			if($("#top2").children().is("img")){
-				if($("#top2").children().filter("img").attr("value")==$(".win4").eq(0).children().filter("img").attr("value")){
-					$(".win4").eq(1).children().filter("div").addClass("lose");
-				}else if($("#top2").children().filter("img").attr("value")==$(".win4").eq(1).children().filter("img").attr("value")){
-					$(".win4").eq(0).children().filter("div").addClass("lose");	
+			if(${list.allList.size()}==8){
+				if($("#top4").children().filter("img").attr("value")==$(".win8-1").eq(0).children().filter("img").attr("value")){
+					$(".win8-1").eq(1).children().filter("div").addClass("lose");
+				}else if($("#top4").children().filter("img").attr("value")==$(".win8-1").eq(1).children().filter("img").attr("value")){
+					$(".win8-1").eq(0).children().filter("div").addClass("lose");	
 				}
-			}
-			if($("#top3").children().is("img")){
-				if($("#top3").children().filter("img").attr("value")==$(".win4").eq(2).children().filter("img").attr("value")){
-					$(".win4").eq(3).children().filter("div").addClass("lose");
-				}else if($("#top3").children().filter("img").attr("value")==$(".win4").eq(3).children().filter("img").attr("value")){
-					$(".win4").eq(2).children().filter("div").addClass("lose");	
+				if($("#top5").children().filter("img").attr("value")==$(".win8-2").eq(0).children().filter("img").attr("value")){
+					$(".win8-2").eq(1).children().filter("div").addClass("lose");
+				}else if($("#top5").children().filter("img").attr("value")==$(".win8-2").eq(1).children().filter("img").attr("value")){
+					$(".win8-2").eq(0).children().filter("div").addClass("lose");	
 				}
-			}
-			if($("#top1").children().is("img")){
-				if($("#top1").children().filter("img").attr("value")==$(".win2").eq(0).children().filter("img").attr("value")){
-					$(".win2").eq(1).children().filter("div").addClass("lose");
-				}else if($("#top1").children().filter("img").attr("value")==$(".win2").eq(1).children().filter("img").attr("value")){
-					$(".win2").eq(0).children().filter("div").addClass("lose");	
+				if($("#top6").children().filter("img").attr("value")==$(".win8-3").eq(0).children().filter("img").attr("value")){
+					$(".win8-3").eq(1).children().filter("div").addClass("lose");
+				}else if($("#top6").children().filter("img").attr("value")==$(".win8-3").eq(1).children().filter("img").attr("value")){
+					$(".win8-3").eq(0).children().filter("div").addClass("lose");	
+				}
+				if($("#top7").children().filter("img").attr("value")==$(".win8-4").eq(0).children().filter("img").attr("value")){
+					$(".win8-4").eq(1).children().filter("div").addClass("lose");
+				}else if($("#top7").children().filter("img").attr("value")==$(".win8-4").eq(1).children().filter("img").attr("value")){
+					$(".win8-4").eq(0).children().filter("div").addClass("lose");	
+				}
+				if($("#top2").children().is("img")){
+					if($("#top2").children().filter("img").attr("value")==$(".win4").eq(0).children().filter("img").attr("value")){
+						$(".win4").eq(1).children().filter("div").addClass("lose");
+					}else if($("#top2").children().filter("img").attr("value")==$(".win4").eq(1).children().filter("img").attr("value")){
+						$(".win4").eq(0).children().filter("div").addClass("lose");	
+					}
+				}
+				if($("#top3").children().is("img")){
+					if($("#top3").children().filter("img").attr("value")==$(".win4").eq(2).children().filter("img").attr("value")){
+						$(".win4").eq(3).children().filter("div").addClass("lose");
+					}else if($("#top3").children().filter("img").attr("value")==$(".win4").eq(3).children().filter("img").attr("value")){
+						$(".win4").eq(2).children().filter("div").addClass("lose");	
+					}
+				}
+				if($("#top1").children().is("img")){
+					if($("#top1").children().filter("img").attr("value")==$(".win2").eq(0).children().filter("img").attr("value")){
+						$(".win2").eq(1).children().filter("div").addClass("lose");
+					}else if($("#top1").children().filter("img").attr("value")==$(".win2").eq(1).children().filter("img").attr("value")){
+						$(".win2").eq(0).children().filter("div").addClass("lose");	
+					}
 				}
 			}
 		});

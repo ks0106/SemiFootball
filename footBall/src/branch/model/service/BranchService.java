@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.catalina.valves.JDBCAccessLogValve;
+
 import branch.model.dao.BranchDao;
 import branch.model.vo.BranchData;
+import branch.model.vo.CourtData;
 import common.JDBCTemplate;
 import court.model.vo.Court;
 
@@ -28,6 +31,13 @@ public class BranchService {
 	public ArrayList<Court> selectCourt(int branchCode) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Court> list = new BranchDao().selectCourt(conn, branchCode);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public ArrayList<BranchData> selectAll() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<BranchData> list = new BranchDao().selectAll(conn);
 		JDBCTemplate.close(conn);
 		return list;
 	}

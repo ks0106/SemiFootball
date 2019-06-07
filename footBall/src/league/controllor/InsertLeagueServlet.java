@@ -69,7 +69,7 @@ public class InsertLeagueServlet extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			} catch (SQLException e) {
 				RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
-				request.setAttribute("msg", "SQL구문 오류");
+				request.setAttribute("msg", e);
 				rd.forward(request, response);
 			}	
 		}

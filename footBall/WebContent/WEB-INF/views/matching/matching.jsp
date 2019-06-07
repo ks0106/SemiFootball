@@ -245,7 +245,7 @@
 									</table>
 								</div>
 							<!-- 페이지 네비 -->
-							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;">${mpd.pageNavi }</div>
+							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;margin-top: 30px;">${mpd.pageNavi }</div>
 							<!-- Search폼태그 -->
 							<div style="height: 50px;">
 								<form action="/matchSearch" method="get" style="height: 100%;">
