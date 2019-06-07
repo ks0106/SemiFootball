@@ -40,9 +40,11 @@
 	.insertLeagueBtn{
 		width:200px;
 		height: 50px;
-		color:teal;
+		color:#ebebeb;
 		border:none;
-		background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+		background-color: #757575;
+		font-size:14px;
+		
 	}
 	.th{
 		width: 20%;
@@ -161,7 +163,7 @@
    			dataType:"json",
    			success: function(data){
 				if(data<8){
-					$("#addTeam").html("참가 신청.")
+					$("#addTeam").html("참가 신청")
 				}else{
 					$("#addTeam").html("신청이 마감되었습니다.")
 					$("#addTeam").prop("disabled", true);
