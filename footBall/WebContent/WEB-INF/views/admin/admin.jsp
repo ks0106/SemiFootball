@@ -34,17 +34,17 @@
              </li>
              <li class="header_item"><a href="/reservation">대관</a>
              	<ul class="item_items">
-             		<li><a>ㅎㅇ</a></li>
+             		<li><a href="#">ㅎㅇ</a></li>
              	</ul>
              </li>
              <li class="header_item"><a href="/matching">매치/용병</a>
              	<ul class="item_items">
-             		<li><a>ㅎㅇ</a></li>
+             		<li><a href="#">ㅎㅇ</a></li>
              	</ul>
              </li>
              <li class="header_item"><a href="/league">대회</a>
              	<ul class="item_items">
-             		<li><a>ㅎㅇ</a></li>
+             		<li><a href="#">ㅎㅇ</a></li>
              	</ul>
              </li>
              <li class="header_item"><a href="/gallery">갤러리</a>
