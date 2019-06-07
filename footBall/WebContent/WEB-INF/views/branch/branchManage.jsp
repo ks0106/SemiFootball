@@ -4,7 +4,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel='stylesheet' href="css/common/pageCss.css">
 <link rel='stylesheet' href="css/common/admin.css">
 <link rel='stylesheet' href="css/branch/branchManage.css">
 
@@ -33,33 +32,34 @@
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/admin/admin.jsp" />
 	<section style="padding-top: 120px; height: 1000px;" >
-	<div class="content-container" style="top:0">
-		<div class="content-wrapper">
-			<table class="manageTable" border="1">
-				<tr>
-					<th>지점 번호</th><th>지점 이름</th><th>주 소</th><th>구장 정보</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
-				</tr>
-				<c:forEach items="${list }" var="bd" varStatus="index">
+		<div class="content-container" style="top:0">
+			<div class="content-wrapper">
+				<table class="manageTable" border="1">
+					<tr><td colspan="9"><button id="btn-insert" onclick="location.href='/insertBranch'">지점 추가</button></td></tr>
 					<tr>
-						<td>${bd.b.branchCode }</td>
-						<td>${bd.b.branchName }</td>
-						<td>${bd.b.branchAddr }</td>
-						<td>${bd.cd.c1 }<br>${bd.cd.c2 }<br>${bd.cd.c3 }<br></td>
-						<td>${bd.b.branchPhone }</td>
-						<td>${bd.b.branchTel }</td>
-						<td>
-							<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi1 }</span></span><br>
-							<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi2 }</span></span><br>
-							<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi3 }</span></span><br>
-							<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi4 }</span></span><br>
-						</td>
-						<td><button class="btn-modify" onclick="location.href='/modifyBranch?branchName=${bd.b.branchName}'">정보 수정</button></td>
-						<td><button class="btn-delete" onclick="location.href='/deleteBranch?branchName=${bd.b.branchName}'">지점 삭제</button></td>
+						<th>지점 번호</th><th>지점 이름</th><th>주 소</th><th>구장 정보</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
 					</tr>
-				</c:forEach>
-			</table>
+					<c:forEach items="${list }" var="bd" varStatus="index">
+						<tr>
+							<td>${bd.b.branchCode }</td>
+							<td>${bd.b.branchName }</td>
+							<td>${bd.b.branchAddr }</td>
+							<td>${bd.cd.c1 }<br>${bd.cd.c2 }<br>${bd.cd.c3 }<br></td>
+							<td>${bd.b.branchPhone }</td>
+							<td>${bd.b.branchTel }</td>
+							<td>
+								<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi1 }</span></span><br>
+								<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi2 }</span></span><br>
+								<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi3 }</span></span><br>
+								<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi4 }</span></span><br>
+							</td>
+							<td><button class="btn-modify" onclick="location.href='/modifyBranch?branchCode=${bd.b.branchCode}'">정보 수정</button></td>
+							<td><button class="btn-delete" onclick="location.href='/deleteBranch?branchCode=${bd.b.branchCode}'">지점 삭제</button></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
 		</div>
-	</div>
 	</section>
 </body>
 	<script>

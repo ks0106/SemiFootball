@@ -262,12 +262,13 @@
 				</div>
 				<div id="content">
 				<!-- 타이틀자리 -->
-				<div id="title-position" style="margin: 0 auto;width: 60%;text-align: center; font-size: 30px;"></div>
+				<div id="title-position" style="margin: 0 auto;width: 60%;text-align: center; font-size: 20px; font-weight: 20px;"></div>
 				<!-- 포스터자리 -->
-				<div  style="width:700px;margin:0 auto;margin-bottom:50px;">
+				<div  style="width:500px;margin:0 auto;margin-bottom:50px;">
 					<img id="poster"  width="100%" height="100%">
 				</div>
 				<!-- 대진표 배경 div  -->
+				<div style="margin: 0 auto; width: 60%; font-size: 16px;font-weight: bold;text-align: center;margin-bottom: 30px;"> 대회 경기 결과</div>
 					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
 							<div id="top1"><img  style="width: 100%;height: 100%;"><div></div></div>
 							<div id="top2" class="win2"><img  style="width: 100%;height: 100%;"><div></div></div>
