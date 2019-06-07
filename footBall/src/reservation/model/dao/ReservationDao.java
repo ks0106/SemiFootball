@@ -435,6 +435,8 @@ public class ReservationDao {
 			r.setResPaymentDate(rset.getString("res_payment_date"));
 			r.setResPayment(rset.getInt("res_payment"));
 			r.setResCancel(rset.getInt("res_cancel"));
+			r.setResBName(rset.getString("B_Name"));
+			r.setResCName(rset.getString("C_name"));
 			list.add(r);
 		}
 		JDBCTemplate.close(rset);

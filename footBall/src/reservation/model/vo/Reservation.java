@@ -18,6 +18,9 @@ public class Reservation {
 	private String resPaymentDate;
 	private int resPayment;
 	private int resCancel;
+	private String resBName;
+	private String resCName;
+	
 	public Reservation() {
 		super();
 	}
@@ -132,4 +135,18 @@ public class Reservation {
 		this.resCancel = resCancel;
 	}
 
+	public String getResBName() {
+		return resBName;
+	}
+	public void setResBName(String resBName) {
+		this.resBName = resBName;
+	}
+	public String getResCName() {
+		return resCName;
+	}
+	public void setResCName(String resCName) {
+		this.resCName = resCName;
+	}
+	
+	
 }

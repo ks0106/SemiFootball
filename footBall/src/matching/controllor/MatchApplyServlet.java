@@ -1,6 +1,8 @@
 package matching.controllor;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import member.model.vo.Member;
+import reservation.model.service.ReservationService;
+import reservation.model.vo.Reservation;
 
 /**
  * Servlet implementation class MatchApplyServlet
@@ -34,7 +38,20 @@ public class MatchApplyServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Member m = ((Member)session.getAttribute("member"));
 		if(m!=null) {
-			response.sendRedirect("/views/match/matchApply.jsp");
+			try {
+				ArrayList<Reservation> r = new ReservationService().reservationView(m.getId());
+				if(!r.isEmpty()) {
+					request.setAttribute("list", r);
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/match/matchApply.jsp");
+					rd.forward(request, response);
+				}else {
+					
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else {
 			request.setAttribute("msg", "로그인 후 사용해주세요");
 			request.setAttribute("loc", "/views/login/login.jsp");
