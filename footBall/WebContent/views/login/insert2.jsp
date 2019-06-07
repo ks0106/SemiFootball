@@ -53,7 +53,7 @@
             $("#layerPopup p").html("인증 시간이 초과 되었습니다.");
             $("#layerPopup").show();
             clearInterval(timer);
-            self.close();
+            //self.close();
          }else{
             second--;
             
