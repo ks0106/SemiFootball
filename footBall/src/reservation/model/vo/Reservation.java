@@ -13,13 +13,17 @@ public class Reservation {
 	private int resRentalNo;
 	private int resTotalCost;
 	private Date resOrderDate;
+	private String resPaymentId;
+	private String resPaymentNum;
+	private String resPaymentDate;
 	private int resPayment;
 	private int resCancel;
 	public Reservation() {
 		super();
 	}
 	public Reservation(int resNo, int resBCode, int resCCode, String resMEmail, String resMPhone, Date resDate,
-			String resTime, int resRentalNo, int resTotalCost, Date resOrderDate, int resPayment, int resCancel) {
+			String resTime, int resRentalNo, int resTotalCost, Date resOrderDate, String resPaymentId,
+			String resPaymentNum, String resPaymentDate, int resPayment, int resCancel) {
 		super();
 		this.resNo = resNo;
 		this.resBCode = resBCode;
@@ -31,6 +35,9 @@ public class Reservation {
 		this.resRentalNo = resRentalNo;
 		this.resTotalCost = resTotalCost;
 		this.resOrderDate = resOrderDate;
+		this.resPaymentId = resPaymentId;
+		this.resPaymentNum = resPaymentNum;
+		this.resPaymentDate = resPaymentDate;
 		this.resPayment = resPayment;
 		this.resCancel = resCancel;
 	}
@@ -93,6 +100,24 @@ public class Reservation {
 	}
 	public void setResOrderDate(Date resOrderDate) {
 		this.resOrderDate = resOrderDate;
+	}
+	public String getResPaymentId() {
+		return resPaymentId;
+	}
+	public void setResPaymentId(String resPaymentId) {
+		this.resPaymentId = resPaymentId;
+	}
+	public String getResPaymentNum() {
+		return resPaymentNum;
+	}
+	public void setResPaymentNum(String resPaymentNum) {
+		this.resPaymentNum = resPaymentNum;
+	}
+	public String getResPaymentDate() {
+		return resPaymentDate;
+	}
+	public void setResPaymentDate(String resPaymentDate) {
+		this.resPaymentDate = resPaymentDate;
 	}
 	public int getResPayment() {
 		return resPayment;

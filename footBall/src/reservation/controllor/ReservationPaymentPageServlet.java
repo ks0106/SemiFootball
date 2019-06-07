@@ -47,10 +47,18 @@ public class ReservationPaymentPageServlet extends HttpServlet {
 			String memberPhone = m.getPhone();
 			int resNo = Integer.parseInt(request.getParameter("resNo"));
 			int allCost = Integer.parseInt(request.getParameter("allCost"));
+			String resDate = request.getParameter("resDate");
+			int cCode = Integer.parseInt(request.getParameter("cCode"));
+			String startTime = request.getParameter("resStartTime");
+			String endTime = request.getParameter("resEndTime");
 			request.setAttribute("memberId", memberId);
 			request.setAttribute("memberName", memberName);
 			request.setAttribute("resNo", resNo);
 			request.setAttribute("allCost", allCost);
+			request.setAttribute("resDate", resDate);
+			request.setAttribute("cCode", cCode);
+			request.setAttribute("startTime", startTime);
+			request.setAttribute("endTime", endTime);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationPayment.jsp");
 			rd.forward(request, response);
 		}

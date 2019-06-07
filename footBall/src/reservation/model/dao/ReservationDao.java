@@ -14,6 +14,7 @@ import branch.model.vo.Branch;
 import common.JDBCTemplate;
 import court.model.vo.Court;
 import goods.model.vo.Goods;
+import reservation.model.vo.Reservation;
 import schedule.model.vo.Schedule;
 
 public class ReservationDao {
@@ -379,7 +380,21 @@ public class ReservationDao {
 		return result;
 	}
 	
-	public int reservationPaymentUpdate(Connection conn,String paymentId,String paymentNum,String paymentDate,int resNo) throws SQLException {
+	public int reservationScheduleStatus(Connection conn, String resDate, int cCode, String startTime, String endTime) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationScheduleStatus");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, cCode);
+		pstmt.setString(2, resDate);
+		pstmt.setString(3, startTime);
+		pstmt.setString(4, endTime);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	
+	public int reservationPaymentUpdate(Connection conn,String memberId,String paymentId,String paymentNum,String paymentDate,int resNo) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("reservationPaymentUpdate");
@@ -388,9 +403,44 @@ public class ReservationDao {
 		pstmt.setString(2, paymentNum);
 		pstmt.setString(3, paymentDate);
 		pstmt.setInt(4, resNo);
+		pstmt.setString(5, memberId);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
+	
+	public ArrayList<Reservation> reservationViewList(Connection conn, String memberId) throws SQLException{
+		ArrayList<Reservation> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationViewList");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Reservation>();
+		while(rset.next()) {
+			Reservation r = new Reservation();
+			r.setResNo(rset.getInt("res_no"));
+			r.setResBCode(rset.getInt("res_b_code"));
+			r.setResCCode(rset.getInt("res_c_code"));
+			r.setResMEmail(rset.getString("res_m_email"));
+			r.setResMPhone(rset.getString("res_m_phone"));
+			r.setResDate(rset.getDate("res_date"));
+			r.setResTime(rset.getString("res_time"));
+			r.setResRentalNo(rset.getInt("res_rental_no"));
+			r.setResTotalCost(rset.getInt("res_total_cost"));
+			r.setResOrderDate(rset.getDate("res_order_date"));
+			r.setResPaymentId(rset.getString("res_payment_id"));
+			r.setResPaymentNum(rset.getString("res_payment_num"));
+			r.setResPaymentDate(rset.getString("res_payment_date"));
+			r.setResPayment(rset.getInt("res_payment"));
+			r.setResCancel(rset.getInt("res_cancel"));
+			list.add(r);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+	}
+
 }
  
