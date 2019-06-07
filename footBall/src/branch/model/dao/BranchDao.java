@@ -119,7 +119,29 @@ public class BranchDao {
 		ArrayList<BranchData> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = prop.getProperty("selectAll");
+		String query = "with temp as" + 
+				"    (select" + 
+				"        court_b_code," + 
+				"        min(decode(court_type,'A',court_name)) c1," + 
+				"        min(decode(court_type,'A','A')) t1," + 
+				"        min(decode(court_type,'A',court_indoor)) i1," + 
+				"        min(decode(court_type,'B',court_name)) c2," + 
+				"        min(decode(court_type,'B','B')) t2," + 
+				"        min(decode(court_type,'B',court_indoor)) i2," + 
+				"        min(decode(court_type,'C',court_name)) c3," + 
+				"        min(decode(court_type,'C','C')) t3," + 
+				"        min(decode(court_type,'C',court_indoor)) i3" + 
+				"    from fb_court" + 
+				"    group by court_b_code)" +  
+				"select * " + 
+				"from " + 
+				"    fb_branch " + 
+				"    join" + 
+				"    fb_branch_imgs on(branch_code = bi_b_code)" + 
+				"    join" + 
+				"    temp on(branch_code = court_b_code)" + 
+				"order by branch_code";
+				
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -140,6 +162,12 @@ public class BranchDao {
 				cd.setC1(rset.getString("c1"));
 				cd.setC2(rset.getString("c2"));
 				cd.setC3(rset.getString("c3"));
+				cd.setT1(rset.getString("t1"));
+				cd.setT2(rset.getString("t2"));
+				cd.setT3(rset.getString("t3"));
+				cd.setI1(rset.getString("i1"));
+				cd.setI2(rset.getString("i2"));
+				cd.setI3(rset.getString("i3"));
 				BranchData bd = new BranchData();
 				bd.setB(b);
 				bd.setBi(bi);
