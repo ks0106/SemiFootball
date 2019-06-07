@@ -364,7 +364,7 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	<script>
 	function matching(){
-		location.href="/"
+		location.href="/views/match/mercenaryApp.jsp";
 	}
 	</script>
 </body>
