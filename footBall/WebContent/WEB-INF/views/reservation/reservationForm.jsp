@@ -53,7 +53,7 @@
 			location.href="/reservation";
 		});
 		$('#side_menu2').click(function(){
-			location.href="/reservationView";
+			location.href="/reservationViewList";
 		});	
 	});
 </script>
@@ -871,7 +871,6 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		function goodsCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost) {
 			/* 주문장 만들기 전에 상품 수량 확인 */
 			for(var i=0;i<$('.reservationReceiptListBox').length;i++){
-				var amountCheck;
 				var goodsAmount = parseInt(resGoodsAmount[i]);
 				var result = resGoodsName[i];
 				var option = resGoodsOption[i];
@@ -879,16 +878,18 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 					url : "/reservationGoodsCount.do",
 					type : "get",
 					data : {result:result,option:option,bCode:bCode},
-					success : function(data){
-						amountCheck = parseInt(data);
-						if(amountCheck < goodsAmount){
-							alert("재고가 부족합니다. 재고 : "+result+" "+option+" - "+amountCheck);
-							$('.reservationReceiptListBox:eq['+i+']').find('.reservationGoodsAmount').focus();
+					success : setTimeout(function(data){
+						var count = parseInt(data);
+						if(count < goodsAmount){
+							alert("재고가 부족합니다. 재고 : "+result+" "+option+" : "+count);
 							i = $('.reservationReceiptListBox').length + 1;
 						}else{
-							courtCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
+							if(i == $('.reservationReceiptListBox').length){
+								courtCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
+								i = $('.reservationReceiptListBox').length + 1;
+							}
 						}
-					},
+					},1000),
 					error : function(){
 						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 					}
@@ -907,18 +908,19 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 					url : "/reservationCheckCourt.do",
 					type : "get",
 					data : {resDate:resDate,cCode:cCode,startTime:startTime,endTime:endTime},
-					success : function(data){
+					success : setTimeout(function(data){
 						check = parseInt(data);
 						if(check == 0){
 							if(i == $('.reservationReceiptList').length){
 								payment(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
+								i = $('.reservationReceiptList').length + 1;
 							}
 						}else{
 							alert(startTime+"~"+endTime+" 타임이 마감되어 대관할 수 없습니다.");
 							$('.reservationReceiptList:eq('+i+')').remove();
 							i = $('.reservationReceiptList').length + 1;
 						}
-					},
+					},1000),
 					error : function(){
 						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 					}
@@ -950,7 +952,6 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				type : 'get',
 				data : {bCode:bCode,resDate:resDate,cCode:cCode,resStartTime:resStartTime,resEndTime:resEndTime,allCost:allCost},
 				success : function(data){
-					console.log(data);
 					alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
 					location.href="/reservationPaymentPage?allCost="+allCost+"&resNo="+data+"&resDate="+resDate+"&cCode="+cCode+"&resStartTime="+resStartTime+"&resEndTime="+resEndTime;
 				},

@@ -181,6 +181,7 @@ public class ReservationDao {
 		if(rset.next()) {
 			count = rset.getInt("goods_count");
 		}
+		System.out.println("DAO검증 : "+result+" "+option+" "+bCode+" "+count);
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return count;

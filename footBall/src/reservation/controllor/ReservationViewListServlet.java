@@ -17,16 +17,16 @@ import reservation.model.service.ReservationService;
 import reservation.model.vo.Reservation;
 
 /**
- * Servlet implementation class ReservationViewServlet
+ * Servlet implementation class ReservationViewListServlet
  */
-@WebServlet(name = "ReservationView", urlPatterns = { "/reservationView" })
-public class ReservationViewServlet extends HttpServlet {
+@WebServlet(name = "ReservationViewList", urlPatterns = { "/reservationViewList" })
+public class ReservationViewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationViewServlet() {
+    public ReservationViewListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
