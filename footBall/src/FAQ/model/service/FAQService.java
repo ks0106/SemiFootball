@@ -7,7 +7,7 @@ import FAQ.model.dao.FAQDao;
 import FAQ.model.vo.FAQPageData;
 import FAQ.model.vo.FAQVo;
 import common.JDBCTemplate;
-import notice.model.dao.NoticeDao;
+
 
 public class FAQService {
 	//FAQ작성
@@ -64,7 +64,26 @@ public class FAQService {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
-		System.out.println(result+"service");
+		return result;
+	}
+	//FAQ하나의 정보 가져오기
+	public FAQVo listOne(int faqNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		FAQVo fv = null;
+		fv = new FAQDao().listOne(conn,faqNo);
+		JDBCTemplate.close(conn);
+		return fv;
+	}
+	//FAQ 삭제
+	public int faqDelete(int faqNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new FAQDao().faqDelete(conn, faqNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
 		return result;
 	}
 }

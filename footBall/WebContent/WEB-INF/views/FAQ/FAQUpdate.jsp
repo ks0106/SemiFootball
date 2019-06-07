@@ -65,6 +65,7 @@
 					<br>
 					<br>
 					<table class="table table-bordered">
+						<input type="hidden" name="faqNo" value="<%=fv.getFaqNo() %>">				
 						<tr>
 							<th colspan="2"
 								style="font-size: 20px; font-weight: bold; text-align: center;">FAQ수정</th>

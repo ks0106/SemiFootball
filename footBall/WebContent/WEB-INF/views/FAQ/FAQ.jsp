@@ -3,6 +3,8 @@
 <%@ page import="FAQ.model.vo.FAQVo"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="FAQ.model.vo.FAQPageData"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%
 	FAQPageData pd = (FAQPageData) request.getAttribute("pd");
 	ArrayList<FAQVo> list = pd.getList();
@@ -75,9 +77,9 @@
 				<br>
 				<br>
 				<center>
-					<form action="/writerFAQ">
-						<button type="submit" class="btn">글쓰기</button>
-					</form>
+					<c:if test="${sessionScope.member.id =='admin' }">
+						<a href="/writerFAQ" class="btn btn-primary">글쓰기</a>
+					</c:if>
 					<table>
 						<%
 							for (FAQVo fv : list) {
@@ -97,13 +99,14 @@
 							<td><div id="faq1" class="collapse">
 									<img src="img/faq/FAQ2.PNG" style="width: 30px; height: 20px;">
 									<%=fv.getFaqContent()%><br> 
-									<form action="/faqUpdate">
-									<a href="/faqUpdate?faqNo=<%=fv.getFaqNo()%>"
-										class="btn btn-primary btn-sm">수정하기</a>
-										</form> 
-									<a href="/faqDelete?faqNo=<%=fv.getFaqNo()%>"
-										class="btn btn-primary btn-sm">삭제하기</a> <br>
-									<br>
+									
+									<c:if test="${sessionScope.member.id =='admin' }">
+										<a href="/faqUpdate?faqNo=<%=fv.getFaqNo()%>"
+											class="btn btn-primary btn-sm">수정하기</a>
+										<a href="/deleteFAQ?faqNo=<%=fv.getFaqNo()%>"
+											class="btn btn-primary btn-sm">삭제하기</a>
+									</c:if>
+										 <br><br>
 								</div></td>
 						</tr>
 						<%
@@ -113,7 +116,7 @@
 					</table>
 				</center>
 
-				<script type="text/javascript">
+				<!-- <script type="text/javascript">
 					$(document).ready(function() {
 						$('#fa1').click(function() {
 							$('#faq2').attr('class', 'collapse');
@@ -146,7 +149,7 @@
 							$('#faq4').attr('class', 'collapse');
 						});
 					})
-				</script>
+				</script> -->
 			</div>
 		</div>
 	</div>
