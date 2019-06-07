@@ -120,7 +120,7 @@
 	}
 	#main_img p{
 		position:absolute;
-        width:320px; height:0px;
+        width:330px; height:0px;
         margin:auto;
         top:500px; bottom:0; left:0; right:0;
         font-size: 30px;
