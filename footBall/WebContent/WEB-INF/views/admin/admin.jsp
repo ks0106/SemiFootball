@@ -100,7 +100,7 @@
       </div>
    </div>
    <!-- 섹션 -->
-   <section>
+   <section align="center" id="main_img">
    		<img src="/img/header_logo.png">
    		<p>관리자 페이지 입니다!!</p>
    </section>
