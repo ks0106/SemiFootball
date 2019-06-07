@@ -165,7 +165,7 @@ public class ReservationService {
 		Reservation res = new ReservationDao().reservationResView(conn, resNo);
 		Branch b = new ReservationDao().reservationBranch(conn, res.getResNo());
 		Court c = new ReservationDao().reservationCourtView(conn, res.getResCCode());
-		Rental r = new ReservationDao().reservationRentalView(conn, res.getResNo());
+		ArrayList<Rental> r = new ReservationDao().reservationRentalView(conn, res.getResNo());
 		JDBCTemplate.close(conn);
 		return new ReservationViewPageData(res,b,c,r);
 	}

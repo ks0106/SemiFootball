@@ -107,6 +107,13 @@
 			$(this).siblings('li').css("color","silver");
 			$(this).siblings('li').children('a').css("color","silver");
 		});
+		$('#side_menu1').click(function(){
+			location.href="/reservation";
+		});
+		$('#side_menu2').click(function(){
+			location.href="/reservationViewList";
+		});
+		
 	});
 </script>
 </head>
@@ -140,74 +147,37 @@
 			</div>
 			<!-- 사이드 메뉴 종료 -->
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-				<p class="content-header">용병지원</p>
-							<div class="underline"></div>
-				<form action="/matchApply" method="post">
-						<table id="input-table">
-							<tr>
-								<th class="th">지점</th>
-								<td class="td">
-									<select name="Bname" style="width: 300px;height:50px;">
-										<option value="">지점선택</option>
-										<option value="부천점">부천지점</option>
-										<option value="고양점">고양지점</option>
-										<option value="남양주점">남양주지점</option>
-										<option value="성남점">성남지점</option>
-										<option value="수원점">수원지점</option>
-										<option value="안양점">안양지점</option>
-									</select>
-								</td>
-								<th class="th">구장</th>
-								<td class="td">
-									<select name="Cname" style="width: 300px;height:50px;">
-										<option value="">구장선택</option>
-										<option value="A">A구장</option>
-										<option value="B">B구장</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<th class="th">신청자</th>
-								<td class="td"><input type="text" name="name" style="width: 297px;height: 40px;"></td>
-								<th class="th">연락처</th>
-								<td class="td"><input type="text" name="phone1" style="width: 88px;height: 40px;">-<input type="text" name="phone2" style="width: 88px;height: 40px;">-<input type="text" name="phone3" style="width: 88px;height: 40px;"></td>
-							</tr>
-							<tr>
-								<th class="th">매치일정</th>
-								<td class="td"><input type="text" name="matchDate" style="width: 297px;height: 40px;"></td>
-								<th class="th">시간선택</th>
-								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
-							</tr>
-							<tr>
-								<th class="th">유니폼 색상</th>
-								<td class="td">
-									<input type="text" name="phone1" style="width: 80px;height: 40px;" placeholder="상의">-
-									<input type="text" name="phone2" style="width: 80px;height: 40px;" placeholder="하의">-
-									<input type="text" name="phone3" style="width: 80px;height: 40px;" placeholder="스타킹">
-								</td>
-								<th class="th">팀수준</th>
-								<td class="td"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
-							</tr>
-								<th class="th">매치일정</th>
-								<td class="td"><input type="text" name="matchDate" style="width: 297px;height: 40px;"></td>
-								<th class="th">시간선택</th>
-								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
-							</tr>
-							<tr>
-								<th class="th" colspan="1">마감여부</th>
-								<td class="td" colspan="3"><input type="text" name="matchAble" style="width: 297px;height: 40px;"></td>
-							</tr>
-							<tr>
-								<th colspan="4" class="th" >메모</th>
-							</tr>
-							<tr>
-								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" name="memo" style="resize: none;text-align: center;"></textarea> </td>
-							</tr>
-						</table>
-						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>
-					</form>
-					
-					
+				<p class="content-header">예약확인</p>
+					<div class="underline"></div>
+			<!-- 컨텐츠 시작 -->
+					<div id="table-wrapper1" style="margin-top: 50px; border-top: 3px solid #2c3c57; border-bottom: 3px solid #2c3c57; width: 900px; margin: 0 auto; border-collapse: collapse;">
+						<div style="width:900px;height:700px;margin:0 auto;background-color:rgb(240,240,240);">
+						
+							<table border="1">
+								<tr>
+									<th>지점명</th>
+									<td>${rvpd.b.branchName}</td>
+								</tr>
+								<tr>
+									<th>구장명</th>
+									<td>${rvpd.c.courtName}</td>
+								</tr>
+								<tr>
+									<th>예약자(ID)</th>
+									<td>${rvpd.res.resMEmail}</td>
+								</tr>
+								<tr>
+									<th>연락처</th>
+									<td>${rvpd.res.resMPhone}</td>
+								</tr>
+								<tr>
+									<th>날짜</th>
+									<td>${rvpd.res.resTime}.replace(',','\\n')</td>
+								</tr>
+							</table>
+
+						</div>						
+					</div>
 					<div style="width:100%;height:100px;"></div>
 				<div>
 			</div>
