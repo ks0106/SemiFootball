@@ -33,7 +33,7 @@
 </style>
 <link rel="stylesheet" href="/css/common/admin.css">
 <body>
-   <jsp:include page="/WEB-INF/views/admin/admin.jsp"/>
+   <jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
 	<!-- 내용 -->
 	<div id="title">사진 등록{관리자}</div>
 	<section class="page_area">

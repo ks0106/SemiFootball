@@ -101,7 +101,7 @@
    </div>
    <!-- 섹션 -->
    <section>
-   		<img src="/img/textArea_black.png">
+   		<img src="/img/headerlogo.png">
    </section>
 </body>
 <script>
