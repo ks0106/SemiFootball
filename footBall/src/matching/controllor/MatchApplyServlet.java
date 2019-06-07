@@ -39,13 +39,16 @@ public class MatchApplyServlet extends HttpServlet {
 		Member m = ((Member)session.getAttribute("member"));
 		if(m!=null) {
 			try {
-				ArrayList<Reservation> r = new ReservationService().reservationView(m.getId());
+				ArrayList<Reservation> r = new ReservationService().reservationViewList(m.getId());
 				if(!r.isEmpty()) {
 					request.setAttribute("list", r);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/match/matchApply.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/matchApply.jsp");
 					rd.forward(request, response);
 				}else {
-					
+					request.setAttribute("msg", "지점 예약후 사용이 가능합니다");
+					request.setAttribute("loc", "/");
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+					rd.forward(request, response);
 				}
 				
 			} catch (SQLException e) {

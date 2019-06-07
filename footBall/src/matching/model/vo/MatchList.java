@@ -12,11 +12,9 @@ public class MatchList {
 	private String matchPhone;
 	private Date matchDate;
 	private String matchTime;
-	private int matchTeamCount;
-	private String matchUColor;
+	private int matchAmount;
 	private String matchLevel;
 	private int matchAble;
-	private String matchPw;
 	private String matchMemo;
 	private Date matchEnrollDate;
 	private String date;
@@ -28,9 +26,11 @@ public class MatchList {
 	}
 	
 	
+
+
 	public MatchList(int seqMatchNo, String matchType, int matchBCode, int matchCCode, String matchWriter,
-			String matchPhone, Date matchDate, String matchTime, int matchTeamCount, String matchUColor,
-			String matchLevel, int matchAble, String matchPw, String matchMemo, Date matchEnrollDate) {
+			String matchPhone, Date matchDate, String matchTime, int matchAmount, String matchLevel, int matchAble,
+			String matchMemo, Date matchEnrollDate, String date, String teamCount, String able) {
 		super();
 		this.seqMatchNo = seqMatchNo;
 		this.matchType = matchType;
@@ -40,15 +40,18 @@ public class MatchList {
 		this.matchPhone = matchPhone;
 		this.matchDate = matchDate;
 		this.matchTime = matchTime;
-		this.matchTeamCount = matchTeamCount;
-		this.matchUColor = matchUColor;
+		this.matchAmount = matchAmount;
 		this.matchLevel = matchLevel;
 		this.matchAble = matchAble;
-		this.matchPw = matchPw;
 		this.matchMemo = matchMemo;
 		this.matchEnrollDate = matchEnrollDate;
+		this.date = date;
+		this.teamCount = teamCount;
+		this.able = able;
 	}
-	
+
+
+
 
 	public int getSeqMatchNo() {
 		return seqMatchNo;
@@ -130,24 +133,15 @@ public class MatchList {
 	}
 
 
-	public int getMatchTeamCount() {
-		return matchTeamCount;
+	public int getmatchAmount() {
+		return matchAmount;
 	}
 
 
-	public void setMatchTeamCount(int matchTeamCount) {
-		this.matchTeamCount = matchTeamCount;
+	public void setmatchAmount(int matchAmount) {
+		this.matchAmount = matchAmount;
 	}
 
-
-	public String getMatchUColor() {
-		return matchUColor;
-	}
-
-
-	public void setMatchUColor(String matchUColor) {
-		this.matchUColor = matchUColor;
-	}
 
 
 	public String getMatchLevel() {
@@ -169,15 +163,6 @@ public class MatchList {
 		this.matchAble = matchAble;
 	}
 
-
-	public String getMatchPw() {
-		return matchPw;
-	}
-
-
-	public void setMatchPw(String matchPw) {
-		this.matchPw = matchPw;
-	}
 
 
 	public String getMatchMemo() {
@@ -216,10 +201,10 @@ public class MatchList {
 	public String getAble() {
 		return able;
 	}
-	public void setTeamCount(int matchTeamCount) {
-		if(matchTeamCount==1) {
+	public void setTeamCount(int matchAmount) {
+		if(matchAmount==1) {
 			this.teamCount = "1팀";
-		}else if(matchTeamCount==2) {
+		}else if(matchAmount==2) {
 			this.teamCount="2팀";
 		}
 	}
@@ -228,9 +213,9 @@ public class MatchList {
 	}
 	public String getTeamCount1() {
 		String teamCount = "";
-		if(matchTeamCount==1) {
+		if(matchAmount==1) {
 			teamCount = "1팀";
-		}else if(matchTeamCount==2) {
+		}else if(matchAmount==2) {
 			teamCount="2팀";
 		}
 		return teamCount; 

@@ -49,7 +49,7 @@ public class MatchService {
 		Connection conn = JDBCTemplate.getConnection();
 		MatchList m = new MatchDao().selectOne(conn,pageNum);
 		m.setDate(m.getMatchDate());
-		m.setTeamCount(m.getMatchTeamCount());
+		m.setTeamCount(m.getmatchAmount());
 		m.setAble(m.getMatchAble());
 		JDBCTemplate.close(conn);
 		return m;
@@ -88,4 +88,15 @@ public class MatchService {
 		return mpd;
 	}
 	
+	public int addMatchList(MatchList m) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MatchDao().addMatchList(conn,m);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }

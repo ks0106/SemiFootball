@@ -44,8 +44,7 @@ public class MatchDao {
 			m.setMatchPhone(rset.getString("match_phone"));
 			m.setMatchDate(rset.getDate("match_date"));
 			m.setMatchTime(rset.getString("match_time"));
-			m.setMatchTeamCount(rset.getInt("match_amount"));
-			m.setMatchUColor(rset.getString("match_u_color"));
+			m.setmatchAmount(rset.getInt("match_amount"));
 			m.setMatchLevel(rset.getString("match_level"));
 			m.setMatchAble(rset.getInt("match_able"));
 			m.setMatchMemo(rset.getString("match_memo"));
@@ -74,8 +73,7 @@ public class MatchDao {
 			m.setMatchPhone(rset.getString("match_phone"));
 			m.setMatchDate(rset.getDate("match_date"));
 			m.setMatchTime(rset.getString("match_time"));
-			m.setMatchTeamCount(rset.getInt("match_amount"));
-			m.setMatchUColor(rset.getString("match_u_color"));
+			m.setmatchAmount(rset.getInt("match_amount"));
 			m.setMatchLevel(rset.getString("match_level"));
 			m.setMatchAble(rset.getInt("match_able"));
 			m.setMatchMemo(rset.getString("match_memo"));
@@ -124,8 +122,7 @@ public class MatchDao {
 			m.setMatchPhone(rset.getString("match_phone"));
 			m.setMatchDate(rset.getDate("match_date"));
 			m.setMatchTime(rset.getString("match_time"));
-			m.setMatchTeamCount(rset.getInt("match_amount"));
-			m.setMatchUColor(rset.getString("match_u_color"));
+			m.setmatchAmount(rset.getInt("match_amount"));
 			m.setMatchLevel(rset.getString("match_level"));
 			m.setMatchAble(rset.getInt("match_able"));
 			m.setMatchMemo(rset.getString("match_memo"));
@@ -135,6 +132,10 @@ public class MatchDao {
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return list;
+	}
+	
+	public int addMatchList(Connection conn , MatchList m) {
+		
 	}
 }
 
