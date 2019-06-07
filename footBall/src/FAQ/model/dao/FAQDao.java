@@ -107,7 +107,48 @@ public class FAQDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
-		System.out.println(result+"dao");
 		return result;
 	}
+	//FAQ하나보기
+		public FAQVo listOne(Connection conn,int faqNo) {
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			FAQVo fv = null;
+			String query = prop.getProperty("ListOne");
+			try {
+				pstmt= conn.prepareStatement(query);
+				pstmt.setInt(1, faqNo);
+				rset = pstmt.executeQuery();
+				if(rset.next()) {
+					fv = new FAQVo();
+					fv.setFaqNo(rset.getInt("faq_no"));
+					fv.setFaqTitle(rset.getString("faq_title"));
+					fv.setFaqContent(rset.getString("faq_content"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(rset);
+				JDBCTemplate.close(pstmt);
+			}
+			return fv;
+		}
+		//FAQ삭제
+		public int faqDelete(Connection conn, int faqNo) {
+			PreparedStatement pstmt = null;
+			int result = 0;
+			String query = prop.getProperty("faqDelete");
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, faqNo);
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(conn);
+			}
+			return result;
+		}
 }

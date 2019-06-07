@@ -13,6 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/common/admin.css">
 
 <title>공지사항작성</title>
 </head>
@@ -45,7 +46,7 @@
 </style>
 <body>
 	<!-- 헤더 불러오기 -->
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<jsp:include page="/WEB-INF/views/admin/adminheader.jsp" />
 
 	<script>
 		$(document)

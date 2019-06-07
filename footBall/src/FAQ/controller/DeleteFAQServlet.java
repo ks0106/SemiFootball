@@ -10,18 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import FAQ.model.service.FAQService;
-import FAQ.model.vo.FAQVo;
+
+
+
 /**
- * Servlet implementation class FAQUpdateServlet
+ * Servlet implementation class DeleteFAQServlet
  */
-@WebServlet(name = "FAQUpdate", urlPatterns = { "/faqUpdate" })
-public class FAQUpdateServlet extends HttpServlet {
+@WebServlet(name = "DeleteFAQ", urlPatterns = { "/deleteFAQ" })
+public class DeleteFAQServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQUpdateServlet() {
+    public DeleteFAQServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +33,15 @@ public class FAQUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int faqNo = Integer.parseInt(request.getParameter("faqNo"));
-		FAQVo fv = new FAQService().listOne(faqNo);
-		if(fv!=null) {
-			request.setAttribute("FAQVo", fv);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/FAQ/FAQUpdate.jsp");
-			rd.forward(request, response);
+		int result = new FAQService().faqDelete(faqNo);
+		if(result>0) {
+			request.setAttribute("msg", "FAQ를 삭제하셨습니다.");
 		}else {
-			request.setAttribute("msg", "정보가 없습니다.");
-			request.setAttribute("loc", "/");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			rd.forward(request, response);
+			request.setAttribute("msg", "FAQ삭제를 실패하셨습니다.");
 		}
-		
+		request.setAttribute("loc", "/fAQ");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
