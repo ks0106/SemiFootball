@@ -33,12 +33,6 @@ public class BranchManageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<BranchData> list = new BranchService().selectAll();
-		for(BranchData bd : list) {
-			System.out.println("Servlet----------------");
-			System.out.println(bd.getB().getBranchCode());
-			System.out.println(bd.getBi().getBi1());
-			System.out.println(bd.getCd().getC1());
-		}
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/views/branch/branchManage.jsp").forward(request, response);
 	}

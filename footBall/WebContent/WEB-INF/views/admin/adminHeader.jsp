@@ -99,10 +99,6 @@
          <img src="/img/textArea_black.png">
       </div>
    </div>
-   <!-- 섹션 -->
-   <section>
-   		<img src="/img/headerlogo.png">
-   </section>
 </body>
 <script>
    $(document).ready(function(){

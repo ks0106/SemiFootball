@@ -76,6 +76,184 @@
 		background-image: url("/img/ground1.png");
 	}
 </style>
+<style>
+	.side_nav{
+		margin:5px;
+		color:silver;
+	}
+	.side_nav a{
+		text-decoration:none;
+		color:silver;
+		font-size:16px;
+	}
+	#side_menu1{
+		display:block;
+	}
+	#side_pr_menu{
+		list-style-type:square;
+		padding:0;
+		margin:0;
+		margin-left:20px;
+		display:none;
+	}
+	.insertLeagueBtn{
+		width:200px;
+		height: 50px;
+		color:teal;
+		border:none;
+		background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+	}
+	.th{
+		width: 20%;
+		border-bottom: 1px solid gray;
+		padding-top : 10px;
+		padding-bottom: 10px;
+	}
+	.td{
+		padding: 16px;
+		border-bottom: 1px solid #d5d8dd;
+		height: 21px;
+		font-size: 18px;
+		line-height: 21px;
+	}
+	#imgView:hover{
+		background-color: #F2F2F2;
+		cursor: pointer;
+	}
+		#top1{
+		position:absolute;
+		width: 150px;
+		height: 150px;
+		border: 1px solid;
+		top: 1%;
+		left: 44%;
+	}
+	#top2{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 28%;
+		left: 19%;
+	}
+	#top3{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 28%;
+		left: 72%;
+	}
+	#top4{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 50%;
+		left: 6%;
+	}
+	#top5{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 50%;
+		left: 32%;
+	}
+	#top6{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 50%;
+		left: 59%;
+	}
+	#top7{
+	position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 50%;
+		left: 85%;
+	}
+	#top8{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: -1%;
+	}
+	#top9{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 13%;
+	}
+	#top10{
+	position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 26%;
+	}
+	#top11{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 39%;
+	}
+	#top12{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 52%;
+	}
+	#top13{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 65%;
+	}
+	#top14{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 78%;
+	}
+	#top15{
+		position:absolute;
+		width: 120px;
+		height: 110px;
+		border: 1px solid;
+		top: 74%;
+		left: 91%;
+	}
+	.lose{
+		width:100%;
+		height:100%;
+		background-color:black;
+		position:absolute;
+		top:0%;
+		left: 0%;
+		opacity: 0.5;
+		z-index: 2;
+	}
+	#content{
+		display: none;
+	}
+</style>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -87,20 +265,83 @@
 	<section>
 	<!-- 내용 작성 -->
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
-		<div>
-			<div style="width:85%;background-color:white;margin:0 auto;">
-				<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
-					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">대관예약/확인</div>
-					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
-					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu1" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대관예약</a>
-					</div>
-					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">예약확인</a>
-					</div>
+		<!-- 컨텐츠 -->
+		<div style="width:85%;background-color:white;margin:0 auto;">
+		<!-- 컨텐츠 사이드 메뉴 -->
+			<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
+				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">대관예약/확인</div>
+				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
+				<div style="margin-bottom:15px;">
+					<a class="side_a" id="side_menu1" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대관예약</a>
 				</div>
-				<div style="width:78%;height:800px;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-				</div>				
+				<div style="margin-bottom:15px;">
+					<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">예약확인</a>
+				</div>
+			</div><!-- 사이드 메뉴 종료 -->			
+		<!-- 컨텐츠 본문 -->
+   		<!-- 컨텐츠 본문 타이틀 -->
+			<div style="width:78%;height:120vh;border-left:1px solid silver;display:inline-block;overflow:hidden;">
+				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">예약확인</div>
+				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
+		<!-- 컨텐츠 지점선택 파티션 -->
+				<div  style="width:90%;margin:0 auto;margin-bottom:50px;">
+				<div id="table-wrapper1" style="margin-bottom: 100px;text-align: center;">
+					<p style="font-size: 30px; font-weight: bold;">주문장 목록</p>
+					<table style="margin-top: 50px; border-top: 3px solid #2c3c57;border-bottom:3px solid #2c3c57; width: 80%; margin: 0 auto;border-collapse: collapse;">
+						<tr>
+							<th class="th">번호</th>
+							<th class="th" colspan="2">날짜</th>
+							<th class="th">금액</th>
+							<th class="th">결제</th>
+						</tr>
+						<c:if test="${!empty list}">
+							<c:forEach items="${list}" var="r" >
+								<tr id="imgView" onclick="imgView('${l.leagueNo}')">
+									<td class="td">${r.resNo}</td>
+									<td class="td" colspan="2">${r.resDate}</td>
+									<td class="td">${r.resTotalCost}</td>
+									<c:if test="${r.payment} == 1">
+										<td class="td">결제완료</td>
+									</c:if>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</table>
+				</div>			
+					<!-- 페이지 네비 -->
+						<div id="pageNavi" style="width:80%; margin:0 auto; margin-bottom: 100px;">${mpd.pageNavi }</div>
+				</div>
+				<div id="content">
+				<!-- 타이틀자리 -->
+				<div id="title-position" style="margin: 0 auto;width: 60%;text-align: center; font-size: 30px;"></div>
+				<!-- 포스터자리 -->
+				<div  style="width:700px;margin:0 auto;margin-bottom:50px;">
+					<img id="poster"  width="100%" height="100%">
+				</div>
+				<!-- 대진표 배경 div  -->
+					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
+							<div id="top1"><img  style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top2" class="win2"><img  style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top3" class="win2"><img  style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top4" class="win4-1 win4"><img  style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top5" class="win4-1 win4"><img  style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top6" class="win4-1 win4"><img  style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top7" class="win4-1 win4"><img  style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top8" class="win8 win8-1"><img style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top9" class="win8 win8-1"><img style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top10" class="win8 win8-2"><img style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top11" class="win8 win8-2"><img style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top12" class="win8 win8-3"><img style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top13" class="win8 win8-3"><img style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top14" class="win8 win8-4"><img style="width: 100%;height: 100%;"><div></div></div>
+							<div id="top15" class="win8 win8-4"><img style="width: 100%;height: 100%;"><div></div></div>
+					
+				</div>
+			
+			</div>
+		</div>
+	
+				
 			</div>
 		</div>
 	

@@ -1,4 +1,13 @@
 @charset "UTF-8";
+	#title{
+		position:absolute;
+		z-index: 1;
+		font-size: 45px;
+		font-weight:900;
+		color: black;
+		left: 10%;
+		top: 120px;
+	}
 	.content-container {
 		position: relative;
 		width: 100%;
@@ -19,3 +28,5 @@
 		text-align:left;
 		left:20px;
 	}
+	
+	

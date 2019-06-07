@@ -23,7 +23,7 @@
 	}
 </style>
 <body>
-	<jsp:include page="/WEB-INF/views/admin/admin.jsp"/>
+	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
 	<!-- 내용 -->
 	<div id="title">사진 삭제{관리자}</div>
 	<section style="padding-top: 180px; height: 1000px;" >
