@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import matching.model.sevice.MatchService;
 import matching.model.vo.Recruit;
 
 /**
@@ -29,20 +30,35 @@ public class MercenaryAppServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String Bname = request.getParameter("Bname");
-		String Cname = request.getParameter("Cname");
-		String name = request.getParameter("name");
-		String phone1 = request.getParameter("phone1");
-		String matchDate = request.getParameter("matchDate");
-		String matchTime = request.getParameter("matchTime");
-		String matchAble = request.getParameter("recAble");
+		String recBname = request.getParameter("Bname");
+		String recCname = request.getParameter("Cname");
+		String recName = request.getParameter("name");
+		String recPhone = request.getParameter("phone1");
+		String recDate = request.getParameter("recDate");
+		String recTime = request.getParameter("matchTime");
+		String recAble = request.getParameter("recAble");
 		String matchLevel = request.getParameter("matchLevel");
 		String recMemo = request.getParameter("memo");
 		Recruit r = new Recruit();
-		r.setRecBName(Bname);
-		r.setAble(Integer.parseInt(matchAble));
+		r.setRecBName(recBname);
+		r.setRecCName(recCname);
+		r.setRecName(recName);
+		r.setRecPhone(recPhone);
+		//데이트 만들어주세요
+		r.setRecTime(recTime);
+		r.setAble(Integer.parseInt(recAble));
+		r.setRecMemo(recMemo);
+		int result = new MatchService().mercenaryAdd();
+		if(result > 0) {
+			request.setAttribute("msg", "등록성공");
+			request.setAttribute("loc", "/WEB-INF/views/matching/mercenary.jsp");
+			request.getRequestDispatcher("/views/common/sqlErrorPage.jsp").forward(request, response);
+		}else {
+			request.setAttribute("msg", "등록 실패");
+			request.setAttribute("loc", "/WEB-INF/views/matching/mercenary.jsp");
+			request.getRequestDispatcher("/views/common/sqlErrorPage.jsp").forward(request, response);
+		}
 		
-		request.getRequestDispatcher("/WEB-INF/views/matching/mercenary.jsp").forward(request, response);
 	}
 
 	/**
