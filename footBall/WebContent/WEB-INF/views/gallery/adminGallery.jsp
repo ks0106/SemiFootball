@@ -23,15 +23,10 @@
 	}
 </style>
 <body>
-	<jsp:include page="/WEB-INF/views/admin/admin.jsp"/>
+	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
 	<!-- 내용 -->
+	<div id="title">사진 삭제{관리자}</div>
 	<section style="padding-top: 180px; height: 1000px;" >
-		<div style="position: sticky; position: -webkit-stiky;">
-			<%-- <div align="right">
-				<c:if test="${sessionScope.member.id eq 'admin'}">
-				 	<button style="width: 100px; height: 10%; " id="write-btn">글쓰기</button>
-				</c:if>
-			</div>  --%>
 			<div class="container">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				    <ul class="carousel-indicators" style="display:none">

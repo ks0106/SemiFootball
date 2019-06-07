@@ -251,17 +251,72 @@
 				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 대진표</div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->
-				<div  style="width:100%;margin:0 auto;margin-bottom:1500px;">
+				<div  style="width:100%;margin:0 auto;margin-bottom:700px;">
+				
+			<c:choose>
+			<c:when test="${not empty list.allList }">
+			
 				<!-- 대진표 배경 div  -->
-				<c:set var="top4" value="4" />
 					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
-							<div id="top1" value="level"></div>
-							<div id="top2" class="win2" name="match2" value="match2"></div>
-							<div id="top3" class="win2" name="match2" value="match2"></div>
+					<c:forEach items="${list.allList }" var="l">
+						<c:choose>
+							<c:when test="${l.match3 eq 1 }">
+								<div id="top1" value="level"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
+							</c:when>
+							<c:otherwise>
+								<div id="top1"></div>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:choose>
+						<c:when test="${not empty list.win2List }">
+						 <c:forEach varStatus="k" begin="0" end="1">
+							<c:forEach items="${list.win2List }" var="l" varStatus="i">
+							 <c:choose>
+							 	<c:when test="${not empty list.win2List[k.index] }">
+									<div id="top${i.count+1 }" class="win2"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
+								</c:when>
+								<c:otherwise>
+									<div id="top${k.count+1 }" class="win2" ></div>
+								</c:otherwise>
+							 </c:choose>
+							</c:forEach>
+						 </c:forEach>
+						</c:when>
+						
+						<c:when test="${empty list.win2List }">
+								<div id="top2" class="win2" name="match2" value="match2"></div>
+								<div id="top3" class="win2" name="match2" value="match2"></div>
+						</c:when>
+					</c:choose>
+					<c:choose>
+					<c:when test="${not empty list.win4List }">
+						<c:forEach begin="0" end="3" varStatus="j">
+							<c:forEach items="${list.win4List }" var="l" varStatus="i">
+								<c:choose>
+									<c:when test="${not empty list.win4List[j.index] }">
+										<div id="top${i.count+3 }" class="win4-1 win4"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
+										<c:if test="${i.count>2 }">
+										<div id="top${i.count+3 }" class="win4-2 win4"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
+										</c:if>
+									</c:when>
+									<c:otherwise>
+										<div id="top${j.count+3 }" class="win4-1 win4"></div>
+										<c:if test="${j.count>2 }">
+										<div id="top${j.count+3 }" class="win4-2 win4"></div>
+										</c:if>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</c:forEach>
+					</c:when>
+					<c:when test="${empty list.win4List }">
 							<div id="top4" class="win4-1 win4"></div>
 							<div id="top5" class="win4-1 win4"></div>
 							<div id="top6" class="win4-2 win4"></div>
 							<div id="top7" class="win4-2 win4"></div>
+					</c:when>
+					</c:choose>
 					<c:forEach items="${list.allList }" var="l" varStatus="i">
 						<c:if test="${(i.count+7)<10 }">
 							<div id="top${i.count+7 }" class="win8-1"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;" name="teamNo" value="${l.teamNo }"><div></div></div>
@@ -290,6 +345,11 @@
 					
 				</c:forEach>
 				</div>
+			</c:when>
+			<c:when test="${empty list.allList }">
+				<div style="margin: 0 auto;width: 80%; text-align: center;font-size: 40px;font-weight: bold">현재 진행중인 대회가 없습니다.</div>
+			</c:when>
+			</c:choose>
 			</div>
 		</div>
 	
@@ -297,7 +357,7 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	<script>
 		$(document).ready(function(){
-		$(".win8-1").click(function(){
+		 $(".win8-1").click(function(){
 				img = "<img src='"+$(this).children().attr("src")+"' style='"+$(this).children().attr("style")+"' name='"+$(this).children().attr("name")+"' value='"+$(this).children().attr("value")+"'>";
 				$("#top4").empty();
 				$(this).siblings().filter($(".win8-1")).append("<div></div>");
@@ -357,7 +417,7 @@
 				$("#top1").append(img);
 			});
 			
-		});
+		}); 
 		/* function winner(teamNo){
 			location.href="/winner?teamNo="+teamNo;
 			$(this).chiledren().filter("div").addClass("lose");

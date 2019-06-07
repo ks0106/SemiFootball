@@ -42,7 +42,7 @@
 		<div class="tab-container">
 			<ul class="tab-list">
 				<li class="selected list-li"><a href="#T-con01" class="munebar">공지사항</a></li>
-				<li class="list-li"><a href="/noticeFAQ" class="munebar">FAQ</a></li>
+				<li class="list-li"><a href="/fAQ" class="munebar">FAQ</a></li>
 				<li class="list-li"><a href="/boardList" class="munebar">자유게시판</a></li>
 			</ul>
 			<div class="tab-content-wrapper">

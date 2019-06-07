@@ -35,8 +35,11 @@
 	    color: #ffffff;
 	    background-color: #333333;
 	}
+	#menu>li:hover>ul{
+		display:inline;
+	}
 	#menu>li>ul{
-	    opacity: 0;
+	    display:none;
 	    padding: 0;
 	}
 	#menu>li>ul>li{
@@ -57,5 +60,14 @@
 	#menu>li:hover ul{
 	    opacity: 1;
 	    transition-duration: 1s;
-	} 
+	}
+	#title{
+		position:absolute;
+		z-index: 1;
+		font-size: 45px;
+		font-weight:900;
+		color: black;
+		left: 10%;
+		top: 120px;
+	}
 </style>

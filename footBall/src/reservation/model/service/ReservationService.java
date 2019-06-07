@@ -9,6 +9,7 @@ import common.JDBCTemplate;
 import court.model.vo.Court;
 import goods.model.vo.Goods;
 import reservation.model.dao.ReservationDao;
+import reservation.model.vo.Reservation;
 import schedule.model.vo.Schedule;
 
 public class ReservationService {
@@ -123,9 +124,9 @@ public class ReservationService {
 		return resNo;
 	}
 	
-	public int reservationPaymentUpdate(String paymentId,String paymentNum,String paymentDate,int resNo) throws SQLException {
+	public int reservationScheduleStatus(String resDate,int cCode,String startTime,String endTime) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new ReservationDao().reservationPaymentUpdate(conn,paymentId,paymentNum,paymentDate,resNo);
+		int result = new ReservationDao().reservationScheduleStatus(conn, resDate, cCode, startTime, endTime);
 		if(result > 0) {
 			conn.commit();
 		}else {
@@ -133,5 +134,24 @@ public class ReservationService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	
+	public int reservationPaymentUpdate(String memberId,String paymentId,String paymentNum,String paymentDate,int resNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ReservationDao().reservationPaymentUpdate(conn,memberId,paymentId,paymentNum,paymentDate,resNo);
+		if(result > 0) {
+			conn.commit();
+		}else {
+			conn.rollback();
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public ArrayList<Reservation> reservationView(String memberId) throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Reservation> list = new ReservationDao().reservationViewList(conn, memberId);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 }
