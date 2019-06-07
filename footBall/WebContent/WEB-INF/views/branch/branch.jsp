@@ -233,16 +233,16 @@
 						var size = "";
 						var cost = "";
 						for(var i=0; i<data.length; i++){
-							var courtName = data[i].courtName;
-							switch(courtName) {
-								case 'A' : isIndoor="실외"; size = "42*25(m)"; cost="120,000￦";
+							var courtType = data[i].courtType;
+							switch(courtType) {
+								case 'A' : isIndoor=decodeURIComponent(data[i].courtIndoor); size = "42*25(m)"; cost="120,000￦";
 								break;
-								case 'B' : isIndoor="실외"; size = "40*22.5(m)"; cost="100,000￦";
+								case 'B' : isIndoor=decodeURIComponent(data[i].courtIndoor); size = "40*22.5(m)"; cost="100,000￦";
 								break;
-								case 'C' : isIndoor="실내"; size = "38*20(m)"; cost="80,000￦";
+								case 'C' : isIndoor=decodeURIComponent(data[i].courtIndoor); size = "38*20(m)"; cost="80,000￦";
 								break;
 							}
-							resultText += "<tr><td>"+courtName+"</td>"+"<td>"+isIndoor+"</td><td>"+size+"</td><td>"+cost+"</td></tr>";
+							resultText += "<tr><td>"+courtType+"</td>"+"<td>"+isIndoor+"</td><td>"+size+"</td><td>"+cost+"</td></tr>";
 						}
 						initText += resultText;
 						$('#modalTable').append(initText);

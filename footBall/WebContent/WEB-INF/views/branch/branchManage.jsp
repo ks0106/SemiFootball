@@ -31,6 +31,7 @@
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/admin/admin.jsp" />
+	<div id="title">[관리자] 지점 관리</div>
 	<section style="padding-top: 120px; height: 1000px;" >
 		<div class="content-container" style="top:0">
 			<div class="content-wrapper">

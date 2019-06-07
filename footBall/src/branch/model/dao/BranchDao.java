@@ -101,7 +101,8 @@ public class BranchDao {
 			list = new ArrayList<Court>();
 			while(rset.next()) {
 				Court c = new Court();
-				c.setCourtName(rset.getString("court_name"));
+				c.setCourtType(rset.getString("court_type"));
+				c.setCourtIndoor(rset.getString("court_indoor"));
 				list.add(c);
 			}
 		} catch (SQLException e) {
@@ -144,12 +145,6 @@ public class BranchDao {
 				bd.setBi(bi);
 				bd.setC(cd);
 				list.add(bd);
-			}
-			for(BranchData bd : list) {
-				System.out.println("DAO--------------------");
-				System.out.println(bd.getB().getBranchCode());
-				System.out.println(bd.getBi().getBi1());
-				System.out.println(bd.getCd().getC1());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

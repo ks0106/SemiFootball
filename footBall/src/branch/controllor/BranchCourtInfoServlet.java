@@ -2,6 +2,7 @@ package branch.controllor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -42,7 +43,8 @@ public class BranchCourtInfoServlet extends HttpServlet {
 			JSONObject courtInfo = null;
 			for(Court c : list ) {
 				courtInfo = new JSONObject();
-				courtInfo.put("courtName", c.getCourtName());
+				courtInfo.put("courtType", c.getCourtType());
+				courtInfo.put("courtIndoor",URLEncoder.encode(c.getCourtIndoor(),"UTF-8"));
 				courtArr.add(courtInfo);
 			}
 			response.setContentType("application/json");
