@@ -36,12 +36,7 @@ public class ReservationPaymentPageServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
-		if(m == null) {
-			String msg = "잘못된 접근입니다.";
-			response.setContentType("application/json");
-			response.setCharacterEncoding("utf-8");
-			new Gson().toJson(msg,response.getWriter());			
-		}else {
+		if(m != null) {
 			String memberId = m.getId();
 			String memberName = m.getName();
 			String memberPhone = m.getPhone();
@@ -60,6 +55,11 @@ public class ReservationPaymentPageServlet extends HttpServlet {
 			request.setAttribute("startTime", startTime);
 			request.setAttribute("endTime", endTime);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationPayment.jsp");
+			rd.forward(request, response);
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			request.setAttribute("msg", "로그인을 해주세요.");
+			request.setAttribute("loc", "/views/login/login.jsp");
 			rd.forward(request, response);
 		}
 	}

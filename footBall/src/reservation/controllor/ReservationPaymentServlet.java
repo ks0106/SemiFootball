@@ -3,6 +3,7 @@ package reservation.controllor;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,12 +38,7 @@ public class ReservationPaymentServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
-		if(m == null) {
-			String msg = "잘못된 접근입니다.";
-			response.setContentType("application/json");
-			response.setCharacterEncoding("utf-8");
-			new Gson().toJson(msg,response.getWriter());			
-		}else {
+		if(m != null) {
 			String memberId = m.getId();
 			String memberPhone = m.getPhone();
 			int bCode = Integer.parseInt(request.getParameter("bCode"));
@@ -64,6 +60,11 @@ public class ReservationPaymentServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			request.setAttribute("msg", "로그인을 해주세요.");
+			request.setAttribute("loc", "/views/login/login.jsp");
+			rd.forward(request, response);
 		}
 	}
 

@@ -127,10 +127,10 @@
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">용병지원</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu1" href="/matching" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
+						<a class="side_a" id="side_menu1" href="/matching" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
+						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
 					</div>
 					<div style="margin-bottom:15px;">
 						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
@@ -192,18 +192,42 @@
 							</tr>
 							<tr>
 								<th class="th" colspan="1">마감여부</th>
-								<td class="td" colspan="3"><input type="text" name="matchAble" style="width: 297px;height: 40px;"></td>
+								<td class="td" colspan="3"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
 							</tr>
 							<tr>
 								<th colspan="4" class="th" >메모</th>
 							</tr>
 							<tr>
-								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" name="memo" style="resize: none;text-align: center;"></textarea> </td>
+								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" style="resize: none;text-align: center;"></textarea> </td>
 							</tr>
 						</table>
-						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>
+						<div id="btn-div" style="margin-top: 30px;text-align: center;">
+								 <button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button>
+								 <button class="btn btn-primary btn-lg" type="reset">초기화</button>
+						 </div>
 					</form>
-					
+					<div id="table-wraper">
+								
+									<table id="matchlist-table"  style="width: 100%;">
+										<tr>
+											<th class="th">예약번호</th>
+											<th class="th">지점</th>
+											<th class="th">구장</th>
+											<th class="th" colspan="2">예약일</th>
+											<th class="th">예약시간</th>
+										</tr>
+										<!-- 게시판 리스트 출력 포문 -->
+										<c:forEach items="${list }" var="r">
+											<tr class="table-tr" onclick="view(${r.resNo});" >
+												<td class="td">${r.resNo } </td>
+												<td class="td">${r.resBName }</td>
+												<td class="td">${r.resCName }</td>
+												<td colspan="2" class="td">${r.resDate }</td>
+												<td class="td">${r.resTime }</td>
+											</tr>
+										</c:forEach> 
+									</table>
+								</div>
 					
 					<div style="width:100%;height:100px;"></div>
 				<div>

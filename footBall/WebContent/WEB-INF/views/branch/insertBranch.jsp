@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel='stylesheet' href="css/common/admin.css">
-<link rel='stylesheet' href="css/branch/branchManage.css">
 <meta charset="UTF-8">
 <title>[관리자]지점관리</title>
 <script
@@ -40,6 +38,5 @@
 				</table>
 			</form>
 		</section>
-	
 </body>
 </html>

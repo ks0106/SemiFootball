@@ -2,6 +2,7 @@ package reservation.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,24 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
-import goods.model.vo.Goods;
 import member.model.vo.Member;
 import reservation.model.service.ReservationService;
-import reservation.model.vo.ReservationViewPageData;
+import reservation.model.vo.Reservation;
 
 /**
- * Servlet implementation class ReservationViewServlet
+ * Servlet implementation class ReservationViewListServlet
  */
-@WebServlet(name = "ReservationView", urlPatterns = { "/reservationView" })
-public class ReservationViewServlet extends HttpServlet {
+@WebServlet(name = "ReservationViewList", urlPatterns = { "/reservationViewList" })
+public class ReservationViewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationViewServlet() {
+    public ReservationViewListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,12 +38,11 @@ public class ReservationViewServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
 		if(m != null) {
-			int resNo = Integer.parseInt(request.getParameter("resNo"));
 			try {
-				ReservationViewPageData rvpd = new ReservationService().reservationView(resNo);
-				System.out.println(rvpd);
-				request.setAttribute("rvpd", rvpd);
-				
+				ArrayList<Reservation> list = new ReservationService().reservationViewList(m.getId());
+				request.setAttribute("list", list);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationViewList.jsp");
+				rd.forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -55,7 +52,6 @@ public class ReservationViewServlet extends HttpServlet {
 			request.setAttribute("loc", "/views/login/login.jsp");
 			rd.forward(request, response);
 		}
-		
 	}
 
 	/**

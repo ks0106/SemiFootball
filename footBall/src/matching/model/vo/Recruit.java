@@ -7,6 +7,7 @@ public class Recruit {
 	private int seqRecNo;
 	private String recName;
 	private String recBName;
+	private String recCName;
 	private String recPhone;
 	private Date recDate;
 	private String recTime;

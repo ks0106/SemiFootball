@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -130,16 +129,16 @@
 						<a class="side_a" id="side_menu1" href="/matching" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
+						<a class="side_a" id="side_menu2" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
+						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
 					</div>
 				</div>
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
 				<p class="content-header">용병지원</p>
 							<div class="underline"></div>
-				<form action="/matchApply" method="post">
+				<form action="/mercenaryApp" method="post">
 						<table id="input-table">
 							<tr>
 								<th class="th">지점</th>
@@ -178,9 +177,9 @@
 							<tr>
 								<th class="th">유니폼 색상</th>
 								<td class="td">
-									<input type="text" name="phone1" style="width: 80px;height: 40px;" placeholder="상의">-
-									<input type="text" name="phone2" style="width: 80px;height: 40px;" placeholder="하의">-
-									<input type="text" name="phone3" style="width: 80px;height: 40px;" placeholder="스타킹">
+									<input type="text" name="Uform1" style="width: 80px;height: 40px;" placeholder="상의">-
+									<input type="text" name="Uform2" style="width: 80px;height: 40px;" placeholder="하의">-
+									<input type="text" name="Uform3" style="width: 80px;height: 40px;" placeholder="스타킹">
 								</td>
 								<th class="th">팀수준</th>
 								<td class="td"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
@@ -198,13 +197,11 @@
 								<th colspan="4" class="th" >메모</th>
 							</tr>
 							<tr>
-								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" name="memo" style="resize: none;text-align: center;"></textarea> </td>
+								<td class="th" colspan="4" rowspan="4"><textarea rows="5" name="memo" cols="100" style="resize: none;text-align: center;"></textarea> </td>
 							</tr>
 						</table>
 						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>
 					</form>
-					
-					
 					<div style="width:100%;height:100px;"></div>
 				<div>
 			</div>
