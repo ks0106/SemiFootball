@@ -266,7 +266,7 @@
 	<!--헤더 밑 영상  -->
 	<div id="container" style="width:100%;height:485px;overflow:hidden;">
 	    <!--Carousel을 이용한 메인사진-->
-	    <div id="ground" class="carousel slide" data-ride="carousel" style="text-align:center;height:500px;width:100%;">
+	    <div id="ground" class="carousel slide" data-ride="carousel" style="text-align:center;height:500px;width:100%;z-index:1;">
 	    <!--슬라이드 페이지 설정-->
 	        <ul class="carousel-indicators" style="opacity:0;">
 	            <li data-target="#ground" data-slide-to="0" class="active"></li>
@@ -298,7 +298,7 @@
 	    </div><!--Carousel 종료-->
 	</div>
 <!-- 헤더 작성 -->
-	<div class="area">
+	<div class="area" style="z-index:4;">
 	   	<a href="/" id="header_logo"><img src="/img/header_logo.png" width="180" height="180" id="header_logo" style="top:0px;left:50px;position:absolute;z-index:100;"></a>
 		<div class="menu_bar1">
 	 		<a href="/" id="header_logo2"><img src="/img/header_logo2.png" width="80px" id="header_logo2" style="left:50px;position:absolute;z-index:90;opacity:1;"></a>
@@ -317,17 +317,17 @@
 	 			<li class="header_item"><a href="/company">회사소개</a></li>
 				<%if(m != null){ %>
 					<%if(m.getId().equals("admin")){ %>	 			
-			 			<li class="header_item"><a href="/admin">관리자메뉴</a></li>
+			 			<li class="header_item"><a href="/adminHeader">관리자메뉴</a></li>
 			 		<%} %>
 			 	<%} %>
 	 		</ul>
 	 		<%if(m == null){ %>
-	 		<div id="menu_login" style="float:right;width:80px;height:80px;margin-right:40px;">
+	 		<div id="menu_login" style="float:right;width:100px;height:80px;margin-right:40px;">
 				<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
 	 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 			</div>
 			<%}else{ %>
-		 		<div id="menu_login" style="float:right;width:80px;height:80px;margin-right:40px;">
+		 		<div id="menu_login" style="float:right;width:100px;height:80px;margin-right:40px;">
 					<div style="margin-left:16px;"><img src="/img/member_icon_100px_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
 		 			<div><a style="text-decoration:none;color:white;cursor:pointer;"><%=m.getName()%> 님!</a></div>
 		 			<div id="myPage" style="display:none;">
@@ -345,7 +345,7 @@
 							</div>
 							<div style="color:white;text-align:center;margin-top:15px;">
 								<input onclick="kout();" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="로그아웃">
-								<input onclick="location.href='/admin'" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="관리자">
+								<input onclick="location.href='/adminHeader'" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="관리자">
 							</div>				
 						</div>
 						<div style="width:300px;height:220px;position:absolute;right:0;top:150px;opacity:0.5;">

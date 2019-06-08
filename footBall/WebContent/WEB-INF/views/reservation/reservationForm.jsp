@@ -141,8 +141,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			<hr
 				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
 			<div style="margin-bottom: 15px;">
-				<a href="/reservation" class="side_a" id="side_menu1"
-					style="color: #3366cc;">대관예약</a>
+				<a class="side_a" id="side_menu1" style="color: #3366cc;">대관예약</a>
 			</div>
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu2" style="color: #2c3c57;">예약확인</a>
@@ -165,13 +164,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
 			<!-- 컨텐츠 본문 -->
 			<div style="width: 100%; height: 150vh;">
-				<div
-					style="margin-left: 10px; font-size: 20px; font-weight: bolder;">예약
-					가능 일정</div>
-				<hr
-					style="margin-left: 10px; width: 120px; border: 2px solid #2c3c57; padding: 0; float: left;">
-				<hr
-					style="width: 20px; border: 2px solid #3366cc; padding: 0; float: left;">
+				<div style="margin-left: 10px; font-size: 20px; font-weight: bolder;">예약가능 일정</div>
+				<hr style="margin-left: 10px; width: 120px; border: 2px solid #2c3c57; padding: 0; float: left;">
+				<hr style="width: 20px; border: 2px solid #3366cc; padding: 0; float: left;">
 				<!-- 달력 -->
 				<div
 					style="margin-left: 10px; margin-top: 50px; position: absolute; top: 680px;">

@@ -200,7 +200,7 @@
 							</div>						
 						</div>
 					</div>
-					<button style="width:150px;height:50px;background-color:#2c3c57;color:white;border:0;font-weight:bolder;font-size:18px;float:right;" onclick="window.close();">닫기</button>					
+					<button style="width:150px;height:50px;background-color:#2c3c57;color:white;border:0;font-weight:bolder;font-size:18px;float:right;cursor:pointer;" onclick="window.close();">닫기</button>					
 				<div>
 			</div>
 		</div>
@@ -216,10 +216,12 @@
 			var txt = "처리시간이 최대 24시간까지 소요될 수 있습니다."+"\n"+"취소하시겠습니까?"
 			if(confirm(txt)){
 				var resNo = '${rvpd.res.resNo}';
+				var d = new Date();
+				var cancelApplyDate = d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
 				$.ajax({
 					url : '/reservationCancelApply.do',
 					type : 'get',
-					data : {resNo:resNo},
+					data : {resNo:resNo,cancelApplyDate:cancelApplyDate},
 					success : function(data){
 						var result = parseInt(data);
 						if(result > 0){

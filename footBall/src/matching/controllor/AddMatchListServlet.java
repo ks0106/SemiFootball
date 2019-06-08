@@ -2,7 +2,9 @@ package matching.controllor;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,13 +51,25 @@ public class AddMatchListServlet extends HttpServlet {
 		m.setMatchCCode(matchCCode);
 		m.setMatchWriter(matchWriter);
 		m.setMatchPhone(matchPhone);
-		m.setDate(d);
+		m.setMatchDate(d);
 		m.setMatchTime(matchTime);
 		m.setMatchLevel(matchLevel);
 		m.setMatchAble(matchAble);
 		m.setmatchAmount(matchAmount);
 		m.setMatchMemo(matchMemo);
-		int result = new MatchService().addMatchList(m);
+		try {
+			int result = new MatchService().addMatchList(m);
+			if(result>0) {
+				request.setAttribute("msg", "등록되었습니다");
+				request.setAttribute("loc", "/matching");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				rd.forward(request, response);
+			}
+		} catch (SQLException e) {
+			request.setAttribute("msg", "spl에러: "+e);
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	/**

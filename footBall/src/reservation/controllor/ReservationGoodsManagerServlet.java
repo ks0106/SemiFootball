@@ -1,8 +1,6 @@
 package reservation.controllor;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,20 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import member.model.vo.Member;
-import reservation.model.service.ReservationService;
-import reservation.model.vo.Reservation;
 
 /**
- * Servlet implementation class ReservationManagerServlet
+ * Servlet implementation class ReservationGoodsManagerServlet
  */
-@WebServlet(name = "ReservationManager", urlPatterns = { "/reservationManager" })
-public class ReservationManagerServlet extends HttpServlet {
+@WebServlet(name = "ReservationGoodsManager", urlPatterns = { "/reservationGoodsManager" })
+public class ReservationGoodsManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationManagerServlet() {
+    public ReservationGoodsManagerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,14 +35,8 @@ public class ReservationManagerServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
-				try {
-					ArrayList<Reservation> list = new ReservationService().reservationManagerList();
-					request.setAttribute("list", list);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationManager.jsp");
-					rd.forward(request, response);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationGoodsManager.jsp");
+				rd.forward(request, response);
 			}else {
 				request.setAttribute("msg", "비정상적인 동작입니다. 메인페이지로 이동합니다.");
 				request.setAttribute("loc", "/");

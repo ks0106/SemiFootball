@@ -29,7 +29,7 @@ public class MatchDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<MatchList> list = new ArrayList<MatchList>();
-		String query = "select * from (select ROWNUM as rNum,m.* from (select * from fb_matching order by 1 desc) m) where rnum BETWEEN ? and ?";
+		String query = "select * from (select ROWNUM as rNum,m.* from (select court_name as c_name,branch_name as b_name ,m.* from FB_matching m join fb_branch  on (branch_code = match_B_code) join fb_court on(court_C_code=match_c_code) order by match_no desc) m) where rnum BETWEEN ? and ?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1,start);
 		pstmt.setInt(2,end);
@@ -49,6 +49,8 @@ public class MatchDao {
 			m.setMatchAble(rset.getInt("match_able"));
 			m.setMatchMemo(rset.getString("match_memo"));
 			m.setMatchEnrollDate(rset.getDate("match_enroll_date"));
+			m.setMatchBName(rset.getString("b_name"));
+			m.setMatchCName(rset.getString("c_name"));
 			list.add(m);
 		}
 		JDBCTemplate.close(rset);
@@ -59,7 +61,7 @@ public class MatchDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		MatchList m = null;
-		String query = "select * from Fb_matching where MATCH_NO=?";
+		String query = "select court_name as c_name,branch_name as b_name ,m.* from FB_matching m join fb_branch  on (branch_code = match_B_code) join fb_court on(court_C_code=match_c_code) where match_no=?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1,pageNum);
 		rset = pstmt.executeQuery();
@@ -78,18 +80,21 @@ public class MatchDao {
 			m.setMatchAble(rset.getInt("match_able"));
 			m.setMatchMemo(rset.getString("match_memo"));
 			m.setMatchEnrollDate(rset.getDate("match_enroll_date"));
+			m.setMatchCName(rset.getString("c_name"));
+			m.setMatchBName(rset.getString("b_name"));
+			
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return m;
 	}
-	public int searchCount(Connection conn , String branch,String keyword) throws SQLException {
+	public int searchCount(Connection conn , int branch,String keyword) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rset= null;
 		int result = 0;
-		String query ="select count(*) cnt from fb_matching where match_B_Name=? and match_writer=?";
+		String query ="select count(*) cnt from fb_matching where match_B_code=? and match_writer=?";
 		pstmt=conn.prepareStatement(query);
-		pstmt.setString(1, branch);
+		pstmt.setInt(1, branch);
 		pstmt.setString(2, keyword);
 		rset = pstmt.executeQuery();
 		if(rset.next()) {
@@ -99,16 +104,14 @@ public class MatchDao {
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
-	public ArrayList<MatchList> searchList(Connection conn , int start , int end ,String branch,String keyword) throws SQLException{
+	public ArrayList<MatchList> searchList(Connection conn , int start , int end ,int branch,String keyword) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<MatchList> list = new ArrayList<MatchList>();
-		String query = "select * from (select ROWNUM as rNum,m.* from (select * from fb_matching where MATCH_WRITER=? and MATCH_B_NAME=?)m)  where rnum BETWEEN ? and ?";
+		String query = "select * from (select ROWNUM as rNum,m.* from (select court_name as c_name,branch_name as b_name ,m.* from FB_matching m join fb_branch  on (branch_code = match_B_code) join fb_court on(court_C_code=match_c_code) where match_B_code=? and match_writer like ? order by match_no desc) m) where rnum BETWEEN ? and ?";
 		pstmt = conn.prepareStatement(query);
-		pstmt.setString(1, keyword);
-		System.out.println(keyword);
-		pstmt.setString(2, branch);
-		System.out.println(branch);
+		pstmt.setInt(1, branch);
+		pstmt.setString(2, "%"+keyword+"%");
 		pstmt.setInt(3,start);
 		pstmt.setInt(4,end);
 		rset = pstmt.executeQuery();
@@ -127,6 +130,8 @@ public class MatchDao {
 			m.setMatchAble(rset.getInt("match_able"));
 			m.setMatchMemo(rset.getString("match_memo"));
 			m.setMatchEnrollDate(rset.getDate("match_enroll_date"));
+			m.setMatchCName(rset.getString("c_name"));
+			m.setMatchBName(rset.getString("b_name"));
 			list.add(m);
 		}
 		JDBCTemplate.close(rset);
@@ -134,8 +139,25 @@ public class MatchDao {
 		return list;
 	}
 	
-	public int addMatchList(Connection conn , MatchList m) {
-		
+	public int addMatchList(Connection conn , MatchList m) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result =0;
+		String query = "insert into fb_matching values(SEQ_MATCH_NO.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,sysdate) ";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, m.getMatchType());
+		pstmt.setInt(2, m.getMatchBCode());
+		pstmt.setInt(3, m.getmatchCCode());
+		pstmt.setString(4,m.getMatchWriter());
+		pstmt.setString(5, m.getMatchPhone());
+		pstmt.setDate(6, m.getMatchDate());
+		pstmt.setString(7, m.getMatchTime());
+		pstmt.setString(8, m.getMatchLevel());
+		pstmt.setInt(9, m.getMatchAble());
+		pstmt.setInt(10, m.getmatchAmount());
+		pstmt.setString(11, m.getMatchMemo());
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
 	}
 }
 

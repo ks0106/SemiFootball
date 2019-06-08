@@ -182,6 +182,24 @@ public class ReservationService {
 		return result;
 	}
 	
+	public int reservationPaymentDelete(int resNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int rentalDelete = new ReservationDao().reservationRentalDelete(conn, resNo);	
+		if(rentalDelete > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		int result = new ReservationDao().reservationPaymentDelete(conn, resNo);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
 	public ArrayList<Reservation> reservationViewList(String memberId) throws SQLException{
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Reservation> list = new ReservationDao().reservationViewList(conn, memberId);
@@ -207,9 +225,9 @@ public class ReservationService {
 		return new ReservationViewPageData(res,b,c,rList,gList);
 	}
 	
-	public int reservationCancelApply(int resNo) throws SQLException {
+	public int reservationCancelApply(int resNo, String cancelApplyDate) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new ReservationDao().reservationCancelApply(conn, resNo);
+		int result = new ReservationDao().reservationCancelApply(conn, resNo, cancelApplyDate);
 		if(result > 0) {
 			JDBCTemplate.commit(conn);
 		}else {
@@ -217,5 +235,12 @@ public class ReservationService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	
+	public ArrayList<Reservation> reservationManagerList() throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Reservation> list = new ReservationDao().reservationManagerList(conn);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 }

@@ -38,7 +38,7 @@ public class MatchSearchServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			reqPage =1;
 		}
-		String branch = request.getParameter("branch");
+		int branch = Integer.parseInt(request.getParameter("branch"));
 		String keyword = request.getParameter("keyword");
 		try {
 			MatchPageData mpd = new MatchService().searchList(reqPage,branch,keyword);
@@ -54,6 +54,7 @@ public class MatchSearchServlet extends HttpServlet {
 			}
 			
 		} catch (SQLException e) {
+			System.out.println(e);
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			rd.forward(request, response);
 		}

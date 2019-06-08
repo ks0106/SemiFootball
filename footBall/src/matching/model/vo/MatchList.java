@@ -20,6 +20,79 @@ public class MatchList {
 	private String date;
 	private String teamCount;
 	private String able;
+	private String matchBName;
+	private String matchCName;
+	
+	public int getMatchAmount() {
+		return matchAmount;
+	}
+
+
+
+
+	public void setMatchAmount(int matchAmount) {
+		this.matchAmount = matchAmount;
+	}
+
+
+
+
+	public String getMatchBName() {
+		return matchBName;
+	}
+
+
+
+
+	public void setMatchBName(String matchBName) {
+		this.matchBName = matchBName;
+	}
+
+
+
+
+	public String getMatchCName() {
+		return matchCName;
+	}
+
+
+
+
+	public void setMatchCName(String matchCName) {
+		this.matchCName = matchCName;
+	}
+
+
+
+
+	public int getMatchCCode() {
+		return matchCCode;
+	}
+
+
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+
+
+	public void setTeamCount(String teamCount) {
+		this.teamCount = teamCount;
+	}
+
+
+
+
+	public void setAble(String able) {
+		this.able = able;
+	}
+
+
+
+
 	public MatchList() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -206,6 +279,8 @@ public class MatchList {
 			this.teamCount = "1팀";
 		}else if(matchAmount==2) {
 			this.teamCount="2팀";
+		}else if(matchAmount==3) {
+			this.teamCount="3팀";
 		}
 	}
 	public String getTeamCount() {

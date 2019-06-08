@@ -54,7 +54,7 @@ public class MatchService {
 		JDBCTemplate.close(conn);
 		return m;
 	}
-	public MatchPageData searchList(int reqPage,String branch , String keyword) throws SQLException {
+	public MatchPageData searchList(int reqPage,int branch , String keyword) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		int numPerPage=10;
 		int totalCount= new MatchDao().searchCount(conn,branch,keyword);
@@ -92,7 +92,7 @@ public class MatchService {
 		return 0;
 	}
 	
-	public int addMatchList(MatchList m) {
+	public int addMatchList(MatchList m) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new MatchDao().addMatchList(conn,m);
 		if(result>0) {
