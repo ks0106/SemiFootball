@@ -119,7 +119,8 @@ public class BranchDao {
 		ArrayList<BranchData> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "with temp as" + 
+		String query = 
+				"with temp as" + 
 				"    (select" + 
 				"        court_b_code," + 
 				"        min(decode(court_type,'A',court_name)) c1," + 

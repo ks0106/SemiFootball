@@ -45,7 +45,8 @@ public class ReservationViewServlet extends HttpServlet {
 				ReservationViewPageData rvpd = new ReservationService().reservationView(resNo);
 				System.out.println(rvpd);
 				request.setAttribute("rvpd", rvpd);
-				
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationView.jsp");
+				rd.forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

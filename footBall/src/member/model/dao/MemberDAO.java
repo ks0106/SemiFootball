@@ -140,4 +140,16 @@ public class MemberDAO {
 		JDBCTemplate.close(pstmt);
 		return id1;
 	}
+	public int researchPwd(Connection conn, String id, String rePwd)throws SQLException{
+		PreparedStatement pstmt =null;
+		int result = 0;
+		String query = prop.getProperty("researchPwd");
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, rePwd);
+		pstmt.setString(2, id);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
 }

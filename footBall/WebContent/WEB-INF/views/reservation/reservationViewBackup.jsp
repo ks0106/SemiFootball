@@ -124,14 +124,45 @@
 </script>
 </head>
 <body>
+	<!-- 헤더 불러오기 -->
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<!--영상 위 페이지 타이틀 -->
+	<div id="title">
+		매치
+	</div>
 	<section>
-		<div style="width: 900px; height:900px; background-color: white; margin: 0 auto;">
-				<div style="width:100%;">
+	<!-- 내용 작성 -->
+		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
+		<!-- center -->
+		<div style="width: 85%; background-color: white; margin: 0 auto;">
+			<!-- 컨텐츠 사이드 메뉴 -->
+			<div
+				style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+				<div
+					style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">대관예약/확인</div>
+				<hr
+					style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
+				<div style="margin-bottom: 15px;">
+					<a class="side_a" id="side_menu1"
+						style="color: #2c3c57;">대관예약</a>
+				</div>
+				<div style="margin-bottom: 15px;">
+					<a class="side_a" id="side_menu2"
+						style="color: #3366cc;">예약확인</a>
+				</div>
+				<c:if test="${sessionScope.Member.id == admin}">
+					<div style="margin-bottom: 15px;">
+						<a class="side_a" id="side_menu3" style="color: #2c3c57;">[관리자] 대관 관리</a>
+					</div>
+				</c:if>				
+			</div>
+			<!-- 사이드 메뉴 종료 -->
+				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
 				<p class="content-header">예약확인</p>
 					<div class="underline"></div>
 			<!-- 컨텐츠 시작 -->
 					<div id="table-wrapper1" style="margin-top: 50px; border-top: 3px solid #2c3c57; border-bottom: 3px solid #2c3c57; width: 900px; margin: 0 auto; border-collapse: collapse;">
-						<div style="width:900px;height:700px;margin:0 auto;background-color:rgb(245,245,245);display:table;">
+						<div style="width:900px;height:700px;margin:0 auto;background-color:rgb(240,240,240);display:table;">
 							<div style="width:80%;height:80%;display:table-cell;vertical-align:middle;">
 								<table style="width:100%;height:100%;margin:0 auto;border-collapse:collapse;">
 									<tr>
@@ -177,15 +208,9 @@
 									<tr>
 										<th class="receiptTh">결제</th>
 										<c:if test="${rvpd.res.resPayment == 1}">
-											<c:if test="${rvpd.res.resCancel == 0}">
-												<td class="receiptTd">결제완료
-												<button id="paymentCancelBtn" type="button" style="border:0;background-color:darkgray;color:white;font-size:13px;">결제취소</button>							
-												</td>
-											</c:if>
-											<c:if test="${rvpd.res.resCancel == 1}">
-												<td class="receiptTd">취소진행(승인 전)
-												</td>
-											</c:if>
+											<td class="receiptTd">결제완료
+											<button id="paymentCancelBtn" type="button" style="border:0;background-color:darkgray;color:white;font-size:13px;">결제취소</button>							
+											</td>
 											<th class="receiptTd">결제일시</th>
 											<td class="receiptTd">${rvpd.res.resPaymentDate}</td>
 										</c:if>
@@ -197,10 +222,11 @@
 										<td colspan="4" style="text-align:center;border-top:1px solid silver;"><fmt:formatNumber value="${rvpd.res.resTotalCost}" pattern="\#,###" /></td>		
 									</tr>
 								</table>
-							</div>						
-						</div>
+							</div>							
+
+						</div>						
 					</div>
-					<button style="width:150px;height:50px;background-color:#2c3c57;color:white;border:0;font-weight:bolder;font-size:18px;float:right;" onclick="window.close();">닫기</button>					
+					<div style="width:100%;height:100px;"></div>
 				<div>
 			</div>
 		</div>
@@ -211,33 +237,10 @@
 			var token = $('#tokenizer').html().replace(/,/gi,"<br>");
 			$('#tokenizer').html(token);
 		});
-		
-		$('#paymentCancelBtn').on("click",function(){
-			var txt = "처리시간이 최대 24시간까지 소요될 수 있습니다."+"\n"+"취소하시겠습니까?"
-			if(confirm(txt)){
-				var resNo = '${rvpd.res.resNo}';
-				var d = new Date();
-				var cancelApplyDate = d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
-				$.ajax({
-					url : '/reservationCancelApply.do',
-					type : 'get',
-					data : {resNo:resNo,cancelApplyDate:cancelApplyDate},
-					success : function(data){
-						var result = parseInt(data);
-						if(result > 0){
-							alert("결제 및 예약 취소 신청 완료");
-							window.close();
-						}else{
-							alert("잘못된 동작입니다. 잠시 후 다시 시도해주세요.")
-							window.close();
-						}
-					},
-					error : function(){
-						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
-					}
-				});
-			}
-		});
+
 	</script>
+	
+	
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

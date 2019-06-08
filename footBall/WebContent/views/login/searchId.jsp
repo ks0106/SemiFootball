@@ -23,15 +23,16 @@
         }
         table{
         	margin: 0 auto;
-        	padding-top: 20px;
+        	
         	}
 	</style>
-<body>
+<body>	
+		<img  src="/img/header_logo.png" style="width:100px;">
 		<center>
         <form >
         	<table >
         		<tr>
-        			<td colspan="2" style="text-align: center;"><img  src="/img/header_logo.png" style="width: 50px;height: 50px;"><h2>아이디 찾기</h2></td>
+        			<td colspan="2" style="text-align: center;"><h2>아이디 찾기</h2></td>
         		</tr>
         		<tr>
         			<td style="float: right;">이름 :</td><td><input type="text" name="name" id="name"></td>

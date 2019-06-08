@@ -18,6 +18,8 @@ public class Reservation {
 	private String resPaymentDate;
 	private int resPayment;
 	private int resCancel;
+	private String resCancelApplyDate;
+	private String resCancelDate;
 	private String resBName;
 	private String resCName;
 	
@@ -43,6 +45,8 @@ public class Reservation {
 		this.resPaymentDate = resPaymentDate;
 		this.resPayment = resPayment;
 		this.resCancel = resCancel;
+		this.resCancelApplyDate = resCancelApplyDate;
+		this.resCancelDate = resCancelDate;
 	}
 	public int getResNo() {
 		return resNo;
@@ -133,6 +137,18 @@ public class Reservation {
 	}
 	public void setResCancel(int resCancel) {
 		this.resCancel = resCancel;
+	}
+	public String getResCancelApplyDate() {
+		return resCancelApplyDate;
+	}
+	public void setResCancelApplyDate(String resCancelApplyDate) {
+		this.resCancelApplyDate = resCancelApplyDate;
+	}
+	public String getResCancelDate() {
+		return resCancelDate;
+	}
+	public void setResCancelDate(String resCancelDate) {
+		this.resCancelDate = resCancelDate;
 	}
 
 	public String getResBName() {

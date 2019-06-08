@@ -13,20 +13,21 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import branch.model.vo.Branch;
 import member.model.vo.Member;
 import reservation.model.service.ReservationService;
 
 /**
- * Servlet implementation class ReservationPaymentUpdateServlet
+ * Servlet implementation class ReservationCancelApplyServlet
  */
-@WebServlet(name = "ReservationPaymentUpdate", urlPatterns = { "/reservationPaymentUpdate" })
-public class ReservationPaymentUpdateServlet extends HttpServlet {
+@WebServlet(name = "ReservationCancelApply", urlPatterns = { "/reservationCancelApply.do" })
+public class ReservationCancelApplyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationPaymentUpdateServlet() {
+    public ReservationCancelApplyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,38 +36,27 @@ public class ReservationPaymentUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
 		if(m != null) {
-			String memberId = m.getId();
-			String paymentId = request.getParameter("paymentId");
-			String paymentNum = request.getParameter("paymentNum");
-			String paymentDate = request.getParameter("paymentDate");
 			int resNo = Integer.parseInt(request.getParameter("resNo"));
-			//스케쥴 예약 불가 처리용 변수들
-			String resDate = request.getParameter("resDate");
-			int cCode = Integer.parseInt(request.getParameter("cCode"));
-			String[] startTime = request.getParameterValues("startTime");
-			String[] endTime = request.getParameterValues("endTime");
+			String cancelApplyDate = request.getParameter("cancelApplyDate");
+			System.out.println(resNo);
 			try {
-				//스케쥴 예약 불가로 변경
-				int status = new ReservationService().reservationScheduleStatus(resDate,cCode,startTime,endTime);
-				//주문장 추가 및 결제 체크
-				int result = new ReservationService().reservationPaymentUpdate(memberId,paymentId,paymentNum,paymentDate,resNo);
-				//물품 재고 줄임
-				int goods = new ReservationService().reservationGoodsAmountUpdate(memberId,resNo);
-				RequestDispatcher rd = request.getRequestDispatcher("/reservationViewList");
-				rd.forward(request, response);
+				int result = new ReservationService().reservationCancelApply(resNo,cancelApplyDate);
+				response.setContentType("application/json");
+				response.setCharacterEncoding("utf-8");
+				new Gson().toJson(result,response.getWriter());			
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
+			}			
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 			request.setAttribute("msg", "로그인을 해주세요.");
 			request.setAttribute("loc", "/views/login/login.jsp");
 			rd.forward(request, response);
 		}
+		
 	}
 
 	/**

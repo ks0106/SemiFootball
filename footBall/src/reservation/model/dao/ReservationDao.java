@@ -471,6 +471,8 @@ public class ReservationDao {
 			res.setResPaymentDate(rset.getString("res_payment_date"));
 			res.setResPayment(rset.getInt("res_payment"));
 			res.setResCancel(rset.getInt("res_cancel"));
+			res.setResCancelApplyDate(rset.getString("res_cancel_apply_date"));
+			res.setResCancelDate(rset.getString("res_cancel_date"));
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
@@ -499,27 +501,63 @@ public class ReservationDao {
 		return c;
 	}
 	
-	public Rental reservationRentalView(Connection conn, int resNo) throws SQLException {
-		Rental r = null;
+	public ArrayList<Rental> reservationRentalView(Connection conn, int resNo) throws SQLException {
+		ArrayList<Rental> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("reservationRentalView");
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, resNo);
 		rset = pstmt.executeQuery();
-		if(rset.next()) {
-			r = new Rental();
+		list = new ArrayList<Rental>();
+		while(rset.next()) {
+			Rental r = new Rental();
 			r.setRentalNo(rset.getInt("rental_no"));
 			r.setRentalId(rset.getString("rental_id"));
 			r.setRentalResNo(rset.getInt("rental_res_no"));
 			r.setRentalGNo(rset.getInt("rental_g_no"));
 			r.setRentalGAmount(rset.getInt("rental_g_amount"));
+			list.add(r);
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
-		return r;
+		return list;
 	}
 
+	public Goods reservationRentalGoods(Connection conn, int gNo) throws SQLException{
+		Goods g = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationRentalGoods");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, gNo);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			g = new Goods();
+			g.setGoodsBCode(rset.getInt("goods_b_code"));
+			g.setGoodsGId(rset.getInt("goods_g_id"));
+			g.setGoodsCategory(rset.getString("goods_category"));
+			g.setGoodsName(rset.getString("goods_name"));
+			g.setGoodsSize(rset.getString("goods_size"));
+			g.setGoodsPrice(rset.getInt("goods_price"));
+			g.setGoodsCount(rset.getInt("goods_count"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return g;
+	}
+	
+	public int reservationCancelApply(Connection conn, int resNo, String cancelApplyDate) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationCancelApply");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resNo);
+		pstmt.setString(2, cancelApplyDate);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
 }
 
  
