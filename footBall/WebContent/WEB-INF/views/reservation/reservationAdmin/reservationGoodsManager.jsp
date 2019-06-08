@@ -52,11 +52,11 @@
 						<a class="side_a" id="side_menu1" style="color: gray;">예약/결제 취소</a>
 					</div>
 					<div style="margin-bottom: 15px;">
-						<a class="side_a" id="side_menu2" style="color: gray;">구장 등록</a>
+						<a class="side_a" id="side_menu2" style="color: gray;">구장 등록/수정/삭제</a>
 					</div>
 					<c:if test="${sessionScope.Member.id == admin}">
 						<div style="margin-bottom: 15px;">
-							<a class="side_a" id="side_menu3" style="color: #df0101;">물품 등록</a>
+							<a class="side_a" id="side_menu3" style="color: #df0101;">물품 등록/수정/삭제</a>
 						</div>
 					</c:if>
 				</div>

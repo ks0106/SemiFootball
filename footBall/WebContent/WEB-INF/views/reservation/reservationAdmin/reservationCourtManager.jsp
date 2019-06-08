@@ -52,11 +52,11 @@
 						<a class="side_a" id="side_menu1" style="color: gray;">예약/결제 취소</a>
 					</div>
 					<div style="margin-bottom: 15px;">
-						<a class="side_a" id="side_menu2" style="color: #df0101;">구장 등록</a>
+						<a class="side_a" id="side_menu2" style="color: #df0101;">구장 등록/수정/삭제</a>
 					</div>
 					<c:if test="${sessionScope.Member.id == admin}">
 						<div style="margin-bottom: 15px;">
-							<a class="side_a" id="side_menu3" style="color: gray;">물품 등록</a>
+							<a class="side_a" id="side_menu3" style="color: gray;">물품 등록/수정/삭제</a>
 						</div>
 					</c:if>
 				</div>
@@ -64,9 +64,24 @@
 				<!-- 컨텐츠 -->
 				<div style="width: 78%; height: 2000px; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 					<!-- 컨텐츠 타이틀 -->
-					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 구장 등록</div>
+					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 구장 관리</div>
 					<!-- 본문 -->
-					
+					<!-- 컨텐츠 파티션 -->
+					<div style="width: 90%; margin: 0 auto; margin-bottom: 50px;">
+						<p style="font-size:30px;font-weight:bolder;color:black;margin:20px;">- 구장 등록</p>
+						<div style="width:100%;height:300px;border:1px solid darkgray;margin-top:20px;padding:20px;">
+							<span style="font-size:20px;font-weight:bolder;">지점명</span>
+							<select style="width:300px;height:40px;font-size:18px;">
+								<option value="default">::: 지점명 :::</option>
+							</select>
+						</div>
+						<p style="font-size: 30px; font-weight: bold;color:gray;">- 구장 수정</p>
+						<div>
+						</div>
+						<p style="font-size: 30px; font-weight: bold;color:gray;">- 구장 삭제</p>
+						<div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

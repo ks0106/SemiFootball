@@ -287,11 +287,11 @@
 						<a class="side_a" id="side_menu1" style="color: #df0101;">예약/결제 취소</a>
 					</div>
 					<div style="margin-bottom: 15px;">
-						<a class="side_a" id="side_menu2" style="color: gray;">구장 등록</a>
+						<a class="side_a" id="side_menu2" style="color: gray;">구장 등록/수정/삭제</a>
 					</div>
 					<c:if test="${sessionScope.Member.id == admin}">
 						<div style="margin-bottom: 15px;">
-							<a class="side_a" id="side_menu3" style="color: gray;">물품 등록</a>
+							<a class="side_a" id="side_menu3" style="color: gray;">물품 등록/수정/삭제</a>
 						</div>
 					</c:if>
 				</div>
@@ -303,8 +303,8 @@
 					<!-- 본문 -->
 					<!-- 컨텐츠 파티션 -->
 					<div style="width: 90%; margin: 0 auto; margin-bottom: 50px;">
+						<p style="font-size:30px;font-weight:bolder;color:black;margin:20px;">- 취소 신청 목록</p>
 						<div id="table-wrapper1" style="margin-bottom: 100px; text-align:left;">
-							<p style="font-size: 30px; font-weight: bold;color:gray;">- 취소 신청 목록</p>
 							<table style="margin-top: 50px; border-top: 3px solid black; border-bottom: 3px solid black; width: 80%; margin: 0 auto; border-collapse: collapse;text-align:center;">
 								<tr>
 									<th class="th">주문번호</th>
