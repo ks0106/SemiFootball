@@ -8,16 +8,13 @@
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
+<!-- reservation 공통 js => jqeury를 이용하기 때문에 jquery import 밑으로 내려야 한다. -->
+<script type="text/javascript" src="/js/reservation/reservationAll.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <script>
 	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
 		var m = $('#tbCalendarYM').text();
 		var d = parseInt($('.select-cell').text());
 		var t;
@@ -49,12 +46,6 @@
 				alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 			}
 		});
-		$('#side_menu1').click(function(){
-			location.href="/reservation";
-		});
-		$('#side_menu2').click(function(){
-			location.href="/reservationViewList";
-		});	
 	});
 </script>
 <style>
@@ -156,6 +147,11 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu2" style="color: #2c3c57;">예약확인</a>
 			</div>
+			<c:if test="${sessionScope.Member.id == admin}">
+				<div style="margin-bottom: 15px;">
+					<a class="side_a" id="side_menu3" style="color: #2c3c57;">[관리자] 대관 관리</a>
+				</div>
+			</c:if>
 		</div>
 		<!-- 사이드 메뉴 종료 -->
 		<!-- 컨텐츠 -->

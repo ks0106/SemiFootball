@@ -206,4 +206,16 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return new ReservationViewPageData(res,b,c,rList,gList);
 	}
+	
+	public int reservationCancelApply(int resNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ReservationDao().reservationCancelApply(conn, resNo);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }

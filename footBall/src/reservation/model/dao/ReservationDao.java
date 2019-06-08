@@ -544,6 +544,17 @@ public class ReservationDao {
 		JDBCTemplate.close(pstmt);
 		return g;
 	}
+	
+	public int reservationCancelApply(Connection conn, int resNo) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationCancelApply");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resNo);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
 }
 
  

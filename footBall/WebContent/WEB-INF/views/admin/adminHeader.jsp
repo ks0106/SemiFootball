@@ -34,7 +34,7 @@
              </li>
              <li class="header_item"><a href="/reservation">대관</a>
              	<ul class="item_items">
-             		<li><a href="#">ㅎㅇ</a></li>
+             		<li><a href="/reservationManager">대관관리</a></li>
              	</ul>
              </li>
              <li class="header_item"><a href="/matching">매치/용병</a>

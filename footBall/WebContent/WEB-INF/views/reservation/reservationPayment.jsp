@@ -56,7 +56,7 @@
 </head>
 <style>
 	input{
-/* 		visibility:hidden; */
+		visibility:hidden;
 	}
 </style>
 <body>
