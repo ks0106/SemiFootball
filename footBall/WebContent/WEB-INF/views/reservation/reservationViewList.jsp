@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,6 +21,8 @@
 <script src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
+<!-- reservation 공통 js => jqeury를 이용하기 때문에 jquery import 밑으로 내려야 한다. -->
+<script type="text/javascript" src="/js/reservation/reservationAll.js"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -25,11 +30,6 @@
 </style>
 <script>
 	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
 		$('.side_nav:first').css("color","#3366cc");
 		$('.side_nav a:first').css("color","#3366cc");
 		$('#side_pr_menu').css("display","block");
@@ -51,18 +51,18 @@
 			$(this).siblings('li').css("color","silver");
 			$(this).siblings('li').children('a').css("color","silver");
 		});
-		$('#side_menu1').click(function(){
-			location.href="/reservation";
-		});
-		$('#side_menu2').click(function(){
-			location.href="/reservationViewList";
-		});
 	});
 </script>
 <style>
 .side_nav {
 	margin: 5px;
 	color: silver;
+}
+.side_a {
+	font-weight: bolder;
+	font-size: 18px;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .side_nav a {
@@ -309,12 +309,17 @@
 				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu1"
-					style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">대관예약</a>
+					style="color: #2c3c57;">대관예약</a>
 			</div>
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu2"
-					style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">예약확인</a>
+					style="color: #3366cc;">예약확인</a>
 			</div>
+			<c:if test="${sessionScope.Member.id == admin}">
+				<div style="margin-bottom: 15px;">
+					<a class="side_a" id="side_menu3" style="color: #2c3c57;">[관리자] 대관 관리</a>
+				</div>
+			</c:if>				
 		</div>
 		<!-- 사이드 메뉴 종료 -->
 		<!-- 컨텐츠 본문 -->
@@ -325,7 +330,7 @@
 				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">예약확인</div>
 			<div class="underline"
 				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
-			<!-- 컨텐츠 지점선택 파티션 -->
+			<!-- 컨텐츠 파티션 -->
 			<div style="width: 90%; margin: 0 auto; margin-bottom: 50px;">
 				<div id="table-wrapper1"
 					style="margin-bottom: 100px; text-align: center;">
@@ -334,18 +339,21 @@
 						style="margin-top: 50px; border-top: 3px solid #2c3c57; border-bottom: 3px solid #2c3c57; width: 80%; margin: 0 auto; border-collapse: collapse;">
 						<tr>
 							<th class="th">주문번호</th>
-							<th class="th" colspan="2">날짜</th>
+							<th class="th">날짜</th>
 							<th class="th">금액</th>
 							<th class="th">결제</th>
 						</tr>
 						<c:if test="${!empty list}">
 							<c:forEach items="${list}" var="r">
-								<tr id="imgView" onclick="reservationView('${r.resNo}');">
+								<tr id="imgView" onclick="window.open('reservationView?resNo=${r.resNo}','예약확인','width=1000,height=900,location=no,status=no,scrollbars=yes');">
 									<td class="td"><span class="priamryNo">${r.resNo}</span></td>
-									<td class="td" colspan="2">${r.resDate}</td>
-									<td class="td">${r.resTotalCost}</td>
+									<td class="td">${r.resDate}</td>
+									<td class="td"><fmt:formatNumber value="${r.resTotalCost}" pattern="#,###" />원</td>
 									<c:if test="${r.resPayment == 1}">
 										<td class="td">결제완료</td>
+									</c:if>
+									<c:if test="${r.resPayment == 2}">
+										<td class="td">결제취소</td>
 									</c:if>
 								</tr>
 							</c:forEach>
@@ -356,92 +364,8 @@
 				<div id="pageNavi"
 					style="width: 80%; margin: 0 auto; margin-bottom: 100px;">${mpd.pageNavi }</div>
 			</div>
-			<div id="content">
-				<!-- 타이틀자리 -->
-				<div id="title-position"
-					style="margin: 0 auto; width: 60%; text-align: center; font-size: 30px;"></div>
-				<!-- 포스터자리 -->
-				<div style="width: 700px; margin: 0 auto; margin-bottom: 50px;">
-					<img id="poster" width="100%" height="100%">
-				</div>
-				<!-- 대진표 배경 div  -->
-				<div
-					style="width: 90%; height: 700px; background-image: url('/img/gametable.png'); background-size: 100%; background-repeat: no-repeat; margin: 0 auto; position: relative;">
-					<div id="top1">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top2" class="win2">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top3" class="win2">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top4" class="win4-1 win4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top5" class="win4-1 win4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top6" class="win4-1 win4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top7" class="win4-1 win4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top8" class="win8 win8-1">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top9" class="win8 win8-1">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top10" class="win8 win8-2">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top11" class="win8 win8-2">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top12" class="win8 win8-3">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top13" class="win8 win8-3">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top14" class="win8 win8-4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top15" class="win8 win8-4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-
-				</div>
-
-			</div>
 		</div>
 	</div>
-	
-	<script>
-		function reservationView(resNo){
-			location.href = "/reservationView?resNo="+resNo;
-		}
-	
-	</script>
-
-
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

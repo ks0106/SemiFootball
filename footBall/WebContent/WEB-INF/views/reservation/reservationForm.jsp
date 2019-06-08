@@ -8,16 +8,13 @@
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
+<!-- reservation 공통 js => jqeury를 이용하기 때문에 jquery import 밑으로 내려야 한다. -->
+<script type="text/javascript" src="/js/reservation/reservationAll.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <script>
 	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
 		var m = $('#tbCalendarYM').text();
 		var d = parseInt($('.select-cell').text());
 		var t;
@@ -49,12 +46,6 @@
 				alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 			}
 		});
-		$('#side_menu1').click(function(){
-			location.href="/reservation";
-		});
-		$('#side_menu2').click(function(){
-			location.href="/reservationViewList";
-		});	
 	});
 </script>
 <style>
@@ -150,12 +141,16 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			<hr
 				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
 			<div style="margin-bottom: 15px;">
-				<a href="/reservation" class="side_a" id="side_menu1"
-					style="color: #3366cc;">대관예약</a>
+				<a class="side_a" id="side_menu1" style="color: #3366cc;">대관예약</a>
 			</div>
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu2" style="color: #2c3c57;">예약확인</a>
 			</div>
+			<c:if test="${sessionScope.Member.id == admin}">
+				<div style="margin-bottom: 15px;">
+					<a class="side_a" id="side_menu3" style="color: #2c3c57;">[관리자] 대관 관리</a>
+				</div>
+			</c:if>
 		</div>
 		<!-- 사이드 메뉴 종료 -->
 		<!-- 컨텐츠 -->
@@ -169,13 +164,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
 			<!-- 컨텐츠 본문 -->
 			<div style="width: 100%; height: 150vh;">
-				<div
-					style="margin-left: 10px; font-size: 20px; font-weight: bolder;">예약
-					가능 일정</div>
-				<hr
-					style="margin-left: 10px; width: 120px; border: 2px solid #2c3c57; padding: 0; float: left;">
-				<hr
-					style="width: 20px; border: 2px solid #3366cc; padding: 0; float: left;">
+				<div style="margin-left: 10px; font-size: 20px; font-weight: bolder;">예약가능 일정</div>
+				<hr style="margin-left: 10px; width: 120px; border: 2px solid #2c3c57; padding: 0; float: left;">
+				<hr style="width: 20px; border: 2px solid #3366cc; padding: 0; float: left;">
 				<!-- 달력 -->
 				<div
 					style="margin-left: 10px; margin-top: 50px; position: absolute; top: 680px;">
@@ -303,6 +294,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			</div>
 		</div>
 	</div>
+	<form id="paymentGo" action="/reservationPaymentPage" method="post" style="visibility:hidden;">
+		
+	</form>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
@@ -903,24 +897,23 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			for(var i=0;i<$('.reservationReceiptList').length;i++){
 				var startTime = resStartTime[i];
 				var endTime = resEndTime[i];
-				var check;
 				$.ajax({
 					url : "/reservationCheckCourt.do",
 					type : "get",
 					data : {resDate:resDate,cCode:cCode,startTime:startTime,endTime:endTime},
-					success : setTimeout(function(data){
-						check = parseInt(data);
-						if(check == 0){
+					success : function(data){
+						var check = parseInt(data);
+						if(check != 0){
+							alert(startTime+"~"+endTime+" 타임이 마감되어 대관할 수 없습니다.");
+							$('.reservationReceiptList:eq('+i+')').remove();
+							i = $('.reservationReceiptList').length + 1;
+						}else{
 							if(i == $('.reservationReceiptList').length){
 								payment(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
 								i = $('.reservationReceiptList').length + 1;
 							}
-						}else{
-							alert(startTime+"~"+endTime+" 타임이 마감되어 대관할 수 없습니다.");
-							$('.reservationReceiptList:eq('+i+')').remove();
-							i = $('.reservationReceiptList').length + 1;
 						}
-					},1000),
+					},
 					error : function(){
 						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 					}
@@ -952,8 +945,17 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				type : 'get',
 				data : {bCode:bCode,resDate:resDate,cCode:cCode,resStartTime:resStartTime,resEndTime:resEndTime,allCost:allCost},
 				success : function(data){
+					console.log(resStartTime.length);
 					alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
-					location.href="/reservationPaymentPage?allCost="+allCost+"&resNo="+data+"&resDate="+resDate+"&cCode="+cCode+"&resStartTime="+resStartTime+"&resEndTime="+resEndTime;
+					$('#paymentGo').append('<input type="text" name="goAllCost" value="'+allCost+'">');
+					$('#paymentGo').append('<input type="text" name="goResNo" value="'+data+'">');
+					$('#paymentGo').append('<input type="text" name="goResDate" value="'+resDate+'">');
+					$('#paymentGo').append('<input type="text" name="goCCode" value="'+cCode+'">');
+					for(var i = 0; i < resStartTime.length ; i++){
+						$('#paymentGo').append('<input type="text" name="goStartTime" value="'+resStartTime[i]+'">');
+						$('#paymentGo').append('<input type="text" name="goEndTime" value="'+resEndTime[i]+'">');
+					}
+					$('#paymentGo').submit();
 				},
 				error : function(){
 					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");

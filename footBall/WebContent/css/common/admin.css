@@ -14,14 +14,14 @@
 	#menu>.header_item{
 		float: left; 
 		list-style-type: none; 
-		height: 70px;
+		height: 80px;
 		width: 15%;
 		text-align: center;
 		line-height: 50px;
 		font-size: 20px
 	}
 	#menu>li>a{
-		padding-top: 10px;
+		line-height:70px;
 	    display: block;
 	    text-decoration: none;
 	    color: white;
@@ -43,7 +43,7 @@
 	}
 	#menu>li>ul>li{
 	    list-style-type: none;
-	    background-color: grey;
+	    background-color: rgb(230,230,230);
 	}
 	#menu>li>ul>li>a{
 	    display: block;

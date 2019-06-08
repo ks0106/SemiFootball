@@ -41,7 +41,9 @@
 							<c:forEach items="${list }" var="bd">
 								<a href="#${bd.b.branchName }" class="internal-link">${bd.b.branchName }</a><br>
 							</c:forEach>
-							<a href="/branchManage" id="manage-link">[관리자] 지점 관리</a><br>
+							<c:if test="${sessionScope.member.id eq 'admin' }">
+								<a href="/branchManage" id="manage-link">[관리자] 지점 관리</a><br>
+							</c:if>							
 						</div>
 					</div>
 				</aside>
