@@ -97,13 +97,6 @@ public class ReservationService {
 						JDBCTemplate.rollback(conn);
 					}
 				}
-//				//렌탈 테이블에 물품 저장을 완료하면 주문한 물품의 고유번호를 이용하여 해당 물품의 재고를 나간 만큼 줄임(물품번호,렌탈 수량 필요) => 이 구문 옮겨야 함
-//				int goodsUpdate = new ReservationDao().reservationGoodsAmountUpdate(conn,goodsNo,Integer.parseInt(resGoodsAmount[i]));
-//				if(goodsUpdate > 0) {
-//					conn.commit();
-//				}else {
-//					conn.rollback();
-//				}
 			}
 			//물품 대여 번호를 얻어옴
 			int rentalNo = new ReservationDao().reservationRentalNo(conn,memberId,resNo);
@@ -122,24 +115,6 @@ public class ReservationService {
 		}
 	}
 	
-	public int reservationGoodsAmountUpdate(String memberId, int resNo) throws SQLException {
-		Connection conn = JDBCTemplate.getConnection();
-		int result = 0;
-		ArrayList<Rental> rList = new ReservationDao().reservationRentalView(conn, resNo);
-		for(int i=0;i<rList.size();i++) {
-			//렌탈 테이블에 물품 저장을 완료하면 주문한 물품의 고유번호를 이용하여 해당 물품의 재고를 나간 만큼 줄임(물품번호,주문 수량 필요)
-			int goodsUpdate = new ReservationDao().reservationGoodsAmountUpdate(conn,rList.get(i).getRentalGNo(),rList.get(i).getRentalGAmount());
-			if(goodsUpdate > 0) {
-				conn.commit();
-			}else {
-				conn.rollback();
-			}
-			result = goodsUpdate;
-		}
-		JDBCTemplate.close(conn);
-		return result;
-	}
-	
 	public int reservationCheckCourt(String resDate, int cCode, String startTime, String endTime) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new ReservationDao().reservationCheckCourt(conn,resDate,cCode,startTime,endTime);
@@ -154,24 +129,31 @@ public class ReservationService {
 		return resNo;
 	}
 	
-	public int reservationScheduleStatus(String resDate,int cCode,String[] startTime,String[] endTime) throws SQLException {
+	public int reservationPaymentUpdate(String memberId,String paymentId,String paymentNum,String paymentDate,int resNo,String resDate,int cCode,String[] startTime,String[] endTime) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = 0;
+		//스케쥴 예약불가 전환
+		int schedule = 0;
 		for(int i=0;i<startTime.length;i++) {
-			result = new ReservationDao().reservationScheduleStatus(conn, resDate, cCode, startTime[i], endTime[i]);
-			if(result > 0) {
+			schedule = new ReservationDao().reservationScheduleStatus(conn, resDate, cCode, startTime[i], endTime[i]);
+			if(schedule > 0) {
 				conn.commit();
 			}else {
 				conn.rollback();
 			}
-			System.out.println(i+"번째 스테이터스"+result);
 		}
-		JDBCTemplate.close(conn);
-		return result;
-	}
-	
-	public int reservationPaymentUpdate(String memberId,String paymentId,String paymentNum,String paymentDate,int resNo) throws SQLException {
-		Connection conn = JDBCTemplate.getConnection();
+		//물품 카운트 줄임
+		int goodsUpdate = 0;
+		ArrayList<Rental> rList = new ReservationDao().reservationRentalView(conn, resNo);
+		for(int i=0;i<rList.size();i++) {
+			//렌탈 테이블에 물품 저장을 완료하면 주문한 물품의 고유번호를 이용하여 해당 물품의 재고를 나간 만큼 줄임(물품번호,주문 수량 필요)
+			goodsUpdate = new ReservationDao().reservationGoodsAmountUpdate(conn,rList.get(i).getRentalGNo(),rList.get(i).getRentalGAmount());
+			if(goodsUpdate > 0) {
+				conn.commit();
+			}else {
+				conn.rollback();
+			}
+		}
+		//대관테이블에 결제정보 추가
 		int result = new ReservationDao().reservationPaymentUpdate(conn,memberId,paymentId,paymentNum,paymentDate,resNo);
 		if(result > 0) {
 			conn.commit();
@@ -237,10 +219,61 @@ public class ReservationService {
 		return result;
 	}
 	
+	public int reservationCancelApplyRollback(int resNo, String payDate) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ReservationDao().reservationCancelApplyRollback(conn, resNo, payDate);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
 	public ArrayList<Reservation> reservationManagerList() throws SQLException{
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Reservation> list = new ReservationDao().reservationManagerList(conn);
 		JDBCTemplate.close(conn);
 		return list;
+	}
+	
+	public int reservationPaymentCancelAllow(int resNo, int bCode, int cCode, String payDate, String resDate, String[] startTime, String[] endTime) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		for(int i=0;i<startTime.length;i++) {
+			int schedule = new ReservationDao().reservationScheduleStatusSet(conn, resDate, cCode, startTime[i], endTime[i]);
+			if(schedule > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		}
+		//물품 재고 증가
+		ArrayList<Rental> rList = new ReservationDao().reservationRentalView(conn, resNo);
+		for(int i=0;i<rList.size();i++) {
+			//렌탈 테이블에 물품 저장을 완료하면 주문한 물품의 고유번호를 이용하여 해당 물품의 재고를 나간 만큼 줄임(물품번호,주문 수량 필요)
+			int goodsUpdate = new ReservationDao().reservationGoodsAmountSet(conn,rList.get(i).getRentalGNo(),rList.get(i).getRentalGAmount());
+			if(goodsUpdate > 0) {
+				conn.commit();
+			}else {
+				conn.rollback();
+			}
+		}
+		//물품 대여 내역 삭제
+		int rentalDelete = new ReservationDao().reservationRentalDelete(conn, resNo);	
+		if(rentalDelete > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		//대관 내역 삭제
+		int result = new ReservationDao().reservationPaymentDelete(conn, resNo);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 }

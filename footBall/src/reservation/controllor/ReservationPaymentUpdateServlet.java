@@ -51,11 +51,7 @@ public class ReservationPaymentUpdateServlet extends HttpServlet {
 			String[] endTime = request.getParameterValues("endTime");
 			try {
 				//스케쥴 예약 불가로 변경
-				int status = new ReservationService().reservationScheduleStatus(resDate,cCode,startTime,endTime);
-				//주문장 추가 및 결제 체크
-				int result = new ReservationService().reservationPaymentUpdate(memberId,paymentId,paymentNum,paymentDate,resNo);
-				//물품 재고 줄임
-				int goods = new ReservationService().reservationGoodsAmountUpdate(memberId,resNo);
+				int result = new ReservationService().reservationPaymentUpdate(memberId,paymentId,paymentNum,paymentDate,resNo,resDate,cCode,startTime,endTime);				//주문장 추가 및 결제 체크
 				RequestDispatcher rd = request.getRequestDispatcher("/reservationViewList");
 				rd.forward(request, response);
 			} catch (SQLException e) {

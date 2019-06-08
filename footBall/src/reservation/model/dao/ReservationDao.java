@@ -363,6 +363,18 @@ public class ReservationDao {
 		return result;
 	}
 	
+	public int reservationGoodsAmountSet(Connection conn,int goodsNo,int resGoodsAmount) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationGoodsAmountSet");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resGoodsAmount);
+		pstmt.setInt(2, goodsNo);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;		
+	}
+	
 	public int reservationCheckCourt(Connection conn,String resDate,int cCode,String startTime,String endTime) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -394,6 +406,20 @@ public class ReservationDao {
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
+	}
+	
+	public int reservationScheduleStatusSet(Connection conn, String resDate, int cCode, String startTime, String endTime) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationScheduleStatusSet");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, cCode);
+		pstmt.setString(2, resDate);
+		pstmt.setString(3, startTime);
+		pstmt.setString(4, endTime);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;		
 	}
 	
 	public int reservationPaymentUpdate(Connection conn,String memberId,String paymentId,String paymentNum,String paymentDate,int resNo) throws SQLException {
@@ -576,11 +602,23 @@ public class ReservationDao {
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("reservationCancelApply");
 		pstmt = conn.prepareStatement(query);
-		pstmt.setInt(1, resNo);
-		pstmt.setString(2, cancelApplyDate);
+		pstmt.setString(1, cancelApplyDate);
+		pstmt.setInt(2, resNo);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
+	}
+	
+	public int reservationCancelApplyRollback(Connection conn, int resNo, String payDate) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationCancelApplyRollback");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resNo);
+		pstmt.setString(2, payDate);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;		
 	}
 	
 	public ArrayList<Reservation> reservationManagerList(Connection conn) throws SQLException{

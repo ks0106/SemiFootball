@@ -41,6 +41,7 @@ public class ReservationCancelApplyServlet extends HttpServlet {
 		if(m != null) {
 			int resNo = Integer.parseInt(request.getParameter("resNo"));
 			String cancelApplyDate = request.getParameter("cancelApplyDate");
+			System.out.println(cancelApplyDate);
 			System.out.println(resNo);
 			try {
 				int result = new ReservationService().reservationCancelApply(resNo,cancelApplyDate);
@@ -55,8 +56,7 @@ public class ReservationCancelApplyServlet extends HttpServlet {
 			request.setAttribute("msg", "로그인을 해주세요.");
 			request.setAttribute("loc", "/views/login/login.jsp");
 			rd.forward(request, response);
-		}
-		
+		}		
 	}
 
 	/**

@@ -183,12 +183,19 @@
 												</td>
 											</c:if>
 											<c:if test="${rvpd.res.resCancel == 1}">
-												<td class="receiptTd">취소진행(승인 전)
+												<td class="receiptTd">결제취소 진행중
+												<button id="paymentCancelRollbackBtn" type="button" style="border:0;background-color:darkgray;color:white;font-size:13px;">취소 철회</button>
 												</td>
 											</c:if>
 											<th class="receiptTd">결제일시</th>
 											<td class="receiptTd">${rvpd.res.resPaymentDate}</td>
 										</c:if>
+										<c:if test="${rvpd.res.resPayment == 2}">
+											<td class="receiptTd">결제취소 완료
+											<th class="receiptTd">취소일시</th>
+											<td class="receiptTd">${rvpd.res.resCancelDate}</td>
+										</c:if>
+										
 									</tr>
 									<tr>
 										<th colspan="4" style="border-top:3px double #2c3c57;">총계</th>
@@ -226,9 +233,11 @@
 						var result = parseInt(data);
 						if(result > 0){
 							alert("결제 및 예약 취소 신청 완료");
+							opener.location.reload();
 							window.close();
 						}else{
 							alert("잘못된 동작입니다. 잠시 후 다시 시도해주세요.")
+							opener.location.reload();
 							window.close();
 						}
 					},
@@ -237,6 +246,30 @@
 					}
 				});
 			}
+		});
+		$('#paymentCancelRollbackBtn').on("click",function(){
+			var resNo = '${rvpd.res.resNo}';
+			var payDate = '${rvpd.res.resPaymentDate}';
+			$.ajax({
+				url : '/reservationCancelApplyRollback.do',
+				type : 'get',
+				data : {resNo:resNo,payDate:payDate},
+				success : function(data){
+					var result = parseInt(data);
+					if(result > 0){
+						alert("결제 및 예약 취소 철회 성공");
+						opener.location.reload();
+						window.close();
+					}else{
+						alert("잘못된 동작입니다. 잠시 후 다시 시도해주세요.")
+						opener.location.reload();
+						window.close();
+					}
+				},
+				error : function(){
+					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+				}
+			});			
 		});
 	</script>
 </body>

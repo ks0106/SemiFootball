@@ -313,7 +313,7 @@
 								</tr>
 								<c:if test="${!empty list}">
 									<c:forEach items="${list}" var="r">
-										<tr id="imgView" onclick="window.open('reservationView?resNo=${r.resNo}','예약확인','width=1000,height=900,location=no,status=no,scrollbars=yes');">
+										<tr id="imgView" onclick="window.open('/reservationManagerView?resNo=${r.resNo}','예약확인','width=1000,height=900,location=no,status=no,scrollbars=yes');">
 											<td class="td"><span class="priamryNo">${r.resNo}</span></td>
 											<td class="td">${r.resPaymentDate}</td>
 											<td class="td">${r.resCancelApplyDate}</td>

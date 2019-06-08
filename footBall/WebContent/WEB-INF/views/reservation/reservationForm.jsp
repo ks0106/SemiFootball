@@ -837,9 +837,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 						console.log("대여 물품 가격 : "+resGoodsPrice[i]);
 					}
 				}
-				var resStartTime = new Array($('.reservationReceiptList').length);;
-				var resEndTime = new Array($('.reservationReceiptList').length);;
-				var resCost = new Array($('.reservationReceiptList').length);;
+				var resStartTime = new Array($('.reservationReceiptList').length);
+				var resEndTime = new Array($('.reservationReceiptList').length);
+				var resCost = new Array($('.reservationReceiptList').length);
 				if($('.reservationReceiptList').length > 0){
 					for(var i=0;i<$('.reservationReceiptList').length;i++){
 						resStartTime[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationStartTime').text();

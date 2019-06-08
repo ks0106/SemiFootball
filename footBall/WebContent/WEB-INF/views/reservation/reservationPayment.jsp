@@ -32,7 +32,7 @@
 				var info1 = rsp.imp_uid;		//고유ID
 				var info2 = rsp.paid_amount;	//결제금액
 				var info3 = rsp.apply_num;		//카드넘버
-				var info4 = d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();		//결제일시
+				var info4 = date;		//결제일시
 				$('#paymentId').val(info1);
 				$('#paymentNum').val(info3);
 				$('#paymentDate').val(info4);

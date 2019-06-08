@@ -345,15 +345,20 @@
 						</tr>
 						<c:if test="${!empty list}">
 							<c:forEach items="${list}" var="r">
-								<tr id="imgView" onclick="window.open('reservationView?resNo=${r.resNo}','예약확인','width=1000,height=900,location=no,status=no,scrollbars=yes');">
+								<tr id="imgView" onclick="window.open('/reservationView?resNo=${r.resNo}','예약확인','width=1000,height=900,location=no,status=no,scrollbars=yes');">
 									<td class="td"><span class="priamryNo">${r.resNo}</span></td>
 									<td class="td">${r.resDate}</td>
 									<td class="td"><fmt:formatNumber value="${r.resTotalCost}" pattern="#,###" />원</td>
 									<c:if test="${r.resPayment == 1}">
-										<td class="td">결제완료</td>
+										<c:if test="${r.resCancel == 0}">
+											<td class="td">결제완료</td>
+										</c:if>
+										<c:if test="${r.resCancel == 1}">
+											<td class="td">결제취소 진행중</td>
+										</c:if>
 									</c:if>
 									<c:if test="${r.resPayment == 2}">
-										<td class="td">결제취소</td>
+										<td class="td">결제취소 완료</td>
 									</c:if>
 								</tr>
 							</c:forEach>

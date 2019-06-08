@@ -13,22 +13,20 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import goods.model.vo.Goods;
 import member.model.vo.Member;
 import reservation.model.service.ReservationService;
-import reservation.model.vo.ReservationViewPageData;
 
 /**
- * Servlet implementation class ReservationViewServlet
+ * Servlet implementation class ReservationCancelApplyRollbackServlet
  */
-@WebServlet(name = "ReservationView", urlPatterns = { "/reservationView" })
-public class ReservationViewServlet extends HttpServlet {
+@WebServlet(name = "ReservationCancelApplyRollback", urlPatterns = { "/reservationCancelApplyRollback.do" })
+public class ReservationCancelApplyRollbackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationViewServlet() {
+    public ReservationCancelApplyRollbackServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,20 +39,21 @@ public class ReservationViewServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m != null) {
 			int resNo = Integer.parseInt(request.getParameter("resNo"));
+			String payDate = request.getParameter("payDate");
 			try {
-				ReservationViewPageData rvpd = new ReservationService().reservationView(resNo);
-				request.setAttribute("rvpd", rvpd);
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationView.jsp");
-				rd.forward(request, response);
+				int result = new ReservationService().reservationCancelApplyRollback(resNo,payDate);
+				response.setContentType("application/json");
+				response.setCharacterEncoding("utf-8");
+				new Gson().toJson(result,response.getWriter());			
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
+			}			
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 			request.setAttribute("msg", "로그인을 해주세요.");
 			request.setAttribute("loc", "/views/login/login.jsp");
 			rd.forward(request, response);
-		}		
+		}
 	}
 
 	/**
