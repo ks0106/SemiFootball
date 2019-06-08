@@ -4,7 +4,7 @@
 	#menu{
 		margin: 0; padding: 0; 
 		box-sizing: border-box;
-		height: 80px;
+		height: 100px;
 		width: 1000px;
 		position:absolute;
 		left:200px;
@@ -21,7 +21,7 @@
 		font-size: 20px
 	}
 	#menu>li>a{
-		padding-top: 10px;
+		line-height:70px;
 	    display: block;
 	    text-decoration: none;
 	    color: white;
@@ -43,7 +43,7 @@
 	}
 	#menu>li>ul>li{
 	    list-style-type: none;
-	    background-color: grey;
+	    background-color: rgb(230,230,230);
 	}
 	#menu>li>ul>li>a{
 	    display: block;

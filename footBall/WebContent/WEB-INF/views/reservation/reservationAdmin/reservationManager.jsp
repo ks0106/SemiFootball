@@ -40,21 +40,20 @@
 	<section> <!-- 내용 작성 -->
 		<!-- 컨텐츠 -->
 		<div style="width:100%;overflow:hidden;">
-			<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
+			<div style="width: 95%; background-color: white; margin: 0 auto; overflow: hidden;">
 				<!-- 컨텐츠 사이드 메뉴 -->
-				<div
-					style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
-					<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">대관예약/확인</div>
+				<div style="width:300px; height: 300px; text-align: left; display: inline-block; float: left;">
+					<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">대관 관리</div>
 					<hr style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
 					<div style="margin-bottom: 15px;">
-						<a href="/reservation" class="side_a" id="side_menu1" style="color: #2c3c57;">대관예약</a>
+						<a href="/reservation" class="side_a" id="side_menu1" style="color: #2c3c57;">예약/결제 취소</a>
 					</div>
 					<div style="margin-bottom: 15px;">
-						<a class="side_a" id="side_menu2" style="color: #2c3c57;">예약확인</a>
+						<a class="side_a" id="side_menu2" style="color: #2c3c57;">구장 등록</a>
 					</div>
 					<c:if test="${sessionScope.Member.id == admin}">
 						<div style="margin-bottom: 15px;">
-							<a class="side_a" id="side_menu3" style="color: #3366cc;">[관리자] 대관 관리</a>
+							<a class="side_a" id="side_menu3" style="color: #3366cc;">지점별 물품 등록</a>
 						</div>
 					</c:if>
 				</div>
