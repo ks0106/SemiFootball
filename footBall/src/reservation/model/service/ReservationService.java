@@ -182,6 +182,24 @@ public class ReservationService {
 		return result;
 	}
 	
+	public int reservationPaymentDelete(int resNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int rentalDelete = new ReservationDao().reservationRentalDelete(conn, resNo);	
+		if(rentalDelete > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		int result = new ReservationDao().reservationPaymentDelete(conn, resNo);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
 	public ArrayList<Reservation> reservationViewList(String memberId) throws SQLException{
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Reservation> list = new ReservationDao().reservationViewList(conn, memberId);

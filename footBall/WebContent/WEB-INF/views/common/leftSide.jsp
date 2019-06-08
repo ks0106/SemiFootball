@@ -386,14 +386,14 @@
 <header class="area2">
 	<%if(m == null){ %>
 	<div class="menu_bar2">
-		<div id="menu_login2" style="float:right;width:80px;height:80px;margin-right:40px;">
+		<div id="menu_login2" style="float:right;width:100px;height:80px;margin-right:40px;">
 			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 		</div>
 	</div>
 	<%}else{ %>
 	<div class="menu_bar2">
- 		<div id="menu_login2" style="float:right;width:80px;height:80px;margin-right:40px;">
+ 		<div id="menu_login2" style="float:right;width:100px;height:80px;margin-right:40px;">
 			<div style="margin-left:16px;"><img src="/img/member_icon_100px_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
  			<div><a style="text-decoration:none;color:white;cursor:pointer;"><%=m.getName()%> 님!</a></div>
  			<div id="myPage2" style="display:none;">
@@ -448,12 +448,12 @@
 
  		</ul>
 	 		<%if(m == null){ %>
-		 		<div id="menu_login" style="float:right;width:80px;height:80px;margin-right:40px;">
+		 		<div id="menu_login" style="float:right;width:100px;height:80px;margin-right:40px;">
 					<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
 		 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
 				</div>
 			<%}else{ %>
-		 		<div id="menu_login" style="float:right;width:80px;height:80px;margin-right:40px;">
+		 		<div id="menu_login" style="float:right;width:100px;height:80px;margin-right:40px;">
 					<div style="margin-left:16px;"><img src="/img/member_icon_100px_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
 		 			<div><a style="text-decoration:none;color:white;cursor:pointer;"><%=m.getName()%> 님!</a></div>
 		 			<div id="myPage" style="display:none;">

@@ -41,8 +41,7 @@
 				$('#cCode').val(cCode);
 				$('#paymentSuccess').submit();
 			}else{
-				alert("결제가 취소되었습니다.");
-				location.href="/";
+				location.href="/reservationPaymentDelete?resNo="+resNo;
 			}
 		});	
 	});
