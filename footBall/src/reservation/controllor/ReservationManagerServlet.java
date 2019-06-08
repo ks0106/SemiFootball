@@ -1,6 +1,7 @@
 package reservation.controllor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import member.model.vo.Member;
+import reservation.model.service.ReservationService;
+import reservation.model.vo.Reservation;
 
 /**
  * Servlet implementation class ReservationManagerServlet
@@ -35,6 +38,7 @@ public class ReservationManagerServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
+				ArrayList<Reservation> list = new ReservationService().reservationManagerList();
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationManager.jsp");
 				rd.forward(request, response);
 			}else {

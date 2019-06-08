@@ -33,6 +33,240 @@
 		font-size:45px;
 		font-weight:bolder;
 	}
+	
+/* 복붙한 style(솎아낼 거 있음) */
+.side_nav {
+	margin: 5px;
+	color: silver;
+}
+.side_a {
+	font-weight: bolder;
+	font-size: 18px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.side_nav a {
+	text-decoration: none;
+	color: silver;
+	font-size: 16px;
+}
+
+#side_menu1 {
+	display: block;
+}
+
+#side_pr_menu {
+	list-style-type: square;
+	padding: 0;
+	margin: 0;
+	margin-left: 20px;
+	display: none;
+}
+
+#mv {
+	background-image: url("/img/ground1.png");
+}
+.side_nav {
+	margin: 5px;
+	color: silver;
+}
+
+.side_nav a {
+	text-decoration: none;
+	color: silver;
+	font-size: 16px;
+}
+
+#side_menu1 {
+	display: block;
+}
+
+#side_pr_menu {
+	list-style-type: square;
+	padding: 0;
+	margin: 0;
+	margin-left: 20px;
+	display: none;
+}
+
+.insertLeagueBtn {
+	width: 200px;
+	height: 50px;
+	color: teal;
+	border: none;
+	background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+}
+
+.th {
+	width: 20%;
+	border-bottom: 1px solid gray;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.td {
+	padding: 16px;
+	border-bottom: 1px solid #d5d8dd;
+	height: 21px;
+	font-size: 18px;
+	line-height: 21px;
+}
+
+#imgView:hover {
+	background-color: #F2F2F2;
+	cursor: pointer;
+}
+
+#top1 {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	border: 1px solid;
+	top: 1%;
+	left: 44%;
+}
+
+#top2 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 28%;
+	left: 19%;
+}
+
+#top3 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 28%;
+	left: 72%;
+}
+
+#top4 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 50%;
+	left: 6%;
+}
+
+#top5 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 50%;
+	left: 32%;
+}
+
+#top6 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 50%;
+	left: 59%;
+}
+
+#top7 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 50%;
+	left: 85%;
+}
+
+#top8 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 74%;
+	left: -1%;
+}
+
+#top9 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 74%;
+	left: 13%;
+}
+
+#top10 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 74%;
+	left: 26%;
+}
+
+#top11 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 74%;
+	left: 39%;
+}
+
+#top12 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 74%;
+	left: 52%;
+}
+
+#top13 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 74%;
+	left: 65%;
+}
+
+#top14 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 74%;
+	left: 78%;
+}
+
+#top15 {
+	position: absolute;
+	width: 120px;
+	height: 110px;
+	border: 1px solid;
+	top: 74%;
+	left: 91%;
+}
+
+.lose {
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	opacity: 0.5;
+	z-index: 2;
+}
+
+#content {
+	display: none;
+}
 </style>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -49,7 +283,7 @@
 						<hr style="width: 10%; border: 2px solid #df0101;padding: 0;display:inline-block;">
 					</div>
 					<div style="margin-bottom: 15px;">
-						<a href="/reservation" class="side_a" id="side_menu1" style="color: #df0101;">예약/결제 취소</a>
+						<a class="side_a" id="side_menu1" style="color: #df0101;">예약/결제 취소</a>
 					</div>
 					<div style="margin-bottom: 15px;">
 						<a class="side_a" id="side_menu2" style="color: gray;">구장 등록</a>
@@ -64,9 +298,41 @@
 				<!-- 컨텐츠 -->
 				<div style="width: 78%; height: 2000px; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 					<!-- 컨텐츠 타이틀 -->
-					<div id="reservationTitle" style="color:#2c3c57;margin-left:50px;">[관리자] 예약/결제 취소</div>
+					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 예약/결제 취소</div>
 					<!-- 본문 -->
-					
+					<!-- 컨텐츠 파티션 -->
+					<div style="width: 90%; margin: 0 auto; margin-bottom: 50px;">
+						<div id="table-wrapper1" style="margin-bottom: 100px; text-align:left;">
+							<p style="font-size: 30px; font-weight: bold;color:gray;">- 취소 신청 목록</p>
+							<table style="margin-top: 50px; border-top: 3px solid black; border-bottom: 3px solid black; width: 80%; margin: 0 auto; border-collapse: collapse;text-align:center;">
+								<tr>
+									<th class="th">주문번호</th>
+									<th class="th" colspan="2">결제일</th>
+									<th class="th">금액</th>
+									<th class="th">결제</th>
+								</tr>
+								<c:if test="${!empty list}">
+									<c:forEach items="${list}" var="r">
+										<tr id="imgView" onclick="window.open('reservationView?resNo=${r.resNo}','예약확인','width=1000,height=900,location=no,status=no,scrollbars=yes');">
+											<td class="td"><span class="priamryNo">${r.resNo}</span></td>
+											<td class="td" colspan="2">${r.resDate}</td>
+											<td class="td"><fmt:formatNumber value="${r.resTotalCost}" pattern="#,###" />원</td>
+											<c:if test="${r.resPayment == 1}">
+												<td class="td">결제완료</td>
+											</c:if>
+											<c:if test="${r.resPayment == 2}">
+												<td class="td">결제취소</td>
+											</c:if>
+										</tr>
+									</c:forEach>
+								</c:if>
+							</table>
+						</div>
+						<!-- 페이지 네비 -->
+						<div id="pageNavi"
+							style="width: 80%; margin: 0 auto; margin-bottom: 100px;">${mpd.pageNavi }
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

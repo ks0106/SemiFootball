@@ -207,9 +207,9 @@ public class ReservationService {
 		return new ReservationViewPageData(res,b,c,rList,gList);
 	}
 	
-	public int reservationCancelApply(int resNo) throws SQLException {
+	public int reservationCancelApply(int resNo, String cancelApplyDate) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new ReservationDao().reservationCancelApply(conn, resNo);
+		int result = new ReservationDao().reservationCancelApply(conn, resNo, cancelApplyDate);
 		if(result > 0) {
 			JDBCTemplate.commit(conn);
 		}else {

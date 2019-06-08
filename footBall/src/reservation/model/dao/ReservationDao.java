@@ -471,6 +471,8 @@ public class ReservationDao {
 			res.setResPaymentDate(rset.getString("res_payment_date"));
 			res.setResPayment(rset.getInt("res_payment"));
 			res.setResCancel(rset.getInt("res_cancel"));
+			res.setResCancelApplyDate(rset.getString("res_cancel_apply_date"));
+			res.setResCancelDate(rset.getString("res_cancel_date"));
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
@@ -545,12 +547,13 @@ public class ReservationDao {
 		return g;
 	}
 	
-	public int reservationCancelApply(Connection conn, int resNo) throws SQLException {
+	public int reservationCancelApply(Connection conn, int resNo, String cancelApplyDate) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("reservationCancelApply");
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, resNo);
+		pstmt.setString(2, cancelApplyDate);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;

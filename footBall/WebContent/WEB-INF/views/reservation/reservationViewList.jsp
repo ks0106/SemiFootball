@@ -330,7 +330,7 @@
 				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">예약확인</div>
 			<div class="underline"
 				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
-			<!-- 컨텐츠 지점선택 파티션 -->
+			<!-- 컨텐츠 파티션 -->
 			<div style="width: 90%; margin: 0 auto; margin-bottom: 50px;">
 				<div id="table-wrapper1"
 					style="margin-bottom: 100px; text-align: center;">
@@ -364,86 +364,8 @@
 				<div id="pageNavi"
 					style="width: 80%; margin: 0 auto; margin-bottom: 100px;">${mpd.pageNavi }</div>
 			</div>
-			<div id="content">
-				<!-- 타이틀자리 -->
-				<div id="title-position"
-					style="margin: 0 auto; width: 60%; text-align: center; font-size: 30px;"></div>
-				<!-- 포스터자리 -->
-				<div style="width: 700px; margin: 0 auto; margin-bottom: 50px;">
-					<img id="poster" width="100%" height="100%">
-				</div>
-				<!-- 대진표 배경 div  -->
-				<div
-					style="width: 90%; height: 700px; background-image: url('/img/gametable.png'); background-size: 100%; background-repeat: no-repeat; margin: 0 auto; position: relative;">
-					<div id="top1">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top2" class="win2">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top3" class="win2">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top4" class="win4-1 win4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top5" class="win4-1 win4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top6" class="win4-1 win4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top7" class="win4-1 win4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top8" class="win8 win8-1">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top9" class="win8 win8-1">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top10" class="win8 win8-2">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top11" class="win8 win8-2">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top12" class="win8 win8-3">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top13" class="win8 win8-3">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top14" class="win8 win8-4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-					<div id="top15" class="win8 win8-4">
-						<img style="width: 100%; height: 100%;">
-						<div></div>
-					</div>
-
-				</div>
-
-			</div>
 		</div>
 	</div>
-	
-
-
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

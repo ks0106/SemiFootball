@@ -40,9 +40,10 @@ public class ReservationCancelApplyServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m != null) {
 			int resNo = Integer.parseInt(request.getParameter("resNo"));
+			String cancelApplyDate = request.getParameter("cancelApplyDate");
 			System.out.println(resNo);
 			try {
-				int result = new ReservationService().reservationCancelApply(resNo);
+				int result = new ReservationService().reservationCancelApply(resNo,cancelApplyDate);
 				response.setContentType("application/json");
 				response.setCharacterEncoding("utf-8");
 				new Gson().toJson(result,response.getWriter());			
