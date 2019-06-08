@@ -28,7 +28,7 @@ public class Reservation {
 	}
 	public Reservation(int resNo, int resBCode, int resCCode, String resMEmail, String resMPhone, Date resDate,
 			String resTime, int resRentalNo, int resTotalCost, Date resOrderDate, String resPaymentId,
-			String resPaymentNum, String resPaymentDate, int resPayment, int resCancel) {
+			String resPaymentNum, String resPaymentDate, int resPayment, int resCancel, String resCancelApplyDate, String resCancelDate) {
 		super();
 		this.resNo = resNo;
 		this.resBCode = resBCode;

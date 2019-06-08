@@ -1,6 +1,7 @@
 package reservation.controllor;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -38,9 +39,14 @@ public class ReservationManagerServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
-				ArrayList<Reservation> list = new ReservationService().reservationManagerList();
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationManager.jsp");
-				rd.forward(request, response);
+				try {
+					ArrayList<Reservation> list = new ReservationService().reservationManagerList();
+					request.setAttribute("list", list);
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationManager.jsp");
+					rd.forward(request, response);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}else {
 				request.setAttribute("msg", "비정상적인 동작입니다. 메인페이지로 이동합니다.");
 				request.setAttribute("loc", "/");

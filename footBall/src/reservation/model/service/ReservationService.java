@@ -218,4 +218,11 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	public ArrayList<Reservation> reservationManagerList() throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Reservation> list = new ReservationDao().reservationManagerList(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
 }

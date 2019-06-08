@@ -437,6 +437,8 @@ public class ReservationDao {
 			r.setResPaymentDate(rset.getString("res_payment_date"));
 			r.setResPayment(rset.getInt("res_payment"));
 			r.setResCancel(rset.getInt("res_cancel"));
+			r.setResCancelApplyDate(rset.getString("res_cancel_apply_date"));
+			r.setResCancelDate(rset.getString("res_cancel_date"));
 			r.setResBName(rset.getString("B_Name"));
 			r.setResCName(rset.getString("C_name"));
 			list.add(r);
@@ -557,6 +559,40 @@ public class ReservationDao {
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
+	}
+	
+	public ArrayList<Reservation> reservationManagerList(Connection conn) throws SQLException{
+		ArrayList<Reservation> list = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationManagerList");
+		stmt = conn.createStatement();
+		rset = stmt.executeQuery(query);
+		list = new ArrayList<Reservation>();
+		while(rset.next()) {
+			Reservation r = new Reservation();
+			r.setResNo(rset.getInt("res_no"));
+			r.setResBCode(rset.getInt("res_b_code"));
+			r.setResCCode(rset.getInt("res_c_code"));
+			r.setResMEmail(rset.getString("res_m_email"));
+			r.setResMPhone(rset.getString("res_m_phone"));
+			r.setResDate(rset.getDate("res_date"));
+			r.setResTime(rset.getString("res_time"));
+			r.setResRentalNo(rset.getInt("res_rental_no"));
+			r.setResTotalCost(rset.getInt("res_total_cost"));
+			r.setResOrderDate(rset.getDate("res_order_date"));
+			r.setResPaymentId(rset.getString("res_payment_id"));
+			r.setResPaymentNum(rset.getString("res_payment_num"));
+			r.setResPaymentDate(rset.getString("res_payment_date"));
+			r.setResPayment(rset.getInt("res_payment"));
+			r.setResCancel(rset.getInt("res_cancel"));
+			r.setResCancelApplyDate(rset.getString("res_cancel_apply_date"));
+			r.setResCancelDate(rset.getString("res_cancel_date"));
+			list.add(r);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(stmt);
+		return list;
 	}
 }
 

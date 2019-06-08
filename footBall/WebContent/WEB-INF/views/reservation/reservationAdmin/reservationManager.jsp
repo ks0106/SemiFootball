@@ -307,22 +307,17 @@
 							<table style="margin-top: 50px; border-top: 3px solid black; border-bottom: 3px solid black; width: 80%; margin: 0 auto; border-collapse: collapse;text-align:center;">
 								<tr>
 									<th class="th">주문번호</th>
-									<th class="th" colspan="2">결제일</th>
+									<th class="th">결제일</th>
+									<th class="th">취소신청일</th>
 									<th class="th">금액</th>
-									<th class="th">결제</th>
 								</tr>
 								<c:if test="${!empty list}">
 									<c:forEach items="${list}" var="r">
 										<tr id="imgView" onclick="window.open('reservationView?resNo=${r.resNo}','예약확인','width=1000,height=900,location=no,status=no,scrollbars=yes');">
 											<td class="td"><span class="priamryNo">${r.resNo}</span></td>
-											<td class="td" colspan="2">${r.resDate}</td>
+											<td class="td">${r.resPaymentDate}</td>
+											<td class="td">${r.resCancelApplyDate}</td>
 											<td class="td"><fmt:formatNumber value="${r.resTotalCost}" pattern="#,###" />원</td>
-											<c:if test="${r.resPayment == 1}">
-												<td class="td">결제완료</td>
-											</c:if>
-											<c:if test="${r.resPayment == 2}">
-												<td class="td">결제취소</td>
-											</c:if>
 										</tr>
 									</c:forEach>
 								</c:if>
