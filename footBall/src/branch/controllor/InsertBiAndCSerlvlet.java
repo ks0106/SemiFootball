@@ -119,7 +119,7 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 							fileName.append(filenameExtention);
 							uploadFile = new File(getServletContext().getRealPath("/")+"img/branch/"+fileName.toString());
 							if(!uploadFile.exists()) {
-								biList.add(fileName.toString());
+								biList.add("/img/branch/"+fileName.toString());
 								try {
 									item.write(uploadFile);
 									break;
@@ -135,11 +135,30 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 			}//while ends
 			
 //			변수들 정리해서 서비스 보내기
-			String bi1 = biList.get(0);
-			String bi2 = biList.get(1);
-			String bi3 = biList.get(2);
-			String bi4 = biList.get(3);
-			BranchImgs bi = new BranchImgs(branchCode, bi1, bi2, bi3, bi4);
+			StringBuffer bi1 = new StringBuffer();
+			StringBuffer bi2 = new StringBuffer();
+			StringBuffer bi3 = new StringBuffer();
+			StringBuffer bi4 = new StringBuffer();
+			switch(biList.size()) {
+			case 1 :
+				bi1.append(biList.get(0));
+				break;
+			case 2 :
+				bi1.append(biList.get(0));
+				bi2.append(biList.get(1));
+				break;
+			case 3 :
+				bi1.append(biList.get(0));
+				bi2.append(biList.get(1));
+				bi3.append(biList.get(2));
+				break;
+			case 4 :
+				bi1.append(biList.get(0));
+				bi2.append(biList.get(1));
+				bi3.append(biList.get(2));
+				bi4.append(biList.get(3));
+			}
+			BranchImgs bi = new BranchImgs(branchCode, bi1.toString(), bi2.toString(), bi3.toString(), bi4.toString());
 			
 			String cN1 = courtName1.toString();
 			String t1 = courtType1.toString();
@@ -166,12 +185,12 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 			} else {
 				request.setAttribute("msg", "입력 실패");
 			}
-			request.setAttribute("loc", "/insertBranch");
-			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			request.setAttribute("loc", "/branchManage");
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);;
 		} catch (FileUploadException e) {
 				request.setAttribute("msg", "사진 업로드 중 오류 발생");
-				request.setAttribute("loc", "/insertBranch");
-				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				request.setAttribute("loc", "/branchManage");
+				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);;
 			e.printStackTrace();
 		}
 		

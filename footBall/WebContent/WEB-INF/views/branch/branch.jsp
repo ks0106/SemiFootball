@@ -62,12 +62,12 @@
 										</ul>
 									</div>
 									<div class="content-right">
-										<img class="mainImg right" src="img/branch/${bd.bi.bi1 }" alt="mainIng"><br>
+										<img class="mainImg right" src="${bd.bi.bi1 }" alt="mainIng"><br>
 										<c:if test="${bd.bi != null}">
-											<img class="subImg right" src="img/branch/${bd.bi.bi1 }" alt="subImg">
-											<img class="subImg right" src="img/branch/${bd.bi.bi2 }" alt="subImg">
-											<img class="subImg right" src="img/branch/${bd.bi.bi3 }" alt="subImg">
-											<img class="subImg right" src="img/branch/${bd.bi.bi4 }" alt="subImg">
+											<img class="subImg right" src="${bd.bi.bi1 }" alt="subImg">
+											<img class="subImg right" src="${bd.bi.bi2 }" alt="subImg">
+											<img class="subImg right" src="${bd.bi.bi3 }" alt="subImg">
+											<img class="subImg right" src="${bd.bi.bi4 }" alt="subImg">
 										</c:if>
 									</div>
 									<div class="hidden-wrapper">
@@ -82,12 +82,12 @@
 							<form action="/branchInfo" method="get" enctype="miltipart/form-data">
 								<div class="content-wrapper">
 									<div class="content-left">
-										<img class="mainImg left" src="img/branch/${bd.bi.bi1 }" alt="mainIng"><br>
+										<img class="mainImg left" src="${bd.bi.bi1 }" alt="mainIng"><br>
 										<c:if test="${bd.bi != null }">
-											<img class="subImg left" src="img/branch/${bd.bi.bi1 }" alt="subImg">
-											<img class="subImg left" src="img/branch/${bd.bi.bi2 }" alt="subImg">
-											<img class="subImg left" src="img/branch/${bd.bi.bi3 }" alt="subImg">
-											<img class="subImg left" src="img/branch/${bd.bi.bi4 }" alt="subImg">
+											<img class="subImg left" src="${bd.bi.bi1 }" alt="subImg">
+											<img class="subImg left" src="${bd.bi.bi2 }" alt="subImg">
+											<img class="subImg left" src="${bd.bi.bi3 }" alt="subImg">
+											<img class="subImg left" src="${bd.bi.bi4 }" alt="subImg">
 										</c:if>
 									</div>
 									<div class="content-right">
