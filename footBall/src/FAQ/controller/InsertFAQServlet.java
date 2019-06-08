@@ -39,7 +39,7 @@ public class InsertFAQServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "FAQ등록에 실패하셨습니다.");
 		}
-		request.setAttribute("loc", "/fAQ");
+		request.setAttribute("loc", "/writerFAQ");
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 	}
 

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="notice.model.vo.NoticeVo"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="notice.model.vo.NoticePageData"%>
@@ -52,9 +51,6 @@
 						<h1 style="font-size: 50px;">
 							<u><b>공지사항</b></u>
 						</h1>
-						<c:if test="${sessionScope.member.id =='admin' }">
-							<a href="/noticeWriter" class="btn btn-info">글쓰기</a>
-						</c:if>
 						<br> <br>
 						<table class="table table-dark table-hover" id="table_notice">
 							<thead>
@@ -80,7 +76,7 @@
 						</table>
 						<!-- 페이징 -->
 						<ul class="pagination">
-							<li class="page-item">${pd.pageNavi }</li>
+							<li class="page-item"><%=pd.getPageNavi() %></li>
 						</ul>
 						<br> <br>
 						<form action="/searchKeyword" method="get">

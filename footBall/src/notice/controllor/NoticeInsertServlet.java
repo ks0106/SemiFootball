@@ -41,7 +41,7 @@ public class NoticeInsertServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "공지사항 작성에 실패하였습니다.");
 		}
-		request.setAttribute("loc", "/notice");
+		request.setAttribute("loc", "/noticeWriter");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		rd.forward(request, response);
 	}
