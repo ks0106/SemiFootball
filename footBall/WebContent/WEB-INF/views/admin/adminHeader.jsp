@@ -62,12 +62,12 @@
           </ul>
           </div>
              <%if(m == null){ %>
-                <div id="menu_login" style=" float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+                <div id="menu_login" style=" float:right;width:80px;height:80px;margin-right:40px;">
                   <div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
                    <div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
                </div>
             <%}else{ %>
-                <div id="menu_login" style=" float:right;width:100px;height:100px;margin-top:5px;margin-right:20px;">
+                <div id="menu_login" style=" float:right;width:80px;height:80px;margin-right:40px;">
                   <div style="margin-left:16px;"><img src="/img/member_icon_100px_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
                    <div><a style="text-decoration:none;color:white;cursor:pointer;"><%=m.getName()%> 님!</a></div>
                </div>   

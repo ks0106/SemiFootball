@@ -35,7 +35,7 @@ public class ReservationManagerServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationManager.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationManager.jsp");
 				rd.forward(request, response);
 			}else {
 				request.setAttribute("msg", "비정상적인 동작입니다. 메인페이지로 이동합니다.");
