@@ -61,7 +61,7 @@
 				<!-- 컨텐츠 -->
 				<div style="width: 78%; height: 2000px; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 					<!-- 컨텐츠 타이틀 -->
-					<div id="reservationTitle">[관리자] 대관 관리</div>
+					<div id="reservationTitle" style="color:#2c3c57;">[관리자] 대관 관리</div>
 					<!-- 본문 -->
 				</div>
 			</div>
