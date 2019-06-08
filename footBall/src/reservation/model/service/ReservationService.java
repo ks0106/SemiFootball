@@ -134,7 +134,7 @@ public class ReservationService {
 		//스케쥴 예약불가 전환
 		int schedule = 0;
 		for(int i=0;i<startTime.length;i++) {
-			schedule = new ReservationDao().reservationScheduleStatus(conn, resDate, cCode, startTime[i], endTime[i]);
+			schedule = new ReservationDao().reservationScheduleStatus(conn, resNo, resDate, cCode, startTime[i], endTime[i]);
 			if(schedule > 0) {
 				conn.commit();
 			}else {
@@ -238,15 +238,14 @@ public class ReservationService {
 		return list;
 	}
 	
-	public int reservationPaymentCancelAllow(int resNo, int bCode, int cCode, String payDate, String resDate, String[] startTime, String[] endTime) throws SQLException {
+	public int reservationPaymentCancelAllow(int resNo, String date) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		for(int i=0;i<startTime.length;i++) {
-			int schedule = new ReservationDao().reservationScheduleStatusSet(conn, resDate, cCode, startTime[i], endTime[i]);
-			if(schedule > 0) {
-				JDBCTemplate.commit(conn);
-			}else {
-				JDBCTemplate.rollback(conn);
-			}
+		//스케쥴 가능으로 변경
+		int schedule = new ReservationDao().reservationScheduleStatusSet(conn, resNo);
+		if(schedule > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
 		}
 		//물품 재고 증가
 		ArrayList<Rental> rList = new ReservationDao().reservationRentalView(conn, resNo);
@@ -260,14 +259,16 @@ public class ReservationService {
 			}
 		}
 		//물품 대여 내역 삭제
+/*		
 		int rentalDelete = new ReservationDao().reservationRentalDelete(conn, resNo);	
 		if(rentalDelete > 0) {
 			JDBCTemplate.commit(conn);
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
-		//대관 내역 삭제
-		int result = new ReservationDao().reservationPaymentDelete(conn, resNo);
+*/
+		//대관 내역 변경
+		int result = new ReservationDao().reservationPaymentCancelAllow(conn, resNo, date);
 		if(result > 0) {
 			JDBCTemplate.commit(conn);
 		}else {

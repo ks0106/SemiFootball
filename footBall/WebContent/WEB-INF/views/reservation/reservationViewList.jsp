@@ -124,6 +124,7 @@
 	border-bottom: 1px solid gray;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	font-size:18px;
 }
 
 .td {

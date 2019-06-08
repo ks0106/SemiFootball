@@ -191,7 +191,7 @@
 											<td class="receiptTd">${rvpd.res.resPaymentDate}</td>
 										</c:if>
 										<c:if test="${rvpd.res.resPayment == 2}">
-											<td class="receiptTd">결제취소 완료
+											<td class="receiptTd" style="color:#df0101;font-weight:bolder;">결제취소 완료
 											<th class="receiptTd">취소일시</th>
 											<td class="receiptTd">${rvpd.res.resCancelDate}</td>
 										</c:if>

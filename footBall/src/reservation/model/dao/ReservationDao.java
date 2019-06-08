@@ -394,29 +394,27 @@ public class ReservationDao {
 		return result;
 	}
 	
-	public int reservationScheduleStatus(Connection conn, String resDate, int cCode, String startTime, String endTime) throws SQLException {
+	public int reservationScheduleStatus(Connection conn, int resNo, String resDate, int cCode, String startTime, String endTime) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("reservationScheduleStatus");
 		pstmt = conn.prepareStatement(query);
-		pstmt.setInt(1, cCode);
-		pstmt.setString(2, resDate);
-		pstmt.setString(3, startTime);
-		pstmt.setString(4, endTime);
+		pstmt.setInt(1, resNo);
+		pstmt.setInt(2, cCode);
+		pstmt.setString(3, resDate);
+		pstmt.setString(4, startTime);
+		pstmt.setString(5, endTime);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
 	
-	public int reservationScheduleStatusSet(Connection conn, String resDate, int cCode, String startTime, String endTime) throws SQLException {
+	public int reservationScheduleStatusSet(Connection conn, int resNo) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("reservationScheduleStatusSet");
 		pstmt = conn.prepareStatement(query);
-		pstmt.setInt(1, cCode);
-		pstmt.setString(2, resDate);
-		pstmt.setString(3, startTime);
-		pstmt.setString(4, endTime);
+		pstmt.setInt(1, resNo);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;		
@@ -653,6 +651,18 @@ public class ReservationDao {
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(stmt);
 		return list;
+	}
+	
+	public int reservationPaymentCancelAllow(Connection conn, int resNo, String date) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationPaymentCancelAllow");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, date);
+		pstmt.setInt(2, resNo);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(conn);
+		return result;
 	}
 }
 

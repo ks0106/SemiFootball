@@ -166,7 +166,7 @@
 											<td class="receiptTd">${rvpd.res.resPaymentDate}</td>
 										</c:if>
 										<c:if test="${rvpd.res.resPayment == 2}">
-											<td class="receiptTd">결제취소 완료
+											<td class="receiptTd">결제취소 완료</td>
 											<th class="receiptTd">취소일시</th>
 											<td class="receiptTd">${rvpd.res.resCancelDate}</td>
 										</c:if>
@@ -191,40 +191,32 @@
 		$(document).ready(function(){
 			var token = $('#tokenizer').html().replace(/,/gi,"<br>");
 			$('#tokenizer').html(token);
-		});
-		$('#paymentCancelAllowBtn').on("click",function(){
-			var resNo = '${rvpd.res.resNo}';
-			var bCode = '${rvpd.b.branchCode}';
-			var cCode = '${rvpd.c.courtCCode}';
-			var payDate = '${rvpd.res.resPaymentDate}';
-			var resTime = '${rvpd.res.resTime}'.split(',');
-			var resDate = '${rvpd.res.resDate}';
-			var startTime = new Array(resTime.length);
-			var endTime = new Array(resTime.length);
-			for(var i=0;i<resTime.length;i++){
-				startTime[i] = resTime[i].substring(0,resTime[i].indexOf("~",0));
-				endTime[i] = resTime[i].replace("~","").substring(resTime[i].indexOf("~",0),resTime[i].length);
-			}
-			$.ajax({
-				url : '/reservationPaymentCancelAllow.do',
-				type : 'get',
-				data : {resNo:resNo,bCode:bCode,cCode:cCode,payDate:payDate,resDate:resDate,startTime:startTime,endTime:endTime},
-				success : function(data){
-					var result = parseInt(data);
-					if(result > 0){
-						alert("결제 및 예약 취소 승인 완료");
-						opener.location.reload();
-						window.close();
-					}else{
-						alert("잘못된 동작입니다. 잠시 후 다시 시도해주세요.")
-						opener.location.reload();
-						window.close();
+			
+			$('#paymentCancelAllowBtn').on("click",function(){
+				var resNo = ${rvpd.res.resNo};
+				var d = new Date();
+				var date = d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
+				$.ajax({
+					url : '/reservationPaymentCancelAllow.do',
+					type : 'get',
+					data : {resNo:resNo,date:date},
+					success : function(data){
+						var result = parseInt(data);
+						if(result > 0){
+							alert("결제 및 예약 취소 승인 완료");
+							opener.location.reload();
+							window.close();
+						}else{
+							alert("잘못된 동작입니다. 잠시 후 다시 시도해주세요.")
+							opener.location.reload();
+							window.close();
+						}
+					},
+					error : function(){
+						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 					}
-				},
-				error : function(){
-					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
-				}
-			});	
+				});	
+			});
 		});
 
 	</script>

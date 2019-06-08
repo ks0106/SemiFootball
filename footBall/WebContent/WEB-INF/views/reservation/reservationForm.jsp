@@ -122,6 +122,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	font-size: 15px;
 	display: none;
 }
+
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -155,7 +156,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		<!-- 사이드 메뉴 종료 -->
 		<!-- 컨텐츠 -->
 		<div
-			style="width: 78%; height: 2000px; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
+			style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 			<!-- 컨텐츠 타이틀 -->
 			<div
 				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">${b.branchName}<대관예약>
@@ -163,14 +164,127 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			<div class="underline"
 				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
 			<!-- 컨텐츠 본문 -->
-			<div style="width: 100%; height: 150vh;">
+			<div style="width: 100%;">
+				<!-- 주의사항 -->
+				<div style="width:590px; border: 1px solid darkgray;float:right;margin-top:47px;color:#2c3c57;margin-bottom:30px;">
+					<div style="height:70px;background-color:#2c3c57;color:white;border:0;border-bottom:1px solid darkgray;font-weight:bolder;text-align:center;font-size:35px;line-height:70px;">환불규정</div>
+					<div style="padding:20px;">
+						<br>
+						<div style="font-size:18px;font-weight:bolder;">
+							1. 단순 대관날짜 변경은 불가하며 예약 취소 및 환불 규정에 의거해 환불 후 신규 대관일을 신청하셔야 합니다.
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							2. 대관 당일에는 취소가 불가합니다.
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							3. 환불 및 취소는 일일단위로 가능합니다.
+						</div>
+						<div>
+							&nbsp;- 30일 ~ 21일 전 : 100% 환불 / 20일 ~ 16일 전 : 80% 환불
+						</div>
+						<div>
+							&nbsp;- 15일 ~ 11일 전 : 60% 환불 / 10일 ~ 7일 전 : 50% 환불
+						</div>
+						<div>
+							&nbsp;- 6일 ~ 4일 전 : 30% 환불 / 3일 전 ~ 당일 : 환불 불가
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							4. 당일 환불은 천재지변으로 인한 경우에만 100% 환불됩니다.
+						</div>
+						<div>
+							&nbsp;(호우경보, 대설경보, 태풍주의보, 태풍경보만 적용)
+						</div>
+						<br>
+						<br>
+						<br>
+					</div>
+					<div style="height:70px;background-color:#2c3c57;color:white;border:0;border-top:1px solid darkgray;border-bottom:1px solid darkgray;font-weight:bolder;text-align:center;font-size:35px;line-height:70px;">확인사항</div>
+					<div style="padding:20px;">
+						<br>
+						<div style="font-size:18px;font-weight:bolder;">
+							1. 주의사항
+						</div>
+						<div>
+							&nbsp;* 예약후 2시간이내 입금해주셔야 합니다.확인이안되면 취소됩니다.
+						</div>
+						<div>
+							&nbsp;* 예약후 진행이 어려울실경우 사이트에서 꼭 취소 해주셔야 합니다.
+						</div>
+						<div>
+							&nbsp;* 당일예약은 예약 후 바로 입금 부탁드립니다.
+						</div>
+						<div>
+							&nbsp;* 예약자와 입금자 이름이 다를 경우 반드시 전화주세요.
+						</div>
+						<div>
+							&nbsp;* 우천시에는  풋살화는 대여 하지 않습니다.
+						</div>
+						<div>
+							&nbsp;* 예약 시 이름과 전화번호 정확하게 기입 부탁드립니다.
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							2. 문의 전화 : 02-3337-4380 / 010-3337-4380
+						</div>
+						<div style="font-size:18px;font-weight:bolder;text-align:center;">
+							(가능시간 : 10:00 ~ 18:00)
+						</div>
+						<br>
+						<div style="font-size:18px;font-weight:bolder;">
+							3. 행사 목적 대관 신청 시 담당자와 사전 문의 바랍니다.
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							4. 전 구역 금연지역입니다.
+						</div>
+						<div>
+							&nbsp;(흡연구역 외 경기장내 흡연 적발 시 대관 취소 및 환불 불가)
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							5. 화장실은 매장 2층에 위치해 있습니다.
+						</div>
+						<div>
+							&nbsp;(노상방뇨 적발시 대관 취소 및 환불 불가 => 전구역CCTV작동중)
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							6. 경기장 내 음료 및 음식물 반입 금지
+						</div>
+						<div>
+							&nbsp;(물, 탄산수 제외)
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							7. 주차는 경기장 앞 7층 주차장을 이용하시기 바랍니다.
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							8. 현장 카드결재 가능합니다. 현금영수증 발행은 현장 결제 시 가능합니다.
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							9. 본 풋살파크는 CCTV 촬영되고 있습니다.
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							10.분실물에 대한 책임은 본인에게 있습니다.
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							11. 장비는 직접 지참 혹은 대여하실 수 있습니다. 공은 구장마다 마련되어있습니다.
+						</div>
+						<div>
+							&nbsp;(대여한 물품은 반드시 반납해주시기 바랍니다)
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							12. 풋살화 이외 축구화는 착용불가합니다.(잔디보호)
+						</div><br>
+						<div style="font-size:18px;font-weight:bolder;">
+							13. 야간 대관 이용 시 소음 관련 민원이 발생 할 수 있으니 고성, 욕설 등은 삼가해 주시기 바랍니다.
+						</div>
+						<br>
+					</div>
+				</div>
+			
 				<div style="margin-left: 10px; font-size: 20px; font-weight: bolder;">예약가능 일정</div>
 				<hr style="margin-left: 10px; width: 120px; border: 2px solid #2c3c57; padding: 0; float: left;">
 				<hr style="width: 20px; border: 2px solid #3366cc; padding: 0; float: left;">
 				<!-- 달력 -->
 				<div
-					style="margin-left: 10px; margin-top: 50px; position: absolute; top: 680px;">
-					<div style="width: 590px; border: 1px solid darkgray;">
+					style="margin-left: 10px;display:inline-block;margin-bottom:30px;">
+					<div style="width: 590px; border: 1px solid darkgray;display:inline-block;">
 						<div style="border-bottom: 1px solid darkgray;">
 							<jsp:include page="/views/test/calendar.jsp" />
 						</div>
@@ -294,9 +408,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			</div>
 		</div>
 	</div>
-	<form id="paymentGo" action="/reservationPaymentPage" method="post" style="visibility:hidden;">
-		
-	</form>
+		<form id="paymentGo" action="/reservationPaymentPage" method="post" style="visibility:hidden;">
+			
+		</form>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 

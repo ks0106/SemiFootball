@@ -102,17 +102,16 @@
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>				
 		<!-- 컨텐츠 지도 파티션 -->
 				<div id="map" style="float:left;margin-left:20px;width:600px;height:600px;margin-bottom:50px;"></div>
-				<div style="float:left;margin-left:20px;">
+				<div style="width:500px;float:left;margin-left:20px;">
 					<div style="font-size:20px;font-weight:bolder;">주소</div>
 					<hr style="width:120px;height:4px;background-color:#2c3c57;border:0;padding:0;display:inline-block;float:left;">
 					<hr style="width:20px;height:4px;background-color:#3366cc;border:0;padding:0;display:inline-block;float:left;">
 				</div>
 				<br>
 				<br>
-				<br>
 	<!-- 컨텐츠 주소 -->
-				<div style="float:left;margin-left:20px;font-size:13px;">서울 영등포구 선유동2로 57 이레빌딩 109,110층 KS Sports</div>
-				<div style="float:left;margin-left:20px;font-size:13px;">57, Seonyudong 2-ro, Yeongdeungpo-gu, Seoul, Republic of Korea</div>
+				<div style="float:left;margin-left:20px;font-size:13px;display:inline-block;">서울 영등포구 선유동2로 57 이레빌딩 109,110층 KS Sports</div>
+				<div style="float:left;margin-left:20px;font-size:13px;display:inline-block;">57, Seonyudong 2-ro, Yeongdeungpo-gu, Seoul, Republic of Korea</div>
 			</div>
 		</div>
 	</section>
@@ -152,9 +151,9 @@
 				});
 			});
 			var contentString = [						//마커 클릭 시 출력할 주소 배열
-		        '   <h3 style="display:inline-block">KS Sports 당산 본점</h3>',
-		        '       <img src="/img/header_logo.png" width="55" height="55" alt="KS" style="float:right;" class="thumb" /><br />',
-		        '   	<p style="font-size:13px;">서울 영등포구 양평동4가 2 | 서울시 영등포구 선유동2로 57 이레빌딩<br />',
+		        '   <h3 style="display:inline-block;padding:10px;">KS Sports 당산 본점</h3>',
+		        '       <img src="/img/header_logo.png" width="100" height="100" alt="KS" style="float:right;" class="thumb" />',
+		        '   	<p style="font-size:13px;padding:10px;">서울 영등포구 양평동4가 2 | 서울시 영등포구 선유동2로 57 이레빌딩<br />',
 		        '       TEL : 02-3337-4380 | FAX : 02-3337-4381<br />',
 		        '       <a href="http://www.kssports.go.kr" target="_blank" style="text-decoration:none;">http://www.kssports.go.kr/</a>',
 		        '   </p>',

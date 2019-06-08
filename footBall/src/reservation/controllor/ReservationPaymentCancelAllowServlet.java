@@ -40,15 +40,9 @@ public class ReservationPaymentCancelAllowServlet extends HttpServlet {
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
 				int resNo = Integer.parseInt(request.getParameter("resNo"));
-				int bCode = Integer.parseInt(request.getParameter("bCode"));
-				int cCode = Integer.parseInt(request.getParameter("cCode"));
-				String payDate = request.getParameter("payDate");
-				String resDate = request.getParameter("resDate");
-				String[] startTime = request.getParameterValues("resStartTime");
-				String[] endTime = request.getParameterValues("resEndTime");
-				System.out.println(startTime[0]);
+				String date = request.getParameter("date");
 				try {
-					int result = new ReservationService().reservationPaymentCancelAllow(resNo,bCode,cCode,payDate,resDate,startTime,endTime);
+					int result = new ReservationService().reservationPaymentCancelAllow(resNo,date);
 					response.setContentType("application/json");
 					response.setCharacterEncoding("utf-8");
 					new Gson().toJson(result,response.getWriter());			
