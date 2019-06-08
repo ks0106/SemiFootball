@@ -39,7 +39,7 @@ public class DeleteFAQServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "FAQ삭제를 실패하셨습니다.");
 		}
-		request.setAttribute("loc", "/fAQ");
+		request.setAttribute("loc", "/upDelPageFAQ");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		rd.forward(request, response);
 	}

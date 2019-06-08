@@ -1,4 +1,4 @@
-package notice.controllor;
+package FAQ.controller;
 
 import java.io.IOException;
 
@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
+import FAQ.model.service.FAQService;
+import FAQ.model.vo.FAQPageData;
 
 /**
- * Servlet implementation class NoticeDeleteServlet
+ * Servlet implementation class UpDelPageFAQServlet
  */
-@WebServlet(name = "NoticeDelete", urlPatterns = { "/noticeDelete" })
-public class NoticeDeleteServlet extends HttpServlet {
+@WebServlet(name = "UpDelPageFAQ", urlPatterns = { "/upDelPageFAQ" })
+public class UpDelPageFAQServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDeleteServlet() {
+    public UpDelPageFAQServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +31,16 @@ public class NoticeDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		int result = new NoticeService().noticeDelete(noticeNo);
-		if(result>0) {
-			request.setAttribute("msg", "공지사항을 삭제하셨습니다.");
-		}else {
-			request.setAttribute("msg", "공지사항 삭제 중 Error발생");
+		request.setCharacterEncoding("utf-8");
+		int reqPage;
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
 		}
-		request.setAttribute("loc", "/noticeDeletePage");
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		FAQPageData pd = new FAQService().selectList(reqPage);
+		request.setAttribute("pd", pd);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/FAQ/FAQUpDelPage.jsp");
 		rd.forward(request, response);
 	}
 

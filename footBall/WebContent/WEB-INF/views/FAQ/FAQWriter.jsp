@@ -10,52 +10,41 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/css/notice/notice.css">
+<link rel="stylesheet" href="/css/admin/admin.css">
+<link rel="stylesheet" href="/css/faq/faq.css">
+
 <title>FAQ글쓰기</title>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<script>
-   $(document).ready(function(){
-      $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-      $('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-      $('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-      $('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-      $('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
-   });
-</script>
+	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
 
 	<!--영상 위 페이지 타이틀 -->
-	<div id="title">커뮤니티</div>
+	<div id="title">FAQ</div>
 
-
+	<br><br><br><br><br><br><br><br>
 	<div class="full">
-		<div class="tab-container">
-			<ul class="tab-list">
-				<li class="list-li"><a href="/notice" class="munebar">공지사항</a></li>
-				<li class="selected list-li"><a href="#T-con02" class="munebar">FAQ</a></li>
-				<li class="list-li"><a href="/boardList" class="munebar">자유게시판</a></li>
-			</ul>
 			<form action="/insertFAQ">
-			<table border="1">
+			<center>
+			<table class="table" id="tb1">
+			<tr>
+				<th colspan="2" id="FAQTitle">FAQ 작성</th>
+			</tr>
 				<tr>
-					<th>제목</th>
-					<td><input type="text" name="faqtitle"></td>
+					<th class="ft">제목</th>
+					<td><input type="text" name="faqtitle" id="faqtitle"></td>
 				</tr>
 				<tr>
-					<th>내용</th>
-					<td><textarea rows="6" name="faqcontent"></textarea></td>
+					<th class="ft">내용</th>
+					<td><textarea rows="6" name="faqcontent" id="faqcontent"></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><button type="submit">등록</button>
 					<button type="reset">취소</button></td>
 				</tr>
 			</table>
+			</center>
 			</form>
-		</div>
-	</div>
-		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-	
+		</div>	
 </body>
 </html>

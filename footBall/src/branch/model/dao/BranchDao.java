@@ -185,4 +185,24 @@ public class BranchDao {
 		return list;
 	}
 
+	public int insertBranch(Connection conn, Branch b) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertBranch");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, b.getBranchName());
+			pstmt.setString(2, b.getBranchAddr());
+			pstmt.setString(3, b.getBranchPhone());
+			pstmt.setString(4, b.getBranchTel());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

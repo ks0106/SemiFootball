@@ -61,7 +61,7 @@
              		<li><a href="/noticeWriter">공지 작성</a></li>
              		<li><a href="/noticeDeletePage">공지 삭제</a></li>
              		<li><a href="/writerFAQ">FAQ 작성</a></li>
-             		<li><a href="/noticeDeletePage">FAQ 삭제</a></li>
+             		<li><a href="/upDelPageFAQ">FAQ 수정/삭제</a></li>
              	</ul>
              </li>
           </ul>

@@ -38,10 +38,10 @@ public class FAQUpdateEndServlet extends HttpServlet {
 		int result = new FAQService().faqUpdate(fv);
 		if(result>0) {
 			request.setAttribute("msg", "수정 완료하였습니다");
-			request.setAttribute("loc", "/fAQ");
+			request.setAttribute("loc", "/upDelPageFAQ");
 		}else {
 			request.setAttribute("msg", "수정 실패하였습니다");
-			request.setAttribute("loc", "/fAQ");
+			request.setAttribute("loc", "/upDelPageFAQ");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		rd.forward(request, response);

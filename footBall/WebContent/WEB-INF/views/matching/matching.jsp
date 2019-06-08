@@ -159,11 +159,11 @@
 	
 	#matchView{
 		position:fixed;
-		width: 900px;
-		height: 840px;
+		width: 870px;
+		height: 685px;
 		margin: 0 auto;
-		top: 9%;
-		left: 26%;
+		top: 18%;
+		left: 29%;
 		background-color: #FFF;
 		border-radius: 15px;
 		display: none;
@@ -203,6 +203,20 @@
      	width: 100%;
      	height: 130vh;
      }
+     #able{
+     	width: 50px;
+     	height: 35px;
+     	border-radius: 5px;
+     	background-color: green;
+     	color:white;
+     }
+     #disable{
+     width: 50px;
+     	height: 35px;
+     	border-radius: 5px;
+     	background-color: red;
+     	color:white;
+     }
 </style>
 <script>
 	$(document).ready(function(){
@@ -241,24 +255,30 @@ function contentView(pageNum){
    			dataType:"json",
    			data:{pageNum:pageNum},
    			success: function(data){
-   				var writer = data.matchName;
+   				var writer = data.matchWriter;
+   				var type = data.matchType;
    				var BName = data.matchBName;
-   				var Date = data.date2;
+   				var Date = data.date;
    				var CName = data.matchCName;
    				var Phone = data.matchPhone;
    				var Level = data.matchLevel;
-   				var able = data.able2;
+   				var amount = data.teamCount;
+   				var able = data.able;
    				var Memo = data.matchMemo;
    				$("#tr11").find("td").eq(0).html(writer);
+   				$("#tr11").find("td").eq(1).html(type);
    				$("#tr11").next().find("td").html(BName);
    				$("#tr11").next().next().find("td").html(Date);
    				$("#tr11").next().next().next().find("td").html(CName);
    				$("#tr11").next().next().next().next().find("td").eq(0).html(Phone);
    				$("#tr11").next().next().next().next().find("td").eq(1).html(Level);
-   				$("#tr11").next().next().next().next().next().find("td").eq(0).html("1명");
+   				$("#tr11").next().next().next().next().next().find("td").eq(0).html(amount);
    				$("#tr11").next().next().next().next().next().find("td").eq(1).html(able);
    				$("#tr11").next().next().next().next().next().next().find("td").html(Memo);
-   			},
+   				if("${sessionScope.member.phone}" == Phone){
+   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
+   				}
+ 			},
    			erorr : function () {
 				console.log("실패다");
 			}
@@ -335,12 +355,19 @@ function contentView(pageNum){
 										<c:forEach items="${mpd.list }" var="m">
 											<tr class="table-tr" onclick="contentView(${m.seqMatchNo});" >
 												<td class="td">${m.matchType } </td>
-												<td class="td">${m.matchBCode }</td>
+												<td class="td">${m.matchBName }</td>
 												<td colspan="2" class="td">${m.matchDate }</td>
 												<td class="td">${m.teamCount1 }</td>
 												<td class="td">${m.matchWriter }</td>
 												<td class="td">${m.matchEnrollDate }</td>
-												<td class="td">${m.able1 }</td>
+												<c:choose>
+												<c:when test="${m.matchAble eq 0 }">
+												<td class="td"><span id="able">${m.able1 }</span></td>
+												</c:when>
+												<c:when test="${m.matchAble eq 1 }">
+												<td class="td"><span id="disable">${m.able1 }</span></td>
+												</c:when>
+												</c:choose>
 											</tr>
 										</c:forEach> 
 									</table>
@@ -352,13 +379,12 @@ function contentView(pageNum){
 								<form action="/matchSearch" method="get" style="height: 100%;">
 									<select name="branch" style="height: 100%; border:2px solid #A4A4A4; ">
 											<option value="">지점</option>
-											<option value="부천">부천점</option>
-											<option value="고양">고양점</option>
-											<option value="남양주">남양주점</option>
-											<option value="성남">성남점</option>
-											<option value="수원">수원점</option>
-											<option value="안양">안양점 </option>
-											<option value="동대문지점">동대문점 </option>
+											<option value="1">부천점</option>
+											<option value="2">고양점</option>
+											<option value="3">남양주점</option>
+											<option value="4">성남점</option>
+											<option value="5">수원점</option>
+											<option value="6">안양점 </option>
 									</select>
 									<input type="text" size="30" name="keyword" style="height:100%;border:2px solid #A4A4A4;">
 									<button type="submit" style="background-color:#2c3c57; border:none; height: 100%;width: 70px;vertical-align: bottom; "><img src="/img/icon_search.png"></button>
@@ -371,7 +397,7 @@ function contentView(pageNum){
 								<div id="view-table-div" >
 									<table id="view-table" style="margin: 0 auto; width: 80%; border-collapse: collapse;">
 										<tr id="tr11">
-											<th class="view-th" >작성자 </th> <td class="view-td"></td><th class="view-th">매치형태</th> <td class="view-td">???</td>
+											<th class="view-th" >작성자 이메일 </th> <td class="view-td"></td><th class="view-th">매치형태</th> <td class="view-td">???</td>
 										</tr>
 										<tr>
 											<th class="view-th">지점</th><td colspan="3" class="view-td">???</td>
@@ -383,9 +409,6 @@ function contentView(pageNum){
 											<th class="view-th">구장</th><td colspan="3" class="view-td">???</td>
 										</tr>
 										<tr>
-											<th class="view-th">유니폼 색</th><td colspan="3" class="view-td">???</td>
-										</tr>
-										<tr>
 											<th class="view-th">연락처</th> <td class="view-td">???</td><th class="view-th">팀수준</th> <td class="view-td">???</td>
 										</tr>
 										<tr>
@@ -394,11 +417,8 @@ function contentView(pageNum){
 										<tr>
 											<td colspan="4" class="view-td">
 										</tr>
-										<c:if test="${sessionScope.member==null}">
-										</c:if>
+										
 									</table>
-									
-									<div id="modiBtn-wrapper"><button type="button" class="btn btn-info btn-lg" onclick="modifyMactchCon()" style="margin-top: 20px;">수정하기</button></div>
 								</div>
 							</div>
 							

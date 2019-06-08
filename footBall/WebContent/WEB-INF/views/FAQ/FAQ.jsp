@@ -77,9 +77,6 @@
 				<br>
 				<br>
 				<center>
-					<c:if test="${sessionScope.member.id =='admin' }">
-						<a href="/writerFAQ" class="btn btn-primary">글쓰기</a>
-					</c:if>
 					<table>
 						<%
 							for (FAQVo fv : list) {
@@ -100,12 +97,12 @@
 									<img src="img/faq/FAQ2.PNG" style="width: 30px; height: 20px;">
 									<%=fv.getFaqContent()%><br> 
 									
-									<c:if test="${sessionScope.member.id =='admin' }">
+									<%-- <c:if test="${sessionScope.member.id =='admin' }">
 										<a href="/faqUpdate?faqNo=<%=fv.getFaqNo()%>"
 											class="btn btn-primary btn-sm">수정하기</a>
 										<a href="/deleteFAQ?faqNo=<%=fv.getFaqNo()%>"
 											class="btn btn-primary btn-sm">삭제하기</a>
-									</c:if>
+									</c:if> --%>
 										 <br><br>
 								</div></td>
 						</tr>
@@ -119,41 +116,6 @@
 							<li class="page-item">${pd.pageNavi }</li>
 						</ul>
 				</center>
-
-				<!-- <script type="text/javascript">
-					$(document).ready(function() {
-						$('#fa1').click(function() {
-							$('#faq2').attr('class', 'collapse');
-							$('#faq3').attr('class', 'collapse');
-							$('#faq4').attr('class', 'collapse');
-							$('#faq5').attr('class', 'collapse');
-						});
-						$('#fa2').click(function() {
-							$('#faq1').attr('class', 'collapse');
-							$('#faq3').attr('class', 'collapse');
-							$('#faq4').attr('class', 'collapse');
-							$('#faq5').attr('class', 'collapse');
-						});
-						$('#fa3').click(function() {
-							$('#faq1').attr('class', 'collapse');
-							$('#faq2').attr('class', 'collapse');
-							$('#faq4').attr('class', 'collapse');
-							$('#faq5').attr('class', 'collapse');
-						});
-						$('#fa4').click(function() {
-							$('#faq1').attr('class', 'collapse');
-							$('#faq2').attr('class', 'collapse');
-							$('#faq3').attr('class', 'collapse');
-							$('#faq5').attr('class', 'collapse');
-						});
-						$('#fa5').click(function() {
-							$('#faq1').attr('class', 'collapse');
-							$('#faq2').attr('class', 'collapse');
-							$('#faq3').attr('class', 'collapse');
-							$('#faq4').attr('class', 'collapse');
-						});
-					})
-				</script> -->
 			</div>
 		</div>
 	</div>

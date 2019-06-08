@@ -200,7 +200,7 @@
 							</div>						
 						</div>
 					</div>
-					<button style="width:150px;height:50px;background-color:#2c3c57;color:white;border:0;font-weight:bolder;font-size:18px;float:right;" onclick="window.close();">닫기</button>					
+					<button style="width:150px;height:50px;background-color:#2c3c57;color:white;border:0;font-weight:bolder;font-size:18px;float:right;cursor:pointer;" onclick="window.close();">닫기</button>					
 				<div>
 			</div>
 		</div>

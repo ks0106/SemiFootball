@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.apache.catalina.valves.JDBCAccessLogValve;
 
 import branch.model.dao.BranchDao;
+import branch.model.vo.Branch;
 import branch.model.vo.BranchData;
 import branch.model.vo.CourtData;
 import common.JDBCTemplate;
@@ -40,6 +41,18 @@ public class BranchService {
 		ArrayList<BranchData> list = new BranchDao().selectAll(conn);
 		JDBCTemplate.close(conn);
 		return list;
+	}
+
+	public int insertBranch(Branch b) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BranchDao().insertBranch(conn, b);
+		if(result >0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 
 	

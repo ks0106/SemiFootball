@@ -411,6 +411,28 @@ public class ReservationDao {
 		return result;
 	}
 	
+	public int reservationRentalDelete(Connection conn, int resNo) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationRentalDelete");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resNo);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	
+	public int reservationPaymentDelete(Connection conn, int resNo) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationPaymentDelete");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resNo);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
 	public ArrayList<Reservation> reservationViewList(Connection conn, String memberId) throws SQLException{
 		ArrayList<Reservation> list = null;
 		PreparedStatement pstmt = null;
