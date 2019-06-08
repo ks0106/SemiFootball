@@ -30,6 +30,7 @@
              <li class="header_item"><a href="/branch">지점</a>
              	<ul class="item_items">
              		<li><a href="/branchManage">지점관리</a></li>
+             		<li><a href="/insertBranch">지점추가</a></li>
              	</ul>
              </li>
              <li class="header_item"><a href="/reservation">대관</a>
