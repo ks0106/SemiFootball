@@ -17,6 +17,10 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import branch.model.service.BranchService;
+import branch.model.vo.BranchImgs;
+import court.model.vo.Court;
+
 /**
  * Servlet implementation class InsertBiAndCSerlvlet
  */
@@ -36,6 +40,18 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int branchCode = 0;
+		StringBuffer courtName1 = new StringBuffer();
+		StringBuffer courtName2 = new StringBuffer();
+		StringBuffer courtName3 = new StringBuffer();
+		StringBuffer courtType1 = new StringBuffer();
+		StringBuffer courtType2 = new StringBuffer();
+		StringBuffer courtType3 = new StringBuffer();
+		StringBuffer courtIndoor1 = new StringBuffer();
+		StringBuffer courtIndoor2 = new StringBuffer();
+		StringBuffer courtIndoor3 = new StringBuffer();
+		ArrayList<String> biList = new ArrayList<>();
+		
 		DiskFileItemFactory diskFactory = new DiskFileItemFactory();
 		diskFactory.setSizeThreshold(4096000);
 		diskFactory.setRepository(new File(getServletContext().getRealPath("/")+"img/temp"));
@@ -44,21 +60,51 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 		try {
 			List<FileItem> items = upload.parseRequest(request);
 			Iterator iter = items.iterator();
-			ArrayList<String> list = new ArrayList<String>();
 			while(iter.hasNext()) {
 				FileItem item = (FileItem)iter.next();
 				if(item.isFormField()) {
 					String fieldName = item.getFieldName();
-					String param = item.getString("UTF-8");
-					list.add(fieldName);					
+					String param = item.getString("UTF-8");	
+					switch(fieldName) {
+						case "branchCode": 
+							branchCode = Integer.parseInt(item.getString());
+							break;
+						case "courtName1": 
+							courtName1.append(item.getString("UTF-8"));
+							break;
+						case "courtName2":
+							courtName2.append(item.getString("UTF-8"));
+							break;
+						case "courtName3":
+							courtName3.append(item.getString("UTF-8"));
+							break;
+						case "courtType1":
+							courtType1.append(item.getString("UTF-8"));
+							break;
+						case "courtType2":
+							courtType2.append(item.getString("UTF-8"));
+							break;
+						case "courtType3":
+							courtType3.append(item.getString("UTF-8"));
+							break;
+						case "courtIndoor1":
+							courtIndoor1.append(item.getString("UTF-8"));
+							break;
+						case "courtIndoor2":
+							courtIndoor2.append(item.getString("UTF-8"));
+							break;
+						case "courtIndoor3":
+							courtIndoor3.append(item.getString("UTF-8"));
+							break;	
+					}
 				} else {
 					String fileOriginName = item.getName();
 					if(!fileOriginName.equals("")) {
-						String fieldName = item.getFieldName();
-						String contentType = item.getContentType();
-						long fileSIze = item.getSize();
-						list.add(fieldName);
+//						String fieldName = item.getFieldName();
+//						String contentType = item.getContentType();
+//						long fileSIze = item.getSize();
 						
+						//중복파일명에 넘버링
 						String filenameFront = fileOriginName.substring(0, fileOriginName.lastIndexOf('.'));
 						String filenameExtention = fileOriginName.substring(fileOriginName.lastIndexOf('.'));
 						File uploadFile = null;
@@ -71,9 +117,9 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 								fileName.append("_"+num);
 							}
 							fileName.append(filenameExtention);
-							uploadFile = new File(getServletContext().getRealPath("/")+"img/branch/test/"+fileName.toString());
+							uploadFile = new File(getServletContext().getRealPath("/")+"img/branch/"+fileName.toString());
 							if(!uploadFile.exists()) {
-								list.add(fileName.toString());
+								biList.add(fileName.toString());
 								try {
 									item.write(uploadFile);
 									break;
@@ -87,10 +133,45 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 					}
 				}
 			}//while ends
-			for(String str : list) {
-				System.out.println(str);
+			
+//			변수들 정리해서 서비스 보내기
+			String bi1 = biList.get(0);
+			String bi2 = biList.get(1);
+			String bi3 = biList.get(2);
+			String bi4 = biList.get(3);
+			BranchImgs bi = new BranchImgs(branchCode, bi1, bi2, bi3, bi4);
+			
+			String cN1 = courtName1.toString();
+			String t1 = courtType1.toString();
+			String i1 = courtIndoor1.toString();
+			Court c1 = new Court(branchCode, 0, cN1, t1, i1, 0);
+			
+			String cN2 = courtName2.toString();
+			String t2 = courtType2.toString();
+			String i2 = courtIndoor2.toString();
+			Court c2 = new Court(branchCode, 0, cN2, t2, i2, 0);
+			
+			String cN3 = courtName3.toString();
+			String t3 = courtType3.toString();
+			String i3 = courtIndoor3.toString();
+			Court c3 = new Court(branchCode, 0, cN3, t3, i3, 0);
+			
+			int biResult = new BranchService().insertBi(bi);
+			int c1Result = new BranchService().insertCourt(c1);
+			int c2Result = new BranchService().insertCourt(c2);
+			int c3Result = new BranchService().insertCourt(c3);
+			
+			if(biResult>0 && c1Result>0 && c2Result>0 && c3Result>0) {
+				request.setAttribute("msg", "세부정보 입력 완료");
+			} else {
+				request.setAttribute("msg", "입력 실패");
 			}
+			request.setAttribute("loc", "/insertBranch");
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		} catch (FileUploadException e) {
+				request.setAttribute("msg", "사진 업로드 중 오류 발생");
+				request.setAttribute("loc", "/insertBranch");
+				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 			e.printStackTrace();
 		}
 		

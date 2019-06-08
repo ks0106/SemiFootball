@@ -228,5 +228,46 @@ public class BranchDao {
 		return result;
 	}
 
+	public int insertBi(Connection conn, BranchImgs bi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertBi");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bi.getBiBCode());
+			pstmt.setString(2, bi.getBi1());
+			pstmt.setString(3, bi.getBi2());
+			pstmt.setString(4, bi.getBi3());
+			pstmt.setString(5, bi.getBi4());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertCourt(Connection conn, Court c) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertCourt");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, c.getCourtBCode());
+			pstmt.setString(2, c.getCourtName());
+			pstmt.setString(3, c.getCourtType());
+			pstmt.setString(4, c.getCourtIndoor());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 
 }

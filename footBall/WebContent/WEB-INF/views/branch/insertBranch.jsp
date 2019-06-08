@@ -30,24 +30,33 @@
 				</table>
 			</form>
 			<br><br>
-			<form action="/insertBiAndC" method="post" enctype="multipary/form-data">
+			<form action="/insertBiAndC" method="post" enctype="multipart/form-data">
 				<table class="manageTable" border="1">
-					<tr><td colspan="4">새 지점의 세부 정보 등록하기 (주의 : 지점 등록 이후에 세부정보 입력 가능)</td></tr>
-					<tr><td colspan="2">지점 코드</td><td colspan="2"><input type="text" name="branchCode"></td></tr>
-					<tr><td>구장 이름1</td><td><input type="text" name="courtName1"></td><td>구장 타입1(A,B,C 중 하나)</td><td><input type="text" name="courtType1"></td></tr>
-					<tr><td>구장 이름2</td><td><input type="text" name="courtName2"></td><td>구장 타입2(A,B,C 중 하나)</td><td><input type="text" name="courtType2"></td></tr>
-					<tr><td>구장 이름3</td><td><input type="text" name="courtName3"></td><td>구장 타입3(A,B,C 중 하나)</td><td><input type="text" name="courtType3"></td></tr>
-					<tr><td colspan="2">지점 사진(최대 4장)</td><td colspan="2"><input type="file" name="photo" multiple="multiple"></td></tr>
-					<tr><td colspan="4"><a href="/branchManage">취소</a><button type="submit" id="submit">확인</button></td></tr>
+					<tr><td colspan="6">새 지점의 세부 정보 등록하기 (주의 : 지점 등록 이후에 세부정보 입력 가능)</td></tr>
+					<tr><td colspan="3">지점 코드</td><td colspan="3"><input type="text" name="branchCode"></td></tr>
+					<tr>
+						<td>구장 이름1</td><td><input type="text" name="courtName1"></td>
+						<td>구장 타입1(A,B,C 중 하나)</td><td><input type="text" name="courtType1"></td>
+						<td>실내/실외 구분</td><td><input type="text" name="courtIndoor1"></td>
+					</tr>
+					<tr>
+						<td>구장 이름2</td><td><input type="text" name="courtName2"></td>
+						<td>구장 타입2(A,B,C 중 하나)</td><td><input type="text" name="courtType2"></td>
+						<td>실내/실외 구분</td><td><input type="text" name="courtIndoor2"></td>
+					</tr>
+					<tr>
+						<td>구장 이름3</td><td><input type="text" name="courtName3"></td>
+						<td>구장 타입3(A,B,C 중 하나)</td><td><input type="text" name="courtType3"></td>
+						<td>실내/실외 구분</td><td><input type="text" name="courtIndoor3"></td>
+					</tr>
+					<tr><td colspan="3">지점 사진(최대 4장)</td><td colspan="3"><input type="file" name="photo" multiple="multiple"></td></tr>
+					<tr><td colspan="6"><a href="/branchManage">취소</a><button type="submit" id="submit">확인</button></td></tr>
 				</table>
 			</form>
 		</section>
 	<script>
 		$(function(){
-			console.log(${requestScope.branchCode});
-			console.log("${requestScope.msg}");
 			if(${requestScope.branchCode}>0) {
-				
 				alert("${requestScope.msg}");
 				$('input[name=branchCode]').val(${requestScope.branchCode});
 			} else {

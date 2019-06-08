@@ -9,6 +9,7 @@ import org.apache.catalina.valves.JDBCAccessLogValve;
 import branch.model.dao.BranchDao;
 import branch.model.vo.Branch;
 import branch.model.vo.BranchData;
+import branch.model.vo.BranchImgs;
 import branch.model.vo.CourtData;
 import common.JDBCTemplate;
 import court.model.vo.Court;
@@ -53,6 +54,30 @@ public class BranchService {
 	public int insertBranch(Branch b) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new BranchDao().insertBranch(conn, b);
+		if(result >0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int insertBi(BranchImgs bi) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BranchDao().insertBi(conn,bi);
+		if(result >0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int insertCourt(Court c) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BranchDao().insertCourt(conn, c);
 		if(result >0) {
 			JDBCTemplate.commit(conn);
 		} else {
