@@ -87,6 +87,18 @@ public class BranchService {
 		return result;
 	}
 
+	public int deleteBranch(int branchCode) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BranchDao().deleteBranch(conn, branchCode);
+		if(result >0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 	
 
 }

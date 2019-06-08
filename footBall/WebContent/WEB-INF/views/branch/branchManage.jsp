@@ -62,5 +62,8 @@
 				}
 			});
 		});
+		$('.btn-delete').click(function(){
+			confirm("지점을 삭제하시겠습니까?");
+		});
 	</script>
 </html>
