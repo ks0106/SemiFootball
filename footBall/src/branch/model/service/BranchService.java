@@ -28,6 +28,13 @@ public class BranchService {
 		JDBCTemplate.close(conn);
 		return bd;
 	}
+	
+	public int selectBCode(String branchName) {
+		Connection conn = JDBCTemplate.getConnection();
+		int branchCode = new BranchDao().selectBCode(conn, branchName);
+		JDBCTemplate.close(conn);
+		return branchCode;
+	}
 
 	public ArrayList<Court> selectCourt(int branchCode) {
 		Connection conn = JDBCTemplate.getConnection();

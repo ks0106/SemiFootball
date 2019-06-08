@@ -42,5 +42,18 @@
 				</table>
 			</form>
 		</section>
+	<script>
+		$(function(){
+			console.log(${requestScope.branchCode});
+			console.log("${requestScope.msg}");
+			if(${requestScope.branchCode}>0) {
+				
+				alert("${requestScope.msg}");
+				$('input[name=branchCode]').val(${requestScope.branchCode});
+			} else {
+				alert(${requsetScope.msg});
+			}
+		});
+	</script>	
 </body>
 </html>

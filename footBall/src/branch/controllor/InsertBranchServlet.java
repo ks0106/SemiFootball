@@ -26,6 +26,13 @@ public class InsertBranchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("branchCode") != null) {
+			int branchCode = Integer.parseInt(request.getParameter("branchCode"));
+			String msg = request.getParameter("msg");
+			System.out.println("inserBranch : "+branchCode +"/"+ msg);
+			request.setAttribute("branchCode", branchCode);
+			request.setAttribute("msg", msg);
+		}
 		request.getRequestDispatcher("/WEB-INF/views/branch/insertBranch.jsp").forward(request, response);;
 	}
 

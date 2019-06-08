@@ -38,21 +38,15 @@ public class InsertBInfoServlet extends HttpServlet {
 		String branchTel = request.getParameter("branchTel");
 		Branch b = new Branch(0, branchName, branchAddr, branchPhone, branchTel);
 		int result = new BranchService().insertBranch(b);
+		int branchCode = 0;
 		if(result>0) {
-			BranchData bd = null;
-			int branchCode = 0;
-			try {
-				bd = new BranchService().selectOne(branchName);
-				branchCode = bd.getB().getBranchCode();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			branchCode = new BranchService().selectBCode(branchName);
+			request.setAttribute("branchCode", branchCode);
 			request.setAttribute("msg", "지점 추가 완료, 새 지점의 지점 코드는 : ["+branchCode+"] 입니다");
 		}else {
 			request.setAttribute("msg", "입력 중 오류 발생");
 		}
-		request.setAttribute("loc", "/insertBranch");
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);;
+		request.getRequestDispatcher("/insertBranch").forward(request, response);
 	}
 
 	/**

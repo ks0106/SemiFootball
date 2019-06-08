@@ -89,6 +89,29 @@ public class BranchDao {
 		return bd;
 	}
 
+	public int selectBCode(Connection conn, String branchName) {
+		int branchCode = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectBCode");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, branchName);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				branchCode = rset.getInt("branch_code");
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return branchCode;
+	}
+
 	public ArrayList<Court> selectCourt(Connection conn, int branchCode) {
 		ArrayList<Court> list = null;
 		PreparedStatement pstmt = null;
@@ -204,5 +227,6 @@ public class BranchDao {
 		}
 		return result;
 	}
+
 
 }

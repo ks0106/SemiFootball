@@ -71,7 +71,7 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 								fileName.append("_"+num);
 							}
 							fileName.append(filenameExtention);
-							uploadFile = new File(getServletContext().getRealPath("/")+"img/branch/"+fileName.toString());
+							uploadFile = new File(getServletContext().getRealPath("/")+"img/branch/test/"+fileName.toString());
 							if(!uploadFile.exists()) {
 								list.add(fileName.toString());
 								try {
@@ -87,6 +87,9 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 					}
 				}
 			}//while ends
+			for(String str : list) {
+				System.out.println(str);
+			}
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		}
