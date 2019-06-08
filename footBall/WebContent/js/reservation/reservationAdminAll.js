@@ -6,9 +6,9 @@ $(document).ready(function(){
 		location.href="/reservationManager";
 	});
 	$('#side_menu2').click(function(){
-		location.href="/reservationViewList";
+		location.href="/reservationCourtManager";
 	});	
 	$('#side_menu3').click(function(){
-		location.href="/reservationManager";
+		location.href="/reservationGoodsManager";
 	});	
 });

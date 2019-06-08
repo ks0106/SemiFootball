@@ -49,14 +49,14 @@
 						<hr style="width: 10%; border: 2px solid #df0101;padding: 0;display:inline-block;">
 					</div>
 					<div style="margin-bottom: 15px;">
-						<a href="/reservation" class="side_a" id="side_menu1" style="color: #df0101;">예약/결제 취소</a>
+						<a href="/reservation" class="side_a" id="side_menu1" style="color: gray;">예약/결제 취소</a>
 					</div>
 					<div style="margin-bottom: 15px;">
 						<a class="side_a" id="side_menu2" style="color: gray;">구장 등록</a>
 					</div>
 					<c:if test="${sessionScope.Member.id == admin}">
 						<div style="margin-bottom: 15px;">
-							<a class="side_a" id="side_menu3" style="color: gray;">물품 등록</a>
+							<a class="side_a" id="side_menu3" style="color: #df0101;">물품 등록</a>
 						</div>
 					</c:if>
 				</div>
@@ -64,7 +64,7 @@
 				<!-- 컨텐츠 -->
 				<div style="width: 78%; height: 2000px; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 					<!-- 컨텐츠 타이틀 -->
-					<div id="reservationTitle" style="color:#2c3c57;margin-left:50px;">[관리자] 예약/결제 취소</div>
+					<div id="reservationTitle" style="color:#2c3c57;margin-left:50px;">[관리자] 물품 등록</div>
 					<!-- 본문 -->
 					
 				</div>
