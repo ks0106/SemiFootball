@@ -61,6 +61,12 @@
              		<li><a href="/noticeDeletePage">공지 삭제</a></li>
              	</ul>
              </li>
+             <li class="header_item"><a href="/fAQ">FAQ</a>
+             	<ul class="item_items">
+             		<li><a href="/insertFAQ">FAQ 작성</a></li>
+             		<li><a href="/noticeDeletePage">FAQ 삭제</a></li>
+             	</ul>
+             </li>
           </ul>
           </div>
              <%if(m == null){ %>
