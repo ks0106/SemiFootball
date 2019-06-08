@@ -522,6 +522,28 @@ public class ReservationDao {
 		return list;
 	}
 
+	public Goods reservationRentalGoods(Connection conn, int gNo) throws SQLException{
+		Goods g = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationRentalGoods");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, gNo);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			g = new Goods();
+			g.setGoodsBCode(rset.getInt("goods_b_code"));
+			g.setGoodsGId(rset.getInt("goods_g_id"));
+			g.setGoodsCategory(rset.getString("goods_category"));
+			g.setGoodsName(rset.getString("goods_name"));
+			g.setGoodsSize(rset.getString("goods_size"));
+			g.setGoodsPrice(rset.getInt("goods_price"));
+			g.setGoodsCount(rset.getInt("goods_count"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return g;
+	}
 }
 
  

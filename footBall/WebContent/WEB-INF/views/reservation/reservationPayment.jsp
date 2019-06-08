@@ -13,9 +13,9 @@
 		var name = '${memberName}';
 		var resNo = '${resNo}';
 		var resDate = '${resDate}';
+		var resStartTime = '${startTime}';
+		var resEndTime = '${endTime}';
 		var cCode = ${cCode};
-		var startTime = '${startTime}';
-		var endTime = '${endTime}';
 		var price = ${allCost};
 		var d = new Date();
 		var date = d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
@@ -39,8 +39,6 @@
 				$('#resNo').val(resNo);
 				$('#resDate').val(resDate);
 				$('#cCode').val(cCode);
-				$('#startTime').val(startTime);
-				$('#endTime').val(endTime);
 				$('#paymentSuccess').submit();
 			}else{
 				alert("결제가 취소되었습니다.");
@@ -58,7 +56,7 @@
 </head>
 <style>
 	input{
-		visibility:hidden;
+/* 		visibility:hidden; */
 	}
 </style>
 <body>
@@ -69,8 +67,10 @@
 		<input id="resNo" name="resNo" type="text">
 		<input id="resDate" name="resDate" type="text">
 		<input id="cCode" name="cCode" type="text">
-		<input id="startTime" name="startTime" type="text">
-		<input id="endTime" name="endTime" type="text">
+		<c:forEach items="${startTime}" var="start" varStatus="i">
+			<input class="startTime" name="startTime" type="text" value="${start}">
+			<input class="startTime" name="endTime" type="text" value="${endTime[i.index]}">
+		</c:forEach>
 	</form>
 
 

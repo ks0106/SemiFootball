@@ -303,6 +303,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			</div>
 		</div>
 	</div>
+	<form id="paymentGo" action="/reservationPaymentPage" method="post" style="visibility:hidden;">
+		
+	</form>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
@@ -903,24 +906,23 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			for(var i=0;i<$('.reservationReceiptList').length;i++){
 				var startTime = resStartTime[i];
 				var endTime = resEndTime[i];
-				var check;
 				$.ajax({
 					url : "/reservationCheckCourt.do",
 					type : "get",
 					data : {resDate:resDate,cCode:cCode,startTime:startTime,endTime:endTime},
-					success : setTimeout(function(data){
-						check = parseInt(data);
-						if(check == 0){
+					success : function(data){
+						var check = parseInt(data);
+						if(check != 0){
+							alert(startTime+"~"+endTime+" 타임이 마감되어 대관할 수 없습니다.");
+							$('.reservationReceiptList:eq('+i+')').remove();
+							i = $('.reservationReceiptList').length + 1;
+						}else{
 							if(i == $('.reservationReceiptList').length){
 								payment(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
 								i = $('.reservationReceiptList').length + 1;
 							}
-						}else{
-							alert(startTime+"~"+endTime+" 타임이 마감되어 대관할 수 없습니다.");
-							$('.reservationReceiptList:eq('+i+')').remove();
-							i = $('.reservationReceiptList').length + 1;
 						}
-					},1000),
+					},
 					error : function(){
 						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
 					}
@@ -952,8 +954,17 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				type : 'get',
 				data : {bCode:bCode,resDate:resDate,cCode:cCode,resStartTime:resStartTime,resEndTime:resEndTime,allCost:allCost},
 				success : function(data){
+					console.log(resStartTime.length);
 					alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
-					location.href="/reservationPaymentPage?allCost="+allCost+"&resNo="+data+"&resDate="+resDate+"&cCode="+cCode+"&resStartTime="+resStartTime+"&resEndTime="+resEndTime;
+					$('#paymentGo').append('<input type="text" name="goAllCost" value="'+allCost+'">');
+					$('#paymentGo').append('<input type="text" name="goResNo" value="'+data+'">');
+					$('#paymentGo').append('<input type="text" name="goResDate" value="'+resDate+'">');
+					$('#paymentGo').append('<input type="text" name="goCCode" value="'+cCode+'">');
+					for(var i = 0; i < resStartTime.length ; i++){
+						$('#paymentGo').append('<input type="text" name="goStartTime" value="'+resStartTime[i]+'">');
+						$('#paymentGo').append('<input type="text" name="goEndTime" value="'+resEndTime[i]+'">');
+					}
+					$('#paymentGo').submit();
 				},
 				error : function(){
 					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
