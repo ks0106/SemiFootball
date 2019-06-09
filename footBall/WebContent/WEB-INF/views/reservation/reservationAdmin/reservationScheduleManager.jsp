@@ -475,16 +475,23 @@
 				}
 			}else{
 				if($(this).find('option:selected').val() != 'default'){
+					/* 날짜 초기화 */
+					$(this).parents('tr').siblings().find('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
+					/* 날짜 초기화 끝 */
 					var cCode = $(this).find('option:selected').val();
-					var resDate = $('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
+					var result = $(this).parents('tr').siblings().find('#scheduleDate').val();
+					console.log(cCode);
+					console.log(result);
 					$.ajax({
 						url : "/reservationCourtSelect.do",
 						type : "get",
-						data : {bCode:bCode,cCode:cCode},
+						data : {cCode:cCode,result:result},
 						success : function(data){
-							var front = data.scheduleStartTime;
-							var end = data.scheduleEndTime;
-							$startTime.append('<option><span id="startTime">'+front+'</span>~<span id="endTime">'+end+'</span></option>');
+							for(var i=0;i<data.length;i++){	
+								var front = data[i].scheduleStartTime;
+								var end = data[i].scheduleEndTime;
+								$startTime.append('<option><span id="startTime">'+front+'</span>~<span id="endTime">'+end+'</span></option>');
+							}
 						},
 						error : function(){
 							alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
