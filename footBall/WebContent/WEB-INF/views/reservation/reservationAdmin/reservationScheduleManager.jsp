@@ -129,7 +129,7 @@
 									<tr>
 										<th>날짜</th>
 										<td>
-											<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly disabled>
+											<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly>
 										</td>
 									</tr>
 									<tr>
@@ -144,24 +144,50 @@
 										<th>구장</th>
 										<td>
 											<select id="courtName" name="courtName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 구장선택 :::</option>
+												<option class="default" value="default" selected>::: 구장선택 :::</option>
 											</select>								
 										</td>
 									</tr>
 									<tr>
 										<th>시작시간</th>
 										<td>
-											<select id="scheduleStartTime" name="scheduleStartTime" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 시작시간 선택 :::</option>
-											</select>								
+											<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
+												<option class="default" value="default" selected>::: 시작시간 선택 :::</option>
+												<option>08:00</option>
+												<option>09:00</option>
+												<option>10:00</option>
+												<option>11:00</option>
+												<option>12:00</option>
+												<option>13:00</option>
+												<option>14:00</option>
+												<option>15:00</option>
+												<option>16:00</option>
+												<option>17:00</option>
+												<option>18:00</option>
+												<option>19:00</option>
+												<option>20:00</option>
+											</select>
 										</td>
 									</tr>
 									<tr>
 										<th>끝시간</th>
 										<td>
-											<select id="scheduleEndTime" name="scheduleEndTime" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 끝시간 선택 :::</option>
-											</select>								
+											<select id="endTime" name="endTime" style="width:400px;height:40px;font-size:18px;">
+												<option class="default" value="default" selected>::: 끝시간 선택 :::</option>
+												<option>10:00</option>
+												<option>11:00</option>
+												<option>12:00</option>
+												<option>13:00</option>
+												<option>14:00</option>
+												<option>15:00</option>
+												<option>16:00</option>
+												<option>17:00</option>
+												<option>18:00</option>
+												<option>19:00</option>
+												<option>20:00</option>
+												<option>21:00</option>
+												<option>22:00</option>
+											</select>
 										</td>
 									</tr>
 									<tr>
@@ -173,7 +199,7 @@
 									<tr>
 										<th>대관료</th>
 										<td>
-											<input id="scheduleAmount" name="scheduleAmount" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
+											<input id="resPrice" name="resPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
 										</td>
 									</tr>
 									<tr>
@@ -182,7 +208,7 @@
 										</td>
 									</tr>
 								</table>
-								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">등록</button>
+								<button id="scheduleAddSubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">등록</button>
 								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
 							</div>
 						</form>
@@ -192,14 +218,14 @@
 									<tr>
 										<th>날짜</th>
 										<td>
-											<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly disabled>
+											<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly>
 										</td>
 									</tr>
 									<tr>
 										<th>지점</th>
 										<td>
 											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 지점선택 :::</option>
+												<option class="default" value="default" selected>::: 지점선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -207,29 +233,29 @@
 										<th>구장</th>
 										<td>
 											<select id="courtName" name="courtName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 구장선택 :::</option>
+												<option class="default" value="default" selected>::: 구장선택 :::</option>
 											</select>								
 										</td>
 									</tr>
 									<tr>
 										<th>시간</th>
 										<td>
-											<select id="scheduleStartTime" name="scheduleStartTime" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 시작시간 선택 :::</option>
+											<select id="startTime" name=""startTime"" style="width:400px;height:40px;font-size:18px;">
+												<option class="default" value="default" selected>::: 시간 선택 :::</option>
 											</select>								
 										</td>
 									</tr>
 									<tr>
 										<th>가격</th>
 										<td>
-											<input id="scheduleNewPrice" name="scheduleNewPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
+											<input id="resPrice" name="resPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
 										</td>
 									</tr>
 									<tr>
 										<th>대관여부</th>
 										<td>
-											<select id="scheduleStartTime" name="scheduleStartTime" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 가능/불가능 :::</option>
+											<select id="scheduleYN" name="scheduleYN" style="width:400px;height:40px;font-size:18px;">
+												<option class="default" value="default" selected>::: 가능/불가능 :::</option>
 												<option value="0" selected>가능</option>
 												<option value="1" selected>불가능</option>
 											</select>
@@ -241,7 +267,7 @@
 										</td>
 									</tr>
 								</table>
-								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">수정</button>
+								<button id="scheduleModifySubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">수정</button>
 								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
 							</div>
 						</form>
@@ -251,14 +277,14 @@
 									<tr>
 										<th>날짜</th>
 										<td>
-											<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly disabled>
+											<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly>
 										</td>
 									</tr>
 									<tr>
 										<th>지점</th>
 										<td>
 											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 지점선택 :::</option>
+												<option class="default" value="default" selected>::: 지점선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -266,15 +292,15 @@
 										<th>구장</th>
 										<td>
 											<select id="courtName" name="courtName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 구장선택 :::</option>
+												<option class="default" value="default" selected>::: 구장선택 :::</option>
 											</select>								
 										</td>
 									</tr>
 									<tr>
-										<th>시작시간</th>
+										<th>시간</th>
 										<td>
-											<select id="scheduleStartTime" name="scheduleStartTime" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 시작시간 선택 :::</option>
+											<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
+												<option class="default" value="default" selected>::: 시간 선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -284,7 +310,7 @@
 										</td>
 									</tr>
 								</table>
-								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">삭제</button>
+								<button id="scheduleDeleteSubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">삭제</button>
 								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
 							</div>
 						</form>
@@ -302,7 +328,8 @@
 			branchName += '<option value="${b.branchCode}">${b.branchName}</option></c:forEach>';
 			$('.branchName').append(branchName);
 		}
-
+		
+		////////////////////* 로드되었을 때 동작하는 영역 *////////////////////
 		/* 년/월/일을 하나로 합쳐 저장하는 변수 */
 		var txt;
 		$(document).ready(function(){
@@ -315,12 +342,17 @@
 			}
 			$('#scheduleDate').val(txt);			
 		});
-		/* 등록,수정,삭제 탭메뉴 눌렀을 때 동작 */
+		
+		////////////////////* 클릭했을 때 동작하는 영역 *////////////////////		
+		/* 등록,수정,삭제 탭메뉴 클릭 시 동작 */
 		$(document).on("click",".scheduleManagerBtn",function(){
 			/* 모든 select와 input 초기화 */
-			$('select').not('.branchName').find("option").not('.default').remove();	
-			$('#scheduleCategory').find('option:eq(0)').prop('selected',true);
+			$('select').not('.branchName').not('#scheduleYN').not('#startTime').not('#endTime').find("option").not('.default').remove();
+			$('#scheduleYN').find('option:eq(0)').prop('selected',true);
+			$('#startTime').find('option:eq(0)').prop('selected',true);
+			$('#endTime').find('option:eq(0)').prop('selected',true);
 			$('input').not('#scheduleDate').val("");
+
 			/* 버튼 및 페이지 class변경 */
 			$(this).siblings('button').removeClass('scheduleManagerBtnSelect');
 			$(this).siblings('button').addClass('scheduleManagerBtn');
@@ -334,8 +366,8 @@
 			$('.branchName').find('option:eq(0)').prop('selected',true);
 			$('#'+$target).find('#scheduleDate').val(txt);
 		});
-
-		/* 동적 개체인 달력을 클릭했을 때 동작하는 함수 */
+		
+		/* 달력 내용 클릭 시 동작 */
 		$(document).on("click",".future",function(){
 			month = $('#tbCalendarYM').text();
 			day = parseInt($(this).text());
@@ -345,12 +377,191 @@
 				txt = month+"."+"0"+day;
 			}
 			$('#scheduleDate').val(txt);
-			var $select = $('#courtTime');
-			
 		});
 		
+		
+		////////////////////* form submit 영역 *////////////////////
+		/* 스케쥴등록버튼 눌렀을 때(form submit) */
+		$(document).on("click","#scheduleAddSubmit",function(){
+			if($('#branchName').find('option:selected').val() != 'default'
+				&& $('#courtName').find('option:selected').val() != 'default'
+				&& $('#startTime').find('option:selected').val() != 'default'
+				&& $('#endTime').find('option:selected').val() != 'default'
+				&& $('#resPrice').val() != ""){
+				$('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
+				$('#scheduleAdd').submit();
+			}else{
+				alert("입력된 값이 부족합니다.");
+			}
+		});
+
+		
+		
+		
+		
+		
+		
+		////////////////////* ajax 영역 *////////////////////
+		/* select change이벤트 동작 시 연관된 select와 input을 초기화시켜줘야 함 */
+		/* 지점 선택 시 동작 */
+		$(document).on("change","#branchName",function(){
+			/* select초기화 시작 */
+			var $courtName = $(this).parents('tr').siblings().find('#courtName');
+			$courtName.find("option").not('.default').remove();
+			var $startTime = $(this).parents('tr').siblings().find('#startTime');
+			$startTime.find("option:eq(0)").prop("selected",true);
+			var $endTime = $(this).parents('tr').siblings().find('#endTime');
+			$endTime.find("option:eq(0)").prop("selected",true);
+			var $scheduleYN = $(this).parents('tr').siblings().find('#scheduleYN');
+			$scheduleYN.find("option:eq(0)").prop("selected",true);
+			var $resPrice = $(this).parents('tr').siblings().find('#resPrice');
+			$resPrice.val("");
+			/* input초기화 끝 */
+			if($(this).find('option:selected').val() != 'default'){
+				var bCode = $(this).find('option:selected').val();
+				$.ajax({
+					url : "/reservationCourtListAll.do",
+					type : "get",
+					data : {bCode:bCode},
+					success : function(data){
+						for(var i=0;i<data.length;i++){
+							var courtName = data[i].courtName;
+							var courtCCode = data[i].courtCCode;
+							$courtName.append('<option value="'+courtCCode+'">'+courtName+'</option>');
+						}
+					},
+					error : function(){
+						alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+					}
+				});
+			}
+		});
+		/* 구장 선택 시 동작 */
+		$(document).on("change","#courtName",function(){
+			/* select초기화 시작 */
+			var $startTime = $(this).parents('tr').siblings().find('#startTime');
+			$startTime.find("option:eq(0)").prop("selected",true);
+			var $endTime = $(this).parents('tr').siblings().find('#endTime');
+			$endTime.find("option:eq(0)").prop("selected",true);
+			var $scheduleYN = $(this).parents('tr').siblings().find('#scheduleYN');
+			$scheduleYN.find("option:eq(0)").prop("selected",true);
+			/* select초기화 끝 */
+			/* input초기화 시작 */
+			var $resPrice = $(this).parents('tr').siblings().find('#resPrice');
+			$resPrice.val("");
+			/* input초기화 끝 */
+			if($('.view').attr('id') == 'scheduleAdd'){
+				if($(this).find('option:selected').val() != 'default'){
+					var bCode = $(this).parents('tr').siblings().find('#branchName').val();
+					var cCode = $(this).find('option:selected').val();
+					$.ajax({
+						url : "/reservationCourtType.do",
+						type : "get",
+						data : {bCode:bCode,cCode:cCode},
+						success : function(data){
+							var court = data.courtType;
+							if(court == 'A'){
+								$resPrice.val("120000");
+							}else if(court == 'B'){
+								$resPrice.val("100000");
+							}else if(court == 'C'){
+								$resPrice.val("80000");
+							}
+						},
+						error : function(){
+							alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+						}
+					});
+				}
+			}else{
+				if($(this).find('option:selected').val() != 'default'){
+					var cCode = $(this).find('option:selected').val();
+					var resDate = $('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
+					$.ajax({
+						url : "/reservationCourtSelect.do",
+						type : "get",
+						data : {bCode:bCode,cCode:cCode},
+						success : function(data){
+							var front = data.scheduleStartTime;
+							var end = data.scheduleEndTime;
+							$startTime.append('<option><span id="startTime">'+front+'</span>~<span id="endTime">'+end+'</span></option>');
+						},
+						error : function(){
+							alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+						}
+					});
+				}
+			}
+		});	
+		/* 시간시간 선택 시 동작 */
+		$(document).on("change","#startTime",function(){
+			if($('.view').attr('id') == 'scheduleAdd'){
+				/* select초기화 시작 */
+				var $endTime = $(this).parents('tr').siblings().find('#endTime');
+				$endTime.find("option:eq(0)").prop("selected",true);
+				/* select초기화 끝 */
+				if($(this).find('option:selected').val() != 'default'){
+					var front = parseInt($(this).find('option:selected').val().substring(0,2))+2;
+					var end = $(this).find('option:selected').val().substring(2,5);
+					var check = front+end;
+					for(var i=0;i<$(this).find('option').length;i++){
+						if($('#endTime').find('option:eq('+i+')').val() == check){
+							$('#endTime').find('option:eq('+i+')').prop("selected",true);
+							break;
+						}
+					}
+				}
+			}
+		});
+		/* 끝시간 선택 시 동작 */
+		$(document).on("change","#endTime",function(){
+			if($('.view').attr('id') == 'scheduleAdd'){
+				/* select초기화 시작 */
+				var $startTime = $(this).parents('tr').siblings().find('#startTime');
+				$startTime.find("option:eq(0)").prop("selected",true);
+				/* select초기화 끝 */
+				if($(this).find('option:selected').val() != 'default'){
+					var front = parseInt($(this).find('option:selected').val().substring(0,2))-2;
+					var end = $(this).find('option:selected').val().substring(2,5);
+					var check = front+end;
+					for(var i=0;i<$(this).find('option').length;i++){
+						if($('#startTime').find('option:eq('+i+')').val() == check){
+							$('#startTime').find('option:eq('+i+')').prop("selected",true);
+							break;
+						}
+					}
+				}
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		function courtCalendar(){
-			/* 날짜를 클릭했을 때 예약 가능한 구장을 보여주는 구문 */
+			/* 날짜를 클릭했을 때 예약 가능한 구장을 보여줌 */
+			var $select = $('#courtTime');
 			$select.find("div").remove();
 			var result = txt.replace(/\./gi,'/');
 			var bCode = '${b.branchCode}';

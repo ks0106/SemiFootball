@@ -33,6 +33,13 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+	public ArrayList<Court> reservationCourtListAll(int bCode) throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Court> list = new ReservationDao().reservationCourtListAll(conn, bCode);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
 	public ArrayList<Schedule> reservationCourtSelect(String result, int cCode) throws SQLException{
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Schedule> list = new ReservationDao().reservationCourtSelect(conn, result, cCode);
@@ -343,5 +350,30 @@ public class ReservationService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	
+	public Court reservationCourtType(int bCode, int cCode) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		Court c = new ReservationDao().reservationCourtType(conn, bCode, cCode);
+		JDBCTemplate.close(conn);
+		return c;
+	}
+	
+	public int reservationManagerScheduleAdd(int bCode, int cCode, String startTime, String endTime, int resPrice, String scheduleDate) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int check = new ReservationDao().reservationScheduleCheck(conn, cCode, startTime, scheduleDate.substring(2, 10));
+		if(check > 0) {
+			JDBCTemplate.close(conn);
+			return 0;
+		}else {
+			int result = new ReservationDao().reservationManagerScheduleAdd(conn, cCode, startTime, endTime, resPrice, scheduleDate);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+			JDBCTemplate.close(conn);
+			return result;
+		}
 	}
 }

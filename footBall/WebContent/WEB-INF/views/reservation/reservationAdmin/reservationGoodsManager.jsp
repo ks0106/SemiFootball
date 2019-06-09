@@ -395,7 +395,7 @@
 		
 		
 		////////////////////* ajax 영역 *////////////////////
-		/* select change이벤트 동작 시 연관된 select를 초기화시켜줘야 함 */
+		/* select change이벤트 동작 시 연관된 select와 input을 초기화시켜줘야 함 */
 		/* 지점 선택 시 동작 */
 		$(document).on("change","#branchName",function(){
 			if($('.view').attr('id') != 'goodsAdd'){

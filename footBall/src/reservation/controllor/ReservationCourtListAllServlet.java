@@ -16,16 +16,16 @@ import court.model.vo.Court;
 import reservation.model.service.ReservationService;
 
 /**
- * Servlet implementation class ReservationCourtListServlet
+ * Servlet implementation class ReservationCourtListAllServlet
  */
-@WebServlet(name = "ReservationCourtList", urlPatterns = { "/reservationCourtList.do" })
-public class ReservationCourtListServlet extends HttpServlet {
+@WebServlet(name = "ReservationCourtListAll", urlPatterns = { "/reservationCourtListAll.do" })
+public class ReservationCourtListAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationCourtListServlet() {
+    public ReservationCourtListAllServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,10 +35,9 @@ public class ReservationCourtListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String result = request.getParameter("result");
 		int bCode = Integer.parseInt(request.getParameter("bCode"));
 		try {
-			ArrayList<Court> list = new ReservationService().reservationCourtList(result, bCode);
+			ArrayList<Court> list = new ReservationService().reservationCourtListAll(bCode);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			new Gson().toJson(list,response.getWriter());

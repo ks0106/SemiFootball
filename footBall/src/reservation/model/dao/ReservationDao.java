@@ -95,6 +95,30 @@ public class ReservationDao {
 		return list;
 	}
 	
+	public ArrayList<Court> reservationCourtListAll(Connection conn, int bCode) throws SQLException{
+		ArrayList<Court> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationCourtListAll");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, bCode);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Court>();
+		while(rset.next()) {
+			Court c = new Court();
+			c.setCourtBCode(rset.getInt("court_b_code"));
+			c.setCourtCCode(rset.getInt("court_c_code"));
+			c.setCourtName(rset.getString("court_name"));
+			c.setCourtType(rset.getString("court_type"));
+			c.setCourtIndoor(rset.getString("court_indoor"));
+			c.setCourtStatus(rset.getInt("court_status"));
+			list.add(c);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+	}
+	
 	public ArrayList<Schedule> reservationCourtSelect(Connection conn, String result, int cCode) throws SQLException{
 		ArrayList<Schedule> list = null;
 		PreparedStatement pstmt = null;
@@ -745,6 +769,7 @@ public class ReservationDao {
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
+	
 	public int reservationManagerGoodsPriceModify(Connection conn, int bCode, String goodsName, String goodsSize, int goodsPrice) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -754,6 +779,60 @@ public class ReservationDao {
 		pstmt.setString(2, goodsName);
 		pstmt.setString(3, goodsSize);
 		pstmt.setInt(4, bCode);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	
+	public Court reservationCourtType(Connection conn, int bCode, int cCode) throws SQLException {
+		Court c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationCourtType");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, bCode);
+		pstmt.setInt(2, cCode);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			c = new Court();
+			c.setCourtBCode(rset.getInt("court_b_code"));
+			c.setCourtCCode(rset.getInt("court_c_code"));
+			c.setCourtName(rset.getString("court_name"));
+			c.setCourtType(rset.getString("court_type"));
+			c.setCourtIndoor(rset.getString("court_indoor"));
+			c.setCourtStatus(rset.getInt("court_status"));
+		}
+		return c;
+	}
+	
+	public int reservationScheduleCheck(Connection conn, int cCode, String startTime, String scheduleDate) throws SQLException {
+		int check = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationScheduleCheck");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, cCode);
+		pstmt.setString(2, scheduleDate);
+		pstmt.setString(3, startTime);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			check = rset.getInt("cnt");			
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return check;
+	}
+	
+	public int reservationManagerScheduleAdd(Connection conn, int cCode, String startTime, String endTime, int resPrice, String scheduleDate) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationManagerScheduleAdd");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, cCode);
+		pstmt.setString(2, scheduleDate);
+		pstmt.setString(3, startTime);
+		pstmt.setString(4, endTime);
+		pstmt.setInt(5, resPrice);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
