@@ -19,7 +19,7 @@
 		<!-- 헤더 불러오기 -->
 		<div id="title">[관리자] 지점 정보 수정</div>
 		<section style="padding-top: 120px; height: 1000px;" >
-			<form action="/insertBInfo" method="post">
+			<form action="/modifyBData" method="post">
 				<table class="manageTable" border="1">
 					<tr><th colspan="6">지점 정보</th></tr>
 					<tr><td colspan="3">지점 코드</td><td colspan="3"><input type="text" name="branchCode" readonly="readonly"></td></tr>
