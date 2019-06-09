@@ -345,7 +345,12 @@
 							</div>
 							<div style="color:white;text-align:center;margin-top:15px;">
 								<input onclick="kout();" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="로그아웃">
+								<%if(m.getId().equals("admin")){ %>
 								<input onclick="location.href='/admin'" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="관리자">
+								<%}else{ %>
+								<input  onclick="location.href='/myPage?memberId=<%=m.getId()%>'" type="button" style="width:100px;height:40px;color:white;background-color:inherit;border:2px solid #3366cc;font-size:20px;line-height:10px;cursor:pointer;" value="MyPage">
+									
+								<%} %>
 							</div>				
 						</div>
 						<div style="width:300px;height:220px;position:absolute;right:0;top:150px;opacity:0.5;">
@@ -389,6 +394,9 @@
 						<li class="right_menu_item"><a onclick="kout();" style="cursor:pointer;">로그아웃</a></li>
 						<%if(m.getId().equals("admin")){ %>
 							<li class="right_menu_item"><a href="/admin">관리자메뉴</a></li>
+						<%}else{ %>
+													
+							<li class="right_menu_item"><a href="/mypage">마이페이지</a></li>
 						<%} %>
 					<%} %>
 				</ul>

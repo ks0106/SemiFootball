@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	  <style>
+	  	
         #maindiv{
             text-align: center;
             position: relative;

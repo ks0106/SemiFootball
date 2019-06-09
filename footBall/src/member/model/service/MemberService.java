@@ -65,5 +65,10 @@ public class MemberService {
 		}
 		return result;
 	}
-	
+	public Member printAll(String id)throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		Member m = new MemberDAO().printAll(conn,id);
+		JDBCTemplate.close(conn);
+		return m ;
+	}
 }

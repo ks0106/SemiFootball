@@ -152,4 +152,27 @@ public class MemberDAO {
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
+	public Member printAll(Connection conn, String id)throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset=null;
+		Member m = null;
+		String query = prop.getProperty("printAll");
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, id);
+		rset = pstmt.executeQuery();
+		m = new Member();
+		if(rset.next()) {
+			m.setId(rset.getString("id"));
+			m.setPwd(rset.getString("pwd"));
+			m.setName(rset.getString("name"));
+			m.setPhone(rset.getString("phone"));
+			m.setPwdHint(rset.getString("pwd_hint"));
+			m.setPwdHintAnswer(rset.getString("pwd_hint_answer"));
+			m.setEnrollDate(rset.getDate("enroll_date"));
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return m;
+	}
 }
