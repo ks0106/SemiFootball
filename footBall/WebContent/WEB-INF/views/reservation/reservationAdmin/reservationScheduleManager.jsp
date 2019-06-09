@@ -120,12 +120,12 @@
 				</div>
 				<!-- 사이드 메뉴 종료 -->
 				<!-- 컨텐츠 -->
-				<div style="width: 78%; height:3000px; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
+				<div style="width: 78%; height:100vh; border-left: 1px solid silver; display: inline-block; overflow:hidden;">
 					<!-- 컨텐츠 타이틀 -->
 					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 스케쥴 관리</div>
 					<!-- 본문 -->
 					<!-- 달력 -->
-					<div style="width:530px;margin-bottom:25px;float:right;position:fixed;right:150px;top:270px;">
+					<div style="width:530px;float:right;position:fixed;right:150px;bottom:200px;">
 						<jsp:include page="/views/test/calendar.jsp" />
 					</div>
 					<!-- 컨텐츠 파티션 -->
