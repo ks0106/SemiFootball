@@ -30,6 +30,12 @@ public class BranchService {
 		return bd;
 	}
 	
+	public BranchData selectOne(int branchCode) {
+		Connection conn = JDBCTemplate.getConnection();
+		BranchData bd = new BranchDao().selectOne(conn, branchCode);
+		return bd;
+	}
+	
 	public int selectBCode(String branchName) {
 		Connection conn = JDBCTemplate.getConnection();
 		int branchCode = new BranchDao().selectBCode(conn, branchName);
@@ -98,6 +104,8 @@ public class BranchService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+
 
 	
 
