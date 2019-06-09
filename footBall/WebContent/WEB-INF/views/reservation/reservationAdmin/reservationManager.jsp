@@ -295,7 +295,7 @@
 				</div>
 				<!-- 사이드 메뉴 종료 -->
 				<!-- 컨텐츠 -->
-				<div style="width: 78%; height: 2000px; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
+				<div style="width: 78%; height:100vh; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 					<!-- 컨텐츠 타이틀 -->
 					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 예약/결제 취소</div>
 					<!-- 본문 -->
@@ -331,5 +331,6 @@
 			</div>
 		</div>
 	</section>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />	
 </body>
 </html>

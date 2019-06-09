@@ -118,7 +118,7 @@
 				</div>
 				<!-- 사이드 메뉴 종료 -->
 				<!-- 컨텐츠 -->
-				<div style="width: 78%; height: 2000px; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
+				<div style="width: 78%; height: 100vh; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 					<!-- 컨텐츠 타이틀 -->
 					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 물품 관리</div>
 					<!-- 본문 -->
@@ -305,11 +305,11 @@
 									</tr>
 									<tr>
 										<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
-											! 재고가 존재하지 않고, 해당 제품을 현재 이용 중인 고객이 없을 경우에만 가능합니다.
+											! 재고가 0이고, 현재 해당 제품을 이용 중인 고객이 없을 경우에만 가능합니다.
 										</td>
 									</tr>									
 								</table>
-								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:350px;">삭제</button>
+								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">삭제</button>
 								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
 							</div>
 						</form>
@@ -319,5 +319,6 @@
 			</div>
 		</div>
 	</section>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
