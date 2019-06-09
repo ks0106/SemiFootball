@@ -12,21 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import branch.model.vo.Branch;
 import member.model.vo.Member;
 import reservation.model.service.ReservationService;
+import reservation.model.vo.Reservation;
 
 /**
- * Servlet implementation class ReservationGoodsManagerServlet
+ * Servlet implementation class ReservationManagerGoodsAddServlet
  */
-@WebServlet(name = "ReservationGoodsManager", urlPatterns = { "/reservationGoodsManager" })
-public class ReservationGoodsManagerServlet extends HttpServlet {
+@WebServlet(name = "ReservationManagerGoodsAdd", urlPatterns = { "/reservationManagerGoodsAdd" })
+public class ReservationManagerGoodsAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationGoodsManagerServlet() {
+    public ReservationManagerGoodsAddServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,11 +39,25 @@ public class ReservationGoodsManagerServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
+				int bCode = Integer.parseInt(request.getParameter("branchName"));
+				String goodsCategory = request.getParameter("goodsCategory");
+				String goodsName = request.getParameter("goodsName");
+				String goodsSize = request.getParameter("goodsSize");
+				int goodsPrice = Integer.parseInt(request.getParameter("goodsPrice"));
+				int goodsAmount = Integer.parseInt(request.getParameter("goodsAmount"));
 				try {
-					ArrayList<Branch> list = new ReservationService().reservationBranch();
-					request.setAttribute("list", list);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationGoodsManager.jsp");
-					rd.forward(request, response);
+					int result = new ReservationService().reservationManagerGoodsAdd(bCode,goodsCategory,goodsName,goodsSize,goodsPrice,goodsAmount);
+					if(result > 0) {
+						request.setAttribute("msg", "물품을 성공적으로 등록했습니다.");
+						request.setAttribute("loc", "/reservationGoodsManager");
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+						rd.forward(request, response);
+					}else {
+						request.setAttribute("msg", "물품 등록에 실패했습니다.");
+						request.setAttribute("loc", "/reservationGoodsManager");
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+						rd.forward(request, response);
+					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

@@ -814,7 +814,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 							$.ajax({
 								url : "/reservationGoodsPrice.do",
 								type : "get",
-								data : {result:result,option:option},
+								data : {bCode:bCode,result:result,option:option},
 								success : function(data){
 									if(amount > 0){
 										var price = parseInt(data.goodsPrice);

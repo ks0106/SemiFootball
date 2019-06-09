@@ -21,12 +21,20 @@
 </head>
 <script>
 	$(document).ready(function(){
+		/* 로드 시 css 세팅 */
 		$('form:first').removeClass('noView');
 		$('form:first').addClass('view');
 		$('#goodsAddBtn').removeClass('goodsManagerBtn');
-		$('#goodsAddBtn').addClass('goodsManagerBtnSelect');		
-		
+		$('#goodsAddBtn').addClass('goodsManagerBtnSelect');
+		/* 지점 로드 함수 */
+		branchLoad();
+		/* 등록,수정,삭제 탭메뉴 눌렀을 때 동작 */
 		$(document).on("click",".goodsManagerBtn",function(){
+			/* 모든 select와 input 초기화 */
+			$('select').not('.branchName').not('#goodsCategory').find("option").not('.default').remove();	
+			$('#goodsCategory').find('option:eq(0)').prop('selected',true);
+			$('input').val("");
+			/* 버튼 및 페이지 class변경 */
 			$(this).siblings('button').removeClass('goodsManagerBtnSelect');
 			$(this).siblings('button').addClass('goodsManagerBtn');
 			$(this).removeClass('goodsManagerBtn');
@@ -35,7 +43,8 @@
 			$('#'+$target).siblings('form').removeClass('view');
 			$('#'+$target).siblings('form').addClass('noView');
 			$('#'+$target).removeClass('noView');			
-			$('#'+$target).addClass('view');			
+			$('#'+$target).addClass('view');
+			$('.branchName').find('option:eq(0)').prop('selected',true);
 		});
 	});
 	
@@ -135,8 +144,8 @@
 									<tr>
 										<th>지점</th>
 										<td>
-											<select id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 지점선택 :::</option>
+											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+												<option class="default" value="default" selected>::: 지점선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -144,7 +153,10 @@
 										<th>카테고리</th>
 										<td>
 											<select id="goodsCategory" name="goodsCategory" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 카테고리선택 :::</option>
+												<option class="default" value="default" selected>::: 카테고리선택 :::</option>
+												<option value="물">물</option>
+												<option value="조끼">조끼</option>
+												<option value="신발">신발</option>
 											</select>
 										</td>
 									</tr>
@@ -173,7 +185,7 @@
 										</td>
 									</tr>
 								</table>
-								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">등록</button>
+								<button type="button" id="goodsAddSubmit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">등록</button>
 								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
 							</div>
 						</form>					
@@ -183,8 +195,8 @@
 									<tr>
 										<th>지점</th>
 										<td>
-											<select id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 지점 :::</option>
+											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+												<option class="default" value="default" selected>::: 지점선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -192,7 +204,7 @@
 										<th>물품명</th>
 										<td>
 											<select id="goodsName" name="goodsName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 물품선택 :::</option>
+												<option class="default" value="default" selected>::: 물품선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -200,7 +212,7 @@
 										<th>규격/용량</th>
 										<td>
 											<select id="goodsSize" name="goodsSize" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 규격/용량선택 :::</option>
+												<option class="default" value="default" selected>::: 규격/용량선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -218,11 +230,11 @@
 									</tr>
 									<tr>
 										<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
-											* 변경할 개당 가격을 입력해주세요.
+											* 변경할 단가를 입력해주세요.
 										</td>
 									</tr>
 								</table>
-								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">수정</button>
+								<button id="goodsPriceModifySumbit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">수정</button>
 								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
 							</div>
 						</form>
@@ -232,8 +244,8 @@
 									<tr>
 										<th>지점</th>
 										<td>
-											<select id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 지점 :::</option>
+											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+												<option class="default" value="default" selected>::: 지점선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -241,7 +253,7 @@
 										<th>물품명</th>
 										<td>
 											<select id="goodsName" name="goodsName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 물품선택 :::</option>
+												<option class="default" value="default" selected>::: 물품선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -249,7 +261,7 @@
 										<th>규격/용량</th>
 										<td>
 											<select id="goodsSize" name="goodsSize" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 규격/용량선택 :::</option>
+												<option class="default" value="default" selected>::: 규격/용량선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -271,8 +283,8 @@
 										</td>
 									</tr>									
 								</table>
-								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:350px;">입고</button>
-								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;">출고</button>
+								<button class="goodsAmountModifySubmit" id="goodsAmountModifyPlus" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:350px;">입고</button>
+								<button class="goodsAmountModifySubmit" id="goodsAmountModifyMinus" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;">출고</button>
 								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
 							</div>
 						</form>
@@ -282,8 +294,8 @@
 									<tr>
 										<th>지점</th>
 										<td>
-											<select id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 지점 :::</option>
+											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+												<option class="default" value="default" selected>::: 지점선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -291,7 +303,7 @@
 										<th>물품명</th>
 										<td>
 											<select id="goodsName" name="goodsName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 물품선택 :::</option>
+												<option class="default" value="default" selected>::: 물품선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -299,7 +311,7 @@
 										<th>규격/용량</th>
 										<td>
 											<select id="goodsSize" name="goodsSize" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 규격/용량선택 :::</option>
+												<option class="default" value="default" selected>::: 규격/용량선택 :::</option>
 											</select>								
 										</td>
 									</tr>
@@ -309,7 +321,7 @@
 										</td>
 									</tr>									
 								</table>
-								<button type="submit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">삭제</button>
+								<button id="goodsDeleteSubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">삭제</button>
 								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
 							</div>
 						</form>
@@ -320,5 +332,182 @@
 		</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	
+	<script>
+		function branchLoad(){
+			var branchName = '<c:forEach items="${list}" var="b" varStatus="i">';
+			branchName += '<option value="${b.branchCode}">${b.branchName}</option></c:forEach>';
+			$('.branchName').append(branchName);
+		}
+		
+		////////////////////* form submit 영역 *////////////////////
+		/* 물품등록버튼 눌렀을 때(form submit) */
+		$(document).on("click","#goodsAddSubmit",function(){
+			if($('#branchName').find('option:selected').val() != 'default'
+				&& $('#goodsCategory').find('option:selected').val() != 'default'
+				&& $('#goodsName').val() != ""
+				&& $('#goodsSize').val() != ""
+				&& $('#goodsPrice').val() != ""
+				&& $('#goodsAmount').val() != ""){
+				$('#goodsAdd').submit();
+			}else{
+				alert("입력된 값이 부족합니다.");
+			}
+		});
+		/* 물품삭제버튼 눌렀을 때(form submit) */
+		$(document).on("click","#goodsDeleteSubmit",function(){
+			if($(this).siblings().find('#branchName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#goodsName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#goodsSize').find('option:selected').val() != 'default'){
+				$('#goodsDelete').submit();
+			}else{
+				alert("입력된 값이 부족합니다.");				
+			}
+		});
+		/* 가격변경버튼 눌렀을 때 */
+		$(document).on("click","#goodsPriceModifySumbit",function(){
+			if($(this).siblings().find('#branchName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#goodsName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#goodsSize').find('option:selected').val() != 'default'
+				&& $('#goodsNewPrice').val() != ""){
+				$('#goodsPriceModify').submit();
+			}else{
+				alert("입력된 값이 부족합니다.");				
+			}
+		});
+		/* 입,출고버튼 눌렀을 때 */
+		$(document).on("click",".goodsAmountModifySubmit",function(){
+			if($(this).siblings().find('#branchName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#goodsName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#goodsSize').find('option:selected').val() != 'default'
+				&& $('#goodsNewAmount').val() != ""){
+				if($(this).attr('id') == 'goodsAmountModifyMinus'){
+					var num = "-"+$('#goodsNewAmount').val();
+					$('#goodsNewAmount').val(num);
+				}
+				$('#goodsAmountModify').submit();
+			}else{
+				alert("입력된 값이 부족합니다.");				
+			}
+		});
+		
+		
+		
+		
+		////////////////////* ajax 영역 *////////////////////
+		/* select change이벤트 동작 시 연관된 select를 초기화시켜줘야 함 */
+		/* 지점 선택 시 동작 */
+		$(document).on("change","#branchName",function(){
+			if($('.view').attr('id') != 'goodsAdd'){
+				/* select초기화 시작 */
+				var $goodsName = $(this).parents('tr').siblings().find('#goodsName');
+				$goodsName.find("option").not('.default').remove();					
+				var $goodsSize = $(this).parents('tr').siblings().find('#goodsSize');
+				$goodsSize.find("option").not('.default').remove();					
+				/* select초기화 끝 */
+				/* input초기화 시작 */
+				var $goodsOldPrice = $(this).parents('tr').siblings().find('#goodsOldPrice');
+				var $goodsNewPrice = $(this).parents('tr').siblings().find('#goodsNewPrice');
+				var $goodsOldAmount = $(this).parents('tr').siblings().find('#goodsOldAmount');
+				var $goodsNewAmount = $(this).parents('tr').siblings().find('#goodsNewAmount');
+				$goodsOldPrice.val("");
+				$goodsNewPrice.val("");
+				$goodsOldAmount.val("");
+				$goodsNewAmount.val("");
+				/* input초기화 끝 */
+				if($(this).find('option:selected').val() != 'default'){
+					var bCode = $(this).find('option:selected').val();
+					$.ajax({
+						url : "/reservationGoodsNameList.do",
+						type : "get",
+						data : {bCode:bCode},
+						success : function(data){
+							for(var i=0;i<data.length;i++){
+								var goodsName = data[i].goodsName;
+								$goodsName.append('<option>'+goodsName+'</option>');
+							}
+						},
+						error : function(){
+							alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+						}
+					});
+				}
+			}
+		});
+		/* 물품 선택 시 동작 */
+		$(document).on("change","#goodsName",function(){
+			if($('.view').attr('id') != 'goodsAdd'){
+				/* select초기화 시작 */
+				var $goodsSize = $(this).parents('tr').siblings().find('#goodsSize');
+				$goodsSize.find("option").not('.default').remove();
+				/* select초기화 끝 */
+				/* input초기화 시작 */
+				var $goodsOldPrice = $(this).parents('tr').siblings().find('#goodsOldPrice');
+				var $goodsNewPrice = $(this).parents('tr').siblings().find('#goodsNewPrice');
+				var $goodsOldAmount = $(this).parents('tr').siblings().find('#goodsOldAmount');
+				var $goodsNewAmount = $(this).parents('tr').siblings().find('#goodsNewAmount');
+				$goodsOldPrice.val("");
+				$goodsNewPrice.val("");
+				$goodsOldAmount.val("");
+				$goodsNewAmount.val("");
+				/* input초기화 끝 */
+				if($(this).find('option:selected').val() != 'default'){
+					var bCode = $(this).parents('tr').siblings().find('#branchName').find('option:selected').val();
+					var result = $(this).find('option:selected').val();
+					$.ajax({
+						url : "/reservationOptionList.do",
+						type : "get",
+						data : {result:result,bCode:bCode},
+						success : function(data){
+							for(var i=0;i<data.length;i++){
+								var goodsSize = data[i].goodsSize;
+								$goodsSize.append('<option>'+goodsSize+'</option>');
+							}
+						},
+						error : function(){
+							alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+						}
+					});
+				}
+			}
+		});
+		/* 규격/용량 선택 시 동작 */
+		$(document).on("change","#goodsSize",function(){
+			if($('.view').attr('id') != 'goodsAdd' && $('.view').attr('id') != 'goodsDelete'){
+				/* input초기화 시작 */
+				var $goodsOldPrice = $(this).parents('tr').siblings().find('#goodsOldPrice');
+				var $goodsNewPrice = $(this).parents('tr').siblings().find('#goodsNewPrice');
+				var $goodsOldAmount = $(this).parents('tr').siblings().find('#goodsOldAmount');
+				var $goodsNewAmount = $(this).parents('tr').siblings().find('#goodsNewAmount');
+				$goodsOldPrice.val("");
+				$goodsNewPrice.val("");
+				$goodsOldAmount.val("");
+				$goodsNewAmount.val("");
+				/* input초기화 끝 */
+				if($(this).find('option:selected').val() != 'default'){
+					var bCode = $(this).parents('tr').siblings().find('#branchName').find('option:selected').val();
+					var result = $(this).parents('tr').siblings().find('#goodsName').find('option:selected').val();
+					var option = $(this).find('option:selected').val();
+					$.ajax({
+						url : "/reservationGoodsPrice.do",
+						type : "get",
+						data : {result:result,option:option,bCode:bCode},
+						success : function(data){
+							if($('.view').attr('id') == 'goodsPriceModify'){
+								var goodsPrice = data.goodsPrice;
+								$goodsOldPrice.val(goodsPrice);
+							}else if($('.view').attr('id') == 'goodsAmountModify'){
+								var goodsCount = data.goodsCount;
+								$goodsOldAmount.val(goodsCount);
+							}
+						},
+						error : function(){
+							alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+						}
+					});
+				}
+			}
+		});
+	</script>
 </body>
 </html>

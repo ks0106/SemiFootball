@@ -143,6 +143,25 @@ public class ReservationDao {
 		return list;
 	}
 	
+	public ArrayList<Goods> reservationGoodsNameList(Connection conn, int bCode) throws SQLException{
+		ArrayList<Goods> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationGoodsNameList");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, bCode);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Goods>();
+		while(rset.next()) {
+			Goods g = new Goods();
+			g.setGoodsName(rset.getString("goods_name"));
+			list.add(g);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;	
+	}
+	
 	public ArrayList<Goods> reservationOptionList(Connection conn, String result, int bCode) throws SQLException{
 		ArrayList<Goods> list = null;
 		PreparedStatement pstmt = null;
@@ -188,7 +207,7 @@ public class ReservationDao {
 		return count;
 	}
 	
-	public Goods reservationGoodsPrice(Connection conn, String result, String option) throws SQLException {
+	public Goods reservationGoodsPrice(Connection conn, int bCode, String result, String option) throws SQLException {
 		Goods g = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -196,6 +215,7 @@ public class ReservationDao {
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, result);
 		pstmt.setString(2, option);
+		pstmt.setInt(3, bCode);
 		rset = pstmt.executeQuery();
 		if(rset.next()) {
 			g = new Goods();
@@ -661,7 +681,81 @@ public class ReservationDao {
 		pstmt.setString(1, date);
 		pstmt.setInt(2, resNo);
 		result = pstmt.executeUpdate();
-		JDBCTemplate.close(conn);
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	
+	public int reservationManagerGoodsAdd(Connection conn, int bCode, String goodsCategory, String goodsName, String goodsSize, int goodsPrice, int goodsAmount) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationManagerGoodsAdd");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, bCode);
+		pstmt.setString(2, goodsCategory);
+		pstmt.setString(3, goodsName);
+		pstmt.setString(4, goodsSize);
+		pstmt.setInt(5, goodsPrice);
+		pstmt.setInt(6, goodsAmount);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	
+	public int reservationManagerGoodsDelete(Connection conn, int bCode, String goodsName, String goodsSize) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationManagerGoodsDelete");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, bCode);
+		pstmt.setString(2, goodsName);
+		pstmt.setString(3, goodsSize);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;		
+	}
+	
+	public int reservationGoodsRentalCount(Connection conn, int bCode, String goodsName, String goodsSize) throws SQLException {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationGoodsRentalCount");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, goodsName);
+		pstmt.setString(2, goodsSize);
+		pstmt.setInt(3, bCode);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			count = rset.getInt("cnt");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return count;
+	}
+	
+	public int reservationManagerGoodsAmountModify(Connection conn, int bCode, String goodsName, String goodsSize, int goodsAmount) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationManagerGoodsAmountModify");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, goodsAmount);
+		pstmt.setString(2, goodsName);
+		pstmt.setString(3, goodsSize);
+		pstmt.setInt(4, bCode);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int reservationManagerGoodsPriceModify(Connection conn, int bCode, String goodsName, String goodsSize, int goodsPrice) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationManagerGoodsPriceModify");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, goodsPrice);
+		pstmt.setString(2, goodsName);
+		pstmt.setString(3, goodsSize);
+		pstmt.setInt(4, bCode);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
 		return result;
 	}
 }
