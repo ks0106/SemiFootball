@@ -20,25 +20,14 @@
 <title>Insert title here</title>
 </head>
 <script>
-</script>
-<script>
 	$(document).ready(function(){
+		/* 로드 시 css 세팅 */
 		$('form:first').removeClass('noView');
 		$('form:first').addClass('view');
 		$('#scheduleAddBtn').removeClass('scheduleManagerBtn');
-		$('#scheduleAddBtn').addClass('scheduleManagerBtnSelect');		
-		
-		$(document).on("click",".scheduleManagerBtn",function(){
-			$(this).siblings('button').removeClass('scheduleManagerBtnSelect');
-			$(this).siblings('button').addClass('scheduleManagerBtn');
-			$(this).removeClass('scheduleManagerBtn');
-			$(this).addClass('scheduleManagerBtnSelect');
-			var $target = $(this).attr('id').replace('Btn',"");
-			$('#'+$target).siblings('form').removeClass('view');
-			$('#'+$target).siblings('form').addClass('noView');
-			$('#'+$target).removeClass('noView');			
-			$('#'+$target).addClass('view');			
-		});
+		$('#scheduleAddBtn').addClass('scheduleManagerBtnSelect');
+		/* 지점 로드 함수 */
+		branchLoad();
 	});
 	
 </script>
@@ -125,7 +114,7 @@
 					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 스케쥴 관리</div>
 					<!-- 본문 -->
 					<!-- 달력 -->
-					<div style="width:530px;float:right;position:fixed;right:150px;bottom:200px;">
+					<div id="drag-cal" style="width:530px;float:right;position:fixed;right:150px;bottom:200px;">
 						<jsp:include page="/views/test/calendar.jsp" />
 					</div>
 					<!-- 컨텐츠 파티션 -->
@@ -146,7 +135,7 @@
 									<tr>
 										<th>지점</th>
 										<td>
-											<select id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
 												<option value="default" selected>::: 지점선택 :::</option>
 											</select>								
 										</td>
@@ -209,7 +198,7 @@
 									<tr>
 										<th>지점</th>
 										<td>
-											<select id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
 												<option value="default" selected>::: 지점선택 :::</option>
 											</select>								
 										</td>
@@ -268,7 +257,7 @@
 									<tr>
 										<th>지점</th>
 										<td>
-											<select id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
 												<option value="default" selected>::: 지점선택 :::</option>
 											</select>								
 										</td>
@@ -306,5 +295,91 @@
 		</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />	
+	
+	<script>
+		function branchLoad(){
+			var branchName = '<c:forEach items="${list}" var="b" varStatus="i">';
+			branchName += '<option value="${b.branchCode}">${b.branchName}</option></c:forEach>';
+			$('.branchName').append(branchName);
+		}
+
+		/* 년/월/일을 하나로 합쳐 저장하는 변수 */
+		var txt;
+		$(document).ready(function(){
+			var month = $('#tbCalendarYM').text();
+			var day = parseInt($('.select-cell').text());
+			if(day > 9){
+				txt = month+"."+day;
+			}else{
+				txt = month+"."+"0"+day;
+			}
+			$('#scheduleDate').val(txt);			
+		});
+		/* 등록,수정,삭제 탭메뉴 눌렀을 때 동작 */
+		$(document).on("click",".scheduleManagerBtn",function(){
+			/* 모든 select와 input 초기화 */
+			$('select').not('.branchName').find("option").not('.default').remove();	
+			$('#scheduleCategory').find('option:eq(0)').prop('selected',true);
+			$('input').not('#scheduleDate').val("");
+			/* 버튼 및 페이지 class변경 */
+			$(this).siblings('button').removeClass('scheduleManagerBtnSelect');
+			$(this).siblings('button').addClass('scheduleManagerBtn');
+			$(this).removeClass('scheduleManagerBtn');
+			$(this).addClass('scheduleManagerBtnSelect');
+			var $target = $(this).attr('id').replace('Btn',"");
+			$('#'+$target).siblings('form').removeClass('view');
+			$('#'+$target).siblings('form').addClass('noView');
+			$('#'+$target).removeClass('noView');			
+			$('#'+$target).addClass('view');
+			$('.branchName').find('option:eq(0)').prop('selected',true);
+			$('#'+$target).find('#scheduleDate').val(txt);
+		});
+
+		/* 동적 개체인 달력을 클릭했을 때 동작하는 함수 */
+		$(document).on("click",".future",function(){
+			month = $('#tbCalendarYM').text();
+			day = parseInt($(this).text());
+			if(day > 9){
+				txt = month+"."+day;
+			}else{
+				txt = month+"."+"0"+day;
+			}
+			$('#scheduleDate').val(txt);
+			var $select = $('#courtTime');
+			
+		});
+		
+		function courtCalendar(){
+			/* 날짜를 클릭했을 때 예약 가능한 구장을 보여주는 구문 */
+			$select.find("div").remove();
+			var result = txt.replace(/\./gi,'/');
+			var bCode = '${b.branchCode}';
+			$.ajax({
+				url : "/reservationCourtList.do",
+				type : "get",
+				data : {result:result,bCode:bCode},
+				success : function(data){
+					var $select = $('#courtSelect');
+					$select.find("option").not('#default').remove();
+					for(var i=0;i<data.length;i++){
+						var courtBCode = data[i].courtBCode;
+						var courtCCode = data[i].courtCCode;
+						var courtName = data[i].courtName;
+						var courtStatus = data[i].courtStatus;
+						var selected = "";
+						if(courtStatus == 0){
+							$select.append('<option value="'+courtCCode+'">'+courtName+'</option>');
+						}
+					}
+				},
+				error : function(){
+					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
+				}
+			});			
+		}
+
+	</script>
+	
+	
 </body>
 </html>
