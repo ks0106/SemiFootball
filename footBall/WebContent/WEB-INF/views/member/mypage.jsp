@@ -121,7 +121,7 @@
 	.th{
 		padding: 16px;
 		border-bottom: 1px solid #d5d8dd;
-		height: 21px;
+		height: 60px;
 		font-size: 18px;
 		font-weight: 700;
 		line-height: 21px;
@@ -141,16 +141,7 @@
 		background-color: #F2F2F2;
 
 	}
-	.pageNaviBtn{
-		width: 50px;
-		height: 50px;
-		border: 1px solid #A4A4A4;
-		display: inline-block;
-		margin-right: 10px;
-		margin-left: 10px; 
-		border-radius: 15px;
-		line-height: 45px;
-	}
+	
 
 	.selectPage{
 		line-height: 50px;
@@ -172,17 +163,7 @@
 		z-index: 1;
 	}
 	
-	.view-th{
-		width: 25%;
-		padding: 20px;
-		border: 1px solid;
-		background-color: #BDBDBD;
-	}
-	.view-td{
-		width: 25%;
-		padding: 20px;
-		border: 1px solid;
-	}
+	
 	.view-table-div{
 	
 		margin: 0 auto;
@@ -190,17 +171,7 @@
 		height:70%;
 		margin-top: 30px;
 	}
-	#popup_mask { 
-		 	  position: fixed;
-	  	 	  width: 100%;
-	  		  height: 1000px;
-	   		  top: 0px;
-	  	      left: 0px;
-	   		  display: none; 
-	    	  background-color:#000;
-	          opacity: 0.6;
-	          z-index: 0;
-          }
+	
      .page_area{
      	width: 100%;
      	height: 130vh;
@@ -219,6 +190,9 @@
      	background-color: red;
      	color:white;
      }
+    input{
+    	height: 20px;
+    }
 </style>
 <script>
 	$(document).ready(function(){
@@ -249,53 +223,6 @@
 			$(this).siblings('li').children('a').css("color","silver");
 		});
 	});
-function contentView(pageNum){
-   		
-   		$.ajax({
-   			url:"/matchContentView",
-   			type:"get",
-   			dataType:"json",
-   			data:{pageNum:pageNum},
-   			success: function(data){
-   				var writer = data.matchWriter;
-   				var type = data.matchType;
-   				var BName = data.matchBName;
-   				var Date = data.date;
-   				var CName = data.matchCName;
-   				var Phone = data.matchPhone;
-   				var Level = data.matchLevel;
-   				var amount = data.teamCount;
-   				var able = data.able;
-   				var Memo = data.matchMemo;
-   				$("#tr11").find("td").eq(0).html(writer);
-   				$("#tr11").find("td").eq(1).html(type);
-   				$("#tr11").next().find("td").html(BName);
-   				$("#tr11").next().next().find("td").html(Date);
-   				$("#tr11").next().next().next().find("td").html(CName);
-   				$("#tr11").next().next().next().next().find("td").eq(0).html(Phone);
-   				$("#tr11").next().next().next().next().find("td").eq(1).html(Level);
-   				$("#tr11").next().next().next().next().next().find("td").eq(0).html(amount);
-   				$("#tr11").next().next().next().next().next().find("td").eq(1).html(able);
-   				$("#tr11").next().next().next().next().next().next().find("td").html(Memo);
-   				if("${sessionScope.member.phone}" == Phone){
-   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
-   				}
- 			},
-   			erorr : function () {
-				console.log("실패다");
-			}
-   			
-   		});
-   		$("#matchView").css('display','block');
-   		$("#popup_mask").css('display','block');
-   	}
-   	function close1(here){
-   		$(here).parent().parent().css('display','none');
-   		$("#popup_mask").css('display','none');
-   	}
-   	function matchApply(){
-   		location.href="/matchApply";
-   	}
 </script>
 </head>
 <body>
@@ -309,7 +236,7 @@ function contentView(pageNum){
 	<!-- 내용 작성 -->
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 		<!-- center -->
-		<div>
+		
 			<div style="width:85%;background-color:white;margin:0 auto;overflow:hidden;">
 				<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">MyPage</div>
@@ -318,121 +245,195 @@ function contentView(pageNum){
 						<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">계정관리</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">결제내역</a>
+						<a class="side_a" id="side_menu2" href="/reservationsList" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">결제내역</a>
 					</div>
-					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
-					</div>
+					
 				</div>
-				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
+			
+		<div id="divpwd" style="width:78%;height:500px; border-left:1px solid silver;display:inline-block;overflow:hidden; ">
+				<div class="tab-content" >
+	            <!-- 탭컨텐츠 제목 -->
+	               		<br><br><br>
+						<p class="content-header">비밀번호 재확인</p>
+						<div class="underline"></div>
+						<!-- 글쓰기 버튼 -->
+						<div class="btn-wrapper" style="margin: 0 auto; margin-top:50px;margin-bottom:0px; text-align:center;width: 100%;">
+							<div style="width: 90%;padding-left: 70px;">
+								
+									<input type="password" id="checkpwd" name="pwd" style="width: 300px;height:40px;left: 300px;">
+									<button type="button" id="pwd" style="border:none;background-color: green;width: 50px;height: 45px;color:white;">									
+										<span style="color:white;height:80%;width: 100%;display: inline;font-size: 15px; vertical-align:middle; "> 확인 </span> 
+									</button>
+								
+							</div>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript"> //비밀번호 확인하는 if문
+				$("#pwd").click(function () {
+					var pwd1 = '${member.pwd}';
+					var pwd = $("#checkpwd").val();
+					if(pwd1==pwd){
+						$("#divpwd").css("display","none");
+						$("#mypage").css("display","block");
+					}else{
+						alert("비밀번호가 일치하지 않습니다.");
+					}
+				});
+				
+			</script>
+				<div id="mypage" style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;display: none;">
 					<div class="tab-content" >
 	            <!-- 탭컨텐츠 제목 -->
 	               			<br><br><br>
-							<p class="content-header">매칭신청</p>
+							<p class="content-header">계정 관리</p>
 							<div class="underline"></div>
-							<!-- 글쓰기 버튼 -->
-							<div class="btn-wrapper" style="margin: 0 auto; margin-top:30px;margin-bottom:30px; text-align: right;width: 100%;">
-								<div style="width: 90%;">
-									<button type="button" onclick="matchApply();" style="border:none;background-color: green;width: 150px;height: 50px;color:white;">
-									
-									<span style="color:white;height:80%;width: 100%;display: inline;font-size: 17px; vertical-align:super; "> 매치신청 </span> 
-									<span><img src="/img/match_icon.png" style="vertical-align: sub;"></span>
-									</button>
-								</div>
-							</div>
+							
 							<!-- 매치 게시판 출력 테이블 -->
 								<div id="table-wraper">
-								
+									<form action="/updateMember" method="post">
+										<input type="hidden" name="id" value="${member.id }">
 									<table id="matchlist-table"  style="width: 100%;">
 										<tr>
-											<th class="th">매치형태</th>
-											<th class="th">지점구분</th>
-											<th class="th" colspan="2">배치일자</th>
-											<th class="th">신청가능팀</th>
-											<th class="th">작성자</th>
-											<th class="th">작성일자</th>
-											<th class="th">신청</th>
+											<th class="th">아이디</th>
+											<th class="th">${member.id } </th>
+											<th class="th">이름</th>
+											<th class="th">${member.name } </th>
 										</tr>
-										<!-- 게시판 리스트 출력 포문 -->
-										<c:forEach items="${mpd.list }" var="m">
-											<tr class="table-tr" onclick="contentView(${m.seqMatchNo});" >
-												<td class="td">${m.matchType } </td>
-												<td class="td">${m.matchBName }</td>
-												<td colspan="2" class="td">${m.matchDate }</td>
-												<td class="td">${m.teamCount1 }</td>
-												<td class="td">${m.matchWriter }</td>
-												<td class="td">${m.matchEnrollDate }</td>
-												<c:choose>
-												<c:when test="${m.matchAble eq 0 }">
-												<td class="td"><span id="able">${m.able1 }</span></td>
-												</c:when>
-												<c:when test="${m.matchAble eq 1 }">
-												<td class="td"><span id="disable">${m.able1 }</span></td>
-												</c:when>
-												</c:choose>
-											</tr>
-										</c:forEach> 
+										<tr>
+											<th class="th">비밀번호</th>
+											<th class="th" ><input type="password" id="repwd"  value="${member.pwd }"><br><span id="extext1"></span></th>
+											<th class="th">비밀번호 재확인</th>
+											<th class="th"><input type="password" id="repwd1" name="repwd" value="${member.pwd }"><br><span id="extext2"></span></th>	
+										</tr>
+										<tr>
+											<th class="th">아이디 찾기 힌트</th>
+											<th class="th">
+												<select name="pwdHint">
+								           			<option>선택하세요</option>
+								           			<option value="가장 좋아하는 색상">가장 좋아하는 색상</option>
+								           			<option value="가장 좋아하는 연예인">가장 좋아하는 연예인</option>
+								           			<option value="내가 나온 초등학교 이름">내가 나온 초등학교 이름</option>
+								           		</select>
+											</th>
+											<th class="th">아이디 찾기 정답</th>
+											<th class="th">
+												<input type="text" name="pwdHintAnswer" value="${member.pwdHintAnswer }">
+											</th>																						
+										</tr>
+										<tr>
+											<th class="th" >휴대전화</th>
+											<th class="th" >
+												<input type="text" name="phone" id="phone" value="${member.phone }" style="width:150px;"><br>
+												<span id="extext4"></span>
+											</th>
+											<th class="th">가입일</th>
+											<th class="th">${member.enrollDate }</th>
+										</tr>
 									</table>
+										<br>
+						           		<input type="reset" value="취소하기" class="button1" onclick="rset();"style="border:none;background-color: green;width: 150px;height: 50px;color:white;">
+						           		<input type="submit" value="수정하기" class="button1" id="btn1" style="border:none;background-color: green;width: 150px;height: 50px;color:white;">
+									</form>
 								</div>
-							<!-- 페이지 네비 -->
-							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;margin-top: 30px;">${mpd.pageNavi }</div>
-							<!-- Search폼태그 -->
-							<div style="height: 50px;">
-								<form action="/matchSearch" method="get" style="height: 100%;">
-									<select name="branch" style="height: 100%; border:2px solid #A4A4A4; ">
-											<option value="">지점</option>
-											<option value="1">부천점</option>
-											<option value="2">고양점</option>
-											<option value="3">남양주점</option>
-											<option value="4">성남점</option>
-											<option value="5">수원점</option>
-											<option value="6">안양점 </option>
-									</select>
-									<input type="text" size="30" name="keyword" style="height:100%;border:2px solid #A4A4A4;">
-									<button type="submit" style="background-color:#2c3c57; border:none; height: 100%;width: 70px;vertical-align: bottom; "><img src="/img/icon_search.png"></button>
-								</form>							
-							</div>
-							<!-- 게시글 view -->
-							<div id="matchView" >
-								<div id="closeBtn" style="height: 10%;"><button type="button" onclick="close1(this)" style="width: 10%;height:50px;float: right; border-radius: 15px;background-color: white; border:none;"><span style="font-size: 50px;">&times</span></button></div>
-								<p style="text-align:left;margin: 0;margin-left: 30px;font-size: 30px;display: block; margin-bottom: 30px;padding-left: 60px;">매치신청 상세보기</p>
-								<div id="view-table-div" >
-									<table id="view-table" style="margin: 0 auto; width: 80%; border-collapse: collapse;">
-										<tr id="tr11">
-											<th class="view-th" >작성자 이메일 </th> <td class="view-td"></td><th class="view-th">매치형태</th> <td class="view-td">???</td>
-										</tr>
-										<tr>
-											<th class="view-th">지점</th><td colspan="3" class="view-td">???</td>
-										</tr>
-										<tr>
-											<th class="view-th">매치일자</th><td colspan="3" class="view-td">???</td>
-										</tr>
-										<tr>
-											<th class="view-th">구장</th><td colspan="3" class="view-td">???</td>
-										</tr>
-										<tr>
-											<th class="view-th">연락처</th> <td class="view-td">???</td><th class="view-th">팀수준</th> <td class="view-td">???</td>
-										</tr>
-										<tr>
-											<th class="view-th">신청가능팀 </th> <td class="view-td">???</td ><th class="view-th">신청가능여부</th> <td class="view-td">???</td>
-										</tr>
-										<tr>
-											<td colspan="4" class="view-td">
-										</tr>
-										
-									</table>
-								</div>
-							</div>
-							
 	               		</div>
-	               		<div id="popup_mask"></div>
-					
-					
 					<div style="width:100%;height:100px;"></div>
-				<div>
+				</div>
 			</div>
-		</div>
 	</section>
+	<script>
+ 		var result =[true,true,true]
+ 		$(document).ready(function() {
+ 			var option = '${member.pwdHint}';
+ 			$("option").each(function () {
+				if($(this).val()==option){
+					$(this).prop("selected",true);
+				}
+			});
+			
+			$("#repwd").blur(function () {
+				var pwd = $("#repwd").val();
+				var text = /^[a-z][a-z0-9]{5,17}$/i;
+				if(pwd==''){
+					$('#extext1').html('');
+				}else{
+					if(!text.test(pwd)){
+						$("#extext1").html('영어 대/소문자+숫자 6~18');
+						$("#extext1").css('color','red');
+						$("#extext1").css('fontSize','15px');
+						result[0]=false;
+						return false;
+					}else{
+						$('#extext1').html('');
+						
+						return true;
+					};
+					
+				};
+			});
+			
+			$('#repwd1').blur(function () {
+				var pwd = $('#repwd').val();
+				var pwd1 = $('#repwd1').val();
+				if(pwd1==''){
+					$('#extext2').html('');
+				}else{					
+					if(!(pwd==pwd1)){
+						$('#extext2').html('비밀번호를 확인하세요');
+						$('#extext2').css('color','red');
+						$("#extext2").css('fontSize','15px');
+						result[1]=false;
+						return false;
+					}else{
+						$('#extext2').html('');
+						
+						return true;
+					};				
+				}
+			});
+			
+			
+			
+			$('#phone').blur(function () {
+				var phone = $('#phone').val();
+				var text = /^[0-9]{3}-[0-9]{3,4}-[0-9]{3,4}$/;
+				if(phone==''){
+					$('#extent4').html('');
+				}else{
+					if(!text.test(phone)){
+						$('#extext4').html('첫번째는2~3개숫자,두번째는 3~4개숫자');
+						$('#extext4').css('color','red');
+						$("#extext4").css('fontSize','15px');
+						result[2]=false;
+						return false;
+					}else{
+						$('#extext4').html('');
+						
+						return true;
+					};
+				};
+			});
+			
+			$('#btn1').click(function(event){
+	               for(var i=0;i<result.length;i++){
+	                    console.log(result[i]);
+	                        if(!result[i]){
+	                            alert("입력을 확인하세요");
+	                            event.isDefaultPrevented;
+	                            return false;
+	                        };
+	                };
+	        });
+		});
+ 	</script>   
+ 	<script>
+ 		function rset() {
+ 			$('#extext1').html('');
+ 			$('#extext2').html('');
+ 			$('#extext4').html('');
+		}
+ 	</script>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
+				
