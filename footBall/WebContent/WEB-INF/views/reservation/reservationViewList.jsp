@@ -316,7 +316,7 @@
 				<a class="side_a" id="side_menu2"
 					style="color: #3366cc;">예약확인</a>
 			</div>
-			<c:if test="${sessionScope.Member.id == admin}">
+			<c:if test="${sessionScope.member.id == 'admin'}">
 				<div style="margin-bottom: 15px;">
 					<a class="side_a" id="side_menu3" style="color: #2c3c57;">[관리자] 대관 관리</a>
 				</div>
@@ -342,7 +342,7 @@
 				</div>
 			</div>
 		</div>
-			
+	
 		<div id="viewList" style="width: 78%; height: 120vh; border-left: 1px solid silver;overflow: hidden;display:none; ">
 			<div
 				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">예약확인</div>
