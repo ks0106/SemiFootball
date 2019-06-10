@@ -90,11 +90,6 @@
 				<div style="margin-bottom:15px;">
 					<a class="side_a selected" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난대회결과</a>
 				</div>
-				<c:if test="${sessionScope.member.id eq'admin' }">
-					<div style="margin-bottom:15px;">
-						<a class="side_a " id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
-					</div>
-				</c:if>
 				
 			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 본문 -->
@@ -124,8 +119,8 @@
 					
 					<c:if test="${sessionScope.member.id eq 'admin' }">
 					<div style="margin-top: 50px;">
-						<button type="button" onclick="addLeague();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">공지추가</button>
-						<button type="button" onclick="downLeague();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">공지내리기</button>
+						<button type="button" class="insertLeagueBtn" onclick="addLeague();">공지추가</button>
+						<button type="button" class="insertLeagueBtn" onclick="downLeague();" >공지내리기</button>
 					</div>
 					</c:if>
 					
@@ -153,9 +148,6 @@
 		});
 		$("#side_menu3").click(function(){
 				location.href="/afterLeague"
-		});
-		$("#side_menu4").click(function(){
-			location.href="/gameTable"
 		});
  		$.ajax({
    			url:"/countTeam",

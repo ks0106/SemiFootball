@@ -47,7 +47,8 @@
              </li>
              <li class="header_item"><a href="/league">대회</a>
              	<ul class="item_items">
-             		<li><a href="#">ㅎㅇ</a></li>
+             		<li><a href="/gameTable">대진표관리</a></li>
+             		<li><a href="/views/league/addLeague.jsp">대회공지 추가</a></li>
              	</ul>
              </li>
              <li class="header_item"><a href="/gallery">갤러리</a>
