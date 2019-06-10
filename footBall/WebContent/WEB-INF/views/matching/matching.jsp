@@ -278,7 +278,7 @@ function contentView(pageNum){
    				$("#tr11").next().next().next().next().next().find("td").eq(1).html(able);
    				$("#tr11").next().next().next().next().next().next().find("td").html(Memo);
    				if("${sessionScope.member.phone}" == Phone){
-   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
+   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button' id='modiBtn'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
    				}
  			},
    			erorr : function () {
@@ -295,6 +295,18 @@ function contentView(pageNum){
    	}
    	function matchApply(){
    		location.href="/matchApply";
+   	}
+   	function modifyMactchCon(num){
+			$("#tr11").find("td").eq(1).html('<select name="matchType"style="width: 80px;height: 20px;"><option value="5vs5">5vs5</option>	<option value="6vs6">6vs6</option></select>');
+			$("#tr11").next().next().next().next().find("td").eq(1).html('<select name="matchLevel" style="width: 80px;height: 20px;">	<option>--선택--</option><option value="상">상</option><option value="중상">중상</option><option value="중">중</option><option value="중하">중하</option><option value="하">하</option></select>');
+			$("#tr11").next().next().next().next().next().find("td").eq(0).html('<select name="matchAmount" style="width: 80px;height: 20px;"><option value="1">1팀</option>	<option value="2">2팀</option><option value="3">3팀</option>	</select>');
+			$("#tr11").next().next().next().next().next().find("td").eq(1).html('<select name="matchAble" style="width: 80px;height: 20px;"><option value="0">가능</option>	<option value="1">마감</option></select>');
+			$("#tr11").next().next().next().next().next().next().find("td").html('<textarea rows="3" cols="40" name="memo" style="resize: none;text-align: left;" placeholder="유니폼색상과 메모사항을 적어주세요"></textarea>');
+			$("#modiBtn").after("<button type='button' id='modi' style='margin-left:15px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>")
+			
+   	}
+   	function modi(num){
+   		alert(num);
    	}
 </script>
 </head>
