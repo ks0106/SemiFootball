@@ -41,7 +41,6 @@ public class MercenaryServlet extends HttpServlet {
 		try {
 			RecPageData rpd = new RecService().selectList2(reqPage);
 			request.setAttribute("rpd", rpd);
-			System.out.println(rpd.getList().get(0).getRecBName());
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/mercenary.jsp");
 			rd.forward(request, response);
 		} catch (SQLException e) {

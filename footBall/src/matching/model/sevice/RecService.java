@@ -121,4 +121,43 @@ public class RecService {
 		return rpd;
 	
 	}
+	
+	public RecPageData selectList2(int reqPage) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int numPerPage=10;
+		int totalCount2= new RecDao().countList2(conn);
+		int totalPage = (totalCount2%numPerPage==0)?(totalCount2/numPerPage):(totalCount2/numPerPage)+1;
+		int start = (reqPage-1)*numPerPage+1;
+		int end = reqPage*numPerPage;
+		ArrayList<Recruit> list2= new RecDao().selectList2(conn,start,end);
+		for(int i = 0 ; i<list2.size();i++) {
+			list2.get(i).setAmount2(list2.get(i).getAmount());
+			list2.get(i).setAble2(list2.get(i).getRecAble());
+			list2.get(i).setDate2(list2.get(i).getRecDate());
+		}
+		String pageNavi ="";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		
+		if(pageNo!=1) {
+			pageNavi += "<a class='btn' href='/mercenary?reqPage="+(pageNo-1)+"'><div class='pageNaviBtn'>&lt</div></a>";
+		}
+		int i = 1;
+		while(!(i++>pageNaviSize||pageNo>totalPage)) {
+			if(reqPage==pageNo) {
+				pageNavi += "<div class='pageNaviBtn selectPage'><span>"+pageNo+"</span></div>";
+			}else {
+				pageNavi +="<a class='btn' href='/mercenary?reqPage="+pageNo+"'><div class='pageNaviBtn'>"+pageNo+"</div></a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/mercenary?reqPage="+pageNo+"'><div class='pageNaviBtn'>&gt</div></a>";
+			
+		}
+		
+		JDBCTemplate.close(conn);
+		RecPageData rpd = new RecPageData(list2, pageNavi);
+		return rpd;
+	}
 }
