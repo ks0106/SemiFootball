@@ -242,37 +242,38 @@
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">MyPage</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">계정관리</a>
+						<a class="side_a" id="side_menu1" href="/myPage?memberId=${member.id }" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">계정관리</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" href="/reservationsList" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">결제내역</a>
+						<a class="side_a" id="side_menu2" href="/reservationViewMyPageList" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">결제내역</a>
 					</div>
 					
 				</div>
 			
 		<div id="divpwd" style="width:78%;height:500px; border-left:1px solid silver;display:inline-block;overflow:hidden; ">
-				<div class="tab-content" >
-	            <!-- 탭컨텐츠 제목 -->
+					<div class="tab-content" >
+	            	<!-- 탭컨텐츠 제목 -->
 	               		<br><br><br>
-						<p class="content-header">비밀번호 재확인</p>
+						<div style="font-size:40px; color: #403d3f; text-align: center; margin-bottom: 20px;font-weight:bolder;color:#2c3c57;">비밀번호 재확인</div>
 						<div class="underline"></div>
 						<!-- 글쓰기 버튼 -->
 						<div class="btn-wrapper" style="margin: 0 auto; margin-top:50px;margin-bottom:0px; text-align:center;width: 100%;">
-							<div style="width: 90%;padding-left: 70px;">
-								
-									<input type="password" id="checkpwd" name="pwd" style="width: 300px;height:40px;left: 300px;">
-									<button type="button" id="pwd" style="border:none;background-color: green;width: 50px;height: 45px;color:white;">									
-										<span style="color:white;height:80%;width: 100%;display: inline;font-size: 15px; vertical-align:middle; "> 확인 </span> 
-									</button>
-								
-							</div>
+							<div style="width: 90%;padding-left: 70px;">								
+							<input type="password" id="checkpwd" name="pwd" style="width: 300px;height:40px;left: 300px;border:2px solid #2c3c57;font-size:30px;vertical-align:middle">
+							<button type="button" id="pwd" style="border:none;background-color: #2c3c57;width: 150px;height: 45px;color:white;">									
+							<span style="color:white;height:80%;width: 100%;display: inline;font-size: 15px; vertical-align:middle;padding:0;margin:0;vertical-align:middle"> 확인 </span> 
+							</button>
 						</div>
 					</div>
+					
+				</div>
 			</div>
 			<script type="text/javascript"> //비밀번호 확인하는 if문
 				$("#pwd").click(function () {
-					var pwd1 = '${member.pwd}';
+					var pwd1 = '${sessionScope.member.pwd}';
 					var pwd = $("#checkpwd").val();
+					console.log(pwd1);
+					console.log(pwd);
 					if(pwd1==pwd){
 						$("#divpwd").css("display","none");
 						$("#mypage").css("display","block");
@@ -282,7 +283,7 @@
 				});
 				
 			</script>
-				<div id="mypage" style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;display: none;">
+				<div id="mypage" style="width:78%;border-left:1px solid silver;overflow:hidden;display: none;">
 					<div class="tab-content" >
 	            <!-- 탭컨텐츠 제목 -->
 	               			<br><br><br>
