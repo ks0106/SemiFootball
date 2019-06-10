@@ -248,7 +248,9 @@
 		});
 	});
 function contentView(pageNum){
-   		
+	if($("#tr11").parent().parent().parent().children().is("#modiBtn-wrapper")){
+		$("#tr11").parent().parent().parent().children().remove("#modiBtn-wrapper");
+	}
    		$.ajax({
    			url:"/matchContentView",
    			type:"get",

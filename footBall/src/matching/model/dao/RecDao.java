@@ -29,22 +29,25 @@ public class RecDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Recruit> list = new ArrayList<Recruit>();
-		String query = "select * from (select ROWNUM as rNum,r.* from (select * from fb_recruit order by 1 desc) r) where rnum BETWEEN ? and ?";
+		String query = "select * from (select ROWNUM as rNum,rr.* from (select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) order by rec_no desc) rr) where rnum BETWEEN ? and ?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1,start);
 		pstmt.setInt(2,end);
 		rset = pstmt.executeQuery();
 		while(rset.next()) {
 			Recruit r = new Recruit();
-			r.setSeqRecNo(rset.getInt("SEQ_REC_NO"));
-			r.setRecName(rset.getString("REC_NAME"));
-			r.setRecBName(rset.getString("REC_B_NAME"));
+			r.setSeqRecNo(rset.getInt("REC_NO"));
+			r.setRecName(rset.getString("rec_name"));
+			r.setRecCName(rset.getString("C_NAME"));
+			r.setRecBName(rset.getString("B_NAME"));
+			r.setRecCCode(rset.getInt("rec_c_code"));
+			r.setRecBCode(rset.getInt("rec_b_code"));
 			r.setRecPhone(rset.getString("REC_PHONE"));
+			r.setAmount(rset.getInt("rec_amount"));
 			r.setRecDate(rset.getDate("REC_DATE"));
 			r.setRecTime(rset.getString("REC_TIME"));
 			r.setRecLevel(rset.getString("REC_LEVEL"));
 			r.setRecAble(rset.getInt("REC_ABLE"));
-			r.setRecPw(rset.getString("REC_PW"));
 			r.setRecMemo(rset.getString("REC_MEMO"));
 			r.setRecEnrollDate(rset.getDate("REC_ENROLL_DATE"));
 			list.add(r);
@@ -57,26 +60,47 @@ public class RecDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Recruit r = null;
-		String query = "select * from fb_recruit where seq_rec_no=?";
+		String query = "select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) where rec_no=?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, pageNum);
 		rset = pstmt.executeQuery();
 		if(rset.next()) {
 			r = new Recruit();
-			r.setSeqRecNo(rset.getInt("SEQ_REC_NO"));
-			r.setRecName(rset.getString("REC_NAME"));
-			r.setRecBName(rset.getString("REC_B_NAME"));
+			r.setSeqRecNo(rset.getInt("REC_NO"));
+			r.setRecName(rset.getString("rec_name"));
+			r.setRecCName(rset.getString("C_NAME"));
+			r.setRecBName(rset.getString("B_NAME"));
+			r.setRecCCode(rset.getInt("rec_c_code"));
+			r.setRecBCode(rset.getInt("rec_b_code"));
 			r.setRecPhone(rset.getString("REC_PHONE"));
+			r.setAmount(rset.getInt("rec_amount"));
 			r.setRecDate(rset.getDate("REC_DATE"));
 			r.setRecTime(rset.getString("REC_TIME"));
 			r.setRecLevel(rset.getString("REC_LEVEL"));
 			r.setRecAble(rset.getInt("REC_ABLE"));
-			r.setRecPw(rset.getString("REC_PW"));
 			r.setRecMemo(rset.getString("REC_MEMO"));
 			r.setRecEnrollDate(rset.getDate("REC_ENROLL_DATE"));
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return r;
+	}
+	public int addMerRec(Connection conn, Recruit r) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String  query = "insert into fb_recruit values(seq_rec_no.nextval,?,?,?,?,?,?,?,?,?,?,sysdate)";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, r.getRecName());
+		pstmt.setInt(2, r.getRecBCode());
+		pstmt.setInt(3, r.getRecCCode());
+		pstmt.setString(4,r.getRecPhone());
+		pstmt.setInt(5, r.getAmount());
+		pstmt.setDate(6, r.getRecDate());
+		pstmt.setString(7,r.getRecTime());
+		pstmt.setString(8, r.getRecLevel());
+		pstmt.setInt(9, r.getRecAble());
+		pstmt.setString(10, r.getRecMemo());
+		result = pstmt.executeUpdate();
+		return result;
 	}
 }

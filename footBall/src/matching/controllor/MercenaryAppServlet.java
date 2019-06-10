@@ -1,6 +1,7 @@
 package matching.controllor;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,9 +45,9 @@ public class MercenaryAppServlet extends HttpServlet {
 		r.setRecCName(recCname);
 		r.setRecName(recName);
 		r.setRecPhone(recPhone);
-		//데이트 만들어주세요
+		Date d = Date.valueOf(recDate);
 		r.setRecTime(recTime);
-		r.setAble(Integer.parseInt(recAble));
+		r.setAble2(Integer.parseInt(recAble));
 		r.setRecMemo(recMemo);
 		int result = new MatchService().mercenaryAdd();
 		if(result > 0) {

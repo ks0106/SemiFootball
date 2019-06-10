@@ -8,36 +8,65 @@ public class Recruit {
 	private String recName;
 	private String recBName;
 	private String recCName;
+	private int recBCode;
+	private int recCCode;
 	private String recPhone;
+	private int amount;
 	private Date recDate;
 	private String recTime;
 	private String recLevel;
 	private int recAble;
-	private String recPw;
 	private String recMemo;
 	private Date recEnrollDate;
 	private String date2;
 	private String able2;
+	private String amount2;
+	
 	public Recruit() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Recruit(int seqRecNo, String recName, String recBName, String recCName ,String recPhone, Date recDate, String recTime,
-			String recLevel, int recAble, String recPw, String recMemo, Date recEnrollDate) {
+	
+	public Recruit(int seqRecNo, String recName, int recBCode, int recCCode, String recPhone, int amount,
+			Date recDate, String recTime, String recLevel, int recAble, String recMemo) {
 		super();
 		this.seqRecNo = seqRecNo;
 		this.recName = recName;
-		this.recBName = recBName;
-		this.recCName = recCName;
+		this.recBCode = recBCode;
+		this.recCCode = recCCode;
 		this.recPhone = recPhone;
+		this.amount = amount;
 		this.recDate = recDate;
 		this.recTime = recTime;
 		this.recLevel = recLevel;
 		this.recAble = recAble;
-		this.recPw = recPw;
 		this.recMemo = recMemo;
-		this.recEnrollDate = recEnrollDate;
 	}
+
+	public int getRecBCode() {
+		return recBCode;
+	}
+
+	public void setRecBCode(int recBCode) {
+		this.recBCode = recBCode;
+	}
+
+	public int getRecCCode() {
+		return recCCode;
+	}
+
+	public void setRecCCode(int recCCode) {
+		this.recCCode = recCCode;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
 	public String getRecCName() {
 		return recCName;
 	}
@@ -92,12 +121,7 @@ public class Recruit {
 	public void setRecAble(int recAble) {
 		this.recAble = recAble;
 	}
-	public String getRecPw() {
-		return recPw;
-	}
-	public void setRecPw(String recPw) {
-		this.recPw = recPw;
-	}
+
 	public String getRecMemo() {
 		return recMemo;
 	}
@@ -119,22 +143,40 @@ public class Recruit {
 		}
 		return able;
 	}
-	public void setDate(Date recDate) {
-		SimpleDateFormat fo = new SimpleDateFormat("yyyy-MM-dd");
-		this.date2 = fo.format(recDate);
+
+	
+	
+
+	public String getAmount2() {
+		return amount2;
 	}
-	public String getDate() {
+
+	public void setAmount2(int amount) {
+		if(amount>0) {
+			this.amount2 = amount+"명";
+		}
+	}
+
+	public String getDate2() {
 		return date2;
 	}
 
-	public void setAble(int recAble) {
+	public void setDate2(Date recDate) {
+		SimpleDateFormat fo = new SimpleDateFormat("yyyy-MM-dd");
+		this.date2 = fo.format(recDate);
+	}
+
+	public String getAble2() {
+		return able2;
+	}
+
+	public void setAble2(int recAble) {
 		if(recAble==0) {
 			this.able2="가능";
 		}else {
 			this.able2="마감";
 		}
 	}
-	public String getAble() {
-		return able2;
-	}
+
+	
 }

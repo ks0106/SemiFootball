@@ -37,7 +37,17 @@
 	#mv{
 		background-image: url("/img/ground1.png");
 	}
-	
+	#matchlist-table{
+		border-top:2px solid  green;
+		border-bottom:2px solid  green;
+		border-collapse: collapse;
+		
+	}
+	#table-wraper{
+		margin:0 auto;
+		margin-top:30px;
+		width: 80%; 
+	}
 	.content-header{
 		color:#403d3f;
 		font-size: 40px;
@@ -68,15 +78,18 @@
 		border-bottom: 3px solid green;
 	}
 	.th{
-		width: 25%;
+		width: 20%;
 		padding: 20px;
-		font-size: 30px;
+		font-size: 16px;
 	}
 	.td{
-		width: 25%;
+		width: 20%;
 		padding: 20px;
-		font-size: 30px;
-		text-align: left;
+		font-size: 16px;
+		text-align: center;
+	}
+	.table-tr:hover{
+		background-color: lightgray;
 	}
 </style>
 <script>
@@ -127,83 +140,112 @@
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">용병지원</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu1" href="/matching" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
+						<a class="side_a" id="side_menu1" href="/matching" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
+						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
 					</div>
 					<div style="margin-bottom:15px;">
 						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
 					</div>
 				</div>
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-				<p class="content-header">용병지원</p>
+				<p class="content-header">용병모집</p>
 							<div class="underline"></div>
-				<form action="/matchApply" method="post">
+				<form action="/addMercenaryRec" method="post">
 						<table id="input-table">
 							<tr>
 								<th class="th">지점</th>
 								<td class="td">
-									<select name="Bname" style="width: 300px;height:50px;">
-										<option value="">지점선택</option>
-										<option value="부천점">부천지점</option>
-										<option value="고양점">고양지점</option>
-										<option value="남양주점">남양주지점</option>
-										<option value="성남점">성남지점</option>
-										<option value="수원점">수원지점</option>
-										<option value="안양점">안양지점</option>
-									</select>
+									<input type="text" readonly="readonly"  id="bName" style="width: 297px;height: 40px;">
+									<input type="hidden" readonly="readonly" name="recBCode" id="bCode" style="width: 297px;height: 40px;">
+									
 								</td>
 								<th class="th">구장</th>
 								<td class="td">
-									<select name="Cname" style="width: 300px;height:50px;">
-										<option value="">구장선택</option>
-										<option value="A">A구장</option>
-										<option value="B">B구장</option>
-									</select>
+									<input type="text" readonly="readonly"  id="cName" style="width: 297px;height: 40px;">
+									<input type="hidden" readonly="readonly" name="recCCode" id="cCode" style="width: 297px;height: 40px;">
 								</td>
 							</tr>
 							<tr>
 								<th class="th">신청자</th>
-								<td class="td"><input type="text" name="name" style="width: 297px;height: 40px;"></td>
+								<td class="td"><input type="text" name="name" style="width: 297px;height: 40px;" value="${sessionScope.member.name }" readonly="readonly"></td>
 								<th class="th">연락처</th>
-								<td class="td"><input type="text" name="phone1" style="width: 88px;height: 40px;">-<input type="text" name="phone2" style="width: 88px;height: 40px;">-<input type="text" name="phone3" style="width: 88px;height: 40px;"></td>
+								<td class="td"><input type="text" name="phone" id="phone" style="width: 297px;height: 40px;" readonly></td>
 							</tr>
 							<tr>
 								<th class="th">매치일정</th>
-								<td class="td"><input type="text" name="matchDate" style="width: 297px;height: 40px;"></td>
+								<td class="td"><input type="text" name="recDate" id="recDate" style="width: 297px;height: 40px;" readonly></td>
 								<th class="th">시간선택</th>
-								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
+								<td class="td"><input type="text" name="recTime" id="recTime" style="width: 297px;height: 40px;" readonly></td>
 							</tr>
 							<tr>
-								<th class="th">유니폼 색상</th>
-								<td class="td">
-									<input type="text" name="phone1" style="width: 80px;height: 40px;" placeholder="상의">-
-									<input type="text" name="phone2" style="width: 80px;height: 40px;" placeholder="하의">-
-									<input type="text" name="phone3" style="width: 80px;height: 40px;" placeholder="스타킹">
-								</td>
 								<th class="th">팀수준</th>
-								<td class="td"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
-							</tr>
-								<th class="th">매치일정</th>
-								<td class="td"><input type="text" name="matchDate" style="width: 297px;height: 40px;"></td>
-								<th class="th">시간선택</th>
-								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
-							</tr>
+								<td class="td">
+									<select name="recLevel" style="width: 297px;height: 40px;">
+										<option>--선택--</option>
+										<option value="상">상</option>
+										<option value="중상">중상</option>
+										<option value="중">중</option>
+										<option value="중하">중하</option>
+										<option value="하">하</option>
+									</select>
+								</td>
+								<th class="th" >마감여부</th>
+								<td class="td" >
+									<select name="recAble" style="width: 297px;height: 40px;">
+										<option value="0">가능</option>
+										<option value="1">마감</option>
+									</select>
+								</td>
 							<tr>
-								<th class="th" colspan="1">마감여부</th>
-								<td class="td" colspan="3"><input type="text" name="matchAble" style="width: 297px;height: 40px;"></td>
-							</tr>
-							<tr>
-								<th colspan="4" class="th" >메모</th>
-							</tr>
-							<tr>
-								<td class="th" colspan="4" rowspan="4"><textarea rows="5" cols="100" name="memo" style="resize: none;text-align: center;"></textarea> </td>
+								
+								<th  class="th" >모집인원 수</th>
+								<td class="td">
+									<select name="recAmount" style="width: 297px;height: 40px;">
+										<option value="1">1명</option>
+										<option value="2">2명</option>
+										<option value="3">3명</option>
+										<option value="4">4명</option>
+										<option value="5">5명</option>
+										<option value="6">6명</option>
+										<option value="7">7명</option>
+										<option value="8">8명</option>
+										<option value="9">9명</option>
+										<option value="10">10명</option>
+									</select>
+								</td>
+								<th  class="th"  >메모</th>
+								<td class="td"  style="text-align: left;"><textarea rows="5" cols="40" name="memo" style="resize: none;text-align: left;" placeholder="유니폼색상과 메모사항을 적어주세요"></textarea> </td>
 							</tr>
 						</table>
-						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>
+						<div id="btn-div" style="margin-top: 30px;text-align: center;">
+								 <button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button>
+								 <button class="btn btn-primary btn-lg" type="reset">초기화</button>
+						 </div>
 					</form>
-					
+					<div id="table-wraper">
+								<div style="margin: 0 auto; margin-top: 30px; margin-bottom: 30px; font-size: 20px;font-weight: bold;text-align: center;">예약정보 확인</div>
+									<table id="matchlist-table"  style="width: 100%;">
+										<tr style="border-bottom: 1px solid gray;">
+											<th class="th">예약번호</th>
+											<th class="th">지점</th>
+											<th class="th">구장</th>
+											<th class="th" colspan="2">예약일</th>
+											<th class="th">예약시간</th>
+										</tr>
+										<!-- 게시판 리스트 출력 포문 -->
+										<c:forEach items="${list }" var="r" varStatus="i">
+											<tr class="table-tr" onclick="view(${i.index});" style="border-bottom: 1px solid gray;">
+												<td class="td">${r.resNo } </td>
+												<td class="td">${r.resBName }</td>
+												<td class="td">${r.resCName }</td>
+												<td colspan="2" class="td">${r.resDate }</td>
+												<td class="td">${r.resTime }<input type="hidden" class="res${i.index }" value="${r.resMPhone }"><input type="hidden" class="res${i.index }" value="${r.resBCode }"><input type="hidden" class="res${i.index }" value="${r.resCCode }"></td>
+											</tr>
+										</c:forEach> 
+									</table>
+								</div>
 					
 					<div style="width:100%;height:100px;"></div>
 				<div>
@@ -211,5 +253,16 @@
 		</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	<script>
+		function view(num){
+			$("#bName").val($(".table-tr").eq(num).children().eq(1).text());
+			$("#bCode").val($(".res"+num).eq(1).val())
+			$("#cCode").val($(".res"+num).eq(2).val())
+			$("#cName").val($(".table-tr").eq(num).children().eq(2).text());
+			$("#phone").val($(".res"+num).eq(0).val());
+			$("#recDate").val($(".table-tr").eq(num).children().eq(3).text());
+			$("#recTime").val($(".table-tr").eq(num).children().eq(4).text());
+			}
+	</script>
 </body>
 </html>
