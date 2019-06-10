@@ -3,6 +3,7 @@ package reservation.model.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import branch.model.vo.Branch;
 import common.JDBCTemplate;
@@ -376,4 +377,85 @@ public class ReservationService {
 			return result;
 		}
 	}
+	
+	public int reservationManagerScheduleModify(int bCode, int cCode, String startTime, int resPrice, String scheduleDate, int scheduleYN) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ReservationDao().reservationManagerScheduleModify(conn, bCode, cCode, startTime, resPrice, scheduleDate, scheduleYN);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int reservationManagerScheduleDelete(int bCode, int cCode, String startTime, String scheduleDate) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Reservation> list = new ReservationDao().reservationTimeSearch(conn, cCode, scheduleDate);
+		int result = 0;
+		if(!list.isEmpty()) {						//만약 시간 리스트가 비어있지 않다면(reservation에 시간이 등록되어있다면)
+			String[] tokenTime = null;				//받아온 시간을 잘라서 넣을 배열변수
+			for(int i=0;i<list.size();i++) {		//받아온 시간을 토큰화시키는 작업
+				String time = list.get(i).getResTime();
+				StringTokenizer st = new StringTokenizer(time, ",");
+				tokenTime = new String[st.countTokens()];
+				int index = 0;
+				while(st.hasMoreTokens()) {
+					tokenTime[index] = st.nextToken();
+					System.out.println("토큰타입 : "+tokenTime[index]);
+					index++;
+				}
+			}
+			String[] start = new String[tokenTime.length];		//토큰에서 시작시간만 추출해서 받을 배열변수
+			for(int i=0;i<tokenTime.length;i++) {				//시작시간만 추출하는 작업
+				start[i] = tokenTime[i].substring(0, 5);
+				System.out.println("시작시간 : "+start[i]);
+			}
+			int check = 0;										//시작시간으로 체크할 변수
+			for(int i=0;i<start.length;i++) {					//시작시간 배열길이만큼 돌아가는 for문
+				if(startTime.equals(start[i])) {				//시작시간 배열변수 중 시작시간과 동일한 게 있다면
+					check++;									//체크변수가 늘어남
+				}
+			}
+			if(check == 0) {									//체크변수가 0이라면 해당 시간에 예약한 사람이 없다는 의미이므로 status를 체크함
+				int statusCheck = new ReservationDao().reservationScheduleStatusCheck(conn, cCode, scheduleDate, startTime);
+				if(statusCheck > 0) {							//스테이터스가 0보다 크다면 예약 불가라는 의미이므로 스케쥴을 삭제함
+					result = new ReservationDao().reservationManagerScheduleDelete(conn, cCode, scheduleDate, startTime);
+					if(result > 0) {
+						JDBCTemplate.commit(conn);
+					}else {
+						JDBCTemplate.rollback(conn);
+					}
+				}
+			}			
+		}else {					//만약 리스트가 비어있을 경우 체크변수를 체크하고 스케쥴을 삭제함
+			int statusCheck = new ReservationDao().reservationScheduleStatusCheck(conn, cCode, scheduleDate, startTime);
+			if(statusCheck > 0) {
+				result = new ReservationDao().reservationManagerScheduleDelete(conn, cCode, scheduleDate, startTime);
+				if(result > 0) {
+					JDBCTemplate.commit(conn);
+				}else {
+					JDBCTemplate.rollback(conn);
+				}
+			}
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

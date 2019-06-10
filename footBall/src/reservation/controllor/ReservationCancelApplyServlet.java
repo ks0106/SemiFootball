@@ -41,8 +41,6 @@ public class ReservationCancelApplyServlet extends HttpServlet {
 		if(m != null) {
 			int resNo = Integer.parseInt(request.getParameter("resNo"));
 			String cancelApplyDate = request.getParameter("cancelApplyDate");
-			System.out.println(cancelApplyDate);
-			System.out.println(resNo);
 			try {
 				int result = new ReservationService().reservationCancelApply(resNo,cancelApplyDate);
 				response.setContentType("application/json");

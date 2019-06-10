@@ -15,16 +15,16 @@ import member.model.vo.Member;
 import reservation.model.service.ReservationService;
 
 /**
- * Servlet implementation class ReservationManagerScheduleAddServlet
+ * Servlet implementation class ReservationManagerScheduleDeleteServlet
  */
-@WebServlet(name = "ReservationManagerScheduleAdd", urlPatterns = { "/reservationManagerScheduleAdd" })
-public class ReservationManagerScheduleAddServlet extends HttpServlet {
+@WebServlet(name = "ReservationManagerScheduleDelete", urlPatterns = { "/reservationManagerScheduleDelete" })
+public class ReservationManagerScheduleDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationManagerScheduleAddServlet() {
+    public ReservationManagerScheduleDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,19 +39,17 @@ public class ReservationManagerScheduleAddServlet extends HttpServlet {
 			if(m.getId().equals("admin")) {
 				int bCode = Integer.parseInt(request.getParameter("branchName"));
 				int cCode = Integer.parseInt(request.getParameter("courtName"));
-				String startTime = request.getParameter("startTime");
-				String endTime = request.getParameter("endTime");
-				int resPrice = Integer.parseInt(request.getParameter("resPrice"));
-				String scheduleDate = request.getParameter("scheduleDate");
+				String startTime = request.getParameter("startTime").substring(0,5);
+				String scheduleDate = request.getParameter("scheduleDate").substring(2, 10);
 				try {
-					int result = new ReservationService().reservationManagerScheduleAdd(bCode, cCode, startTime, endTime, resPrice, scheduleDate);
+					int result = new ReservationService().reservationManagerScheduleDelete(bCode, cCode, startTime, scheduleDate);
 					if(result > 0) {
-						request.setAttribute("msg", "해당 스케쥴을 성공적으로 등록했습니다.");
+						request.setAttribute("msg", "해당 스케쥴을 성공적으로 삭제했습니다.");
 						request.setAttribute("loc", "/reservationScheduleManager");
 						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 						rd.forward(request, response);
 					}else {
-						request.setAttribute("msg", "스케쥴 등록을 실패했습니다.");
+						request.setAttribute("msg", "스케쥴 수정을 실패했습니다. 현재 이용자가 있는지 확인하거나 스케쥴을 예약불가로 바꾼 뒤 다시 시도해주세요.");
 						request.setAttribute("loc", "/reservationScheduleManager");
 						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 						rd.forward(request, response);
@@ -71,7 +69,6 @@ public class ReservationManagerScheduleAddServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 			rd.forward(request, response);
 		}		
-
 	}
 
 	/**
