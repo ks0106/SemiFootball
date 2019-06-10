@@ -311,10 +311,17 @@
 											<tr class="table-tr" onclick="contentView(${r.seqRecNo});" >
 												<td class="td">${r.recBName }</td>
 												<td colspan="2" class="td">${r.recDate }</td>
-												<td class="td">3명</td>
+												<td class="td">${r.amount2 }</td>
 												<td class="td">${r.recName }</td>
 												<td class="td">${r.recEnrollDate }</td>
-												<td class="td">${r.able1 }</td>
+												<c:choose>
+												<c:when test="${r.recAble eq 0 }">
+												<td class="td able"><span id="able">${r.able2 }</span></td>
+												</c:when>
+												<c:when test="${r.recAble eq 1 }">
+												<td class="td disable"><span id="disable">${r.able2 }</span></td>
+												</c:when>
+												</c:choose>
 											</tr>
 										</c:forEach> 
 									</table>

@@ -103,4 +103,50 @@ public class RecDao {
 		result = pstmt.executeUpdate();
 		return result;
 	}
+	
+	public int countList2(Connection conn) throws SQLException {
+		Statement stmt = null;
+		ResultSet rset= null;
+		int result = 0;
+		String query ="select count(*) cnt from fb_recruit where rec_type= 1";
+		stmt = conn.createStatement();
+		rset = stmt.executeQuery(query);
+		if(rset.next()) {
+			result = rset.getInt("cnt");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(stmt);
+		return result;
+	}
+	public ArrayList<Recruit> selectList2(Connection conn, int start, int end) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Recruit> list = new ArrayList<Recruit>();
+		String query = "select * from (select ROWNUM as rNum,rr.* from (select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) order by rec_no desc) rr) where rec_type=1 and (rnum BETWEEN ? and ?)";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1,start);
+		pstmt.setInt(2,end);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			Recruit r = new Recruit();
+			r.setSeqRecNo(rset.getInt("REC_NO"));
+			r.setRecName(rset.getString("rec_name"));
+			r.setRecCName(rset.getString("C_NAME"));
+			r.setRecBName(rset.getString("B_NAME"));
+			r.setRecCCode(rset.getInt("rec_c_code"));
+			r.setRecBCode(rset.getInt("rec_b_code"));
+			r.setRecPhone(rset.getString("REC_PHONE"));
+			r.setAmount(rset.getInt("rec_amount"));
+			r.setRecDate(rset.getDate("REC_DATE"));
+			r.setRecTime(rset.getString("REC_TIME"));
+			r.setRecLevel(rset.getString("REC_LEVEL"));
+			r.setRecAble(rset.getInt("REC_ABLE"));
+			r.setRecMemo(rset.getString("REC_MEMO"));
+			r.setRecEnrollDate(rset.getDate("REC_ENROLL_DATE"));
+			list.add(r);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+	}
 }
