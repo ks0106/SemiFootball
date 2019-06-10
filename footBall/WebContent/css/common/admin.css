@@ -44,6 +44,7 @@
 	#menu>li>ul>li{
 	    list-style-type: none;
 	    background-color: rgb(230,230,230);
+	    z-index: 99;
 	}
 	#menu>li>ul>li>a{
 	    display: block;
@@ -55,6 +56,7 @@
 	#menu>li>ul>li>a:hover{
 	    background-color: #333333;
 	    color: white;
+	    z-index: 99;
 	}
 	#menu>li:hover ul{
 	    opacity: 1;

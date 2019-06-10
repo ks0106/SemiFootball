@@ -2,7 +2,6 @@ package reservation.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,21 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import branch.model.vo.Branch;
 import member.model.vo.Member;
 import reservation.model.service.ReservationService;
 
 /**
- * Servlet implementation class ReservationGoodsManagerServlet
+ * Servlet implementation class ReservationManagerScheduleAddServlet
  */
-@WebServlet(name = "ReservationGoodsManager", urlPatterns = { "/reservationGoodsManager" })
-public class ReservationGoodsManagerServlet extends HttpServlet {
+@WebServlet(name = "ReservationManagerScheduleAdd", urlPatterns = { "/reservationManagerScheduleAdd" })
+public class ReservationManagerScheduleAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationGoodsManagerServlet() {
+    public ReservationManagerScheduleAddServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,11 +37,26 @@ public class ReservationGoodsManagerServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
+				int bCode = Integer.parseInt(request.getParameter("branchName"));
+				int cCode = Integer.parseInt(request.getParameter("courtName"));
+				String startTime = request.getParameter("startTime");
+				String endTime = request.getParameter("endTime");
+				int resPrice = Integer.parseInt(request.getParameter("resPrice"));
+				String scheduleDate = request.getParameter("scheduleDate");
+				System.out.println(scheduleDate);
 				try {
-					ArrayList<Branch> list = new ReservationService().reservationBranch();
-					request.setAttribute("list", list);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationGoodsManager.jsp");
-					rd.forward(request, response);
+					int result = new ReservationService().reservationManagerScheduleAdd(bCode, cCode, startTime, endTime, resPrice, scheduleDate);
+					if(result > 0) {
+						request.setAttribute("msg", "해당 스케쥴을 성공적으로 등록했습니다.");
+						request.setAttribute("loc", "/reservationScheduleManager");
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+						rd.forward(request, response);
+					}else {
+						request.setAttribute("msg", "스케쥴 등록을 실패했습니다.");
+						request.setAttribute("loc", "/reservationScheduleManager");
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+						rd.forward(request, response);
+					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -58,7 +71,8 @@ public class ReservationGoodsManagerServlet extends HttpServlet {
 			request.setAttribute("loc", "/views/login/login.jsp");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 			rd.forward(request, response);
-		}
+		}		
+
 	}
 
 	/**

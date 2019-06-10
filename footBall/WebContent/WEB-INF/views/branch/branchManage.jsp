@@ -24,7 +24,7 @@
 				<table class="manageTable" border="1">
 					<tr><td colspan="11"><button id="btn-insert" onclick="location.href='/insertBranch'">지점 추가</button></td></tr>
 					<tr>
-						<th>지점 번호</th><th>지점 이름</th><th>주 소</th><th>구장이름</th><th>구장 타입</th><th>실내/실외</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
+						<th>지점 코드</th><th>지점 이름</th><th>주 소</th><th>구장이름</th><th>구장 타입</th><th>실내/실외</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
 					</tr>
 					<c:forEach items="${list }" var="bd" varStatus="index">
 						<tr>
@@ -53,7 +53,6 @@
 </body>
 	<script>
 		$(function(){
-			console.log($('.identifier'));
 			/* 소스 없는 서브이미지 태그 감추기 */
 			$('.identifier').each(function(index,item){
 				if(!($(item).children().last().html())) {

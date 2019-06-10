@@ -26,53 +26,29 @@
 <style>
 </style>
 <script>
-	$(document)
-			.ready(
-					function() {
-						$('.side_nav:first').css("color", "#3366cc");
-						$('.side_nav a:first').css("color", "#3366cc");
-						$('#side_pr_menu').css("display", "block");
-						$('.side_a')
-								.click(
-										function() { /* 메뉴 클릭했을 때 */
-											if ($(this).siblings('ul').css(
-													"display") == "block") { /* 메뉴 컬러가 연할 때 */
-												$(this).siblings('ul')
-														.slideUp(); /* 메뉴 닫음 */
-											} else { /* 메뉴 컬러가 진할 때 */
-												$(this)
-														.siblings('ul')
-														.find(
-																'li:first,a:first')
-														.css("color", "#3366cc");
-												$(this).siblings('ul').find(
-														'li,a').not(
-														'li:first,a:first')
-														.css("color", "silver");
-												$(this).parents('div')
-														.siblings().children(
-																'ul').slideUp(); /* 다른 메뉴 닫음 */
-												$(this).parents('div')
-														.siblings().children(
-																'a').css(
-																"color",
-																"#2c3c57"); /* 다른 메뉴 컬러 진하게 */
-												$(this).siblings('ul')
-														.slideDown(); /* 메뉴 펼침 */
-												$(this).css("color", "#3366cc"); /* 컬러 연하게 */
-											}
-										});
-						$('.side_nav').click(
-								function() {
-									$(this).css("color", "#3366cc");
-									$(this).children('a').css("color",
-											"#3366cc");
-									$(this).siblings('li').css("color",
-											"silver");
-									$(this).siblings('li').children('a').css(
-											"color", "silver");
-								});
-					});
+	$(document).ready(function() {
+		$('.side_nav:first').css("color", "#3366cc");
+		$('.side_nav a:first').css("color", "#3366cc");
+		$('#side_pr_menu').css("display", "block");
+		$('.side_a').click(function() { /* 메뉴 클릭했을 때 */
+			if ($(this).siblings('ul').css("display") == "block") { /* 메뉴 컬러가 연할 때 */
+				$(this).siblings('ul').slideUp(); /* 메뉴 닫음 */
+			} else { /* 메뉴 컬러가 진할 때 */
+				$(this).siblings('ul').find('li:first,a:first').css("color", "#3366cc");
+				$(this).siblings('ul').find('li,a').not('li:first,a:first').css("color", "silver");
+				$(this).parents('div').siblings().children('ul').slideUp(); /* 다른 메뉴 닫음 */
+				$(this).parents('div').siblings().children('a').css("color","#2c3c57"); /* 다른 메뉴 컬러 진하게 */
+				$(this).siblings('ul').slideDown(); /* 메뉴 펼침 */
+				$(this).css("color", "#3366cc"); /* 컬러 연하게 */
+			}
+		});
+		$('.side_nav').click(function() {
+			$(this).css("color", "#3366cc");
+			$(this).children('a').css("color","#3366cc");
+			$(this).siblings('li').css("color","silver");
+			$(this).siblings('li').children('a').css("color", "silver");
+		});
+	});
 	function reservationCheck() {
 		if ($('select[name=reservationSelect]').val() == 'default'
 				|| $('select[name=reservationSelect]').val() == null) {
@@ -89,6 +65,7 @@
 	animation-duration: 1s;
 	animation-fill-mode: forwards;
 }
+
 .side_a {
 	font-weight: bolder;
 	font-size: 18px;
@@ -152,12 +129,10 @@ to {
 			<hr
 				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu1"
-					style="color: #3366cc;">대관예약</a>
+				<a class="side_a" id="side_menu1" style="color: #3366cc;">대관예약</a>
 			</div>
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu2"
-					style="color: #2c3c57;">예약확인</a>
+				<a class="side_a" id="side_menu2" style="color: #2c3c57;">예약확인</a>
 			</div>
 			<c:if test="${sessionScope.Member.id == admin}">
 				<div style="margin-bottom: 15px;">

@@ -2,7 +2,6 @@ package reservation.controllor;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,21 +11,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import branch.model.vo.Branch;
+import com.google.gson.Gson;
+
 import member.model.vo.Member;
 import reservation.model.service.ReservationService;
+import reservation.model.vo.ReservationViewPageData;
 
 /**
- * Servlet implementation class ReservationGoodsManagerServlet
+ * Servlet implementation class ReservationManagerGoodsDeleteServlet
  */
-@WebServlet(name = "ReservationGoodsManager", urlPatterns = { "/reservationGoodsManager" })
-public class ReservationGoodsManagerServlet extends HttpServlet {
+@WebServlet(name = "ReservationManagerGoodsDelete", urlPatterns = { "/reservationManagerGoodsDelete" })
+public class ReservationManagerGoodsDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationGoodsManagerServlet() {
+    public ReservationManagerGoodsDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,11 +40,22 @@ public class ReservationGoodsManagerServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
+				int bCode = Integer.parseInt(request.getParameter("branchName"));
+				String goodsName = request.getParameter("goodsName");
+				String goodsSize = request.getParameter("goodsSize");
 				try {
-					ArrayList<Branch> list = new ReservationService().reservationBranch();
-					request.setAttribute("list", list);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationGoodsManager.jsp");
-					rd.forward(request, response);
+					int result = new ReservationService().reservationManagerGoodsDelete(bCode,goodsName,goodsSize);
+					if(result > 0) {
+						request.setAttribute("msg", "물품을 성공적으로 삭제했습니다.");
+						request.setAttribute("loc", "/reservationGoodsManager");
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+						rd.forward(request, response);
+					}else {
+						request.setAttribute("msg", "물품 삭제를 실패했습니다.");
+						request.setAttribute("loc", "/reservationGoodsManager");
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+						rd.forward(request, response);
+					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

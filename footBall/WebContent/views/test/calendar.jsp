@@ -162,31 +162,33 @@
 	</script>
 	</head>
 	<body>
-	<table id="calendar" align="center" style="background-color:rgb(240,240,240);">
-	    <tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
-	    	<td align="center" colspan="7" style="height:80px;">
-				<div onclick="prevCalendar()" id="prev_month" style="width: 84px; height: 84px; display: inline-block; margin: 0 auto;float:left;cursor:pointer;">
-		        	<img src="/img/prev_gray.png" width="30px" height="30px" style="margin-top:25px;">
-				</div>
-	        	<div id="tbCalendarYM" class="this_month" style="margin-top:18px;">
-       		        yyyy.mm
-	        	</div>
-				<div onclick="nextCalendar()" id="next_month" style="width: 84px; height: 84px; display: inline-block; margin: 0 auto;float:right;cursor:pointer;">
-		        	<img src="/img/next_gray.png" width="30px" height="30px" style="margin-top:25px;">
-				</div>
-			</td>
-	    </tr>
-	    <!-- 요일 -->
-	    <tr>
-	        <td class="week"><font color ="red">일</td>
-	        <td class="week">월</td>
-	        <td class="week">화</td>
-	        <td class="week">수</td>
-	        <td class="week">목</td>
-	        <td class="week">금</td>
-	        <td class="week">토</td>
-	    </tr> 
-	</table>
+	<div style="background-color:rgb(240,240,240);padding:5px;">
+		<table id="calendar" align="center" style="border-collapse:collapse;">
+		    <tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
+		    	<td align="center" colspan="7" style="height:80px;">
+					<div onclick="prevCalendar()" id="prev_month" style="width: 84px; height: 84px; display: inline-block; margin: 0 auto;float:left;cursor:pointer;">
+			        	<img src="/img/prev_gray.png" width="30px" height="30px" style="margin-top:25px;">
+					</div>
+		        	<div id="tbCalendarYM" class="this_month" style="margin-top:18px;">
+	       		        yyyy.mm
+		        	</div>
+					<div onclick="nextCalendar()" id="next_month" style="width: 84px; height: 84px; display: inline-block; margin: 0 auto;float:right;cursor:pointer;">
+			        	<img src="/img/next_gray.png" width="30px" height="30px" style="margin-top:25px;">
+					</div>
+				</td>
+		    </tr>
+		    <!-- 요일 -->
+		    <tr>
+		        <td class="week"><font color ="red">일</td>
+		        <td class="week">월</td>
+		        <td class="week">화</td>
+		        <td class="week">수</td>
+		        <td class="week">목</td>
+		        <td class="week">금</td>
+		        <td class="week">토</td>
+		    </tr> 
+		</table>
+	</div>
 	<!-- 날짜 함수 호출 -->
 	<script language="javascript" type="text/javascript">
 	    buildCalendar();//

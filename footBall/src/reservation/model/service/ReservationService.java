@@ -33,6 +33,13 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+	public ArrayList<Court> reservationCourtListAll(int bCode) throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Court> list = new ReservationDao().reservationCourtListAll(conn, bCode);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
 	public ArrayList<Schedule> reservationCourtSelect(String result, int cCode) throws SQLException{
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Schedule> list = new ReservationDao().reservationCourtSelect(conn, result, cCode);
@@ -57,9 +64,9 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return count;
 	}
-	public Goods reservationGoodsPrice(String result, String option) throws SQLException {
+	public Goods reservationGoodsPrice(int bCode, String result, String option) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		Goods g = new ReservationDao().reservationGoodsPrice(conn, result, option);
+		Goods g = new ReservationDao().reservationGoodsPrice(conn, bCode, result, option);
 		JDBCTemplate.close(conn);
 		return g;
 	}
@@ -276,5 +283,97 @@ public class ReservationService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	
+	public int reservationManagerGoodsAdd(int bCode, String goodsCategory, String goodsName, String goodsSize, int goodsPrice, int goodsAmount) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int goodsCount = new ReservationDao().reservationGoodsCount(conn, goodsName, goodsSize, bCode);
+		if(goodsCount > 0) {
+			JDBCTemplate.close(conn);
+			return 0;
+		}else {
+			int result = new ReservationDao().reservationManagerGoodsAdd(conn, bCode, goodsCategory, goodsName, goodsSize, goodsPrice, goodsAmount);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+			JDBCTemplate.close(conn);
+			return result;
+		}
+	}
+	
+	public int reservationManagerGoodsDelete(int bCode, String goodsName, String goodsSize) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int count = new ReservationDao().reservationGoodsRentalCount(conn, bCode, goodsName, goodsSize);
+		if(count > 0) {
+			JDBCTemplate.close(conn);
+			return 0;
+		}else {
+			int result = new ReservationDao().reservationManagerGoodsDelete(conn,bCode,goodsName, goodsSize);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+			JDBCTemplate.close(conn);
+			return result;
+		}
+	}
+	
+	public ArrayList<Goods> reservationGoodsNameList(int bCode) throws SQLException{
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Goods> list = new ReservationDao().reservationGoodsNameList(conn, bCode);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	public int reservationManagerGoodsAmountModify(int bCode, String goodsName, String goodsSize, int goodsAmount) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ReservationDao().reservationManagerGoodsAmountModify(conn, bCode, goodsName, goodsSize, goodsAmount);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int reservationManagerGoodsPriceModify(int bCode, String goodsName, String goodsSize, int goodsPrice) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ReservationDao().reservationManagerGoodsPriceModify(conn, bCode, goodsName, goodsSize, goodsPrice);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public Court reservationCourtType(int bCode, int cCode) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		Court c = new ReservationDao().reservationCourtType(conn, bCode, cCode);
+		JDBCTemplate.close(conn);
+		return c;
+	}
+	
+	public int reservationManagerScheduleAdd(int bCode, int cCode, String startTime, String endTime, int resPrice, String scheduleDate) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int check = new ReservationDao().reservationScheduleCheck(conn, cCode, startTime, scheduleDate.substring(2, 10));
+		if(check > 0) {
+			JDBCTemplate.close(conn);
+			return 0;
+		}else {
+			int result = new ReservationDao().reservationManagerScheduleAdd(conn, cCode, startTime, endTime, resPrice, scheduleDate);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+			JDBCTemplate.close(conn);
+			return result;
+		}
 	}
 }
