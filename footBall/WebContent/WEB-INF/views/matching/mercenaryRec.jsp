@@ -404,7 +404,7 @@
    				$("#tr11").next().next().next().next().next().find("td").eq(1).html(able);
    				$("#tr11").next().next().next().next().next().next().find("td").html(Memo);
    				if("${sessionScope.member.phone}" == Phone && !$("#tr11").parent().parent().parent().children().is("#modiBtn-wrapper")){
-   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
+   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button' id='modiBtn' onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
    				}
    			},
    			erorr : function () {
@@ -419,6 +419,22 @@
    		$(here).parent().parent().css('display','none');
    		$("#popup_mask").css('display','none');
    	}
+   	function modifyMactchCon(num){
+		$("#tr11").next().next().next().next().find("td").eq(1).html('<select name="recLevel" style="width: 80px;height: 20px;">	<option>--선택--</option><option value="상">상</option><option value="중상">중상</option><option value="중">중</option><option value="중하">중하</option><option value="하">하</option></select>');
+		$("#tr11").next().next().next().next().next().find("td").eq(0).html('<select name="recAmount" style="width:80px;height: 20px;"><option value="1">1명</option><option value="2">2명</option><option value="3">3명</option><option value="4">4명</option><option value="5">5명</option><option value="6">6명</option><option value="7">7명</option><option value="8">8명</option><option value="9">9명</option><option value="10">10명</option></select>');
+		$("#tr11").next().next().next().next().next().find("td").eq(1).html('<select name="recAble" style="width: 80px;height: 20px;"><option value="0">가능</option>	<option value="1">마감</option></select>');
+		$("#tr11").next().next().next().next().next().next().find("td").html('<textarea rows="3" cols="40" name="memo" style="resize: none;text-align: left;" placeholder="유니폼색상과 메모사항을 적어주세요"></textarea>');
+		$("#modiBtn").after("<button type='button' id='modi' style='margin-top:20px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>")
+		$("#modiBtn").hide();
+	}
+	function modi(num){
+	var level = $("#tr11").next().next().next().next().find("td").eq(1).children().val();
+	var amount = $("#tr11").next().next().next().next().next().find("td").eq(0).children().val();
+	var able = $("#tr11").next().next().next().next().next().find("td").eq(1).children().val();
+	var memo = $("#tr11").next().next().next().next().next().next().find("td").children().val();
+	console.log(able);
+	location.href="/modiRecContent?recNo="+num+"&recLevel="+level+"&recAmount="+amount+"&recAble="+able+"&recMemo="+memo;
+	}
 	</script>
 </body>
 </html>

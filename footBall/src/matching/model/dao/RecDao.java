@@ -103,4 +103,22 @@ public class RecDao {
 		result = pstmt.executeUpdate();
 		return result;
 	}
+	public int modiRecContent(Connection conn, Recruit r) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result= 0;
+		String query = "update fb_recruit set rec_level =? , rec_able=? , rec_amount =? , rec_memo=? where rec_no =? ";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1,r.getRecLevel());
+		pstmt.setInt(2,r.getRecAble());
+		pstmt.setInt(3,r.getAmount());
+		pstmt.setString(4, r.getRecMemo());
+		pstmt.setInt(5, r.getSeqRecNo());
+		result = pstmt.executeUpdate();
+		return result;
+		
+		
+		
+		
+	
+	}
 }

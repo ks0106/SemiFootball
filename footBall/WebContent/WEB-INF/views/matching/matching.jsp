@@ -302,11 +302,16 @@ function contentView(pageNum){
 			$("#tr11").next().next().next().next().next().find("td").eq(0).html('<select name="matchAmount" style="width: 80px;height: 20px;"><option value="1">1팀</option>	<option value="2">2팀</option><option value="3">3팀</option>	</select>');
 			$("#tr11").next().next().next().next().next().find("td").eq(1).html('<select name="matchAble" style="width: 80px;height: 20px;"><option value="0">가능</option>	<option value="1">마감</option></select>');
 			$("#tr11").next().next().next().next().next().next().find("td").html('<textarea rows="3" cols="40" name="memo" style="resize: none;text-align: left;" placeholder="유니폼색상과 메모사항을 적어주세요"></textarea>');
-			$("#modiBtn").after("<button type='button' id='modi' style='margin-left:15px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>")
-			
+			$("#modiBtn").after("<button type='button' id='modi' style='margin-top:20px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>")
+			$("#modiBtn").hide();
    	}
    	function modi(num){
-   		alert(num);
+   		var type = $("#tr11").find("td").eq(1).children().val();
+		var level = $("#tr11").next().next().next().next().find("td").eq(1).children().val();
+		var amount = $("#tr11").next().next().next().next().next().find("td").eq(0).children().val();
+		var able = $("#tr11").next().next().next().next().next().find("td").eq(1).children().val();
+		var memo = $("#tr11").next().next().next().next().next().next().find("td").children().val();
+		location.href="/modiMatchContent?matchNo="+num+"&matchLevel="+level+"&matchAmount="+amount+"&matchAble="+able+"&matchMemo="+memo+"&matchType="+type;
    	}
 </script>
 </head>
@@ -411,7 +416,7 @@ function contentView(pageNum){
 								<div id="view-table-div" >
 									<table id="view-table" style="margin: 0 auto; width: 80%; border-collapse: collapse;">
 										<tr id="tr11">
-											<th class="view-th" >작성자 이메일 </th> <td class="view-td"></td><th class="view-th">매치형태</th> <td class="view-td">???</td>
+											<th class="view-th" >작성자 </th> <td class="view-td"></td><th class="view-th">매치형태</th> <td class="view-td">???</td>
 										</tr>
 										<tr>
 											<th class="view-th">지점</th><td colspan="3" class="view-td">???</td>
