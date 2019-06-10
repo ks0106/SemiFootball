@@ -243,7 +243,7 @@
 		매치
 	</div>
 	<section>
-	<!-- 내용 작성 -->
+	<!-- 내용 작성 --> 
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 		<!-- center -->
 		<div>
