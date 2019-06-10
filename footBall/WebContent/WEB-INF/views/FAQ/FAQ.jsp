@@ -18,6 +18,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/notice/notice.css">
+<link rel="stylesheet" href="/css/board/board.css">
+
 <title>FAQ리스트</title>
 </head>
 <style>
