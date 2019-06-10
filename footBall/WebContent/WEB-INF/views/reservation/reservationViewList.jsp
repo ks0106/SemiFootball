@@ -329,14 +329,14 @@
 			<div class="tab-content" >
             <!-- 탭컨텐츠 제목 -->
                		<br><br><br>
-					<div style="font-size:40px; color: #403d3f; text-align: center; margin-bottom: 20px;">비밀번호 재확인</div>
+					<div style="font-size:40px; color: #403d3f; text-align: center; margin-bottom: 20px;font-weight:bolder;color:#2c3c57;">비밀번호 재확인</div>
 					<div class="underline"></div>
 					<!-- 글쓰기 버튼 -->
 					<div class="btn-wrapper" style="margin: 0 auto; margin-top:50px;margin-bottom:0px; text-align:center;width: 100%;">
 						<div style="width: 90%;padding-left: 70px;">								
-						<input type="password" id="checkpwd" name="pwd" style="width: 300px;height:40px;left: 300px;">
-						<button type="button" id="pwd" style="border:none;background-color: green;width: 50px;height: 45px;color:white;">									
-						<span style="color:white;height:80%;width: 100%;display: inline;font-size: 15px; vertical-align:middle; "> 확인 </span> 
+						<input type="password" id="checkpwd" name="pwd" style="width: 300px;height:40px;left: 300px;border:2px solid #2c3c57;">
+						<button type="button" id="pwd" style="border:none;background-color: #2c3c57;width: 150px;height: 45px;color:white;">									
+						<span style="color:white;height:80%;width: 100%;display: inline;font-size: 15px; vertical-align:middle;padding:0;margin:0;"> 확인 </span> 
 						</button>
 					</div>
 				</div>
