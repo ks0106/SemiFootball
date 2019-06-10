@@ -9,6 +9,7 @@ import league.model.vo.AfterLeague;
 import matching.model.dao.MatchDao;
 import matching.model.vo.MatchList;
 import matching.model.vo.MatchPageData;
+import matching.model.vo.Recruit;
 
 public class MatchService {
 	public MatchPageData selectList(int reqPage) throws SQLException {
@@ -87,8 +88,14 @@ public class MatchService {
 		MatchPageData mpd = new MatchPageData(pageNavi,list);
 		return mpd;
 	}
-	public int mercenaryAdd() {
-		
+	public int mercenaryAdd(Recruit r) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MatchDao().mercenaryAdd(conn, r);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
 		return 0;
 	}
 	

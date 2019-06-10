@@ -19,9 +19,9 @@
 $(document).ready(function(){
     $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
     $('#ground2').append('<img src="/img/324$1$324.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-    $('#ground3').append('<img src="/img/다운로드.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-    $('#ground4').append('<img src="/img/mosa4Gg8JZ.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-    $('#ground5').append('<img src="/img/40024905_1597039243729555_4234843820369969320_n.jpg" alt="그라운드5" style="width:100%;height:500px;">');
+    $('#ground3').append('<img src="/img/리더그린1.jpg" alt="그라운드3" style="width:100%;height:500px;">');
+    $('#ground4').append('<img src="/img/31295443_35df5661_C0CEC3B5C1DFB1B8C3BB+B9AEC8ADBCBEC5CD+C7B2BBECC0E5.jpg" alt="그라운드4" style="width:100%;height:500px;">');
+    $('#ground5').append('<img src="/img/Image.jpg" alt="그라운드5" style="width:100%;height:500px;">');
  });
 </script>
 </head>
