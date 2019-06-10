@@ -11,7 +11,8 @@
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/css/common/pageCss.css">
+
+<link rel="stylesheet" href="/css/common/admin.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>대회 신청</title>
 <style>
@@ -60,10 +61,10 @@
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">
-		대회
+		
 	</div>
 	<section>
 	<!-- 내용 작성 -->

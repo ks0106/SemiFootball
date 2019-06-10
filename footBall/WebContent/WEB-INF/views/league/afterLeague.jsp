@@ -65,7 +65,6 @@
 		position:absolute;
 		width: 150px;
 		height: 150px;
-		border: 1px solid;
 		top: 1%;
 		left: 44%;
 	}
@@ -73,7 +72,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 28%;
 		left: 19%;
 	}
@@ -81,7 +79,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 28%;
 		left: 72%;
 	}
@@ -89,7 +86,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 50%;
 		left: 6%;
 	}
@@ -97,7 +93,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 50%;
 		left: 32%;
 	}
@@ -105,7 +100,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 50%;
 		left: 59%;
 	}
@@ -113,7 +107,6 @@
 	position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 50%;
 		left: 85%;
 	}
@@ -121,7 +114,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 74%;
 		left: -1%;
 	}
@@ -129,7 +121,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 74%;
 		left: 13%;
 	}
@@ -137,7 +128,6 @@
 	position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 74%;
 		left: 26%;
 	}
@@ -145,7 +135,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 74%;
 		left: 39%;
 	}
@@ -153,7 +142,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 74%;
 		left: 52%;
 	}
@@ -161,7 +149,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 74%;
 		left: 65%;
 	}
@@ -169,7 +156,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 74%;
 		left: 78%;
 	}
@@ -177,7 +163,6 @@
 		position:absolute;
 		width: 120px;
 		height: 110px;
-		border: 1px solid;
 		top: 74%;
 		left: 91%;
 	}
@@ -221,11 +206,6 @@
 				<div style="margin-bottom:15px;">
 					<a class="side_a selected" id="side_menu3" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난대회결과</a>
 				</div>
-				<c:if test="${sessionScope.member.id eq'admin' }">
-					<div style="margin-bottom:15px;">
-						<a class="side_a " id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
-					</div>
-				</c:if>
 				
 			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 본문 -->
@@ -353,9 +333,9 @@
 				}
 			});
 		if($("#top4").children().filter("img").attr("value")==$(".win8-1").eq(0).children().filter("img").attr("value")){
-			$(".win8-1").eq(1).children().filter("div").addClass("lose");
+			$(".win8-1").eq(0).children().filter("div").addClass("lose");
 		}else if($("#top4").children().filter("img").attr("value")==$(".win8-1").eq(1).children().filter("img").attr("value")){
-			$(".win8-1").eq(0).children().filter("div").addClass("lose");	
+			$(".win8-1").eq(1).children().filter("div").addClass("lose");	
 		}
 		if($("#top5").children().filter("img").attr("value")==$(".win8-2").eq(0).children().filter("img").attr("value")){
 			$(".win8-2").eq(1).children().filter("div").addClass("lose");
