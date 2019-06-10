@@ -172,7 +172,7 @@
 	<div id="title">FAQ</div>
 	<br><br><br><br><br><br><br>
 <center>
-					<table id="matchlist-table"  style="width: 100%;">
+					<table id="matchlist-table"  style="width: 80%;">
 						<tr>
 							<th class="th">번호</th>
 							<th class="th">제목</th>
@@ -192,9 +192,9 @@
 							<td class="td">
 									
 								<a href="/faqUpdate?faqNo=<%=fv.getFaqNo()%>"
-										class="btn btn-sm" style="border:none;background-color: green;width: 100px;height: 30px;color:white;">수정하기</a>
+										class="btn" style="border:none;background-color: green;width: 100px;height: 30px;color:white;">수정하기</a>
 								<a href="/deleteFAQ?faqNo=<%=fv.getFaqNo()%>"
-										class="btn btn-sm" style="border:none;background-color: green;width: 100px;height: 30px;color:white;">삭제하기</a>
+										class="btn" style="border:none;background-color: green;width: 100px;height: 30px;color:white;">삭제하기</a>
 							</td>
 						</tr>
 

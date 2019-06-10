@@ -185,7 +185,7 @@
 	}
 	
 	#barea{
-		width: 800px;
+		width: 500px;
 		resize: none;
 		height: 45px;
 	}
@@ -196,7 +196,8 @@
 	}
 	
 	.commentList{
-		width:800px;
-		height: 20px;
+		width:700px;
+		height: 30px;
 		list-style: none;
+		padding-top: 10px
 	}

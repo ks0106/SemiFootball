@@ -39,8 +39,8 @@
 					<td><textarea rows="6" name="faqcontent" id="faqcontent"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button type="submit">등록</button>
-					<button type="reset">취소</button></td>
+					<td colspan="2"><button type="submit" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록</button>
+					<button type="reset" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></td>
 				</tr>
 			</table>
 			</center>

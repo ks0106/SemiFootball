@@ -14,11 +14,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/notice/notice.css">
 <title>FAQ리스트</title>
 </head>
@@ -232,38 +230,27 @@
 				<br>
 				<center>
 					<table>
-						<%
-							for (FAQVo fv : list) {
-						%>
+						<c:forEach items="${pd.list }" var="l" varStatus="i">
 						<tr>
 							<th style="width: 650px;">
-							<div data-toggle="collapse" data-target="#faq1" id="fa1">
+							<div data-toggle="collapse" data-target="#faq${i.count }" id="fa1">
 									<span style="font-size: 15px;"> 
 									<img src="img/faq/FAQ.png" style="width: 30px; height: 30px;">
-										<%=fv.getFaqTitle()%><br>
+										${l.faqTitle }<br>
 									<br>
 									</span>
 								</div>
 								</th>
 						</tr>
 						<tr>
-							<td><div id="faq1" class="collapse">
+							<td><div id="faq${i.count }" class="collapse">
 									<img src="img/faq/FAQ2.PNG" style="width: 30px; height: 20px;">
-									<%=fv.getFaqContent()%><br> 
-									
-									<%-- <c:if test="${sessionScope.member.id =='admin' }">
-										<a href="/faqUpdate?faqNo=<%=fv.getFaqNo()%>"
-											class="btn btn-primary btn-sm">수정하기</a>
-										<a href="/deleteFAQ?faqNo=<%=fv.getFaqNo()%>"
-											class="btn btn-primary btn-sm">삭제하기</a>
-									</c:if> --%>
-										 <br><br>
+									${l.faqContent }
+									<br><br><br>
 								</div></td>
 						</tr>
-						<%
-							}
-						%>
-
+					
+						</c:forEach>
 					</table>
 					<!-- 페이징 -->
 						<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;margin-top: 30px;">${pd.pageNavi }</div>
