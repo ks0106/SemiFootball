@@ -225,7 +225,7 @@
 									<th class="th">제목</th>
 									<th class="th">작성자</th>
 									<th class="th">등록일</th>
-									<th class="th">죄회수</th>
+									<th class="th">조회수</th>
 								</tr>
 							</thead>
 							<tbody>

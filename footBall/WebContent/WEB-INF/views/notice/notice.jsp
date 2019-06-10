@@ -182,7 +182,6 @@
 
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 
-	<div class="full">
 			<div style="width:85%;background-color:white;margin:0 auto;overflow:hidden;">
 				<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">커뮤니티</div>
@@ -213,7 +212,7 @@
 									<th class="th">제목</th>
 									<th class="th">작성자</th>
 									<th class="th">등록일</th>
-									<th class="th">죄회수</th>
+									<th class="th">조회수</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -240,8 +239,7 @@
 				</div>
 
 				</div>
-			</div>
-		</div>
+			</div><br><br><br><br>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
