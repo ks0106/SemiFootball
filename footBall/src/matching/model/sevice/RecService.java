@@ -5,7 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
+import matching.model.dao.MatchDao;
 import matching.model.dao.RecDao;
+import matching.model.vo.MatchList;
+import matching.model.vo.MatchPageData;
 import matching.model.vo.RecPageData;
 import matching.model.vo.Recruit;
 
@@ -78,5 +81,44 @@ public class RecService {
 			JDBCTemplate.rollback(conn);
 		}
 		return result;
+	}
+	public RecPageData searchList(int reqPage, int branch, String keyword) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int numPerPage=10;
+		int totalCount= new RecDao().searchCount(conn,branch,keyword);
+		int totalPage = (totalCount%numPerPage==0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+		int start = (reqPage-1)*numPerPage+1;
+		int end = reqPage*numPerPage;
+		ArrayList<Recruit> list= new RecDao().searchList(conn,start,end,branch,keyword);
+		for(int i = 0 ; i<list.size();i++) {
+			list.get(i).setAmount2(list.get(i).getAmount());
+			list.get(i).setAble2(list.get(i).getRecAble());
+			list.get(i).setDate2(list.get(i).getRecDate());
+		}
+		String pageNavi ="";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		
+		if(pageNo!=1) {
+			pageNavi += "<a class='btn' href='/recSearch?branch"+branch+"&keyword="+keyword+"&reqPage="+(pageNo-1)+"'><div class='pageNaviBtn'>&lt</div></a>";
+		}
+		int i = 1;
+		while(!(i++>pageNaviSize||pageNo>totalPage)) {
+			if(reqPage==pageNo) {
+				pageNavi += "<div class='pageNaviBtn selectPage'><span>"+pageNo+"</span></div>";
+			}else {
+				pageNavi +="<a class='btn' href='/recSearch?branch"+branch+"&keyword="+keyword+"&reqPage="+pageNo+"'><div class='pageNaviBtn'>"+pageNo+"</div></a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/recSearch?branch"+branch+"&keyword="+keyword+"&reqPage="+pageNo+"'><div class='pageNaviBtn'>&gt</div></a>";
+			
+		}
+		
+		JDBCTemplate.close(conn);
+		RecPageData rpd = new RecPageData(list, pageNavi);
+		return rpd;
+	
 	}
 }

@@ -405,7 +405,7 @@ function contentView(pageNum){
 											<option value="5">수원점</option>
 											<option value="6">안양점 </option>
 									</select>
-									<input type="text" size="30" name="keyword" style="height:88%;border:2px solid #A4A4A4;">
+									<input type="text" size="30" name="keyword" style="height:88%;border:2px solid #A4A4A4;" placeholder="작성자를 입력해주세요">
 									<button type="submit" style="background-color:#2c3c57; border:none; height: 105%;width: 70px;vertical-align: middle; "><img src="/img/icon_search.png"></button>
 								</form>							
 							</div>
