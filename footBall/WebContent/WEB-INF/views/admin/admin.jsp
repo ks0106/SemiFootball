@@ -59,7 +59,7 @@
              <li class="header_item"><a href="/notice">공지사항</a>
              	<ul class="item_items">
              		<li><a href="/noticeWriter">공지 작성</a></li>
-                 	<li><a href="/noticeDeletePage">공지 삭제</a></li>
+                 	<li><a href="/noticeDeletePage">공지 수정/삭제</a></li>
                  	<li><a href="/writerFAQ">FAQ 작성</a></li>
              		<li><a href="/upDelPageFAQ">FAQ 수정/삭제</a></li>
              	</ul>

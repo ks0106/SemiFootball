@@ -48,6 +48,7 @@ public class MercenaryAppServlet extends HttpServlet {
 		r.setRecName(recName);
 		r.setRecPhone(recPhone);
 		Date d = Date.valueOf(recDate);
+		r.setRecDate(d);
 		r.setRecTime(recTime);
 		r.setAble2(Integer.parseInt(recAble));
 		r.setRecLevel(recLevel);
