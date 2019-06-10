@@ -54,6 +54,37 @@ public class FAQService {
 		JDBCTemplate.close(conn);
 		return pd;
 	}
+	public FAQPageData selectList1(int reqPage) {
+		Connection conn = JDBCTemplate.getConnection();
+		int numPerPage = 10;
+		int totalCount = new FAQDao().totalCount(conn);
+		int totalPage = (totalCount%numPerPage==0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+		int start = (reqPage-1)*numPerPage +1;
+		int end = reqPage*numPerPage;
+		ArrayList<FAQVo> list = new FAQDao().selectList(conn,start,end);
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		if(pageNo !=1) {
+			pageNavi += "<a class='btn' href='/upDelPageFAQ?reqPage="+(pageNo-1)+"'><div class='pageNaviBtn'>&lt</div></a>";
+		}
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<div class='pageNaviBtn selectPage'><span>"+pageNo+"</span></div>"; //4페이지 상태에서 4페이지를 누를수가 없도록 하기 위해서 a태그 없애줌 
+			}else {
+				pageNavi += "<a class='btn' href='/upDelPageFAQ?reqPage="+pageNo+"'><div class='pageNaviBtn'>"+pageNo+"</div></a>";
+			}
+			pageNo++;
+		}
+		//다음 버튼 생성
+		if(pageNo <= totalPage) {
+		pageNavi +="<a class='btn' href='/upDelPageFAQ?reqPage="+pageNo+"'><div class='pageNaviBtn'>&gt</div></a>";
+		}
+		FAQPageData pd = new FAQPageData(list,pageNavi);
+		JDBCTemplate.close(conn);
+		return pd;
+	}
 	//FAQ수정
 	public int faqUpdate(FAQVo fv) {
 		Connection conn = JDBCTemplate.getConnection();

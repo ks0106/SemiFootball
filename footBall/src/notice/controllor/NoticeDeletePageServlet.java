@@ -39,7 +39,7 @@ public class NoticeDeletePageServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			reqPage = 1;
 		}
-		NoticePageData pd = new NoticeService().NoticeList(reqPage);
+		NoticePageData pd = new NoticeService().NoticeList1(reqPage);
 		request.setAttribute("pd", pd);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeDeletePage.jsp");
 		rd.forward(request, response);

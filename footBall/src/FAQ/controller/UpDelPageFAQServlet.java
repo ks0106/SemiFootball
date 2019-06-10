@@ -38,7 +38,7 @@ public class UpDelPageFAQServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			reqPage = 1;
 		}
-		FAQPageData pd = new FAQService().selectList(reqPage);
+		FAQPageData pd = new FAQService().selectList1(reqPage);
 		request.setAttribute("pd", pd);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/FAQ/FAQUpDelPage.jsp");
 		rd.forward(request, response);
