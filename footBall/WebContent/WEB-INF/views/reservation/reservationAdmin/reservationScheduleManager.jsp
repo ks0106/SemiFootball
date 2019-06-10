@@ -90,7 +90,7 @@
 		<!-- 컨텐츠 -->
 		<div style="width:100%;overflow:hidden;margin-top:30px;">
 			<div style="width: 95%; background-color: white; margin: 0 auto; overflow: hidden;">
-				<!-- 컨텐츠 사이드 메뉴 -->
+<!-- 				컨텐츠 사이드 메뉴
 				<div style="width:300px; height: 300px; text-align: left; display: inline-block; float: left;">
 					<div style="font-size: 30px; font-weight: bolder; color: black; margin: 0; margin-bottom: 10px;">대관 관리</div>
 					<div style="width: 80%;">
@@ -107,9 +107,9 @@
 						<a class="side_a" id="side_menu3" style="color: #df0101;">스케쥴 등록/수정/삭제</a>
 					</div>
 				</div>
-				<!-- 사이드 메뉴 종료 -->
+				사이드 메뉴 종료 -->
 				<!-- 컨텐츠 -->
-				<div style="width: 78%; height:100vh; border-left: 1px solid silver; display: inline-block; overflow:hidden;">
+				<div style="width: 100%; height:100vh;overflow:hidden;">
 					<!-- 컨텐츠 타이틀 -->
 					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 스케쥴 관리</div>
 					<!-- 본문 -->
@@ -118,7 +118,7 @@
 						<jsp:include page="/views/test/calendar.jsp" />
 					</div>
 					<!-- 컨텐츠 파티션 -->
-					<div style="width:90%; margin-left:40px;margin-top:50px;">
+					<div style="width:90%; margin:0 auto;margin-top:50px;">
 						<button class="scheduleManagerBtn" id="scheduleAddBtn" style="float:left;">스케쥴등록</button>
 						<button class="scheduleManagerBtn" id="scheduleModifyBtn" style="float:left;">스케쥴수정</button>
 						<button class="scheduleManagerBtn" id="scheduleDeleteBtn" style="display:inline-block;">스케쥴삭제</button>
