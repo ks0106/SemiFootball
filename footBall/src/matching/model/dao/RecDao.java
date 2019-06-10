@@ -29,7 +29,7 @@ public class RecDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Recruit> list = new ArrayList<Recruit>();
-		String query = "select * from (select ROWNUM as rNum,rr.* from (select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) order by rec_no desc) rr) where rnum BETWEEN ? and ?";
+		String query = "select * from (select ROWNUM as rNum,rr.* from (select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) where rec_type=0 order by rec_no desc) rr) where rnum BETWEEN ? and ?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1,start);
 		pstmt.setInt(2,end);
@@ -88,7 +88,7 @@ public class RecDao {
 	public int addMerRec(Connection conn, Recruit r) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String  query = "insert into fb_recruit values(seq_rec_no.nextval,?,?,?,?,?,?,?,?,?,?,sysdate)";
+		String  query = "insert into fb_recruit values(seq_rec_no.nextval,?,?,?,?,?,?,?,?,?,?,0,sysdate)";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, r.getRecName());
 		pstmt.setInt(2, r.getRecBCode());
@@ -103,6 +103,7 @@ public class RecDao {
 		result = pstmt.executeUpdate();
 		return result;
 	}
+<<<<<<< HEAD
 	
 	public int countList2(Connection conn) throws SQLException {
 		Statement stmt = null;
@@ -111,10 +112,35 @@ public class RecDao {
 		String query ="select count(*) cnt from fb_recruit where rec_type= 1";
 		stmt = conn.createStatement();
 		rset = stmt.executeQuery(query);
+=======
+	public int modiRecContent(Connection conn, Recruit r) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result= 0;
+		String query = "update fb_recruit set rec_level =? , rec_able=? , rec_amount =? , rec_memo=? where rec_no =? ";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1,r.getRecLevel());
+		pstmt.setInt(2,r.getRecAble());
+		pstmt.setInt(3,r.getAmount());
+		pstmt.setString(4, r.getRecMemo());
+		pstmt.setInt(5, r.getSeqRecNo());
+		result = pstmt.executeUpdate();
+		return result;
+	}
+	public int searchCount(Connection conn, int branch, String keyword) throws SQLException {
+		PreparedStatement pstmt =null;
+		ResultSet rset= null;
+		int result = 0;
+		String query ="select count(*) cnt from fb_recruit where rec_b_code=? and rec_name=? and rec_type=0";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, branch);
+		pstmt.setString(2, keyword);
+		rset = pstmt.executeQuery();
+>>>>>>> 9b2311378cfd85df97d884af9fa9d95116d347cc
 		if(rset.next()) {
 			result = rset.getInt("cnt");
 		}
 		JDBCTemplate.close(rset);
+<<<<<<< HEAD
 		JDBCTemplate.close(stmt);
 		return result;
 	}
@@ -126,6 +152,22 @@ public class RecDao {
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1,start);
 		pstmt.setInt(2,end);
+=======
+		JDBCTemplate.close(pstmt);
+		return result;
+		
+	}
+	public ArrayList<Recruit> searchList(Connection conn, int start, int end, int branch, String keyword) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Recruit> list = new ArrayList<Recruit>();
+		String query = "select * from (select rownum as rnum , r.* from(select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) where rec_b_code=? and rec_name like (?) and rec_type=0) r) where rnum between ? and ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, branch);
+		pstmt.setString(2, "%"+keyword+"%");
+		pstmt.setInt(3, start);
+		pstmt.setInt(4, end);
+>>>>>>> 9b2311378cfd85df97d884af9fa9d95116d347cc
 		rset = pstmt.executeQuery();
 		while(rset.next()) {
 			Recruit r = new Recruit();
@@ -145,8 +187,15 @@ public class RecDao {
 			r.setRecEnrollDate(rset.getDate("REC_ENROLL_DATE"));
 			list.add(r);
 		}
+<<<<<<< HEAD
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return list;
+=======
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rset);
+		return list;
+		
+>>>>>>> 9b2311378cfd85df97d884af9fa9d95116d347cc
 	}
 }

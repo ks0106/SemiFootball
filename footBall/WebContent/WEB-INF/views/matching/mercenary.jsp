@@ -301,7 +301,7 @@
 										<tr>
 											<th class="th">지점구분</th>
 											<th class="th" colspan="2">매치일자</th>
-											<th class="th">모집인원</th>
+											<th class="th">지원인원</th>
 											<th class="th">작성자</th>
 											<th class="th">작성일자</th>
 											<th class="th">신청</th>
