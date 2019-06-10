@@ -256,8 +256,8 @@
 										<td>
 											<select id="scheduleYN" name="scheduleYN" style="width:400px;height:40px;font-size:18px;">
 												<option class="default" value="default" selected>::: 가능/불가능 :::</option>
-												<option value="0" selected>가능</option>
-												<option value="1" selected>불가능</option>
+												<option value="0">가능</option>
+												<option value="1">불가능</option>
 											</select>
 										</td>
 									</tr>
@@ -380,6 +380,8 @@
 		});
 		
 		
+		
+		
 		////////////////////* form submit 영역 *////////////////////
 		/* 스케쥴등록버튼 눌렀을 때(form submit) */
 		$(document).on("click","#scheduleAddSubmit",function(){
@@ -387,6 +389,7 @@
 				&& $('#courtName').find('option:selected').val() != 'default'
 				&& $('#startTime').find('option:selected').val() != 'default'
 				&& $('#endTime').find('option:selected').val() != 'default'
+				&& $('#scheduleDate').val() != ""
 				&& $('#resPrice').val() != ""){
 				$('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
 				$('#scheduleAdd').submit();
@@ -395,8 +398,29 @@
 			}
 		});
 
+		/* 스케쥴수정버튼 눌렀을 때(form submit) */		
+		$(document).on("click","#scheduleModifySubmit",function(){
+			if($(this).siblings().find('#branchName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#courtName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#startTime').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#scheduleYN').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#scheduleDate').val() != ""
+				&& $(this).siblings().find('#resPrice').val() != ""){
+				$('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
+				$('#scheduleAdd').submit();
+			}else{
+				console.log($('#courtName').find('option:selected').val());
+				console.log($(this).siblings().find('#courtName').val());
+				console.log($(this).siblings().find('#startTime').val());
+				console.log($(this).siblings().find('#scheduleYN').val());
+				console.log($(this).siblings().find('#resPrice').val());
+				console.log($(this).siblings().find('#scheduleDate').val());
+				alert("입력된 값이 부족합니다.");
+			}
+		});
+
 		
-		
+
 		
 		
 		
