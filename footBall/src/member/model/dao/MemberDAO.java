@@ -40,6 +40,8 @@ public class MemberDAO {
 			m.setName(rset.getString("name"));
 			m.setPhone(rset.getString("phone"));
 			m.setEnrollDate(rset.getDate("enroll_Date"));
+			m.setPwdHint(rset.getString("pwd_hint"));
+			m.setPwdHintAnswer(rset.getString("pwd_hint_answer"));
 		}
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
@@ -174,5 +176,20 @@ public class MemberDAO {
 		JDBCTemplate.close(rset);
 		JDBCTemplate.close(pstmt);
 		return m;
+	}
+	public int updateMember(Connection conn,String id,String pwd,String pwdHint,String pwdHintAnswer,String phone) throws SQLException{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("updateMember");
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, pwd);
+		pstmt.setString(2, pwdHint);
+		pstmt.setString(3, pwdHintAnswer);
+		pstmt.setString(4, phone);
+		pstmt.setString(5, id);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
 	}
 }
