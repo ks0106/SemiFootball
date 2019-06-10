@@ -30,16 +30,31 @@
 	<div id="title">커뮤니티</div>
 
 
-	<div class="full">
-		<div class="tab-container">
-			<ul class="tab-list">
-				<li class=" list-li"><a href="/notice" class="munebar">공지사항</a></li>
-				<li class="list-li"><a href="/fAQ" class="munebar">FAQ</a></li>
-				<li class="selected list-li"><a href="/boardList" class="munebar">자유게시판</a></li>
-			</ul>
-		
+		<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+	<div
+		style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
+		<div
+			style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+			<div
+				style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">커뮤니티</div>
+			<hr
+				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu1" href="/notice"
+					style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu2" href="/fAQ"
+					style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu3"
+					style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
+				</a>
+			</div>
+		</div>
 		<section>
-		<div class="table-wrapper" style="text-align:center;width:80%;margin:0 auto;">
+		<div class="table-wrapper" style="text-align:center;width:70%;margin:0 auto;">
 			<form action="/boardInsert" method="post" enctype="multipart/form-data">
 			<center><br><br><br>
 				<table class="table table-bordered" id="boardWriter">
@@ -70,9 +85,9 @@
 					</tr>
 					<tr style="text-align:center;">
 						<th colspan="2"><center>
-							<button type="submit" class="btn btn-outline-primary">등록하기</button>
+							<button type="submit" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록하기</button>
 							<a href="/boardList">
-							<button type="button" class="btn btn-outline-primary">취소</button></a></center>
+							<button type="button" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></a></center>
 						</th>
 					</tr>
 				</table>
@@ -80,7 +95,6 @@
 			</form>
 		</div>
 		</div>
-	</div>
 	</section>
 		<script>
 		function loadImg(f){

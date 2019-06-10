@@ -172,7 +172,7 @@
 	<div id="title">고객센터</div>
 	<br><br><br><br><br><br><br>
 	<center>
-				<table id="matchlist-table"  style="width: 100%;">
+				<table id="matchlist-table"  style="width: 80%;">
 					<tr>
 						<th class="th">번호</th>
 						<th class="th">제목</th>

@@ -12,6 +12,172 @@
 <link rel="stylesheet" href="/css/board/board.css">
 <title>자유게시판뷰</title>
 </head>
+<style>
+.side_nav {
+	margin: 5px;
+	color: silver;
+}
+
+.side_nav a {
+	text-decoration: none;
+	color: silver;
+	font-size: 16px;
+}
+
+#side_menu1 {
+	display: block;
+}
+
+#side_pr_menu {
+	list-style-type: square;
+	padding: 0;
+	margin: 0;
+	margin-left: 20px;
+	display: none;
+}
+
+#mv {
+	background-image: url("/img/ground1.png");
+}
+
+.tab-container {
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+	height: 80px;
+}
+
+.tab-list {
+	margin: 0; padding0;
+	height: 100%;
+	list-style-type: none;
+	border-top: 3px solid purple;
+	border-bottom: 1px solid green;
+	padding-left: 0;
+}
+
+.list-li {
+	height: 100%;
+	width: 33.33%;
+	float: left;
+	text-align: center;
+	line-height: 80px;
+	font-size: 40px;
+	font-weight: bold;
+	border-right: 1px solid green;
+	box-sizing: border-box;
+}
+
+.list-li:last-child {
+	border-right: none;
+}
+
+.munebar {
+	text-decoration: none;
+	color: black;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.selected>.munebar {
+	background-color: green;
+	color: white;
+}
+
+.list-li>a:hover {
+	background-color: green;
+	color: white;
+	text-decoration: none;
+}
+
+.tab-content {
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
+}
+
+.content-header {
+	color: #403d3f;
+	font-size: 40px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	margin-top: 0px;
+}
+
+.underline {
+	margin: 0 auto;
+	width: 7%;
+	text-align: center;
+	border-top: 2px solid #bfc4cc;
+}
+
+#matchlist-table {
+	border-top: 2px solid green;
+	border-bottom: 2px solid green;
+	border-collapse: collapse;
+}
+
+#table-wraper {
+	margin: 0 auto;
+	margin-top: 30px;
+	width: 80%;
+}
+
+.tab-con {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.th {
+	padding: 16px;
+	border-bottom: 1px solid #d5d8dd;
+	height: 21px;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 21px;
+	text-align: center;
+}
+
+.table-tr td {
+	padding: 16px;
+	border-bottom: 1px solid #d5d8dd;
+	height: 21px;
+	font-size: 18px;
+	line-height: 21px;
+	text-align: center;
+}
+
+.table-tr {
+	cursor: pointer;
+}
+
+.table-tr:hover {
+	background-color: #F2F2F2;
+}
+
+.pageNaviBtn {
+	width: 50px;
+	height: 50px;
+	border: 1px solid #A4A4A4;
+	display: inline-block;
+	margin-right: 10px;
+	margin-left: 10px;
+	border-radius: 15px;
+	line-height: 45px;
+}
+
+.selectPage {
+	line-height: 50px;
+	color: white;
+	background-color: green;
+	font-size: 25px;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+</style>
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -28,28 +194,44 @@
 	<div id="title">커뮤니티</div>
 
 
-	<div class="full">
-		<div class="tab-container">
-			<ul class="tab-list">
-				<li class=" list-li"><a href="/notice" class="munebar">공지사항</a></li>
-				<li class="list-li"><a href="/fAQ" class="munebar">FAQ</a></li>
-				<li class="selected list-li"><a href="/boardList" class="munebar">자유게시판</a></li>
-			</ul>
+	<hr
+		style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+	<div
+		style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
+		<div
+			style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+			<div
+				style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">커뮤니티</div>
+			<hr
+				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu1" href="/notice"
+					style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu2" href="/fAQ"
+					style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu3"
+					style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
+				</a>
+			</div>
+		</div>
+				<div style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
+		
 			   <section>
       <div class="table-wrapper" style="text-align: center; width: 60%; margin: 0 auto;">
          			<center><h1>자유게시판</h1></center><br><br><br>
          <center>
          <table class="table">
             <tr>
-               <th colspan="2" id="toptit"></th>
-            </tr>
-            <tr>
-               <th style="font-size: 25px; font-weight: bold; text-align: center;">${bvd.bv.boardTitle}</th>
-               <th>${bvd.bv.boardDate }</th>
+               <th style="font-size: 25px; font-weight: bold; text-align: center; width: 80%;">${bvd.bv.boardTitle}</th>
+               <th style="text-align: right;">${bvd.bv.boardDate }</th>
             </tr>
             <tr>
                <td>작성자 : ${bvd.bv.boardWriter}</td>
-               <td>
+               <td style="text-align: right;">
                	  <c:if test="${not empty bvd.bv.boardFilepath}">
                	  	<img src="/img/file.png" width="16px">
                     <a href="javascript:fileDownload('${bvd.bv.boardFilename}','${bvd.bv.boardFilepath}');">
@@ -58,29 +240,16 @@
           		 </c:if>
                </td>
             </tr>
-            <%-- <tr>
-               <th>첨부파일</th>
-               <td>
-               	  <c:if test="${not empty bvd.bv.boardFilepath}">
-               	  	<img src="/img/file.png" width="16px">
-                     <a href="javascript:fileDownload('${bvd.bv.boardFilename}','${bvd.bv.boardFilepath}');">
-                        ${bvd.bv.boardFilename}
-                    </a> 
-          		 </c:if>
-               </td>
-            </tr> --%>
             <tr>
-               <td class="viewcon" style="height: 500px;">
-               ${bvd.bv.boardContent}</td> <!-- 개행을 처리해줘야함 --> 
-               <!-- bv.getboardContent().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>") -->
+               <td style="height: 200px;" colspan="2">${bvd.bv.boardContent}</td>
             </tr>
             <tr>
                <th colspan="2">
                <c:if test="${sessionScope.member.id == bvd.bv.boardWriter || sessionScope.member.id=='admin'}">
-                  <a href="/boardUpdate?boardNo=${bvd.bv.boardNo}" class="btn btn-outline-primary"><button type="button" class="bbtn">수정하기</button></a>
-                  <a href="/boardDelete?boardNo=${bvd.bv.boardNo}" class="btn btn-outline-primary"><button type="button" class="bbtn">삭제하기</button></a><!-- 최종 목적지를 list로 -->
+                  <button class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;"><a href="/boardUpdate?boardNo=${bvd.bv.boardNo}" style="color: white;">수정하기</a></button>
+                  <button class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;"><a href="/boardDelete?boardNo=${bvd.bv.boardNo}" style="color: white;">삭제하기</a></button>
                </c:if>
-                  <a href="/boardList" class="btn btn-outline-primary"><button type="button" class="bbtn">목록으로</button></a>
+                  <button class="btn" style="border: none; background-color: green; width: 100px; height: 30px;"><a href="/boardList" style="color:white;">목록으로</a></button>
                </th>
             </tr>
          </table></center>
@@ -98,7 +267,7 @@
 						<tr>
 							<td><textarea rows="1" class="form-control" name="boardCommentContent" id="barea"></textarea></td>
 							<td>
-								<button type="submit" class="btn btn-primary" id="bsub">등록</button>
+								<button type="submit" class="btn" id="bsub" style="border: none; background-color: green; width: 100px; height: 50px; color: white;">등록</button>
 							</td>
 						</tr>
 					</table>
@@ -120,7 +289,7 @@
 								<c:if test="${sessionScope.member != null}">
 									<li style="width:25%;">
 									<a href="javascript:void(0)" onclick="insertComment(this,'${bc.boardCommentNo}');">댓글달기</a>
-									<c:if test="${sessionScope.member.id == bc.boardCommentWriter}">
+									<c:if test="${sessionScope.member.id == bc.boardCommentWriter || sessionScope.member.id == 'admin'}">
 										<a href="javascript:void(0);" onclick="modifyComment(this,'${bc.boardCommentNo}');">수정</a>
 										<a href="javascript:void(0);" onclick="deleteComment(this,'${bc.boardCommentNo}');">삭제</a>
 									</c:if>
@@ -142,7 +311,7 @@
 						</li>
 						<li style="width:15%;"><span>${bcr.boardCommentDate}</span></li>
 						<li style="width:20%">
-  						<c:if test="${sessionScope.member.id == bcr.boardCommentWriter }">
+  						<c:if test="${sessionScope.member.id == bcr.boardCommentWriter || sessionScope.member.id == 'admin' }">
 							<a href="javascript:void(0);" onclick="modifyComment(this,'${bcr.boardCommentNo}');">수정</a>
 							<a href="javascript:void(0);" onclick="deleteComment(this,'${bcr.boardCommentNo}');">삭제</a>
   						</c:if>
@@ -206,10 +375,10 @@
 			$form.append($("<input type='hidden' name='boardCommentRef' value='"+commentNo+"'>"));
 			var $li1 = $("<li style='width:5%'>└─</li>")
 			var $li2 = $("<li style='width:50%'></li>");
-			$li2.append($("<input type='text' name='boardCommentContent' class='form-control' style='height:100%;'>"));
+			$li2.append($("<input type='text' name='boardCommentContent' class='form-control' style='height:100%;width:300px;'>"));
 			var $li3 = $("<li style='width:20%'></li>");
-			$li3.append($("<button type='submit' class='btn btn-link btn-sm'>등록</button>"));
-			$li3.append($("<button type='button' class='btn btn-link btn-sm' onclick='insertCommentCancle(this)'>취소</button>"));
+			$li3.append($("<button type='submit' class='btn btn-link' style='border:0;background:0;color:black;'><b>등록</b></button>"));
+			$li3.append($("<button type='button' class='btn btn-link' style='border:0;background:0;color:black;' onclick='insertCommentCancle(this)'><b>취소</b</button>"));
 			$ul.append($li1).append($li2).append($li3);			
 			$form.append($ul);
 			$(obj).parent().parent().after($form);

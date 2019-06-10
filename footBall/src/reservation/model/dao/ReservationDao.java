@@ -837,6 +837,90 @@ public class ReservationDao {
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
+	
+	public int reservationManagerScheduleModify(Connection conn, int bCode, int cCode, String startTime, int resPrice, String scheduleDate, int scheduleYN) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationManagerScheduleModify");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, resPrice);
+		pstmt.setInt(2, scheduleYN);
+		pstmt.setInt(3, cCode);
+		pstmt.setString(4, scheduleDate);
+		pstmt.setString(5, startTime);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	
+	public ArrayList<Reservation> reservationTimeSearch(Connection conn, int cCode, String scheduleDate) throws SQLException {
+		ArrayList<Reservation> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationTimeSearch");
+		pstmt = conn.prepareStatement(query);
+		System.out.println("제발잘받아져라 : "+scheduleDate);
+		pstmt.setInt(1, cCode);
+		pstmt.setString(2, scheduleDate);
+		rset = pstmt.executeQuery();
+		list = new ArrayList<Reservation>();
+		while(rset.next()) {
+			Reservation res = new Reservation();
+			res = new Reservation();
+			res.setResNo(rset.getInt("res_no"));
+			res.setResBCode(rset.getInt("res_b_code"));
+			res.setResCCode(rset.getInt("res_c_code"));
+			res.setResMEmail(rset.getString("res_m_email"));
+			res.setResMPhone(rset.getString("res_m_phone"));
+			res.setResDate(rset.getDate("res_date"));
+			res.setResTime(rset.getString("res_time"));
+			res.setResRentalNo(rset.getInt("res_rental_no"));
+			res.setResTotalCost(rset.getInt("res_total_cost"));
+			res.setResOrderDate(rset.getDate("res_order_date"));
+			res.setResPaymentId(rset.getString("res_payment_id"));
+			res.setResPaymentNum(rset.getString("res_payment_num"));
+			res.setResPaymentDate(rset.getString("res_payment_date"));
+			res.setResPayment(rset.getInt("res_payment"));
+			res.setResCancel(rset.getInt("res_cancel"));
+			res.setResCancelApplyDate(rset.getString("res_cancel_apply_date"));
+			res.setResCancelDate(rset.getString("res_cancel_date"));
+			list.add(res);
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return list;
+	}
+	
+	public int reservationScheduleStatusCheck(Connection conn, int cCode, String scheduleDate, String startTime) throws SQLException {
+		int check = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("reservationScheduleStatusCheck");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, cCode);
+		pstmt.setString(2, scheduleDate);
+		pstmt.setString(3, startTime);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			check = rset.getInt("schedule_status");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return check;
+	}
+	
+	public int reservationManagerScheduleDelete(Connection conn, int cCode, String scheduleDate, String startTime) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("reservationManagerScheduleDelete");
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, cCode);
+		pstmt.setString(2, scheduleDate);
+		pstmt.setString(3, startTime);
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
 }
 
  

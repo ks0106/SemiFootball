@@ -55,13 +55,13 @@
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">커뮤니티</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu1" href="/notice" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">공지사항</a>
+						<a class="side_a" id="side_menu1" href="/notice" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">공지사항</a>
 					</div>
 					<div style="margin-bottom:15px;">
 						<a class="side_a" id="side_menu2" href="/fAQ" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">FAQ</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu3" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">자유게시판	</a>
+						<a class="side_a" id="side_menu3" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">자유게시판	</a>
 					</div>
 				</div>
 			<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
@@ -100,8 +100,8 @@
 							<th colspan="2">
 								<center>
 									<button type="submit" class="btn btn-outline-primary"
-										style="color: gray;">수정하기</button>
-									<button type="reset" class="btn" style="color: gray;">취소</button>
+										style="border: none; background-color: green; width: 100px; height: 30px; color: white;">수정하기</button>
+									<button type="reset" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button>
 								</center>
 							</th>
 						</tr>

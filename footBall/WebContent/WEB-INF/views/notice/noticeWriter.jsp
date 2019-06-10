@@ -81,8 +81,8 @@
 								<th colspan="2">
 									<center>
 										<button type="submit" class="btn btn-outline-primary"
-											style="color: gray;">등록하기</button>
-										<a href="/notice"><button class="btn" style="color: gray;">취소</button></a>
+											style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록하기</button>
+										<a href="/notice"><button class="btn"style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></a>
 									</center>
 								</th>
 							</tr>
