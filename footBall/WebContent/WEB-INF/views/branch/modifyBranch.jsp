@@ -120,7 +120,6 @@
 				$(this).hide();
 				$(this).siblings().eq(0).val('delete');
 			}
-			console.log($(this).siblings().eq(0).val());
 		});
 	</script>	
 </body>
