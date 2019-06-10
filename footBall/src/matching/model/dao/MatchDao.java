@@ -164,7 +164,7 @@ public class MatchDao {
 	public int mercenaryAdd(Connection conn, Recruit r) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into fb_recruit values(seq_rec_no.nextval,?,?,?,?,?,?,?,?,?,?,sysdate)";
+		String query = "insert into fb_recruit values(seq_rec_no.nextval,?,?,?,?,?,?,?,?,?,?,1,sysdate)";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, r.getRecName());
 		pstmt.setInt(2, r.getRecBCode());
