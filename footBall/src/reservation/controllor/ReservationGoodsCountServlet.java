@@ -36,9 +36,6 @@ public class ReservationGoodsCountServlet extends HttpServlet {
 		String result = request.getParameter("result");
 		String option = request.getParameter("option");
 		int bCode = Integer.parseInt(request.getParameter("bCode"));
-		System.out.println(result);
-		System.out.println(option);
-		System.out.println(bCode);
 		try {
 			int count = new ReservationService().reservationGoodsCount(result, option, bCode);
 			response.setContentType("application/json");

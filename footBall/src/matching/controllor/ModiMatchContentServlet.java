@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import matching.model.sevice.MatchService;
-import matching.model.vo.MatchPageData;
+import matching.model.vo.MatchList;
 
 /**
- * Servlet implementation class MatchSearchServlet
+ * Servlet implementation class ModiMatchContentServlet
  */
-@WebServlet(name = "MatchSearch", urlPatterns = { "/matchSearch" })
-public class MatchSearchServlet extends HttpServlet {
+@WebServlet(name = "ModiMatchContent", urlPatterns = { "/modiMatchContent" })
+public class ModiMatchContentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MatchSearchServlet() {
+    public ModiMatchContentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,33 +32,33 @@ public class MatchSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reqPage;
+		int matchNo = Integer.parseInt(request.getParameter("matchNo"));
+		String matchType= request.getParameter("matchType");
+		String matchLevel = request.getParameter("matchLevel");
+		int matchAmount = Integer.parseInt(request.getParameter("matchAmount"));
+		int matchAble = Integer.parseInt(request.getParameter("matchAble"));
+		String matchMemo = request.getParameter("matchMemo").replaceAll("\r\n","<br>");
+		MatchList m = new MatchList();
+		m.setSeqMatchNo(matchNo);
+		m.setMatchType(matchType);
+		m.setMatchLevel(matchLevel);
+		m.setMatchAmount(matchAmount);
+		m.setMatchAble(matchAble);
+		m.setMatchMemo(matchMemo);
 		try {
-			reqPage = Integer.parseInt(request.getParameter("reqPage"));
-		}catch(NumberFormatException e) {
-			reqPage =1;
-		}
-		int branch = Integer.parseInt(request.getParameter("branch"));
-		String keyword = request.getParameter("keyword");
-		try {
-			MatchPageData mpd = new MatchService().searchList(reqPage,branch,keyword);
-			if(!mpd.getList().isEmpty()) {
-				request.setAttribute("mpd", mpd);
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/matching.jsp");
-				rd.forward(request, response);
-			}else {
-				request.setAttribute("msg", "검색결과가 없습니다.");
-				request.setAttribute("loc","/matching");
+			int result = new MatchService().modiMatchContent(m);
+			if(result>0) {
+				request.setAttribute("msg", "수정되었습니다");
+				request.setAttribute("loc", "/matching");
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 				rd.forward(request, response);
 			}
-			
 		} catch (SQLException e) {
-			request.setAttribute("msg", "쿼리문오류"+e);
+			request.setAttribute("msg", "spl에러: "+e);
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			rd.forward(request, response);
 		}
-		
+	
 	}
 
 	/**

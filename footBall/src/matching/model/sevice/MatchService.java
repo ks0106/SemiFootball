@@ -20,7 +20,9 @@ public class MatchService {
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
 		ArrayList<MatchList> list= new MatchDao().selectList(conn,start,end);
-		
+		for(int i = 0 ; i<list.size();i++) {
+			list.get(i).setTeamCount((list.get(i).getMatchAmount()));
+		}
 		String pageNavi ="";
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
@@ -50,7 +52,7 @@ public class MatchService {
 		Connection conn = JDBCTemplate.getConnection();
 		MatchList m = new MatchDao().selectOne(conn,pageNum);
 		m.setDate(m.getMatchDate());
-		m.setTeamCount(m.getmatchAmount());
+		m.setTeamCount(m.getMatchAmount());
 		m.setAble(m.getMatchAble());
 		JDBCTemplate.close(conn);
 		return m;
@@ -68,19 +70,19 @@ public class MatchService {
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
 		
 		if(pageNo!=1) {
-			pageNavi += "<a class='btn' href='/matchSearch?branch=동대문지점&keyword=홍길동&reqPage="+(pageNo-1)+"'><div class='pageNaviBtn'>&lt</div></a>";
+			pageNavi += "<a class='btn' href='/matchSearch?branch="+branch+"&keyword="+keyword+"&reqPage="+(pageNo-1)+"'><div class='pageNaviBtn'>&lt</div></a>";
 		}
 		int i = 1;
 		while(!(i++>pageNaviSize||pageNo>totalPage)) {
 			if(reqPage==pageNo) {
 				pageNavi += "<div class='pageNaviBtn selectPage'><span>"+pageNo+"</span></div>";
 			}else {
-				pageNavi +="<a class='btn' href='/matchSearch?branch=동대문지점&keyword=홍길동&reqPage="+pageNo+"'><div class='pageNaviBtn'>"+pageNo+"</div></a>";
+				pageNavi +="<a class='btn' href='/matchSearch?branch="+branch+"&keyword="+keyword+"&reqPage="+pageNo+"'><div class='pageNaviBtn'>"+pageNo+"</div></a>";
 			}
 			pageNo++;
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/matchSearch?branch=동대문지점&keyword=홍길동&reqPage="+pageNo+"'><div class='pageNaviBtn'>&gt</div></a>";
+			pageNavi += "<a class='btn' href='/matchSearch?branch="+branch+"&keyword="+keyword+"&reqPage="+pageNo+"'><div class='pageNaviBtn'>&gt</div></a>";
 			
 		}
 		
@@ -102,6 +104,17 @@ public class MatchService {
 	public int addMatchList(MatchList m) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new MatchDao().addMatchList(conn,m);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	public int modiMatchContent(MatchList m) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MatchDao().modiMatchContent(conn , m);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		}else {

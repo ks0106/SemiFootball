@@ -11,19 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import matching.model.sevice.MatchService;
+import matching.model.sevice.RecService;
 import matching.model.vo.MatchPageData;
+import matching.model.vo.RecPageData;
 
 /**
- * Servlet implementation class MatchSearchServlet
+ * Servlet implementation class RecSearchServlet
  */
-@WebServlet(name = "MatchSearch", urlPatterns = { "/matchSearch" })
-public class MatchSearchServlet extends HttpServlet {
+@WebServlet(name = "RecSearch", urlPatterns = { "/recSearch" })
+public class RecSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MatchSearchServlet() {
+    public RecSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,14 +43,14 @@ public class MatchSearchServlet extends HttpServlet {
 		int branch = Integer.parseInt(request.getParameter("branch"));
 		String keyword = request.getParameter("keyword");
 		try {
-			MatchPageData mpd = new MatchService().searchList(reqPage,branch,keyword);
-			if(!mpd.getList().isEmpty()) {
-				request.setAttribute("mpd", mpd);
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/matching.jsp");
+			RecPageData rpd = new RecService().searchList(reqPage,branch,keyword);
+			if(!rpd.getList().isEmpty()) {
+				request.setAttribute("rpd", rpd);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/mercenaryRec.jsp");
 				rd.forward(request, response);
 			}else {
 				request.setAttribute("msg", "검색결과가 없습니다.");
-				request.setAttribute("loc","/matching");
+				request.setAttribute("loc","/mercenaryRec");
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 				rd.forward(request, response);
 			}
@@ -58,7 +60,6 @@ public class MatchSearchServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			rd.forward(request, response);
 		}
-		
 	}
 
 	/**

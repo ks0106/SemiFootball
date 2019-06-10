@@ -842,7 +842,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				$.ajax({
 					url : "/reservationGoodsPrice.do",
 					type : "get",
-					data : {result:result,option:option},
+					data : {result:result,option:option,bCode:bCode},
 					success : function(data){
 						if(amount > 0){
 							var price = parseInt(data.goodsPrice);
@@ -930,11 +930,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				alert("대관예약 정보를 작성해주세요.");
 			}else{				
 				var bCode = ${b.branchCode};
-				console.log("선택된 지점 코드 : "+bCode);
 				var resDate = ($('#receipt-cal').text().replace(/\./gi,'/')).replace('2019','19');
-				console.log("선택된 날짜 : "+resDate);
 				var cCode = $('#courtSelect').find('option:selected').val();
-				console.log("선택된 구장 : "+cCode);
 				var resGoodsName = new Array($('.reservationReceiptListBox').length);
 				var resGoodsOption = new Array($('.reservationReceiptListBox').length);;
 				var resGoodsAmount = new Array($('.reservationReceiptListBox').length);;
@@ -945,10 +942,6 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 						resGoodsOption[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsOption').text();
 						resGoodsAmount[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsAmount').val();
 						resGoodsPrice[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsPrice').text().replace(",","");
-						console.log("대여 물품명 : "+resGoodsName[i]);
-						console.log("대여 물품 옵션 : "+resGoodsOption[i]);
-						console.log("대여 물품 수량 : "+resGoodsAmount[i]);
-						console.log("대여 물품 가격 : "+resGoodsPrice[i]);
 					}
 				}
 				var resStartTime = new Array($('.reservationReceiptList').length);
@@ -959,13 +952,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 						resStartTime[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationStartTime').text();
 						resEndTime[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationEndTime').text();
 						resCost[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationCostNum').text().replace(",","");
-						console.log("대관 시작 시간 : "+resStartTime[i]);
-						console.log("대관 종료 시간 : "+resEndTime[i]);
-						console.log("대관료 : "+resCost[i]);
 					}
 				}
 				var allCost = $('#allCost').text().replace(/,/gi,"");
-				console.log("합계 : "+allCost);
 				
 				if($('.reservationReceiptListBox').length > 0){
 					goodsCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
@@ -1059,7 +1048,6 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				type : 'get',
 				data : {bCode:bCode,resDate:resDate,cCode:cCode,resStartTime:resStartTime,resEndTime:resEndTime,allCost:allCost},
 				success : function(data){
-					console.log(resStartTime.length);
 					alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
 					$('#paymentGo').append('<input type="text" name="goAllCost" value="'+allCost+'">');
 					$('#paymentGo').append('<input type="text" name="goResNo" value="'+data+'">');

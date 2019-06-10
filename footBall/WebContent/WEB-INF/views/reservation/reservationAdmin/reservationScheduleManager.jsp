@@ -240,7 +240,7 @@
 									<tr>
 										<th>시간</th>
 										<td>
-											<select id="startTime" name=""startTime"" style="width:400px;height:40px;font-size:18px;">
+											<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
 												<option class="default" value="default" selected>::: 시간 선택 :::</option>
 											</select>								
 										</td>
@@ -326,7 +326,7 @@
 		function branchLoad(){
 			var branchName = '<c:forEach items="${list}" var="b" varStatus="i">';
 			branchName += '<option value="${b.branchCode}">${b.branchName}</option></c:forEach>';
-			$('.branchName').append(branchName);
+			$('tr').find('.branchName').append(branchName);
 		}
 		
 		////////////////////* 로드되었을 때 동작하는 영역 *////////////////////
@@ -367,6 +367,8 @@
 			$('#'+$target).find('#scheduleDate').val(txt);
 		});
 		
+		
+		////////////////////* include 영역 *////////////////////		
 		/* 달력 내용 클릭 시 동작 */
 		$(document).on("click",".future",function(){
 			month = $('#tbCalendarYM').text();
@@ -376,7 +378,10 @@
 			}else{
 				txt = month+"."+"0"+day;
 			}
-			$('#scheduleDate').val(txt);
+			$('tr').find('#scheduleDate').val(txt);
+			$('#scheduleAddSubmit').find('select').not('#startTime').not('#endTime').find('option').not('#default').remove();
+			$('tr').find('select').find('option:eq(0)').prop('selected',true);
+			$('form').find('input').not('#scheduleDate').val('');
 		});
 		
 		
@@ -397,7 +402,6 @@
 				alert("입력된 값이 부족합니다.");
 			}
 		});
-
 		/* 스케쥴수정버튼 눌렀을 때(form submit) */		
 		$(document).on("click","#scheduleModifySubmit",function(){
 			if($(this).siblings().find('#branchName').find('option:selected').val() != 'default'
@@ -406,15 +410,21 @@
 				&& $(this).siblings().find('#scheduleYN').find('option:selected').val() != 'default'
 				&& $(this).siblings().find('#scheduleDate').val() != ""
 				&& $(this).siblings().find('#resPrice').val() != ""){
-				$('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
-				$('#scheduleAdd').submit();
+				$(this).siblings().find('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
+				$('#scheduleModify').submit();
 			}else{
-				console.log($('#courtName').find('option:selected').val());
-				console.log($(this).siblings().find('#courtName').val());
-				console.log($(this).siblings().find('#startTime').val());
-				console.log($(this).siblings().find('#scheduleYN').val());
-				console.log($(this).siblings().find('#resPrice').val());
-				console.log($(this).siblings().find('#scheduleDate').val());
+				alert("입력된 값이 부족합니다.");
+			}
+		});
+		/* 스케쥴삭제버튼 눌렀을 때(form submit) */		
+		$(document).on("click","#scheduleDeleteSubmit",function(){
+			if($(this).siblings().find('#branchName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#courtName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#startTime').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#scheduleDate').val() != ""){
+				$(this).siblings().find('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
+				$('#scheduleDelete').submit();
+			}else{
 				alert("입력된 값이 부족합니다.");
 			}
 		});
@@ -462,19 +472,19 @@
 		});
 		/* 구장 선택 시 동작 */
 		$(document).on("change","#courtName",function(){
-			/* select초기화 시작 */
-			var $startTime = $(this).parents('tr').siblings().find('#startTime');
-			$startTime.find("option:eq(0)").prop("selected",true);
-			var $endTime = $(this).parents('tr').siblings().find('#endTime');
-			$endTime.find("option:eq(0)").prop("selected",true);
-			var $scheduleYN = $(this).parents('tr').siblings().find('#scheduleYN');
-			$scheduleYN.find("option:eq(0)").prop("selected",true);
-			/* select초기화 끝 */
-			/* input초기화 시작 */
-			var $resPrice = $(this).parents('tr').siblings().find('#resPrice');
-			$resPrice.val("");
-			/* input초기화 끝 */
 			if($('.view').attr('id') == 'scheduleAdd'){
+				/* select초기화 시작 */
+				var $startTime = $(this).parents('tr').siblings().find('#startTime');
+				$startTime.find("option:eq(0)").prop("selected",true);
+				var $endTime = $(this).parents('tr').siblings().find('#endTime');
+				$endTime.find("option:eq(0)").prop("selected",true);
+				var $scheduleYN = $(this).parents('tr').siblings().find('#scheduleYN');
+				$scheduleYN.find("option:eq(0)").prop("selected",true);
+				/* select초기화 끝 */
+				/* input초기화 시작 */
+				var $resPrice = $(this).parents('tr').siblings().find('#resPrice');
+				$resPrice.val("");
+				/* input초기화 끝 */
 				if($(this).find('option:selected').val() != 'default'){
 					var bCode = $(this).parents('tr').siblings().find('#branchName').val();
 					var cCode = $(this).find('option:selected').val();
@@ -498,14 +508,26 @@
 					});
 				}
 			}else{
+				/* select초기화 시작 */
+				var $startTime = $(this).parents('tr').siblings().find('#startTime');
+				$startTime.find('option').not('.default').remove();
+				$startTime.find("option:eq(0)").prop("selected",true);
+				var $endTime = $(this).parents('tr').siblings().find('#endTime');
+				$endTime.find("option:eq(0)").prop("selected",true);
+				var $scheduleYN = $(this).parents('tr').siblings().find('#scheduleYN');
+				$scheduleYN.find("option:eq(0)").prop("selected",true);
+				/* select초기화 끝 */
+				/* input초기화 시작 */
+				var $resPrice = $(this).parents('tr').siblings().find('#resPrice');
+				$resPrice.val("");
+				/* input초기화 끝 */
 				if($(this).find('option:selected').val() != 'default'){
 					/* 날짜 초기화 */
 					$(this).parents('tr').siblings().find('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
 					/* 날짜 초기화 끝 */
 					var cCode = $(this).find('option:selected').val();
 					var result = $(this).parents('tr').siblings().find('#scheduleDate').val();
-					console.log(cCode);
-					console.log(result);
+					$(this).parents('tr').siblings().find('#scheduleDate').val(txt);
 					$.ajax({
 						url : "/reservationCourtSelect.do",
 						type : "get",
@@ -514,7 +536,7 @@
 							for(var i=0;i<data.length;i++){	
 								var front = data[i].scheduleStartTime;
 								var end = data[i].scheduleEndTime;
-								$startTime.append('<option><span id="startTime">'+front+'</span>~<span id="endTime">'+end+'</span></option>');
+								$startTime.append('<option value='+front+'>'+front+'~'+end+'</option>');
 							}
 						},
 						error : function(){
@@ -553,6 +575,9 @@
 				/* select초기화 끝 */
 				if($(this).find('option:selected').val() != 'default'){
 					var front = parseInt($(this).find('option:selected').val().substring(0,2))-2;
+					if(front < 10){
+						front = "0"+front;
+					}
 					var end = $(this).find('option:selected').val().substring(2,5);
 					var check = front+end;
 					for(var i=0;i<$(this).find('option').length;i++){

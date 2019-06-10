@@ -37,8 +37,6 @@ public class ReservationCourtSelectServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String result = request.getParameter("result");
 		int cCode = Integer.parseInt(request.getParameter("cCode"));
-		System.out.println(result);
-		System.out.println(cCode);
 		try {
 			ArrayList<Schedule> list = new ReservationService().reservationCourtSelect(result, cCode);
 			response.setContentType("application/json");
