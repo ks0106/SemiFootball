@@ -1,6 +1,7 @@
 package matching.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import matching.model.vo.MatchList;
+import matching.model.vo.Recruit;
 
 public class MatchDao {
 	public int countList(Connection conn) throws SQLException {
@@ -155,6 +157,24 @@ public class MatchDao {
 		pstmt.setInt(9, m.getMatchAble());
 		pstmt.setInt(10, m.getmatchAmount());
 		pstmt.setString(11, m.getMatchMemo());
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int mercenaryAdd(Connection conn, Recruit r) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into fb_recruit values(?,?,?,?,?,?,?,?,?,?)";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, r.getRecBName());
+		pstmt.setString(2, r.getRecCName());
+		pstmt.setString(3, r.getRecName());
+		pstmt.setString(4, r.getRecPhone());
+		pstmt.setDate(5, r.getRecDate());
+		pstmt.setString(6,r.getRecTime());
+		pstmt.setString(7, r.getAble2());
+		pstmt.setString(8, r.getRecLevel());
+		pstmt.setString(9, r.getRecMemo());
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;

@@ -248,7 +248,9 @@
 		});
 	});
 function contentView(pageNum){
-   		
+	if($("#tr11").parent().parent().parent().children().is("#modiBtn-wrapper")){
+		$("#tr11").parent().parent().parent().children().remove("#modiBtn-wrapper");
+	}
    		$.ajax({
    			url:"/matchContentView",
    			type:"get",
@@ -376,7 +378,7 @@ function contentView(pageNum){
 							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;margin-top: 30px;">${mpd.pageNavi }</div>
 							<!-- Search폼태그 -->
 							<div style="height: 50px;">
-								<form action="/matchSearch" method="get" style="height: 100%;">
+								<form action="/matchSearch" method="get" style="height: 85%;    vertical-align: middle;">
 									<select name="branch" style="height: 100%; border:2px solid #A4A4A4; ">
 											<option value="">지점</option>
 											<option value="1">부천점</option>
@@ -386,8 +388,8 @@ function contentView(pageNum){
 											<option value="5">수원점</option>
 											<option value="6">안양점 </option>
 									</select>
-									<input type="text" size="30" name="keyword" style="height:100%;border:2px solid #A4A4A4;">
-									<button type="submit" style="background-color:#2c3c57; border:none; height: 100%;width: 70px;vertical-align: bottom; "><img src="/img/icon_search.png"></button>
+									<input type="text" size="30" name="keyword" style="height:88%;border:2px solid #A4A4A4;">
+									<button type="submit" style="background-color:#2c3c57; border:none; height: 105%;width: 70px;vertical-align: middle; "><img src="/img/icon_search.png"></button>
 								</form>							
 							</div>
 							<!-- 게시글 view -->

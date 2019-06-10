@@ -17,16 +17,16 @@ import member.model.vo.Member;
 import reservation.model.service.ReservationService;
 
 /**
- * Servlet implementation class ReservationGoodsManagerServlet
+ * Servlet implementation class ReservationScheduleManagerServlet
  */
-@WebServlet(name = "ReservationGoodsManager", urlPatterns = { "/reservationGoodsManager" })
-public class ReservationGoodsManagerServlet extends HttpServlet {
+@WebServlet(name = "ReservationScheduleManager", urlPatterns = { "/reservationScheduleManager" })
+public class ReservationScheduleManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationGoodsManagerServlet() {
+    public ReservationScheduleManagerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,10 +39,11 @@ public class ReservationGoodsManagerServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		if(m!=null) {
 			if(m.getId().equals("admin")) {
+				ArrayList<Branch> list;
 				try {
-					ArrayList<Branch> list = new ReservationService().reservationBranch();
+					list = new ReservationService().reservationBranch();
 					request.setAttribute("list", list);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationGoodsManager.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationAdmin/reservationScheduleManager.jsp");
 					rd.forward(request, response);
 				} catch (SQLException e) {
 					e.printStackTrace();

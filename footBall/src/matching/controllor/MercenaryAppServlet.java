@@ -1,7 +1,10 @@
 package matching.controllor;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,28 +40,36 @@ public class MercenaryAppServlet extends HttpServlet {
 		String recDate = request.getParameter("recDate");
 		String recTime = request.getParameter("matchTime");
 		String recAble = request.getParameter("recAble");
-		String matchLevel = request.getParameter("matchLevel");
+		String recLevel = request.getParameter("matchLevel");
 		String recMemo = request.getParameter("memo");
 		Recruit r = new Recruit();
 		r.setRecBName(recBname);
 		r.setRecCName(recCname);
 		r.setRecName(recName);
 		r.setRecPhone(recPhone);
-		//데이트 만들어주세요
+		Date d = Date.valueOf(recDate);
 		r.setRecTime(recTime);
-		r.setAble(Integer.parseInt(recAble));
+		r.setAble2(Integer.parseInt(recAble));
+		r.setRecLevel(recLevel);
 		r.setRecMemo(recMemo);
-		int result = new MatchService().mercenaryAdd();
-		if(result > 0) {
-			request.setAttribute("msg", "등록성공");
-			request.setAttribute("loc", "/WEB-INF/views/matching/mercenary.jsp");
-			request.getRequestDispatcher("/views/common/sqlErrorPage.jsp").forward(request, response);
-		}else {
-			request.setAttribute("msg", "등록 실패");
-			request.setAttribute("loc", "/WEB-INF/views/matching/mercenary.jsp");
-			request.getRequestDispatcher("/views/common/sqlErrorPage.jsp").forward(request, response);
+		int result;
+		try {
+			result = new MatchService().mercenaryAdd(r);
+			if(result > 0) {
+				request.setAttribute("msg", "등록성공");
+				request.setAttribute("loc", "/WEB-INF/views/matching/mercenary.jsp");
+				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			}else {
+				request.setAttribute("msg", "등록 실패");
+				request.setAttribute("loc", "/WEB-INF/views/matching/mercenary.jsp");
+				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			}
+		} catch (SQLException e) {
+			request.setAttribute("msg", "잘못입력함.");
+			request.setAttribute("loc", "/WEB-INF/views/matching/mercenaryApp.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			rd.forward(request, response);
 		}
-		
 	}
 
 	/**

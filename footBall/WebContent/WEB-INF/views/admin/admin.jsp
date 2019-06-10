@@ -36,8 +36,8 @@
              <li class="header_item"><a href="/reservation">대관</a>
              	<ul class="item_items">
              		<li><a href="/reservationManager" style="font-size:15px;font-weight:bolder;">예약/결제 취소</a></li>
-             		<li><a href="/reservationCourtManager" style="font-size:15px;font-weight:bolder;">구장 등록</a></li>
-             		<li><a href="/reservationGoodsManager" style="font-size:15px;font-weight:bolder;">물품 등록</a></li>
+             		<li><a href="reservationGoodsManager" style="font-size:15px;font-weight:bolder;">물품 관리</a></li>
+             		<li><a href="reservationScheduleManager" style="font-size:15px;font-weight:bolder;">스케쥴 관리</a></li>
              	</ul>
              </li>
              <li class="header_item"><a href="/matching">매치/용병</a>

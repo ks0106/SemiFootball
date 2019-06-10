@@ -18,6 +18,11 @@ public class RecService {
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
 		ArrayList<Recruit> list= new RecDao().selectList(conn,start,end);
+		for(int i = 0 ; i<list.size();i++) {
+			list.get(i).setAmount2(list.get(i).getAmount());
+			list.get(i).setAble2(list.get(i).getRecAble());
+			list.get(i).setDate2(list.get(i).getRecDate());
+		}
 		
 		String pageNavi ="";
 		int pageNaviSize = 5;
@@ -47,8 +52,21 @@ public class RecService {
 	public Recruit selectOne(int pageNum) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		Recruit r = new RecDao().selectOne(conn , pageNum);
+		r.setAmount2(r.getAmount());
+		r.setAble2(r.getRecAble());
+		r.setDate2(r.getRecDate());
 		JDBCTemplate.close(conn);
 		return r;
 		
+	}
+	public int addMerRec(Recruit r) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new RecDao().addMerRec(conn,r);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
 	}
 }

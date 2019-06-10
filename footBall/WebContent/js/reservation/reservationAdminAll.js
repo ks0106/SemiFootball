@@ -5,10 +5,15 @@ $(document).ready(function(){
 	$('#side_menu1').click(function(){
 		location.href="/reservationManager";
 	});
+/*
 	$('#side_menu2').click(function(){
 		location.href="/reservationCourtManager";
+	});
+*/	
+	$('#side_menu2').click(function(){
+		location.href="/reservationGoodsManager";
 	});	
 	$('#side_menu3').click(function(){
-		location.href="/reservationGoodsManager";
+		location.href="/reservationScheduleManager";
 	});	
 });
