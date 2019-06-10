@@ -56,6 +56,10 @@ public class Court {
 	public void setCourtStatus(int courtStatus) {
 		this.courtStatus = courtStatus;
 	}
+	@Override
+	public String toString() {
+		return courtBCode +" / " + courtCCode + " / " + courtName + " / " + courtType + " / " + courtIndoor;
+	}
 	
 	
 	

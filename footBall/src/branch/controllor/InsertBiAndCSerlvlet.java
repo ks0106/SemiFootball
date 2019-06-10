@@ -58,15 +58,15 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 		ServletFileUpload upload = new ServletFileUpload(diskFactory);
 		upload.setSizeMax(10*1024*1024);
 		try {
+			@SuppressWarnings("unchecked")
 			List<FileItem> items = upload.parseRequest(request);
-			Iterator iter = items.iterator();
+			Iterator<FileItem> iter = items.iterator();
 			while(iter.hasNext()) {
-				FileItem item = (FileItem)iter.next();
+				FileItem item = iter.next();
 				if(item.isFormField()) {
 					String fieldName = item.getFieldName();
-					String param = item.getString("UTF-8");	
 					switch(fieldName) {
-						case "branchCode": 
+						case "branchCode":
 							branchCode = Integer.parseInt(item.getString());
 							break;
 						case "courtName1": 

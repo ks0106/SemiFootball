@@ -895,6 +895,7 @@ public class ReservationDao {
 		int check = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		System.out.println("resdate는 왜문제? : "+scheduleDate);
 		String query = prop.getProperty("reservationScheduleStatusCheck");
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, cCode);

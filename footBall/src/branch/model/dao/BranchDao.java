@@ -97,12 +97,15 @@ public class BranchDao {
 				"with temp as" + 
 				"    (select" + 
 				"        court_b_code," + 
+				"        min(decode(court_type,'A',court_c_code)) code1," +
 				"        min(decode(court_type,'A',court_name)) c1," + 
 				"        min(decode(court_type,'A','A')) t1," + 
 				"        min(decode(court_type,'A',court_indoor)) i1," + 
+				"        min(decode(court_type,'B',court_c_code)) code2," +
 				"        min(decode(court_type,'B',court_name)) c2," + 
 				"        min(decode(court_type,'B','B')) t2," + 
-				"        min(decode(court_type,'B',court_indoor)) i2," + 
+				"        min(decode(court_type,'B',court_indoor)) i2," +
+				"        min(decode(court_type,'C',court_c_code)) code3," +
 				"        min(decode(court_type,'C',court_name)) c3," + 
 				"        min(decode(court_type,'C','C')) t3," + 
 				"        min(decode(court_type,'C',court_indoor)) i3" + 
@@ -143,6 +146,9 @@ public class BranchDao {
 				cd.setI1(rset.getString("i1"));
 				cd.setI2(rset.getString("i2"));
 				cd.setI3(rset.getString("i3"));
+				cd.setCode1(rset.getString("code1"));
+				cd.setCode2(rset.getString("code2"));
+				cd.setCode3(rset.getString("code3"));
 				bd = new BranchData();
 				bd.setB(b);
 				bd.setBi(bi);
@@ -337,6 +343,68 @@ public class BranchDao {
 		}
 		return result;
 	}
+	
+	public int updateBranch(Connection conn, Branch b) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateBranch");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, b.getBranchName());
+			pstmt.setString(2, b.getBranchAddr());
+			pstmt.setString(3, b.getBranchPhone());
+			pstmt.setString(4, b.getBranchTel());
+			pstmt.setInt(5, b.getBranchCode());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateBi(Connection conn, BranchImgs bi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateBi");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bi.getBi1());
+			pstmt.setString(2, bi.getBi2());
+			pstmt.setString(3, bi.getBi3());
+			pstmt.setString(4, bi.getBi4());
+			pstmt.setInt(5, bi.getBiBCode());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateCourt(Connection conn, Court c) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateCourt");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, c.getCourtName());
+			pstmt.setString(2, c.getCourtType());
+			pstmt.setString(3, c.getCourtIndoor());
+			pstmt.setInt(4, c.getCourtCCode());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 	public int deleteBranch(Connection conn, int branchCode) {
 		int result = 0;
@@ -354,8 +422,5 @@ public class BranchDao {
 		}
 		return result;
 	}
-
-
-
 
 }

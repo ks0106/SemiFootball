@@ -131,8 +131,8 @@
 					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 스케쥴 관리</div>
 					<!-- 본문 -->
 					<!-- 달력 -->
-					<div id="draggable" style="width:530px;float:right;position:fixed;right:150px;bottom:200px;">
-						<jsp:include page="/views/test/calendar.jsp" />
+					<div id="draggable" style="width:530px;float:right;position:fixed;right:400px;bottom:200px;">
+						<jsp:include page="/views/test/moveCalendar.jsp" />
 					</div>
 					<!-- 컨텐츠 파티션 -->
 					<div style="width:90%; margin:0 auto;margin-top:50px;">
