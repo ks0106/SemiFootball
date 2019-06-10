@@ -96,7 +96,7 @@ public class MatchService {
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
-		return 0;
+		return result;
 	}
 	
 	public int addMatchList(MatchList m) throws SQLException {

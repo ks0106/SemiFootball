@@ -164,44 +164,20 @@ public class MatchDao {
 	public int mercenaryAdd(Connection conn, Recruit r) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into fb_recruit values(?,?,?,?,?,?,?,?,?,?)";
+		String query = "insert into fb_recruit values(seq_rec_no.nextval,?,?,?,?,?,?,?,?,?,?,sysdate)";
 		pstmt = conn.prepareStatement(query);
-		pstmt.setString(1, r.getRecBName());
-		pstmt.setString(2, r.getRecCName());
-		pstmt.setString(3, r.getRecName());
+		pstmt.setString(1, r.getRecName());
+		pstmt.setInt(2, r.getRecBCode());
+		pstmt.setInt(3, r.getRecCCode());
 		pstmt.setString(4, r.getRecPhone());
-		pstmt.setDate(5, r.getRecDate());
-		pstmt.setString(6,r.getRecTime());
-		pstmt.setString(7, r.getAble2());
+		pstmt.setInt(5,r.getAmount());
+		pstmt.setDate(6, r.getRecDate());
+		pstmt.setString(7,r.getRecTime());
 		pstmt.setString(8, r.getRecLevel());
-		pstmt.setString(9, r.getRecMemo());
+		pstmt.setInt(9, r.getRecAble());
+		pstmt.setString(10, r.getRecMemo());
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

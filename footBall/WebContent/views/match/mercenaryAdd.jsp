@@ -138,35 +138,35 @@
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
 				<p class="content-header">용병지원</p>
 							<div class="underline"></div>
-				<form action="/mercenaryApp" method="post">
+				<form action="/mercenaryAdd" method="post">
 						<table id="input-table">
 							<tr>
 								<th class="th">지점</th>
 								<td class="td">
 									<select name="Bname" style="width: 300px;height:50px;">
 										<option value="">지점선택</option>
-										<option value="부천점">부천지점</option>
-										<option value="고양점">고양지점</option>
-										<option value="남양주점">남양주지점</option>
-										<option value="성남점">성남지점</option>
-										<option value="수원점">수원지점</option>
-										<option value="안양점">안양지점</option>
+										<option value="1">부천지점</option>
+										<option value="2">고양지점</option>
+										<option value="3">남양주지점</option>
+										<option value="4">성남지점</option>
+										<option value="5">수원지점</option>
+										<option value="6">안양지점</option>
 									</select>
 								</td>
 								<th class="th">구장</th>
 								<td class="td">
 									<select name="Cname" style="width: 300px;height:50px;">
 										<option value="">구장선택</option>
-										<option value="A">A구장</option>
-										<option value="B">B구장</option>
+										<option value="1">A구장</option>
+										<option value="2">B구장</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
 								<th class="th">신청자</th>
-								<td class="td"><input type="text" name="name" style="width: 297px;height: 40px;"></td>
+								<td class="td"><input type="text" name="name" value="${sessionScope.member.name }" style="width: 297px;height: 40px;"></td>
 								<th class="th">연락처</th>
-								<td class="td"><input type="text" name="phone1" style="width: 88px;height: 40px;">-<input type="text" name="phone2" style="width: 88px;height: 40px;">-<input type="text" name="phone3" style="width: 88px;height: 40px;"></td>
+								<td class="td"><input type="text" name="phone" value="${sessionScope.member.phone }" style="width: 297px;height: 40px;"></td>
 							</tr>
 							<tr>
 								<th class="th">매치일정</th>
@@ -175,23 +175,36 @@
 								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
 							</tr>
 							<tr>
-								<th class="th">유니폼 색상</th>
-								<td class="td">
-									<input type="text" name="Uform1" style="width: 80px;height: 40px;" placeholder="상의">-
-									<input type="text" name="Uform2" style="width: 80px;height: 40px;" placeholder="하의">-
-									<input type="text" name="Uform3" style="width: 80px;height: 40px;" placeholder="스타킹">
-								</td>
 								<th class="th">팀수준</th>
-								<td class="td"><input type="text" name="matchLevel" style="width: 297px;height: 40px;"></td>
-							</tr>
-								<th class="th">매치일정</th>
-								<td class="td"><input type="text" name="matchDate" style="width: 297px;height: 40px;"></td>
-								<th class="th">시간선택</th>
-								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
-							</tr>
-							<tr>
+								<td class="td">
+									<select name="recLevel" style="width: 300px;height:50px;">
+										<option>--선택--</option>
+										<option value="상">상</option>
+										<option value="중상">중상</option>
+										<option value="중">중</option>
+										<option value="중하">중하</option>
+										<option value="하">하</option>
+									</select>
+								</td>
 								<th class="th" colspan="1">마감여부</th>
 								<td class="td" colspan="3"><input type="text" name="matchAble" style="width: 297px;height: 40px;"></td>
+							</tr>
+							<tr>
+								<th  class="th" >모집인원 수</th>
+								<td class="td" >
+									<select name="recAmount" style="width: 300px;height:50px;">
+										<option value="1">1명</option>
+										<option value="2">2명</option>
+										<option value="3">3명</option>
+										<option value="4">4명</option>
+										<option value="5">5명</option>
+										<option value="6">6명</option>
+										<option value="7">7명</option>
+										<option value="8">8명</option>
+										<option value="9">9명</option>
+										<option value="10">10명</option>
+									</select>
+								</td>
 							</tr>
 							<tr>
 								<th colspan="4" class="th" >메모</th>
@@ -200,7 +213,10 @@
 								<td class="th" colspan="4" rowspan="4"><textarea rows="5" name="memo" cols="100" style="resize: none;text-align: center;"></textarea> </td>
 							</tr>
 						</table>
-						<div id="btn-div" style="margin-top: 30px;"><button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button> <button class="btn btn-primary btn-lg" type="reset">초기화</button></div>
+						<div id="btn-div" style="margin-top: 30px;text-align: center;">
+								 <button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button>
+								 <button class="btn btn-primary btn-lg" type="reset">초기화</button>
+						</div>
 					</form>
 					<div style="width:100%;height:100px;"></div>
 				<div>

@@ -249,7 +249,7 @@
 		});
 	});
 	function matching(){
-		location.href="/views/match/mercenaryApp.jsp";
+		location.href="/views/match/mercenaryAdd.jsp";
 	}
 </script>
 </head>
