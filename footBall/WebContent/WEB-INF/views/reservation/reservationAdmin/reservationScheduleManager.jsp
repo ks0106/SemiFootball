@@ -14,7 +14,11 @@
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
-<!-- reservation 공통 js => jqeury를 이용하기 때문에 jquery import 밑으로 내려야 한다. -->
+	<!-- drag import -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+ <!-- reservation 공통 js => jqeury를 이용하기 때문에 jquery import 밑으로 내려야 한다. -->
 <script type="text/javascript" src="/js/reservation/reservationAdminAll.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -29,6 +33,19 @@
 		/* 지점 로드 함수 */
 		branchLoad();
 	});
+	
+	$(function() {
+		$( "#draggable" ).draggable();
+			$( "#droppable" ).droppable({
+				drop: function( event, ui ) {
+					$( this )
+						.addClass( "ui-state-highlight" )
+					.find( "p" )
+				.html( "Dropped!" );
+			}
+		});
+	});
+
 	
 </script>
 <style>
@@ -114,7 +131,7 @@
 					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 스케쥴 관리</div>
 					<!-- 본문 -->
 					<!-- 달력 -->
-					<div id="drag-cal" style="width:530px;float:right;position:fixed;right:150px;bottom:200px;">
+					<div id="draggable" style="width:530px;float:right;position:fixed;right:150px;bottom:200px;">
 						<jsp:include page="/views/test/calendar.jsp" />
 					</div>
 					<!-- 컨텐츠 파티션 -->
@@ -589,61 +606,7 @@
 				}
 			}
 		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		function courtCalendar(){
-			/* 날짜를 클릭했을 때 예약 가능한 구장을 보여줌 */
-			var $select = $('#courtTime');
-			$select.find("div").remove();
-			var result = txt.replace(/\./gi,'/');
-			var bCode = '${b.branchCode}';
-			$.ajax({
-				url : "/reservationCourtList.do",
-				type : "get",
-				data : {result:result,bCode:bCode},
-				success : function(data){
-					var $select = $('#courtSelect');
-					$select.find("option").not('#default').remove();
-					for(var i=0;i<data.length;i++){
-						var courtBCode = data[i].courtBCode;
-						var courtCCode = data[i].courtCCode;
-						var courtName = data[i].courtName;
-						var courtStatus = data[i].courtStatus;
-						var selected = "";
-						if(courtStatus == 0){
-							$select.append('<option value="'+courtCCode+'">'+courtName+'</option>');
-						}
-					}
-				},
-				error : function(){
-					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
-				}
-			});			
-		}
+
 
 	</script>
 	
