@@ -2,6 +2,9 @@ package branch.model.vo;
 
 public class CourtData {
 	private int branchCode;
+	private String code1;
+	private String code2;
+	private String code3;
 	private String c1;
 	private String c2;
 	private String c3;
@@ -15,10 +18,13 @@ public class CourtData {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CourtData(int branchCode, String c1, String c2, String c3, String t1, String t2, String t3, String i1,
-			String i2, String i3) {
+	public CourtData(int branchCode, String code1, String code2, String code3, String c1, String c2, String c3,
+			String t1, String t2, String t3, String i1, String i2, String i3) {
 		super();
 		this.branchCode = branchCode;
+		this.code1 = code1;
+		this.code2 = code2;
+		this.code3 = code3;
 		this.c1 = c1;
 		this.c2 = c2;
 		this.c3 = c3;
@@ -34,6 +40,24 @@ public class CourtData {
 	}
 	public void setBranchCode(int branchCode) {
 		this.branchCode = branchCode;
+	}
+	public String getCode1() {
+		return code1;
+	}
+	public void setCode1(String code1) {
+		this.code1 = code1;
+	}
+	public String getCode2() {
+		return code2;
+	}
+	public void setCode2(String code2) {
+		this.code2 = code2;
+	}
+	public String getCode3() {
+		return code3;
+	}
+	public void setCode3(String code3) {
+		this.code3 = code3;
 	}
 	public String getC1() {
 		return c1;

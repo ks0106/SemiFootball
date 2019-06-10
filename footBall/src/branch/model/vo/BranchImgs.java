@@ -48,6 +48,10 @@ public class BranchImgs {
 	public void setBi4(String bi4) {
 		this.bi4 = bi4;
 	}
+	@Override
+	public String toString() {
+		return biBCode + " / " + bi1 + " / " + bi2 + " / " + bi3 + " / " + bi4;
+	}
 	
 	
 }
