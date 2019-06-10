@@ -1,7 +1,6 @@
 package matching.controllor;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -15,16 +14,16 @@ import matching.model.sevice.MatchService;
 import matching.model.vo.MatchList;
 
 /**
- * Servlet implementation class AddMatchListServlet
+ * Servlet implementation class ModiMatchContentServlet
  */
-@WebServlet(name = "AddMatchList", urlPatterns = { "/addMatchList" })
-public class AddMatchListServlet extends HttpServlet {
+@WebServlet(name = "ModiMatchContent", urlPatterns = { "/modiMatchContent" })
+public class ModiMatchContentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddMatchListServlet() {
+    public ModiMatchContentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,34 +32,23 @@ public class AddMatchListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String matchType=request.getParameter("matchType");
-		int matchBCode = Integer.parseInt(request.getParameter("matchBCode"));
-		int matchCCode = Integer.parseInt(request.getParameter("matchCCode"));
-		String matchWriter = request.getParameter("name");
-		String matchPhone = request.getParameter("phone");
-		String matchDate = request.getParameter("matchDate");
-		String matchTime = request.getParameter("matchTime");
+		int matchNo = Integer.parseInt(request.getParameter("matchNo"));
+		String matchType= request.getParameter("matchType");
 		String matchLevel = request.getParameter("matchLevel");
-		int matchAble = Integer.parseInt(request.getParameter("matchAble"));
 		int matchAmount = Integer.parseInt(request.getParameter("matchAmount"));
-		String matchMemo = request.getParameter("memo");
-		Date d = Date.valueOf(matchDate);
+		int matchAble = Integer.parseInt(request.getParameter("matchAble"));
+		String matchMemo = request.getParameter("matchMemo").replaceAll("\r\n","<br>");
 		MatchList m = new MatchList();
+		m.setSeqMatchNo(matchNo);
 		m.setMatchType(matchType);
-		m.setMatchBCode(matchBCode);
-		m.setMatchCCode(matchCCode);
-		m.setMatchWriter(matchWriter);
-		m.setMatchPhone(matchPhone);
-		m.setMatchDate(d);
-		m.setMatchTime(matchTime);
 		m.setMatchLevel(matchLevel);
-		m.setMatchAble(matchAble);
 		m.setMatchAmount(matchAmount);
+		m.setMatchAble(matchAble);
 		m.setMatchMemo(matchMemo);
 		try {
-			int result = new MatchService().addMatchList(m);
+			int result = new MatchService().modiMatchContent(m);
 			if(result>0) {
-				request.setAttribute("msg", "등록되었습니다");
+				request.setAttribute("msg", "수정되었습니다");
 				request.setAttribute("loc", "/matching");
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 				rd.forward(request, response);
@@ -70,6 +58,7 @@ public class AddMatchListServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			rd.forward(request, response);
 		}
+	
 	}
 
 	/**

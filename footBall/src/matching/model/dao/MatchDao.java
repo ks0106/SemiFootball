@@ -46,7 +46,7 @@ public class MatchDao {
 			m.setMatchPhone(rset.getString("match_phone"));
 			m.setMatchDate(rset.getDate("match_date"));
 			m.setMatchTime(rset.getString("match_time"));
-			m.setmatchAmount(rset.getInt("match_amount"));
+			m.setMatchAmount(rset.getInt("match_amount"));
 			m.setMatchLevel(rset.getString("match_level"));
 			m.setMatchAble(rset.getInt("match_able"));
 			m.setMatchMemo(rset.getString("match_memo"));
@@ -77,7 +77,7 @@ public class MatchDao {
 			m.setMatchPhone(rset.getString("match_phone"));
 			m.setMatchDate(rset.getDate("match_date"));
 			m.setMatchTime(rset.getString("match_time"));
-			m.setmatchAmount(rset.getInt("match_amount"));
+			m.setMatchAmount(rset.getInt("match_amount"));
 			m.setMatchLevel(rset.getString("match_level"));
 			m.setMatchAble(rset.getInt("match_able"));
 			m.setMatchMemo(rset.getString("match_memo"));
@@ -127,7 +127,7 @@ public class MatchDao {
 			m.setMatchPhone(rset.getString("match_phone"));
 			m.setMatchDate(rset.getDate("match_date"));
 			m.setMatchTime(rset.getString("match_time"));
-			m.setmatchAmount(rset.getInt("match_amount"));
+			m.setMatchAmount(rset.getInt("match_amount"));
 			m.setMatchLevel(rset.getString("match_level"));
 			m.setMatchAble(rset.getInt("match_able"));
 			m.setMatchMemo(rset.getString("match_memo"));
@@ -155,7 +155,7 @@ public class MatchDao {
 		pstmt.setString(7, m.getMatchTime());
 		pstmt.setString(8, m.getMatchLevel());
 		pstmt.setInt(9, m.getMatchAble());
-		pstmt.setInt(10, m.getmatchAmount());
+		pstmt.setInt(10, m.getMatchAmount());
 		pstmt.setString(11, m.getMatchMemo());
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
@@ -164,44 +164,35 @@ public class MatchDao {
 	public int mercenaryAdd(Connection conn, Recruit r) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into fb_recruit values(?,?,?,?,?,?,?,?,?,?)";
+		String query = "insert into fb_recruit values(seq_rec_no.nextval,?,?,?,?,?,?,?,?,?,?,1,sysdate)";
 		pstmt = conn.prepareStatement(query);
-		pstmt.setString(1, r.getRecBName());
-		pstmt.setString(2, r.getRecCName());
-		pstmt.setString(3, r.getRecName());
+		pstmt.setString(1, r.getRecName());
+		pstmt.setInt(2, r.getRecBCode());
+		pstmt.setInt(3, r.getRecCCode());
 		pstmt.setString(4, r.getRecPhone());
-		pstmt.setDate(5, r.getRecDate());
-		pstmt.setString(6,r.getRecTime());
-		pstmt.setString(7, r.getAble2());
+		pstmt.setInt(5,r.getAmount());
+		pstmt.setDate(6, r.getRecDate());
+		pstmt.setString(7,r.getRecTime());
 		pstmt.setString(8, r.getRecLevel());
-		pstmt.setString(9, r.getRecMemo());
+		pstmt.setInt(9, r.getRecAble());
+		pstmt.setString(10, r.getRecMemo());
+		result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int modiMatchContent(Connection conn, MatchList m) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update fb_matching set match_type = ? , match_level = ? ,match_amount = ? , match_able = ? , match_memo= ? where match_no=? ";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, m.getMatchType());
+		pstmt.setString(2, m.getMatchLevel());
+		pstmt.setInt(3, m.getMatchAmount());
+		pstmt.setInt(4,m.getMatchAble());
+		pstmt.setString(5, m.getMatchMemo());
+		pstmt.setInt(6, m.getSeqMatchNo());
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

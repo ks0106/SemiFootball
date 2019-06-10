@@ -69,4 +69,14 @@ public class RecService {
 		}
 		return result;
 	}
+	public int modiRecContent(Recruit r) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new RecDao().modiRecContent(conn,r);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
 }

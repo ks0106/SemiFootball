@@ -79,9 +79,6 @@ public class MatchList {
 
 
 
-	public void setTeamCount(String teamCount) {
-		this.teamCount = teamCount;
-	}
 
 
 
@@ -206,15 +203,6 @@ public class MatchList {
 	}
 
 
-	public int getmatchAmount() {
-		return matchAmount;
-	}
-
-
-	public void setmatchAmount(int matchAmount) {
-		this.matchAmount = matchAmount;
-	}
-
 
 
 	public String getMatchLevel() {
@@ -292,6 +280,8 @@ public class MatchList {
 			teamCount = "1팀";
 		}else if(matchAmount==2) {
 			teamCount="2팀";
+		}else if(matchAmount==3) {
+			teamCount="3팀";
 		}
 		return teamCount; 
 	}

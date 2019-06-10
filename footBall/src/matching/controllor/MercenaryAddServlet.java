@@ -17,14 +17,14 @@ import matching.model.vo.Recruit;
 /**
  * Servlet implementation class MercenaryAppServlet
  */
-@WebServlet(name = "MercenaryApp", urlPatterns = { "/mercenaryApp" })
-public class MercenaryAppServlet extends HttpServlet {
+@WebServlet(name = "MercenaryAdd", urlPatterns = { "/mercenaryAdd" })
+public class MercenaryAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MercenaryAppServlet() {
+    public MercenaryAddServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,42 +33,49 @@ public class MercenaryAppServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String recBname = request.getParameter("Bname");
-		String recCname = request.getParameter("Cname");
+		int recBCode = Integer.parseInt(request.getParameter("Bname"));
+		int recCCode = Integer.parseInt(request.getParameter("Cname"));
 		String recName = request.getParameter("name");
-		String recPhone = request.getParameter("phone1");
-		String recDate = request.getParameter("recDate");
+		String recPhone = request.getParameter("phone");
+		String recDate = request.getParameter("matchDate");
+		String recAmount = request.getParameter("recAmount");
 		String recTime = request.getParameter("matchTime");
-		String recAble = request.getParameter("recAble");
-		String recLevel = request.getParameter("matchLevel");
-		String recMemo = request.getParameter("memo");
+		int recAble = Integer.parseInt(request.getParameter("matchAble"));
+		String recLevel = request.getParameter("recLevel");
+		String recMemo = request.getParameter("memo").replaceAll("\r\n", "<br>");;
 		Recruit r = new Recruit();
-		r.setRecBName(recBname);
-		r.setRecCName(recCname);
+		System.out.println(recBCode);
+		System.out.println(recCCode);
+		r.setRecBCode(recBCode);
+		r.setRecCCode(recCCode);
 		r.setRecName(recName);
 		r.setRecPhone(recPhone);
 		Date d = Date.valueOf(recDate);
+		r.setRecDate(d);
+		r.setAmount2(Integer.parseInt(recAmount));
 		r.setRecTime(recTime);
-		r.setAble2(Integer.parseInt(recAble));
+		r.setAble2(recAble);
 		r.setRecLevel(recLevel);
 		r.setRecMemo(recMemo);
-		int result;
+		int result=0;
 		try {
 			result = new MatchService().mercenaryAdd(r);
+			System.out.println(result);
 			if(result > 0) {
 				request.setAttribute("msg", "등록성공");
-				request.setAttribute("loc", "/WEB-INF/views/matching/mercenary.jsp");
+				request.setAttribute("loc", "/mercenary");
 				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			}else {
 				request.setAttribute("msg", "등록 실패");
-				request.setAttribute("loc", "/WEB-INF/views/matching/mercenary.jsp");
+				request.setAttribute("loc", "/mercenary");
 				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			}
 		} catch (SQLException e) {
-			request.setAttribute("msg", "잘못입력함.");
-			request.setAttribute("loc", "/WEB-INF/views/matching/mercenaryApp.jsp");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			rd.forward(request, response);
+			e.printStackTrace();
+			/*request.setAttribute("msg", "잘못입력함."+e);
+			request.setAttribute("loc", "/mercenary");
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
+			rd.forward(request, response);*/
 		}
 	}
 

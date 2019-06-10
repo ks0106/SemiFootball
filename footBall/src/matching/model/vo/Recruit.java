@@ -21,6 +21,7 @@ public class Recruit {
 	private String date2;
 	private String able2;
 	private String amount2;
+	private int recType;
 	
 	public Recruit() {
 		super();
@@ -41,6 +42,14 @@ public class Recruit {
 		this.recLevel = recLevel;
 		this.recAble = recAble;
 		this.recMemo = recMemo;
+	}
+	
+	public int getRecType() {
+		return recType;
+	}
+
+	public void setRecType(int recType) {
+		this.recType = recType;
 	}
 
 	public int getRecBCode() {
