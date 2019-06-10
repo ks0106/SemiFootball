@@ -429,7 +429,7 @@ function contentView(pageNum){
 					<div style="width:100%;height:100px;"></div>
 				<div>
 			</div>
-		</div>
+		</div></div></div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

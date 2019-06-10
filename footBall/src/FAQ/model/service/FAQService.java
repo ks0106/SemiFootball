@@ -35,20 +35,20 @@ public class FAQService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
 		if(pageNo !=1) {
-			pageNavi += "<a class='btn' href='/fAQ?reqPage="+(pageNo-1)+"'>이전</a>";
+			pageNavi += "<a class='btn' href='/fAQ?reqPage="+(pageNo-1)+"'><div class='pageNaviBtn'>&lt</div></a>";
 		}
 		int i = 1;
 		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
 			if(reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>"; //보고있는 페이지는 누를수 없게 하기
+				pageNavi += "<div class='pageNaviBtn selectPage'><span>"+pageNo+"</span></div>"; //4페이지 상태에서 4페이지를 누를수가 없도록 하기 위해서 a태그 없애줌 
 			}else {
-				pageNavi += "<a class='btn' href='/fAQ?reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi += "<a class='btn' href='/fAQ?reqPage="+pageNo+"'><div class='pageNaviBtn'>"+pageNo+"</div></a>";
 			}
 			pageNo++;
 		}
 		//다음 버튼 생성
 		if(pageNo <= totalPage) {
-		pageNavi +="<a class='btn' href='/fAQ?reqPage="+pageNo+"'>다음</a>";
+		pageNavi +="<a class='btn' href='/fAQ?reqPage="+pageNo+"'><div class='pageNaviBtn'>&gt</div></a>";
 		}
 		FAQPageData pd = new FAQPageData(list,pageNavi);
 		JDBCTemplate.close(conn);
