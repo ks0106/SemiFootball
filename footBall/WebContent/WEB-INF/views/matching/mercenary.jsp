@@ -249,7 +249,7 @@
 		});
 	});
 	function matching(){
-		location.href="/views/match/mercenaryAdd.jsp";
+		location.href="/mercenaryAddPage";
 	}
 </script>
 </head>
@@ -276,7 +276,7 @@
 						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu3"  style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
+						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
 					</div>
 				</div>
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
@@ -327,7 +327,7 @@
 									</table>
 								</div>
 							<!-- 페이지 네비 -->
-							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;">${rpd.pageNavi }</div>
+							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;margin-top: 30px;">${rpd.pageNavi }</div>
 							<!-- Search폼태그 -->
 							<div style="height: 50px;">
 								<form action="/matchSearch" method="get" style="height: 85%;    vertical-align: middle;">
@@ -347,7 +347,7 @@
 							<!-- 게시글 view -->
 							 <div id="matchView" >
 									<div id="closeBtn" style="height: 10%;"><button type="button" onclick="close1(this)" style="width: 10%;height:50px;float: right; border-radius: 15px;background-color: white; border:none;"><span style="font-size: 50px;">&times</span></button></div>
-								<p style="text-align:left;margin: 0;margin-left: 30px;font-size: 30px;display: block; margin-bottom: 30px;">용병모집 상세보기</p>
+								<p style="text-align:left;margin: 0;margin-left: 30px;font-size: 30px;display: block; margin-bottom: 30px;">용병지원 상세보기</p>
 								<div id="view-table-div" >
 									<table id="view-table" style="margin: 0 auto; width: 80%; border-collapse: collapse;">
 										<tr id="tr11">
@@ -366,13 +366,12 @@
 											<th class="view-th">연락처</th> <td class="view-td">???</td><th class="view-th">팀수준</th> <td class="view-td">???</td>
 										</tr>
 										<tr>
-											<th class="view-th">모집인원 </th> <td class="view-td">???</td ><th class="view-th">신청가능여부</th> <td class="view-td">???</td>
+											<th class="view-th">지원인원 </th> <td class="view-td">???</td ><th class="view-th">신청가능여부</th> <td class="view-td">???</td>
 										</tr>
 										<tr>
 											<td colspan="4" class="view-td">
 										</tr>
 									</table>
-									<button type="button" onclick="modifyMactchCon()" style="margin-top: 20px;" class="btn btn-info btn-lg">수정하기</button>
 								</div>
 							</div>
 							
@@ -393,7 +392,7 @@
  			$("#tr11").parent().parent().parent().children().remove("#modiBtn-wrapper");
  		}
    		$.ajax({
-   			url:"/AddContentView",
+   			url:"/mersenaryContentView",
    			type:"get",
    			dataType:"json",
    			data:{pageNum:pageNum},
@@ -416,8 +415,8 @@
    				$("#tr11").next().next().next().next().next().find("td").eq(0).html(amount);
    				$("#tr11").next().next().next().next().next().find("td").eq(1).html(able);
    				$("#tr11").next().next().next().next().next().next().find("td").html(Memo);
-   				if("${sessionScope.member.phone}" == Phone && !$("#tr11").parent().parent().parent().children().is("#modiBtn-wrapper")){
-   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
+   				if("${sessionScope.member.phone}" == Phone){
+   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button' id='modiBtn'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
    				}
    			},
    			erorr : function () {
@@ -431,6 +430,25 @@
    	function close1(here){
    		$(here).parent().parent().css('display','none');
    		$("#popup_mask").css('display','none');
+   	}
+   	function modifyMactchCon(num){
+		$("#tr11").next().next().next().next().find("td").eq(1).html('<select name="recLevel" style="width: 80px;height: 20px;">	<option>--선택--</option><option value="상">상</option><option value="중상">중상</option><option value="중">중</option><option value="중하">중하</option><option value="하">하</option></select>');
+		$("#tr11").next().next().next().next().next().find("td").eq(0).html('<select name="recAmount" style="width:80px;height: 20px;"><option value="1">1명</option><option value="2">2명</option><option value="3">3명</option><option value="4">4명</option><option value="5">5명</option></select>');
+		$("#tr11").next().next().next().next().next().find("td").eq(1).html('<select name="recAble" style="width: 80px;height: 20px;"><option value="0">가능</option>	<option value="1">마감</option></select>');
+		$("#tr11").next().next().next().next().next().next().find("td").html('<textarea rows="3" cols="40" name="memo" style="resize: none;text-align: left;" placeholder="메모사항을 적어주세요"></textarea>');
+		$("#modiBtn").after("<button type='button' id='modi' style='margin-top:20px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>");
+		$("#modiBtn").after("<button type='button' id='delete' style='margin-top:20px;'  onclick='del("+num+")' style='margin-top: 20px;'>삭제하기</button>");
+		$("#modiBtn").hide();
+	}
+	function modi(num){
+	var level = $("#tr11").next().next().next().next().find("td").eq(1).children().val();
+	var amount = $("#tr11").next().next().next().next().next().find("td").eq(0).children().val();
+	var able = $("#tr11").next().next().next().next().next().find("td").eq(1).children().val();
+	var memo = $("#tr11").next().next().next().next().next().next().find("td").children().val();
+	location.href="/modiMercenary?recNo="+num+"&recLevel="+level+"&recAmount="+amount+"&recAble="+able+"&memo="+memo;
+	}
+	function del(num){
+   		location.href="/recContentDelete?num="+num;
    	}
 	</script>
 </body>

@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import matching.model.sevice.RecService;
-import matching.model.vo.Recruit;
+import matching.model.sevice.MatchService;
 
 /**
- * Servlet implementation class ModiRecContentServlet
+ * Servlet implementation class MatchContentDeleteServlet
  */
-@WebServlet(name = "ModiRecContent", urlPatterns = { "/modiRecContent" })
-public class ModiRecContentServlet extends HttpServlet {
+@WebServlet(name = "MatchContentDelete", urlPatterns = { "/matchContentDelete" })
+public class MatchContentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModiRecContentServlet() {
+    public MatchContentDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +31,12 @@ public class ModiRecContentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int recNo = Integer.parseInt(request.getParameter("recNo"));
-		String recLevel = request.getParameter("recLevel");
-		int recAmount = Integer.parseInt(request.getParameter("recAmount"));
-		int recAble = Integer.parseInt(request.getParameter("recAble"));
-		String recMemo = request.getParameter("recMemo").replaceAll("\r\n", "<br>");
-		Recruit r = new Recruit();
-		r.setSeqRecNo(recNo);
-		r.setRecLevel(recLevel);
-		r.setAmount(recAmount);
-		r.setRecAble(recAble);
-		r.setRecMemo(recMemo);
+		int num = Integer.parseInt(request.getParameter("num"));
 		try {
-			int result = new RecService().modiRecContent(r);
+			int result = new MatchService().deleteContent(num);
 			if(result>0) {
-				request.setAttribute("msg", "수정되었습니다");
-				request.setAttribute("loc", "/mercenaryRec");
+				request.setAttribute("msg", "게시글이 삭제 되었습니다");
+				request.setAttribute("loc", "/matching");
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 				rd.forward(request, response);
 			}
@@ -56,6 +45,7 @@ public class ModiRecContentServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			rd.forward(request, response);
 		}
+	
 	}
 
 	/**

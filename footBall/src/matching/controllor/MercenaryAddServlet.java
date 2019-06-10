@@ -40,7 +40,7 @@ public class MercenaryAddServlet extends HttpServlet {
 		String recDate = request.getParameter("matchDate");
 		String recAmount = request.getParameter("recAmount");
 		String recTime = request.getParameter("matchTime");
-		int recAble = Integer.parseInt(request.getParameter("matchAble"));
+		int recAble = Integer.parseInt(request.getParameter("recAble"));
 		String recLevel = request.getParameter("recLevel");
 		String recMemo = request.getParameter("memo").replaceAll("\r\n", "<br>");;
 		Recruit r = new Recruit();

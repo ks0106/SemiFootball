@@ -160,4 +160,17 @@ public class RecService {
 		RecPageData rpd = new RecPageData(list2, pageNavi);
 		return rpd;
 	}
+	public int deleteContent(int num) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new RecDao().deleteContent(conn , num);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+
+	}
+		
 }

@@ -123,4 +123,16 @@ public class MatchService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	public int deleteContent(int num) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MatchDao().deleteContent(conn , num);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+
+	}
 }

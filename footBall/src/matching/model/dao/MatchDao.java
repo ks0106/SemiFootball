@@ -195,4 +195,15 @@ public class MatchDao {
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
+	public int deleteContent(Connection conn, int num) throws SQLException {
+		PreparedStatement pstmt =null;
+		int result = 0;
+		String query = "delete from fb_matching where match_no=? ";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, num);
+		result= pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+		
+	}
 }
