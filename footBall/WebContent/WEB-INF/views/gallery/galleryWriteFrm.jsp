@@ -17,7 +17,6 @@
 <style>
 	
 	#galleryWriterTbl{
-		background : #e1dcd9;
 		border-collapse:collapse;
 		color: black;
 		text-align: center;
@@ -37,27 +36,27 @@
 	<!-- 내용 -->
 	<div id="title">사진 등록{관리자}</div>
 	<section class="page_area">
-		<div class="table-wrapper" style="text-align:center; width:80%; margin:0 auto; height: 600px;">
+		<div class="table-wrapper" style="text-align:center; width:70%; margin:0 auto; height: 600px;">
 			<form action="/insertGallery" method="post" enctype="multipart/form-data" style="height: 100%;">
 				<table id="galleryWriterTbl" align="center" style ="text-align: center; width: 80%; height: 100%; border: 1px solid black">
 					<tr >
-						<th colspan="2" style="background: #8f8681;font-size:20px; font-weight: bold; ">사진 등록</th>
+						<th colspan="2" style="background: #e1dcd9; height: 30px; font-size:20px; font-weight: bold; ">사진 등록</th>
 					</tr>
 					<tr >
-						<th >작성자</th>
-						<td>
+						<th style="width: 10%; height: 20px;">작성자</th>
+						<td style="width: 90%;">
 							${sessionScope.member.id }
 							<input type="hidden" name="photoWriter" value="${sessionScope.member.id }">
 						</td>
 					</tr>
 					<tr >
-						<th>첨부파일</th>
+						<th style="width: 10%; height: 20px;">첨부파일</th>
 						<td>
 							<input type="file" name="filename" onchange="loadImg(this)">
 						</td>
 					</tr>
 					<tr>
-						<th>이미지 보기</th>
+						<th style="width: 10%; height: 80px;">이미지 보기</th>
 						<td>
 							<div id="img-viewer">
 								<img id="img-view" width="350">
@@ -65,8 +64,9 @@
 						</td>
 					</tr>
 					<tr>
-						<th colspan="2">
-							<button id="input" type="submit">등록하기</button>
+						<th style=" height: 20px;" colspan="2">
+							<button type="submit"  style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록하기</button>
+							<a href="/admin"><button type="button" style=" border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></a>
 						</th>
 					</tr>
 				</table>

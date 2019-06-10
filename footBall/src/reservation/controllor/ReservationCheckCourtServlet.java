@@ -36,11 +36,8 @@ public class ReservationCheckCourtServlet extends HttpServlet {
 		int cCode = Integer.parseInt(request.getParameter("cCode"));
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
-		System.out.println("시작 : "+startTime);
-		System.out.println("끝 : "+endTime);
 		try {
 			int result = new ReservationService().reservationCheckCourt(resDate,cCode,startTime,endTime);
-			System.out.println("대관 가능 여부 : "+result);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			new Gson().toJson(result,response.getWriter());	

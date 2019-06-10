@@ -134,7 +134,7 @@ to {
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu2" style="color: #2c3c57;">예약확인</a>
 			</div>
-			<c:if test="${sessionScope.Member.id == admin}">
+			<c:if test="${sessionScope.member.id == 'admin'}">
 				<div style="margin-bottom: 15px;">
 					<a class="side_a" id="side_menu3" style="color: #2c3c57;">[관리자]
 						대관 관리</a>

@@ -31,7 +31,7 @@
 </style>
 <footer>
 	<div class="footer_area">
-		<div style="width:350px;padding:0;margin-top:30px;margin-left:300px;float:left;">
+		<div style="width:350px;padding:0;margin-top:30px;margin-left:25%;float:left;">
 			<a href="/"><img src="/img/footer_logo.png" width="350" style="opacity:0.2;padding:0;margin:0;"></a>
 		</div>
 		<div style="height:100%;width:500px;margin-left:100px;float:left;">

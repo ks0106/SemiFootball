@@ -1,6 +1,7 @@
-package gallery.controllor;
+package matching.controllor;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,21 +9,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import member.model.vo.Member;
+import matching.model.sevice.MatchService;
 
 /**
- * Servlet implementation class GalleryWriteFrmServlet
+ * Servlet implementation class MatchContentDeleteServlet
  */
-@WebServlet(name = "GalleryWriteFrm", urlPatterns = { "/galleryWriteFrm" })
-public class GalleryWriteFrmServlet extends HttpServlet {
+@WebServlet(name = "MatchContentDelete", urlPatterns = { "/matchContentDelete" })
+public class MatchContentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GalleryWriteFrmServlet() {
+    public MatchContentDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +31,21 @@ public class GalleryWriteFrmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		Member m = (Member)session.getAttribute("member");
-		if(m!=null) {
-			if(m.getId().equals("admin")) {
-				request.getRequestDispatcher("/WEB-INF/views/gallery/galleryWriteFrm.jsp").forward(request, response);
-			}else {
-				request.setAttribute("msg", "넌 못들어간다.");
-				request.setAttribute("loc", "/");
+		int num = Integer.parseInt(request.getParameter("num"));
+		try {
+			int result = new MatchService().deleteContent(num);
+			if(result>0) {
+				request.setAttribute("msg", "게시글이 삭제 되었습니다");
+				request.setAttribute("loc", "/matching");
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 				rd.forward(request, response);
 			}
-		}else {
-			request.setAttribute("msg", "로그인을 해주세요");
-			request.setAttribute("loc", "/views/login/login.jsp");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		} catch (SQLException e) {
+			request.setAttribute("msg", "spl에러: "+e);
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			rd.forward(request, response);
 		}
-		
+	
 	}
 
 	/**

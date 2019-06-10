@@ -3,27 +3,28 @@ package matching.controllor;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import matching.model.sevice.RecService;
-import matching.model.vo.RecPageData;
+import matching.model.vo.Recruit;
 
 /**
- * Servlet implementation class MercenaryServlet
+ * Servlet implementation class MersenaryContentViewServlet
  */
-@WebServlet(name = "Mercenary", urlPatterns = { "/mercenary" })
-public class MercenaryServlet extends HttpServlet {
+@WebServlet(name = "MersenaryContentView", urlPatterns = { "/mersenaryContentView" })
+public class MersenaryContentViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MercenaryServlet() {
+    public MersenaryContentViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +33,13 @@ public class MercenaryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reqPage;
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		try {
-			reqPage = Integer.parseInt(request.getParameter("reqPage"));
-		}catch(NumberFormatException e){
-			reqPage =1;
-		}
-		try {
-			RecPageData rpd = new RecService().selectList2(reqPage);
-			request.setAttribute("rpd", rpd);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/matching/mercenary.jsp");
-			rd.forward(request, response);
+			Recruit r = new RecService().selectOne(pageNum);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			new Gson().toJson(r,response.getWriter());
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

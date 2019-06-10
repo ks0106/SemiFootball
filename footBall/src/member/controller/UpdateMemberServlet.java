@@ -1,4 +1,4 @@
-package matching.controllor;
+package member.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import matching.model.sevice.RecService;
-import matching.model.vo.Recruit;
+import member.model.service.MemberService;
 
 /**
- * Servlet implementation class ModiRecContentServlet
+ * Servlet implementation class UpdateMemberServlet
  */
-@WebServlet(name = "ModiRecContent", urlPatterns = { "/modiRecContent" })
-public class ModiRecContentServlet extends HttpServlet {
+@WebServlet(name = "UpdateMember", urlPatterns = { "/updateMember" })
+public class UpdateMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModiRecContentServlet() {
+    public UpdateMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,30 +31,29 @@ public class ModiRecContentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int recNo = Integer.parseInt(request.getParameter("recNo"));
-		String recLevel = request.getParameter("recLevel");
-		int recAmount = Integer.parseInt(request.getParameter("recAmount"));
-		int recAble = Integer.parseInt(request.getParameter("recAble"));
-		String recMemo = request.getParameter("recMemo").replaceAll("\r\n", "<br>");
-		Recruit r = new Recruit();
-		r.setSeqRecNo(recNo);
-		r.setRecLevel(recLevel);
-		r.setAmount(recAmount);
-		r.setRecAble(recAble);
-		r.setRecMemo(recMemo);
+		String pwd = request.getParameter("repwd");
+		String pwdHint = request.getParameter("pwdHint");
+		String pwdHintAnswer = request.getParameter("pwdHintAnswer");
+		String phone = request.getParameter("phone");
+		String id = request.getParameter("id");
 		try {
-			int result = new RecService().modiRecContent(r);
+			int result = new MemberService().updateMember(id,pwd,pwdHint,pwdHintAnswer,phone);
 			if(result>0) {
-				request.setAttribute("msg", "수정되었습니다");
-				request.setAttribute("loc", "/mercenaryRec");
+				request.setAttribute("msg", "회원정보 수정 성공!");
+				request.setAttribute("loc", "/myPage?memberId="+id);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				rd.forward(request, response);
+			}else {
+				request.setAttribute("msg", "회원정보 수정 실패!!");
+				request.setAttribute("loc", "/myPage?memberId="+id);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 				rd.forward(request, response);
 			}
 		} catch (SQLException e) {
-			request.setAttribute("msg", "spl에러: "+e);
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
-			rd.forward(request, response);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 	}
 
 	/**

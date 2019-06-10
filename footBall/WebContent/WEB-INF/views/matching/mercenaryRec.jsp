@@ -260,7 +260,7 @@
 						<a class="side_a" id="side_menu1" href="/matching" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
+						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
 					</div>
 					<div style="margin-bottom:15px;">
 						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
@@ -317,7 +317,7 @@
 							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;margin-top: 30px;">${rpd.pageNavi }</div>
 							<!-- Search폼태그 -->
 							<div style="height: 50px;">
-								<form action="/matchSearch" method="get" style="height: 85%;    vertical-align: middle;">
+								<form action="/recSearch" method="get" style="height: 85%;    vertical-align: middle;">
 									<select name="branch" style="height: 100%; border:2px solid #A4A4A4; ">
 											<option value="">지점</option>
 											<option value="1">부천점</option>
@@ -403,7 +403,7 @@
    				$("#tr11").next().next().next().next().next().find("td").eq(0).html(amount);
    				$("#tr11").next().next().next().next().next().find("td").eq(1).html(able);
    				$("#tr11").next().next().next().next().next().next().find("td").html(Memo);
-   				if("${sessionScope.member.phone}" == Phone && !$("#tr11").parent().parent().parent().children().is("#modiBtn-wrapper")){
+   				if("${sessionScope.member.phone}" == Phone){
    					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button' id='modiBtn' onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
    				}
    			},
@@ -424,7 +424,8 @@
 		$("#tr11").next().next().next().next().next().find("td").eq(0).html('<select name="recAmount" style="width:80px;height: 20px;"><option value="1">1명</option><option value="2">2명</option><option value="3">3명</option><option value="4">4명</option><option value="5">5명</option><option value="6">6명</option><option value="7">7명</option><option value="8">8명</option><option value="9">9명</option><option value="10">10명</option></select>');
 		$("#tr11").next().next().next().next().next().find("td").eq(1).html('<select name="recAble" style="width: 80px;height: 20px;"><option value="0">가능</option>	<option value="1">마감</option></select>');
 		$("#tr11").next().next().next().next().next().next().find("td").html('<textarea rows="3" cols="40" name="memo" style="resize: none;text-align: left;" placeholder="유니폼색상과 메모사항을 적어주세요"></textarea>');
-		$("#modiBtn").after("<button type='button' id='modi' style='margin-top:20px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>")
+		$("#modiBtn").after("<button type='button' id='modi' style='margin-top:20px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>");
+		$("#modiBtn").after("<button type='button' id='delete' style='margin-top:20px;'  onclick='del("+num+")' style='margin-top: 20px;'>삭제하기</button>");
 		$("#modiBtn").hide();
 	}
 	function modi(num){
@@ -432,9 +433,11 @@
 	var amount = $("#tr11").next().next().next().next().next().find("td").eq(0).children().val();
 	var able = $("#tr11").next().next().next().next().next().find("td").eq(1).children().val();
 	var memo = $("#tr11").next().next().next().next().next().next().find("td").children().val();
-	console.log(able);
 	location.href="/modiRecContent?recNo="+num+"&recLevel="+level+"&recAmount="+amount+"&recAble="+able+"&recMemo="+memo;
 	}
+	function del(num){
+   		location.href="/recContentDelete?num="+num;
+   	}
 	</script>
 </body>
 </html>

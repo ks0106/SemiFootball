@@ -14,7 +14,11 @@
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
-<!-- reservation 공통 js => jqeury를 이용하기 때문에 jquery import 밑으로 내려야 한다. -->
+	<!-- drag import -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+ <!-- reservation 공통 js => jqeury를 이용하기 때문에 jquery import 밑으로 내려야 한다. -->
 <script type="text/javascript" src="/js/reservation/reservationAdminAll.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -29,6 +33,19 @@
 		/* 지점 로드 함수 */
 		branchLoad();
 	});
+	
+	$(function() {
+		$( "#draggable" ).draggable();
+			$( "#droppable" ).droppable({
+				drop: function( event, ui ) {
+					$( this )
+						.addClass( "ui-state-highlight" )
+					.find( "p" )
+				.html( "Dropped!" );
+			}
+		});
+	});
+
 	
 </script>
 <style>
@@ -90,7 +107,7 @@
 		<!-- 컨텐츠 -->
 		<div style="width:100%;overflow:hidden;margin-top:30px;">
 			<div style="width: 95%; background-color: white; margin: 0 auto; overflow: hidden;">
-				<!-- 컨텐츠 사이드 메뉴 -->
+<!-- 				컨텐츠 사이드 메뉴
 				<div style="width:300px; height: 300px; text-align: left; display: inline-block; float: left;">
 					<div style="font-size: 30px; font-weight: bolder; color: black; margin: 0; margin-bottom: 10px;">대관 관리</div>
 					<div style="width: 80%;">
@@ -107,18 +124,18 @@
 						<a class="side_a" id="side_menu3" style="color: #df0101;">스케쥴 등록/수정/삭제</a>
 					</div>
 				</div>
-				<!-- 사이드 메뉴 종료 -->
+				사이드 메뉴 종료 -->
 				<!-- 컨텐츠 -->
-				<div style="width: 78%; height:100vh; border-left: 1px solid silver; display: inline-block; overflow:hidden;">
+				<div style="width: 100%; height:100vh;overflow:hidden;">
 					<!-- 컨텐츠 타이틀 -->
 					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 스케쥴 관리</div>
 					<!-- 본문 -->
 					<!-- 달력 -->
-					<div id="drag-cal" style="width:530px;float:right;position:fixed;right:150px;bottom:200px;">
-						<jsp:include page="/views/test/calendar.jsp" />
+					<div id="draggable" style="width:530px;float:right;position:fixed;right:400px;bottom:200px;">
+						<jsp:include page="/views/test/moveCalendar.jsp" />
 					</div>
 					<!-- 컨텐츠 파티션 -->
-					<div style="width:90%; margin-left:40px;margin-top:50px;">
+					<div style="width:90%; margin:0 auto;margin-top:50px;">
 						<button class="scheduleManagerBtn" id="scheduleAddBtn" style="float:left;">스케쥴등록</button>
 						<button class="scheduleManagerBtn" id="scheduleModifyBtn" style="float:left;">스케쥴수정</button>
 						<button class="scheduleManagerBtn" id="scheduleDeleteBtn" style="display:inline-block;">스케쥴삭제</button>
@@ -240,7 +257,7 @@
 									<tr>
 										<th>시간</th>
 										<td>
-											<select id="startTime" name=""startTime"" style="width:400px;height:40px;font-size:18px;">
+											<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
 												<option class="default" value="default" selected>::: 시간 선택 :::</option>
 											</select>								
 										</td>
@@ -326,7 +343,7 @@
 		function branchLoad(){
 			var branchName = '<c:forEach items="${list}" var="b" varStatus="i">';
 			branchName += '<option value="${b.branchCode}">${b.branchName}</option></c:forEach>';
-			$('.branchName').append(branchName);
+			$('tr').find('.branchName').append(branchName);
 		}
 		
 		////////////////////* 로드되었을 때 동작하는 영역 *////////////////////
@@ -367,6 +384,8 @@
 			$('#'+$target).find('#scheduleDate').val(txt);
 		});
 		
+		
+		////////////////////* include 영역 *////////////////////		
 		/* 달력 내용 클릭 시 동작 */
 		$(document).on("click",".future",function(){
 			month = $('#tbCalendarYM').text();
@@ -376,7 +395,10 @@
 			}else{
 				txt = month+"."+"0"+day;
 			}
-			$('#scheduleDate').val(txt);
+			$('tr').find('#scheduleDate').val(txt);
+			$('#scheduleAddSubmit').find('select').not('#startTime').not('#endTime').find('option').not('#default').remove();
+			$('tr').find('select').find('option:eq(0)').prop('selected',true);
+			$('form').find('input').not('#scheduleDate').val('');
 		});
 		
 		
@@ -397,7 +419,6 @@
 				alert("입력된 값이 부족합니다.");
 			}
 		});
-
 		/* 스케쥴수정버튼 눌렀을 때(form submit) */		
 		$(document).on("click","#scheduleModifySubmit",function(){
 			if($(this).siblings().find('#branchName').find('option:selected').val() != 'default'
@@ -406,15 +427,21 @@
 				&& $(this).siblings().find('#scheduleYN').find('option:selected').val() != 'default'
 				&& $(this).siblings().find('#scheduleDate').val() != ""
 				&& $(this).siblings().find('#resPrice').val() != ""){
-				$('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
-				$('#scheduleAdd').submit();
+				$(this).siblings().find('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
+				$('#scheduleModify').submit();
 			}else{
-				console.log($('#courtName').find('option:selected').val());
-				console.log($(this).siblings().find('#courtName').val());
-				console.log($(this).siblings().find('#startTime').val());
-				console.log($(this).siblings().find('#scheduleYN').val());
-				console.log($(this).siblings().find('#resPrice').val());
-				console.log($(this).siblings().find('#scheduleDate').val());
+				alert("입력된 값이 부족합니다.");
+			}
+		});
+		/* 스케쥴삭제버튼 눌렀을 때(form submit) */		
+		$(document).on("click","#scheduleDeleteSubmit",function(){
+			if($(this).siblings().find('#branchName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#courtName').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#startTime').find('option:selected').val() != 'default'
+				&& $(this).siblings().find('#scheduleDate').val() != ""){
+				$(this).siblings().find('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
+				$('#scheduleDelete').submit();
+			}else{
 				alert("입력된 값이 부족합니다.");
 			}
 		});
@@ -462,19 +489,19 @@
 		});
 		/* 구장 선택 시 동작 */
 		$(document).on("change","#courtName",function(){
-			/* select초기화 시작 */
-			var $startTime = $(this).parents('tr').siblings().find('#startTime');
-			$startTime.find("option:eq(0)").prop("selected",true);
-			var $endTime = $(this).parents('tr').siblings().find('#endTime');
-			$endTime.find("option:eq(0)").prop("selected",true);
-			var $scheduleYN = $(this).parents('tr').siblings().find('#scheduleYN');
-			$scheduleYN.find("option:eq(0)").prop("selected",true);
-			/* select초기화 끝 */
-			/* input초기화 시작 */
-			var $resPrice = $(this).parents('tr').siblings().find('#resPrice');
-			$resPrice.val("");
-			/* input초기화 끝 */
 			if($('.view').attr('id') == 'scheduleAdd'){
+				/* select초기화 시작 */
+				var $startTime = $(this).parents('tr').siblings().find('#startTime');
+				$startTime.find("option:eq(0)").prop("selected",true);
+				var $endTime = $(this).parents('tr').siblings().find('#endTime');
+				$endTime.find("option:eq(0)").prop("selected",true);
+				var $scheduleYN = $(this).parents('tr').siblings().find('#scheduleYN');
+				$scheduleYN.find("option:eq(0)").prop("selected",true);
+				/* select초기화 끝 */
+				/* input초기화 시작 */
+				var $resPrice = $(this).parents('tr').siblings().find('#resPrice');
+				$resPrice.val("");
+				/* input초기화 끝 */
 				if($(this).find('option:selected').val() != 'default'){
 					var bCode = $(this).parents('tr').siblings().find('#branchName').val();
 					var cCode = $(this).find('option:selected').val();
@@ -498,14 +525,26 @@
 					});
 				}
 			}else{
+				/* select초기화 시작 */
+				var $startTime = $(this).parents('tr').siblings().find('#startTime');
+				$startTime.find('option').not('.default').remove();
+				$startTime.find("option:eq(0)").prop("selected",true);
+				var $endTime = $(this).parents('tr').siblings().find('#endTime');
+				$endTime.find("option:eq(0)").prop("selected",true);
+				var $scheduleYN = $(this).parents('tr').siblings().find('#scheduleYN');
+				$scheduleYN.find("option:eq(0)").prop("selected",true);
+				/* select초기화 끝 */
+				/* input초기화 시작 */
+				var $resPrice = $(this).parents('tr').siblings().find('#resPrice');
+				$resPrice.val("");
+				/* input초기화 끝 */
 				if($(this).find('option:selected').val() != 'default'){
 					/* 날짜 초기화 */
 					$(this).parents('tr').siblings().find('#scheduleDate').val($('#scheduleDate').val().replace(/\./gi,'/'));
 					/* 날짜 초기화 끝 */
 					var cCode = $(this).find('option:selected').val();
 					var result = $(this).parents('tr').siblings().find('#scheduleDate').val();
-					console.log(cCode);
-					console.log(result);
+					$(this).parents('tr').siblings().find('#scheduleDate').val(txt);
 					$.ajax({
 						url : "/reservationCourtSelect.do",
 						type : "get",
@@ -514,7 +553,7 @@
 							for(var i=0;i<data.length;i++){	
 								var front = data[i].scheduleStartTime;
 								var end = data[i].scheduleEndTime;
-								$startTime.append('<option><span id="startTime">'+front+'</span>~<span id="endTime">'+end+'</span></option>');
+								$startTime.append('<option value='+front+'>'+front+'~'+end+'</option>');
 							}
 						},
 						error : function(){
@@ -553,6 +592,9 @@
 				/* select초기화 끝 */
 				if($(this).find('option:selected').val() != 'default'){
 					var front = parseInt($(this).find('option:selected').val().substring(0,2))-2;
+					if(front < 10){
+						front = "0"+front;
+					}
 					var end = $(this).find('option:selected').val().substring(2,5);
 					var check = front+end;
 					for(var i=0;i<$(this).find('option').length;i++){
@@ -564,61 +606,7 @@
 				}
 			}
 		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		function courtCalendar(){
-			/* 날짜를 클릭했을 때 예약 가능한 구장을 보여줌 */
-			var $select = $('#courtTime');
-			$select.find("div").remove();
-			var result = txt.replace(/\./gi,'/');
-			var bCode = '${b.branchCode}';
-			$.ajax({
-				url : "/reservationCourtList.do",
-				type : "get",
-				data : {result:result,bCode:bCode},
-				success : function(data){
-					var $select = $('#courtSelect');
-					$select.find("option").not('#default').remove();
-					for(var i=0;i<data.length;i++){
-						var courtBCode = data[i].courtBCode;
-						var courtCCode = data[i].courtCCode;
-						var courtName = data[i].courtName;
-						var courtStatus = data[i].courtStatus;
-						var selected = "";
-						if(courtStatus == 0){
-							$select.append('<option value="'+courtCCode+'">'+courtName+'</option>');
-						}
-					}
-				},
-				error : function(){
-					alert("정보를 읽어올 수 없습니다. 잠시 후 다시 시도해주세요.");
-				}
-			});			
-		}
+
 
 	</script>
 	

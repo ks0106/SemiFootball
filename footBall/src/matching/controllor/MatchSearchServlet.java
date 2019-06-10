@@ -54,7 +54,7 @@ public class MatchSearchServlet extends HttpServlet {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println(e);
+			request.setAttribute("msg", "쿼리문오류"+e);
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
 			rd.forward(request, response);
 		}

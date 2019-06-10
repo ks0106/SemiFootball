@@ -238,11 +238,6 @@
 				<div style="margin-bottom:15px;">
 					<a class="side_a selected" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난대회결과</a>
 				</div>
-				<c:if test="${sessionScope.member.id eq'admin' }">
-				<div style="margin-bottom:15px;">
-					<a class="side_a selected" id="side_menu4" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
-				</div>
-				</c:if>
 			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 본문 -->
    			<br><br>

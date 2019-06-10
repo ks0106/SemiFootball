@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 	<script
       src="http://code.jquery.com/jquery-3.4.0.slim.min.js"
       integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
@@ -128,7 +128,7 @@
  	<script>
  		var result =[false,false,false,false,false]
  		$(document).ready(function() {
- 			$(".button").prop("disabled",true);
+ 			$(".button").prop("disabled",true); //이메일 인증버튼 비활성화
 			$("#id").blur(function () {
 				var id = $("#id").val();
 				var text = /[a-z0-9]@[a-z]+\.[a-z]{2,6}$/;
@@ -143,7 +143,7 @@
 	                 }else{
 	                      $('#extext').html('');
 	                     
-	                     $(".button").prop("disabled",false);
+	                     $(".button").prop("disabled",false); //이메일 인증 버튼 활성화
 	                     if($("#eTxt").text()=="인증완료"){
 	                    		console.log($("#eTxt").text()); 
 	                    		result[0]='true';

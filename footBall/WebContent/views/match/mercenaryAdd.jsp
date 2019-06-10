@@ -53,7 +53,7 @@
 		margin-bottom: 50px;
 		margin-top: 20px;
 	}
-	#form-cont{
+		#form-cont{
 		margin: 0 auto;
 		width: 80%;
 	}
@@ -67,15 +67,15 @@
 		border-bottom: 3px solid green;
 	}
 	.th{
-		width: 25%;
+		width: 20%;
 		padding: 20px;
-		font-size: 30px;
+		font-size: 16px;
 	}
 	.td{
-		width: 25%;
+		width: 20%;
 		padding: 20px;
-		font-size: 30px;
-		text-align: left;
+		font-size: 16px;
+		text-align: center;
 	}
 </style>
 <script>
@@ -129,7 +129,7 @@
 						<a class="side_a" id="side_menu1" href="/matching" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
+						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
 					</div>
 					<div style="margin-bottom:15px;">
 						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
@@ -159,6 +159,7 @@
 										<option value="">구장선택</option>
 										<option value="1">A구장</option>
 										<option value="2">B구장</option>
+										<option value="3">C구장</option>
 									</select>
 								</td>
 							</tr>
@@ -170,9 +171,21 @@
 							</tr>
 							<tr>
 								<th class="th">매치일정</th>
-								<td class="td"><input type="text" name="matchDate" style="width: 297px;height: 40px;"></td>
+								<td class="td"><input type="text" name="matchDate" style="width: 297px;height: 40px;" placeholder="ex)2019-01-01"></td>
 								<th class="th">시간선택</th>
-								<td class="td"><input type="text" name="matchTime" style="width: 297px;height: 40px;"></td>
+								<td class="td">
+								<select id="select04" name="matchTime" style="width: 300px;height:50px;">
+									<option value="">시간 선택</option>
+									<option value="10시~11시">10시 ~ 11시</option>
+									<option value="11시~12시">11시 ~ 12시</option>
+									<option value="12시~13시">12시 ~ 13시</option>
+									<option value="13시~14시">13시 ~ 14시</option>
+									<option value="14시~15시">14시 ~ 15시</option>
+									<option value="15시~16시">15시 ~ 16시</option>
+									<option value="16시~17시">16시 ~ 17시</option>
+									<option value="17시~18시">17시 ~ 18시</option>
+								</select>
+								</td>
 							</tr>
 							<tr>
 								<th class="th">팀수준</th>
@@ -186,11 +199,14 @@
 										<option value="하">하</option>
 									</select>
 								</td>
-								<th class="th" colspan="1">마감여부</th>
-								<td class="td" colspan="3"><input type="text" name="matchAble" style="width: 297px;height: 40px;"></td>
+								<th class="th" >마감여부</th>
+								<td class="td" ><select name="recAble" style="width: 297px;height: 40px;">
+										<option value="0">가능</option>
+										<option value="1">마감</option>
+									</select></td>
 							</tr>
 							<tr>
-								<th  class="th" >모집인원 수</th>
+								<th  class="th" >지원인원 수</th>
 								<td class="td" >
 									<select name="recAmount" style="width: 300px;height:50px;">
 										<option value="1">1명</option>
@@ -198,19 +214,10 @@
 										<option value="3">3명</option>
 										<option value="4">4명</option>
 										<option value="5">5명</option>
-										<option value="6">6명</option>
-										<option value="7">7명</option>
-										<option value="8">8명</option>
-										<option value="9">9명</option>
-										<option value="10">10명</option>
 									</select>
 								</td>
-							</tr>
-							<tr>
-								<th colspan="4" class="th" >메모</th>
-							</tr>
-							<tr>
-								<td class="th" colspan="4" rowspan="4"><textarea rows="5" name="memo" cols="100" style="resize: none;text-align: center;"></textarea> </td>
+								<th class="th" >메모</th>
+								<td class="td"  style="text-align: left;"><textarea rows="5" cols="40" name="memo" style="resize: none;text-align: left;" placeholder="유니폼색상과 메모사항을 적어주세요"></textarea> </td>
 							</tr>
 						</table>
 						<div id="btn-div" style="margin-top: 30px;text-align: center;">

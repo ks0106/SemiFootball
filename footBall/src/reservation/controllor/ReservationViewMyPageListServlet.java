@@ -1,6 +1,8 @@
-package gallery.controllor;
+package reservation.controllor;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,18 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import member.model.vo.Member;
+import reservation.model.service.ReservationService;
+import reservation.model.vo.Reservation;
 
 /**
- * Servlet implementation class GalleryWriteFrmServlet
+ * Servlet implementation class ReservationViewListServlet
  */
-@WebServlet(name = "GalleryWriteFrm", urlPatterns = { "/galleryWriteFrm" })
-public class GalleryWriteFrmServlet extends HttpServlet {
+@WebServlet(name = "ReservationViewMyPageListServlet", urlPatterns = { "/reservationViewMyPageList" })
+public class ReservationViewMyPageListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GalleryWriteFrmServlet() {
+    public ReservationViewMyPageListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +37,21 @@ public class GalleryWriteFrmServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("member");
-		if(m!=null) {
-			if(m.getId().equals("admin")) {
-				request.getRequestDispatcher("/WEB-INF/views/gallery/galleryWriteFrm.jsp").forward(request, response);
-			}else {
-				request.setAttribute("msg", "넌 못들어간다.");
-				request.setAttribute("loc", "/");
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		if(m != null) {
+			try {
+				ArrayList<Reservation> list = new ReservationService().reservationViewList(m.getId());
+				request.setAttribute("list", list);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/reservationsList.jsp");
 				rd.forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}else {
-			request.setAttribute("msg", "로그인을 해주세요");
-			request.setAttribute("loc", "/views/login/login.jsp");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			request.setAttribute("msg", "로그인을 해주세요.");
+			request.setAttribute("loc", "/views/login/login.jsp");
 			rd.forward(request, response);
 		}
-		
 	}
 
 	/**

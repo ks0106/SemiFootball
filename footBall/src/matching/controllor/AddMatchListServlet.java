@@ -43,7 +43,7 @@ public class AddMatchListServlet extends HttpServlet {
 		String matchLevel = request.getParameter("matchLevel");
 		int matchAble = Integer.parseInt(request.getParameter("matchAble"));
 		int matchAmount = Integer.parseInt(request.getParameter("matchAmount"));
-		String matchMemo = request.getParameter("memo");
+		String matchMemo = request.getParameter("memo").replaceAll("\r\n", "<br>");
 		Date d = Date.valueOf(matchDate);
 		MatchList m = new MatchList();
 		m.setMatchType(matchType);

@@ -14,16 +14,16 @@ import matching.model.sevice.RecService;
 import matching.model.vo.Recruit;
 
 /**
- * Servlet implementation class ModiRecContentServlet
+ * Servlet implementation class ModiMercenaryServlet
  */
-@WebServlet(name = "ModiRecContent", urlPatterns = { "/modiRecContent" })
-public class ModiRecContentServlet extends HttpServlet {
+@WebServlet(name = "ModiMercenary", urlPatterns = { "/modiMercenary" })
+public class ModiMercenaryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModiRecContentServlet() {
+    public ModiMercenaryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +36,7 @@ public class ModiRecContentServlet extends HttpServlet {
 		String recLevel = request.getParameter("recLevel");
 		int recAmount = Integer.parseInt(request.getParameter("recAmount"));
 		int recAble = Integer.parseInt(request.getParameter("recAble"));
-		String recMemo = request.getParameter("recMemo").replaceAll("\r\n", "<br>");
+		String recMemo = request.getParameter("memo").replaceAll("\r\n", "<br>");
 		Recruit r = new Recruit();
 		r.setSeqRecNo(recNo);
 		r.setRecLevel(recLevel);
@@ -47,7 +47,7 @@ public class ModiRecContentServlet extends HttpServlet {
 			int result = new RecService().modiRecContent(r);
 			if(result>0) {
 				request.setAttribute("msg", "수정되었습니다");
-				request.setAttribute("loc", "/mercenaryRec");
+				request.setAttribute("loc", "/mercenary");
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 				rd.forward(request, response);
 			}

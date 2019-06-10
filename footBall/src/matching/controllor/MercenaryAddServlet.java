@@ -40,19 +40,17 @@ public class MercenaryAddServlet extends HttpServlet {
 		String recDate = request.getParameter("matchDate");
 		String recAmount = request.getParameter("recAmount");
 		String recTime = request.getParameter("matchTime");
-		int recAble = Integer.parseInt(request.getParameter("matchAble"));
+		int recAble = Integer.parseInt(request.getParameter("recAble"));
 		String recLevel = request.getParameter("recLevel");
 		String recMemo = request.getParameter("memo").replaceAll("\r\n", "<br>");;
 		Recruit r = new Recruit();
-		System.out.println(recBCode);
-		System.out.println(recCCode);
 		r.setRecBCode(recBCode);
 		r.setRecCCode(recCCode);
 		r.setRecName(recName);
 		r.setRecPhone(recPhone);
 		Date d = Date.valueOf(recDate);
 		r.setRecDate(d);
-		r.setAmount2(Integer.parseInt(recAmount));
+		r.setAmount(Integer.parseInt(recAmount));
 		r.setRecTime(recTime);
 		r.setAble2(recAble);
 		r.setRecLevel(recLevel);
@@ -60,7 +58,6 @@ public class MercenaryAddServlet extends HttpServlet {
 		int result=0;
 		try {
 			result = new MatchService().mercenaryAdd(r);
-			System.out.println(result);
 			if(result > 0) {
 				request.setAttribute("msg", "등록성공");
 				request.setAttribute("loc", "/mercenary");

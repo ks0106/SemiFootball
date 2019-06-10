@@ -147,7 +147,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu2" style="color: #2c3c57;">예약확인</a>
 			</div>
-			<c:if test="${sessionScope.Member.id == admin}">
+			<c:if test="${sessionScope.member.id == 'admin'}">
 				<div style="margin-bottom: 15px;">
 					<a class="side_a" id="side_menu3" style="color: #2c3c57;">[관리자] 대관 관리</a>
 				</div>
@@ -167,6 +167,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			<div style="width: 100%;">
 				<!-- 주의사항 -->
 				<div style="width:590px; border: 1px solid darkgray;float:right;margin-top:47px;color:#2c3c57;margin-bottom:30px;">
+					<div>
+						<img src="/img/ground4.jpg" width="590px" height="450px">
+					</div>
 					<div style="height:70px;background-color:#2c3c57;color:white;border:0;border-bottom:1px solid darkgray;font-weight:bolder;text-align:center;font-size:35px;line-height:70px;">환불규정</div>
 					<div style="padding:20px;">
 						<br>
@@ -225,8 +228,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 						<div style="font-size:18px;font-weight:bolder;">
 							2. 문의 전화 : 02-3337-4380 / 010-3337-4380
 						</div>
-						<div style="font-size:18px;font-weight:bolder;text-align:center;">
-							(가능시간 : 10:00 ~ 18:00)
+						<div>
+							&nbsp;* 가능시간 : 10:00 ~ 18:00
 						</div>
 						<br>
 						<div style="font-size:18px;font-weight:bolder;">
@@ -236,28 +239,28 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 							4. 전 구역 금연지역입니다.
 						</div>
 						<div>
-							&nbsp;(흡연구역 외 경기장내 흡연 적발 시 대관 취소 및 환불 불가)
+							&nbsp;! 흡연구역 외 경기장내 흡연 적발 시 대관 취소 및 환불 불가
 						</div><br>
 						<div style="font-size:18px;font-weight:bolder;">
 							5. 화장실은 매장 2층에 위치해 있습니다.
 						</div>
 						<div>
-							&nbsp;(노상방뇨 적발시 대관 취소 및 환불 불가 => 전구역CCTV작동중)
+							&nbsp;! 노상방뇨 적발시 대관 취소 및 환불 불가 => 전구역CCTV작동중
 						</div><br>
 						<div style="font-size:18px;font-weight:bolder;">
 							6. 경기장 내 음료 및 음식물 반입 금지
 						</div>
 						<div>
-							&nbsp;(물, 탄산수 제외)
+							&nbsp;* 물, 탄산수 제외
 						</div><br>
 						<div style="font-size:18px;font-weight:bolder;">
 							7. 주차는 경기장 앞 7층 주차장을 이용하시기 바랍니다.
 						</div><br>
 						<div style="font-size:18px;font-weight:bolder;">
-							8. 현장 카드결재 가능합니다. 현금영수증 발행은 현장 결제 시 가능합니다.
+							8. 현장 카드결제 가능합니다. 현금영수증 발행은 현장 결제 시 가능합니다.
 						</div><br>
 						<div style="font-size:18px;font-weight:bolder;">
-							9. 본 풋살파크는 CCTV 촬영되고 있습니다.
+							9. 본 KS풋살파크는 CCTV로 촬영되고 있습니다.
 						</div><br>
 						<div style="font-size:18px;font-weight:bolder;">
 							10.분실물에 대한 책임은 본인에게 있습니다.
@@ -266,7 +269,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 							11. 장비는 직접 지참 혹은 대여하실 수 있습니다. 공은 구장마다 마련되어있습니다.
 						</div>
 						<div>
-							&nbsp;(대여한 물품은 반드시 반납해주시기 바랍니다)
+							&nbsp;! 대여한 물품은 반드시 반납해주시기 바랍니다
 						</div><br>
 						<div style="font-size:18px;font-weight:bolder;">
 							12. 풋살화 이외 축구화는 착용불가합니다.(잔디보호)
@@ -842,7 +845,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				$.ajax({
 					url : "/reservationGoodsPrice.do",
 					type : "get",
-					data : {result:result,option:option},
+					data : {result:result,option:option,bCode:bCode},
 					success : function(data){
 						if(amount > 0){
 							var price = parseInt(data.goodsPrice);
@@ -930,11 +933,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				alert("대관예약 정보를 작성해주세요.");
 			}else{				
 				var bCode = ${b.branchCode};
-				console.log("선택된 지점 코드 : "+bCode);
 				var resDate = ($('#receipt-cal').text().replace(/\./gi,'/')).replace('2019','19');
-				console.log("선택된 날짜 : "+resDate);
 				var cCode = $('#courtSelect').find('option:selected').val();
-				console.log("선택된 구장 : "+cCode);
 				var resGoodsName = new Array($('.reservationReceiptListBox').length);
 				var resGoodsOption = new Array($('.reservationReceiptListBox').length);;
 				var resGoodsAmount = new Array($('.reservationReceiptListBox').length);;
@@ -945,10 +945,6 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 						resGoodsOption[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsOption').text();
 						resGoodsAmount[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsAmount').val();
 						resGoodsPrice[i] = $('.reservationReceiptListBox:eq('+i+')').find('.reservationGoodsPrice').text().replace(",","");
-						console.log("대여 물품명 : "+resGoodsName[i]);
-						console.log("대여 물품 옵션 : "+resGoodsOption[i]);
-						console.log("대여 물품 수량 : "+resGoodsAmount[i]);
-						console.log("대여 물품 가격 : "+resGoodsPrice[i]);
 					}
 				}
 				var resStartTime = new Array($('.reservationReceiptList').length);
@@ -959,13 +955,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 						resStartTime[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationStartTime').text();
 						resEndTime[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationEndTime').text();
 						resCost[i] = $('.reservationReceiptList:eq('+i+')').find('.reservationCostNum').text().replace(",","");
-						console.log("대관 시작 시간 : "+resStartTime[i]);
-						console.log("대관 종료 시간 : "+resEndTime[i]);
-						console.log("대관료 : "+resCost[i]);
 					}
 				}
 				var allCost = $('#allCost').text().replace(/,/gi,"");
-				console.log("합계 : "+allCost);
 				
 				if($('.reservationReceiptListBox').length > 0){
 					goodsCheck(bCode,resDate,cCode,resGoodsName,resGoodsOption,resGoodsAmount,resGoodsPrice,resStartTime,resEndTime,resCost,allCost);
@@ -1059,7 +1051,6 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				type : 'get',
 				data : {bCode:bCode,resDate:resDate,cCode:cCode,resStartTime:resStartTime,resEndTime:resEndTime,allCost:allCost},
 				success : function(data){
-					console.log(resStartTime.length);
 					alert("결제창이 뜰 때까지 기다려주세요(최대 1분 소요)");
 					$('#paymentGo').append('<input type="text" name="goAllCost" value="'+allCost+'">');
 					$('#paymentGo').append('<input type="text" name="goResNo" value="'+data+'">');

@@ -302,7 +302,8 @@ function contentView(pageNum){
 			$("#tr11").next().next().next().next().next().find("td").eq(0).html('<select name="matchAmount" style="width: 80px;height: 20px;"><option value="1">1팀</option>	<option value="2">2팀</option><option value="3">3팀</option>	</select>');
 			$("#tr11").next().next().next().next().next().find("td").eq(1).html('<select name="matchAble" style="width: 80px;height: 20px;"><option value="0">가능</option>	<option value="1">마감</option></select>');
 			$("#tr11").next().next().next().next().next().next().find("td").html('<textarea rows="3" cols="40" name="memo" style="resize: none;text-align: left;" placeholder="유니폼색상과 메모사항을 적어주세요"></textarea>');
-			$("#modiBtn").after("<button type='button' id='modi' style='margin-top:20px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>")
+			$("#modiBtn").after("<button type='button' id='modi' style='margin-top:20px;margin-left:20px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>")
+			$("#modiBtn").after("<button type='button' id='delete' style='margin-top:20px;'  onclick='del("+num+")' style='margin-top: 20px;'>삭제하기</button>")
 			$("#modiBtn").hide();
    	}
    	function modi(num){
@@ -312,6 +313,9 @@ function contentView(pageNum){
 		var able = $("#tr11").next().next().next().next().next().find("td").eq(1).children().val();
 		var memo = $("#tr11").next().next().next().next().next().next().find("td").children().val();
 		location.href="/modiMatchContent?matchNo="+num+"&matchLevel="+level+"&matchAmount="+amount+"&matchAble="+able+"&matchMemo="+memo+"&matchType="+type;
+   	}
+   	function del(num){
+   		location.href="/matchContentDelete?num="+num;
    	}
 </script>
 </head>
@@ -332,7 +336,7 @@ function contentView(pageNum){
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">매치/용병</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
+						<a class="side_a" id="side_menu1" href="/matching" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
 					</div>
 					<div style="margin-bottom:15px;">
 						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
@@ -405,7 +409,7 @@ function contentView(pageNum){
 											<option value="5">수원점</option>
 											<option value="6">안양점 </option>
 									</select>
-									<input type="text" size="30" name="keyword" style="height:88%;border:2px solid #A4A4A4;">
+									<input type="text" size="30" name="keyword" style="height:88%;border:2px solid #A4A4A4;" placeholder="작성자를 입력해주세요">
 									<button type="submit" style="background-color:#2c3c57; border:none; height: 105%;width: 70px;vertical-align: middle; "><img src="/img/icon_search.png"></button>
 								</form>							
 							</div>

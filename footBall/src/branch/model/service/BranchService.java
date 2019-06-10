@@ -93,6 +93,42 @@ public class BranchService {
 		return result;
 	}
 
+	public int updateBranch(Branch b) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BranchDao().updateBranch(conn, b);
+		if(result >0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int updateBi(BranchImgs bi) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BranchDao().updateBi(conn, bi);
+		if(result >0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int updateCourt(Court c) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new BranchDao().updateCourt(conn,c);
+		if(result >0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 	public int deleteBranch(int branchCode) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new BranchDao().deleteBranch(conn, branchCode);
@@ -104,6 +140,7 @@ public class BranchService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
 
 
 
