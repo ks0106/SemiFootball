@@ -40,7 +40,7 @@ public class MercenaryAppServlet extends HttpServlet {
 		String recDate = request.getParameter("recDate");
 		String recTime = request.getParameter("matchTime");
 		String recAble = request.getParameter("recAble");
-		String matchLevel = request.getParameter("matchLevel");
+		String recLevel = request.getParameter("matchLevel");
 		String recMemo = request.getParameter("memo");
 		Recruit r = new Recruit();
 		r.setRecBName(recBname);
@@ -50,6 +50,7 @@ public class MercenaryAppServlet extends HttpServlet {
 		Date d = Date.valueOf(recDate);
 		r.setRecTime(recTime);
 		r.setAble2(Integer.parseInt(recAble));
+		r.setRecLevel(recLevel);
 		r.setRecMemo(recMemo);
 		int result;
 		try {

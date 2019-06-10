@@ -164,7 +164,7 @@ public class MatchDao {
 	public int mercenaryAdd(Connection conn, Recruit r) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into fb_recruit values(?,?,?,?,?,?,?,?,?)";
+		String query = "insert into fb_recruit values(?,?,?,?,?,?,?,?,?,?)";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, r.getRecBName());
 		pstmt.setString(2, r.getRecCName());
@@ -173,7 +173,8 @@ public class MatchDao {
 		pstmt.setDate(5, r.getRecDate());
 		pstmt.setString(6,r.getRecTime());
 		pstmt.setString(7, r.getAble2());
-		pstmt.setString(8, r.getRecMemo());
+		pstmt.setString(8, r.getRecLevel());
+		pstmt.setString(9, r.getRecMemo());
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;

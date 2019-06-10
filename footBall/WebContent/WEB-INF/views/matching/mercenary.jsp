@@ -158,12 +158,12 @@
 	}
 	
 	#matchView{
-		position:fixed;
-		width: 900px;
-		height: 840px;
+	position:fixed;
+		width: 870px;
+		height: 685px;
 		margin: 0 auto;
-		top: 9%;
-		left: 26%;
+		top: 18%;
+		left: 29%;
 		background-color: #FFF;
 		border-radius: 15px;
 		display: none;
@@ -203,7 +203,22 @@
      	width: 100%;
      	height: 130vh;
      }
+       #able{
+     	width: 50px;
+     	height: 35px;
+     	border-radius: 5px;
+     	background-color: green;
+     	color:white;
+     }
+     #disable{
+     width: 50px;
+     	height: 35px;
+     	border-radius: 5px;
+     	background-color: red;
+     	color:white;
+     }
 </style>
+
 <script>
 	$(document).ready(function(){
 		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
@@ -233,6 +248,9 @@
 			$(this).siblings('li').children('a').css("color","silver");
 		});
 	});
+	function matching(){
+		location.href="/recApply";
+	}
 </script>
 </head>
 <body>
@@ -305,19 +323,18 @@
 							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;">${rpd.pageNavi }</div>
 							<!-- Search폼태그 -->
 							<div style="height: 50px;">
-								<form action="/matchSearch" method="get" style="height: 100%;">
+								<form action="/matchSearch" method="get" style="height: 85%;    vertical-align: middle;">
 									<select name="branch" style="height: 100%; border:2px solid #A4A4A4; ">
 											<option value="">지점</option>
-											<option value="부천">부천점</option>
-											<option value="고양">고양점</option>
-											<option value="남양주">남양주점</option>
-											<option value="성남">성남점</option>
-											<option value="수원">수원점</option>
-											<option value="안양">안양점 </option>
-											<option value="동대문지점">동대문점 </option>
+											<option value="1">부천점</option>
+											<option value="2">고양점</option>
+											<option value="3">남양주점</option>
+											<option value="4">성남점</option>
+											<option value="5">수원점</option>
+											<option value="6">안양점 </option>
 									</select>
-									<input type="text" size="30" name="keyword" style="height:100%;border:2px solid #A4A4A4;">
-									<button type="submit" style="background-color:#2c3c57; border:none; height: 100%;width: 70px;vertical-align: bottom; "><img src="/img/icon_search.png"></button>
+									<input type="text" size="30" name="keyword" style="height:88%;border:2px solid #A4A4A4;">
+									<button type="submit" style="background-color:#2c3c57; border:none; height: 105%;width: 70px;vertical-align: middle; "><img src="/img/icon_search.png"></button>
 								</form>							
 							</div>
 							<!-- 게시글 view -->
@@ -362,10 +379,52 @@
 		</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-	<script>
-	function matching(){
-		location.href="/views/match/mercenaryApp.jsp";
-	}
+		<script>
+
+ 	function contentView(pageNum){
+ 		if($("#tr11").parent().parent().parent().children().is("#modiBtn-wrapper")){
+ 			$("#tr11").parent().parent().parent().children().remove("#modiBtn-wrapper");
+ 		}
+   		$.ajax({
+   			url:"/AddContentView",
+   			type:"get",
+   			dataType:"json",
+   			data:{pageNum:pageNum},
+   			success: function(data){
+   				var writer = data.recName;
+   				var BName = data.recBName;
+   				var Date = data.date2;
+   				var CName = data.recCName;
+   				var Phone = data.recPhone;
+   				var Level = data.recLevel;
+   				var amount = data.amount2;
+   				var able = data.able2;
+   				var Memo = data.recMemo;
+   				$("#tr11").find("td").eq(0).html(writer);
+   				$("#tr11").next().find("td").html(BName);
+   				$("#tr11").next().next().find("td").html(Date);
+   				$("#tr11").next().next().next().find("td").html(CName);
+   				$("#tr11").next().next().next().next().find("td").eq(0).html(Phone);
+   				$("#tr11").next().next().next().next().find("td").eq(1).html(Level);
+   				$("#tr11").next().next().next().next().next().find("td").eq(0).html(amount);
+   				$("#tr11").next().next().next().next().next().find("td").eq(1).html(able);
+   				$("#tr11").next().next().next().next().next().next().find("td").html(Memo);
+   				if("${sessionScope.member.phone}" == Phone && !$("#tr11").parent().parent().parent().children().is("#modiBtn-wrapper")){
+   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
+   				}
+   			},
+   			erorr : function () {
+				console.log("실패다");
+			}
+   			
+   		});
+   		$("#matchView").css('display','block');
+   		$("#popup_mask").css('display','block');
+   	}
+   	function close1(here){
+   		$(here).parent().parent().css('display','none');
+   		$("#popup_mask").css('display','none');
+   	}
 	</script>
 </body>
 </html>
