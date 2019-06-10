@@ -19,6 +19,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/notice/notice.css">
+<link rel="stylesheet" href="/css/board/board.css">
+
 <title>자유게시판 리스트</title>
 </head>
 <style>

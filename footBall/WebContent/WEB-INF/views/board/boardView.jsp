@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.mibv.js"></script>
 <script src="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/js/bootstrap.mibv.js"></script>
 <link rel="stylesheet" href="/css/board/board.css">
+
 <title>자유게시판뷰</title>
 </head>
 <style>
@@ -177,6 +178,12 @@ a{
 	text-decoration: none;
 	color: black;
 }
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
 </style>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -241,7 +248,7 @@ a{
                </td>
             </tr>
             <tr>
-               <td style="height: 200px;" colspan="2">${bvd.bv.boardContent}</td>
+               <td style="height: 500px;" colspan="2">${bvd.bv.boardContent}</td>
             </tr>
             <tr>
                <th colspan="2">
@@ -263,7 +270,7 @@ a{
 					<input type="hidden" name="boardCommentLevel" value="1">
 					<input type="hidden" name="boardCommentRef" value="0">
 					<center>
-					<table class="table">
+					<table>
 						<tr>
 							<td><textarea rows="1" class="form-control" name="boardCommentContent" id="barea"></textarea></td>
 							<td>

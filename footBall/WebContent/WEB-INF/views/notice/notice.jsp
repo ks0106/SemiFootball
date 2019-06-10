@@ -20,171 +20,12 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/css/notice/notice.css">
+<link rel="stylesheet" href="/css/common/notice.css">
+<link rel="stylesheet" href="/css/board/board.css">
 
 <title>커뮤니티리스트</title>
 </head>
 <style>
-.side_nav {
-	margin: 5px;
-	color: silver;
-}
-
-.side_nav a {
-	text-decoration: none;
-	color: silver;
-	font-size: 16px;
-}
-
-#side_menu1 {
-	display: block;
-}
-
-#side_pr_menu {
-	list-style-type: square;
-	padding: 0;
-	margin: 0;
-	margin-left: 20px;
-	display: none;
-}
-
-#mv {
-	background-image: url("/img/ground1.png");
-}
-
-.tab-container {
-	margin: 0 auto;
-	text-align: center;
-	width: 100%;
-	height: 80px;
-}
-
-.tab-list {
-	margin: 0; padding0;
-	height: 100%;
-	list-style-type: none;
-	border-top: 3px solid purple;
-	border-bottom: 1px solid green;
-	padding-left: 0;
-}
-
-.list-li {
-	height: 100%;
-	width: 33.33%;
-	float: left;
-	text-align: center;
-	line-height: 80px;
-	font-size: 40px;
-	font-weight: bold;
-	border-right: 1px solid green;
-	box-sizing: border-box;
-}
-
-.list-li:last-child {
-	border-right: none;
-}
-
-.munebar {
-	text-decoration: none;
-	color: black;
-	width: 100%;
-	height: 100%;
-	display: block;
-}
-
-.selected>.munebar {
-	background-color: green;
-	color: white;
-}
-
-.list-li>a:hover {
-	background-color: green;
-	color: white;
-	text-decoration: none;
-}
-
-.tab-content {
-	margin: 0 auto;
-	width: 100%;
-	text-align: center;
-}
-
-.content-header {
-	color: #403d3f;
-	font-size: 40px;
-	font-weight: bold;
-	margin-bottom: 20px;
-	margin-top: 0px;
-}
-
-.underline {
-	margin: 0 auto;
-	width: 7%;
-	text-align: center;
-	border-top: 2px solid #bfc4cc;
-}
-
-#matchlist-table {
-	border-top: 2px solid green;
-	border-bottom: 2px solid green;
-	border-collapse: collapse;
-}
-
-#table-wraper {
-	margin: 0 auto;
-	margin-top: 30px;
-	width: 80%;
-}
-
-.tab-con {
-	margin: 0 auto;
-	width: 100%;
-}
-
-.th {
-	padding: 16px;
-	border-bottom: 1px solid #d5d8dd;
-	height: 21px;
-	font-size: 18px;
-	font-weight: 700;
-	line-height: 21px;
-	text-align: center;
-}
-
-.td {
-	padding: 16px;
-	border-bottom: 1px solid #d5d8dd;
-	height: 21px;
-	font-size: 18px;
-	line-height: 21px;
-	text-align: center;
-}
-
-.table-tr {
-	cursor: pointer;
-}
-
-.table-tr:hover {
-	background-color: #F2F2F2;
-}
-
-.pageNaviBtn {
-	width: 50px;
-	height: 50px;
-	border: 1px solid #A4A4A4;
-	display: inline-block;
-	margin-right: 10px;
-	margin-left: 10px;
-	border-radius: 15px;
-	line-height: 45px;
-}
-
-.selectPage {
-	line-height: 50px;
-	color: white;
-	background-color: green;
-	font-size: 25px;
-}
 a{
 	color:black;
 }
@@ -267,7 +108,7 @@ a{
 							<thead>
 								<tr>
 									<th class="th">글번호</th>
-									<th class="th">제목</th>
+									<th class="th" colspan="2">제목</th>
 									<th class="th">작성자</th>
 									<th class="th">등록일</th>
 									<th class="th">조회수</th>
@@ -278,12 +119,12 @@ a{
 									for (NoticeVo nv : list) {
 								%>
 								<tr class="table-tr">
-									<th class="td" style="text-align: center;"><%=nv.getRnum()%></th>
-									<th class="td" style="text-align: center;"><a
-										href="/noticeView?noticeNo=<%=nv.getNoticeNo()%>"><%=nv.getNoticeTitle()%></a></th>
-									<th class="td" style="text-align: center;"><%=nv.getNoticeWriter()%></th>
-									<th class="td" style="text-align: center;"><%=nv.getNoticeDate()%></th>
-									<th class="td" style="text-align: center;"><%=nv.getNoticeHit()%></th>
+									<td class="td" style="text-align: center;"><%=nv.getRnum()%></td>
+									<td class="td" style="text-align: center;" colspan="2"><a
+										href="/noticeView?noticeNo=<%=nv.getNoticeNo()%>"><%=nv.getNoticeTitle()%></a></td>
+									<td class="td" style="text-align: center;"><%=nv.getNoticeWriter()%></td>
+									<td class="td" style="text-align: center;"><%=nv.getNoticeDate()%></td>
+									<td class="td" style="text-align: center;"><%=nv.getNoticeHit()%></td>
 								</tr>
 								<%
 									}
