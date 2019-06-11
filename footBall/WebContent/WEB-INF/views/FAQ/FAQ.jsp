@@ -27,20 +27,12 @@
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<script>
-<<<<<<< HEAD
-		$(document).ready(function() {
-							$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-							$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-							$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-							$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-							$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
-						});
-=======
+
 		$(document).ready(function(){
 			   /* 헤더 배경 이미지 */
 				$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
 		   });
->>>>>>> d7523c075b0439d106e6a0965d5f07d5309c3fdf
+
 	</script>
 
 	<!--영상 위 페이지 타이틀 -->
@@ -88,25 +80,23 @@
 							<center>
 								<table>
 									<c:forEach items="${pd.list }" var="l" varStatus="i">
-										<tr>
-											<th style="width: 650px;">
-												<div data-toggle="collapse" data-target="#faq${i.count }"
-													id="fa1">
-													<span style="font-size: 15px;"> <img
-														src="img/faq/FAQ.png" style="width: 30px; height: 30px;">
+										<tr style="cursor: pointer;">
+											<th>
+												<div data-toggle="collapse" data-target="#faq${i.count }">
+													<span class="fa1"> 
+													<img src="img/faq/FAQ.png" style="width: 30px; height: 30px;">
 														${l.faqTitle }<br> <br>
 													</span>
 												</div>
 											</th>
 										</tr>
 										<tr>
-											<td><div id="faq${i.count }" class="collapse">
-													<img src="img/faq/FAQ2.PNG"
-														style="width: 30px; height: 20px;"> ${l.faqContent }
-													<br>
-													<br>
-													<br>
-												</div></td>
+											<td>
+											<div id="faq${i.count }" class="collapse">
+												<img src="img/faq/FAQ2.PNG" style="width: 30px; height: 20px;"> ${l.faqContent }
+													<br><br><br>
+											</div>
+											</td>
 										</tr>
 									</c:forEach>
 								</table>

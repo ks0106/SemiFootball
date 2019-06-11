@@ -77,7 +77,7 @@
 										<a href="/noticeDelete?noticeNo=${nv.noticeNo}"
 											class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">삭제하기</a>
 									</c:if>
-									<a href="/notice" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">목록으로</a>
+									<a href="/notice?reqPage=${pd.reqPage}" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">목록으로</a>
 								</center></th>
 						</tr>
 					</table>
