@@ -85,7 +85,7 @@
 <body>
 	<div style="height:900px;" id="maindiv">
         <div id="div">
-          	<img src="/img/header_logo.png" style="margin-bottom: 50px;"><br>
+          	<a href="/"><img src="/img/header_logo.png" style="margin-bottom: 50px;"></a><br>
           	<form action="/views/login/insert1.jsp" method="post">
           	
           	<input type="checkbox" id="box1" onclick="checkAll();" class="checkbox"><label for="box1"><h3>이용약관,개인정보 수집 및 이용,개인정보취급위탁에 모두 동의함.</h3></label><br>
