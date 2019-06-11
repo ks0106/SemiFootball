@@ -7,27 +7,63 @@
 <title>로그인</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	  <style>
+	  	/* 자동입력 시 input창 색깔 변하는 동작 제거 */
+	  	/* input box color */
+		input:-webkit-autofill{
+			-webkit-box-shadow:none;
+			-webkit-text-fill-color: none;
+		}
+		input:-webkit-autofill,
+		input:-webkit-autofill:hover,
+		input:-webkit-autofill:focus,
+		input:-webkit-autofill:active {
+			transition: background-color 5000s ease-in-out 0s;
+		}
+	  	/* 자동입력 시 input창 색깔 변하는 동작 제거 css 끝*/
 	  	
+	  	/* 전체화면 컬러 조절 => body */
+		body{
+			background-color:rgb(230,230,230);
+		}
+		.helpMenu{
+			font-size:14px;
+			color:rgb(82,82,82);
+		}
         #maindiv{
             text-align: center;
             position: relative;
-             margin: 0 auto;
+            margin: 0 auto;
             width: 80%;
         }
         #div{
             /*position: absolute;
             top: 100px;
             left: 600px;*/
+            width:480px;
             padding-top : 100px;
-            max-width:305px;
             margin:0 auto;
             text-align:center;
         }
         .loginInput{
-            
-            width: 300px;
-            height: 50px;
+            width: 445px;
+            height: 30px;
             top: 100px;
+            font-size:15px;
+            padding:15px;
+            margin-bottom:15px;
+        }
+        #loginActionBtn{
+        	width:478px;
+        	height:70px;
+        	font-size:20px;
+        	margin-top:20px;
+        	border:none;
+        	background-color:#2c3c57;
+        	color:white;
+        	cursor:pointer;
+        }
+        #loginActionBtn:hover{
+        	background-color:#3366cc;
         }
         a{
             text-decoration: none;
@@ -41,17 +77,19 @@
         	<a href="/">
             <img src="/img/header_logo.png" style="margin-bottom: 50px;"></a>
             <form action="/login" method="post">
-            <input type="text" name="id" placeholder="이메일" class="loginInput"><br><br>
-            <input type="password" name="pwd" placeholder="비밀번호" class="loginInput"><br><br>
-            <input type="submit" value="로그인" class="loginInput">
+            <input type="text" name="id" placeholder="이메일" class="loginInput" autocomplete="off"><br>
+            <input type="password" name="pwd" placeholder="비밀번호" class="loginInput" autocomplete="off"><br>
+            <input type="submit" value="로그인" id="loginActionBtn">
             </form>
             <br>
-            <div style="border:1px solid darkgray"></div>
+            <div style="border:none;height:1px;background-color:darkgray;"></div>
             <br>
             <br>
-            <a href="/views/login/searchId.jsp" onclick="window.open(this.href,'아이디 찾기','width=450,height=400');return false;">아이디 찾기</a>
-            <a href="/views/login/searchPwd.jsp" onclick="window.open(this.href,'비밀번호 찾기','width=450,height=400');return false;">비밀번호 찾기</a>
-            <a href="/views/login/insert.jsp">회원가입</a>
+            <a class="helpMenu" href="/views/login/searchId.jsp" onclick="window.open(this.href,'아이디 찾기','width=450,height=400');return false;">아이디 찾기</a>
+            <span style="font-size:15px;color:lightgray;">|</span>
+            <a class="helpMenu" href="/views/login/searchPwd.jsp" onclick="window.open(this.href,'비밀번호 찾기','width=450,height=400');return false;">비밀번호 찾기</a>
+            <span style="font-size:15px;color:lightgray;">|</span>
+            <a class="helpMenu" href="/views/login/insert.jsp">회원가입</a>
             <br><br>
             <h1>간편로그인</h1>
             <a id="kakao-login-btn"></a>

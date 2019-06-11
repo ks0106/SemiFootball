@@ -11,7 +11,7 @@
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/css/common/pageCss.css">
+<link rel="stylesheet" href="/css/common/admin.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
@@ -215,10 +215,9 @@
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">
-		대회
 	</div>
 	<section>
 	<!-- 내용 작성 -->
@@ -226,23 +225,10 @@
 		<!-- 컨텐츠 -->
 		<div style="width:85%;background-color:white;margin:0 auto;">
 		<!-- 컨텐츠 사이드 메뉴 -->
-			<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
-				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">Reague</div>
-				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu1" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 공지</a>
-				</div>
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
-				</div>
-				<div style="margin-bottom:15px;">
-					<a class="side_a selected" id="side_menu3" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">지난대회결과</a>
-				</div>
-			</div><!-- 사이드 메뉴 종료 -->			
 		<!-- 컨텐츠 본문 -->
    			<br><br>
    		<!-- 컨텐츠 본문 타이틀 -->
-			<div id="con1" style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
+			<div id="con1" style="width:78%;display:inline-block;overflow:hidden;">
 				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 대진표</div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->

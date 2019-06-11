@@ -134,12 +134,6 @@ to {
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu2" style="color: #2c3c57;">예약확인</a>
 			</div>
-			<c:if test="${sessionScope.member.id == 'admin'}">
-				<div style="margin-bottom: 15px;">
-					<a class="side_a" id="side_menu3" style="color: #2c3c57;">[관리자]
-						대관 관리</a>
-				</div>
-			</c:if>
 		</div>
 		<!-- 사이드 메뉴 종료 -->
 		<!-- 컨텐츠 본문 -->
