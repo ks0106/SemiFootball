@@ -26,7 +26,7 @@
 					<tr><td colspan="2">지점 주소(지번)</td><td colspan="2"><input type="text" name="branchAddr"></td></tr>
 					<tr><td colspan="2">전화번호(국번)</td><td colspan="2"><input type="text" name="branchPhone"></td></tr>
 					<tr><td colspan="2">휴대폰 번호</td><td colspan="2"><input type="text" name="branchTel"></td></tr>					
-					<tr><td colspan="4"><a href="/branchManage">취소</a><button type="submit" id="submit">확인</button></td></tr>
+					<tr><td colspan="4"><a href="/branchManage">취소</a><button class="btn-manage" type="submit" id="submit">확인</button></td></tr>
 				</table>
 			</form>
 			<br><br>
@@ -50,7 +50,7 @@
 						<td>실내/실외 구분</td><td><input type="text" name="courtIndoor3"></td>
 					</tr>
 					<tr><td colspan="3">지점 사진(최대 4장)</td><td colspan="3"><input type="file" name="photo" multiple="multiple"></td></tr>
-					<tr><td colspan="6"><a href="/branchManage">취소</a><button type="submit" id="submit">확인</button></td></tr>
+					<tr><td colspan="6"><a href="/branchManage">취소</a><button class="btn-manage" type="submit" id="submit">확인</button></td></tr>
 				</table>
 			</form>
 		</section>

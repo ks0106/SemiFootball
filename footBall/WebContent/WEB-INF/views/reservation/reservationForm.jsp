@@ -166,7 +166,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				<!-- 주의사항 -->
 				<div style="width:590px; border: 1px solid darkgray;float:right;margin-top:47px;color:#2c3c57;margin-bottom:30px;">
 					<div style="overflow: hidden;">
-						<img src="${requestScope.bi1 }" width="100%" height="100%">
+						<img src="${bi1 }" width="100%" height="100%">
 					</div>
 					<div style="height:70px;background-color:#2c3c57;color:white;border:0;border-bottom:1px solid darkgray;font-weight:bolder;text-align:center;font-size:35px;line-height:70px;">환불규정</div>
 					<div style="padding:20px;">

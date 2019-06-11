@@ -89,7 +89,7 @@
 							사진 추가 <input type="file" name="photo" multiple="multiple">
 						</td>
 					</tr>
-					<tr><td colspan="6"><a href="/branchManage">취소</a><button type="submit" id="submit">확인</button></td></tr>
+					<tr><td colspan="6"><a href="/branchManage">취소</a><button class="btn-manage" type="submit" id="submit">확인</button></td></tr>
 				</table>
 			</form>
 		</section>
