@@ -54,6 +54,7 @@ public class InsertServlet extends HttpServlet {
 			rd.forward(request, response);
 		} catch (SQLException e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/sqlErrorPage.jsp");
+			request.setAttribute("msg", e);
 			rd.forward(request, response);
 		}
 	}

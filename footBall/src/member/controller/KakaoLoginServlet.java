@@ -33,9 +33,10 @@ public class KakaoLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
+		String id1 = id+"@kakao.sns"; 
 		String name = request.getParameter("name");
 		
-		Member m = new MemberService().kakaosearchId(id,name);
+		Member m = new MemberService().kakaosearchId(id1,name);
 		if(m!=null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", m);

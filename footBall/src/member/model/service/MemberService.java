@@ -32,6 +32,7 @@ public class MemberService {
 			JDBCTemplate.close(conn);
 			return m;			
 		}else {
+			
 			int result = new MemberDAO().kakaoInsert(conn,id,name);
 			if(result>0) {
 				m = new MemberDAO().kakaosearchId(conn,id);
