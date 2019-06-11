@@ -36,19 +36,14 @@
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
-<<<<<<< HEAD
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
 
-=======
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<script>
    $(document).ready(function(){
 	   /* 헤더 배경 이미지 */
 		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
    });
 </script>
->>>>>>> d7523c075b0439d106e6a0965d5f07d5309c3fdf
-
 
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">고객센터</div>

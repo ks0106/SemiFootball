@@ -167,20 +167,20 @@ public class NoticeService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
 		if(pageNo!=1) {
-			pageNavi+="<a class='btn' href='/searchKeywordNotice?reqPage="+(pageNo-1)+"&keyword="+keyword+"'>이전</a>";
+			pageNavi+="<a class='pageNaviBtn' style='margin:10px;' href='/searchKeywordNotice?reqPage="+(pageNo-1)+"&keyword="+keyword+"'>이전</a>";
 		}
 		int i = 1;
 		while( !(i++>pageNaviSize || pageNo>totalPage) ) { //둘 중 하나라도 만족하면 수행하지 않겠다
 			if(reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>"; //보고있는 페이지는 누를수 없게 하기
+				pageNavi += "<span class='selectPage pageNaviBtn' style='margin:10px;'>"+pageNo+"</span>"; //보고있는 페이지는 누를수 없게 하기
 			}else {
-				pageNavi += "<a class='btn' href='/searchKeyword?reqPage="+pageNo+"&keyword="+keyword+"'>"+pageNo+"</a>";
+				pageNavi += "<a class='pageNaviBtn' style='margin:10px;' href='/searchKeyword?reqPage="+pageNo+"&keyword="+keyword+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		//다음 버튼 생성
 		if(pageNo <= totalPage) {
-			pageNavi +="<a class='btn' href='/searchKeyword?reqPage="+pageNo+"&keyword="+keyword+"'>다음</a>";
+			pageNavi +="<a class='pageNaviBtn' style='margin:10px;' href='/searchKeyword?reqPage="+pageNo+"&keyword="+keyword+"'>다음</a>";
 		}
 		NoticePageData pd = new NoticePageData(list,pageNavi);
 		JDBCTemplate.close(conn);

@@ -34,7 +34,6 @@ public class NoticeViewServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
-		System.out.println(reqPage);
 		NoticeVo nv = new NoticeService().listOne(noticeNo);
 		String view = "";
 		if(nv!=null) {

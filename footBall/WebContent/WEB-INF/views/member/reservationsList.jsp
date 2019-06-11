@@ -1,9 +1,12 @@
+<%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-    
+    <%
+    	Member m = (Member)request.getAttribute("member");
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,6 +21,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>KS 대관예약확인</title>
 <style>
+	/* 모든 버튼 타입 커서  */
+	input[type="button"],input[type="submit"],input[type="reset"],button{
+		cursor:pointer;
+	}
+
+	.side_a {
+		font-weight: bolder;
+		font-size: 18px;
+		text-decoration: none;
+		cursor: pointer;
+	}
 	.side_nav{
 		margin:5px;
 		color:silver;
@@ -119,15 +133,25 @@
 		margin:0 auto;
 		width: 100%;
 	}
-	.th{
+	.th {
+		width: 20%;
+		border-bottom: 1px solid gray;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		font-size:18px;
+	}
+	.td {
 		padding: 16px;
 		border-bottom: 1px solid #d5d8dd;
-		height: 60px;
+		height: 21px;
 		font-size: 18px;
-		font-weight: 700;
 		line-height: 21px;
-		text-align: center;
 	}
+	#imgView:hover {
+		background-color: #F2F2F2;
+		cursor: pointer;
+	}
+
 	.table-tr td{
 		padding: 16px;
 		border-bottom: 1px solid #d5d8dd;
@@ -347,11 +371,6 @@
 </style>
 <script>
 	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
 		$('.side_nav:first').css("color","#3366cc");
 		$('.side_nav a:first').css("color","#3366cc");
 		$('#side_pr_menu').css("display","block");
@@ -387,98 +406,67 @@
 	<!-- 내용 작성 -->
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 		<!-- center -->
-		
-			<div style="width:85%;background-color:white;margin:0 auto;overflow:hidden;">
-				<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
-					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">MyPage</div>
-					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
-					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu1" href="/myPage?memberId=${member.id }" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">계정관리</a>
-					</div>
-					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" href="/reservationViewMyPageList" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대관예약확인</a>
-					</div>
-					
+		<div style="width:85%;background-color:white;margin:0 auto;overflow:hidden;">
+			<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
+				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">MyPage</div>
+				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
+				<div style="margin-bottom:15px;">
+					<a class="side_a" id="side_menu1" href="/myPage?memberId=${member.id }" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">계정관리</a>
 				</div>
-			
-		<div id="divpwd" style="width: 78%; height: 120vh; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
-			<div class="tab-content" >
-            <!-- 탭컨텐츠 제목 -->
-               		<br><br><br>
-					<div style="font-size:40px; color: #403d3f; text-align: center; margin-bottom: 20px;font-weight:bolder;color:#2c3c57;">비밀번호 재확인</div>
-					<div class="underline"></div>
-					<!-- 글쓰기 버튼 -->
-					<div class="btn-wrapper" style="margin: 0 auto; margin-top:50px;margin-bottom:0px; text-align:center;width: 100%;">
-						<div style="width: 90%;padding-left: 70px;">								
-						<input type="password" id="checkpwd" name="pwd" style="width: 300px;height:40px;left: 300px;border:2px solid #2c3c57;font-size:30px;vertical-align:middle">
-						<button type="button" id="pwd" style="border:none;background-color: #2c3c57;width: 150px;height: 45px;color:white;">									
-						<span style="color:white;height:80%;width: 100%;display: inline;font-size: 15px; vertical-align:middle;padding:0;margin:0;vertical-align:middle"> 확인 </span> 
-						</button>
+				<div style="margin-bottom:15px;">
+					<a class="side_a" id="side_menu2" href="/reservationViewMyPageList" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">결제내역</a>
+				</div>					
+			</div>
+		<!-- 비밀번호 확인 jsp include -->
+		<jsp:include page="/WEB-INF/views/common/password.jsp"/>
+			<div id="mypage" style="width: 78%; height: 120vh; border-left: 1px solid silver;overflow: hidden;display:none; ">
+				<div
+					style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">예약확인</div>
+				<div class="underline"
+					style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
+				<!-- 컨텐츠 파티션 -->
+				<div style="width: 90%; margin: 0 auto; margin-bottom: 50px;">
+					<div id="table-wrapper1"
+						style="margin-bottom: 100px; text-align: center;">
+						<p style="font-size: 30px; font-weight: bold;">주문장 목록</p>
+						<table
+							style="margin-top: 50px; border-top: 3px solid #2c3c57; border-bottom: 3px solid #2c3c57; width: 80%; margin: 0 auto; border-collapse: collapse;">
+							<tr>
+								<th class="th">주문번호</th>
+								<th class="th">날짜</th>
+								<th class="th">금액</th>
+								<th class="th">결제</th>
+							</tr>
+							<c:if test="${!empty list}">
+								<c:forEach items="${list}" var="r">
+									<tr id="imgView" onclick="window.open('/reservationView?resNo=${r.resNo}','예약확인','width=1000,height=900,location=no,status=no,scrollbars=yes');">
+										<td class="td"><span class="priamryNo">${r.resNo}</span></td>
+										<td class="td">${r.resDate}</td>
+										<td class="td"><fmt:formatNumber value="${r.resTotalCost}" pattern="#,###" />원</td>
+										<c:if test="${r.resPayment == 1}">
+											<c:if test="${r.resCancel == 0}">
+												<td class="td">결제완료</td>
+											</c:if>
+											<c:if test="${r.resCancel == 1}">
+												<td class="td">결제취소 진행중</td>
+											</c:if>
+										</c:if>
+										<c:if test="${r.resPayment == 2}">
+											<td class="td">결제취소 완료</td>
+										</c:if>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</table>
+					</div>
+					<!-- 페이지 네비 -->
+					<div id="pageNavi"
+						style="width: 80%; margin: 0 auto; margin-bottom: 100px;">${mpd.pageNavi }
 					</div>
 				</div>
 			</div>
 		</div>
-			
-		<div id="viewList" style="width: 78%; height: 120vh; border-left: 1px solid silver;overflow: hidden;display:none; ">
-			<div
-				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">예약확인</div>
-			<div class="underline"
-				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
-			<!-- 컨텐츠 파티션 -->
-			<div style="width: 90%; margin: 0 auto; margin-bottom: 50px;">
-				<div id="table-wrapper1"
-					style="margin-bottom: 100px; text-align: center;">
-					<p style="font-size: 30px; font-weight: bold;">주문장 목록</p>
-					<table
-						style="margin-top: 50px; border-top: 3px solid #2c3c57; border-bottom: 3px solid #2c3c57; width: 80%; margin: 0 auto; border-collapse: collapse;">
-						<tr>
-							<th class="th">주문번호</th>
-							<th class="th">날짜</th>
-							<th class="th">금액</th>
-							<th class="th">결제</th>
-						</tr>
-						<c:if test="${!empty list}">
-							<c:forEach items="${list}" var="r">
-								<tr id="imgView" onclick="window.open('/reservationView?resNo=${r.resNo}','예약확인','width=1000,height=900,location=no,status=no,scrollbars=yes');">
-									<td class="td"><span class="priamryNo">${r.resNo}</span></td>
-									<td class="td">${r.resDate}</td>
-									<td class="td"><fmt:formatNumber value="${r.resTotalCost}" pattern="#,###" />원</td>
-									<c:if test="${r.resPayment == 1}">
-										<c:if test="${r.resCancel == 0}">
-											<td class="td">결제완료</td>
-										</c:if>
-										<c:if test="${r.resCancel == 1}">
-											<td class="td">결제취소 진행중</td>
-										</c:if>
-									</c:if>
-									<c:if test="${r.resPayment == 2}">
-										<td class="td">결제취소 완료</td>
-									</c:if>
-								</tr>
-							</c:forEach>
-						</c:if>
-					</table>
-				</div>
-				<!-- 페이지 네비 -->
-				<div id="pageNavi"
-					style="width: 80%; margin: 0 auto; margin-bottom: 100px;">${mpd.pageNavi }</div>
-			</div>
-		</div>
-	</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-	<script type="text/javascript"> //비밀번호 확인하는 if문
-		$("#pwd").click(function () {
-			var pwd1 = '${member.pwd}';
-			var pwd = $("#checkpwd").val();
-			if(pwd1==pwd){
-				$("#divpwd").css("display","none");
-				$("#viewList").css("display","inline-block");
-			}else{
-				alert("비밀번호가 일치하지 않습니다.");
-			}
-		});
-
-	</script>
 </body>
 </html>

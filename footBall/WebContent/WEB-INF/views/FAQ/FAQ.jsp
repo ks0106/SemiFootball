@@ -79,25 +79,23 @@
 							<center>
 								<table>
 									<c:forEach items="${pd.list }" var="l" varStatus="i">
-										<tr>
-											<th style="width: 650px;">
-												<div data-toggle="collapse" data-target="#faq${i.count }"
-													id="fa1">
-													<span style="font-size: 15px;"> <img
-														src="img/faq/FAQ.png" style="width: 30px; height: 30px;">
+										<tr style="cursor: pointer;">
+											<th>
+												<div data-toggle="collapse" data-target="#faq${i.count }">
+													<span class="fa1"> 
+													<img src="img/faq/FAQ.png" style="width: 30px; height: 30px;">
 														${l.faqTitle }<br> <br>
 													</span>
 												</div>
 											</th>
 										</tr>
 										<tr>
-											<td><div id="faq${i.count }" class="collapse">
-													<img src="img/faq/FAQ2.PNG"
-														style="width: 30px; height: 20px;"> ${l.faqContent }
-													<br>
-													<br>
-													<br>
-												</div></td>
+											<td>
+											<div id="faq${i.count }" class="collapse">
+												<img src="img/faq/FAQ2.PNG" style="width: 30px; height: 20px;"> ${l.faqContent }
+													<br><br><br>
+											</div>
+											</td>
 										</tr>
 									</c:forEach>
 								</table>
