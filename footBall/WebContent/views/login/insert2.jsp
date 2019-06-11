@@ -17,22 +17,29 @@
 </head>
 	<style>
 		#maindiv{
+			width:100%;
+			height:100%;
 			margin: 0 auto;
 			padding-top : 100px;
-			text-align: center;
+			text-align: left;
+		}
+		.secretNumberInput{
+			width:150px;
+			height:40px;
 		}
 	</style>
 <body>
 	
 	<div id="maindiv">
-	인증번호 : <input type="text" id="number" name="number"> 
-			<button type="button" id="button" onclick="return check();">인증</button>
-			<span class="countTimeMinute"></span>분
-         	<span class="countTimeSecond"></span>초
-			<div id="layerPopup">
-		      <p id="checkMsg">인증 시간이 초과 되었습니다.</p>
-		      <button type="button">닫기</button>
-		    </div>
+		<span>인증번호</span><br>
+		<input class="secretNumberInput" type="text" id="number" name="number" style="vertical-align:middle;"> 
+		<button type="button" id="button" onclick="return check();" style="vertical-align:middle;width:80px;height:40px;border:none;background-color:#3366cc;color:white;">인증</button>
+		<span class="countTimeMinute"></span>분
+       	<span class="countTimeSecond"></span>초
+		<div id="layerPopup">
+	    	<p id="checkMsg">인증 시간이 초과 되었습니다.</p>
+			<button type="button">닫기</button>
+		</div>
 	</div>
 
 	<script type="text/javascript">
