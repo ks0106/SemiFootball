@@ -35,7 +35,7 @@ public class NoticeDeleteServlet extends HttpServlet {
 		if(result>0) {
 			request.setAttribute("msg", "공지사항을 삭제하셨습니다.");
 		}else {
-			request.setAttribute("msg", "공지사항 삭제 중 Error발생");
+			request.setAttribute("msg", "공지사항 삭제를 실패하셨습니다.");
 		}
 		request.setAttribute("loc", "/noticeDeletePage");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");

@@ -8,11 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/css/bootstrap.mibv.css">
+<link rel="stylesheet" href="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/css/bootstrap.mibv.css">
 <script src="https://code.jquery.com/jquery-3.3.1.mibv.js"></script>
-<script
-	src="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/js/bootstrap.mibv.js"></script>
+<script src="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/js/bootstrap.mibv.js"></script>
 <link rel="stylesheet" href="/css/board/board.css">
 <title>자유게시판 수정</title>
 </head>
@@ -88,8 +86,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea name="boardContent" class="form-control" rows="3"><%=bv.getBoardContent() %>
-                     </textarea></td>
+							<td><textarea name="boardContent" class="form-control" rows="3"><%=bv.getBoardContent() %></textarea></td>
 						</tr>
 						<tr>
 							<th colspan="2">

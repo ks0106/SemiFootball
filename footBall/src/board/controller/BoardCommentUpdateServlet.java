@@ -36,9 +36,9 @@ public class BoardCommentUpdateServlet extends HttpServlet {
 		int boardRef = Integer.parseInt(request.getParameter("boardRef"));
 		int result = new BoardService().updateBoardComment(boardCommentNo,boardCommentContent);
 		if(result>0) {
-			request.setAttribute("msg", "댓글 수정 성공");
+			request.setAttribute("msg", "댓글 수정이 완료되었습니다.");
 		}else {
-			request.setAttribute("msg", "댓글 수정 실패");
+			request.setAttribute("msg", "댓글 수정에 실패하였습니다");
 		}
 		request.setAttribute("loc", "/boardView?boardNo="+boardRef);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
