@@ -22,7 +22,7 @@
 			<form action="/modifyBData" method="post" enctype="multipart/form-data">
 				<table class="manageTable" border="1">
 					<tr><th colspan="6">지점 정보</th></tr>
-					<tr><td colspan="3">지점 코드</td><td colspan="3"><input type="text" name="branchCode" readonly="readonly"></td></tr>
+					<tr><td colspan="3">지점 코드</td><td colspan="3"><span name="branchCode"></span></td></tr>
 					<tr><td colspan="3">지점 이름</td><td colspan="3"><input type="text" name="branchName"></td></tr>
 					<tr><td colspan="3">지점 주소(지번)</td><td colspan="3"><input type="text" name="branchAddr"></td></tr>
 					<tr><td colspan="3">전화번호(국번)</td><td colspan="3"><input type="text" name="branchPhone"></td></tr>
@@ -95,7 +95,7 @@
 		</section>
 	<script>
 		$(function(){
-			$('input[name=branchCode]').val('${requestScope.bd.b.branchCode}');
+			$('span[name=branchCode]').html('${requestScope.bd.b.branchCode}');
 			$('input[name=branchName]').val('${requestScope.bd.b.branchName}');
 			$('input[name=branchAddr]').val('${requestScope.bd.b.branchAddr}');
 			$('input[name=branchPhone]').val('${requestScope.bd.b.branchPhone}');
