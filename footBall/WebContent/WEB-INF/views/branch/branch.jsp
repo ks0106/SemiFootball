@@ -17,11 +17,11 @@
 <script>
 	/* 헤더 슬라이드 이미지 */
 	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;max-height:initial;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;max-height:initial; margin-top:-50%;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;max-height:initial;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;max-height:initial;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;max-height:initial;">');
+		$('#ground1').append('<img src="/img/branch/ground1.png" alt="그라운드1" style="width:100%;max-height:initial;">');
+		$('#ground2').append('<img src="/img/branch/ground2.jpg" alt="그라운드2" style="width:100%;max-height:initial; margin-top:-20%;">');
+		$('#ground3').append('<img src="/img/branch/ground3.jpg" alt="그라운드3" style="width:100%;max-height:initial;">');
+		$('#ground4').append('<img src="/img/branch/ground4.jpg" alt="그라운드4" style="width:100%;max-height:initial; margin-top:-10%;">');
+		$('#ground5').append('<img src="/img/branch/ground5.jpg" alt="그라운드5" style="width:100%;max-height:initial;">');
 	 });
 </script>
 </head>
