@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+select{
+   	width:215px;
+  	padding:5px; /* 여백으로 높이 설정 */ 
+	font-family: inherit; /* 폰트 상속 */ 
+	border: 1px solid #999; border-radius: 0px; /* iOS 둥근모서리 제거 */        	
+	-moz-appearance: none; 
+	appearance: none;
+}
+
+table{
+	margin: 0 auto;
+}
+
+.searchTdTitle{
+	font-size: 13px;
+}
+
+.searchInput{
+	width:200px;
+	padding:5px;
+}
+
+.resetBtn{
+	width:60px;
+	height:30px;
+	border:none;
+	background-color:gray;
+	color:white;
+}
+
+.closeBtn{
+	width:60px;
+	height:30px;
+	border:none;
+	background-color:#2c3c57;
+	color:white;
+}
+
+.okBtn{
+	width:60px;
+	height:30px;
+	border:none;
+	background-color:#2c3c57;
+	color:white;
+}

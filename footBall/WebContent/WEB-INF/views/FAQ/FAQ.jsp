@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="/css/board/board.css">
 <link rel="stylesheet" href="/css/common/notice.css">
 
-<title>FAQ리스트</title>
+<title>KS FAQ</title>
 </head>
 
 <body>

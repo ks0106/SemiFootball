@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/common/notice.css">
 <link rel="stylesheet" href="/css/board/board.css">
 
-<title>공지사항뷰</title>
+<title>KS 공지사항</title>
 
 </head>
 <body>
@@ -67,7 +67,9 @@
 							<td>조회수 : ${nv.noticeHit}</td>
 						</tr>
 						<tr>
-							<td style="height: 500px;" colspan="2">${nv.noticeContent}</td>
+							<td style="height: 500px;" colspan="2">${nv.noticeContent} </td>
+							
+							
 						</tr>
 						<tr>
 							<th colspan="2"><center>
@@ -77,7 +79,11 @@
 										<a href="/noticeDelete?noticeNo=${nv.noticeNo}"
 											class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">삭제하기</a>
 									</c:if>
+<<<<<<< HEAD
 									<a href="/notice?reqPage=${pd.reqPage}" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">목록으로</a>
+=======
+									<a href="/notice?reqPage=${req }" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">목록으로</a>
+>>>>>>> d6779812e8e28edb9f8614f5e74461cb24ef614c
 								</center></th>
 						</tr>
 					</table>

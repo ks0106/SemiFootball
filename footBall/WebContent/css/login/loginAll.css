@@ -1,0 +1,23 @@
+@charset "UTF-8";
+/* 주의! 해당 css는 body 옵션을 변경하므로 아무 파일에서나 import해서는 안됩니다. */
+/* 주의! 해당 css는 body 옵션을 변경하므로 아무 파일에서나 import해서는 안됩니다. */
+/* 주의! 해당 css는 body 옵션을 변경하므로 아무 파일에서나 import해서는 안됩니다. */
+
+/* 전체화면 컬러 조절*/
+body{
+	background-color:rgb(230,230,230);
+}
+
+/* 자동입력 시 input창 색깔 변하는 동작 제거 */
+/* input box color */
+input:-webkit-autofill{
+	-webkit-box-shadow:none;
+	-webkit-text-fill-color: none;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	transition: background-color 5000s ease-in-out 0s;
+}
+

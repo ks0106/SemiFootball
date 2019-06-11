@@ -8,7 +8,7 @@
 <link rel='stylesheet' href="css/branch/branchManage.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>[관리자]지점관리</title>
+<title>KS 지점관리</title>
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
@@ -22,7 +22,7 @@
 		<div class="content-container" style="top:0">
 			<div class="content-wrapper">
 				<table class="manageTable" border="1">
-					<tr><td colspan="11"><button id="btn-insert" onclick="location.href='/insertBranch'">지점 추가</button></td></tr>
+					<tr class="first"><td class="first" colspan="10"></td><td class="first"><button class="btn-manage" id="btn-insert" onclick="location.href='/insertBranch'">지점 추가</button></td></tr>
 					<tr>
 						<th>지점 코드</th><th>지점 이름</th><th>주 소</th><th>구장이름</th><th>구장 타입</th><th>실내/실외</th><th>전화번호</th><th>휴대폰</th><th>첨부파일</th><th>정보 수정</th><th>지점 삭제</th>
 					</tr>
@@ -42,8 +42,8 @@
 								<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi3 }</span></span><br>
 								<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi4 }</span></span><br>
 							</td>
-							<td><button class="btn-modify" onclick="location.href='/modifyBranch?branchCode=${bd.b.branchCode}'">정보 수정</button></td>
-							<td><button class="btn-delete" onclick="location.href='/deleteBranch?branchCode=${bd.b.branchCode}'">지점 삭제</button></td>
+							<td><button class="btn-manage" onclick="location.href='/modifyBranch?branchCode=${bd.b.branchCode}'">정보 수정</button></td>
+							<td><button class="btn-manage" onclick="location.href='/deleteBranch?branchCode=${bd.b.branchCode}'">지점 삭제</button></td>
 						</tr>
 					</c:forEach>
 				</table>

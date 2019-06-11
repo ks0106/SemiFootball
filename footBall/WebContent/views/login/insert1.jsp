@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입</title>
+<title>KS 회원가입</title>
 	<script
       src="http://code.jquery.com/jquery-3.4.0.slim.min.js"
       integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
@@ -15,13 +15,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- 로그인 공통css -->
+<link rel="stylesheet" href="/css/login/loginAll.css">
 </head>
-	<style>
-		  	/* 전체화면 컬러 조절 => body */
-		body{
-			background-color:rgb(230,230,230);
-		}
-	
+	<style>	
 		#maindiv{
             text-align: center;
             position: relative;

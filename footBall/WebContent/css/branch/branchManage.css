@@ -19,10 +19,27 @@
 		margin:0 auto;
 		border-collapse: collapse;
 	}
+	.first {
+		border-top: 0px;
+		border-left: 0px;
+		border-right: 0px;
+	}
+	.btn-manage {
+		width:100px;
+	    background-color: #f8585b;
+	    border: none;
+	    color:#fff;
+	    padding: 15px 0;
+	    text-align: center;
+	    display: inline-block;
+	    font-size: 15px;
+	    margin: 4px;
+	    cursor: pointer;
+	}
 	#btn-insert {
 		position:relative;
 		float: right;
-		right: 15px;
+		right: 5px;
 	}
 	.identifier {
 		text-align:left;

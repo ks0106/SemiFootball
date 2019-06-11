@@ -8,7 +8,7 @@
 <link rel='stylesheet' href="css/branch/branchManage.css">
 
 <meta charset="UTF-8">
-<title>[관리자]지점 정보 수정</title>
+<title>KS 지점 정보 수정</title>
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
@@ -89,7 +89,7 @@
 							사진 추가 <input type="file" name="photo" multiple="multiple">
 						</td>
 					</tr>
-					<tr><td colspan="6"><a href="/branchManage">취소</a><button type="submit" id="submit">확인</button></td></tr>
+					<tr><td colspan="6"><a href="/branchManage">취소</a><button class="btn-manage" type="submit" id="submit">확인</button></td></tr>
 				</table>
 			</form>
 		</section>

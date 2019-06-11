@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="/css/common/notice.css">
 <link rel="stylesheet" href="/css/board/board.css">
 
-<title>커뮤니티리스트</title>
+<title>KS 커뮤니티</title>
 </head>
 <style>
 a{
@@ -33,9 +33,20 @@ a{
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<script>
 		$(document).ready(function() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> d6779812e8e28edb9f8614f5e74461cb24ef614c
 			/* 헤더 배경 이미지 */
 			$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+			
 		});
+<<<<<<< HEAD
+=======
+		function contentView(num){
+			location.href="/noticeView?noticeNo="+num+"&reqPage="+$(".selectPage").eq(0).children().html();
+		}
+>>>>>>> d6779812e8e28edb9f8614f5e74461cb24ef614c
 	</script>
 
 	<!--영상 위 페이지 타이틀 -->
@@ -92,8 +103,7 @@ a{
 								%>
 								<tr class="table-tr">
 									<td class="td" style="text-align: center;"><%=nv.getRnum()%></td>
-									<td class="td" style="text-align: center;" colspan="2"><a
-										href="/noticeView?noticeNo=<%=nv.getNoticeNo()%>"><%=nv.getNoticeTitle()%></a></td>
+									<td class="td" style="text-align: center;" colspan="2"><a onclick="contentView(<%=nv.getNoticeNo()%>)"><%=nv.getNoticeTitle()%></a></td>
 									<td class="td" style="text-align: center;"><%=nv.getNoticeWriter()%></td>
 									<td class="td" style="text-align: center;"><%=nv.getNoticeDate()%></td>
 									<td class="td" style="text-align: center;"><%=nv.getNoticeHit()%></td>

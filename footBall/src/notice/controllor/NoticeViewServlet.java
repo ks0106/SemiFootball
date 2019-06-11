@@ -33,10 +33,13 @@ public class NoticeViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		System.out.println(reqPage);
 		NoticeVo nv = new NoticeService().listOne(noticeNo);
 		String view = "";
 		if(nv!=null) {
 			request.setAttribute("nv", nv);
+			request.setAttribute("req", reqPage);
 			view = "/WEB-INF/views/notice/noticeView.jsp";
 		}else {
 			request.setAttribute("msg", "삭제된 공지사항입니다.");

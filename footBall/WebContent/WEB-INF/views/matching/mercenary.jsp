@@ -13,7 +13,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>KS 용병 지원</title>
 <style>
 	.side_nav{
 		margin:5px;
@@ -327,7 +327,7 @@
 							<div id="pageNavi" style="width:100%; margin:0 auto; margin-bottom: 30px;margin-top: 30px;">${rpd.pageNavi }</div>
 							<!-- Search폼태그 -->
 							<div style="height: 50px;">
-								<form action="/matchSearch" method="get" style="height: 85%;    vertical-align: middle;">
+								<form action="/mercenarySearch" method="get" style="height: 85%;    vertical-align: middle;">
 									<select name="branch" style="height: 100%; border:2px solid #A4A4A4; ">
 											<option value="">지점</option>
 											<option value="1">부천점</option>

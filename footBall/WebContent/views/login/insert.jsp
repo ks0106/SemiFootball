@@ -4,24 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>이용 약관</title>
+<title>KS 이용 약관</title>
 	<script
       src="http://code.jquery.com/jquery-3.4.0.slim.min.js"
       integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
       crossorigin="anonymous">
     </script>
- 
+<!-- 로그인 공통css -->
+<link rel="stylesheet" href="/css/login/loginAll.css">
 </head>
 	 <style>
-	 
-	 	  	/* 전체화면 컬러 조절 => body */
-		body{
-			background-color:rgb(230,230,230);
-		}
         #maindiv{
-           
+            text-align: center;
             position: relative;
-             margin: 0 auto;
+            margin: 0 auto;
             width: 100%;
         }
         #div{

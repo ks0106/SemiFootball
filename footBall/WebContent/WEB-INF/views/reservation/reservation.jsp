@@ -22,7 +22,7 @@
 <script type="text/javascript" src="/js/reservation/reservationAll.js"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>KS 대관</title>
 <script>
 	$(document).ready(function() {
 		/* 헤더 배경 이미지 */

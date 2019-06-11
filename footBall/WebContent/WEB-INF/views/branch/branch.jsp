@@ -8,7 +8,7 @@
 <link rel='stylesheet' href="css/branch/branch.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>지점현황</title>
+<title>KS 지점현황</title>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cd02i4r7os&submodules=geocoder"></script> <!-- 네이버 api 추가 -->
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"

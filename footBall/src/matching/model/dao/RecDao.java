@@ -133,11 +133,62 @@ public class RecDao {
 		return result;
 		
 	}
+	public int searchCount2(Connection conn, int branch, String keyword) throws SQLException {
+		PreparedStatement pstmt =null;
+		ResultSet rset= null;
+		int result = 0;
+		String query ="select count(*) cnt from fb_recruit where rec_b_code=? and rec_name=? and rec_type=1";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, branch);
+		pstmt.setString(2, keyword);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			result = rset.getInt("cnt");
+		}
+		JDBCTemplate.close(rset);
+		JDBCTemplate.close(pstmt);
+		return result;
+		
+	}
 	public ArrayList<Recruit> searchList(Connection conn, int start, int end, int branch, String keyword) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Recruit> list = new ArrayList<Recruit>();
 		String query = "select * from (select rownum as rnum , r.* from(select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) where rec_b_code=? and rec_name like (?) and rec_type=0) r) where rnum between ? and ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, branch);
+		pstmt.setString(2, "%"+keyword+"%");
+		pstmt.setInt(3, start);
+		pstmt.setInt(4, end);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			Recruit r = new Recruit();
+			r.setSeqRecNo(rset.getInt("REC_NO"));
+			r.setRecName(rset.getString("rec_name"));
+			r.setRecCName(rset.getString("C_NAME"));
+			r.setRecBName(rset.getString("B_NAME"));
+			r.setRecCCode(rset.getInt("rec_c_code"));
+			r.setRecBCode(rset.getInt("rec_b_code"));
+			r.setRecPhone(rset.getString("REC_PHONE"));
+			r.setAmount(rset.getInt("rec_amount"));
+			r.setRecDate(rset.getDate("REC_DATE"));
+			r.setRecTime(rset.getString("REC_TIME"));
+			r.setRecLevel(rset.getString("REC_LEVEL"));
+			r.setRecAble(rset.getInt("REC_ABLE"));
+			r.setRecMemo(rset.getString("REC_MEMO"));
+			r.setRecEnrollDate(rset.getDate("REC_ENROLL_DATE"));
+			list.add(r);
+		}
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rset);
+		return list;
+		
+	}
+	public ArrayList<Recruit> searchList2(Connection conn, int start, int end, int branch, String keyword) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Recruit> list = new ArrayList<Recruit>();
+		String query = "select * from (select rownum as rnum , r.* from(select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) where rec_b_code=? and rec_name like (?) and rec_type=1) r) where rnum between ? and ?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, branch);
 		pstmt.setString(2, "%"+keyword+"%");
