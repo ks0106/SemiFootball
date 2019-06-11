@@ -29,6 +29,7 @@ $(document).ready(function(){
 	<div id="title">
 		갤러리
 	</div>
+	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<section style="padding-top: 100px; height: 1000px;" >
 		<div style="position: sticky; position: -webkit-stiky;">
 			<div class="container">
