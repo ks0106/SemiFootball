@@ -244,7 +244,7 @@
 				<!-- 타이틀자리 -->
 				<div id="title-position" style="margin: 0 auto;width: 60%;text-align: center; font-size: 20px; font-weight: 20px;"></div>
 				<!-- 포스터자리 -->
-				<div  style="width:500px;margin:0 auto;margin-bottom:50px;">
+				<div  style="width:300px;margin:0 auto;margin-bottom:50px;">
 					<img id="poster"  width="100%" height="100%">
 				</div>
 				<!-- 대진표 배경 div  -->
