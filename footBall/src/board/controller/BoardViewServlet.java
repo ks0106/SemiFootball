@@ -33,9 +33,11 @@ public class BoardViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		BoardViewData bvd = new BoardService().listOne(boardNo);
 		String view = "";
 		if(bvd.getBv()!=null) {
+			request.setAttribute("req", reqPage);
 			request.setAttribute("bvd", bvd);
 			view ="/WEB-INF/views/board/boardView.jsp";
 		}else {
