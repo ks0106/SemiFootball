@@ -53,7 +53,7 @@
 						<a class="side_a" id="side_menu1" href="/notice" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">공지사항</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">FAQ</a>
+						<a class="side_a" id="side_menu2" href="/fAQ" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">FAQ</a>
 					</div>
 					<div style="margin-bottom:15px;">
 						<a class="side_a" id="side_menu3" href="/boardList" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">자유게시판	</a>

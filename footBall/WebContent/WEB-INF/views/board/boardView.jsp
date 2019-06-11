@@ -51,7 +51,7 @@ a{
 				<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
 			</div>
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu3" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
+				<a class="side_a" id="side_menu3" href="/boardList" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
 				</a>
 			</div>
 		</div>
@@ -86,7 +86,7 @@ a{
                   <button class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;"><a href="/boardUpdate?boardNo=${bvd.bv.boardNo}" style="color: white;">수정하기</a></button>
                   <button class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;"><a href="/boardDelete?boardNo=${bvd.bv.boardNo}" style="color: white;">삭제하기</a></button>
                </c:if>
-                  <button class="btn" style="border: none; background-color: green; width: 100px; height: 30px;"><a href="/boardList" style="color:white;">목록으로</a></button>
+                  <button class="btn" style="border: none; background-color: green; width: 100px; height: 30px;"><a href="/boardList?reqPage=${req }	" style="color:white;">목록으로</a></button>
                </th>
             </tr>
          </table></center>

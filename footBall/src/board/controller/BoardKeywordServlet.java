@@ -40,7 +40,7 @@ public class BoardKeywordServlet extends HttpServlet {
 		}
 		String type = request.getParameter("type");
 		String keyword = request.getParameter("keyword");
-		BoardPageData bpd = new BoardService().searchKeyword(reqPage,type,keyword);
+		BoardPageData bpd = new BoardService().keywordSearch(reqPage,type,keyword);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp");
 		request.setAttribute("bpd", bpd);
 		rd.forward(request, response);
