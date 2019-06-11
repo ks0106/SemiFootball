@@ -5,7 +5,7 @@
 <html>
 <head>
 <link rel='stylesheet' href="css/common/admin.css">
-<link rel='stylesheet' href="css/branch/branchManage.css">
+<link rel='stylesheet' href="css/branch/branchManage.css?ver=1.2">
 
 <meta charset="UTF-8">
 <title>KS 지점 정보 수정</title>
@@ -89,7 +89,7 @@
 							사진 추가 <input type="file" name="photo" multiple="multiple">
 						</td>
 					</tr>
-					<tr><td colspan="6"><a href="/branchManage">취소</a><button class="btn-manage" type="submit" id="submit">확인</button></td></tr>
+					<tr><td colspan="6"><a class="link-manage" href="/branchManage">취소</a><button class="btn-manage" type="submit" id="submit">확인</button></td></tr>
 				</table>
 			</form>
 		</section>
