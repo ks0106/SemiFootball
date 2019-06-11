@@ -41,9 +41,9 @@ public class BoardCommentInsertServlet extends HttpServlet {
 		BoardComment bc = new BoardComment(0, boardCommentLevel, boardCommentWriter, boardCommentContent, boardRef, boardCommentRef, null);
 		int result = new BoardService().insertBoardComment(bc);
 		if(result>0) {
-			request.setAttribute("msg", "댓글 등록 성공");
+			request.setAttribute("msg", "댓글을 등록하셨습니다");
 		}else {
-			request.setAttribute("msg", "댓글 등록 실패");
+			request.setAttribute("msg", "댓글 등록에 실패하셨습니다");
 		}
 		request.setAttribute("loc", "/boardView?boardNo="+boardRef);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
