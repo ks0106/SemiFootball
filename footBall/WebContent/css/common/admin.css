@@ -52,6 +52,9 @@
 	    width: 100%;
 	    text-decoration: none;
 	    color: #232323;
+   	    font-size:16px;
+	    font-weight:bolder;
+	    line-height:75px;
 	}
 	#menu>li>ul>li>a:hover{
 	    background-color: #333333;
