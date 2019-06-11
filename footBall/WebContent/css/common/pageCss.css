@@ -1,5 +1,9 @@
 @charset "UTF-8";
-	/* 페이지 타이틀  */
+/* !이 css은 모든 button 관련 input의 cursor를 변경합니다. */
+/* !이 css은 모든 button 관련 input의 cursor를 변경합니다. */
+/* !이 css은 모든 button 관련 input의 cursor를 변경합니다. */
+
+/* 페이지 타이틀  */
 	#title{
 		position:absolute;
 		z-index: 1;
@@ -10,3 +14,7 @@
 		top: 350px;
 	}
 
+	/* 모든 버튼 타입 커서 */
+	input[type="button"],input[type="submit"],input[type="reset"],button{
+		cursor:pointer;
+	}

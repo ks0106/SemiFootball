@@ -56,11 +56,6 @@
 	});
 </script>
 <style>
-	/* 모든 버튼 타입 커서  */
-	input[type="button"],input[type="submit"],input[type="reset"],button{
-		cursor:pointer;
-	}
-
 .side_nav {
 	margin: 5px;
 	color: silver;
@@ -327,7 +322,7 @@
 		<!-- 사이드 메뉴 종료 -->
 		<!-- 비밀번호 확인 jsp include -->
 		<jsp:include page="/WEB-INF/views/common/password.jsp"/>
-		<div id="viewList" style="width: 78%; height: 120vh; border-left: 1px solid silver;overflow: hidden;display:none; ">
+		<div id="mypage" style="width: 78%; height: 120vh; border-left: 1px solid silver;overflow: hidden;display:none; ">
 			<div
 				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">예약확인</div>
 			<div class="underline"
@@ -375,18 +370,5 @@
 	</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-	<script type="text/javascript"> //비밀번호 확인하는 if문
-		$("#pwd").click(function () {
-			var pwd1 = '${member.pwd}';
-			var pwd = $("#checkpwd").val();
-			if(pwd1==pwd){
-				$("#divpwd").css("display","none");
-				$("#viewList").css("display","inline-block");
-			}else{
-				alert("비밀번호가 일치하지 않습니다.");
-			}
-		});
-
-	</script>
 </body>
 </html>

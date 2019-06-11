@@ -11,6 +11,8 @@
 <!-- reservation 공통 js => jqeury를 이용하기 때문에 jquery import 밑으로 내려야 한다. -->
 <script type="text/javascript" src="/js/reservation/reservationAll.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/css/common/pageCss.css">
+
 <title>Insert title here</title>
 </head>
 <script>
