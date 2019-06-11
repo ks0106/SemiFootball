@@ -6,7 +6,7 @@
 <link rel='stylesheet' href="css/common/pageCss.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>지점 상세 정보</title>
+<title>KS 지점 상세 정보</title>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->

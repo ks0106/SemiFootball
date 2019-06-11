@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>비밀번호 찾기 이메일인증</title>
+<title>KS 비밀번호 찾기 이메일인증</title>
 	<script
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
@@ -22,7 +22,7 @@
         저희 KS Sports Football를 이용해 주셔서 감사합니다.<br><br>
         
      <h1>회원님의 본인 인증이 완료되었습니다.</h1><br><br>
-        보안을 위해 이 링크는 전송된 후 5초가 지나면 만료됩니다. 암호화 관련된 문제가 계속 발생 하는경우 <a href="http://localhost/fAQ">KS Sports Football 고객센터로</a> 문의하세요.<br><br>
+        보안을 위해 이 링크는 전송된 후 5초가 지나면 세션이 만료됩니다. 암호화 관련된 문제가 계속 발생 하는경우 <a href="http://localhost/fAQ">KS Sports Football 고객센터로</a> 문의하세요.<br><br>
         감사합니다. <br>
         KS Sports Football 팀
     </p>

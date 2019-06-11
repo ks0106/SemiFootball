@@ -21,7 +21,7 @@
  <!-- reservation 공통 js => jqeury를 이용하기 때문에 jquery import 밑으로 내려야 한다. -->
 <script type="text/javascript" src="/js/reservation/reservationAdminAll.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>KS 대관스케줄관리</title>
 </head>
 <script>
 	$(document).ready(function(){

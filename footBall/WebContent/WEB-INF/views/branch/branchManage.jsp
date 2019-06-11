@@ -8,7 +8,7 @@
 <link rel='stylesheet' href="css/branch/branchManage.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>[관리자]지점관리</title>
+<title>KS 지점관리</title>
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="

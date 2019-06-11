@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>KS 갤러리</title>
 <!-- 동영상CSS  -->
 <link rel="stylesheet" href="/css/common/pageCss.css">
 
@@ -17,11 +17,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-    $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-    $('#ground2').append('<img src="/img/324$1$324.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-    $('#ground3').append('<img src="/img/리더그린1.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-    $('#ground4').append('<img src="/img/31295443_35df5661_C0CEC3B5C1DFB1B8C3BB+B9AEC8ADBCBEC5CD+C7B2BBECC0E5.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-    $('#ground5').append('<img src="/img/Image.jpg" alt="그라운드5" style="width:100%;height:500px;">');
+	/* 헤더 배경 이미지 */
+	$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
  });
 </script>
 </head>

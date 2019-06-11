@@ -62,7 +62,7 @@ public class BoardUpdateEndServlet extends HttpServlet {
 	         if(oldFilename !=null) {
 	            File deleteFile = new File(saveDirectory+"/"+oldFilepath);
 	            boolean bool = deleteFile.delete();
-	            System.out.println(bool?"삭제성공":"삭제실패");
+	            System.out.println(bool?"삭제완료":"삭제실패");
 	         }
 	      }else { //첨부파일이 없는 경우
 	         if(status.equals("stay")) {//삭제하지 않은 경우
@@ -71,7 +71,7 @@ public class BoardUpdateEndServlet extends HttpServlet {
 	         }else {
 	            File deleteFile = new File(saveDirectory+"/"+oldFilepath);
 	            boolean bool = deleteFile.delete();
-	            System.out.println(bool?"삭제성공":"삭제실패");
+	            System.out.println(bool?"삭제완료":"삭제실패");
 	         }
 	      }
 	      BoardVo bv = new BoardVo(boardNo, boardTitle, null, boardContent, null, boardFilename, boardFilepath, 0, 0);

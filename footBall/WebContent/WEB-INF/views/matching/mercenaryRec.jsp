@@ -13,7 +13,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>KS 용병모집</title>
 <style>
 	.side_nav{
 		margin:5px;
@@ -377,7 +377,7 @@
  			$("#tr11").parent().parent().parent().children().remove("#modiBtn-wrapper");
  		}
    		$.ajax({
-   			url:"/recContentView",
+   			url:"/mersenaryContentView",
    			type:"get",
    			dataType:"json",
    			data:{pageNum:pageNum},

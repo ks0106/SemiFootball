@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/css/board/board.css">
 <link rel="stylesheet" href="/css/common/notice.css">
 
-<title>자유게시판뷰</title>
+<title>KS 자유게시판</title>
 </head>
 <style>
 a{
@@ -30,39 +30,28 @@ a{
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<script>
-   $(document).ready(function(){
-      $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-      $('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-      $('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-      $('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-      $('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
-   });
-</script>
+	$(document).ready(function(){
+		   /* 헤더 배경 이미지 */
+			$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+	   });
+	</script>
 <!--영상 위 페이지 타이틀 -->
 	<div id="title">커뮤니티</div>
 
 
-	<hr
-		style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
-	<div
-		style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
-		<div
-			style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
-			<div
-				style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">커뮤니티</div>
-			<hr
-				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
+	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+	<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
+		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">커뮤니티</div>
+			<hr style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu1" href="/notice"
-					style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
+				<a class="side_a" id="side_menu1" href="/notice" style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
 			</div>
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu2" href="/fAQ"
-					style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
+				<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
 			</div>
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu3"
-					style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
+				<a class="side_a" id="side_menu3" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
 				</a>
 			</div>
 		</div>
@@ -171,7 +160,8 @@ a{
   			</c:forEach>
 		</div>
 	</section>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+	
 	<script>
 		function boardDelete(boardNo){
 			if(confirm("해당 게시글을 삭제하시겠습니까?")){
@@ -237,7 +227,6 @@ a{
 		}
 	</script>
 
-	
 		</div>
 	</div>
 	
