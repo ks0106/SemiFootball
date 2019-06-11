@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인</title>
+<title>KS 로그인</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	  <style>
 	  	/* 자동입력 시 input창 색깔 변하는 동작 제거 */
