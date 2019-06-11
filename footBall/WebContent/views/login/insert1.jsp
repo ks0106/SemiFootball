@@ -84,7 +84,7 @@
            		<input type="text" name="id" id="id" placeholder="test@naver.com";><br><br>
            		
            		<span class="span">이메일 인증번호 전송</span>
-           		<input type="button" value="전송" class="button btn btn-primary"><label id="eTxt">인증 실패</label><br><br>
+           		<input type="button" value="전송" class="button btn btn-primary"><span id="eTxt"></span><br><br>
            		
            		
            		<span class="span">비밀번호</span><span class="text1">(필수)</span><span id="extext1"></span><br><br>
@@ -126,6 +126,7 @@
      });
     </script>
  	<script>
+ 		
  		var result =[false,false,false,false,false]
  		$(document).ready(function() {
  			$(".button").prop("disabled",true); //이메일 인증버튼 비활성화
@@ -144,11 +145,12 @@
 	                      $('#extext').html('');
 	                     
 	                     $(".button").prop("disabled",false); //이메일 인증 버튼 활성화
-	                     if($("#eTxt").text()=="인증완료"){
-	                    		console.log($("#eTxt").text()); 
-	                    		result[0]='true';
+	                    
+	                     //if($("#eTxt").text()=="인증완료"){
+	                    		
+	                    		//result[0]='true';
 	                    	 return true;
-	                     }
+	                     //}
 	                     
 	                 };	
 				 };
@@ -231,6 +233,11 @@
 	               for(var i=0;i<result.length;i++){
 	                    console.log(result[i]);
 	                        if(!result[i]){
+	                        	console.log(result[0]);
+	                        	console.log(result[1]);
+	                        	console.log(result[2]);
+	                        	console.log(result[3]);
+	                        	console.log(result[4]);
 	                            alert("입력을 확인하세요");
 	                            event.isDefaultPrevented;
 	                            return false;
