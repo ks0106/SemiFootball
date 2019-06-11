@@ -13,7 +13,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>대회</title>
+<title>KS 대회공지</title>
 <style>
 </style>
 

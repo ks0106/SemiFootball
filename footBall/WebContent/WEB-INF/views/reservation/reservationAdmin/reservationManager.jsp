@@ -8,7 +8,7 @@
 <head>
 <link rel='stylesheet' href="css/common/admin.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>KS 대관예약관리</title>
 </head>
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"

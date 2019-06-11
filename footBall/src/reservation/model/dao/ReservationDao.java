@@ -922,6 +922,29 @@ public class ReservationDao {
 		JDBCTemplate.close(pstmt);
 		return result;
 	}
+
+	public String bringImg(Connection conn, int rCode) {
+		StringBuffer sb = new StringBuffer();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("bringImg");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, rCode);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				sb.append(rset.getString("bi1"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		String bi1 = sb.toString();
+		return bi1;
+	}
 }
 
  

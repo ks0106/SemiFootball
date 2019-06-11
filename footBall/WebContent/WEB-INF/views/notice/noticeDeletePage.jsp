@@ -17,7 +17,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/common/admin.css">
 <link rel="stylesheet" href="/css/common/notice.css">
-<title>관리자페이지에서 공지삭제</title>
+<title>KS 공지관리</title>
 </head>
 
 <body>

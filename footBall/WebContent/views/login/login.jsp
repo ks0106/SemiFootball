@@ -4,27 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인</title>
+<title>KS 로그인</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	  <style>
-	  	/* 자동입력 시 input창 색깔 변하는 동작 제거 */
-	  	/* input box color */
-		input:-webkit-autofill{
-			-webkit-box-shadow:none;
-			-webkit-text-fill-color: none;
-		}
-		input:-webkit-autofill,
-		input:-webkit-autofill:hover,
-		input:-webkit-autofill:focus,
-		input:-webkit-autofill:active {
-			transition: background-color 5000s ease-in-out 0s;
-		}
-	  	/* 자동입력 시 input창 색깔 변하는 동작 제거 css 끝*/
-	  	
-	  	/* 전체화면 컬러 조절 => body */
-		body{
-			background-color:rgb(230,230,230);
-		}
 		.helpMenu{
 			font-size:14px;
 			color:rgb(82,82,82);
@@ -70,6 +52,8 @@
             color: black;
         }
     </style>
+<!-- 로그인 공통css -->
+<link rel="stylesheet" href="/css/login/loginAll.css">
 </head>
 <body>
 	<div style="height:900px;" id="maindiv">

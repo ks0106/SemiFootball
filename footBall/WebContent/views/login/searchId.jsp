@@ -4,62 +4,74 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>아이디 찾기</title>
+<title>KS 아이디 찾기</title>
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous">
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- 로그인 공통css -->
+<link rel="stylesheet" href="/css/login/loginAll.css">
+<!-- 아이디/패스워드 찾기 공통css -->
+<link rel="stylesheet" href="/css/login/loginSearchAll.css">
 </head>
 	<style>
-		select{
-        	width:160px;
-        	padding: .8em .5em; /* 여백으로 높이 설정 */ 
-        	font-family: inherit; /* 폰트 상속 */ 
-        	border: 1px solid #999; border-radius: 0px; /* iOS 둥근모서리 제거 */        	
-        	-moz-appearance: none; 
-        	appearance: none;
+        #sub{
+	        width:60px;
+	        height:30px;
+	        border:none;
+	        background-color:#2c3c57;
+	        color:white;
         }
-        table{
-        	margin: 0 auto;
-        	
-        	}
 	</style>
 <body>	
-		<img  src="/img/header_logo.png" style="width:100px;">
-		<center>
-        <form >
-        	<table >
-        		<tr>
-        			<td colspan="2" style="text-align: center;"><h2>아이디 찾기</h2></td>
-        		</tr>
-        		<tr>
-        			<td style="float: right;">이름 :</td><td><input type="text" name="name" id="name"></td>
-        		</tr>
-        		<tr>
-        			<td>아이디 찾기 힌트 :</td>
-        			<td>
-        				<select name="pwdHint" id="pwdHint">
-		           			<option>선택하세요</option>
-		           			<option value="가장 좋아하는 색상">가장 좋아하는 색상</option>
-		           			<option value="가장 좋아하는 연예인">가장 좋아하는 연예인</option>
-		           			<option value="내가 나온 초등학교 이름">내가 나온 초등학교 이름</option>
-	           			</select>
-        			</td>
-        		</tr>
-        		<tr>
-        			<td>아이디 찾기 정답 :</td>
-        			<td>
-        				<input type="text" name="pwdHintAnswer" id="pwdHintAnswer">
-        			</td>
-        		</tr>
-        	</table>
-        	<input type="reset" value="취소">
-        	<input type="button" class="btn btn-success" value="확인" id="sub"><br>
-        	<input type="button" value="닫기" id="close">
-        </form>
-		</center>
+		<div>
+			<div style="text-align:center;">
+				<img  src="/img/header_logo.png" style="width:100px;">
+			</div>
+	        <form>
+	        	<table>
+	        		<tr>
+	        			<td colspan="2" style="text-align: center;"><h2>아이디 찾기</h2></td>
+	        		</tr>	        	
+	        		<tr>
+	        			<td class="searchTdTitle">이름</td>
+	        		</tr>
+	        		<tr>
+		        		<td><input class="searchInput" type="text" name="name" id="name"></td>
+	        		</tr>
+	        		
+	        		<tr>
+	        			<td class="searchTdTitle">아이디 찾기 힌트</td>
+	        		</tr>
+	        		<tr>
+		        		<td>
+	        				<select name="pwdHint" id="pwdHint">
+			           			<option>선택하세요</option>
+			           			<option value="가장 좋아하는 색상">가장 좋아하는 색상</option>
+			           			<option value="가장 좋아하는 연예인">가장 좋아하는 연예인</option>
+			           			<option value="내가 나온 초등학교 이름">내가 나온 초등학교 이름</option>
+		           			</select>
+	        			</td>
+	        		
+	        		</tr>
+	        		<tr>
+	        			<td class="searchTdTitle">아이디 찾기 정답</td>
+	        		</tr>
+	        		<tr>
+	        			<td>
+	        				<input class="searchInput" type="text" name="pwdHintAnswer" id="pwdHintAnswer">
+	        			</td>
+	        		</tr>
+	        	</table>
+	        	<div style="text-align:center;">
+		        	<input type="reset" value="취소" class="resetBtn">
+		        	<input type="button" class="btn btn-success" value="확인" id="sub"><br>
+		        	<input type="button" value="닫기" id="close" class="closeBtn">
+		        </div>
+	        </form>
+		</div>
 	<script type="text/javascript">
 		$("#close").hide();
 		$("#sub").click(function () {
@@ -85,7 +97,7 @@
 									 self.close();
 								});
 								var id = decodeURIComponent(data);
-								$("#sub").after('<h4>회원님의 아이디는 :'+id+'입니다.');
+								$("#sub").after('<h4>회원님의 아이디는 '+id+'입니다.');
 							}
 					
 							

@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="/css/common/notice.css">
 <link rel="stylesheet" href="/css/board/board.css">
 
-<title>커뮤니티리스트</title>
+<title>KS 커뮤니티</title>
 </head>
 <style>
 a{

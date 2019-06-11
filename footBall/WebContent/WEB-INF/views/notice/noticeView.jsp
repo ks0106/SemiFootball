@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/common/notice.css">
 <link rel="stylesheet" href="/css/board/board.css">
 
-<title>공지사항뷰</title>
+<title>KS 공지사항</title>
 
 </head>
 <body>

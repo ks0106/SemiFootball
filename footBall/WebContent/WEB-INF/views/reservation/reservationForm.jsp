@@ -131,9 +131,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">대관</div>
+	<hr	style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<section> <!-- 내용 작성 -->
-	<hr
-		style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<!-- 컨텐츠 -->
 	<div
 		style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
@@ -156,8 +155,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		<div
 			style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 			<!-- 컨텐츠 타이틀 -->
-			<div
-				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">${b.branchName}<대관예약>
+			<div style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">
+				${b.branchName} &lt;대관예약&gt;
 			</div>
 			<div class="underline"
 				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
@@ -165,8 +164,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			<div style="width: 100%;">
 				<!-- 주의사항 -->
 				<div style="width:590px; border: 1px solid darkgray;float:right;margin-top:47px;color:#2c3c57;margin-bottom:30px;">
-					<div>
-						<img src="/img/ground4.jpg" width="590px" height="450px">
+					<div style="overflow: hidden;">
+						<img src="${bi1 }" width="100%" height="100%">
 					</div>
 					<div style="height:70px;background-color:#2c3c57;color:white;border:0;border-bottom:1px solid darkgray;font-weight:bolder;text-align:center;font-size:35px;line-height:70px;">환불규정</div>
 					<div style="padding:20px;">

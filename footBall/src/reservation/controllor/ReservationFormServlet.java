@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import branch.model.vo.Branch;
+import branch.model.vo.BranchImgs;
 import member.model.vo.Member;
 import reservation.model.service.ReservationService;
 
@@ -41,7 +42,9 @@ public class ReservationFormServlet extends HttpServlet {
 			int rCode = Integer.parseInt(request.getParameter("reservationSelect"));		
 			try {
 				Branch b = new ReservationService().reservationBranch(rCode);
+				String bi1 = new ReservationService().bringImg(rCode);
 				request.setAttribute("b", b);
+				request.setAttribute("bi1", bi1);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reservation/reservationForm.jsp");
 				rd.forward(request, response);
 			} catch (SQLException e) {

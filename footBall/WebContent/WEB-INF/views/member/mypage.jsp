@@ -15,7 +15,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>마이 페이지</title>
+<title>KS 마이 페이지</title>
 <style>
 	.side_nav{
 		margin:5px;

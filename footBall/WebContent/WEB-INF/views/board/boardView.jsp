@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/css/board/board.css">
 <link rel="stylesheet" href="/css/common/notice.css">
 
-<title>자유게시판뷰</title>
+<title>KS 자유게시판</title>
 </head>
 <style>
 a{
