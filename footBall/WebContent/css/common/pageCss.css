@@ -18,3 +18,7 @@
 	input[type="button"],input[type="submit"],input[type="reset"],button{
 		cursor:pointer;
 	}
+	
+	a{
+		cursor:pointer;
+	}

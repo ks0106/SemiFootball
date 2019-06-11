@@ -38,9 +38,7 @@ public class MercenaryAddPageServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Member m = ((Member)session.getAttribute("member"));
 		if(m!=null) {
-			response.sendRedirect("/WEB-INF/views/match/mercenaryAdd.jsp");
-				
-			
+			response.sendRedirect("/views/match/mercenaryAdd.jsp");
 		}else {
 			request.setAttribute("msg", "로그인 후 사용해주세요");
 			request.setAttribute("loc", "/views/login/login.jsp");

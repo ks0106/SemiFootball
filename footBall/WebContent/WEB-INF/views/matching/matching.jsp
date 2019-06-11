@@ -171,13 +171,13 @@
 	.view-th{
 		width: 25%;
 		padding: 20px;
-		border: 1px solid;
+		border: 1px solid gray;
 		background-color: #BDBDBD;
 	}
 	.view-td{
 		width: 25%;
 		padding: 20px;
-		border: 1px solid;
+		border: 1px solid gray;
 	}
 	.view-table-div{
 	
@@ -214,6 +214,12 @@
      	border-radius: 5px;
      	background-color: red;
      	color:white;
+     }
+     .matchingBtn{
+ 		width:120px;
+		height:40px;
+		border:none;
+		color:white;    
      }
 </style>
 <script>
@@ -273,7 +279,7 @@ function contentView(pageNum){
    				$("#tr11").next().next().next().next().next().find("td").eq(1).html(able);
    				$("#tr11").next().next().next().next().next().next().find("td").html(Memo);
    				if("${sessionScope.member.phone}" == Phone){
-   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button type='button' id='modiBtn'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px;'>수정하기</button></div>")
+   					$("#tr11").parent().parent().parent().append("<div id='modiBtn-wrapper' style='margin:0 auto;width:60%;text-align:center;'><button class='matchingBtn' type='button' id='modiBtn'  onclick='modifyMactchCon("+pageNum+")' style='margin-top: 20px; background-color:#2c3c57;'>수정하기</button></div>")
    				}
  			},
    			erorr : function () {
@@ -297,8 +303,8 @@ function contentView(pageNum){
 			$("#tr11").next().next().next().next().next().find("td").eq(0).html('<select name="matchAmount" style="width: 80px;height: 20px;"><option value="1">1팀</option>	<option value="2">2팀</option><option value="3">3팀</option>	</select>');
 			$("#tr11").next().next().next().next().next().find("td").eq(1).html('<select name="matchAble" style="width: 80px;height: 20px;"><option value="0">가능</option>	<option value="1">마감</option></select>');
 			$("#tr11").next().next().next().next().next().next().find("td").html('<textarea rows="3" cols="40" name="memo" style="resize: none;text-align: left;" placeholder="유니폼색상과 메모사항을 적어주세요"></textarea>');
-			$("#modiBtn").after("<button type='button' id='modi' style='margin-top:20px;margin-left:20px;'  onclick='modi("+num+")' style='margin-top: 20px;'>확정하기</button>")
-			$("#modiBtn").after("<button type='button' id='delete' style='margin-top:20px;'  onclick='del("+num+")' style='margin-top: 20px;'>삭제하기</button>")
+			$("#modiBtn").after("<button class='matchingBtn' type='button' id='modi' style='background-color:#2c3c57;margin-top:20px;margin-left:20px;'  onclick='modi("+num+")'>확정하기</button>")
+			$("#modiBtn").after("<button class='matchingBtn' type='button' id='delete' style='margin-top:20px;background-color:gray;'  onclick='del("+num+")'>삭제하기</button>")
 			$("#modiBtn").hide();
    	}
    	function modi(num){
@@ -358,7 +364,6 @@ function contentView(pageNum){
 							</div>
 							<!-- 매치 게시판 출력 테이블 -->
 								<div id="table-wraper">
-								
 									<table id="matchlist-table"  style="width: 100%;">
 										<tr>
 											<th class="th">매치형태</th>

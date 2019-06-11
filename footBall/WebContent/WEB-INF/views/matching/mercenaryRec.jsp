@@ -362,8 +362,7 @@
 							
 	               		</div>
 	                <div id="popup_mask"></div>
-					
-					
+
 					<div style="width:100%;height:100px;"></div>
 				<div>
 			</div>

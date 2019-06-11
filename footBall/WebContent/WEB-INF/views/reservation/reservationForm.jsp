@@ -157,7 +157,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		<div
 			style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 			<!-- 컨텐츠 타이틀 -->
-			<div style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">
+			<div style="font-size: 45px; color: #403d3f; text-align: center; margin-bottom: 20px;">
 				${b.branchName} &lt;대관예약&gt;
 			</div>
 			<div class="underline"

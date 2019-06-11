@@ -141,7 +141,7 @@ to {
 		<div
 			style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 			<div
-				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">대관예약</div>
+				style="font-size: 45px; color: #403d3f; text-align: center; margin-bottom: 20px;">대관예약</div>
 			<div class="underline"
 				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
 			<!-- 컨텐츠 지점선택 파티션 -->

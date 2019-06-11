@@ -87,9 +87,16 @@
 		padding: 20px;
 		font-size: 16px;
 		text-align: center;
+		cursor:pointer;
 	}
 	.table-tr:hover{
 		background-color: lightgray;
+	}
+	.mercenaryBtn{
+		width:120px;
+		height:40px;
+		border:none;
+		color:white;
 	}
 </style>
 <script>
@@ -217,9 +224,9 @@
 							</tr>
 						</table>
 						<div id="btn-div" style="margin-top: 30px;text-align: center;">
-								 <button class="btn btn-primary btn-lg" type="submit" style="margin-right: 20px;">등록하기</button>
-								 <button class="btn btn-primary btn-lg" type="reset">초기화</button>
-						 </div>
+						<button class="mercenaryBtn" type="submit" style="margin-right: 20px;background-color:#2c3c57;">등록하기</button>
+						<button class="mercenaryBtn" type="reset" style="background-color:gray;">초기화</button>
+						</div>
 					</form>
 					<div id="table-wraper">
 								<div style="margin: 0 auto; margin-top: 30px; margin-bottom: 30px; font-size: 20px;font-weight: bold;text-align: center;">예약정보 확인</div>
