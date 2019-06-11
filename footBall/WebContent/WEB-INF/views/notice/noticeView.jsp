@@ -40,10 +40,10 @@
 						<a class="side_a" id="side_menu1" href="/notice" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">공지사항</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" href="/fAQ" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">FAQ</a>
+						<a class="side_a" id="side_menu2" href="/fAQ" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">FAQ</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu3" href="/boardList" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">자유게시판	</a>
+						<a class="side_a" id="side_menu3" href="/boardList" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">자유게시판	</a>
 					</div>
 				</div>
 			<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
@@ -74,16 +74,16 @@
 						</tr>
 						<tr>
 							<th colspan="2"><center>
-									<c:if test="${sessionScope.member.id =='admin' }">
-										<a href="/noticeUpdate?noticeNo=${nv.noticeNo}"
-											class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">수정하기</a>
-										<a href="/noticeDelete?noticeNo=${nv.noticeNo}"
-											class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">삭제하기</a>
-									</c:if>
-									<a href="/notice?reqPage=${req}" class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">목록으로</a>
+								<c:if test="${sessionScope.member.id =='admin' }">
+									<a href="/noticeUpdate?noticeNo=${nv.noticeNo}"
+										class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">수정하기</a>
+									<a href="/noticeDelete?noticeNo=${nv.noticeNo}"
+										class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">삭제하기</a>
+								</c:if>
 							</center></th>
 						</tr>
 					</table>
+					<button onclick="location.href='/notice?reqPage=${req}'" style="width:120px;height:40px;color:white;border: none; background-color: #2c3c57;">목록으로</button>				
 				</center>
 			</div>
 			</section>
