@@ -34,7 +34,8 @@
 	</div>
 		<script type="text/javascript"> //비밀번호 확인하는 if문
 			$("#pwd").click(function () {
-				var pwd1 = '${sessionScope.member.pwd}';
+				//var pwd1 = '${sessionScope.member.pwd}';
+				var pwd1 = '${member.pwd}';
 				var pwd = $("#checkpwd").val();
 				console.log(pwd1);
 				console.log(pwd);
