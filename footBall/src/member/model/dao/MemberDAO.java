@@ -57,8 +57,8 @@ public class MemberDAO {
 		pstmt.setString(2, m.getPwd());
 		pstmt.setString(3, m.getName());
 		pstmt.setString(4, m.getPhone());
-		pstmt.setString(5, m.getPwdHintAnswer());
-		pstmt.setString(6, m.getPwdHint());
+		pstmt.setString(5, m.getPwdHint());
+		pstmt.setString(6, m.getPwdHintAnswer());
 		result = pstmt.executeUpdate();
 		return result;
 	}
