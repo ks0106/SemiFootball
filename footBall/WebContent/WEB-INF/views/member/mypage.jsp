@@ -17,6 +17,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>KS 마이 페이지</title>
 <style>
+	/* 모든 버튼 타입 커서  */
+	input[type="button"],input[type="submit"],input[type="reset"],button{
+		cursor:pointer;
+	}
+	.side_a {
+		font-weight: bolder;
+		font-size: 18px;
+		text-decoration: none;
+		cursor: pointer;
+	}
 	.side_nav{
 		margin:5px;
 		color:silver;
@@ -51,7 +61,7 @@
       height:100%;
       list-style-type: none;
       border-top:3px solid purple;
-      border-bottom:1px solid  green;
+      border-bottom:1px solid #2c3c57;
       padding-left: 0;
    }
    .list-li{
@@ -62,7 +72,7 @@
       line-height: 80px;
       font-size: 40px;
       font-weight: bold;
-      border-right: 1px solid  green;
+      border-right: 1px solid #2c3c57;
       box-sizing: border-box;
    }
    .list-li:last-child{
@@ -76,11 +86,11 @@
       display: block;
    }
    .selected > .munebar{
-      background-color:  green;
+      background-color:#2c3c57;
     	color:white;
    }
    .list-li>a:hover{
-   		background-color:  green;
+   		background-color:#2c3c57;
    		color:white;
    		text-decoration: none;
    }
@@ -104,10 +114,9 @@
 	}
 	
 	#matchlist-table{
-		border-top:2px solid  green;
-		border-bottom:2px solid  green;
+		border-top:2px solid  #2c3c57;
+		border-bottom:2px solid #2c3c57;
 		border-collapse: collapse;
-		
 	}
 	#table-wraper{
 		margin:0 auto;
@@ -146,7 +155,7 @@
 	.selectPage{
 		line-height: 50px;
 		color: white;
-		background-color:  green;
+		background-color: #2c3c57;
 		font-size: 25px;
 	}
 	
@@ -180,7 +189,7 @@
      	width: 50px;
      	height: 35px;
      	border-radius: 5px;
-     	background-color: green;
+     	background-color: #2c3c57;
      	color:white;
      }
      #disable{
@@ -190,17 +199,20 @@
      	background-color: red;
      	color:white;
      }
-    input{
-    	height: 20px;
-    }
+	/* 정보 입력칸 css */
+	.mypageInput{
+		width:170px;
+		height:20px;
+		padding:5px;
+	}
+	.mypageSelect{
+		width:184px;
+		height:34px;
+		padding:5px;
+	}
 </style>
 <script>
 	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
 		$('.side_nav:first').css("color","#3366cc");
 		$('.side_nav a:first').css("color","#3366cc");
 		$('#side_pr_menu').css("display","block");
@@ -245,44 +257,12 @@
 						<a class="side_a" id="side_menu1" href="/myPage?memberId=${member.id }" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">계정관리</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" href="/reservationViewMyPageList" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">결제내역</a>
+						<a class="side_a" id="side_menu2" href="/reservationViewMyPageList" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">결제내역</a>
 					</div>
-					
 				</div>
-			
-		<div id="divpwd" style="width:78%;height:500px; border-left:1px solid silver;display:inline-block;overflow:hidden; ">
-					<div class="tab-content" >
-	            	<!-- 탭컨텐츠 제목 -->
-	               		<br><br><br>
-						<div style="font-size:40px; color: #403d3f; text-align: center; margin-bottom: 20px;font-weight:bolder;color:#2c3c57;">비밀번호 재확인</div>
-						<div class="underline"></div>
-						<!-- 글쓰기 버튼 -->
-						<div class="btn-wrapper" style="margin: 0 auto; margin-top:50px;margin-bottom:0px; text-align:center;width: 100%;">
-							<div style="width: 90%;padding-left: 70px;">								
-							<input type="password" id="checkpwd" name="pwd" style="width: 300px;height:40px;left: 300px;border:2px solid #2c3c57;font-size:30px;vertical-align:middle">
-							<button type="button" id="pwd" style="border:none;background-color: #2c3c57;width: 150px;height: 45px;color:white;">									
-							<span style="color:white;height:80%;width: 100%;display: inline;font-size: 15px; vertical-align:middle;padding:0;margin:0;vertical-align:middle"> 확인 </span> 
-							</button>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-			<script type="text/javascript"> //비밀번호 확인하는 if문
-				$("#pwd").click(function () {
-					var pwd1 = '${sessionScope.member.pwd}';
-					var pwd = $("#checkpwd").val();
-					console.log(pwd1);
-					console.log(pwd);
-					if(pwd1==pwd){
-						$("#divpwd").css("display","none");
-						$("#mypage").css("display","block");
-					}else{
-						alert("비밀번호가 일치하지 않습니다.");
-					}
-				});
-				
-			</script>
+				<!-- 비밀번호 확인 jsp include -->
+				<jsp:include page="/WEB-INF/views/common/password.jsp"/>
+				<!-- 컨텐츠 본문 -->
 				<div id="mypage" style="width:78%;border-left:1px solid silver;overflow:hidden;display: none;">
 					<div class="tab-content" >
 	            <!-- 탭컨텐츠 제목 -->
@@ -303,14 +283,14 @@
 										</tr>
 										<tr>
 											<th class="th">비밀번호</th>
-											<th class="th" ><input type="password" id="repwd"  value="${member.pwd }"><br><span id="extext1"></span></th>
+											<th class="th" ><input class="mypageInput" type="password" id="repwd"  value="${member.pwd }"><br><span id="extext1"></span></th>
 											<th class="th">비밀번호 재확인</th>
-											<th class="th"><input type="password" id="repwd1" name="repwd" value="${member.pwd }"><br><span id="extext2"></span></th>	
+											<th class="th"><input class="mypageInput" type="password" id="repwd1" name="repwd" value="${member.pwd }"><br><span id="extext2"></span></th>	
 										</tr>
 										<tr>
 											<th class="th">아이디 찾기 힌트</th>
 											<th class="th">
-												<select name="pwdHint">
+												<select class="mypageSelect" name="pwdHint">
 								           			<option>선택하세요</option>
 								           			<option value="가장 좋아하는 색상">가장 좋아하는 색상</option>
 								           			<option value="가장 좋아하는 연예인">가장 좋아하는 연예인</option>
@@ -319,13 +299,13 @@
 											</th>
 											<th class="th">아이디 찾기 정답</th>
 											<th class="th">
-												<input type="text" name="pwdHintAnswer" value="${member.pwdHintAnswer }">
+												<input class="mypageInput" type="text" name="pwdHintAnswer" value="${member.pwdHintAnswer }">
 											</th>																						
 										</tr>
 										<tr>
 											<th class="th" >휴대전화</th>
 											<th class="th" >
-												<input type="text" name="phone" id="phone" value="${member.phone }" style="width:150px;"><br>
+												<input class="mypageInput" type="text" name="phone" id="phone" value="${member.phone }"><br>
 												<span id="extext4"></span>
 											</th>
 											<th class="th">가입일</th>
@@ -333,8 +313,8 @@
 										</tr>
 									</table>
 										<br>
-						           		<input type="reset" value="취소하기" class="button1" onclick="rset();"style="border:none;background-color: green;width: 150px;height: 50px;color:white;">
-						           		<input type="submit" value="수정하기" class="button1" id="btn1" style="border:none;background-color: green;width: 150px;height: 50px;color:white;">
+						           		<input type="reset" value="취소하기" class="button1" onclick="rset();"style="border:none;background-color: gray;width: 150px;height: 50px;color:white;font-size:16px;">
+						           		<input type="submit" value="수정하기" class="button1" id="btn1" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;font-size: 16px;">
 									</form>
 								</div>
 	               		</div>
