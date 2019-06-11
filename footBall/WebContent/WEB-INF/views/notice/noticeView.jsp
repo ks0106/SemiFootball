@@ -67,7 +67,9 @@
 							<td>조회수 : ${nv.noticeHit}</td>
 						</tr>
 						<tr>
-							<td style="height: 500px;" colspan="2">${nv.noticeContent}</td>
+							<td style="height: 500px;" colspan="2">${nv.noticeContent} </td>
+							
+							
 						</tr>
 						<tr>
 							<th colspan="2"><center>
@@ -77,7 +79,7 @@
 										<a href="/noticeDelete?noticeNo=${nv.noticeNo}"
 											class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">삭제하기</a>
 									</c:if>
-									<a href="/notice" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">목록으로</a>
+									<a href="/notice?reqPage=${req }" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">목록으로</a>
 								</center></th>
 						</tr>
 					</table>
