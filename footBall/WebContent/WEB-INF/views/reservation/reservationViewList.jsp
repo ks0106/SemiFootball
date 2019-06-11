@@ -31,7 +31,7 @@
 <script>
 	$(document).ready(function(){
 		/* 헤더 배경 이미지 */
-		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+		$('#menuImg').append('<img src="/img/common/ground5.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-9%; transform:scale(1.2);">');
 		$('.side_nav:first').css("color","#3366cc");
 		$('.side_nav a:first').css("color","#3366cc");
 		$('#side_pr_menu').css("display","block");
