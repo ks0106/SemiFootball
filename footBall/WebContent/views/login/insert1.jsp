@@ -17,26 +17,28 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 	<style>
+		  	/* 전체화면 컬러 조절 => body */
+		body{
+			background-color:rgb(230,230,230);
+		}
+	
 		#maindiv{
             text-align: center;
             position: relative;
-             margin: 0 auto;
-            width: 80%;
+            margin: 0 auto;
+            width: 100%;
         }
         #div{
             /*position: absolute;
             top: 100px;
             left: 600px;*/
-            padding-top : 100px;
-            max-width:500px;
+            margin-top:100px;
+            width:500px;
             margin:0 auto;
            
         }
         .span{
-        	font-size: 25px;
-        }
-        .text1{
-        	color: blue;
+        	font-size: 20px;
         }
         input[type=text]{
         	width: 500px;
@@ -57,7 +59,10 @@
         .button1{
         	width:247px;
         	height: 60px;
-        	background-color: #3163C9;
+        	background-color: gray;
+        	border:none;
+        	color:white;
+        	font-size:16px;
         }
         input::placeholder{
         	font-size: 20px;
@@ -73,46 +78,69 @@
         #eTxt{
          color: red;
         }
+        #btn1{
+	        background-color: #2c3c57;
+        }
+        #divarea{
+        	width:900px;
+        	margin:0 auto;
+        }
+        .joinInput{
+            font-size:15px;
+            padding:15px;
+            margin-bottom:15px;        
+        }
+        #emailGo{
+        	width:150px;
+        	height:40px;
+        	font-size:16px;
+        	font-weight:bolder;
+        	color:white;
+        	background-color:#2c3c57;
+        	border:none;
+        	border-radius:5px;
+        }
 	</style>
 <body>
-		<div style="height:900px;" id="maindiv">
-        <div id="div">
-        	<a href="/">
-            <img src="/img/header_logo.png" style="margin-bottom: 50px;"></a>
-           	<form action="/insert" method="post">
-           		<span class="span">아이디(이메일)</span><span class="text1">(필수)</span><span id="extext"></span><br><br>
-           		<input type="text" name="id" id="id" placeholder="test@naver.com";><br><br>
-           		
-           		<span class="span">이메일 인증번호 전송</span>
-           		<input type="button" value="전송" class="button btn btn-primary"><span id="eTxt"></span><br><br>
-           		
-           		
-           		<span class="span">비밀번호</span><span class="text1">(필수)</span><span id="extext1"></span><br><br>
-           		<input type="password" name="pwd" id="pwd"><br><br>
-           		
-           		<span class="span">비밀번호 재확인</span><span class="text1">(필수)</span><span id="extext2"></span><br><br>
-           		<input type="password" name="pwd1" id="pwd1"><br><br>
-           		
-           		<span class="span">아이디 찾기 힌트</span><span class="text1">(필수)</span><br>
-           		<select name="pwdHint">
-           			<option>선택하세요</option>
-           			<option value="가장 좋아하는 색상">가장 좋아하는 색상</option>
-           			<option value="가장 좋아하는 연예인">가장 좋아하는 연예인</option>
-           			<option value="내가 나온 초등학교 이름">내가 나온 초등학교 이름</option>
-           		</select><br><br>
-           		<span class="span">아이디 찾기 정답</span><span class="text1">(필수)</span><br>
-           		<input type="text" name="pwdHintAnswer">
-           		<br><br>
-           		
-           		<span class="span">이름</span><span class="text1">(필수)</span><span id="extext3"></span><br><br>
-           		<input type="text" name="name" id="name"><br><br>
-           		
-           		<span class="span">휴대전화</span><span class="text1">(필수)</span><span id="extext4"></span><br><br>
-           		<input type="text" name="phone" id="phone" placeholder="(-)함께 작성하세요";><br><br>
-           		
-           		<input type="reset" value="취소하기" class="button1" onclick="rset();">
-           		<input type="submit" value="가입하기" class="button1" id="btn1" >
-           	</form>
+		<div id="maindiv">
+	        <div id="divarea">
+		        <div id="div">
+    	    	<a href="/"><img src="/img/header_logo.png" style="margin-top:100px;margin-bottom:50px;"></a>
+    	    	<div style="text-align:left;">* 표시는 필수 입력 사항입니다.</div><br>
+	           	<form action="/insert" method="post">
+	           		<span class="span">* 아이디(이메일)</span><span id="extext"></span><br>
+	           		<input class="joinInput" type="text" name="id" id="id" placeholder="test@naver.com";><br>
+	           		
+	           		<span class="span">* 이메일 인증</span><br>
+	           		<label id="eTxt">인증이 필요합니다.</label><br>
+	           		<input type="button" class="button btn btn-primary" id="emailGo" value="인증번호 전송""><br><br>
+	           		
+	           		<span class="span">* 비밀번호</span><span id="extext1"></span><br>
+	           		<input class="joinInput" type="password" name="pwd" id="pwd"><br>
+	           		
+	           		<span class="span">* 비밀번호 재확인</span><span id="extext2"></span><br>
+	           		<input class="joinInput" type="password" name="pwd1" id="pwd1"><br>
+	           		
+	           		<span class="span">* 아이디 찾기 힌트</span><br>
+	           		<select name="pwdHint" style="width:500px;height:55px;">
+	           			<option>선택하세요</option>
+	           			<option value="가장 좋아하는 색상">가장 좋아하는 색상</option>
+	           			<option value="가장 좋아하는 연예인">가장 좋아하는 연예인</option>
+	           			<option value="내가 나온 초등학교 이름">내가 나온 초등학교 이름</option>
+	           		</select><br><br>
+	           		<span class="span">* 아이디 찾기 정답</span><br>
+	           		<input class="joinInput" type="text" name="pwdHintAnswer"><br>
+	           		
+	           		<span class="span">* 이름</span><span id="extext3"></span><br>
+	           		<input class="joinInput" type="text" name="name" id="name"><br>
+	           		
+	           		<span class="span">* 휴대전화</span><span id="extext4"></span><br>
+	           		<input class="joinInput" type="text" name="phone" id="phone" placeholder="(-)함께 작성하세요";><br><br>
+	           		
+	           		<input type="reset" value="취소하기" class="button1" onclick="rset();">
+	           		<input type="submit" value="가입하기" class="button1" id="btn1" >
+	           	</form>
+           	</div>
         </div>
         <br>
     </div>
@@ -126,7 +154,6 @@
      });
     </script>
  	<script>
- 		
  		var result =[false,false,false,false,false]
  		$(document).ready(function() {
  			$(".button").prop("disabled",true); //이메일 인증버튼 비활성화
@@ -145,13 +172,13 @@
 	                      $('#extext').html('');
 	                     
 	                     $(".button").prop("disabled",false); //이메일 인증 버튼 활성화
-	                    
-	                     //if($("#eTxt").text()=="인증완료"){
-	                    		
-	                    		//result[0]='true';
+	                     return true;
+/* 	                     if($("#eTxt").text()=="인증완료"){
+	                    		console.log($("#eTxt").text()); 
+	                    		result[0]='true';
 	                    	 return true;
-	                     //}
-	                     
+	                     }
+ */	                     
 	                 };	
 				 };
 			});
@@ -233,11 +260,6 @@
 	               for(var i=0;i<result.length;i++){
 	                    console.log(result[i]);
 	                        if(!result[i]){
-	                        	console.log(result[0]);
-	                        	console.log(result[1]);
-	                        	console.log(result[2]);
-	                        	console.log(result[3]);
-	                        	console.log(result[4]);
 	                            alert("입력을 확인하세요");
 	                            event.isDefaultPrevented;
 	                            return false;

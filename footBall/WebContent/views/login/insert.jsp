@@ -13,6 +13,11 @@
  
 </head>
 	 <style>
+	 
+	 	  	/* 전체화면 컬러 조절 => body */
+		body{
+			background-color:rgb(230,230,230);
+		}
         #maindiv{
            
             position: relative;
@@ -53,12 +58,17 @@
 			border: 1px solid black;
 			overflow-y: scroll;
 			text-align: left;
+			background-color: white;
+			font-size: 13px;
 			
 		}
 		.button{
-			background-color:#6799FF ;
+			background-color:#2c3c57;
 			width: 100px;
 			height: 50px; 
+			border:none;
+			color:white;
+			font-size:16px;
 		}
 		
 		
@@ -66,9 +76,11 @@
 			text-align: left;
 		}
 		.div{
-			position: absolute;
-			left: 45%;
+			margin: 0 auto;
+			text-align: center;
+
 		}
+
     </style>
 <body>
 	<div style="height:900px;" id="maindiv">
@@ -258,8 +270,8 @@
 						</div>
         	<br>
         	<div class="div">
-        	<input type="button" value="비동의" class="button" onclick="mainpage();">
-        	<input type="submit" value="동의" class="button" onclick="return nextpage();">
+	        	<input type="button" value="비동의" class="button" onclick="mainpage();" style="background-color:gray;">
+	        	<input type="submit" value="동의" class="button" onclick="return nextpage();">
         	</div>
         	<br><br>
         	</form>
