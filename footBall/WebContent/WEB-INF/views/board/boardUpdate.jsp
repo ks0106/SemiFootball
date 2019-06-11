@@ -14,7 +14,7 @@
 <script
 	src="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/js/bootstrap.mibv.js"></script>
 <link rel="stylesheet" href="/css/board/board.css">
-<title>자유게시판 수정</title>
+<title>KS 자유게시판</title>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->

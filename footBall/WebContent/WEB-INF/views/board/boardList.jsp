@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="/css/common/notice.css">
 <link rel="stylesheet" href="/css/board/board.css">
 
-<title>자유게시판 리스트</title>
+<title>KS 자유게시판</title>
 </head>
 <style>
 a{

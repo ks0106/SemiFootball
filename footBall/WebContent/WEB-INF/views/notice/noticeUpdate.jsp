@@ -15,7 +15,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/css/notice/notice.css">
 	
-<title>공지사항수정</title>
+<title>KS 공지사항수정</title>
 <style>
 /* 페이지 타이틀  */
 #title {

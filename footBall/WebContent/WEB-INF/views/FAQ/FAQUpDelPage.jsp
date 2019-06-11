@@ -18,7 +18,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>FAQ수정삭제</title>
+<title>KS FAQ</title>
 <link rel="stylesheet" href="/css/common/admin.css">
 <link rel="stylesheet" href="/css/common/notice.css">
 

@@ -25,7 +25,7 @@
 <script type="text/javascript" src="/js/reservation/reservationAll.js"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>예약확인</title>
+<title>KS 대관예약확인</title>
 <style>
 </style>
 <script>

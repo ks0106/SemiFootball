@@ -13,7 +13,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/common/admin.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>KS 대회대진표관리</title>
 <style>
 </style>
 <script>

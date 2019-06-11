@@ -15,7 +15,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/common/pageCss.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>KS 오시는길</title>
 <style>
 	.side_nav{
 		margin:5px;

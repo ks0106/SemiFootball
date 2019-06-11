@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/admin/admin.css">
 <link rel="stylesheet" href="/css/faq/faq.css">
 
-<title>FAQ글쓰기</title>
+<title>KS FAQ</title>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->

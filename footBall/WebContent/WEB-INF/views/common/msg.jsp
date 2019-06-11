@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>KS 에러페이지</title>
 </head>
 <body>
 <!-- msg.jsp는 사용하지 않을 수도 있으나 미리 작성함 -->
