@@ -40,6 +40,7 @@ public class ReservationViewMyPageListServlet extends HttpServlet {
 		if(m != null) {
 			try {
 				ArrayList<Reservation> list = new ReservationService().reservationViewList(m.getId());
+				request.setAttribute("member", m);
 				request.setAttribute("list", list);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/reservationsList.jsp");
 				rd.forward(request, response);
