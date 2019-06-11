@@ -33,18 +33,14 @@ a{
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<script>
 		$(document).ready(function() {
-<<<<<<< HEAD
-							$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-							$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-							$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-							$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-							$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
-						});
-=======
+
 			/* 헤더 배경 이미지 */
 			$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+			
 		});
->>>>>>> d7523c075b0439d106e6a0965d5f07d5309c3fdf
+		function contentView(num){
+			location.href="/noticeView?noticeNo="+num+"&reqPage="+$(".selectPage").eq(0).children().html();
+		}
 	</script>
 
 	<!--영상 위 페이지 타이틀 -->
@@ -101,8 +97,7 @@ a{
 								%>
 								<tr class="table-tr">
 									<td class="td" style="text-align: center;"><%=nv.getRnum()%></td>
-									<td class="td" style="text-align: center;" colspan="2"><a
-										href="/noticeView?noticeNo=<%=nv.getNoticeNo()%>"><%=nv.getNoticeTitle()%></a></td>
+									<td class="td" style="text-align: center;" colspan="2"><a onclick="contentView(<%=nv.getNoticeNo()%>)"><%=nv.getNoticeTitle()%></a></td>
 									<td class="td" style="text-align: center;"><%=nv.getNoticeWriter()%></td>
 									<td class="td" style="text-align: center;"><%=nv.getNoticeDate()%></td>
 									<td class="td" style="text-align: center;"><%=nv.getNoticeHit()%></td>
