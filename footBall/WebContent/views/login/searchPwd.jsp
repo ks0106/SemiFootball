@@ -10,55 +10,72 @@
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous">
 </script>
-
+<!-- 로그인 공통css -->
+<link rel="stylesheet" href="/css/login/loginAll.css">
+<!-- 아이디/패스워드 찾기 공통css -->
+<link rel="stylesheet" href="/css/login/loginSearchAll.css">
 </head>
 	<style>
-		select{
-        	width:160px;
-        	padding: .8em .5em; /* 여백으로 높이 설정 */ 
-        	font-family: inherit; /* 폰트 상속 */ 
-        	border: 1px solid #999; border-radius: 0px; /* iOS 둥근모서리 제거 */        	
-        	-moz-appearance: none; 
-        	appearance: none;
+	  	/* 스크롤바 제어 */
+		body{
+			overflow:hidden;
+		}
+        .countTimeTxt{
+        	color:gray;
         }
-        table{
-        	margin: 0 auto;
-        	padding-top: 20px;
-        	text-align: center;
-        	
-        	}
+        .countTimeMinute{
+        	color:gray;
+        }
+        .countTimeSecond{
+        	color:gray;
+        }
+
+
+
+        
 	</style>
 <body>
-		<img  src="/img/header_logo.png" style="width:100px;">
-		<center>
+	<div>
+		<div style="text-align:center;">
+			<img  src="/img/header_logo.png" style="width:100px;">
+		</div>
 		<div id="pwdsearch">
-        <form >
-        	<table>
-        		<tr>
-        			<td colspan="2" style="text-align: center;"><h2>비밀번호 찾기</h2></td>
-        		</tr>
-        		<tr>
-        			<td style="float: right;">이름 :</td><td colspan="2"><input type="text" name="name" id="name"></td>
-        		</tr>
-        		<tr>
-        			<td style="float: right;">아이디 :</td><td colspan="2"><input type="text" name="id" id="id" ></td>
-        		</tr>
-        	</table>
-        	<input type="reset" value="취소">
-        	<input type="button" value="인증" id="sub" onclick="return check();"><br>
-        	<div id="mint">
-        	<span class="countTimeMinute" ></span>분
-         	<span class="countTimeSecond" ></span>초
-        	</div>
-         	<div id="layerPopup">
-		      <p id="checkMsg">인증 시간이 초과 되었습니다.</p>
-		      <button type="button">닫기</button>
-		    </div>
-        </form>
+	        <form>
+	        	<table>
+	        		<tr>
+	        			<td colspan="2" style="text-align: center;"><h2>비밀번호 찾기</h2></td>
+	        		</tr>
+	        		<tr>
+	        			<td class="searchTdTitle">이름</td>
+	        		</tr>
+	        		<tr>
+		        		<td><input class="searchInput" type="text" name="name" id="name"></td>
+	        		</tr>
+	        		<tr>
+	        			<td class="searchTdTitle">아이디</td>
+	        		</tr>
+	        		<tr>
+		        		<td><input class="searchInput" type="text" name="id" id="id" ></td>
+	        		</tr>
+	        	</table>
+				<div style="text-align:center;">
+		        	<input type="reset" value="취소" class="resetBtn">
+		        	<input type="button" value="인증" id="sub" onclick="return check();" class="okBtn">
+			        <br>
+		        	<div id="mint">
+			        	<span class="countTimeMinute" ></span><span class="countTimeTxt">분</span>
+			         	<span class="countTimeSecond" ></span><span class="countTimeTxt">초</span>
+		        	</div>
+		        </div>
+	         	<div id="layerPopup">
+			      <p id="checkMsg">인증 시간이 초과 되었습니다.</p>
+			      <button type="button" class="closeBtn">닫기</button>
+			    </div>
+	        </form>
 		</div>
         	
-         <form >
-        	<table id="pwd" style="visibility: hidden;"  >
+		<form>
+        	<table id="pwd" style="visibility: hidden;">
         		<tr>
         			<td colspan="2" style="text-align: center;"><h2>비밀번호 변경</h2></td>
         		</tr>
@@ -66,23 +83,26 @@
         			<td style="text-align: right;" colspan="3"><span id="extext1"></span></td>
         		</tr>
         		<tr>
-        			<td style="float: right;">비밀번호:</td><td colspan="2"><input type="password" name="repwd" id="repwd"></td>
+        			<td class="searchTdTitle">비밀번호</td>
+        		</tr>
+        		<tr>
+        		<td><input class="searchInput" type="password" name="repwd" id="repwd"></td>
         		</tr>
         		<tr>
         			<td style="text-align: right;" colspan="3"><span id="extext2"></span></td>
         		</tr>
         		<tr>
-        			<td style="float: right;">비밀번호 재입력 :</td><td colspan="2"><input type="password" name="repwd1" id="repwd1"></td>
+        			<td class="searchTdTitle">비밀번호 재입력</td>
         		</tr>
         		<tr>
-        			<td colspan="3">
-        			<input type="reset" value="취소">
-        			<input type="button" value="확인" id="researchpwd">
-        			
-        			</td>
+	        		<td><input class="searchInput" type="password" name="repwd1" id="repwd1"></td>
         		</tr>
         	</table>
-        </form>
+			<div style="text-align:center;">
+     	 			<input type="reset" value="취소" class="resetBtn">
+       			<input type="button" value="확인" id="researchpwd" class="okBtn">
+  			</div>        	
+		</form>
         	<input type="hidden" id="randomNum" value="1"> <!--ajax로 servlet호출한뒤 servlet에서 받은 난수 저장용 -->
         	<input type="hidden" id="randomNum1" value="2"> <!--메일에서 jsp호출해서 웹소켓 에서 받은 난수 저장용 -->
         	
@@ -93,7 +113,7 @@
 			<input type="submit" value="send" onclick="send()" />
 		</fieldset>-->
         
-		</center>
+		</div>
 	
 	<script type="text/javascript"> //비밀번호 찾기 아작스 호출
 		
@@ -107,9 +127,7 @@
 					method: "POST",
 					dataType : "json",
 					success : function (data) {
-							
-							if(data==null){
-								
+							if(data==null){								
 								alert("일치하는 회원이 없습니다.");
 								opener.location.href="/views/login/login.jsp";
 								self.close();

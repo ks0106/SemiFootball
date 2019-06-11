@@ -14,6 +14,8 @@
       integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
       crossorigin="anonymous">
     </script>
+<!-- 로그인 공통css -->
+<link rel="stylesheet" href="/css/login/loginAll.css">
 </head>
 	<style>
 		#maindiv{
@@ -38,7 +40,7 @@
 		#secretNumberArea{
 			margin:0 auto;
 		}
-		.countTimeMinute,.countTimeMinuteTxt,.countTimeSecond,.countTimeSecondTxt{
+		.countTimeMinute,.countTimeSecond,.countTimeTxt{
 			color:gray;
 		}
 		#closeBtn{
@@ -57,8 +59,8 @@
 		<span style="font-size:13px;">* 메일로 전송된 인증번호를 입력 후 인증버튼을 클릭해주세요.</span><br><br>
 		<input class="secretNumInput" type="text" id="number" name="number"> 
 		<button id="secretNumBtn" type="button" id="button" onclick="return check();">인증</button>
-		<span class="countTimeMinute"></span><span class="countTimeMinuteTxt">분</span>
-       	<span class="countTimeSecond"></span><span class="countTimeSecondTxt">초</span>
+		<span class="countTimeMinute"></span><span class="countTimeTxt">분</span>
+       	<span class="countTimeSecond"></span><span class="countTimeTxt">초</span>
 		<div id="layerPopup">
 	    	<p id="checkMsg">인증 시간이 초과 되었습니다.</p>
 			<button id="closeBtn" type="button">닫기</button>
