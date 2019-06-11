@@ -140,21 +140,19 @@
 
 	}
 	.pageNaviBtn{
-		width: 50px;
-		height: 50px;
+		width: 35px;
+		height: 40px;
 		border: 1px solid #A4A4A4;
 		display: inline-block;
-		margin-right: 10px;
-		margin-left: 10px; 
 		border-radius: 15px;
-		line-height: 45px;
+		line-height: 40px;
 	}
 
 	.selectPage{
-		line-height: 50px;
+		line-height: 40px;
 		color: white;
 		background-color:  green;
-		font-size: 25px;
+		font-size: 20px;
 	}
 	
 	#matchView{

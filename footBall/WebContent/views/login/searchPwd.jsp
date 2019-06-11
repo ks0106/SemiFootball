@@ -41,7 +41,7 @@
         			<td style="float: right;">이름 :</td><td colspan="2"><input type="text" name="name" id="name"></td>
         		</tr>
         		<tr>
-        			<td style="float: right;">아이디 :</td><td colspan="2"><input type="text" name="id" id="id" value="rudtjr008@naver.com"></td>
+        			<td style="float: right;">아이디 :</td><td colspan="2"><input type="text" name="id" id="id" ></td>
         		</tr>
         	</table>
         	<input type="reset" value="취소">

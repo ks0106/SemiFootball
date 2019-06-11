@@ -179,6 +179,23 @@
 	#content{
 		display: none;
 	}
+		.pageNaviBtn{
+		width: 35px;
+		height: 40px;
+		border: 1px solid #A4A4A4;
+		display: inline-block;
+		border-radius: 15px;
+		line-height: 40px;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+
+	.selectPage{
+		line-height: 40px;
+		color: white;
+		background-color:  green;
+		font-size: 20px;
+	}
 </style>
 </head>
 <body>
@@ -216,13 +233,12 @@
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:90%;margin:0 auto;margin-bottom:50px;">
-				<div id="table-wrapper1" style="margin-bottom: 100px;text-align: center;">
+				<div id="table-wrapper1" style="margin-bottom: 20px;text-align: center;">
 					<p style="font-size: 30px; font-weight: bold;">마감된 대회</p>
 					<table style="margin-top: 50px; border-top: 3px solid green;border-bottom:3px solid green; width: 80%; margin: 0 auto;border-collapse: collapse;">
 						<tr>
 							<th class="th">번호</th>
 							<th class="th" colspan="2">제목</th>
-							<th class="th">작성자</th>
 							<th class="th">등록일</th>
 						</tr>
 						<c:if test="${!empty lpd.list}">
@@ -230,7 +246,6 @@
 								<tr id="imgView" onclick="imgView('${l.leagueNo}')">
 									<td class="td">${l.leagueAfterNo}</td>
 									<td class="td" colspan="2">${l.leagueAfterTitle }</td>
-									<td class="td">${l.leagueAfterWriter }</td>
 									<td class="td">${l.leagueAfterEnrolldate }</td>
 								</tr>
 							</c:forEach>
@@ -238,7 +253,7 @@
 					</table>
 				</div>			
 					<!-- 페이지 네비 -->
-						<div id="pageNavi" style="width:80%; margin:0 auto; margin-bottom: 100px;">${mpd.pageNavi }</div>
+						<div id="pageNavi" style="width:80%; margin:0 auto; margin-bottom: 100px;text-align: center;">${lpd.pageNavi }</div>
 				</div>
 				<div id="content">
 				<!-- 타이틀자리 -->

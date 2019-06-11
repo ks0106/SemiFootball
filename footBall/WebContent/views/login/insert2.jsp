@@ -45,8 +45,11 @@
 			width:80px;
 			height:40px;
 			border:none;
-			background-color:#2c3c57;
+			background-color:gray;
 			color:white;
+		}
+		#checkMsg{
+			color:red;
 		}
 	</style>
 <body>
