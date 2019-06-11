@@ -151,7 +151,7 @@ public class BoardService {
 	}
 	
 	//검색기능
-	public BoardPageData searchKeyword(int reqPage,String type,String keyword) {
+	public BoardPageData keywordSearch(int reqPage,String type,String keyword) {
 		Connection conn = JDBCTemplate.getConnection();
 		int numPerPage = 10;
 		int totalCount=0;
@@ -179,20 +179,20 @@ public class BoardService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
 		if(pageNo!=1) {
-			pageNavi+="<a class='btn' href='/searchKeyword?reqPage="+(pageNo-1)+"&type="+type+"&keyword="+keyword+"'>이전</a>";
+			pageNavi+="<a class='btn pageNaviBtn' href='/boardKeyword?reqPage="+(pageNo-1)+"&type="+type+"&keyword="+keyword+"'>이전</a>";
 		}
 		int i = 1;
 		while( !(i++>pageNaviSize || pageNo>totalPage) ) { //둘 중 하나라도 만족하면 수행하지 않겠다
 			if(reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>"; //4페이지 상태에서 4페이지를 누를수가 없도록 하기 위해서 a태그 없애줌 
+				pageNavi += "<span class='pageNaviBtn selectPage' style='margin:10px;'>"+pageNo+"</span>"; //4페이지 상태에서 4페이지를 누를수가 없도록 하기 위해서 a태그 없애줌 
 			}else {
-				pageNavi += "<a class='btn' href='/searchKeyword?reqPage="+pageNo+"&type="+type+"&keyword="+keyword+"'>"+pageNo+"</a>";
+				pageNavi += "<a class='btn pageNaviBtn' style='margin:10px;' href='/boardKeyword?reqPage="+pageNo+"&type="+type+"&keyword="+keyword+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		//다음 버튼 생성
 		if(pageNo <= totalPage) {
-			pageNavi +="<a class='btn' href='/searchKeyword?reqPage="+pageNo+"&type="+type+"&keyword="+keyword+"'>다음</a>";
+			pageNavi +="<a class='btn pageNaviBtn' style='margin:10px;' href='/boardKeyword?reqPage="+pageNo+"&type="+type+"&keyword="+keyword+"'>다음</a>";
 		}
 		BoardPageData bpd = new BoardPageData(list,pageNavi);
 		JDBCTemplate.close(conn);

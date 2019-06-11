@@ -39,7 +39,7 @@
 				<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
 			</div>
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu3" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
+				<a class="side_a" id="side_menu3" href="/boardList"style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
 				</a>
 			</div>
 		</div>

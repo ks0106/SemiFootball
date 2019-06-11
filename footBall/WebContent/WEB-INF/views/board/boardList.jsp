@@ -25,6 +25,7 @@
 a{
 	color:black;
 }
+
 </style>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -33,7 +34,10 @@ a{
 		$(document).ready(function(){
 			   /* 헤더 배경 이미지 */
 				$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
-		   });
+		});
+				function contentView(num){
+					location.href="/boardView?boardNo="+num+"&reqPage="+$(".selectPage").eq(0).children().html();
+		   };
 	</script>
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">커뮤니티</div>
@@ -51,7 +55,7 @@ a{
 				<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
 			</div>
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu3" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
+				<a class="side_a" id="side_menu3" href="/boardList" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
 				</a>
 			</div>
 		</div>
@@ -92,7 +96,7 @@ a{
 								<tr class="table-tr">
 									<td class="td"><%=bv.getRnum()%></td>
 									<td class="td">
-									<a href="/boardView?boardNo=<%=bv.getBoardNo()%>"><%=bv.getBoardTitle()%></a></td>
+									<a onclick="contentView(<%=bv.getBoardNo()%>)"><%=bv.getBoardTitle()%></a></td>
 									<td class="td"><%=bv.getBoardWriter()%></td>
 									<td class="td"><%=bv.getBoardDate()%></td>
 									<td class="td"><%=bv.getBoardHit()%></td>
@@ -104,15 +108,15 @@ a{
 						</table>
 					</div>
 					<!-- 페이징 -->
-					<div id="pageNavi"
-						style="width: 100%; margin: 0 auto; margin-bottom: 30px; margin-top: 30px;">${bpd.pageNavi }</div>
+					<div id="pageNavi" style="width: 100%; margin: 0 auto; margin-bottom: 30px; margin-top: 30px;">${bpd.pageNavi }</div>
 					<br> <br>
 				<div style="height: 50px;">
 					<form action="/boardKeyword" method="get">
 						<select name="type" style="height: 40px; border: 2px solid #A4A4A4;vertical-align: middle;">
 							<option value="boardTitle">제목</option>
 							<option value="boardWriter">작성자</option>
-						</select> <input type="text" size="30" name="keyword" placeholder="검색어를 입력해주세요" style="height: 40px; border: 2px solid #A4A4A4;vertical-align: middle;">
+						</select> 
+						<input type="text" size="30" name="keyword" placeholder="검색어를 입력해주세요" style="height: 40px; border: 2px solid #A4A4A4;vertical-align: middle;">
 						<button type="submit" style="background-color: #2c3c57; border: none; height: 40px; width: 70px; vertical-align: middle;">
 							<img src="/img/icon_search.png">
 						</button>
