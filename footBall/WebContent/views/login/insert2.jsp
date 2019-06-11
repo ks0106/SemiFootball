@@ -17,22 +17,49 @@
 </head>
 	<style>
 		#maindiv{
+			height:100%;
 			margin: 0 auto;
-			padding-top : 100px;
 			text-align: center;
+			margin-top:100px;
+		}
+		.secretNumInput{
+			width:150px;
+			height:34px;
+			vertical-align:middle;
+		}
+		#secretNumBtn{
+			vertical-align:middle;
+			width:80px;
+			height:40px;
+			border:none;
+			background-color:#3366cc;
+			color:white;
+		}
+		#secretNumberArea{
+			margin:0 auto;
+		}
+		.countTimeMinute,.countTimeMinuteTxt,.countTimeSecond,.countTimeSecondTxt{
+			color:gray;
+		}
+		#closeBtn{
+			width:80px;
+			height:40px;
+			border:none;
+			background-color:#2c3c57;
+			color:white;
 		}
 	</style>
 <body>
-	
 	<div id="maindiv">
-	인증번호 : <input type="text" id="number" name="number"> 
-			<button type="button" id="button" onclick="return check();">인증</button>
-			<span class="countTimeMinute"></span>분
-         	<span class="countTimeSecond"></span>초
-			<div id="layerPopup">
-		      <p id="checkMsg">인증 시간이 초과 되었습니다.</p>
-		      <button type="button">닫기</button>
-		    </div>
+		<span style="font-size:13px;">* 메일로 전송된 인증번호를 입력 후 인증버튼을 클릭해주세요.</span><br><br>
+		<input class="secretNumInput" type="text" id="number" name="number"> 
+		<button id="secretNumBtn" type="button" id="button" onclick="return check();">인증</button>
+		<span class="countTimeMinute"></span><span class="countTimeMinuteTxt">분</span>
+       	<span class="countTimeSecond"></span><span class="countTimeSecondTxt">초</span>
+		<div id="layerPopup">
+	    	<p id="checkMsg">인증 시간이 초과 되었습니다.</p>
+			<button id="closeBtn" type="button">닫기</button>
+		</div>
 	</div>
 
 	<script type="text/javascript">

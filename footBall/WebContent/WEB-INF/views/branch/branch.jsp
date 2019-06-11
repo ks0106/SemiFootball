@@ -14,21 +14,11 @@
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
 	crossorigin="anonymous"></script>
-<script>
-	/* 헤더 슬라이드 이미지 */
-	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;max-height:initial;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;max-height:initial; margin-top:-50%;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;max-height:initial;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;max-height:initial;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;max-height:initial;">');
-	 });
-</script>
+
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		<!--영상 위 페이지 타이틀 -->
 		<div id="title">지점현황</div>
 			<hr class="hr-menu">
 			<div class="content-container">
@@ -150,7 +140,8 @@
         }
 		
 		$(function(){
-			/* 관리자 확인 후 버튼 노출 */
+			/* 헤더 배경 이미지 */
+			$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="메인 이미지" style="width:100%;max-height:initial;">');
 			
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
