@@ -179,6 +179,23 @@
 	#content{
 		display: none;
 	}
+		.pageNaviBtn{
+		width: 35px;
+		height: 40px;
+		border: 1px solid #A4A4A4;
+		display: inline-block;
+		border-radius: 15px;
+		line-height: 40px;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+
+	.selectPage{
+		line-height: 40px;
+		color: white;
+		background-color:  green;
+		font-size: 20px;
+	}
 </style>
 </head>
 <body>
@@ -216,13 +233,12 @@
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:90%;margin:0 auto;margin-bottom:50px;">
-				<div id="table-wrapper1" style="margin-bottom: 100px;text-align: center;">
+				<div id="table-wrapper1" style="margin-bottom: 20px;text-align: center;">
 					<p style="font-size: 30px; font-weight: bold;">마감된 대회</p>
 					<table style="margin-top: 50px; border-top: 3px solid green;border-bottom:3px solid green; width: 80%; margin: 0 auto;border-collapse: collapse;">
 						<tr>
 							<th class="th">번호</th>
 							<th class="th" colspan="2">제목</th>
-							<th class="th">작성자</th>
 							<th class="th">등록일</th>
 						</tr>
 						<c:if test="${!empty lpd.list}">
@@ -230,7 +246,6 @@
 								<tr id="imgView" onclick="imgView('${l.leagueNo}')">
 									<td class="td">${l.leagueAfterNo}</td>
 									<td class="td" colspan="2">${l.leagueAfterTitle }</td>
-									<td class="td">${l.leagueAfterWriter }</td>
 									<td class="td">${l.leagueAfterEnrolldate }</td>
 								</tr>
 							</c:forEach>
@@ -238,13 +253,13 @@
 					</table>
 				</div>			
 					<!-- 페이지 네비 -->
-						<div id="pageNavi" style="width:80%; margin:0 auto; margin-bottom: 100px;">${mpd.pageNavi }</div>
+						<div id="pageNavi" style="width:80%; margin:0 auto; margin-bottom: 100px;text-align: center;">${lpd.pageNavi }</div>
 				</div>
 				<div id="content">
 				<!-- 타이틀자리 -->
 				<div id="title-position" style="margin: 0 auto;width: 60%;text-align: center; font-size: 20px; font-weight: 20px;"></div>
 				<!-- 포스터자리 -->
-				<div  style="width:500px;margin:0 auto;margin-bottom:50px;">
+				<div  style="width:300px;margin:0 auto;margin-bottom:50px;">
 					<img id="poster"  width="100%" height="100%">
 				</div>
 				<!-- 대진표 배경 div  -->
@@ -276,11 +291,8 @@
 	
 <script>
 	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
+		/* 헤더 배경 이미지 */
+		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
 		//사이드 메뉴 스크립트
 		$("#side_menu1").click(function(){
 			location.href="/league";

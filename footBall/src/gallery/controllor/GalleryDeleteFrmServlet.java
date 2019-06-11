@@ -39,13 +39,14 @@ public class GalleryDeleteFrmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String root = getServletContext().getRealPath("/");
-		String saveDirectory = root+"img/gallery";
+		String saveDirectory = root+"img/gallery/";
 		int number = Integer.parseInt(request.getParameter("photoNo"));
 		String filename = request.getParameter("filename");
 //		String filename = request.getParameter("filename").substring(request.getParameter("filename").lastIndexOf("/"));
 		Gallery g = new Gallery();
 		g.setPhotoNo(number);
 		g.setFilename(saveDirectory+filename);
+		System.out.println(saveDirectory+filename);
 		System.out.println(g.getPhotoNo());
 		int result=0;
 		try {
@@ -59,7 +60,7 @@ public class GalleryDeleteFrmServlet extends HttpServlet {
 			}
 			response.setContentType("application/json; charset=utf-8");
 			new Gson().toJson(result, response.getWriter());
-			request.setAttribute("loc", "/AdminGallery");
+			request.setAttribute("loc", "/adminGallery");
 			request.getRequestDispatcher("WEB-INF/views/common/msg.jsp").forward(request, response);
 			
 		} catch (SQLException e) {

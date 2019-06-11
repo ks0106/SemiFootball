@@ -99,7 +99,7 @@
 				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 공지</div>
 				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
 		<!-- 컨텐츠 지점선택 파티션 -->
-				<div  style="width:700px;margin:0 auto;margin-bottom:50px;">
+				<div  style="width:500px;margin:0 auto;margin-bottom:50px;">
 				<c:choose>
 				<c:when test="${ll !=null }">
 					<img src="/img/league/${ll.filepath }" width="100%" height="100%">
@@ -134,11 +134,8 @@
 	
 <script>
 	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
+		/* 헤더 배경 이미지 */
+		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
 		//사이드 메뉴 스크립트
 		$("#side_menu1").click(function(){
 			location.href="/league";

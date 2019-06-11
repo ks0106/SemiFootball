@@ -18,11 +18,8 @@
 </style>
 <script>
 	$(document).ready(function(){
-		$('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-		$('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-		$('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-		$('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-		$('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
+		/* 헤더 배경 이미지 */
+		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
 		//사이드 메뉴 스크립트
 		
 		$("#side_menu1").click(function(){
@@ -286,7 +283,7 @@
 				<div id="teamView" style="margin: 0 auto; width: 80%; height: 500px; ">
 				<p style="width: 80%;height: 50px; margin: 0 auto;text-align: center;font-size: 50px;font-weight: 700;margin-bottom: 50px;">현재 참가팀</p>
 				<c:forEach items="${list.allList }" var="l">
-					<div class="attendTeam"><div class="teamE"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;"></div>${l.teamName }</div>
+					<div class="attendTeam"><div class="teamE"><img src="/img/league/${l.filepath }" style="width: 80%;height: 80%;"></div>${l.teamName }</div>
 					
 				</c:forEach>
 				</c:when>
