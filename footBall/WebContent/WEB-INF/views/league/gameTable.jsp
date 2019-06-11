@@ -208,6 +208,26 @@
 		left: 0%;
 		opacity: 0.5;
 	}
+/* 본문 타이틀 css */
+	.content-header{
+		color:#2c3c57;
+		font-size: 40px;
+		font-weight:bold;
+		margin-bottom:20px;
+		margin-top: 0px;
+	}
+	.underline{
+		margin:0 auto;
+		width:7%;
+		text-align:center;
+		border-top:2px solid #bfc4cc;
+	}
+	.tab-content{
+		margin: 0 auto;
+		width: 100%;
+		text-align: center;
+		margin-bottom:30px;
+	}
 </style>
 </head>
 <body>
@@ -226,8 +246,11 @@
    			<br><br>
    		<!-- 컨텐츠 본문 타이틀 -->
 			<div id="con1" style="width:78%;display:inline-block;overflow:hidden;">
-				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 대진표</div>
-				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
+				<div class="tab-content" >			
+		  			<br><br>
+					<p class="content-header">대회 대진표</p>
+					<div class="underline"></div>
+				</div>
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:100%;margin:0 auto;margin-bottom:700px;">
 				

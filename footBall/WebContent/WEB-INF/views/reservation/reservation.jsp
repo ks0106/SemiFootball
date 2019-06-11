@@ -109,25 +109,7 @@ to {
 #mv {
 	background-image: url("/img/ground1.png");
 }
-	.content-header{
-		color:#2c3c57;
-		font-size: 40px;
-		font-weight:bold;
-		margin-bottom:20px;
-		margin-top: 0px;
-	}
-	.underline{
-		margin:0 auto;
-		width:7%;
-		text-align:center;
-		border-top:2px solid #bfc4cc;
-	}
-	.tab-content{
-		margin: 0 auto;
-		width: 100%;
-		text-align: center;
-		margin-bottom:30px;
-	}
+
 </style>
 </head>
 <body>
@@ -136,17 +118,13 @@ to {
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">대관</div>
 	<section> <!-- 내용 작성 -->
-	<hr
-		style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<!-- 컨텐츠 -->
 	<div style="width: 85%; background-color: white; margin: 0 auto;">
 		<!-- 컨텐츠 사이드 메뉴 -->
-		<div
-			style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
-			<div
-				style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">대관예약/확인</div>
-			<hr
-				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
+		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">대관예약/확인</div>
+			<hr style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu1" style="color: #3366cc;">대관예약</a>
 			</div>
@@ -160,7 +138,7 @@ to {
 			style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 		<!-- 본문 타이틀 -->
 			<div class="tab-content" >			
-	  			<br><br><br>
+	  			<br><br>
 				<p class="content-header">대관예약</p>
 				<div class="underline"></div>
 			</div>

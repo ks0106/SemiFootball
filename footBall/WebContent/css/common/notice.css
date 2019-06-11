@@ -10,10 +10,6 @@
 	font-size: 16px;
 }
 
-#side_menu1 {
-	display: block;
-}
-
 #side_pr_menu {
 	list-style-type: square;
 	padding: 0;
@@ -81,21 +77,6 @@
 	margin: 0 auto;
 	width: 100%;
 	text-align: center;
-}
-
-.content-header {
-	color: #403d3f;
-	font-size: 40px;
-	font-weight: bold;
-	margin-bottom: 20px;
-	margin-top: 0px;
-}
-
-.underline {
-	margin: 0 auto;
-	width: 7%;
-	text-align: center;
-	border-top: 2px solid #bfc4cc;
 }
 
 #matchlist-table {

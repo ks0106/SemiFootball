@@ -60,7 +60,6 @@
 				<center>
 					<br>
 					<br>
-					<br>
 					<p class="content-header">F A Q</p>
 					<div class="underline"></div>
 					<div class="btn-wrapper" style="margin: 0 auto; margin-top: 30px; margin-bottom: 30px; text-align: right; width: 100%;">
@@ -106,6 +105,7 @@
 							</center>
 						</div>
 					</div>
+				</center>
 			</div>
 		</div>
 	</div>

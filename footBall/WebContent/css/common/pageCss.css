@@ -22,3 +22,24 @@
 	a{
 		cursor:pointer;
 	}
+	
+	/* 본문 타이틀 css */
+	.content-header{
+		color:#2c3c57;
+		font-size: 40px;
+		font-weight:bold;
+		margin-bottom:20px;
+		margin-top: 0px;
+	}
+	.underline{
+		margin:0 auto;
+		width:7%;
+		text-align:center;
+		border-top:2px solid #bfc4cc;
+	}
+	.tab-content{
+		margin: 0 auto;
+		width: 100%;
+		text-align: center;
+		margin-bottom:30px;
+	}

@@ -349,14 +349,13 @@ function contentView(pageNum){
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
 					<div class="tab-content" >
 	            <!-- 탭컨텐츠 제목 -->
-	               			<br><br><br>
+	               			<br><br>
 							<p class="content-header">매칭신청</p>
 							<div class="underline"></div>
 							<!-- 글쓰기 버튼 -->
 							<div class="btn-wrapper" style="margin: 0 auto; margin-top:30px;margin-bottom:30px; text-align: right;width: 100%;">
 								<div style="width: 90%;">
-									<button type="button" onclick="matchApply();" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;">
-									
+									<button type="button" onclick="matchApply();" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;">									
 									<span style="color:white;height:80%;width: 100%;display: inline;font-size: 17px; vertical-align:super; "> 매치신청 </span> 
 									<span><img src="/img/match_icon.png" style="vertical-align: sub;"></span>
 									</button>

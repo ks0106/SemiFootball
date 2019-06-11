@@ -127,25 +127,6 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	font-size: 15px;
 	display: none;
 }
-	.content-header{
-		color:#2c3c57;
-		font-size: 40px;
-		font-weight:bold;
-		margin-bottom:20px;
-		margin-top: 0px;
-	}
-	.underline{
-		margin:0 auto;
-		width:7%;
-		text-align:center;
-		border-top:2px solid #bfc4cc;
-	}
-	.tab-content{
-		margin: 0 auto;
-		width: 100%;
-		text-align: center;
-		margin-bottom:30px;
-	}
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -176,7 +157,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
 			<!-- 컨텐츠 타이틀 -->
 			<div class="tab-content" >			
-	  			<br><br><br>
+	  			<br><br>
 				<p class="content-header">${b.branchName} &lt;대관예약&gt;</p>
 				<div class="underline"></div>
 			</div>

@@ -291,26 +291,6 @@
 #content {
 	display: none;
 }
-/* 본문 타이틀 css */
-	.content-header{
-		color:#2c3c57;
-		font-size: 40px;
-		font-weight:bold;
-		margin-bottom:20px;
-		margin-top: 0px;
-	}
-	.underline{
-		margin:0 auto;
-		width:7%;
-		text-align:center;
-		border-top:2px solid #bfc4cc;
-	}
-	.tab-content{
-		margin: 0 auto;
-		width: 100%;
-		text-align: center;
-		margin-bottom:30px;
-	}
 </style>
 </head>
 <body>
@@ -345,7 +325,7 @@
 		<div id="mypage" style="width: 78%; height: 120vh; border-left: 1px solid silver;overflow: hidden;display:none; ">
 		<!-- 본문 타이틀 -->
 			<div class="tab-content" >			
-	  			<br><br><br>
+	  			<br><br>
 				<p class="content-header">예약확인</p>
 				<div class="underline"></div>
 			</div>
@@ -355,7 +335,7 @@
 				<div id="table-wrapper1"
 					style="margin-bottom: 100px; text-align: center;">
 					<table
-						style="margin-top: 50px; border-top: 3px solid #2c3c57; border-bottom: 3px solid #2c3c57; width: 80%; margin: 0 auto; border-collapse: collapse;">
+						style="margin-top: 50px; border-top: 2px solid #2c3c57; border-bottom: 2px solid #2c3c57; width: 80%; margin: 0 auto; border-collapse: collapse;">
 						<tr>
 							<th class="th">주문번호</th>
 							<th class="th">날짜</th>

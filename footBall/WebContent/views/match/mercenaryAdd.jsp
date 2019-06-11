@@ -38,7 +38,7 @@
 	}
 	
 	.content-header{
-		color:#403d3f;
+		color:#2c3c57;
 		font-size: 40px;
 		margin-bottom:20px;
 		margin-top: 0px;

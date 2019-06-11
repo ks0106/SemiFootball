@@ -278,7 +278,7 @@
 				</div>
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
 					<div class="tab-content" >
-	               			<br><br><br>
+	               			<br><br>
 							<p class="content-header">용병지원</p>
 							<div class="underline"></div>
 							<!-- 글쓰기 버튼 -->
