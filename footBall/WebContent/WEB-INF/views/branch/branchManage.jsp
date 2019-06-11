@@ -5,7 +5,7 @@
 <html>
 <head>
 <link rel='stylesheet' href="css/common/admin.css">
-<link rel='stylesheet' href="css/branch/branchManage.css">
+<link rel='stylesheet' href="css/branch/branchManage.css?ver=1.2">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>KS 지점관리</title>

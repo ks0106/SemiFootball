@@ -26,7 +26,7 @@
 	}
 	.btn-manage {
 		width:100px;
-	    background-color: #f8585b;
+	    background-color: #b0b0b0;
 	    border: none;
 	    color:#fff;
 	    padding: 15px 0;
@@ -36,10 +36,29 @@
 	    margin: 4px;
 	    cursor: pointer;
 	}
+	.btn-manage:hover {
+		background-color: #446087;
+	}
 	#btn-insert {
 		position:relative;
 		float: right;
 		right: 5px;
+	}
+	.link-manage {
+		width:100px;
+	    background-color: #b0b0b0;
+	    border: none;
+	    color:#fff;
+	    padding: 15px 0;
+	    text-decoration:none;
+	    text-align: center;
+	    display: inline-block;
+	    font-size: 15px;
+	    margin: 4px;
+	    cursor: pointer;
+	}
+	.link-manage:hover {
+		background-color: #446087;
 	}
 	.identifier {
 		text-align:left;
