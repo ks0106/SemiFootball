@@ -131,9 +131,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">대관</div>
+	<hr	style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<section> <!-- 내용 작성 -->
-	<hr
-		style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<!-- 컨텐츠 -->
 	<div
 		style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">

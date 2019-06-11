@@ -15,13 +15,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- 로그인 공통css -->
+<link rel="stylesheet" href="/css/login/loginAll.css">
 </head>
-	<style>
-		  	/* 전체화면 컬러 조절 => body */
-		body{
-			background-color:rgb(230,230,230);
-		}
-	
+	<style>	
 		#maindiv{
             text-align: center;
             position: relative;
