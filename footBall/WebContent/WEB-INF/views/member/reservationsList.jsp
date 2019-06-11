@@ -393,7 +393,7 @@
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">MyPage</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu1" href="/myPage?memberId='${member.id }'" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">계정관리</a>
+						<a class="side_a" id="side_menu1" href="/myPage?memberId=${member.id }" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">계정관리</a>
 					</div>
 					<div style="margin-bottom:15px;">
 						<a class="side_a" id="side_menu2" href="/reservationViewMyPageList" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대관예약확인</a>
