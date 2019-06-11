@@ -31,7 +31,7 @@
 <script>
 	$(document).ready(function(){
 		/* 헤더 배경 이미지 */
-		$('#menuImg').append('<img src="/img/common/ground5.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-9%; transform:scale(1.2);">');
+		$('#menuImg').append('<img src="/img/common/ground5.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-9%; transform:scale(1.2); opacity:0.8;">');
 		$('.side_nav:first').css("color","#3366cc");
 		$('.side_nav a:first').css("color","#3366cc");
 		$('#side_pr_menu').css("display","block");
@@ -323,17 +323,19 @@
 		<!-- 비밀번호 확인 jsp include -->
 		<jsp:include page="/WEB-INF/views/common/password.jsp"/>
 		<div id="mypage" style="width: 78%; height: 120vh; border-left: 1px solid silver;overflow: hidden;display:none; ">
-			<div
-				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">예약확인</div>
-			<div class="underline"
-				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
+		<!-- 본문 타이틀 -->
+			<div class="tab-content" >			
+	  			<br><br>
+				<p class="content-header">예약확인</p>
+				<div class="underline"></div>
+			</div>
+		<!-- 본문타이틀 끝 -->
 			<!-- 컨텐츠 파티션 -->
 			<div style="width: 90%; margin: 0 auto; margin-bottom: 50px;">
 				<div id="table-wrapper1"
 					style="margin-bottom: 100px; text-align: center;">
-					<p style="font-size: 30px; font-weight: bold;">주문장 목록</p>
 					<table
-						style="margin-top: 50px; border-top: 3px solid #2c3c57; border-bottom: 3px solid #2c3c57; width: 80%; margin: 0 auto; border-collapse: collapse;">
+						style="margin-top: 50px; border-top: 2px solid #2c3c57; border-bottom: 2px solid #2c3c57; width: 80%; margin: 0 auto; border-collapse: collapse;">
 						<tr>
 							<th class="th">주문번호</th>
 							<th class="th">날짜</th>

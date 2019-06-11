@@ -17,6 +17,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/common/admin.css">
 <link rel="stylesheet" href="/css/common/notice.css">
+<link rel="stylesheet" href="/css/common/pageCss.css">
+
 <title>KS 공지관리</title>
 </head>
 
@@ -39,8 +41,8 @@
 							<td class="td"><%=nv.getNoticeNo() %></td>
 							<td class="td"><%=nv.getNoticeTitle() %></td>
 							<td class="td">
-								<a href="/noticeUpdate?noticeNo=<%=nv.getNoticeNo() %>" class="btn" style="border:none;background-color: green;width: 100px;height: 30px;color:white;">수정하기</a>
-								<a href="/noticeDelete?noticeNo=<%=nv.getNoticeNo() %>" class="btn" style="border:none;background-color: green;width: 100px;height: 30px;color:white;">삭제하기</a>
+								<a href="/noticeUpdate?noticeNo=<%=nv.getNoticeNo() %>" class="btn" style="border:none;background-color: #df0101;width: 100px;height: 30px;color:white;">수정하기</a>
+								<a href="/noticeDelete?noticeNo=<%=nv.getNoticeNo() %>" class="btn" style="border:none;background-color: gray;width: 100px;height: 30px;color:white;">삭제하기</a>
 							</td>
 						</tr>
 						<%} %>

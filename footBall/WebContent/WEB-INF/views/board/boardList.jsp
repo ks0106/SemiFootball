@@ -18,6 +18,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/common/notice.css">
 <link rel="stylesheet" href="/css/board/board.css">
+<link rel="stylesheet" href="/css/common/pageCss.css">
 
 <title>KS 자유게시판</title>
 </head>
@@ -49,10 +50,10 @@ a{
 			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">커뮤니티</div>
 			<hr style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu1" href="/notice" style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
+				<a class="side_a" id="side_menu1" href="/notice" style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
 			</div>
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c5c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
+				<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
 			</div>
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu3" href="/boardList" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
@@ -64,7 +65,6 @@ a{
 				<center>
 					<br>
 					<br>
-					<br>
 					<p class="content-header">자유게시판</p>
 					<div class="underline"></div>
 					<div class="btn-wrapper"
@@ -72,8 +72,10 @@ a{
 						<div style="width: 90%;">
 
 							<c:if test="${sessionScope.member !=null }">
-								<a href="/boardWriter" class="btn"
-									style="border: none; background-color: green; width: 100px; height: 30px; color: white;">글쓰기</a>
+								<button type="button" onclick="location.href='/boardWriter'" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;">									
+								<span style="color:white;height:80%;width: 100%;display: inline;font-size: 17px; vertical-align:super; "> 글쓰기 </span> 
+								<span><img src="/img/match_icon.png" style="vertical-align: sub;"></span>
+								</button>
 							</c:if>
 						</div>
 					</div>

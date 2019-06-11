@@ -99,7 +99,7 @@
 </style>
 <script>
 /* 헤더 배경 이미지 */
-$('#menuImg').append('<img src="/img/common/ground5.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-9%; transform:scale(1.2);">');
+$('#menuImg').append('<img src="/img/common/ground5.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-9%; transform:scale(1.2); opacity:0.8;">');
 	$(document).ready(function(){
 		$('.side_nav:first').css("color","#3366cc");
 		$('.side_nav a:first').css("color","#3366cc");
@@ -130,87 +130,86 @@ $('#menuImg').append('<img src="/img/common/ground5.jpg" alt="메인 이미지" 
 		<div style="width: 900px; height:900px; background-color: white; margin: 0 auto;">
 				<div style="width:100%;">
 				<p class="content-header">예약확인</p>
-					<div class="underline"></div>
-			<!-- 컨텐츠 시작 -->
-					<div id="table-wrapper1" style="margin-top: 50px; border-top: 3px solid #2c3c57; border-bottom: 3px solid #2c3c57; width: 900px; margin: 0 auto; border-collapse: collapse;">
-						<div style="width:900px;height:700px;margin:0 auto;background-color:rgb(245,245,245);display:table;">
-							<div style="width:80%;height:80%;display:table-cell;vertical-align:middle;">
-								<table style="width:100%;height:100%;margin:0 auto;border-collapse:collapse;">
-									<tr>
-										<th class="receiptTh">지점명</th>
-										<td class="receiptTd" colspan="3">${rvpd.b.branchName}</td>
-									</tr>
-									<tr>
-										<th class="receiptTh">구장명</th>
-										<td class="receiptTd" colspan="3">${rvpd.c.courtName}</td>
-									</tr>
-									<tr>
-										<th class="receiptTh">예약자(ID)</th>
-										<td class="receiptTd" colspan="3">${rvpd.res.resMEmail}</td>
-									</tr>
-									<tr>
-										<th class="receiptTh">연락처</th>
-										<td class="receiptTd" colspan="3">${rvpd.res.resMPhone}</td>
-									</tr>
-									<tr>
-										<th class="receiptTh">날짜</th>
-										<td class="receiptTd" colspan="3">${rvpd.res.resDate}</td>
-									</tr>
-									<tr>
-										<th class="receiptTh">시간</th>
-										<td class="receiptTd" colspan="3" id="tokenizer">${rvpd.res.resTime}</td>
-									</tr>
-									<tr>
-										<th class="receiptTh">구매/대여 물품</th>
-										<c:if test="${not empty rvpd.rList}">
-											<td class="receiptTd" colspan="3">
-												<c:forEach items="${rvpd.rList}" var="r" varStatus="i">
-													${rvpd.gList[i.index].goodsName} ${rvpd.gList[i.index].goodsSize} < ${r.rentalGAmount}ea × ${rvpd.gList[i.index].goodsPrice}원 >
-													<c:if test="${fn:length(rvpd.rList) > i.index}">
-														<br>
-													</c:if>
-												</c:forEach>
+				<div class="underline"></div>
+		<!-- 컨텐츠 시작 -->
+				<div id="table-wrapper1" style="margin-top: 50px; border-top: 3px solid #2c3c57; border-bottom: 3px solid #2c3c57; width: 900px; margin: 0 auto; border-collapse: collapse;">
+					<div style="width:900px;height:700px;margin:0 auto;background-color:rgb(245,245,245);display:table;">
+						<div style="width:80%;height:80%;display:table-cell;vertical-align:middle;">
+							<table style="width:100%;height:100%;margin:0 auto;border-collapse:collapse;">
+								<tr>
+									<th class="receiptTh">지점명</th>
+									<td class="receiptTd" colspan="3">${rvpd.b.branchName}</td>
+								</tr>
+								<tr>
+									<th class="receiptTh">구장명</th>
+									<td class="receiptTd" colspan="3">${rvpd.c.courtName}</td>
+								</tr>
+								<tr>
+									<th class="receiptTh">예약자(ID)</th>
+									<td class="receiptTd" colspan="3">${rvpd.res.resMEmail}</td>
+								</tr>
+								<tr>
+									<th class="receiptTh">연락처</th>
+									<td class="receiptTd" colspan="3">${rvpd.res.resMPhone}</td>
+								</tr>
+								<tr>
+									<th class="receiptTh">날짜</th>
+									<td class="receiptTd" colspan="3">${rvpd.res.resDate}</td>
+								</tr>
+								<tr>
+									<th class="receiptTh">시간</th>
+									<td class="receiptTd" colspan="3" id="tokenizer">${rvpd.res.resTime}</td>
+								</tr>
+								<tr>
+									<th class="receiptTh">구매/대여 물품</th>
+									<c:if test="${not empty rvpd.rList}">
+										<td class="receiptTd" colspan="3">
+											<c:forEach items="${rvpd.rList}" var="r" varStatus="i">
+												${rvpd.gList[i.index].goodsName} ${rvpd.gList[i.index].goodsSize} < ${r.rentalGAmount}ea × ${rvpd.gList[i.index].goodsPrice}원 >
+												<c:if test="${fn:length(rvpd.rList) > i.index}">
+													<br>
+												</c:if>
+											</c:forEach>
+										</td>
+									</c:if>
+									<c:if test="${empty rvpd.rList}">
+										<td class="receiptTd" colspan="3"></td>
+									</c:if>
+								</tr>
+								<tr>
+									<th class="receiptTh">결제</th>
+									<c:if test="${rvpd.res.resPayment == 1}">
+										<c:if test="${rvpd.res.resCancel == 0}">
+											<td class="receiptTd">결제완료
+											<button id="paymentCancelBtn" type="button" style="border:0;background-color:darkgray;color:white;font-size:13px;">결제취소</button>							
 											</td>
 										</c:if>
-										<c:if test="${empty rvpd.rList}">
-											<td class="receiptTd" colspan="3"></td>
+										<c:if test="${rvpd.res.resCancel == 1}">
+											<td class="receiptTd">결제취소 진행중
+											<button id="paymentCancelRollbackBtn" type="button" style="border:0;background-color:darkgray;color:white;font-size:13px;">취소 철회</button>
+											</td>
 										</c:if>
-									</tr>
-									<tr>
-										<th class="receiptTh">결제</th>
-										<c:if test="${rvpd.res.resPayment == 1}">
-											<c:if test="${rvpd.res.resCancel == 0}">
-												<td class="receiptTd">결제완료
-												<button id="paymentCancelBtn" type="button" style="border:0;background-color:darkgray;color:white;font-size:13px;">결제취소</button>							
-												</td>
-											</c:if>
-											<c:if test="${rvpd.res.resCancel == 1}">
-												<td class="receiptTd">결제취소 진행중
-												<button id="paymentCancelRollbackBtn" type="button" style="border:0;background-color:darkgray;color:white;font-size:13px;">취소 철회</button>
-												</td>
-											</c:if>
-											<th class="receiptTd">결제일시</th>
-											<td class="receiptTd">${rvpd.res.resPaymentDate}</td>
-										</c:if>
-										<c:if test="${rvpd.res.resPayment == 2}">
-											<td class="receiptTd" style="color:#df0101;font-weight:bolder;">결제취소 완료
-											<th class="receiptTd">취소일시</th>
-											<td class="receiptTd">${rvpd.res.resCancelDate}</td>
-										</c:if>
-										
-									</tr>
-									<tr>
-										<th colspan="4" style="border-top:3px double #2c3c57;">총계</th>
-									</tr>
-									<tr>
-										<td colspan="4" style="text-align:center;border-top:1px solid silver;"><fmt:formatNumber value="${rvpd.res.resTotalCost}" pattern="\#,###" /></td>		
-									</tr>
-								</table>
-							</div>						
-						</div>
+										<th class="receiptTd">결제일시</th>
+										<td class="receiptTd">${rvpd.res.resPaymentDate}</td>
+									</c:if>
+									<c:if test="${rvpd.res.resPayment == 2}">
+										<td class="receiptTd" style="color:#df0101;font-weight:bolder;">결제취소 완료
+										<th class="receiptTd">취소일시</th>
+										<td class="receiptTd">${rvpd.res.resCancelDate}</td>
+									</c:if>
+									
+								</tr>
+								<tr>
+									<th colspan="4" style="border-top:3px double #2c3c57;">총계</th>
+								</tr>
+								<tr>
+									<td colspan="4" style="text-align:center;border-top:1px solid silver;"><fmt:formatNumber value="${rvpd.res.resTotalCost}" pattern="\#,###" /></td>		
+								</tr>
+							</table>
+						</div>						
 					</div>
-					<button style="width:150px;height:50px;background-color:#2c3c57;color:white;border:0;font-weight:bolder;font-size:18px;float:right;cursor:pointer;" onclick="window.close();">닫기</button>					
-				<div>
+				</div>
+				<button style="width:150px;height:50px;background-color:#2c3c57;color:white;border:0;font-weight:bolder;font-size:18px;float:right;cursor:pointer;" onclick="window.close();">닫기</button>					
 			</div>
 		</div>
 	</section>

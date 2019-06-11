@@ -22,6 +22,7 @@
 
 <link rel="stylesheet" href="/css/common/admin.css">
 <link rel="stylesheet" href="/css/common/notice.css">
+<link rel="stylesheet" href="/css/common/pageCss.css">
 
 </head>
 <body>
@@ -50,8 +51,8 @@
 							</td>
 							<td class="td">
 									
-								<a href="/faqUpdate?faqNo=<%=fv.getFaqNo()%>" class="btn" style="border:none;background-color: green;width: 100px;height: 30px;color:white;">수정하기</a>
-								<a href="/deleteFAQ?faqNo=<%=fv.getFaqNo()%>" class="btn" style="border:none;background-color: green;width: 100px;height: 30px;color:white;">삭제하기</a>
+								<a href="/faqUpdate?faqNo=<%=fv.getFaqNo()%>" class="btn" style="border:none;background-color: #df0101;width: 100px;height: 30px;color:white;">수정하기</a>
+								<a href="/deleteFAQ?faqNo=<%=fv.getFaqNo()%>" class="btn" style="border:none;background-color: gray;width: 100px;height: 30px;color:white;">삭제하기</a>
 							</td>
 						</tr>
 

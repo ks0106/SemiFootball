@@ -14,6 +14,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/css/notice/notice.css">
+	<link rel="stylesheet" href="/css/common/pageCss.css">
+	
 	
 <title>KS 공지사항수정</title>
 
@@ -41,7 +43,7 @@
 	<script>
    $(document).ready(function(){
 	   /* 헤더 배경 이미지 */
-		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+	   $('#menuImg').append('<img src="/img/common/test.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-10%; opacity:0.8;">');
    });
 </script>
 
@@ -85,8 +87,8 @@
 							<th colspan="2">
 								<center>
 									<button type="submit" class="btn btn-outline-primary"
-										style="border: none; background-color: green; width: 100px; height: 30px; color: white;">수정하기</button>
-									<button type="reset" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button>
+										style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">수정하기</button>
+									<button type="reset" class="btn" style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">취소</button>
 								</center>
 							</th>
 						</tr>

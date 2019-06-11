@@ -10,6 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/admin/admin.css">
 <link rel="stylesheet" href="/css/faq/faq.css">
+<link rel="stylesheet" href="/css/common/pageCss.css">
 
 <title>KS FAQ</title>
 </head>
@@ -37,8 +38,8 @@
 					<td><textarea rows="6" name="faqcontent" id="faqcontent"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button type="submit" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록</button>
-					<button type="reset" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></td>
+					<td colspan="2"><button type="submit" class="btn" style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">등록</button>
+					<button type="reset" class="btn" style="border: none; background-color: gray; width: 100px; height: 30px; color: white;">취소</button></td>
 				</tr>
 			</table>
 			</center>

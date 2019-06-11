@@ -26,7 +26,7 @@
 <script>
 	$(document).ready(function() {
 		/* 헤더 배경 이미지 */
-		$('#menuImg').append('<img src="/img/common/ground5.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-9%; transform:scale(1.2);">');
+		$('#menuImg').append('<img src="/img/common/ground5.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-9%; transform:scale(1.2); opacity:0.8;">');
 		$('.side_nav:first').css("color", "#3366cc");
 		$('.side_nav a:first').css("color", "#3366cc");
 		$('#side_pr_menu').css("display", "block");
@@ -109,6 +109,7 @@ to {
 #mv {
 	background-image: url("/img/ground1.png");
 }
+
 </style>
 </head>
 <body>
@@ -117,17 +118,13 @@ to {
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">대관</div>
 	<section> <!-- 내용 작성 -->
-	<hr
-		style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<!-- 컨텐츠 -->
 	<div style="width: 85%; background-color: white; margin: 0 auto;">
 		<!-- 컨텐츠 사이드 메뉴 -->
-		<div
-			style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
-			<div
-				style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">대관예약/확인</div>
-			<hr
-				style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
+		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">대관예약/확인</div>
+			<hr style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu1" style="color: #3366cc;">대관예약</a>
 			</div>
@@ -137,13 +134,15 @@ to {
 		</div>
 		<!-- 사이드 메뉴 종료 -->
 		<!-- 컨텐츠 본문 -->
-		<!-- 컨텐츠 본문 타이틀 -->
 		<div
 			style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
-			<div
-				style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">대관예약</div>
-			<div class="underline"
-				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
+		<!-- 본문 타이틀 -->
+			<div class="tab-content" >			
+	  			<br><br>
+				<p class="content-header">대관예약</p>
+				<div class="underline"></div>
+			</div>
+		<!-- 본문타이틀 끝 -->
 			<!-- 컨텐츠 지점선택 파티션 -->
 			<div
 				style="width: 700px; height: 400px; margin: 0 auto; margin-bottom: 100px; border-radius: 10px; border: 3px solid #2c3c57; background-color: rgb(235, 235, 235)">

@@ -63,6 +63,26 @@
 		background-color: #F2F2F2;
 		cursor: pointer;
 	}
+/* 본문 타이틀 css */
+	.content-header{
+		color:#2c3c57;
+		font-size: 40px;
+		font-weight:bold;
+		margin-bottom:20px;
+		margin-top: 0px;
+	}
+	.underline{
+		margin:0 auto;
+		width:7%;
+		text-align:center;
+		border-top:2px solid #bfc4cc;
+	}
+	.tab-content{
+		margin: 0 auto;
+		width: 100%;
+		text-align: center;
+		margin-bottom:30px;
+	}
 </style>
 </head>
 <body>
@@ -92,12 +112,15 @@
 				</div>
 				
 			</div><!-- 사이드 메뉴 종료 -->			
-		<!-- 컨텐츠 본문 -->
-   			<br><br>
    		<!-- 컨텐츠 본문 타이틀 -->
 			<div id="con1" style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 공지</div>
-				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
+			<!-- 본문 타이틀 -->
+				<div class="tab-content" >			
+		  			<br><br>
+					<p class="content-header">대회 공지</p>
+					<div class="underline"></div>
+				</div>
+			<!-- 본문타이틀 끝 -->
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:500px;margin:0 auto;margin-bottom:50px;">
 				<c:choose>
@@ -135,7 +158,7 @@
 <script>
 	$(document).ready(function(){
 		/* 헤더 배경 이미지 */
-		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+		$('#menuImg').append('<img src="/img/common/league3.jpg" alt="메인 이미지" style="width:100%;max-height:initial;">');
 		//사이드 메뉴 스크립트
 		$("#side_menu1").click(function(){
 			location.href="/league";

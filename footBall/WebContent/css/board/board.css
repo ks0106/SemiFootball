@@ -1,16 +1,5 @@
 @charset "UTF-8";
 
-/* 페이지 타이틀  */
-#title {
-	position: absolute;
-	z-index: 100;
-	font-size: 70px;
-	font-weight: 900;
-	color: white;
-	left: 10%;
-	top: 400px;
-}
-
 .tab-container {
 	position: absolute;
 	top: 485px;
