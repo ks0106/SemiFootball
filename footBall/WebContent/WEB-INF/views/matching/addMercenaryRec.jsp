@@ -38,8 +38,8 @@
 		background-image: url("/img/ground1.png");
 	}
 	#matchlist-table{
-		border-top:2px solid  green;
-		border-bottom:2px solid  green;
+		border-top:2px solid  #2c3c57;
+		border-bottom:2px solid  #2c3c57;
 		border-collapse: collapse;
 		
 	}
@@ -74,8 +74,8 @@
 		margin-top: 50px;
 		margin: 0 auto;
 		border-collapse: collapse;
-		border-top: 3px solid green;
-		border-bottom: 3px solid green;
+		border-top: 3px solid #2c3c57;
+		border-bottom: 3px solid #2c3c57;
 	}
 	.th{
 		width: 20%;
@@ -137,13 +137,13 @@
 					<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">용병지원</div>
 					<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu1" href="/matching" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
+						<a class="side_a" id="side_menu1" href="/matching" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
+						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
+						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
 					</div>
 				</div>
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
@@ -243,6 +243,8 @@
 										</c:forEach> 
 									</table>
 								</div>
+							</div>
+							</div>
 					
 					<div style="width:100%;height:100px;"></div>
 				<div>

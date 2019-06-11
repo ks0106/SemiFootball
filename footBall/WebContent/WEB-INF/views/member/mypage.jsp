@@ -17,7 +17,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>KS 마이 페이지</title>
 <style>
-	/* 모든 버튼 타입 커서  */
+	/* 모든 버튼 타입 커서 */
 	input[type="button"],input[type="submit"],input[type="reset"],button{
 		cursor:pointer;
 	}
