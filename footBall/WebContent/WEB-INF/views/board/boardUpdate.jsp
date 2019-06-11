@@ -8,11 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/css/bootstrap.mibv.css">
+<link rel="stylesheet" href="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/css/bootstrap.mibv.css">
 <script src="https://code.jquery.com/jquery-3.3.1.mibv.js"></script>
-<script
-	src="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/js/bootstrap.mibv.js"></script>
+<script src="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/js/bootstrap.mibv.js"></script>
 <link rel="stylesheet" href="/css/board/board.css">
 <title>KS 자유게시판</title>
 </head>
@@ -20,14 +18,11 @@
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<script>
-   $(document).ready(function(){
-      $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-      $('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-      $('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-      $('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-      $('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
-   });
-</script>
+		$(document).ready(function(){
+			   /* 헤더 배경 이미지 */
+				$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+		   });
+	</script>
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">커뮤니티</div>
 
@@ -88,8 +83,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea name="boardContent" class="form-control" rows="3"><%=bv.getBoardContent() %>
-                     </textarea></td>
+							<td><textarea name="boardContent" class="form-control" rows="3"><%=bv.getBoardContent() %></textarea></td>
 						</tr>
 						<tr>
 							<th colspan="2">

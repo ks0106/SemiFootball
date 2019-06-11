@@ -35,7 +35,7 @@ public class BoardDeleteServlet extends HttpServlet {
 		if(result>0) {
 			request.setAttribute("msg", "등록된 글이 삭제되었습니다.");
 		}else {
-			request.setAttribute("msg", "등록된 글 삭제를 실패하였습니다.");
+			request.setAttribute("msg", "등록된 글삭제를 실패하였습니다.");
 		}
 		request.setAttribute("loc", "/boardList");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");

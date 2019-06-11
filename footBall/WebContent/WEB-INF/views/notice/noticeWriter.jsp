@@ -8,11 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/common/admin.css">
 <link rel="stylesheet" href="/css/notice/notice.css">
 <title>KS 공지관리</title>
@@ -56,32 +54,26 @@
 					<center>
 						<table class="table table-bordered" id="noticewriter">
 							<tr>
-								<th colspan="2"
-									style="font-size: 20px; font-weight: bold; text-align: center; background:lightgray;">공지사항
-									작성</th>
+								<th colspan="2" style="font-size: 20px; font-weight: bold; text-align: center; background:lightgray;">공지사항 작성</th>
 							</tr>
 							<tr>
 								<th style="text-align: center;">제목</th>
-								<td><input type="text" class="form-controll"
-									name="noticeTitle" style="width: 100%;"></td>
+								<td><input type="text" class="form-controll" name="noticeTitle" style="width: 100%;"></td>
 							</tr>
 							<tr>
 								<th style="text-align: center;">작성자</th>
-								<td><p style="text-align: left;"><%=m.getName()%></p> <input
-									type="hidden" class="form-controll" name="noticeWriter"
-									style="text-align: left;" value="<%=m.getName()%>"></td>
+								<td><p style="text-align: left;"><%=m.getName()%></p>
+								<input type="hidden" class="form-controll" name="noticeWriter" style="text-align: left;" value="<%=m.getName()%>"></td>
 							</tr>
 							<tr>
 								<th style="text-align: center;">내용</th>
-								<td><textarea name="noticeContent" class="form-controll"
-										rows="3" cols="40"
-										style="resize: none; width: 100%; height: 400px;"></textarea></td>
+								<td>
+								<textarea name="noticeContent" class="form-controll" rows="3" cols="40" style="resize: none; width: 100%; height: 400px;"></textarea></td>
 							</tr>
 							<tr>
 								<th colspan="2">
 									<center>
-										<button type="submit" class="btn btn-outline-primary"
-											style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록하기</button>
+										<button type="submit" class="btn btn-outline-primary" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록하기</button>
 										<a href="/notice"><button class="btn"style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></a>
 									</center>
 								</th>
@@ -90,7 +82,6 @@
 					</center>
 				</form>
 			</div>
-			</section>
-
+		</section>
 </body>
 </html>

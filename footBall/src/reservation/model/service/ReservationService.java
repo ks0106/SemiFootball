@@ -443,6 +443,11 @@ public class ReservationService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	public String bringImg(int rCode) {
+		Connection conn = JDBCTemplate.getConnection();
+		String bi1 = new ReservationDao().bringImg(conn, rCode);
+		return bi1;
+	}
 	
 	
 	

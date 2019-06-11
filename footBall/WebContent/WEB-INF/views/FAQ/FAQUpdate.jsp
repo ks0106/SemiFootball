@@ -8,11 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/common/notice.css">
 	
 <title>KS FAQ</title>
@@ -37,19 +35,15 @@
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<script>
-   $(document).ready(function(){
-      $('#ground1').append('<img src="/img/ground1.png" alt="그라운드1" style="width:100%;height:500px;">');
-      $('#ground2').append('<img src="/img/ground2.jpg" alt="그라운드2" style="width:100%;height:500px;">');
-      $('#ground3').append('<img src="/img/ground3.jpg" alt="그라운드3" style="width:100%;height:500px;">');
-      $('#ground4').append('<img src="/img/ground4.jpg" alt="그라운드4" style="width:100%;height:500px;">');
-      $('#ground5').append('<img src="/img/ground5.jpg" alt="그라운드5" style="width:100%;height:500px;">');
-   });
+		$(document).ready(function(){
+		   /* 헤더 배경 이미지 */
+			$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+	   });
 </script>
 
 
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">고객센터</div>
-	<div id="full">
 		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 		<div style="width:85%;background-color:white;margin:0 auto;overflow:hidden;">
 				<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
@@ -71,15 +65,11 @@
 
 			<div class="table-wrapper" style="width: 60%; margin: 0 auto;">
 				<form action="/faqUpdateEnd" method="post">
-					<br>
-					<br>
-					<br>
-					<br>
+					<br><br><br><br>
 					<table class="table table-bordered">
 						<input type="hidden" name="faqNo" value="<%=fv.getFaqNo() %>">				
 						<tr>
-							<th colspan="2"
-								style="font-size: 20px; font-weight: bold; text-align: center;">FAQ수정</th>
+							<th colspan="2" style="font-size: 20px; font-weight: bold; text-align: center;">FAQ수정</th>
 						</tr>
 						<tr>
 							<th style="text-align: center;">제목</th>
@@ -89,15 +79,13 @@
 						</tr>
 						<tr>
 							<th style="text-align: center; height: 400px;">내용</th>
-							<td><textarea name="faqContent" class="form-control"
-									rows="3" style="resize: none; height: 400px;"><%=fv.getFaqContent() %></textarea>
+							<td><textarea name="faqContent" class="form-control" rows="3" style="resize: none; height: 400px;"><%=fv.getFaqContent() %></textarea>
 							</td>
 						</tr>
 						<tr>
 							<th colspan="2">
 								<center>
-									<button type="submit" class="btn"
-										style="border: none; background-color: green; width: 100px; height: 30px; color: white;">수정하기</button>
+									<button type="submit" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">수정하기</button>
 									<button type="reset" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button>
 								</center>
 							</th>

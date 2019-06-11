@@ -377,7 +377,7 @@
  			$("#tr11").parent().parent().parent().children().remove("#modiBtn-wrapper");
  		}
    		$.ajax({
-   			url:"/recContentView",
+   			url:"/mersenaryContentView",
    			type:"get",
    			dataType:"json",
    			data:{pageNum:pageNum},
