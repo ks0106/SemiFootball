@@ -88,7 +88,10 @@ a{
 						style="margin: 0 auto; margin-top: 30px; margin-bottom: 30px; text-align: right; width: 100%;">
 						<div style="width: 90%;">
 							<c:if test="${sessionScope.member.id=='admin' }">
-								<a href="/noticeWriter" class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">글쓰기</a>
+								<button type="button" onclick="location.href='/noticeWriter'" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;">									
+								<span style="color:white;height:80%;width: 100%;display: inline;font-size: 17px; vertical-align:super; "> 글쓰기 </span> 
+								<span><img src="/img/match_icon.png" style="vertical-align: sub;"></span>
+								</button>
 							</c:if>
 						</div>
 					</div>

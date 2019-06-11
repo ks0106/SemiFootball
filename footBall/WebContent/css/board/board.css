@@ -169,14 +169,18 @@
 	}
 	
 	#barea{
-		width: 500px;
+		width: 600px;
+		height: 70px;
 		resize: none;
-		height: 45px;
 	}
 	
 	#bsub{
-		height: 50px;
-		width: 80px;
+		background: linear-gradient(to bottom, white, rgb(245,245,245));
+		background-color:white;
+		border:1px solid lightgray;
+		color:#2c3c57;
+		height: 70px;
+		width: 85px;
 	}
 	
 	.commentList{

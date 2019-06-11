@@ -15,6 +15,15 @@
 <link rel="stylesheet" href="/css/board/board.css">
 <link rel="stylesheet" href="/css/common/pageCss.css">
 
+<style>
+.boardWriteBtn{
+	border: none;
+	background-color: #2c3c57;
+	width: 120px;
+	height: 40px;
+	color: white;
+}
+</style>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -76,11 +85,12 @@
 						</td>
 					</tr>
 					<tr style="text-align:center;">
-						<th colspan="2"><center>
-							<button type="submit" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록하기</button>
-							<a href="/boardList">
-							<button type="button" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></a></center>
-						</th>
+						<td colspan="2">
+							<center>
+								<button class="boardWriteBtn" type="submit">등록하기</button>
+								<button class="boardWriteBtn" onclick="location.href='/boardList'" type="button" style="background-color:gray;">취소</button>
+							</center>
+						</td>
 					</tr>
 				</table>
 				</center>
