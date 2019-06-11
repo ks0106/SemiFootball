@@ -88,7 +88,7 @@
 		text-align: center;
 	}
 	.content-header{
-		color:#403d3f;
+		color:#2c3c57;
 		font-size: 40px;
 		font-weight:bold;
 		margin-bottom:20px;

@@ -13,6 +13,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/common/admin.css">
 <link rel="stylesheet" href="/css/notice/notice.css">
+<link rel="stylesheet" href="/css/common/pageCss.css">
+
 <title>KS 공지관리</title>
 </head>
 <style>
@@ -73,8 +75,8 @@
 							<tr>
 								<th colspan="2">
 									<center>
-										<button type="submit" class="btn btn-outline-primary" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록하기</button>
-										<a href="/notice"><button class="btn"style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></a>
+										<button type="submit" class="btn btn-outline-primary" style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">등록하기</button>
+										<a href="/notice"><button class="btn"style="border: none; background-color: gray; width: 100px; height: 30px; color: white;">취소</button></a>
 									</center>
 								</th>
 							</tr>

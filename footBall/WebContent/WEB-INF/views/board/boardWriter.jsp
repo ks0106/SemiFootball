@@ -13,6 +13,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/board/board.css">
+<link rel="stylesheet" href="/css/common/pageCss.css">
+
 </head>
 <body>
 	<!-- 헤더 불러오기 -->

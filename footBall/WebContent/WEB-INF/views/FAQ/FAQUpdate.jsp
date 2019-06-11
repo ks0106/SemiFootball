@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/common/notice.css">
+	<link rel="stylesheet" href="/css/common/pageCss.css">
 	
 <title>KS FAQ</title>
 <style>
@@ -85,8 +86,8 @@
 						<tr>
 							<th colspan="2">
 								<center>
-									<button type="submit" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">수정하기</button>
-									<button type="reset" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button>
+									<button type="submit" class="btn" style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">수정하기</button>
+									<button type="reset" class="btn" style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">취소</button>
 								</center>
 							</th>
 						</tr>

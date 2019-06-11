@@ -12,6 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/common/notice.css">
 <link rel="stylesheet" href="/css/board/board.css">
+<link rel="stylesheet" href="/css/common/pageCss.css">
 
 <title>KS 공지사항</title>
 
@@ -75,11 +76,11 @@
 							<th colspan="2"><center>
 									<c:if test="${sessionScope.member.id =='admin' }">
 										<a href="/noticeUpdate?noticeNo=${nv.noticeNo}"
-											class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">수정하기</a>
+											class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">수정하기</a>
 										<a href="/noticeDelete?noticeNo=${nv.noticeNo}"
-											class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">삭제하기</a>
+											class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">삭제하기</a>
 									</c:if>
-									<a href="/notice?reqPage=${req}" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">목록으로</a>
+									<a href="/notice?reqPage=${req}" class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">목록으로</a>
 							</center></th>
 						</tr>
 					</table>

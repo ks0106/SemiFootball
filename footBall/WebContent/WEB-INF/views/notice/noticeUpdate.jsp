@@ -14,6 +14,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/css/notice/notice.css">
+	<link rel="stylesheet" href="/css/common/pageCss.css">
+	
 	
 <title>KS 공지사항수정</title>
 
@@ -85,8 +87,8 @@
 							<th colspan="2">
 								<center>
 									<button type="submit" class="btn btn-outline-primary"
-										style="border: none; background-color: green; width: 100px; height: 30px; color: white;">수정하기</button>
-									<button type="reset" class="btn" style="border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button>
+										style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">수정하기</button>
+									<button type="reset" class="btn" style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">취소</button>
 								</center>
 							</th>
 						</tr>

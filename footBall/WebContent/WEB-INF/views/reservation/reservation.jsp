@@ -109,6 +109,25 @@ to {
 #mv {
 	background-image: url("/img/ground1.png");
 }
+	.content-header{
+		color:#2c3c57;
+		font-size: 40px;
+		font-weight:bold;
+		margin-bottom:20px;
+		margin-top: 0px;
+	}
+	.underline{
+		margin:0 auto;
+		width:7%;
+		text-align:center;
+		border-top:2px solid #bfc4cc;
+	}
+	.tab-content{
+		margin: 0 auto;
+		width: 100%;
+		text-align: center;
+		margin-bottom:30px;
+	}
 </style>
 </head>
 <body>
@@ -137,13 +156,15 @@ to {
 		</div>
 		<!-- 사이드 메뉴 종료 -->
 		<!-- 컨텐츠 본문 -->
-		<!-- 컨텐츠 본문 타이틀 -->
 		<div
 			style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
-			<div
-				style="font-size: 45px; color: #403d3f; text-align: center; margin-bottom: 20px;">대관예약</div>
-			<div class="underline"
-				style="margin: 0 auto; width: 7%; text-align: center; border-top: 2px solid #bfc4cc; margin-bottom: 50px;"></div>
+		<!-- 본문 타이틀 -->
+			<div class="tab-content" >			
+	  			<br><br><br>
+				<p class="content-header">대관예약</p>
+				<div class="underline"></div>
+			</div>
+		<!-- 본문타이틀 끝 -->
 			<!-- 컨텐츠 지점선택 파티션 -->
 			<div
 				style="width: 700px; height: 400px; margin: 0 auto; margin-bottom: 100px; border-radius: 10px; border: 3px solid #2c3c57; background-color: rgb(235, 235, 235)">
