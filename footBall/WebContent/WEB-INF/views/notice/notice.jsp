@@ -43,13 +43,6 @@ a{
 	background-color: #2c3c57;
 	font-size: 20px;
 }
-.side_a {
-	font-weight: bolder;
-	font-size: 18px;
-	text-decoration: none;
-	cursor: pointer;
-}
-
 </style>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -67,85 +60,85 @@ a{
 
 	</script>
 	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
-	<section>
-		<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
-			<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
-				<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">커뮤니티</div>
-				<hr style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
-				<div style="margin-bottom: 15px;">
-					<a class="side_a" id="side_menu1" href="/notice" style="color: #3366cc;">공지사항</a>
-				</div>
-				<div style="margin-bottom: 15px;">
-					<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c3c57;">FAQ</a>
-				</div>
-				<div style="margin-bottom: 15px;">
-					<a class="side_a" id="side_menu3" href="/boardList" style="color: #2c3c57;">자유게시판
-					</a>
-				</div>
+<section>
+	<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
+		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">커뮤니티</div>
+			<hr style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu1" href="/notice" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
 			</div>
-			<div style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
-				<div class="tab-content">
-					<!-- 공지사항 리스트 조회 -->
-					<center>
-						<br><br>
-						<p class="content-header">공지사항</p>
-						<div class="underline"></div>
-						<div class="btn-wrapper"
-							style="margin: 0 auto; margin-top: 30px; margin-bottom: 30px; text-align: right; width: 100%;">
-							<div style="width: 90%;">
-								<c:if test="${sessionScope.member.id=='admin' }">
-									<a href="/noticeWriter" class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">글쓰기</a>
-								</c:if>
-							</div>
-						</div>
-					
-						<div id="table-wraper">
-							<table id="matchlist-table" style="width: 100%;">
-								<thead>
-									<tr>
-										<th class="th">글번호</th>
-										<th class="th" colspan="2">제목</th>
-										<th class="th">작성자</th>
-										<th class="th">등록일</th>
-										<th class="th">조회수</th>
-									</tr>
-								</thead>
-								<tbody>
-									<%
-										for (NoticeVo nv : list) {
-									%>
-									<tr class="table-tr">
-										<td class="td" style="text-align: center;"><%=nv.getRnum()%></td>
-										<td class="td" style="text-align: center;" colspan="2"><a onclick="contentView(<%=nv.getNoticeNo()%>)"><%=nv.getNoticeTitle()%></a></td>
-										<td class="td" style="text-align: center;"><%=nv.getNoticeWriter()%></td>
-										<td class="td" style="text-align: center;"><%=nv.getNoticeDate()%></td>
-										<td class="td" style="text-align: center;"><%=nv.getNoticeHit()%></td>
-									</tr>
-									<%
-										}
-									%>
-								</tbody>
-							</table>
-						</div>
-						<!-- 페이징 -->
-						<div id="pageNavi" style="width: 100%; margin: 0 auto; margin-bottom: 30px; margin-top: 30px;"><%=pd.getPageNavi()%></div>
-						<br> <br>
-						<form action="/searchKeyword" method="get">
-							<input type="text" size="30" name="keyword" placeholder="검색어를 입력해주세요" style="height: 40px; border: 2px solid #A4A4A4;vertical-align: middle;">
-							<button type="submit" style="background-color: #2c3c57; border: none; height: 40px; width: 70px; vertical-align: middle;">
-								<img src="/img/icon_search.png">
-							</button>
-						</form>
-					</center>
-				</div>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu3" href="/boardList" style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
+				</a>
 			</div>
 		</div>
-	</section>
+		<div style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
+			<div class="tab-content">
+				<!-- 공지사항 리스트 조회 -->
+				<center>
+					<br><br>
+					<p class="content-header">공지사항</p>
+					<div class="underline"></div>
+					<div class="btn-wrapper"
+						style="margin: 0 auto; margin-top: 30px; margin-bottom: 30px; text-align: right; width: 100%;">
+						<div style="width: 90%;">
+							<c:if test="${sessionScope.member.id=='admin' }">
+								<a href="/noticeWriter" class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;">글쓰기</a>
+							</c:if>
+						</div>
+					</div>
+				
+					<div id="table-wraper">
+						<table id="matchlist-table" style="width: 100%;">
+							<thead>
+								<tr>
+									<th class="th">글번호</th>
+									<th class="th" colspan="2">제목</th>
+									<th class="th">작성자</th>
+									<th class="th">등록일</th>
+									<th class="th">조회수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<%
+									for (NoticeVo nv : list) {
+								%>
+								<tr class="table-tr">
+									<td class="td" style="text-align: center;"><%=nv.getRnum()%></td>
+									<td class="td" style="text-align: center;" colspan="2"><a onclick="contentView(<%=nv.getNoticeNo()%>)"><%=nv.getNoticeTitle()%></a></td>
+									<td class="td" style="text-align: center;"><%=nv.getNoticeWriter()%></td>
+									<td class="td" style="text-align: center;"><%=nv.getNoticeDate()%></td>
+									<td class="td" style="text-align: center;"><%=nv.getNoticeHit()%></td>
+								</tr>
+								<%
+									}
+								%>
+							</tbody>
+						</table>
+					</div>
+					<!-- 페이징 -->
+					<div id="pageNavi" style="width: 100%; margin: 0 auto; margin-bottom: 30px; margin-top: 30px;"><%=pd.getPageNavi()%></div>
+					<br> <br>
+					<form action="/searchKeyword" method="get">
+						<input type="text" size="30" name="keyword" placeholder="검색어를 입력해주세요" style="height: 40px; border: 2px solid #A4A4A4;vertical-align: middle;">
+						<button type="submit" style="background-color: #2c3c57; border: none; height: 40px; width: 70px; vertical-align: middle;">
+							<img src="/img/icon_search.png">
+						</button>
+					</form>
+				</center>
+			</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+	</div>
+</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
