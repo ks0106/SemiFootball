@@ -49,7 +49,7 @@
       height:100%;
       list-style-type: none;
       border-top:3px solid purple;
-      border-bottom:1px solid  green;
+      border-bottom:1px solid #2c3c57;
       padding-left: 0;
    }
    .list-li{
@@ -60,7 +60,7 @@
       line-height: 80px;
       font-size: 40px;
       font-weight: bold;
-      border-right: 1px solid  green;
+      border-right: 1px solid #2c3c57;
       box-sizing: border-box;
    }
    .list-li:last-child{
@@ -74,11 +74,11 @@
       display: block;
    }
    .selected > .munebar{
-      background-color:  green;
+      background-color: #2c3c57;
     	color:white;
    }
    .list-li>a:hover{
-   		background-color:  green;
+   		background-color: #2c3c57;
    		color:white;
    		text-decoration: none;
    }
@@ -102,8 +102,8 @@
 	}
 	
 	#matchlist-table{
-		border-top:2px solid  green;
-		border-bottom:2px solid  green;
+		border-top:2px solid #2c3c57;
+		border-bottom:2px solid #2c3c57;
 		border-collapse: collapse;
 		
 	}
@@ -151,7 +151,7 @@
 	.selectPage{
 		line-height: 40px;
 		color: white;
-		background-color:  green;
+		background-color: #2c3c57;
 		font-size: 20px;
 	}
 	
@@ -205,7 +205,7 @@
      	width: 50px;
      	height: 35px;
      	border-radius: 5px;
-     	background-color: green;
+     	background-color: #2c3c57;
      	color:white;
      }
      #disable{
@@ -219,7 +219,7 @@
 <script>
 	$(document).ready(function(){
 		/* 헤더 배경 이미지 */
-		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+		$('#menuImg').append('<img src="/img/common/matching.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-15%;">');
 		$('.side_nav:first').css("color","#3366cc");
 		$('.side_nav a:first').css("color","#3366cc");
 		$('#side_pr_menu').css("display","block");
@@ -334,10 +334,10 @@ function contentView(pageNum){
 						<a class="side_a" id="side_menu1" href="/matching" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">매치</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
+						<a class="side_a" id="side_menu2" href="/mercenaryRec" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병모집</a>
 					</div>
 					<div style="margin-bottom:15px;">
-						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#2c5c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
+						<a class="side_a" id="side_menu3" href="/mercenary" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">용병지원</a>
 					</div>
 				</div>
 				<div style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
@@ -349,7 +349,7 @@ function contentView(pageNum){
 							<!-- 글쓰기 버튼 -->
 							<div class="btn-wrapper" style="margin: 0 auto; margin-top:30px;margin-bottom:30px; text-align: right;width: 100%;">
 								<div style="width: 90%;">
-									<button type="button" onclick="matchApply();" style="border:none;background-color: green;width: 150px;height: 50px;color:white;">
+									<button type="button" onclick="matchApply();" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;">
 									
 									<span style="color:white;height:80%;width: 100%;display: inline;font-size: 17px; vertical-align:super; "> 매치신청 </span> 
 									<span><img src="/img/match_icon.png" style="vertical-align: sub;"></span>

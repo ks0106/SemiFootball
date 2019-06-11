@@ -22,17 +22,17 @@
 			<form action="/insertBInfo" method="post">
 				<table class="manageTable" border="1">
 					<tr><td colspan="4">지점 등록하기</td></tr>
-					<tr><td colspan="2">지점 이름</td><td colspan="2"><input type="text" name="branchName"></td></tr>
-					<tr><td colspan="2">지점 주소(지번)</td><td colspan="2"><input type="text" name="branchAddr"></td></tr>
-					<tr><td colspan="2">전화번호(국번)</td><td colspan="2"><input type="text" name="branchPhone"></td></tr>
-					<tr><td colspan="2">휴대폰 번호</td><td colspan="2"><input type="text" name="branchTel"></td></tr>					
+					<tr><td colspan="2">지점 이름</td><td colspan="2"><input type="text" name="branchName" placeholder="필수"></td></tr>
+					<tr><td colspan="2">지점 주소(지번)</td><td colspan="2"><input type="text" name="branchAddr" placeholder="필수"></td></tr>
+					<tr><td colspan="2">전화번호(국번)</td><td colspan="2"><input type="text" name="branchPhone" placeholder="필수"></td></tr>
+					<tr><td colspan="2">휴대폰 번호</td><td colspan="2"><input type="text" name="branchTel" placeholder="필수"></td></tr>					
 					<tr><td colspan="4"><a class="link-manage" href="/branchManage">취소</a><button class="btn-manage" type="submit" id="submit">확인</button></td></tr>
 				</table>
 			</form>
 			<br><br>
 			<form action="/insertBiAndC" method="post" enctype="multipart/form-data">
 				<table class="manageTable" border="1">
-					<tr><td colspan="6">새 지점의 세부 정보 등록하기 (주의 : 지점 등록 이후에 세부정보 입력 가능)</td></tr>
+					<tr><td colspan="6">새 지점의 세부 정보 등록하기 (주의 : 지점 등록 이후에 세부정보 입력 가능, 반드시 입력해야 지점 관리가 가능합니다)</td></tr>
 					<tr><td colspan="3">지점 코드</td><td colspan="3"><input type="text" name="branchCode"></td></tr>
 					<tr>
 						<td>구장 이름1</td><td><input type="text" name="courtName1"></td>
@@ -50,19 +50,25 @@
 						<td>실내/실외 구분</td><td><input type="text" name="courtIndoor3"></td>
 					</tr>
 					<tr><td colspan="3">지점 사진(최대 4장)</td><td colspan="3"><input type="file" name="photo" multiple="multiple"></td></tr>
-					<tr><td colspan="6"><a class="link-manage" href="/branchManage">취소</a><button class="btn-manage" type="submit" id="submit">확인</button></td></tr>
+					<tr><td colspan="6"><button class="btn-manage" type="submit" id="submit">확인</button></td></tr>
 				</table>
 			</form>
 		</section>
 	<script>
 		$(function(){
-			if(${requestScope.branchCode}>0) {
+			if(${branchCode}>0) {
 				alert("${requestScope.msg}");
 				$('input[name=branchCode]').val(${requestScope.branchCode});
 			} else {
 				alert(${requsetScope.msg});
 			}
 		});
+/* 		$('.btn-manage').click(function(event){
+			if(!($('input[type=text]').val())) {
+				event.preventDefault();
+				alert("내용을 입력하세요");
+			}
+		}); */
 	</script>	
 </body>
 </html>

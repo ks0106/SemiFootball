@@ -1,9 +1,12 @@
+<%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-    
+    <%
+    	Member m = (Member)request.getAttribute("member");
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -416,7 +419,7 @@
 			</div>
 		<!-- 비밀번호 확인 jsp include -->
 		<jsp:include page="/WEB-INF/views/common/password.jsp"/>
-			<div id="viewList" style="width: 78%; height: 120vh; border-left: 1px solid silver;overflow: hidden;display:none; ">
+			<div id="mypage" style="width: 78%; height: 120vh; border-left: 1px solid silver;overflow: hidden;display:none; ">
 				<div
 					style="font-size: 60px; color: #403d3f; text-align: center; margin-bottom: 20px;">예약확인</div>
 				<div class="underline"
@@ -465,18 +468,5 @@
 		</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-	<script type="text/javascript"> //비밀번호 확인하는 if문
-		$("#pwd").click(function () {
-			var pwd1 = '${member.pwd}';
-			var pwd = $("#checkpwd").val();
-			if(pwd1==pwd){
-				$("#divpwd").css("display","none");
-				$("#viewList").css("display","inline-block");
-			}else{
-				alert("비밀번호가 일치하지 않습니다.");
-			}
-		});
-
-	</script>
 </body>
 </html>

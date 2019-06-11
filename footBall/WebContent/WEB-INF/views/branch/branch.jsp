@@ -141,7 +141,7 @@
 		
 		$(function(){
 			/* 헤더 배경 이미지 */
-			$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="메인 이미지" style="width:100%;max-height:initial;">');
+			$('#menuImg').append('<img src="/img/common/ground3.jpg" alt="메인 이미지" style="width:100%;max-height:initial; transform:scale(1.4);">');
 			
 			/* 짝수번째 콘텐트 배경색 지정 */
 			$('.content-wrapper:odd div').css('background-color','#ececec');
