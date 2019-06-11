@@ -286,7 +286,7 @@
 				<div id="teamView" style="margin: 0 auto; width: 80%; height: 500px; ">
 				<p style="width: 80%;height: 50px; margin: 0 auto;text-align: center;font-size: 50px;font-weight: 700;margin-bottom: 50px;">현재 참가팀</p>
 				<c:forEach items="${list.allList }" var="l">
-					<div class="attendTeam"><div class="teamE"><img src="/img/league/${l.filepath }" style="width: 100%;height: 100%;"></div>${l.teamName }</div>
+					<div class="attendTeam"><div class="teamE"><img src="/img/league/${l.filepath }" style="width: 80%;height: 80%;"></div>${l.teamName }</div>
 					
 				</c:forEach>
 				</c:when>
