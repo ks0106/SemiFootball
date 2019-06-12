@@ -149,8 +149,8 @@
 <sidebar>
 	<div class="leftside_area">
 		<div class="leftside_title">
-			<a href="#"><img src="/img/header_logo2.png" width="100px" height="100px"></a>
-			<a href="#" style="text-decoration:none;color:white;">Football Mania</a>
+			<a href="#"><img src="/img/header_logo2.png" width="100px" height="100px" style="vertical-align:middle;margin-left:50px;"></a>
+			<a href="#" style="text-decoration:none;color:white;vertical-align:middle;">KS Futsal Park</a>
 		</div>
 		<div class="leftside_notice">
 			<div style="background-color:black;margin:0 auto;width:400px;height:30px;display:block;border-radius:20px;">
