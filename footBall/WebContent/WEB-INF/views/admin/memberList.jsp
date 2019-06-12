@@ -51,7 +51,7 @@ a{
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
-	<div id="title">[관리자]사진 삭제</div>
+	<div id="title">[관리자]회원관리</div>
 	<section class="page_area" style="margin-top: 120px;" >
 		<table class="table table-hover" style="border: 1px solid black; text-align: center; width:80%; margin:0 auto;" >
 			<tr>
