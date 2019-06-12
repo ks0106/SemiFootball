@@ -36,8 +36,8 @@
              <li class="header_item"><a href="/reservation">대관</a>
              	<ul class="item_items">
              		<li><a href="/reservationManager">예약/결제 취소</a></li>
-             		<li><a href="reservationGoodsManager">물품 관리</a></li>
-             		<li><a href="reservationScheduleManager">스케쥴 관리</a></li>
+             		<li><a href="/reservationGoodsManager">물품 관리</a></li>
+             		<li><a href="/reservationScheduleManager">스케쥴 관리</a></li>
              	</ul>
              </li>
              <!-- <li class="header_item"><a href="/matching">매치/용병</a>
