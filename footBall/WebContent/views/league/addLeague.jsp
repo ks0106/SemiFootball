@@ -57,6 +57,10 @@
 		width: 25%;
 		text-align: left;
 	}
+	#reservationTitle{
+		font-size:45px;
+		font-weight:bolder;
+	}
 </style>
 </head>
 <body>
@@ -68,36 +72,14 @@
 	</div>
 	<section>
 	<!-- 내용 작성 -->
-		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
-		<!-- 컨텐츠 -->
-		<div style="width:85%;background-color:white;margin:0 auto;">
-		<!-- 컨텐츠 사이드 메뉴 -->
-			<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
-				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">Reague</div>
-				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu1" style="color:#3366cc;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 공지</a>
-				</div>
-				<div style="margin-bottom:15px;">
-					<a class="side_a" id="side_menu2" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 대진표</a>
-				</div>
-				<c:if test="${sessionScope.member.id eq'admin' }">
-				<div style="margin-bottom:15px;">
-					<a class="side_a selected" id="side_menu4" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">관리자 전용</a>
-				</div>
-				</c:if>
-			</div><!-- 사이드 메뉴 종료 -->			
-		<!-- 컨텐츠 본문 -->
-   			<br><br>
    		<!-- 컨텐츠 본문 타이틀 -->
-			<div id="con1" style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;margin-bottom: 500px;">
-				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 신청</div>
-				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
+			<div id="con1" style="width:100%%;display:inline-block;overflow:hidden;margin-bottom: 500px;">
+				<div id="reservationTitle" style="color:black;position:absolute;top:120px;left:70%;">[관리자] 대회 신청</div>
 		<!-- 컨텐츠 지점선택 파티션 -->
-				<div  style="width:100%;margin:0 auto;margin-bottom:700px;">
-					<div id="top1-container" style="width: 100%;height: 130px;"> 
+				<div  style="width:85%;margin:0 auto;margin-bottom:700px;margin-top:150px;">
+					<div id="top1-container" style="height: 130px;margin:0 auto;"> 
 						<form action="/addLeague" method="post" enctype="multipart/form-data">
-							<table id="form-table" style="border-top: 3px solid green; border-bottom:3px solid green; margin: 0 auto; width: 80%;">
+							<table id="form-table" style="border-top: 3px solid black; border-bottom:3px solid black; margin: 0 auto; width: 80%;">
 								<tr>
 									<th class="th" colspan="1" >대회이름</th>
 									<td class="td" colspan="3"><input type="text" name="leagueTitle" size="50" style="height:30px;"></td>
@@ -131,7 +113,6 @@
 					
 				</div>
 			</div>
-		</div>
 	
 	</section>
 	

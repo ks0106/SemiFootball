@@ -129,204 +129,206 @@
 				<!-- 컨텐츠 -->
 				<div style="width: 100%; height: 100vh;overflow: hidden;">
 					<!-- 컨텐츠 타이틀 -->
-					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 물품 관리</div>
+					<div id="reservationTitle" style="color:black;position:absolute;top:120px;left:70%;">[관리자] 물품 관리</div>
 					<!-- 본문 -->
 					<!-- 컨텐츠 파티션 -->
-					<div style="width:90%; margin-left:40px;margin-top:50px;">
-						<button class="goodsManagerBtn" id="goodsAddBtn" style="float:left;">물품등록</button>
-						<button class="goodsManagerBtn" id="goodsPriceModifyBtn" style="float:left;">가격변경</button>
-						<button class="goodsManagerBtn" id="goodsAmountModifyBtn" style="float:left;">재고변경</button>
-						<button class="goodsManagerBtn" id="goodsDeleteBtn" style="display:inline-block;">물품삭제</button>
-						<div id="formArea">
-						<form class="noView" id="goodsAdd" action="/reservationManagerGoodsAdd" method="post">
-							<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
-								<table style="width:650px;margin-bottom:10px;">
-									<tr>
-										<th>지점</th>
-										<td>
-											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 지점선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>카테고리</th>
-										<td>
-											<select id="goodsCategory" name="goodsCategory" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 카테고리선택 :::</option>
-												<option value="물">물</option>
-												<option value="조끼">조끼</option>
-												<option value="신발">신발</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th>물품명</th>
-										<td>
-											<input id="goodsName" name="goodsName" type="text" style="width:396px;height:36px;font-size:18px;">
-										</td>
-									</tr>
-									<tr>
-										<th>규격/용량</th>
-										<td>
-											<input id="goodsSize" name="goodsSize" type="text" style="width:396px;height:36px;font-size:18px;">
-										</td>
-									</tr>
-									<tr>
-										<th>가격</th>
-										<td>
-											<input id="goodsPrice" name="goodsPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
-										</td>
-									</tr>
-									<tr>
-										<th>수량</th>
-										<td>
-											<input id="goodsAmount" name="goodsAmount" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
-										</td>
-									</tr>
-								</table>
-								<button type="button" id="goodsAddSubmit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">등록</button>
-								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
+					<div style="width:90%;margin-top:150px;">
+						<div style="width:650px;margin:0 auto;">
+							<button class="goodsManagerBtn" id="goodsAddBtn" style="float:left;">물품등록</button>
+							<button class="goodsManagerBtn" id="goodsPriceModifyBtn" style="float:left;">가격변경</button>
+							<button class="goodsManagerBtn" id="goodsAmountModifyBtn" style="float:left;">재고변경</button>
+							<button class="goodsManagerBtn" id="goodsDeleteBtn" style="display:inline-block;">물품삭제</button>
+							<div id="formArea">
+							<form class="noView" id="goodsAdd" action="/reservationManagerGoodsAdd" method="post">
+								<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
+									<table style="width:650px;margin-bottom:10px;">
+										<tr>
+											<th>지점</th>
+											<td>
+												<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 지점선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>카테고리</th>
+											<td>
+												<select id="goodsCategory" name="goodsCategory" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 카테고리선택 :::</option>
+													<option value="물">물</option>
+													<option value="조끼">조끼</option>
+													<option value="신발">신발</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<th>물품명</th>
+											<td>
+												<input id="goodsName" name="goodsName" type="text" style="width:396px;height:36px;font-size:18px;">
+											</td>
+										</tr>
+										<tr>
+											<th>규격/용량</th>
+											<td>
+												<input id="goodsSize" name="goodsSize" type="text" style="width:396px;height:36px;font-size:18px;">
+											</td>
+										</tr>
+										<tr>
+											<th>가격</th>
+											<td>
+												<input id="goodsPrice" name="goodsPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
+											</td>
+										</tr>
+										<tr>
+											<th>수량</th>
+											<td>
+												<input id="goodsAmount" name="goodsAmount" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
+											</td>
+										</tr>
+									</table>
+									<button type="button" id="goodsAddSubmit" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">등록</button>
+									<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
+								</div>
+							</form>					
+							<form class="noView" id="goodsPriceModify" action="/reservationManagerGoodsPriceModify" method="post">
+								<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
+									<table style="width:650px;margin-bottom:10px;">
+										<tr>
+											<th>지점</th>
+											<td>
+												<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 지점선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>물품명</th>
+											<td>
+												<select id="goodsName" name="goodsName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 물품선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>규격/용량</th>
+											<td>
+												<select id="goodsSize" name="goodsSize" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 규격/용량선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>기존단가</th>
+											<td>
+												<input id="goodsOldPrice" name="goodsOldPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;" readonly disabled>
+											</td>
+										</tr>									
+										<tr>
+											<th>새단가</th>
+											<td>
+												<input id="goodsNewPrice" name="goodsNewPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
+												* 변경할 단가를 입력해주세요.
+											</td>
+										</tr>
+									</table>
+									<button id="goodsPriceModifySumbit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">수정</button>
+									<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
+								</div>
+							</form>
+							<form class="noView" id="goodsAmountModify" action="/reservationManagerGoodsAmountModify" method="post">
+								<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
+									<table style="width:650px;margin-bottom:10px;">
+										<tr>
+											<th>지점</th>
+											<td>
+												<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 지점선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>물품명</th>
+											<td>
+												<select id="goodsName" name="goodsName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 물품선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>규격/용량</th>
+											<td>
+												<select id="goodsSize" name="goodsSize" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 규격/용량선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>기존수량</th>
+											<td>
+												<input id="goodsOldAmount" name="goodsOldAmount" type="text" style="width:396px;height:36px;font-size:18px;" readonly disabled>
+											</td>
+										</tr>									
+										<tr>
+											<th>변경수량</th>
+											<td>
+												<input id="goodsNewAmount" name="goodsNewAmount" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
+												* 기존수량을 기준으로 변경됩니다.
+											</td>
+										</tr>									
+									</table>
+									<button class="goodsAmountModifySubmit" id="goodsAmountModifyPlus" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:350px;">입고</button>
+									<button class="goodsAmountModifySubmit" id="goodsAmountModifyMinus" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;">출고</button>
+									<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
+								</div>
+							</form>
+							<form class="noView" id="goodsDelete" action="/reservationManagerGoodsDelete" method="post">
+								<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
+									<table style="width:650px;margin-bottom:10px;">
+										<tr>
+											<th>지점</th>
+											<td>
+												<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 지점선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>물품명</th>
+											<td>
+												<select id="goodsName" name="goodsName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 물품선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>규격/용량</th>
+											<td>
+												<select id="goodsSize" name="goodsSize" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 규격/용량선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
+												! 재고가 0이고, 현재 해당 제품을 이용 중인 고객이 없을 경우에만 가능합니다.
+											</td>
+										</tr>									
+									</table>
+									<button id="goodsDeleteSubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">삭제</button>
+									<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
+								</div>
+							</form>
 							</div>
-						</form>					
-						<form class="noView" id="goodsPriceModify" action="/reservationManagerGoodsPriceModify" method="post">
-							<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
-								<table style="width:650px;margin-bottom:10px;">
-									<tr>
-										<th>지점</th>
-										<td>
-											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 지점선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>물품명</th>
-										<td>
-											<select id="goodsName" name="goodsName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 물품선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>규격/용량</th>
-										<td>
-											<select id="goodsSize" name="goodsSize" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 규격/용량선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>기존단가</th>
-										<td>
-											<input id="goodsOldPrice" name="goodsOldPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;" readonly disabled>
-										</td>
-									</tr>									
-									<tr>
-										<th>새단가</th>
-										<td>
-											<input id="goodsNewPrice" name="goodsNewPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
-											* 변경할 단가를 입력해주세요.
-										</td>
-									</tr>
-								</table>
-								<button id="goodsPriceModifySumbit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">수정</button>
-								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
-							</div>
-						</form>
-						<form class="noView" id="goodsAmountModify" action="/reservationManagerGoodsAmountModify" method="post">
-							<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
-								<table style="width:650px;margin-bottom:10px;">
-									<tr>
-										<th>지점</th>
-										<td>
-											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 지점선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>물품명</th>
-										<td>
-											<select id="goodsName" name="goodsName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 물품선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>규격/용량</th>
-										<td>
-											<select id="goodsSize" name="goodsSize" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 규격/용량선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>기존수량</th>
-										<td>
-											<input id="goodsOldAmount" name="goodsOldAmount" type="text" style="width:396px;height:36px;font-size:18px;" readonly disabled>
-										</td>
-									</tr>									
-									<tr>
-										<th>변경수량</th>
-										<td>
-											<input id="goodsNewAmount" name="goodsNewAmount" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
-											* 기존수량을 기준으로 변경됩니다.
-										</td>
-									</tr>									
-								</table>
-								<button class="goodsAmountModifySubmit" id="goodsAmountModifyPlus" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:350px;">입고</button>
-								<button class="goodsAmountModifySubmit" id="goodsAmountModifyMinus" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;">출고</button>
-								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
-							</div>
-						</form>
-						<form class="noView" id="goodsDelete" action="/reservationManagerGoodsDelete" method="post">
-							<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
-								<table style="width:650px;margin-bottom:10px;">
-									<tr>
-										<th>지점</th>
-										<td>
-											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 지점선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>물품명</th>
-										<td>
-											<select id="goodsName" name="goodsName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 물품선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>규격/용량</th>
-										<td>
-											<select id="goodsSize" name="goodsSize" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 규격/용량선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
-											! 재고가 0이고, 현재 해당 제품을 이용 중인 고객이 없을 경우에만 가능합니다.
-										</td>
-									</tr>									
-								</table>
-								<button id="goodsDeleteSubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">삭제</button>
-								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
-							</div>
-						</form>
 						</div>
-					</div>
+					</div>>
 				</div>
 			</div>
 		</div>

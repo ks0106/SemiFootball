@@ -42,7 +42,7 @@
 								<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi3 }</span></span><br>
 								<span class="identifier"><img src="img/file.png"> <span class="biInfo">${bd.bi.bi4 }</span></span><br>
 							</td>
-							<td><button class="btn-manage" onclick="location.href='/modifyBranch?branchCode=${bd.b.branchCode}'">정보 수정</button></td>
+							<td><button class="btn-manage-modify" onclick="location.href='/modifyBranch?branchCode=${bd.b.branchCode}'">정보 수정</button></td>
 							<td><button class="btn-manage" onclick="location.href='/deleteBranch?branchCode=${bd.b.branchCode}'">지점 삭제</button></td>
 						</tr>
 					</c:forEach>
