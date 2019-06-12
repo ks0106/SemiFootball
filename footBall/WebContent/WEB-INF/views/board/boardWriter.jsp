@@ -36,9 +36,9 @@
 	</script>
 <!--영상 위 페이지 타이틀 -->
 	<div id="title">커뮤니티</div>
-
-
-		<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+	
+<section>
 	<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
 		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
 			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0;">커뮤니티</div>
@@ -54,10 +54,10 @@
 				</a>
 			</div>
 		</div>
-		<section>
-		<div class="table-wrapper" style="text-align:center;width:70%;margin:0 auto;">
+		<div style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
+			<div class="table-wrapper" style="text-align:center;width:70%;margin:0 auto;">
 			<form action="/boardInsert" method="post" enctype="multipart/form-data">
-			<center><br><br><br>
+			<br><br><br>
 				<table class="table table-bordered" id="boardWriter">
 					<tr>
 						<th colspan="2" id="tit">자유게시판 작성</th>
@@ -70,7 +70,7 @@
 						<th class="tth">작성자</th>
 						<td>
 							<%=m.getName() %>
-						<input type="hidden" class="form-controll" name="boardWriter" value="<%=m.getId() %>">
+						<input type="hidden" class="form-controll" name="boardWriter" value="<%=m.getName() %>">
 							<!--  form태그로 보내야 하기 때문에 hidden타입으로 해놓는 것임! -->
 						</td>
 					</tr>
@@ -93,11 +93,11 @@
 						</td>
 					</tr>
 				</table>
-				</center>
 			</form>
+			<br><br><br><br><br>		
 		</div>
-		</div>
-	</section>
+	</div>
+</section>
 		<script>
 		function loadImg(f){
 			if(f.files.length!=0 && f.files[0]!=0){ 

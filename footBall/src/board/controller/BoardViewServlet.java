@@ -33,7 +33,12 @@ public class BoardViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		int reqPage;
+		try {
+			reqPage= Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage=1;
+		}
 		BoardViewData bvd = new BoardService().listOne(boardNo);
 		String view = "";
 		if(bvd.getBv()!=null) {

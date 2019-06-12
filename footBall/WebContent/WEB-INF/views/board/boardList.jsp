@@ -43,7 +43,6 @@ a{
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">커뮤니티</div>
 
-
 	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
 		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
@@ -70,11 +69,10 @@ a{
 					<div class="btn-wrapper"
 						style="margin: 0 auto; margin-top: 30px; margin-bottom: 30px; text-align: right; width: 100%;">
 						<div style="width: 90%;">
-
-								<button type="button" onclick="location.href='/boardWriter'" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;">									
+							<button type="button" onclick="location.href='/boardWriter'" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;">									
 								<span style="color:white;height:80%;width: 100%;display: inline;font-size: 17px; vertical-align:super; "> 글쓰기 </span> 
-								<span><img src="/img/match_icon.png" style="vertical-align: sub;"></span>
-								</button>
+								<span><img src="/img/match_icon.png" style="vertical-align:sub;"></span>
+							</button>
 						</div>
 					</div>
 

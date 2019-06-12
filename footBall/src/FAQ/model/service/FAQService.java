@@ -25,7 +25,7 @@ public class FAQService {
 	//FAQ리스트
 	public FAQPageData selectList(int reqPage) {
 		Connection conn = JDBCTemplate.getConnection();
-		int numPerPage = 10;
+		int numPerPage = 5;
 		int totalCount = new FAQDao().totalCount(conn);
 		int totalPage = (totalCount%numPerPage==0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
 		int start = (reqPage-1)*numPerPage +1;
