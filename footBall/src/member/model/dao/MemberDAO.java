@@ -3,9 +3,12 @@ package member.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.naming.spi.DirStateFactory.Result;
@@ -190,6 +193,171 @@ public class MemberDAO {
 		pstmt.setString(5, id);
 		result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
+		return result;
+	}
+	public int totalCount(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("totalCount");
+		int result = 0;
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()) {
+				result = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+	public ArrayList<Member> selectList(Connection conn, int start, int end) {
+		ArrayList<Member> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectList");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<Member>();
+			while(rset.next()) {
+				Member m = new Member();
+				m.setId(rset.getString("id"));
+				m.setName(rset.getString("name"));
+				m.setPhone(rset.getString("phone"));
+				m.setEnrollDate(rset.getDate("enroll_date"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+	public int totalCount2(Connection conn, String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query = prop.getProperty("totalCount2");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, keyword);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public int totalCount3(Connection conn, String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query = prop.getProperty("totalCount3");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public ArrayList<Member> searchKeywordId(Connection conn, String keyword, int start, int end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectIdList");
+		ArrayList<Member> list = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, keyword);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<Member>();
+			while(rset.next()) {
+				Member m = new Member();
+				m.setId(rset.getString("id"));
+				m.setName(rset.getString("name"));
+				m.setPhone(rset.getString("phone"));
+				m.setEnrollDate(rset.getDate("enroll_date"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+	public ArrayList<Member> searchKeywordName(Connection conn, String keyword, int start, int end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("searchKeywordName");
+		ArrayList<Member> list = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<Member>();
+			while(rset.next()) {
+				Member m = new Member();
+				m.setId(rset.getString("id"));
+				m.setName(rset.getString("name"));
+				m.setPhone(rset.getString("phone"));
+				m.setEnrollDate(rset.getDate("enroll_date"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+	public int deleteMember(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String query = prop.getProperty("deleteMember");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
 		return result;
 	}
 }

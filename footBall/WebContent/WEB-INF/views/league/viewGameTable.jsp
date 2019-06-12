@@ -248,7 +248,7 @@
 				<div  style="width:100%;margin:0 auto;margin-bottom:500px;">
 				<!-- 대진표 배경 div  -->
 				<c:choose>
-				<c:when test="${empty list.allList }"><div style="margin: 0 auto;text-align: center;width: 80%;font-size: 35px;">현재 진행중인 대회가 없습니다.</div></c:when>
+				<c:when test="${empty list.allList }"><div style="margin: 0 auto;text-align: center;width: 80%;font-size: 35px;">현재 대회의 참가팀이 없습니다.</div></c:when>
 				<c:when test="${!empty list.allList }">
 					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
 					

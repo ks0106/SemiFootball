@@ -57,7 +57,7 @@
              		<li><a href="/adminGallery">사진삭제</a></li>
              	</ul>
              </li>
-             <li class="header_item"><a href="/notice">공지사항</a>
+             <li class="header_item"><a href="/community">공지사항</a>
              	<ul class="item_items">
              		<li><a href="/noticeWriter">공지 작성</a></li>
              		<li><a href="/noticeDeletePage">공지 수정/삭제</a></li>
@@ -65,8 +65,7 @@
              		<li><a href="/upDelPageFAQ">FAQ 수정/삭제</a></li>
              	</ul>
              </li>
-             <li class="header_item"><a href="#">회원관리</a>
-             </li>
+             <li class="header_item"><a href="/memberList">회원관리</a></li>
           </ul>
           </div>
              <%if(m == null){ %>
