@@ -23,18 +23,25 @@
 		margin-top: 150px;
 	}
 	#galleryWriterTbl th,td{
-		border: 1px solid skyblue;
+		border: 1px solid silver;
 	}
 	#input {
 		width : 300px;
 		height : 50px;
+	}
+	.boardWriteBtn{
+		border: none;
+		background-color: #2c3c57;
+		width: 120px;
+		height: 40px;
+		color: white;
 	}
 </style>
 <link rel="stylesheet" href="/css/common/admin.css">
 <body>
    <jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
 	<!-- 내용 -->
-	<div id="title">사진 등록{관리자}</div>
+	<div id="title">[관리자]사진 등록</div>
 	<section class="page_area">
 		<div class="table-wrapper" style="text-align:center; width:70%; margin:0 auto; height: 600px;">
 			<form action="/insertGallery" method="post" enctype="multipart/form-data" style="height: 100%;">
@@ -65,8 +72,8 @@
 					</tr>
 					<tr>
 						<th style=" height: 20px;" colspan="2">
-							<button type="submit"  style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록하기</button>
-							<a href="/admin"><button type="button" style=" border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></a>
+							<button class="boardWriteBtn" type="submit">등록하기</button>
+							<button class="boardWriteBtn" onclick="location.href='/admin'" type="button" style="background-color:gray;">취소</button>
 						</th>
 					</tr>
 				</table>

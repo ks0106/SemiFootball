@@ -36,7 +36,7 @@ public class MemberListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String memberId = ((Member)session.getAttribute("member")).getId();
 		int reqPage;
-		try {//reqPage에 숫자가 들어오면 숫자대로 출력하고 숫자가 아닌 값이 들어오면 강제로 1을 넣어서 1페이지를 보여줌.
+		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		}catch(NumberFormatException e){
 			reqPage = 1;

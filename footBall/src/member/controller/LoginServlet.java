@@ -40,9 +40,7 @@ public class LoginServlet extends HttpServlet {
 			if(m!=null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("member", m);
-				request.setAttribute("msg", "로그인 성공");
-				request.setAttribute("loc", "/");
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/");
 				rd.forward(request, response);
 			}else {
 				request.setAttribute("msg", "로그인 실패");

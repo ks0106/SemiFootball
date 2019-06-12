@@ -38,40 +38,13 @@
 		background-image: url("/img/ground1.png");
 	}
 </style>
-<script>
-	$(document).ready(function(){
-		/* 헤더 배경 이미지 */
-		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
-		$('.side_nav:first').css("color","#3366cc");
-		$('.side_nav a:first').css("color","#3366cc");
-		$('#side_pr_menu').css("display","block");
-		$('.side_a').click(function(){													/* 메뉴 클릭했을 때 */
-			if($(this).siblings('ul').css("display") == "block"){						/* 메뉴 컬러가 연할 때 */
-				$(this).siblings('ul').slideUp();										/* 메뉴 닫음 */
-			}else{																		/* 메뉴 컬러가 진할 때 */
-				$(this).siblings('ul').find('li:first,a:first').css("color","#3366cc");
-				$(this).siblings('ul').find('li,a').not('li:first,a:first').css("color","silver");
-				$(this).parents('div').siblings().children('ul').slideUp();				/* 다른 메뉴 닫음 */
-				$(this).parents('div').siblings().children('a').css("color","#2c3c57");	/* 다른 메뉴 컬러 진하게 */
-				$(this).siblings('ul').slideDown();										/* 메뉴 펼침 */
-				$(this).css("color","#3366cc");											/* 컬러 연하게 */
-			}
-		});
-		$('.side_nav').click(function(){
-			$(this).css("color","#3366cc");
-			$(this).children('a').css("color","#3366cc");
-			$(this).siblings('li').css("color","silver");
-			$(this).siblings('li').children('a').css("color","silver");
-		});
-	});
-</script>
 </head>
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">
-		회사소개
+		About Us
 	</div>
 	<section>
 	<!-- 내용 작성 -->
@@ -107,12 +80,12 @@
 							</div>
 						</div>
 						<div style="width:400px;height:400px;margin:0 auto;overflow:hidden;border-radius:800px;display:inline-block;margin-left:100px;">
-							<img src="/img/ground3.jpg" alt="회사소개1" height="400px">
+							<img src="/img/common/com_spec1.jpg" alt="회사소개1" height="400px">
 						</div>
 					</div>
 					<div style="width:100%;height:400px;">
 						<div style="width:400px;height:400px;margin:0 auto;overflow:hidden;border-radius:800px;display:inline-block;margin-left:80px;">
-							<img src="/img/ground2.jpg" alt="회사소개2" height="400px">
+							<img src="/img/common/com_spec2.jpg" alt="회사소개2" height="400px" style="margin-left:-40%;">
 						</div>
 						<div style="width:50%;margin:0 auto;float:right;">
 							<div style="margin-top:100px;font-size:18px;font-weight:bolder;color:#2c3c57;display:inline-block;">
@@ -150,14 +123,41 @@
 							</div>							
 						</div>
 						<div style="width:400px;height:400px;margin:0 auto;overflow:hidden;border-radius:800px;display:inline-block;margin-left:100px;">
-							<img src="/img/ground4.jpg" alt="회사소개3" height="400px">
+							<img src="/img/common/com_spec3.jpg" alt="회사소개3" height="400px">
 						</div>
 					</div>
 					<div style="width:100%;height:100px;"></div>
-				<div>
+				</div>
 			</div>
 		</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	<script>
+	$(document).ready(function(){
+		/* 헤더 배경 이미지 */
+		$('#menuImg').append('<img src="/img/common/test2.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-20%; opacity:0.8;">');
+		$('.side_nav:first').css("color","#3366cc");
+		$('.side_nav a:first').css("color","#3366cc");
+		$('#side_pr_menu').css("display","block");
+		$('.side_a').click(function(){													/* 메뉴 클릭했을 때 */
+			if($(this).siblings('ul').css("display") == "block"){						/* 메뉴 컬러가 연할 때 */
+				$(this).siblings('ul').slideUp();										/* 메뉴 닫음 */
+			}else{																		/* 메뉴 컬러가 진할 때 */
+				$(this).siblings('ul').find('li:first,a:first').css("color","#3366cc");
+				$(this).siblings('ul').find('li,a').not('li:first,a:first').css("color","silver");
+				$(this).parents('div').siblings().children('ul').slideUp();				/* 다른 메뉴 닫음 */
+				$(this).parents('div').siblings().children('a').css("color","#2c3c57");	/* 다른 메뉴 컬러 진하게 */
+				$(this).siblings('ul').slideDown();										/* 메뉴 펼침 */
+				$(this).css("color","#3366cc");											/* 컬러 연하게 */
+			}
+		});
+		$('.side_nav').click(function(){
+			$(this).css("color","#3366cc");
+			$(this).children('a').css("color","#3366cc");
+			$(this).siblings('li').css("color","silver");
+			$(this).siblings('li').children('a').css("color","silver");
+		});
+	});
+</script>
 </body>
 </html>

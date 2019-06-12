@@ -225,7 +225,7 @@
 		<div style="width:85%;background-color:white;margin:0 auto;">
 		<!-- 컨텐츠 사이드 메뉴 -->
 			<div style="width:20%;height:300px;text-align:left;display:inline-block;float:left;">
-				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">Reague</div>
+				<div style="font-size:30px;font-weight:bolder;color:#2c3c57;margin:0;margin-bottom:10px;">League</div>
 				<hr style="width:80%;border:2px solid #2c3c57;margin-right:20%;padding:0;">
 				<div style="margin-bottom:15px;">
 					<a class="side_a" id="side_menu1" style="color:#2c3c57;font-weight:bolder;font-size:18px;text-decoration:none;cursor:pointer;">대회 공지</a>

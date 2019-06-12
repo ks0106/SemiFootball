@@ -392,7 +392,7 @@ function contentView(pageNum){
 										<tr>
 											<th class="th">매치형태</th>
 											<th class="th">지점구분</th>
-											<th class="th" colspan="2">배치일자</th>
+											<th class="th" colspan="2">매치일자</th>
 											<th class="th">신청가능팀</th>
 											<th class="th">작성자</th>
 											<th class="th">작성일자</th>

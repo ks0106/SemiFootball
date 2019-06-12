@@ -697,7 +697,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 							var goodsSize = data[i].goodsSize;
 							var goodsPrice = data[i].goodsPrice;
 							var goodsCount = data[i].goodsCount;
-							$select.append('<option value="'+goodsGId+'">'+goodsSize+'</option>');
+							$select.append('<option value="'+goodsGId+'">'+goodsSize+'['+goodsPrice+'원]</option>');
 						}
 					},
 					error : function(){
@@ -723,7 +723,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				var goodsCount = $(this).siblings('span').find('.goodsCount');
 				
 				var result = $(this).siblings('.reservationGoods').find('option:selected').html();
-				var option = $(this).find('option:selected').html();
+				var optionArr = $(this).find('option:selected').text().split('[');
+				var option = optionArr[0];
 				var bCode = ${b.branchCode};
 				var $select = $(this).siblings('.reservationOption');
 				$select.find("option").not('#default').remove();
@@ -768,7 +769,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		$(document).on("click",'.addBtn',function(){
 			var $receipt = $('#reservationReceipt');
 			var result = $(this).siblings('.reservationGoods').children('option:selected').html();
-			var option = $(this).siblings('.reservationOption').children('option:selected').html();
+			var optionArr = $(this).siblings('.reservationOption').children('option:selected').text().split('[');
+			var option = optionArr[0];
 			var bCode = ${b.branchCode};
 			var amount = parseInt($(this).siblings('.reservationAmount').val());
 			var addReceipt = "";

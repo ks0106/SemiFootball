@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,15 +38,12 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session!=null) {
-			//String url = "/http://developers.kakao.com/logout";
-			
-
-		
 			session.invalidate();
-			
-			
+			request.setAttribute("msg", "로그아웃 되었습니다.");
+			request.setAttribute("loc", "/");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			rd.forward(request, response);
 		}
-		response.sendRedirect("/");
 	}
 
 	/**
