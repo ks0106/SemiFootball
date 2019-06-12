@@ -67,7 +67,7 @@
 							<th colspan="2">
 								<center>
 									<button type="submit" class="btn" style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">수정하기</button>
-									<button type="reset" class="btn" style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">취소</button>
+									<button type="reset" class="btn" style="border: none; background-color: gray; width: 100px; height: 30px; color: white;">취소</button>
 								</center>
 							</th>
 						</tr>
