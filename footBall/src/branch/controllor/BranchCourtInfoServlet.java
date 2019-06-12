@@ -44,6 +44,7 @@ public class BranchCourtInfoServlet extends HttpServlet {
 			for(Court c : list ) {
 				courtInfo = new JSONObject();
 				courtInfo.put("courtType", c.getCourtType());
+				courtInfo.put("courtName",URLEncoder.encode(c.getCourtName(),"UTF-8"));
 				courtInfo.put("courtIndoor",URLEncoder.encode(c.getCourtIndoor(),"UTF-8"));
 				courtArr.add(courtInfo);
 			}

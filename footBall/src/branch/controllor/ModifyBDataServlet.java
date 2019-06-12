@@ -91,6 +91,7 @@ public class ModifyBDataServlet extends HttpServlet {
 					switch(fieldName) {
 						case "branchCode":
 							branchCode = Integer.parseInt(item.getString());
+							System.out.println("branchCode : " + branchCode);
 							break;
 						case "branchName":
 							branchName = item.getString("UTF-8");
@@ -278,10 +279,12 @@ public class ModifyBDataServlet extends HttpServlet {
 			int c2Result = -1;
 			int c3Result = -1;
 			if(!(courtName1.equals(""))) {
+				System.out.println("ModifyBDataServlet : "+courtCode1);
 				Court c1 = new Court(branchCode, Integer.parseInt(courtCode1), courtName1, courtType1, courtIndoor1, 0);
 				c1Result = new BranchService().updateCourt(c1);
 			}
 			if(!(courtName2.equals(""))) {
+				System.out.println("ModifyBDataServlet : "+courtCode2);
 				Court c2 = new Court(branchCode, Integer.parseInt(courtCode2), courtName2, courtType2, courtIndoor2, 0);
 				c2Result = new BranchService().updateCourt(c2);
 			}
@@ -289,10 +292,16 @@ public class ModifyBDataServlet extends HttpServlet {
 				Court c3 = new Court(branchCode, Integer.parseInt(courtCode3), courtName3, courtType3, courtIndoor3, 0);
 				c3Result = new BranchService().updateCourt(c3);
 			}
-			
-			if(bResult>0 && biResult>0 && (c1Result != -1 || c2Result != -1 || c3Result != -1)) {
+			//구장 정보를 아무것도 고치지 않았을 때(다른 정보만 수정한 경우)
+			if(c1Result == -1 && c2Result == -1 && c3Result == -1) {
+				c1Result = 0; 
+				System.out.println(c1Result);
+			}
+			if((bResult>=0 && biResult>=0) && (c1Result != -1 || c2Result != -1 || c3Result != -1)) {
 				request.setAttribute("msg", "지점 수정 완료");
 			} else {
+				System.out.println((bResult>=0 && biResult>=0) && (c1Result != -1 || c2Result != -1 || c3Result != -1));
+				System.out.println(bResult + " " + biResult + " " + c1Result + " " + c2Result + " " + c3Result);
 				request.setAttribute("msg", "수정 실패");
 			}
 			request.setAttribute("loc", "/branchManage");

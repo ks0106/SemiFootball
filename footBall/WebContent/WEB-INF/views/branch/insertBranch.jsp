@@ -32,7 +32,7 @@
 			<br><br>
 			<form action="/insertBiAndC" method="post" enctype="multipart/form-data">
 				<table class="manageTable" border="1">
-					<tr><td colspan="6">새 지점의 세부 정보 등록하기 (주의 : 지점 등록 이후에 세부정보 입력 가능, 반드시 입력해야 지점 관리가 가능합니다)</td></tr>
+					<tr><td colspan="6">새 지점의 세부 정보 등록하기 (주의 : 지점 등록 이후에 세부정보 입력 가능, <span class="important">반드시 입력해야 지점 관리가 가능합니다)</span></td></tr>
 					<tr><td colspan="3">지점 코드</td><td colspan="3"><input type="text" name="branchCode"></td></tr>
 					<tr>
 						<td>구장 이름1</td><td><input type="text" name="courtName1"></td>
@@ -59,6 +59,7 @@
 			if(${branchCode}>0) {
 				alert("${requestScope.msg}");
 				$('input[name=branchCode]').val(${requestScope.branchCode});
+				$('a[href=branchManage]').hide();
 			} else {
 				alert(${requsetScope.msg});
 			}

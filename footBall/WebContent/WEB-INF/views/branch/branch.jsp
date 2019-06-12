@@ -220,22 +220,23 @@
 					data : {branchCode : branchCode},
 					success : function(data) {
 						$('#modalTable').empty();
-						var initText="<tr><th>구장 타입</th><th>구분</th><th>사이즈</th><th>대관금액</th></tr>";
+						var initText="<tr><th>구장 이름</th><th>구분</th><th>사이즈</th><th>대관금액</th></tr>";
 						var resultText="";
 						var isIndoor = "";
 						var size = "";
 						var cost = "";
 						for(var i=0; i<data.length; i++){
 							var courtType = data[i].courtType;
+							courtName = replaceAll(decodeURIComponent(data[i].courtName),"+"," ");
 							switch(courtType) {
-								case 'A' : isIndoor=decodeURIComponent(data[i].courtIndoor); size = "42*25(m)"; cost="120,000￦";
+								case 'A' : isIndoor=decodeURIComponent(data[i].courtIndoor); courtName; size = "42*25(m)"; cost="120,000￦";
 								break;
-								case 'B' : isIndoor=decodeURIComponent(data[i].courtIndoor); size = "40*22.5(m)"; cost="100,000￦";
+								case 'B' : isIndoor=decodeURIComponent(data[i].courtIndoor); courtName; size = "40*22.5(m)"; cost="100,000￦";
 								break;
-								case 'C' : isIndoor=decodeURIComponent(data[i].courtIndoor); size = "38*20(m)"; cost="80,000￦";
+								case 'C' : isIndoor=decodeURIComponent(data[i].courtIndoor); courtName; size = "38*20(m)"; cost="80,000￦";
 								break;
 							}
-							resultText += "<tr><td>"+courtType+"</td>"+"<td>"+isIndoor+"</td><td>"+size+"</td><td>"+cost+"</td></tr>";
+							resultText += "<tr><td>"+courtName+"</td>"+"<td>"+isIndoor+"</td><td>"+size+"</td><td>"+cost+"</td></tr>";
 						}
 						initText += resultText;
 						$('#modalTable').append(initText);

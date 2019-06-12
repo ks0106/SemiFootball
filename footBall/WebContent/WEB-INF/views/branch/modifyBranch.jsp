@@ -22,25 +22,25 @@
 			<form action="/modifyBData" method="post" enctype="multipart/form-data">
 				<table class="manageTable" border="1">
 					<tr><th colspan="6">지점 정보</th></tr>
-					<tr><td colspan="3">지점 코드</td><td colspan="3"><span name="branchCode"></span></td></tr>
+					<tr><td colspan="3">지점 코드</td><td colspan="3"><input type="text" name="branchCode" readonly="readonly"></td></tr>
 					<tr><td colspan="3">지점 이름</td><td colspan="3"><input type="text" name="branchName"></td></tr>
 					<tr><td colspan="3">지점 주소(지번)</td><td colspan="3"><input type="text" name="branchAddr"></td></tr>
 					<tr><td colspan="3">전화번호(국번)</td><td colspan="3"><input type="text" name="branchPhone"></td></tr>
 					<tr><td colspan="3">휴대폰 번호</td><td colspan="3"><input type="text" name="branchTel"></td></tr>					
-					<tr><th colspan="6">지점 세부 정보</th></tr>
+					<tr><th colspan="6">지점 세부 정보 <span class="important">(구장을 추가하시려면 위의 '지점 추가'에서 위의 지점 코드를 입력한 후 진행하세요)</span></th></tr>
 					<tr>
-						<td>구장 이름1</td><td><input type="text" name="courtName1"></td>
-						<td>구장 타입1(A,B,C 중 하나)</td><td><input type="text" name="courtType1"></td>
+						<td>구장 이름</td><td><input type="text" name="courtName1"></td>
+						<td>구장 타입(A,B,C 중 하나)</td><td><input type="text" name="courtType1"></td>
 						<td>실내/실외 구분</td><td><input type="text" name="courtIndoor1"><input type="hidden" name="courtCode1"></td>
 					</tr>
 					<tr>
-						<td>구장 이름2</td><td><input type="text" name="courtName2"></td>
-						<td>구장 타입2(A,B,C 중 하나)</td><td><input type="text" name="courtType2"></td>
+						<td>구장 이름</td><td><input type="text" name="courtName2"></td>
+						<td>구장 타입(A,B,C 중 하나)</td><td><input type="text" name="courtType2"></td>
 						<td>실내/실외 구분</td><td><input type="text" name="courtIndoor2"><input type="hidden" name="courtCode2"></td>
 					</tr>
 					<tr>
-						<td>구장 이름3</td><td><input type="text" name="courtName3"></td>
-						<td>구장 타입3(A,B,C 중 하나)</td><td><input type="text" name="courtType3"></td>
+						<td>구장 이름</td><td><input type="text" name="courtName3"></td>
+						<td>구장 타입(A,B,C 중 하나)</td><td><input type="text" name="courtType3"></td>
 						<td>실내/실외 구분</td><td><input type="text" name="courtIndoor3"><input type="hidden" name="courtCode3"></td>
 					</tr>
 					<tr>
@@ -95,7 +95,7 @@
 		</section>
 	<script>
 		$(function(){
-			$('span[name=branchCode]').html('${requestScope.bd.b.branchCode}');
+			$('input[name=branchCode]').val('${requestScope.bd.b.branchCode}');
 			$('input[name=branchName]').val('${requestScope.bd.b.branchName}');
 			$('input[name=branchAddr]').val('${requestScope.bd.b.branchAddr}');
 			$('input[name=branchPhone]').val('${requestScope.bd.b.branchPhone}');
@@ -112,6 +112,17 @@
 			$('input[name=courtCode1]').val('${requestScope.bd.cd.code1}');
 			$('input[name=courtCode2]').val('${requestScope.bd.cd.code2}');
 			$('input[name=courtCode3]').val('${requestScope.bd.cd.code3}');
+			
+			console.log(!$('input[name=courtName1]').val());
+			if(!$('input[name=courtName1]').val()) {
+				$('input[name=courtName1]').parents().eq(1).empty();
+			}
+			if(!$('input[name=courtName2]').val()) {
+				$('input[name=courtName2]').parents().eq(1).empty();
+			}
+			if(!$('input[name=courtName3]').val()) {
+				$('input[name=courtName3]').parents().eq(1).empty();
+			}
 		});	
 		$(".fileDelBtn").click(function(){
 			if(confirm("sure?")){

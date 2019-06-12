@@ -200,6 +200,7 @@ public class BranchDao {
 			while(rset.next()) {
 				Court c = new Court();
 				c.setCourtType(rset.getString("court_type"));
+				c.setCourtName(rset.getString("court_name"));
 				c.setCourtIndoor(rset.getString("court_indoor"));
 				list.add(c);
 			}
@@ -356,6 +357,7 @@ public class BranchDao {
 			pstmt.setString(4, b.getBranchTel());
 			pstmt.setInt(5, b.getBranchCode());
 			result = pstmt.executeUpdate();
+			System.out.println("updateBranchDao : " + result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -377,6 +379,7 @@ public class BranchDao {
 			pstmt.setString(4, bi.getBi4());
 			pstmt.setInt(5, bi.getBiBCode());
 			result = pstmt.executeUpdate();
+			System.out.println("updateBiDao : " + result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -397,6 +400,7 @@ public class BranchDao {
 			pstmt.setString(3, c.getCourtIndoor());
 			pstmt.setInt(4, c.getCourtCCode());
 			result = pstmt.executeUpdate();
+			System.out.println("updateCourtDao : " + result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
