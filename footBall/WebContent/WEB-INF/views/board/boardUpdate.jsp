@@ -8,9 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/css/bootstrap.mibv.css">
-<script src="https://code.jquery.com/jquery-3.3.1.mibv.js"></script>
-<script src="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/js/bootstrap.mibv.js"></script>
 <link rel="stylesheet" href="/css/board/board.css">
 <link rel="stylesheet" href="/css/common/pageCss.css">
 
@@ -23,21 +20,16 @@
 		$(document).ready(function(){
 			   /* 헤더 배경 이미지 */
 			$('#menuImg').append('<img src="/img/common/test.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-10%; opacity:0.8;">');
-		   });
+		});
+				function contentView(num){
+					location.href="/boardView?boardNo="+num+"&reqPage="+$(".selectPage").eq(0).children().html();
+		   };
 	</script>
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">커뮤니티</div>
 
 
-	<div class="full">
-		<div class="tab-container">
-			<ul class="tab-list">
-				<li class=" list-li"><a href="/notice" class="munebar">공지사항</a></li>
-				<li class="list-li"><a href="/fAQ" class="munebar">FAQ</a></li>
-				<li class="selected list-li"><a href="/boardList"
-					class="munebar">자유게시판</a></li>
-			</ul>
-
+	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 <script>
    $(document).ready(function() {
       $("#fileDelBtn").click(function() {
@@ -49,7 +41,23 @@
       });      
    });
 </script>
-			<section>
+<section>
+	<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0;">커뮤니티</div>
+	<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
+		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+			<hr style="width: 80%; border: 2px solid #2c3c57;margin:8px 20% 8px 0; padding: 0;">
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu1" href="/notice" style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<a class="side_a" id="side_menu3" href="/boardList" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
+				</a>
+			</div>
+		</div>
+		<div style="width: 78%; background-color: white; margin: 0 auto; overflow: hidden;">
 			<div class="table-wrapper" style="text-align: center; width: 80%; margin: 0 auto;">
 				<form action="/boardUpdateEnd" method="post" enctype="multipart/form-data">
 					<table class="table table-bordered">
@@ -58,15 +66,15 @@
 							<th colspan="2" style="font-size: 20px; font-weight: bold;"></th>
 						</tr>
 						<tr>
-							<th>제목</th>
+							<th class="tth">제목</th>
 							<td><input type="text" class="form-control" name="boardTitle" value="<%=bv.getBoardTitle() %>"></td>
 						</tr>
 						<tr>
-							<th>작성자</th>
+							<th class="tth">작성자</th>
 							<td><%=bv.getBoardWriter() %></td>
 						</tr>
 						<tr>
-							<th>첨부파일</th>
+							<th class="tth">첨부파일</th>
 							<td>
 									<input type="hidden" id="status" name="status" value="stay">
 								<%if(bv.getBoardFilepath()!=null){ %> 
@@ -84,19 +92,18 @@
 							</td>
 						</tr>
 						<tr>
-							<th>내용</th>
+							<th class="tth">내용</th>
 							<td><textarea name="boardContent" class="form-control" rows="3"><%=bv.getBoardContent() %></textarea></td>
 						</tr>
 						<tr>
-							<th colspan="2">
+							<th class="tth" colspan="2">
 								<button type="submit" class="btn btn-outline-primary">수정하기</button>
 							</th>
 						</tr>
 					</table>
 				</form>
 			</div>
-			</section>
 		</div>
-	</div>
+</section>
 </body>
 </html>

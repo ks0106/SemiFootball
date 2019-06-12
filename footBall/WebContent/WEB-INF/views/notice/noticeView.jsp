@@ -36,7 +36,7 @@
    });
 </script>
 	<!--영상 위 페이지 타이틀 -->
-	<div id="title">고객센터</div>
+	<div id="title">커뮤니티</div>
 <section>
 	<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 	<div style="width:85%;background-color:white;margin:0 auto;overflow:hidden;">

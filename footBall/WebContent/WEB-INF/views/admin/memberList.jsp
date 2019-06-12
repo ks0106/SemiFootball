@@ -11,16 +11,6 @@
 <body>
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
 	<section id="insec">
-		<div style="margin:0 auto; width:500px;text-align: center;">
-			<form action="/searchKey">
-				<select name="type" class="form-control" style="display:inline-block; width:100px; height: 30px; font-size:0.8em;">
-					<option value="memberId">아이디</option>
-					<option value="memberName">이름</option>
-				</select>
-				<input type="text" class="form-control" style="display:inline-block; width:200px; height: 30px; font-size:0.8em;"name="keyword">
-				<button type="submit" class="btn btn-outline-secondary btn-sm">조회</button>
-			</form>
-		</div>
 		<table class="table table-hover" style="border: 1px solid black; text-align: center; width:80%; margin:0 auto;" >
 			<tr>
 				<th>ID</th><th>이름</th><th>전화번호</th><th>가입일</th>
@@ -35,7 +25,17 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<div id="pageNavi">${pd.pageNavi }</div>
+		<div style="margin:0 auto; width:500px;text-align: center;">
+			<form action="/searchKey">
+				<select name="type" class="form-control" style="display:inline-block; width:100px; height: 30px; font-size:0.8em;">
+					<option value="memberId">아이디</option>
+					<option value="memberName">이름</option>
+				</select>
+				<input type="text" class="form-control" style="display:inline-block; width:200px; height: 30px; font-size:0.8em;"name="keyword">
+				<button type="submit" class="btn btn-outline-secondary btn-sm">조회</button>
+			</form>
+		</div>
+		<div id="pageNavi" align="center">${pd.pageNavi }</div>
 	</section>
 </body>
 </html>

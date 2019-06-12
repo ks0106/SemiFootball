@@ -40,7 +40,7 @@
 			text-align: left;
 			font-weight: bold;
 			line-height: 50px;
-			color: #446087;
+			color: #2c3c57;
 		}
 		.btn-submit {
 			display:inline-block; 
@@ -53,8 +53,9 @@
 			font-weight: bold;
 			color: white;
 			text-decoration: none;
-			background-color: #446087;
+			background-color: #2c3c57;
 			cursor: pointer;
+			border: none;
 		}
 		.content-container {
 			position: relative;
@@ -89,7 +90,7 @@
 		}
 		.nav-span{
 			font-size: 30px;
-			color: #446087;
+			color: #2c3c57;
 			font-weight: bolder;
 			line-height: 45px;
 		}
@@ -167,7 +168,7 @@
 			border-color: white;
 		}
 		#modalTable th {
-			background-color: #446087;
+			background-color: #2c3c57;
 			color:white;
 		}
 		#infoFooter {

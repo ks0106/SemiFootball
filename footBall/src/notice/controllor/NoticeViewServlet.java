@@ -33,7 +33,12 @@ public class NoticeViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		int reqPage;
+		try {
+			reqPage= Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage=1;
+		}
 		NoticeVo nv = new NoticeService().listOne(noticeNo);
 		String view = "";
 		if(nv!=null) {

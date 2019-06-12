@@ -228,6 +228,11 @@
 		text-align: center;
 		margin-bottom:30px;
 	}
+	#reservationTitle{
+		font-size:45px;
+		font-weight:bolder;
+	}
+	
 </style>
 </head>
 <body>
@@ -238,24 +243,19 @@
 	</div>
 	<section>
 	<!-- 내용 작성 -->
-		<hr style="border:3px solid #2c3c57;margin:0 auto;margin-bottom:30px;padding:0;">
 		<!-- 컨텐츠 -->
 		<div style="width:85%;background-color:white;margin:0 auto;">
 		<!-- 컨텐츠 사이드 메뉴 -->
 		<!-- 컨텐츠 본문 -->
    			<br><br>
    		<!-- 컨텐츠 본문 타이틀 -->
-			<div id="con1" style="width:78%;display:inline-block;overflow:hidden;">
-				<div class="tab-content" >			
-		  			<br><br>
-					<p class="content-header">대회 대진표</p>
-					<div class="underline"></div>
-				</div>
+			<div id="con1" style="width:100%;display:inline-block;overflow:hidden;">
 		<!-- 컨텐츠 지점선택 파티션 -->
-				<div  style="width:100%;margin:0 auto;margin-bottom:700px;">
+				<div id="reservationTitle" style="width:241px;color:black;margin:0 auto;">대진표 관리</div>
+			<div  style="width:100%;margin:0 auto;margin-bottom:700px;margin-top:150px;">
 				
-			<c:choose>
-			<c:when test="${not empty list.allList }">
+				<c:choose>
+				<c:when test="${not empty list.allList }">
 			
 				<!-- 대진표 배경 div  -->
 					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
@@ -353,7 +353,7 @@
 			</c:choose>
 			</div>
 		</div>
-	
+	</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	<script>

@@ -38,7 +38,7 @@
 	<div id="title">커뮤니티</div>
 
 
-		<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
 		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
 			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0;">커뮤니티</div>
