@@ -114,6 +114,7 @@
 							<tr>
 								<th class="tth" colspan="2">
 									<button type="submit" class="boardWriteBtn">수정하기</button>
+									<button class="boardWriteBtn" onclick="location.href='/boardList'" type="button" style="background-color:gray;">취소</button>
 								</th>
 							</tr>
 						</table>
