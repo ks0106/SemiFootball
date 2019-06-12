@@ -136,19 +136,19 @@ public class MemberService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
 		if(pageNo != 1) {
-			pageNavi += "<a class='btn' href='/searchKey?type="+type+"&keyword="+keyword+"&reqPage="+(pageNo-1)+"'>이전</a>";
+			pageNavi += "<a class='pageNaviBtn' href='/searchKey?type="+type+"&keyword="+keyword+"&reqPage="+(pageNo-1)+"'>이전</a>";
 		}
 		int i=1;
 		while(!(i++>pageNaviSize || pageNo>totalPage)) {
 			if(reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+				pageNavi += "<span class='pageNaviBtn selectPage'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<a class ='btn' href='/searchKey?type="+type+"&keyword="+keyword+"&reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi += "<a class ='pageNaviBtn' href='/searchKey?type="+type+"&keyword="+keyword+"&reqPage="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<a class = 'btn' href='/searchKey?type="+type+"&keyword="+keyword+"&reqPage="+pageNo+"'>다음</a>";
+			pageNavi += "<a class = 'pageNaviBtn' href='/searchKey?type="+type+"&keyword="+keyword+"&reqPage="+pageNo+"'>다음</a>";
 		}
 		MemberPageData pd = new MemberPageData(list, pageNavi);
 		JDBCTemplate.close(conn);
