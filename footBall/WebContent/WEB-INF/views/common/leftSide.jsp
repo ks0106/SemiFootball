@@ -6,9 +6,7 @@
 <%@ page import="notice.model.vo.NoticePageData"%>
 	<%
 		Member m = (Member)session.getAttribute("member");
-	/* NoticePageData pd = (NoticePageData) request.getAttribute("pd");
-	ArrayList<NoticeVo> list = pd.getList();  */
-	%>
+		%>
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
 	integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
@@ -157,18 +155,8 @@
 		<div class="leftside_notice">
 			<div style="background-color:black;margin:0 auto;width:400px;height:30px;display:block;border-radius:20px;">
 				<img src="/img/notice_white.png" width="20px">
-						 <%-- <table>
-								<%
-									for (NoticeVo nv : list) {
-								%>
-								<tr>
-									<td>
-									<%=nv.getNoticeTitle()%></td>
-								</tr>
-								<%
-									}
-								%>
-							</table>	 --%> 
+				<span id="no1"><a></a></span>
+						 
 			</div>
 		</div>
 		<div class="leftside_menu">
@@ -335,6 +323,10 @@
 		text-decoration: none;
 		color:white;
 	}
+	#no1 a{
+		text-decoration: none;
+		color:white;
+	}
 </style>
 <script>
 	/* 토글바 클릭 이벤트 */
@@ -369,7 +361,18 @@
 				$("#myPage2").removeClass('selectMyPage');
 				$("#myPage2").css("display","none");								
 			}
-		});		
+		});
+		$.ajax({
+			url:"/indexNotice",
+			dataType:'json',
+			success:function(data){
+					$("#no1").children().attr("href","/noticeView?reqPage=1&noticeNo="+data[0].noticeNo);
+					$("#no1").children().html(data[0].noticeTitle);
+					
+			}
+		});
+			
+		
 	});
 	function  kout() {
 		var url = "http://developers.kakao.com/logout";

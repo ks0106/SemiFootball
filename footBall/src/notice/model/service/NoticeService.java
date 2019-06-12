@@ -186,4 +186,11 @@ public class NoticeService {
 		JDBCTemplate.close(conn);
 		return pd;
 		}
+
+	public ArrayList<NoticeVo> indexNotice() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<NoticeVo> list = new NoticeDao().NoticeList(conn, 1, 5);
+		JDBCTemplate.close(conn);
+		return list;
+	}
 }
