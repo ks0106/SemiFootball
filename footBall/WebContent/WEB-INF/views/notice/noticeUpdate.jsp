@@ -75,7 +75,7 @@
 						</tr>
 						<tr>
 							<th style="text-align: center;">작성자</th>
-							<td><%=nv.getNoticeWriter() %></td>
+							<td style="text-align: left;"><%=nv.getNoticeWriter() %></td>
 						</tr>
 						<tr>
 							<th style="text-align: center; height: 400px;">내용</th>
@@ -88,7 +88,7 @@
 								<center>
 									<button type="submit" class="btn btn-outline-primary"
 										style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">수정하기</button>
-									<button type="reset" class="btn" style="border: none; background-color: #df0101; width: 100px; height: 30px; color: white;">취소</button>
+									<button type="reset" class="btn" style="border: none; background-color: gray; width: 100px; height: 30px; color: white;">취소</button>
 								</center>
 							</th>
 						</tr>

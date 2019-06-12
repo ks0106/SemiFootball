@@ -87,7 +87,7 @@
 							</tr>
 							<tr>
 								<th class="tth">작성자</th>
-								<td><%=bv.getBoardWriter() %></td>
+								<td style="text-align: left;"><%=bv.getBoardWriter() %></td>
 							</tr>
 							<tr>
 								<th class="tth">첨부파일</th>
@@ -109,11 +109,12 @@
 							</tr>
 							<tr>
 								<th class="tth">내용</th>
-								<td><textarea name="boardContent" class="form-control" rows="3"><%=bv.getBoardContent() %></textarea></td>
+								<td><textarea name="boardContent" class="form-control" rows="3" style="resize: none;height: 400px;"><%=bv.getBoardContent() %></textarea></td>
 							</tr>
 							<tr>
 								<th class="tth" colspan="2">
 									<button type="submit" class="boardWriteBtn">수정하기</button>
+									<button class="boardWriteBtn" onclick="location.href='/boardList'" type="button" style="background-color:gray;">취소</button>
 								</th>
 							</tr>
 						</table>

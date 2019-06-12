@@ -60,7 +60,7 @@
 	        	</table>
 				<div style="text-align:center;">
 		        	<input type="reset" value="취소" class="resetBtn">
-		        	<input type="button" value="인증" id="sub" onclick="return check();" class="okBtn">
+		        	<input type="button" value="인증" id="sub"  class="okBtn">
 			        <br>
 		        	<div id="mint">
 			        	<span class="countTimeMinute" ></span><span class="countTimeTxt">분</span>
@@ -134,6 +134,7 @@
 							}else{
 							 	$("#randomNum").val(data);
 								alert("입력하신 이메일로 인증 전송");
+								$check();
 								//webSocket.send($("#randomNum").val());
 							 
 							}
@@ -265,7 +266,7 @@
 	</script>
 	<script type="text/javascript">
 		
-		function check() {
+		$check = function (){
 			$("#mint").show();//인증시간 분 span태그 show
 	      var minute = 1;
 	      var second = 59;
