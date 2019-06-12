@@ -697,7 +697,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 							var goodsSize = data[i].goodsSize;
 							var goodsPrice = data[i].goodsPrice;
 							var goodsCount = data[i].goodsCount;
-							$select.append('<option value="'+goodsGId+'">'+goodsSize+'</option>');
+							$select.append('<option value="'+goodsGId+'">'+goodsSize+' '+goodsPrice+'원</option>');
 						}
 					},
 					error : function(){
