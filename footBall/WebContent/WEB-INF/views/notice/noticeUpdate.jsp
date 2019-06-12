@@ -75,7 +75,7 @@
 						</tr>
 						<tr>
 							<th style="text-align: center;">작성자</th>
-							<td><%=nv.getNoticeWriter() %></td>
+							<td style="text-align: left;"><%=nv.getNoticeWriter() %></td>
 						</tr>
 						<tr>
 							<th style="text-align: center; height: 400px;">내용</th>
