@@ -65,6 +65,8 @@
              		<li><a href="/upDelPageFAQ">FAQ 수정/삭제</a></li>
              	</ul>
              </li>
+             <li class="header_item"><a href="#">회원관리</a>
+             </li>
           </ul>
           </div>
              <%if(m == null){ %>
