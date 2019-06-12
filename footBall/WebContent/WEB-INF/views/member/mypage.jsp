@@ -316,6 +316,7 @@
 										<br>
 						           		<input type="reset" value="취소하기" class="button1" onclick="rset();"style="border:none;background-color: gray;width: 150px;height: 50px;color:white;font-size:16px;">
 						           		<input type="submit" value="수정하기" class="button1" id="btn1" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;font-size: 16px;">
+						           		<input type="button" value="탈퇴하기" class="button1" id="btn2" style="border:none;background-color: #2c3c57;width: 150px;height: 50px;color:white;font-size: 16px;">
 									</form>
 								</div>
 	               		</div>
@@ -323,6 +324,16 @@
 				</div>
 			</div>
 	</section>
+	<script>
+		$("#btn2").click(function () {
+			msg = "탈퇴 하시겠습니까?";
+			if(confirm(msg)!=0){
+				location.href="/deleteMember?id=${member.id}";
+			}else{
+				
+			}
+		});
+	</script>
 	<script>
  		var result =[true,true,true]
  		$(document).ready(function() {
