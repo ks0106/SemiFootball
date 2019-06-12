@@ -36,14 +36,12 @@
 		margin-left:20px;
 		display:none;
 	}
-	#mv{
-		background-image: url("/img/ground1.png");
-	}
+
 </style>
 <script>
 	$(document).ready(function(){
 		/* 헤더 배경 이미지 */
-		$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+		$('#menuImg').append('<img src="/img/common/test2.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-20%; opacity:0.8;">');
 		$('.side_nav:first').css("color","#3366cc");
 		$('.side_nav a:first').css("color","#3366cc");
 		$('#side_pr_menu').css("display","none");
