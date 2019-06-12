@@ -42,7 +42,7 @@ public class MemberListServlet extends HttpServlet {
 			reqPage = 1;
 		}
 		if(memberId.equals("admin")) {
-			MemberPageData pd = new MemberService().selectList(reqPage);
+			MemberPageData pd = new MemberService().selectList(reqPage); 
 			request.setAttribute("pd", pd);
 			request.getRequestDispatcher("/WEB-INF/views/admin/memberList.jsp").forward(request, response);
 		}else {

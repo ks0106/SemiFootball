@@ -32,7 +32,7 @@ public class MemberDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memberId = request.getParameter("memberId");
-		int result = new MemberService().deleteMember(memberId);
+		int result = new MemberService().deleteMember(memberId); 
 		if(result > 0) {
 			HttpSession session = request.getSession(false);
 			request.setAttribute("msg", "회원탈퇴 성공");
