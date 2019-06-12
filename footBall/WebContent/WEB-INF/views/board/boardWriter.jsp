@@ -69,7 +69,7 @@
 					<tr>
 						<th class="tth">작성자</th>
 						<td>
-							<%=m.getId() %>
+							<%=m.getName() %>
 						<input type="hidden" class="form-controll" name="boardWriter" value="<%=m.getId() %>">
 							<!--  form태그로 보내야 하기 때문에 hidden타입으로 해놓는 것임! -->
 						</td>

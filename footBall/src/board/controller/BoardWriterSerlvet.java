@@ -32,19 +32,24 @@ public class BoardWriterSerlvet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if(session!=null) {
-			String id = ((Member)session.getAttribute("member")).getId();
-			if(id!=null) {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/boardWriter.jsp");
-				rd.forward(request, response);
-			}else {
-				request.setAttribute("msg", "글쓰기 권한이 없습니다.");
-				request.setAttribute("loc", "/boardList");
-				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
-			}
+		Member m = ((Member)session.getAttribute("member"));
+		if(m!=null) {
+				String id = ((Member)session.getAttribute("member")).getId();
+				if(id!=null) {
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/board/boardWriter.jsp");
+					rd.forward(request, response);
+				}else {
+					request.setAttribute("msg", "글쓰기 권한이 없습니다.");
+					request.setAttribute("loc", "/boardList");
+					request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+				}
 		}else {
-			response.sendRedirect("/");
+			request.setAttribute("msg", "로그인 후 사용해주세요");
+			request.setAttribute("loc", "/views/login/login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			rd.forward(request, response);
 		}
+		
 	}
 
 	/**
