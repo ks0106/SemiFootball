@@ -293,9 +293,11 @@
 			 	<%} %>
 	 		</ul>
 	 		<%if(m == null){ %>
-	 		<div id="menu_login" style="float:right;width:100px;height:80px;margin-right:40px;">
-				<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
-	 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+	 		<div id="menu_login" style="float:right;margin-right:40px;">
+	 			<button onclick="location.href='/views/login/login.jsp'" style="color:white;background-color:inherit;border:0;line-height:80px;">
+		 			<span style="vertical-align:middle;">Member Login</span>
+					<span><img src="/img/login_logo2_white.png" width="50px" height="50px" style="vertical-align:middle;"></span>
+	 			</button>
 			</div>
 			<%}else{ %>
 		 		<div id="menu_login" style="float:right;width:100px;height:80px;margin-right:40px;">
@@ -336,8 +338,10 @@
 			<div style="width:350px;height:100vh;background-color:black;opacity:0.9;position:absolute;right:0;">
 				<%if(m == null){ %>
 					<div style="width:100%;margin:0 auto;margin-top:10px;margin-bottom:10px;">
-						<div onclick="loginLocation();" style="float:right;margin-right:30px;cursor:pointer;"><a style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
-						<img src="/img/login_icon_100px_white.png" width="30px"></div>
+						<button onclick="loginLocation();" style="background-color:inherit;border:0;float:right;margin-right:30px;line-height:80px;">
+							<span style="color:white;fint-size:25px;vertical-align:middle;">Member Login</span>
+							<span><img src="/img/login_logo2_white.png" width="50px" style="vertical-align:middle;"></span>						
+						</button>
 					</div>
 				<%}else{ %>
 					<div style="width:100%;margin:0 auto;margin-top:10px;margin-bottom:10px;">

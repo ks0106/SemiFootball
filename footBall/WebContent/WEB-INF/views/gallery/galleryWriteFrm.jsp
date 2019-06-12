@@ -23,11 +23,18 @@
 		margin-top: 150px;
 	}
 	#galleryWriterTbl th,td{
-		border: 1px solid skyblue;
+		border: 1px solid silver;
 	}
 	#input {
 		width : 300px;
 		height : 50px;
+	}
+	.boardWriteBtn{
+		border: none;
+		background-color: #2c3c57;
+		width: 120px;
+		height: 40px;
+		color: white;
 	}
 </style>
 <link rel="stylesheet" href="/css/common/admin.css">
@@ -65,8 +72,8 @@
 					</tr>
 					<tr>
 						<th style=" height: 20px;" colspan="2">
-							<button type="submit"  style="border: none; background-color: green; width: 100px; height: 30px; color: white;">등록하기</button>
-							<a href="/admin"><button type="button" style=" border: none; background-color: green; width: 100px; height: 30px; color: white;">취소</button></a>
+							<button class="boardWriteBtn" type="submit">등록하기</button>
+							<button class="boardWriteBtn" onclick="location.href='/admin'" type="button" style="background-color:gray;">취소</button>
 						</th>
 					</tr>
 				</table>
