@@ -79,8 +79,8 @@
 							<tr>
 								<td colspan="2">
 									<c:if test="${sessionScope.member.id =='admin' }">
-										<button class="boardWriteBtn" href="/noticeUpdate?noticeNo=${nv.noticeNo}">수정하기</button>
-										<button class="boardWriteBtn" href="/noticeDelete?noticeNo=${nv.noticeNo}" style="background-color:gray;">삭제하기</button>
+										<button class="boardWriteBtn" onclick="location.href='/noticeUpdate?noticeNo=${nv.noticeNo}'">수정하기</button>
+										<button class="boardWriteBtn" onclick="location.href='/noticeDelete?noticeNo=${nv.noticeNo}'" style="background-color:gray;">삭제하기</button>
 									</c:if>
 									<button class="boardWriteBtn" onclick="location.href='/notice?reqPage=${req}'" style="float:right;">목록으로</button>									
 								</td>
