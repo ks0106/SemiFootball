@@ -36,8 +36,8 @@
 	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 	<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
 		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
-			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0; margin-bottom: 10px;">커뮤니티</div>
-			<hr style="width: 80%; border: 2px solid #2c3c57; margin-right: 20%; padding: 0;">
+			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0;">커뮤니티</div>
+			<hr style="width: 80%; border: 2px solid #2c3c57;margin:8px 20% 8px 0; padding: 0;">
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu1" href="/notice" style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
 			</div>

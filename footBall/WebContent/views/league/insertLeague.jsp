@@ -85,13 +85,17 @@
    			<br><br>
    		<!-- 컨텐츠 본문 타이틀 -->
 			<div id="con1" style="width:78%;border-left:1px solid silver;display:inline-block;overflow:hidden;">
-				<div style="font-size:60px;color:#403d3f;text-align: center;margin-bottom:20px;">대회 신청</div>
-				<div class="underline" style="margin:0 auto;width:7%;text-align:center;border-top:2px solid #bfc4cc;margin-bottom:50px;"></div>
+		<!-- 본문 타이틀 -->
+			<div class="tab-content" >			
+				<p class="content-header">대회 신청</p>
+				<div class="underline"></div>
+			</div>
+		<!-- 본문타이틀 끝 -->
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:100%;margin:0 auto;margin-bottom:700px;">
 					<div id="top1-container" style="width: 100%;height: 130px;"> 
 						<form action="/insertLeague" method="post" enctype="multipart/form-data">
-							<table id="form-table" style="border-top: 3px solid green; border-bottom:3px solid green; margin: 0 auto; width: 80%;">
+							<table id="form-table" style="border-top: 3px solid #2c3c57; border-bottom:3px solid #2c3c57; margin: 0 auto; width: 80%;">
 								<tr>
 									<th class="th" >팀이름</th>
 									<td class="td" ><input type="text" name="teamName" size="30" style="height:30px;"></td>

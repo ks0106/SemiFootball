@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/css/bootstrap.mibv.css">
-<script src="https://code.jquery.com/jquery-3.3.1.mibv.js"></script>
-<script src="https://maxcdbv.bootstrapcdbv.com/bootstrap/3.3.7/js/bootstrap.mibv.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/board/board.css">
 <link rel="stylesheet" href="/css/common/notice.css">
 <link rel="stylesheet" href="/css/common/pageCss.css">
@@ -26,6 +26,17 @@ a{
     vertical-align: top;
     border-top: 1px solid #ddd;
 }
+.boardWriteBtn{
+	border: none;
+	background-color: #2c3c57;
+	width: 120px;
+	height: 40px;
+	color: white;
+}
+.form-control{
+	height:80px;
+	border-radius:0;
+}
 </style>
 <body>
 	<!-- 헤더 불러오기 -->
@@ -38,9 +49,8 @@ a{
 	</script>
 <!--영상 위 페이지 타이틀 -->
 	<div id="title">커뮤니티</div>
-
-
 	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+<section>
 	<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
 		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
 			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0;">커뮤니티</div>
@@ -52,72 +62,72 @@ a{
 				<a class="side_a" id="side_menu2" href="/fAQ" style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">FAQ</a>
 			</div>
 			<div style="margin-bottom: 15px;">
-				<a class="side_a" id="side_menu3" href="/boardList" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판
-				</a>
+				<a class="side_a" id="side_menu3" href="/boardList" style="color: #3366cc; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">자유게시판</a>
 			</div>
 		</div>
-				<div style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
-		
-			   <section>
-      <div class="table-wrapper" style="text-align: center; width: 60%; margin: 0 auto;">
+			<div style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
+				<div class="table-wrapper" style="text-align: center; width: 60%; margin: 0 auto;">
          			<center><h1>자유게시판</h1></center><br><br><br>
-         <center>
-         <table class="table">
-            <tr>
-               <th style="font-size: 25px; font-weight: bold; text-align: center; width: 80%;">${bvd.bv.boardTitle}</th>
-               <th style="text-align: right;">${bvd.bv.boardDate }</th>
-            </tr>
-            <tr>
-               <td>작성자 : ${bvd.bv.boardWriter}</td>
-               <td style="text-align: right;">
-               	  <c:if test="${not empty bvd.bv.boardFilepath}">
-               	  	<img src="/img/file.png" width="16px">
-                    <a href="javascript:fileDownload('${bvd.bv.boardFilename}','${bvd.bv.boardFilepath}');">
-                       	 ${bvd.bv.boardFilename}
-                    </a> 
-          		 </c:if>
-               </td>
-            </tr>
-            <tr>
-               <td style="height: 500px;" colspan="2">${bvd.bv.boardContent}</td>
-            </tr>
-            <tr>
-               <th colspan="2">
-               <c:if test="${sessionScope.member.id == bvd.bv.boardWriter || sessionScope.member.id=='admin'}">
-                  <button class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;"><a href="/boardUpdate?boardNo=${bvd.bv.boardNo}" style="color: white;">수정하기</a></button>
-                  <button class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px; color: white;"><a href="/boardDelete?boardNo=${bvd.bv.boardNo}" style="color: white;">삭제하기</a></button>
-               </c:if>
-                  <button class="btn" style="border: none; background-color: #2c3c57; width: 100px; height: 30px;"><a href="/boardList?reqPage=${req }	" style="color:white;">목록으로</a></button>
-               </th>
-            </tr>
-         </table></center>
-      </div><br><br>
-      <!-- 댓글 -->
-      	<c:if test="${sessionScope.member != null}"> 
-      		<div class="comment-write" style="text-align: center;width:80%;margin:0 auto;"> 
-				<form action="/boardCommentInsert" method="post">
-					<input type="hidden" name="boardCommentWriter" value="${sessionScope.member.id}">
-					<input type="hidden" name="boardRef" value="${bvd.bv.boardNo}">
-					<input type="hidden" name="boardCommentLevel" value="1">
-					<input type="hidden" name="boardCommentRef" value="0">
 					<center>
-					<table>
-						<tr>
-							<td><textarea rows="1" class="form-control" name="boardCommentContent" id="barea"></textarea></td>
-							<td>
-								<button type="submit" class="btn" id="bsub" style="border: none; background-color: #2c3c57; width: 100px; height: 50px; color: white;">등록</button>
-							</td>
-						</tr>
-					</table>
-					</center>
-				</form>
-			</div>
-      	</c:if>
-      <div class="comment-wrapper" style="text-align: center;width:80%;margin:0 auto;">
-  			<c:forEach items="${bvd.list}" var="bc">
-  				<c:if test="${bc.boardCommentLevel==1 }">
-  				<center>
-  					<ul class="commentList">
+         				<table class="table">
+				            <tr>
+               					<th style="font-size: 25px; font-weight: bold; text-align: center; width: 80%;">${bvd.bv.boardTitle}</th>
+								<th style="text-align: right;">${bvd.bv.boardDate }</th>
+							</tr>
+				            <tr>
+               					<td>작성자 : ${bvd.bv.boardWriter}</td>
+               					<td style="text-align: right;">
+               	 					 <c:if test="${not empty bvd.bv.boardFilepath}">
+               	  						<img src="/img/file.png" width="16px">
+                    					<a href="javascript:fileDownload('${bvd.bv.boardFilename}','${bvd.bv.boardFilepath}');">
+                     					  	 ${bvd.bv.boardFilename}
+                					    </a> 
+          		 					</c:if>
+								</td>
+            				</tr>
+            				<tr>
+               					<td style="height: 500px;" colspan="2">${bvd.bv.boardContent}</td>
+            				</tr>
+            				<tr>
+               					<td colspan="2">
+               						<c:if test="${sessionScope.member.id == bvd.bv.boardWriter || sessionScope.member.id=='admin'}">
+                  						<button class="boardWriteBtn" onclick="location.href='/boardUpdate?boardNo=${bvd.bv.boardNo}'">수정하기</button>
+                  						<button class="boardWriteBtn" onclick="location.href='/boardDelete?boardNo=${bvd.bv.boardNo}'" style="background-color: gray;">삭제하기</button>
+               						</c:if>
+                  					<button class="boardWriteBtn" onclick="location.href='/boardList?reqPage=${req}'" style="float:right;">목록으로</button>
+								</td>
+							</tr>
+         				</table>
+         			</center>
+		      	</div><br><br>
+			<!-- 댓글 -->
+      			<c:if test="${sessionScope.member != null}"> 
+      				<div class="comment-write" style="text-align: center;width:80%;margin:0 auto;"> 
+						<form action="/boardCommentInsert" method="post">
+							<input type="hidden" name="boardCommentWriter" value="${sessionScope.member.id}">
+							<input type="hidden" name="boardRef" value="${bvd.bv.boardNo}">
+							<input type="hidden" name="boardCommentLevel" value="1">
+							<input type="hidden" name="boardCommentRef" value="0">
+							<center>
+							<table>
+								<tr>
+									<td>
+										<textarea rows="1" class="form-control" name="boardCommentContent" id="barea"></textarea>
+									</td>
+									<td>
+										<button type="submit" class="boardWriteBtn" id="bsub">등록</button>
+									</td>
+								</tr>
+							</table>
+						</center>
+					</form>
+				</div>
+      		</c:if>
+  		    <div class="comment-wrapper" style="text-align: center;width:80%;margin:0 auto;">
+  				<c:forEach items="${bvd.list}" var="bc">
+  					<c:if test="${bc.boardCommentLevel==1 }">
+  						<center>
+  							<ul class="commentList">
 								<li style="width:10%;"><span>${bc.boardCommentWriter}</span></li>
 								<li style="width:50%;text-align:left;">
 									<span>${bc.boardCommentContent}</span>
@@ -126,42 +136,44 @@ a{
 								<li style="width:15%;"><span>${bc.boardCommentDate}</span></li>
 								<c:if test="${sessionScope.member != null}">
 									<li style="width:25%;">
-									<a href="javascript:void(0)" onclick="insertComment(this,'${bc.boardCommentNo}');">댓글달기</a>
-									<c:if test="${sessionScope.member.id == bc.boardCommentWriter || sessionScope.member.id == 'admin'}">
-										<a href="javascript:void(0);" onclick="modifyComment(this,'${bc.boardCommentNo}');">수정</a>
-										<a href="javascript:void(0);" onclick="deleteComment(this,'${bc.boardCommentNo}');">삭제</a>
-									</c:if>
-								</c:if>
+										<a href="javascript:void(0)" onclick="insertComment(this,'${bc.boardCommentNo}');">댓글달기</a>
+										<c:if test="${sessionScope.member.id == bc.boardCommentWriter || sessionScope.member.id == 'admin'}">
+											<a href="javascript:void(0);" onclick="modifyComment(this,'${bc.boardCommentNo}');">수정</a>
+											<a href="javascript:void(0);" onclick="deleteComment(this,'${bc.boardCommentNo}');">삭제</a>
+										</c:if>
 									</li><!-- 댓글 수정 삭제 버튼 li 종료 -->
-					</ul>	<!-- 댓글 ul 종료 -->
-					</center>
-  				</c:if>
-  				<!-- 대댓글 -->
-  				<c:forEach items="${bvd.list }" var="bcr">
-  					<c:if test="${bcr.boardCommentLevel ==2 && bcr.boardCommentRef==bc.boardCommentNo }">
-  					<center>
-  						<ul class="commentList">
-						<li style="width:5%"><span>└─</span></li>
-						<li style="width:5%;"><span>${bcr.boardCommentWriter}</span></li>
-						<li style="width:50%; text-align: left; padding-left:30px;">
-							<span>${bcr.boardCommentContent}</span>
-							<input type="text" class="form-control" name="boardCommentContent" value="${bcr.boardCommentContent}" style="display:none;height:22px;">
-						</li>
-						<li style="width:15%;"><span>${bcr.boardCommentDate}</span></li>
-						<li style="width:20%">
-  						<c:if test="${sessionScope.member.id == bcr.boardCommentWriter || sessionScope.member.id == 'admin' }">
-							<a href="javascript:void(0);" onclick="modifyComment(this,'${bcr.boardCommentNo}');">수정</a>
-							<a href="javascript:void(0);" onclick="deleteComment(this,'${bcr.boardCommentNo}');">삭제</a>
-  						</c:if>
-  						</li><!-- 댓글 수정 삭제 버튼 li 종료 -->
-						</ul>	<!-- 댓글 ul 종료 -->
+								</c:if>
+							</ul>	<!-- 댓글 ul 종료 -->
 						</center>
-  					</c:if>
-  				</c:forEach>
-  			</c:forEach>
+					</c:if>
+  				<!-- 대댓글 -->
+					<c:forEach items="${bvd.list }" var="bcr">
+						<c:if test="${bcr.boardCommentLevel ==2 && bcr.boardCommentRef==bc.boardCommentNo }">
+							<center>
+								<ul class="commentList">
+									<li style="width:5%"><span>└─</span></li>
+									<li style="width:5%;"><span>${bcr.boardCommentWriter}</span></li>
+									<li style="width:50%; text-align: left; padding-left:30px;">
+										<span>${bcr.boardCommentContent}</span>
+										<input type="text" class="form-control" name="boardCommentContent" value="${bcr.boardCommentContent}" style="display:none;height:22px;">
+									</li>
+									<li style="width:15%;"><span>${bcr.boardCommentDate}</span></li>
+									<li style="width:20%">
+										<c:if test="${sessionScope.member.id == bcr.boardCommentWriter || sessionScope.member.id == 'admin' }">
+											<a href="javascript:void(0);" onclick="modifyComment(this,'${bcr.boardCommentNo}');">수정</a>
+											<a href="javascript:void(0);" onclick="deleteComment(this,'${bcr.boardCommentNo}');">삭제</a>
+				  						</c:if>
+									</li><!-- 댓글 수정 삭제 버튼 li 종료 -->
+								</ul>	<!-- 댓글 ul 종료 -->
+							</center>
+	 					</c:if>
+ 					</c:forEach>
+				</c:forEach>
+			</div>
+			<br><br><br><br><br>
 		</div>
-	</section>
-	
+	</div>
+</section>
 	
 	<script>
 		function boardDelete(boardNo){
@@ -216,7 +228,7 @@ a{
 			var $li2 = $("<li style='width:50%'></li>");
 			$li2.append($("<input type='text' name='boardCommentContent' class='form-control' style='height:100%;width:300px;'>"));
 			var $li3 = $("<li style='width:20%'></li>");
-			$li3.append($("<button type='submit' class='btn btn-link' style='border:0;background:0;color:black;'><b>등록</b></button>"));
+			$li3.append($("<button type='submit' class='btn btn-link' style='border-radius:0;border:0;background:0;color:black;'><b>등록</b></button>"));
 			$li3.append($("<button type='button' class='btn btn-link' style='border:0;background:0;color:black;' onclick='insertCommentCancle(this)'><b>취소</b</button>"));
 			$ul.append($li1).append($li2).append($li3);			
 			$form.append($ul);
@@ -228,9 +240,8 @@ a{
 		}
 	</script>
 
-		</div>
-	</div>
+
 	
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
