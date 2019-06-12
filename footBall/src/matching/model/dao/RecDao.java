@@ -15,7 +15,7 @@ public class RecDao {
 		Statement stmt = null;
 		ResultSet rset= null;
 		int result = 0;
-		String query ="select count(*) cnt from fb_recruit";
+		String query ="select count(*) cnt from fb_recruit where rec_type=0";
 		stmt = conn.createStatement();
 		rset = stmt.executeQuery(query);
 		if(rset.next()) {
@@ -237,7 +237,7 @@ public class RecDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Recruit> list = new ArrayList<Recruit>();
-		String query = "select * from (select ROWNUM as rNum,rr.* from (select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) order by rec_no desc) rr)where rec_type=1 and (rnum BETWEEN ? and ?)";
+		String query = "select * from (select ROWNUM as rNum,rr.* from (select court_name as c_name,branch_name as b_name ,r.* from FB_RECRUIT r join fb_branch  on (branch_code = rec_B_code) join fb_court on(court_C_code=rec_c_code) where rec_type=1 order by rec_no desc) rr)where rnum BETWEEN ? and ?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1,start);
 		pstmt.setInt(2,end);
