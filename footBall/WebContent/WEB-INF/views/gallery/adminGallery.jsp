@@ -25,7 +25,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
 	<!-- 내용 -->
-	<div id="title">사진 삭제{관리자}</div>
+	<div id="title">[관리자]사진 삭제</div>
 	<section style="padding-top: 180px; height: 1000px;" >
 			<div class="container">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">

@@ -41,7 +41,7 @@
 <body>
    <jsp:include page="/WEB-INF/views/admin/adminHeader.jsp"/>
 	<!-- 내용 -->
-	<div id="title">사진 등록{관리자}</div>
+	<div id="title">[관리자]사진 등록</div>
 	<section class="page_area">
 		<div class="table-wrapper" style="text-align:center; width:70%; margin:0 auto; height: 600px;">
 			<form action="/insertGallery" method="post" enctype="multipart/form-data" style="height: 100%;">
