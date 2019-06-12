@@ -179,23 +179,42 @@
 	#content{
 		display: none;
 	}
-	.pageNaviBtn{
-		width: 35px;
-		height: 40px;
-		border: 1px solid #A4A4A4;
-		display: inline-block;
-		border-radius: 15px;
-		line-height: 40px;
-		margin-left: 5px;
-		margin-right: 5px;
-	}
+	.pageNaviBtn {
+	width: 35px;
+	height: 40px;
+	border: 1px solid #A4A4A4;
+	display: inline-block;
+	border-radius: 10px;
+	line-height: 40px;
+}
 
-	.selectPage{
-		line-height: 40px;
-		color: white;
-		background-color:  #2c3c57;
-		font-size: 20px;
-	}
+.selectPage {
+	line-height: 40px;
+	color: white;
+	background-color: #2c3c57;
+	font-size: 20px;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
 /* 본문 타이틀 css */
 	.content-header{
 		color:#2c3c57;
@@ -278,7 +297,7 @@
 				</div>
 				<div id="content">
 				<!-- 타이틀자리 -->
-				<div id="title-position" style="margin: 0 auto;width: 60%;text-align: center; font-size: 20px; font-weight: 20px;"></div>
+				<div id="title-position" style="margin: 0 auto;width: 60%;text-align: center; font-size: 20px; font-weight: 20px;margin-bottom: 30px;"></div>
 				<!-- 포스터자리 -->
 				<div  style="width:300px;margin:0 auto;margin-bottom:50px;">
 					<img id="poster"  width="100%" height="100%">

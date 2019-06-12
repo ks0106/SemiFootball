@@ -139,21 +139,7 @@
 		background-color: #F2F2F2;
 
 	}
-	.pageNaviBtn{
-		width: 35px;
-		height: 40px;
-		border: 1px solid #A4A4A4;
-		display: inline-block;
-		border-radius: 15px;
-		line-height: 40px;
-	}
 
-	.selectPage{
-		line-height: 40px;
-		color: white;
-		background-color: #2c3c57;
-		font-size: 20px;
-	}
 	
 	#matchView{
 		position:fixed;
@@ -221,6 +207,45 @@
 		border:none;
 		color:white;    
      }
+     a{
+	color:gray;
+}
+.pageNaviBtn {
+	width: 35px;
+	height: 40px;
+	border: 1px solid #A4A4A4;
+	display: inline-block;
+	border-radius: 10px;
+	line-height: 40px;
+}
+
+.selectPage {
+	line-height: 40px;
+	color: white;
+	background-color: #2c3c57;
+	font-size: 20px;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
 </style>
 <script>
 	$(document).ready(function(){
