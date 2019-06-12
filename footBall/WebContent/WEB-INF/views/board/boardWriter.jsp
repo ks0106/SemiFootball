@@ -31,7 +31,7 @@
 	<script>
 		$(document).ready(function(){
 			   /* 헤더 배경 이미지 */
-				$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+			$('#menuImg').append('<img src="/img/common/test.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-10%; opacity:0.8;">');
 		   });
 	</script>
 <!--영상 위 페이지 타이틀 -->
