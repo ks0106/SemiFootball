@@ -297,11 +297,10 @@
 				<!-- 컨텐츠 -->
 				<div style="width: 100%; height:100vh; overflow: hidden;">
 					<!-- 컨텐츠 타이틀 -->
-					<div id="reservationTitle" style="color:black;margin-left:50px;">[관리자] 예약/결제 취소</div>
+					<div id="reservationTitle" style="color:black;position:absolute;top:120px;left:70%;">[관리자] 예약/결제 취소</div>
 					<!-- 본문 -->
 					<!-- 컨텐츠 파티션 -->
-					<div style="width: 90%; margin: 0 auto; margin-bottom: 50px;">
-						<p style="font-size:30px;font-weight:bolder;color:silver;margin:20px;">- 취소 신청 목록</p>
+					<div style="width: 90%; margin: 0 auto; margin-top: 150px;">
 						<div id="table-wrapper1" style="margin-bottom: 100px; text-align:left;">
 							<table style="margin-top: 50px; border-top: 3px solid black; border-bottom: 3px solid black; width: 80%; margin: 0 auto; border-collapse: collapse;text-align:center;">
 								<tr>
