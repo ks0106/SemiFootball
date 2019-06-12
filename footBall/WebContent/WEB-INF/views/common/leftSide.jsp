@@ -13,6 +13,7 @@
 	crossorigin="anonymous"></script>
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="/css/common/pageCss.css">
 <!-- 사이드 헤더(높이가 일정 크기 이상일 때 사이드) -->
 <style>
 	body{
@@ -149,8 +150,8 @@
 <sidebar>
 	<div class="leftside_area">
 		<div class="leftside_title">
-			<a href="#"><img src="/img/header_logo2.png" width="100px" height="100px"></a>
-			<a href="#" style="text-decoration:none;color:white;">Football Mania</a>
+			<a href="#"><img src="/img/header_logo2.png" width="100px" height="100px" style="vertical-align:middle;margin-left:50px;"></a>
+			<a href="#" style="text-decoration:none;color:white;vertical-align:middle;">KS Futsal Park</a>
 		</div>
 		<div class="leftside_notice">
 			<div style="background-color:black;margin:0 auto;width:400px;height:30px;display:block;border-radius:20px;">
@@ -405,9 +406,11 @@
 <header class="area2">
 	<%if(m == null){ %>
 	<div class="menu_bar2">
-		<div id="menu_login2" style="float:right;width:100px;height:80px;margin-right:40px;">
-			<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
-			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+		<div id="menu_login2" style="float:right;margin-right:40px;">
+			<button onclick="location.href='/views/login/login.jsp'" style="background-color:inherit;border:none;line-height:80px;">
+				<span style="text-decoration:none;color:white;vertical-align:middle;">Member Login</span>			
+				<span><img src="/img/login_logo2_white.png" width="50px" height="50px" style="vertical-align:middle;"></span>
+			</button>
 		</div>
 	</div>
 	<%}else{ %>
@@ -472,13 +475,15 @@
 
  		</ul>
 	 		<%if(m == null){ %>
-		 		<div id="menu_login" style="float:right;width:100px;height:80px;margin-right:40px;">
-					<div style="margin-left:16px;"><a href="/views/login/login.jsp"><img src="/img/login_icon_100px_white.png" width="50px" height="50px"></a></div>
-		 			<div><a href="/views/login/login.jsp" style="text-decoration:none;color:white;">멤버 로그인</a></div>
+		 		<div id="menu_login" style="float:right;margin-right:40px;">
+					<button onclick="location.href='/views/login/login.jsp'" style="background-color:inherit;border:none;line-height:80px;">
+						<span style="text-decoration:none;color:white;vertical-align:middle;">Member Login</span>			
+						<span><img src="/img/login_logo2_white.png" width="50px" height="50px" style="vertical-align:middle;"></span>
+					</button>
 				</div>
 			<%}else{ %>
 		 		<div id="menu_login" style="float:right;width:100px;height:80px;margin-right:40px;">
-					<div style="margin-left:16px;"><img src="/img/member_icon_100px_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
+					<div style="margin-left:16px;"><img src="/img/member_logo2_white.png" width="50px" height="50px" style="cursor:pointer;"></div>
 		 			<div><a style="text-decoration:none;color:white;cursor:pointer;"><%=m.getName()%> 님!</a></div>
 		 			<div id="myPage" style="display:none;">
 						<div style="width:300px;height:220px;position:absolute;right:0;top:180px;z-index:10;">
@@ -510,8 +515,10 @@
 		<div style="width:350px;height:100vh;background-color:black;opacity:0.9;position:absolute;right:0;">
 			<%if(m == null){ %>
 				<div style="width:100%;margin:0 auto;margin-top:10px;margin-bottom:10px;">
-					<div onclick="loginLocation();" style="float:right;margin-right:30px;cursor:pointer;"><a style="text-decoration:none;color:white;font-size:25px;">Member Login</a>
-					<img src="/img/login_icon_100px_white.png" width="30px"></div>
+						<button onclick="loginLocation();" style="background-color:inherit;border:0;float:right;margin-right:30px;">
+							<span style="color:white;fint-size:25px;vertical-align:middle;">Member Login</span>
+							<span><img src="/img/login_logo2_white.png" width="50px" style="vertical-align:middle;"></span>						
+						</button>
 				</div>
 			<%}else{ %>
 				<div style="width:100%;margin:0 auto;margin-top:10px;margin-bottom:10px;">

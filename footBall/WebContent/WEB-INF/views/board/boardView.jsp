@@ -90,7 +90,7 @@ a{
             				</tr>
             				<tr>
                					<td colspan="2">
-               						<c:if test="${sessionScope.member.id == bvd.bv.boardWriter || sessionScope.member.id=='admin'}">
+               						<c:if test="${sessionScope.member.name == bvd.bv.boardWriter || sessionScope.member.id=='admin'}">
                   						<button class="boardWriteBtn" onclick="location.href='/boardUpdate?boardNo=${bvd.bv.boardNo}'">수정하기</button>
                   						<button class="boardWriteBtn" onclick="location.href='/boardDelete?boardNo=${bvd.bv.boardNo}'" style="background-color: gray;">삭제하기</button>
                						</c:if>
@@ -104,7 +104,7 @@ a{
       			<c:if test="${sessionScope.member != null}"> 
       				<div class="comment-write" style="text-align: center;width:80%;margin:0 auto;"> 
 						<form action="/boardCommentInsert" method="post">
-							<input type="hidden" name="boardCommentWriter" value="${sessionScope.member.id}">
+							<input type="hidden" name="boardCommentWriter" value="${sessionScope.member.name}">
 							<input type="hidden" name="boardRef" value="${bvd.bv.boardNo}">
 							<input type="hidden" name="boardCommentLevel" value="1">
 							<input type="hidden" name="boardCommentRef" value="0">
@@ -137,7 +137,7 @@ a{
 								<c:if test="${sessionScope.member != null}">
 									<li style="width:25%;">
 										<a href="javascript:void(0)" onclick="insertComment(this,'${bc.boardCommentNo}');">댓글달기</a>
-										<c:if test="${sessionScope.member.id == bc.boardCommentWriter || sessionScope.member.id == 'admin'}">
+										<c:if test="${sessionScope.member.name == bc.boardCommentWriter || sessionScope.member.id == 'admin'}">
 											<a href="javascript:void(0);" onclick="modifyComment(this,'${bc.boardCommentNo}');">수정</a>
 											<a href="javascript:void(0);" onclick="deleteComment(this,'${bc.boardCommentNo}');">삭제</a>
 										</c:if>
@@ -152,14 +152,14 @@ a{
 							<center>
 								<ul class="commentList">
 									<li style="width:5%"><span>└─</span></li>
-									<li style="width:5%;"><span>${bcr.boardCommentWriter}</span></li>
-									<li style="width:50%; text-align: left; padding-left:30px;">
+									<li style="width:10%;"><span>${bcr.boardCommentWriter}</span></li>
+									<li style="width:45%; text-align: left; padding-left:30px;">
 										<span>${bcr.boardCommentContent}</span>
 										<input type="text" class="form-control" name="boardCommentContent" value="${bcr.boardCommentContent}" style="display:none;height:22px;">
 									</li>
 									<li style="width:15%;"><span>${bcr.boardCommentDate}</span></li>
 									<li style="width:20%">
-										<c:if test="${sessionScope.member.id == bcr.boardCommentWriter || sessionScope.member.id == 'admin' }">
+										<c:if test="${sessionScope.member.name == bcr.boardCommentWriter || sessionScope.member.id == 'admin' }">
 											<a href="javascript:void(0);" onclick="modifyComment(this,'${bcr.boardCommentNo}');">수정</a>
 											<a href="javascript:void(0);" onclick="deleteComment(this,'${bcr.boardCommentNo}');">삭제</a>
 				  						</c:if>
@@ -220,7 +220,7 @@ a{
 			$(obj).parent().hide();
 			var $form =  $("<form action='/boardCommentInsert' method='post'></form>");
 			var $ul = $("<ul class='commentList'></ul>");
-			$form.append($("<input type='hidden' name='boardCommentWriter' value='${sessionScope.member.id}'>"));
+			$form.append($("<input type='hidden' name='boardCommentWriter' value='${sessionScope.member.name}'>"));
 			$form.append($("<input type='hidden' name='boardRef' value='${bvd.bv.boardNo}'>"));
 			$form.append($("<input type='hidden' name='boardCommentLevel' value='2'>"));
 			$form.append($("<input type='hidden' name='boardCommentRef' value='"+commentNo+"'>"));

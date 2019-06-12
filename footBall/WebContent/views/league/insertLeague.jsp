@@ -56,6 +56,17 @@
 		width: 25%;
 		text-align: left;
 	}
+	.btn{
+		width:100px;
+		height: 40px;
+		border:2px solid #2c3c57;
+		background-color: #2c3c57;
+		padding:0;
+		font-size:16px;
+		border-radious:2px;
+		line-height:30px;
+		color:white;
+	}
 </style>
 </head>
 <body>
@@ -127,9 +138,9 @@
 								</tr>
 							</table>
 							<div id="btn-wrapper" style="width: 80%; margin: 0 auto; height: 50px; text-align: center; margin-top: 60px; margin-bottom: 60px;">
-								<button type="submit" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">신청하기</button>
-								<button type="button" onclick="back();" style="width:200px;height: 50px;color:teal;border:none;background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">취소</button>
-							</div>
+								<button class = "btn" type="submit">신청하기</button>
+								<button class = "btn" type="button" onclick="back();">취소</button>
+							</div> 
 						</form>
 					</div>
 					
