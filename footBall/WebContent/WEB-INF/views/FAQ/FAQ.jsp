@@ -1,14 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="FAQ.model.vo.FAQVo"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="FAQ.model.vo.FAQPageData"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%
-	FAQPageData pd = (FAQPageData) request.getAttribute("pd");
-	ArrayList<FAQVo> list = pd.getList();
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +24,7 @@
 	<script>
 		$(document).ready(function(){
 			   /* 헤더 배경 이미지 */
-				$('#menuImg').append('<img src="/img/branch/ground3.jpg" alt="지점 메인 이미지" style="width:100%;max-height:initial;">');
+			$('#menuImg').append('<img src="/img/common/test.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-10%; opacity:0.8;">');
 		   });
 
 	</script>
