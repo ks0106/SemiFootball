@@ -37,6 +37,7 @@ public class NoticeService {
 		int i = 1;
 		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
 			if(reqPage == pageNo) {
+				
 				pageNavi += "<div class='pageNaviBtn selectPage'><span>"+pageNo+"</span></div>"; //4페이지 상태에서 4페이지를 누를수가 없도록 하기 위해서 a태그 없애줌 
 			}else {
 				pageNavi += "<a class='btn' href='/notice?reqPage="+pageNo+"'><div class='pageNaviBtn'>"+pageNo+"</div></a>";
