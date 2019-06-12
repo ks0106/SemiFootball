@@ -8,11 +8,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.3.1.mibv.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/board/board.css">
 <link rel="stylesheet" href="/css/common/pageCss.css">
 
 <title>KS 자유게시판</title>
 </head>
+<style>
+.boardWriteBtn{
+	border: none;
+	background-color: #2c3c57;
+	width: 120px;
+	height: 40px;
+	color: white;
+</style>
 <body>
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -29,7 +40,7 @@
 	<div id="title">커뮤니티</div>
 
 
-	<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
+<hr style="border: 3px solid #2c3c57; margin: 0 auto; margin-bottom: 30px; padding: 0;">
 <script>
    $(document).ready(function() {
       $("#fileDelBtn").click(function() {
@@ -41,10 +52,11 @@
       });      
    });
 </script>
+
 <section>
-	<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0;">커뮤니티</div>
 	<div style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
 		<div style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
+			<div style="font-size: 30px; font-weight: bolder; color: #2c3c57; margin: 0;">커뮤니티</div>
 			<hr style="width: 80%; border: 2px solid #2c3c57;margin:8px 20% 8px 0; padding: 0;">
 			<div style="margin-bottom: 15px;">
 				<a class="side_a" id="side_menu1" href="/notice" style="color: #2c3c57; font-weight: bolder; font-size: 18px; text-decoration: none; cursor: pointer;">공지사항</a>
@@ -57,53 +69,63 @@
 				</a>
 			</div>
 		</div>
-		<div style="width: 78%; background-color: white; margin: 0 auto; overflow: hidden;">
-			<div class="table-wrapper" style="text-align: center; width: 80%; margin: 0 auto;">
-				<form action="/boardUpdateEnd" method="post" enctype="multipart/form-data">
-					<table class="table table-bordered">
+		<div style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">		
+			<div class="table-wrapper" style="text-align: center; width: 70%; margin: 0 auto;">
+				<div>
+					<form action="/boardUpdateEnd" method="post" enctype="multipart/form-data">
+					<br><br><br>
+						<table class="table table-bordered" id="boardWriter">
+							<tr>
+								<th colspan="2" id="tit">자유게시판 수정</th>
+							</tr>
+							<tr>
+								<th colspan="2" style="font-size: 20px; font-weight: bold;"></th>
+							</tr>
+							<tr>
+								<th class="tth">제목</th>
+								<td><input type="text" class="form-control" name="boardTitle" value="<%=bv.getBoardTitle() %>"></td>
+							</tr>
+							<tr>
+								<th class="tth">작성자</th>
+								<td><%=bv.getBoardWriter() %></td>
+							</tr>
+							<tr>
+								<th class="tth">첨부파일</th>
+								<td>
+										<input type="hidden" id="status" name="status" value="stay">
+									<%if(bv.getBoardFilepath()!=null){ %> 
+										<img class="delFile" src="/img/file.png" width="16px"> 
+										<input type="file" name="boardFilename" id="file" style="display: none">
+										<span class="delFile"><%=bv.getBoardFilename() %></span>
+										<button type="button" id="fileDelBtn" class="btn btn-primary btn-sm delFile">삭제</button> 
+										<input type="hidden" name="oldFilename" value="<%=bv.getBoardFilename() %>"> 
+										<input type="hidden" name="oldFilepath" value="<%=bv.getBoardFilepath() %>">
+										<a href="javascript:fileDownload('<%=bv.getBoardFilename() %>','<%=bv.getBoardFilepath() %>');"></a> 
+									<!-- 파일 클릭시 noticefileDownload 경로와 filename&filepath 인자를 보내준다 -->
+									<%}else{ %> 
+									<input type="file" name="boardFilename"> 
+									<%} %>
+								</td>
+							</tr>
+							<tr>
+								<th class="tth">내용</th>
+								<td><textarea name="boardContent" class="form-control" rows="3"><%=bv.getBoardContent() %></textarea></td>
+							</tr>
+							<tr>
+								<th class="tth" colspan="2">
+									<button type="submit" class="boardWriteBtn">수정하기</button>
+								</th>
+							</tr>
+						</table>
 						<input type="hidden" name="boardNo" value="<%=bv.getBoardNo() %>">
-						<tr>
-							<th colspan="2" style="font-size: 20px; font-weight: bold;"></th>
-						</tr>
-						<tr>
-							<th class="tth">제목</th>
-							<td><input type="text" class="form-control" name="boardTitle" value="<%=bv.getBoardTitle() %>"></td>
-						</tr>
-						<tr>
-							<th class="tth">작성자</th>
-							<td><%=bv.getBoardWriter() %></td>
-						</tr>
-						<tr>
-							<th class="tth">첨부파일</th>
-							<td>
-									<input type="hidden" id="status" name="status" value="stay">
-								<%if(bv.getBoardFilepath()!=null){ %> 
-									<img class="delFile" src="/img/file.png" width="16px"> 
-									<input type="file" name="boardFilename" id="file" style="display: none">
-									<span class="delFile"><%=bv.getBoardFilename() %></span>
-									<button type="button" id="fileDelBtn" class="btn btn-primary btn-sm delFile">삭제</button> 
-									<input type="hidden" name="oldFilename" value="<%=bv.getBoardFilename() %>"> 
-									<input type="hidden" name="oldFilepath" value="<%=bv.getBoardFilepath() %>">
-									<a href="javascript:fileDownload('<%=bv.getBoardFilename() %>','<%=bv.getBoardFilepath() %>');"></a> 
- 							<!-- 파일 클릭시 noticefileDownload 경로와 filename&filepath 인자를 보내준다 -->
-								<%}else{ %> 
-								<input type="file" name="boardFilename"> 
-								<%} %>
-							</td>
-						</tr>
-						<tr>
-							<th class="tth">내용</th>
-							<td><textarea name="boardContent" class="form-control" rows="3"><%=bv.getBoardContent() %></textarea></td>
-						</tr>
-						<tr>
-							<th class="tth" colspan="2">
-								<button type="submit" class="btn btn-outline-primary">수정하기</button>
-							</th>
-						</tr>
-					</table>
-				</form>
+					</form>
+				</div>
 			</div>
+			<br><br><br><br><br>
 		</div>
+	</div>
 </section>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
 </body>
 </html>
