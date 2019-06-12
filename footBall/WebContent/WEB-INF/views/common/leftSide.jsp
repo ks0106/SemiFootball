@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@ page import="notice.model.vo.NoticeVo"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="notice.model.vo.NoticePageData"%>
 	<%
 		Member m = (Member)session.getAttribute("member");
+	/* NoticePageData pd = (NoticePageData) request.getAttribute("pd");
+	ArrayList<NoticeVo> list = pd.getList();  */
 	%>
 <script
 	src="https://code.jquery.com/jquery-3.4.0.js"
@@ -152,7 +157,18 @@
 		<div class="leftside_notice">
 			<div style="background-color:black;margin:0 auto;width:400px;height:30px;display:block;border-radius:20px;">
 				<img src="/img/notice_white.png" width="20px">
-				커뮤니티 목록
+						 <%-- <table>
+								<%
+									for (NoticeVo nv : list) {
+								%>
+								<tr>
+									<td>
+									<%=nv.getNoticeTitle()%></td>
+								</tr>
+								<%
+									}
+								%>
+							</table>	 --%> 
 			</div>
 		</div>
 		<div class="leftside_menu">
