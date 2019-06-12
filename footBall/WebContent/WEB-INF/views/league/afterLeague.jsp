@@ -274,7 +274,6 @@
 		<!-- 컨텐츠 지점선택 파티션 -->
 				<div  style="width:90%;margin:0 auto;margin-bottom:50px;">
 				<div id="table-wrapper1" style="margin-bottom: 20px;text-align: center;">
-					<p style="font-size: 30px; font-weight: bold;">마감된 대회</p>
 					<table style="margin-top: 50px; border-top: 3px solid #2c3c57;border-bottom:3px solid #2c3c57; width: 80%; margin: 0 auto;border-collapse: collapse;">
 						<tr>
 							<th class="th">번호</th>
@@ -406,23 +405,23 @@
 		}
 		if($("#top2").children().is("img")){
 			if($("#top2").children().filter("img").attr("value")==$(".win4").eq(0).children().filter("img").attr("value")){
-				$(".win4").eq(1).children().filter("div").addClass("lose");
+				$(".win4").eq(0).children().filter("div").addClass("lose");
 			}else if($("#top2").children().filter("img").attr("value")==$(".win4").eq(1).children().filter("img").attr("value")){
-				$(".win4").eq(0).children().filter("div").addClass("lose");	
+				$(".win4").eq(1).children().filter("div").addClass("lose");	
 			}
 		}
 		if($("#top3").children().is("img")){
 			if($("#top3").children().filter("img").attr("value")==$(".win4").eq(2).children().filter("img").attr("value")){
-				$(".win4").eq(3).children().filter("div").addClass("lose");
+				$(".win4").eq(2).children().filter("div").addClass("lose");
 			}else if($("#top3").children().filter("img").attr("value")==$(".win4").eq(3).children().filter("img").attr("value")){
-				$(".win4").eq(2).children().filter("div").addClass("lose");	
+				$(".win4").eq(3).children().filter("div").addClass("lose");	
 			}
 		}
 		if($("#top1").children().is("img")){
 			if($("#top1").children().filter("img").attr("value")==$(".win2").eq(0).children().filter("img").attr("value")){
-				$(".win2").eq(1).children().filter("div").addClass("lose");
+				$(".win2").eq(0).children().filter("div").addClass("lose");
 			}else if($("#top1").children().filter("img").attr("value")==$(".win2").eq(1).children().filter("img").attr("value")){
-				$(".win2").eq(0).children().filter("div").addClass("lose");	
+				$(".win2").eq(1).children().filter("div").addClass("lose");	
 			}
 		}
 		$("#content").css("display","block");
