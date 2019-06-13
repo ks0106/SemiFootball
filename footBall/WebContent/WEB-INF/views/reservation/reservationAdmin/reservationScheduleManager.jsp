@@ -49,6 +49,9 @@
 	
 </script>
 <style>
+	* {
+		overflow:scroll;
+	}
 	/* input number 버튼 지우기 */
 	input[type="number"]::-webkit-outer-spin-button,
 	input[type="number"]::-webkit-inner-spin-button {
@@ -105,7 +108,7 @@
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
 	<section> <!-- 내용 작성 -->
 		<!-- 컨텐츠 -->
-		<div style="width:100%;overflow:hidden;margin-top:30px;">
+		<div style="width:100%; height:100%;overflow:hidden;margin-top:30px;">
 			<div style="width: 95%; background-color: white; margin: 0 auto; overflow: hidden;">
 <!-- 				컨텐츠 사이드 메뉴
 				<div style="width:300px; height: 300px; text-align: left; display: inline-block; float: left;">
@@ -126,218 +129,219 @@
 				</div>
 				사이드 메뉴 종료 -->
 				<!-- 컨텐츠 -->
-				<div style="width: 100%; height:100vh;overflow:hidden;">
+				<div style="width: 100%; height:800px;overflow:hidden;">
 					<!-- 컨텐츠 타이틀 -->
 					<div id="reservationTitle" style="color:black;position:absolute;top:120px;left:70%;">[관리자] 스케쥴 관리</div>
 					<!-- 본문 -->
-					<!-- 달력 -->
-					<div id="draggable" style="width:530px;float:right;position:absolute;right:400px;bottom:200px;">
-						<jsp:include page="/views/test/calendar.jsp" />
-					</div>
-					<!-- 컨텐츠 파티션 -->
-					<div style="width:90%; margin:0 auto;margin-top:150px;">
-						<button class="scheduleManagerBtn" id="scheduleAddBtn" style="float:left;">스케쥴등록</button>
-						<button class="scheduleManagerBtn" id="scheduleModifyBtn" style="float:left;">스케쥴수정</button>
-						<button class="scheduleManagerBtn" id="scheduleDeleteBtn" style="display:inline-block;">스케쥴삭제</button>
-						<div id="formArea">
-						<form class="noView" id="scheduleAdd" action="/reservationManagerScheduleAdd" method="post">
-							<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
-								<table style="width:650px;margin-bottom:10px;">
-									<tr>
-										<th>날짜</th>
-										<td>
-											<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly>
-										</td>
-									</tr>
-									<tr>
-										<th>지점</th>
-										<td>
-											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option value="default" selected>::: 지점선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>구장</th>
-										<td>
-											<select id="courtName" name="courtName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 구장선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>시작시간</th>
-										<td>
-											<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 시작시간 선택 :::</option>
-												<option>08:00</option>
-												<option>09:00</option>
-												<option>10:00</option>
-												<option>11:00</option>
-												<option>12:00</option>
-												<option>13:00</option>
-												<option>14:00</option>
-												<option>15:00</option>
-												<option>16:00</option>
-												<option>17:00</option>
-												<option>18:00</option>
-												<option>19:00</option>
-												<option>20:00</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th>끝시간</th>
-										<td>
-											<select id="endTime" name="endTime" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 끝시간 선택 :::</option>
-												<option>10:00</option>
-												<option>11:00</option>
-												<option>12:00</option>
-												<option>13:00</option>
-												<option>14:00</option>
-												<option>15:00</option>
-												<option>16:00</option>
-												<option>17:00</option>
-												<option>18:00</option>
-												<option>19:00</option>
-												<option>20:00</option>
-												<option>21:00</option>
-												<option>22:00</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
-											* 시작시간이나 끝시간 선택 시 2시간 씩 자동으로 세팅됩니다.
-											<br>* 이미 등록된 시간은 중복으로 등록할 수 없습니다.
-										</td>
-									</tr>
-									<tr>
-										<th>대관료</th>
-										<td>
-											<input id="resPrice" name="resPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
-											* 구장 타입에 따라 자동으로 세팅되나 임의로 수정하여 등록할 수 있습니다.
-										</td>
-									</tr>
-								</table>
-								<button id="scheduleAddSubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">등록</button>
-								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
+					<div class="content-wrapper" style="width:100%; height:100%;">
+						<!-- 컨텐츠 파티션 -->
+						<div style="width:800px; margin-top:150px; margin-left:100px; float:left;">
+							<button class="scheduleManagerBtn" id="scheduleAddBtn" style="float:left;">스케쥴등록</button>
+							<button class="scheduleManagerBtn" id="scheduleModifyBtn" style="float:left;">스케쥴수정</button>
+							<button class="scheduleManagerBtn" id="scheduleDeleteBtn" style="display:inline-block;">스케쥴삭제</button>
+							<div id="formArea">
+							<form class="noView" id="scheduleAdd" action="/reservationManagerScheduleAdd" method="post">
+								<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
+									<table style="width:650px;margin-bottom:10px;">
+										<tr>
+											<th>날짜</th>
+											<td>
+												<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly>
+											</td>
+										</tr>
+										<tr>
+											<th>지점</th>
+											<td>
+												<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+													<option value="default" selected>::: 지점선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>구장</th>
+											<td>
+												<select id="courtName" name="courtName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 구장선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>시작시간</th>
+											<td>
+												<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 시작시간 선택 :::</option>
+													<option>08:00</option>
+													<option>09:00</option>
+													<option>10:00</option>
+													<option>11:00</option>
+													<option>12:00</option>
+													<option>13:00</option>
+													<option>14:00</option>
+													<option>15:00</option>
+													<option>16:00</option>
+													<option>17:00</option>
+													<option>18:00</option>
+													<option>19:00</option>
+													<option>20:00</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<th>끝시간</th>
+											<td>
+												<select id="endTime" name="endTime" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 끝시간 선택 :::</option>
+													<option>10:00</option>
+													<option>11:00</option>
+													<option>12:00</option>
+													<option>13:00</option>
+													<option>14:00</option>
+													<option>15:00</option>
+													<option>16:00</option>
+													<option>17:00</option>
+													<option>18:00</option>
+													<option>19:00</option>
+													<option>20:00</option>
+													<option>21:00</option>
+													<option>22:00</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
+												* 시작시간이나 끝시간 선택 시 2시간 씩 자동으로 세팅됩니다.
+												<br>* 이미 등록된 시간은 중복으로 등록할 수 없습니다.
+											</td>
+										</tr>
+										<tr>
+											<th>대관료</th>
+											<td>
+												<input id="resPrice" name="resPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
+												* 구장 타입에 따라 자동으로 세팅되나 임의로 수정하여 등록할 수 있습니다.
+											</td>
+										</tr>
+									</table>
+									<button id="scheduleAddSubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">등록</button>
+									<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
+								</div>
+							</form>
+							<form class="noView" id="scheduleModify" action="/reservationManagerScheduleModify" method="post">
+								<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
+									<table style="width:650px;margin-bottom:10px;">
+										<tr>
+											<th>날짜</th>
+											<td>
+												<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly>
+											</td>
+										</tr>
+										<tr>
+											<th>지점</th>
+											<td>
+												<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 지점선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>구장</th>
+											<td>
+												<select id="courtName" name="courtName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 구장선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>시간</th>
+											<td>
+												<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 시간 선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>가격</th>
+											<td>
+												<input id="resPrice" name="resPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
+											</td>
+										</tr>
+										<tr>
+											<th>대관여부</th>
+											<td>
+												<select id="scheduleYN" name="scheduleYN" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 가능/불가능 :::</option>
+													<option value="0">가능</option>
+													<option value="1">불가능</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
+												* 가격, 대관여부만 변경할 수 있습니다.
+											</td>
+										</tr>
+									</table>
+									<button id="scheduleModifySubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">수정</button>
+									<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
+								</div>
+							</form>
+							<form class="noView" id="scheduleDelete" action="/reservationManagerScheduleDelete" method="post">
+								<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
+									<table style="width:650px;margin-bottom:10px;">
+										<tr>
+											<th>날짜</th>
+											<td>
+												<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly>
+											</td>
+										</tr>
+										<tr>
+											<th>지점</th>
+											<td>
+												<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 지점선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>구장</th>
+											<td>
+												<select id="courtName" name="courtName" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 구장선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<th>시간</th>
+											<td>
+												<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
+													<option class="default" value="default" selected>::: 시간 선택 :::</option>
+												</select>								
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
+												! 해당 스케쥴의 대관여부가 불가능이고, 현재 이용중인 고객이 없을 때에만 삭제할 수 있습니다.
+											</td>
+										</tr>
+									</table>
+									<button id="scheduleDeleteSubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">삭제</button>
+									<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
+								</div>
+							</form>
 							</div>
-						</form>
-						<form class="noView" id="scheduleModify" action="/reservationManagerScheduleModify" method="post">
-							<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
-								<table style="width:650px;margin-bottom:10px;">
-									<tr>
-										<th>날짜</th>
-										<td>
-											<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly>
-										</td>
-									</tr>
-									<tr>
-										<th>지점</th>
-										<td>
-											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 지점선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>구장</th>
-										<td>
-											<select id="courtName" name="courtName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 구장선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>시간</th>
-										<td>
-											<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 시간 선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>가격</th>
-										<td>
-											<input id="resPrice" name="resPrice" type="number" min="0" style="width:396px;height:36px;font-size:18px;">
-										</td>
-									</tr>
-									<tr>
-										<th>대관여부</th>
-										<td>
-											<select id="scheduleYN" name="scheduleYN" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 가능/불가능 :::</option>
-												<option value="0">가능</option>
-												<option value="1">불가능</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
-											* 가격, 대관여부만 변경할 수 있습니다.
-										</td>
-									</tr>
-								</table>
-								<button id="scheduleModifySubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">수정</button>
-								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
-							</div>
-						</form>
-						<form class="noView" id="scheduleDelete" action="/reservationManagerScheduleDelete" method="post">
-							<div style="width:650px;border:3px solid black;padding:40px;text-align:center;">
-								<table style="width:650px;margin-bottom:10px;">
-									<tr>
-										<th>날짜</th>
-										<td>
-											<input id="scheduleDate" name="scheduleDate" type="text" style="width:396px;height:36px;font-size:18px;" readonly>
-										</td>
-									</tr>
-									<tr>
-										<th>지점</th>
-										<td>
-											<select class="branchName" id="branchName" name="branchName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 지점선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>구장</th>
-										<td>
-											<select id="courtName" name="courtName" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 구장선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<th>시간</th>
-										<td>
-											<select id="startTime" name="startTime" style="width:400px;height:40px;font-size:18px;">
-												<option class="default" value="default" selected>::: 시간 선택 :::</option>
-											</select>								
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="color:#df0101;font-size:13px;font-weight:bolder;">
-											! 해당 스케쥴의 대관여부가 불가능이고, 현재 이용중인 고객이 없을 때에만 삭제할 수 있습니다.
-										</td>
-									</tr>
-								</table>
-								<button id="scheduleDeleteSubmit" type="button" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:black;font-size:18px;display:inline-block;margin-left:400px;">삭제</button>
-								<button type="reset" style="margin:0;padding:0;width:80px;height:30px;border:0;color:white;background-color:gray;font-size:18px;display:inline-block;">리셋</button>
-							</div>
-						</form>
 						</div>
-					</div>
+						<!-- 달력 -->
+						<div id="draggable" style="width:530px; height:500px; margin-top:150px; margin-right:100px; float:right;">
+							<jsp:include page="/views/test/calendar.jsp" />
+						</div>
+					</div><!-- 본문 끝  -->
 				</div>
 			</div>
 		</div>
 	</section>
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />	
 	
 	<script>
 		function branchLoad(){

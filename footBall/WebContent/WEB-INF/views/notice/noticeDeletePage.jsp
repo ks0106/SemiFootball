@@ -26,7 +26,7 @@
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
 
-	<div id="title">고객센터</div>
+	<div id="title">[관리자]공지사항 수정/삭제</div>
 	<br><br><br><br><br><br><br>
 	<center>
 				<table id="matchlist-table"  style="width: 80%;">
