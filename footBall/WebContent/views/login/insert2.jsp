@@ -71,8 +71,8 @@
    $(document).ready(function(){
       $("#layerPopup").hide();
    
-      var minute = 0;
-      var second = 50;
+      var minute = 1;
+      var second = 59;
       
       $(".countTimeMinute").html(minute);
       $(".countTimeSecond").html(second);
