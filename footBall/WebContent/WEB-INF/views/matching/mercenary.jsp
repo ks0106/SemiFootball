@@ -146,7 +146,9 @@
 	display: inline-block;
 	border-radius: 10px;
 	line-height: 40px;
+	color:gray;
 }
+
 
 .selectPage {
 	line-height: 40px;
@@ -236,6 +238,7 @@
      	background-color: red;
      	color:white;
      }
+     
 </style>
 
 <script>

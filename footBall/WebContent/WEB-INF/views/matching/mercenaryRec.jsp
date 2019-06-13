@@ -146,6 +146,7 @@
 	display: inline-block;
 	border-radius: 10px;
 	line-height: 40px;
+	color:gray;
 }
 
 .selectPage {
