@@ -32,6 +32,7 @@ a{
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<script>
+		window.alert = function() {};
 		$(document).ready(function(){
 			   /* 헤더 배경 이미지 */
 			$('#menuImg').append('<img src="/img/common/test.jpg" alt="메인 이미지" style="width:100%;max-height:initial; margin-top:-10%; opacity:0.8;">');

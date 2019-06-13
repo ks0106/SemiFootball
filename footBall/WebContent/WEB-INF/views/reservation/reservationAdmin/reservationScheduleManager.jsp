@@ -49,9 +49,7 @@
 	
 </script>
 <style>
-	* {
-		overflow:scroll;
-	}
+
 	/* input number 버튼 지우기 */
 	input[type="number"]::-webkit-outer-spin-button,
 	input[type="number"]::-webkit-inner-spin-button {
