@@ -258,7 +258,7 @@
 				<c:when test="${not empty list.allList }">
 			
 				<!-- 대진표 배경 div  -->
-					<div style="width: 90%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
+					<div style="width: 70%;height:700px; background-image: url('/img/gametable.png');background-size: 100%; background-repeat:no-repeat;margin: 0 auto;position: relative;">
 					<c:forEach items="${list.allList }" var="l">
 						<c:choose>
 							<c:when test="${l.match3 eq 1 }">

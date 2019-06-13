@@ -84,7 +84,7 @@ public class EmailCheckServlet extends HttpServlet {
 				"    </style>\r\n" + 
 				"<body>\r\n" + 
 				"    <div style=\"padding-left: 50px;padding-top:20px; margin: 100px; width:1155px; border: 2px solid darkgray;\" >\r\n" + 
-				"        <img src=\"http://localhost/img/header_logo.png\" style=\"width:200px;height:200px;\"><br>\r\n" + 
+				"        <img src=\"http://192.168.10.58/img/header_logo.png\" style=\"width:200px;height:200px;\"><br>\r\n" + 
 				"        <div style=\"padding-top:30px;font-weight:bold;\">\r\n" + 
 				"    <p style=\"text-align:left;\">\r\n" + 
 				"        저희 KS Sports Football를 이용해 주셔서 감사합니다.<br><br>\r\n" + 

@@ -234,7 +234,7 @@
 	</script>
 	<script type="text/javascript"> //웹소켓 연결 
 		var random = document.getElementById("randomNum1");
-		var webSocket = new WebSocket('ws://localhost:80/footBall/broadcasting');
+		var webSocket = new WebSocket('ws://192.168.10.58:80/footBall/broadcasting');
 		var inputMessage = document.getElementById('inputMessage');
 		webSocket.onerror = function (event) {
 			onError(event)
