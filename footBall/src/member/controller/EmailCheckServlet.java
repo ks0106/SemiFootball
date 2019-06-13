@@ -89,7 +89,7 @@ public class EmailCheckServlet extends HttpServlet {
 				"    <p style=\"text-align:left;\">\r\n" + 
 				"        저희 KS Sports Football를 이용해 주셔서 감사합니다.<br><br>\r\n" + 
 				"        \r\n" + 
-				"        회원님의 본인인증 키는 "+num+" 입니다.<br><br>\r\n" + 
+				"        회원님의 본인인증 키는 <span style=\"font-size:20px;\"> "+num+" </span>입니다.<br><br>\r\n" + 
 				"        보안을 위해 이 링크는 전송된 후 2분이 지나면 만료됩니다. 암호화 관련된 문제가 계속 발생 하는경우 <a href=\"http://localhost/fAQ\">KS Sports Football 고객센터로</a> 문의하세요.<br><br>\r\n" + 
 				"        감사합니다. <br>\r\n" + 
 				"        KS Sports Football 팀\r\n" + 
