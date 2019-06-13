@@ -180,7 +180,7 @@ public class InsertBiAndCSerlvlet extends HttpServlet {
 			int c2Result = new BranchService().insertCourt(c2);
 			int c3Result = new BranchService().insertCourt(c3);
 			
-			if(biResult>0 && (c1Result>=0 || c2Result>=0 || c3Result>=0)) {
+			if(biResult>0 || (c1Result>=0 || c2Result>=0 || c3Result>=0)) {
 				request.setAttribute("msg", "세부정보 입력 완료");
 			} else {
 				request.setAttribute("msg", "입력 실패");
