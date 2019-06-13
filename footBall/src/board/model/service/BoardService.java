@@ -57,14 +57,13 @@ public class BoardService {
 	//하나의 게시물 보기
 	public BoardViewData listOne(int boardNo){
 		Connection conn = JDBCTemplate.getConnection();
-		BoardVo bv = new BoardDao().listOne(conn,boardNo);
-		if(bv!=null) {
-			int result = new BoardDao().boardHit(conn, boardNo);
-			if(result>0) {
+		BoardVo bv = null;
+		int result = new BoardDao().boardHit(conn, boardNo);
+		if(result>0) {
 				JDBCTemplate.commit(conn);
+				bv = new BoardDao().listOne(conn,boardNo);
 			}else {
 				JDBCTemplate.rollback(conn);
-			}
 		}
 		ArrayList<BoardComment> list = new BoardDao().selectCommentList(conn,boardNo);
 		BoardViewData bvd = new BoardViewData(list,bv);

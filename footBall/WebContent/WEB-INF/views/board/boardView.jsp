@@ -77,6 +77,7 @@ a{
 				            <tr>
                					<td>작성자 : ${bvd.bv.boardWriter}</td>
                					<td style="text-align: right;">
+               					 조회수 : ${bvd.bv.boardHit}<br>
                	 					 <c:if test="${not empty bvd.bv.boardFilepath}">
                	  						<img src="/img/file.png" width="16px">
                     					<a href="javascript:fileDownload('${bvd.bv.boardFilename}','${bvd.bv.boardFilepath}');">
