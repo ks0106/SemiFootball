@@ -126,9 +126,10 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	font-weight: bolder;
 	font-size: 15px;
 	display: none;
+	
 }
 </style>
-<body>
+<body style="overflow:auto; ">
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<!--영상 위 페이지 타이틀 -->
 	<div id="title">대관</div>
@@ -136,7 +137,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	<section> <!-- 내용 작성 -->
 	<!-- 컨텐츠 -->
 	<div
-		style="width: 85%; background-color: white; margin: 0 auto; overflow: hidden;">
+		style="width: 85%; background-color: white; margin: 0 auto;">
 		<!-- 컨텐츠 사이드 메뉴 -->
 		<div
 			style="width: 20%; height: 300px; text-align: left; display: inline-block; float: left;">
@@ -154,7 +155,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		<!-- 사이드 메뉴 종료 -->
 		<!-- 컨텐츠 -->
 		<div
-			style="width: 78%; border-left: 1px solid silver; display: inline-block; overflow: hidden;">
+			style="width: 78%; border-left: 1px solid silver; display: inline-block;">
 			<!-- 컨텐츠 타이틀 -->
 			<div class="tab-content" >			
 	  			<br><br>
@@ -162,10 +163,10 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				<div class="underline"></div>
 			</div>
 			<!-- 컨텐츠 본문 -->
-			<div style="width: 100%;">
+			<div style="width: 1261.67px;">
 				<!-- 주의사항 -->
 				<div style="width:590px; border: 1px solid darkgray;float:right;margin-top:47px;color:#2c3c57;margin-bottom:30px;">
-					<div style="overflow: hidden;">
+					<div >
 						<img src="${bi1 }" width="100%" height="100%">
 					</div>
 					<div style="height:70px;background-color:#2c3c57;color:white;border:0;border-bottom:1px solid darkgray;font-weight:bolder;text-align:center;font-size:35px;line-height:70px;">환불규정</div>
