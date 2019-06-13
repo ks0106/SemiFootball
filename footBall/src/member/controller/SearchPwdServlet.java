@@ -62,8 +62,8 @@ public class SearchPwdServlet extends HttpServlet {
 				response.setCharacterEncoding("utf-8");
 				new Gson().toJson(num,response.getWriter());
 				String host = "smtp.naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정 
-				final String user = "rudtjr008@naver.com"; // 패스워드 
-				final String password = "rksk1643!@";      // SMTP 서버 정보를 설정한다. 
+				final String user = "keh1159@naver.com"; // 패스워드 
+				final String password = "!kim15387900";      // SMTP 서버 정보를 설정한다. 
 				Properties props = new Properties(); 
 				props.put("mail.smtp.host", host); 
 				props.put("mail.smtp.port", 587); 
@@ -105,8 +105,8 @@ public class SearchPwdServlet extends HttpServlet {
 						"    <p style=\"text-align:left;\">\r\n" + 
 						"        저희 KS Sports Football를 이용해 주셔서 감사합니다.<br><br>\r\n" + 
 						"        \r\n" + 
-						"        암호를 재설정하려면 <a style=\"font-size:20px;\" href='http://localhost/views/login/searchPwdEmail.jsp?num="+num+"'>이 링크</a>를 클릭하십시오.<br><br>\r\n" + 
-						"        보안을 위해 이 링크는 전송된 후 2분이 지나면 만료됩니다. 암호화 관련된 문제가 계속 발생 하는경우 <a href=\"http://localhost/fAQ\">KS Sports Football 고객센터로</a> 문의하세요.<br><br>\r\n" + 
+						"        암호를 재설정하려면 <a style=\"font-size:20px;\" href='http://192.168.10.58/views/login/searchPwdEmail.jsp?num="+num+"'>이 링크</a>를 클릭하십시오.<br><br>\r\n" + 
+						"        보안을 위해 이 링크는 전송된 후 2분이 지나면 만료됩니다. 암호화 관련된 문제가 계속 발생 하는경우 <a href=\"http://192.168.10.58/fAQ\">KS Sports Football 고객센터로</a> 문의하세요.<br><br>\r\n" + 
 						"        감사합니다. <br>\r\n" + 
 						"        KS Sports Football 팀\r\n" + 
 						"    </p>\r\n" + 
