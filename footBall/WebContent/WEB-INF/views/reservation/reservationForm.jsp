@@ -402,7 +402,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 						<button onclick="location.href='/reservation'"
 							style="width: 100px; height: 40px; border: 2px solid darkgray; background-color: darkgray; padding: 0; margin-top: 5px; font-weight: bolder; font-size: 16px; border-radius: 2px; line-height: 30px; color: white;">취소</button>
 						<button
-							style="width: 100px; height: 40px; border: 2px solid #2c3c57; background-color: #2c3c57; padding: 0; margin-top: 5px; margin-left: 281px; font-weight: bolder; font-size: 16px; border-radius: 2px; line-height: 30px; color: white;">장바구니</button>
+							style="width: 100px; height: 40px; border: 2px solid #2c3c57; background-color: #2c3c57; padding: 0; margin-top: 5px; margin-left: 281px; font-weight: bolder; font-size: 16px; border-radius: 2px; line-height: 30px; color: white;display:none;">장바구니</button>
 						<button id="paymentBtn"
 							style="width: 100px; height: 40px; border: 2px solid #2c3c57; background-color: #2c3c57; padding: 0; margin-top: 5px; font-weight: bolder; font-size: 16px; border-radius: 2px; line-height: 30px; color: white;">결제하기</button>
 					</div>
