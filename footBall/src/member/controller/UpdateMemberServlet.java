@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class UpdateMemberServlet
@@ -36,9 +38,11 @@ public class UpdateMemberServlet extends HttpServlet {
 		String pwdHintAnswer = request.getParameter("pwdHintAnswer");
 		String phone = request.getParameter("phone");
 		String id = request.getParameter("id");
+		HttpSession session = request.getSession(false);
 		try {
-			int result = new MemberService().updateMember(id,pwd,pwdHint,pwdHintAnswer,phone);
-			if(result>0) {
+			Member m = new MemberService().updateMember(id,pwd,pwdHint,pwdHintAnswer,phone);
+			if(m!=null) {
+				session.setAttribute("member", m);
 				request.setAttribute("msg", "회원정보 수정 성공!");
 				request.setAttribute("loc", "/myPage?memberId="+id);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
