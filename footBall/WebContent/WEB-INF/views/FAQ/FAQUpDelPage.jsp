@@ -29,7 +29,7 @@
 	<!-- 헤더 불러오기 -->
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
 	<!--영상 위 페이지 타이틀 -->
-	<div id="title">FAQ</div>
+	<div id="title">[관리자]FAQ 수정/삭제</div>
 	<br><br><br><br><br><br><br>
 <center>
 					<table id="matchlist-table"  style="width: 80%;">

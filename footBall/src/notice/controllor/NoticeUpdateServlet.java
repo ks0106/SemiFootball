@@ -34,6 +34,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		NoticeVo nv = new NoticeService().listOne(noticeNo);
+		nv.setNoticeContent(nv.getNoticeContent().replaceAll("<br>", "\r\n"));
 		if(nv!=null) {
 			request.setAttribute("noticeVo", nv);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/notice/noticeUpdate.jsp");

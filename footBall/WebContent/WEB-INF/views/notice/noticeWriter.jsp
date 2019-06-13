@@ -46,7 +46,7 @@
 	<jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
 
 
-	<div id="title">고객센터</div>
+	<div id="title">[관리자]공지사항 작성</div>
 			<section id="insec">
 <br><br><br><br>
 			<div class="table-wrapper"

@@ -32,6 +32,7 @@ public class FAQUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int faqNo = Integer.parseInt(request.getParameter("faqNo"));
 		FAQVo fv = new FAQService().listOne(faqNo);
+		fv.setFaqContent(fv.getFaqContent().replaceAll("<br>", "\r\n"));
 		if(fv!=null) {
 			request.setAttribute("FAQVo", fv);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/FAQ/FAQUpdate.jsp");

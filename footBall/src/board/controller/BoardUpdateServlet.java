@@ -33,6 +33,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		BoardViewData bvd = new BoardService().listOne(boardNo);
+		bvd.getBv().setBoardContent(bvd.getBv().getBoardContent().replaceAll("<br>","\r\n"));
 		if(bvd.getBv()!=null) {
 			request.setAttribute("board", bvd.getBv());
 			request.getRequestDispatcher("/WEB-INF/views/board/boardUpdate.jsp").forward(request, response);

@@ -68,7 +68,7 @@
 					</tr>
 					<tr>
 						<th class="tth">작성자</th>
-						<td>
+						<td style="text-align: left;">
 							<%=m.getName() %>
 						<input type="hidden" class="form-controll" name="boardWriter" value="<%=m.getName() %>">
 							<!--  form태그로 보내야 하기 때문에 hidden타입으로 해놓는 것임! -->
