@@ -74,15 +74,17 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return m ;
 	}
-	public int updateMember(String id,String pwd,String pwdHint,String pwdHintAnswer,String phone) throws SQLException{
+	public Member updateMember(String id,String pwd,String pwdHint,String pwdHintAnswer,String phone) throws SQLException{
 		Connection conn =JDBCTemplate.getConnection();
 		int result = new MemberDAO().updateMember(conn,id,pwd,pwdHint,pwdHintAnswer,phone);
+		Member m = null;
 		if(result>0) {
 			JDBCTemplate.commit(conn);
+			 m = new MemberDAO().login(conn, id, pwd);
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
-		return result;
+		return m;
 	}
 	
 	public MemberPageData selectList(int reqPage) {
